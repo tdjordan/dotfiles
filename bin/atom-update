@@ -1,0 +1,18 @@
+#!/bin/bash
+# Update atom from downloaded 64-bit deb file
+
+curAtom=$(atom --version)
+newAtom=$(curl https://github.com/atom/atom/releases/latest 2>/dev/null | sed -e 's;^.*/v\([^"]*\).*;\1\n;g')
+
+[ "$curAtom" != "$newAtom" ] && (
+  echo "atom : [$curAtom] -> [$newAtom]"
+  rm -rf /tmp/atom-amd64.deb
+  curl -L https://atom.io/download/deb 2>/dev/null > /tmp/atom-amd64.deb
+  sudo dpkg --install /tmp/atom-amd64.deb
+  echo "done"
+) || (
+  echo "Already at the latest version. [$curAtom]"
+)
+
+exit 0
+
