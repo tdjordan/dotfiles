@@ -121,7 +121,7 @@ export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 export GOPATH=~/.gopath
 export PATH=$PATH:~/.cabal/bin
 
-export NVM_DIR="/home/wr-linux/.nvm"
+export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 export TERM=xterm-256color
