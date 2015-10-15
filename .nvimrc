@@ -1,4 +1,4 @@
-"Set 'nocompatible' to ward off unexpected things that the distro might
+" Set 'nocompatible' to ward off unexpected things that the distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible                                  " nvim default
 
@@ -189,18 +189,36 @@ set showcmd                                       " nvim default: (unix) ? off :
 " Resize splits when the window is resized
 au VimResized * :wincmd =
 
-
 """"""""""
-" terminal commands
+" window navigation
 """"""""""
-tnoremap <leader>e <C-\><C-n>
+" terminal mode
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+  tnoremap <C-h> <C-\><C-n><C-w>h
+  tnoremap <C-j> <C-\><C-n><C-w>j
+  tnoremap <C-k> <C-\><C-n><C-w>k
+  tnoremap <C-l> <C-\><C-n><C-w>l
+  au BufWinEnter,WinEnter term://* startinsert
+  au BufLeave term://* stopinsert
+endif
+" normal mode
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+" insert mode
+inoremap <C-h> <Esc><C-w>h
+inoremap <C-j> <Esc><C-w>j
+inoremap <C-k> <Esc><C-w>k
+inoremap <C-l> <Esc><C-w>l
 
 """"""""""
 " backup/persistance settings
 """"""""""
 
 """"""""""
-" undo
+"" undo
 """"""""""
 " List of directory names for undo files
 set undodir=~/.vim/tmp/undo//                     " nvim default : '.'
@@ -217,7 +235,7 @@ set undofile                                      " nvim default : off
 "set undoreload=10000                          """"" nvim default : 10000
 
 """"""""""
-" backup
+"" backup
 """"""""""
 " Make a backup before overwriting a file.
 set backup                                        " nvim default : off
@@ -241,7 +259,7 @@ set backupskip=/tmp/*,/private/tmp/*              " nvim default : see above
 "set backupcopy=yes                            """"" nvim default : (unix) ? 'yes' : 'auto'
 
 """"""""""
-" swap
+"" swap
 """"""""""
 " Use a swapfile for the buffer.
 set noswapfile                                    " nvim default : on
