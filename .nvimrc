@@ -357,7 +357,7 @@ vmap <C-Down> <Plug>MoveBlockDown
 " Duplicate ines
 """"""""""
 nmap <C-S-d> maYp`aj
-vmap <C-S-d>   Y`>pgv
+vmap <C-S-d>   Y`<Pgv
 
 " vim-plug : add plugins to &runtimepath
 call plug#end()
