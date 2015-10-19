@@ -12,6 +12,10 @@ syntax on
 colorscheme molokai
 "colorscheme dalek
 
+" New <leaderi> of the band
+let mapleader=','
+"nnoremap <leader>V :tabnew ~/.nvimrc<CR>
+
 """"""""""
 "
 " Plugins
@@ -25,39 +29,74 @@ colorscheme molokai
 call plug#begin('~/.vim/plugged')
 "end
 
+""""""""""
 Plug 'rking/ag.vim'
+""""""""""
 Plug 'SirVer/ultisnips'
+""""""""""
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
+""""""""""
 Plug 'kien/ctrlp.vim'
+
+""""""""""
 Plug 'bling/vim-airline'
+""""""""""
+"if !exists("g:airline_symbols")
+"	let g:airline_symbols = {}
+"endif
+let g:airline_theme="powerlineish"
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline_theme="dark"
+"let g:airline_theme="jellybeans"
+"let g:airline_theme="raven"
+"let g:airline_powerline_fonts = 1
+""""""""""
+
+""""""""""
 Plug 'majutsushi/tagbar'
+""""""""""
+nmap <F8> :TagbarToggle<CR>
+""""""""""
+
+""""""""""
 Plug 'scrooloose/syntastic'
+""""""""""
+
+""""""""""
 Plug 'scrooloose/nerdcommenter'
+""""""""""
+nmap <C-_> <Leader>c<Space>
+vmap <C-_> <Leader>c<Space>
+""""""""""
+
+""""""""""
 Plug 'airblade/vim-gitgutter'
+""""""""""
 Plug 'flazz/vim-colorschemes'
+""""""""""
 "Plug 'nathanaelkane/vim-indent-guides'
+""""""""""
 Plug 'fatih/vim-go'
+""""""""""
 Plug 'bronson/vim-trailing-whitespace'
+""""""""""
 Plug 'tpope/vim-surround'
+""""""""""
+
+""""""""""
 Plug 'terryma/vim-multiple-cursors'
+""""""""""
 "let g:multi_cursor_use_default_mapping=0
 "let g:multi_cursor_next_key='<C-n>'
 "let g:multi_cursor_prev_key='<C-p>'
 "let g:multi_cursor_skip_key='<C-x>'
 "let g:multi_cursor_quit_key='<Esc>'
 
-" vim-plug : add plugins to &runtimepath
-call plug#end()
-
 """"""""""
 "
 " Settings & Keybindings
 "
 """"""""""
-
-" New <leaderi> of the band
-let mapleader=','
-"nnoremap <leader>V :tabnew ~/.nvimrc<CR>
 
 " Indention settings for 2
 " spaces instead of tabs
@@ -300,58 +339,26 @@ set directory=~/.vim/tmp/swap//                   " nvim default : see above
 "noremap n nzz
 "noremap N Nzz
 
-""""""""""
-"
-" vim-airline
-"
-""""""""""
-"if !exists("g:airline_symbols")
-"	let g:airline_symbols = {}
-"endif
-let g:airline_theme="powerlineish"
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline_theme="dark"
-"let g:airline_theme="jellybeans"
-"let g:airline_theme="raven"
-"let g:airline_powerline_fonts = 1
-
-""""""""""
-"
-" tagbar
-"
-""""""""""
-nmap <F8> :TagbarToggle<CR>
-
-""""""""""
-"
-" NERDCommenter
-"
-""""""""""
-nmap <C-_> <Leader>c<Space>
-vmap <C-_> <Leader>c<Space>
-
 """""""""
 "
 " Atom editor work-alike
 "
 """"""""""
-nmap <C-Down> ddjP                                " move line down
-nmap <C-Up>   ddkP                                " move line up
-"nmap <C-k>    ddkP                                " move line up
-"nmap <C-j>    ddjP                                " move line down
-"nmap <C-Up>   mz:m-2<cr>`z                        " move line up
-"nmap <C-Down> mz:m+<cr>`z                         " move line down
-"vmap <C-Up>   :m`<-2<cr>`>my`<mzgv`yo`z           " move line up
-"vmap <C-Down> :m`>+<cr>`<my`>mzgv`yo`z            " move line down
-"nmap <C-k>    mz:m-2<cr>`z                        " move line up
-"nmap <C-j>    mz:m+<cr>`z                         " move line down
-"vmap <C-k>    :m`<-2<cr>`>my`<mzgv`yo`z           " move line up
-"vmap <C-j>    :m`>+<cr>`<my`>mzgv`yo`z            " move line down
-
-"""""""""
-"
-" Stubborn old vim habits die hard
-"
+Plug 'matze/vim-move'
 """"""""""
-"cmap sh te
+nmap <C-Up>   <Plug>MoveLineUp
+nmap <C-Down> <Plug>MoveLineDown
+vmap <C-Up>   <Plug>MoveBlockUp
+vmap <C-Down> <Plug>MoveBlockDown
+"vmap <C-Up>   :m '<-2<CR>gv=gv
+"vmap <C-Down> :m '>+1<CR>gv=gv
+
+""""""""""
+" Duplicate ines
+""""""""""
+nmap <C-S-d> maYp`aj
+vmap <C-S-d>   Y`>pgv
+
+" vim-plug : add plugins to &runtimepath
+call plug#end()
 
