@@ -36,20 +36,21 @@ Plug 'SirVer/ultisnips'
 """"""""""
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
 """"""""""
+
+""""""""""
+" Fuzzy finder
+""""""""""
 Plug 'kien/ctrlp.vim'
+""""""""""
+" open fuzzy buffer mode
+nmap <Leader>r :CtrlPBuffer<CR>
+""""""""""
 
 """"""""""
 Plug 'bling/vim-airline'
 """"""""""
-"if !exists("g:airline_symbols")
-"	let g:airline_symbols = {}
-"endif
 let g:airline_theme="powerlineish"
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline_theme="dark"
-"let g:airline_theme="jellybeans"
-"let g:airline_theme="raven"
-"let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 """"""""""
 
 """"""""""
@@ -129,7 +130,7 @@ set hlsearch                                  """"" nvim default : on
 
 " Display line numbers in the left gutter
 set number                                        " nvim default : off
-"set relativenumber                                " nvim default : off
+set relativenumber                                " nvim default : off
 
 " When will the last window have a status line?
 "   0 : never
