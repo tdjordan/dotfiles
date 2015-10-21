@@ -33,6 +33,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'rking/ag.vim'
 """"""""""
 Plug 'SirVer/ultisnips'
+" :help ultisnips
 """"""""""
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
 """"""""""
@@ -40,58 +41,77 @@ Plug 'SirVer/ultisnips'
 """"""""""
 " Fuzzy finder
 """"""""""
-Plug 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'                             " :help ctrlp
 """"""""""
 " open fuzzy buffer mode
 nmap <Leader>r :CtrlPBuffer<CR>
 """"""""""
 
 """"""""""
-Plug 'bling/vim-airline'
+Plug 'bling/vim-airline'                          " :help airline
 """"""""""
 let g:airline_theme="powerlineish"
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts=1
 """"""""""
 
 """"""""""
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'                          " :help tagbar
 """"""""""
 nmap <F8> :TagbarToggle<CR>
 """"""""""
 
 """"""""""
-Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'                       " :help syntastic
 """"""""""
 
 """"""""""
-Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'                   " :help nerdcommenter
 """"""""""
 nmap <C-_> <Leader>c<Space>
 vmap <C-_> <Leader>c<Space>
 """"""""""
 
 """"""""""
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'                     " :help gitgutter
 """"""""""
 Plug 'flazz/vim-colorschemes'
 """"""""""
-"Plug 'nathanaelkane/vim-indent-guides'
+
 """"""""""
-Plug 'fatih/vim-go'
+Plug 'nathanaelkane/vim-indent-guides'            " :help indent-guides
 """"""""""
-Plug 'bronson/vim-trailing-whitespace'
-""""""""""
-Plug 'tpope/vim-surround'
+let g:indent_guides_start_level = 2               " plug default : 1
+let g:indent_guides_guide_size  = 1               " plug default : 0
+"let g:indent_guides_space_guides= 1               " plug default : 1
+"let g:indent_guides_soft_pattern= ' '             " plug default : '\s'
+"let g:indent_guides_enable_on_vim_startup= 0      " plug default : 0
+"let g:indent_guides_exclude_filetypes=['help','nerdtree']    " plug default : ['help']
+"let g:indent_guides_default_mapping = 0           " plug default : 1
 """"""""""
 
 """"""""""
-Plug 'terryma/vim-multiple-cursors'
+Plug 'fatih/vim-go'                               " :help vim-go
+""""""""""
+
+""""""""""
+Plug 'bronson/vim-trailing-whitespace'            " :help trailing-whitespace
+""""""""""
+"let g:extra_whitespace_ignored_filetypes=[]   """"" plug default : []
+""""""""""
+
+""""""""""
+Plug 'tpope/vim-surround'                         " :help surround
+""""""""""
+
+""""""""""
+Plug 'terryma/vim-multiple-cursors'               " :help multiple-cursors
 """"""""""
 "let g:multi_cursor_use_default_mapping=0
 "let g:multi_cursor_next_key='<C-n>'
 "let g:multi_cursor_prev_key='<C-p>'
 "let g:multi_cursor_skip_key='<C-x>'
 "let g:multi_cursor_quit_key='<Esc>'
+""""""""""
 
 """"""""""
 "
@@ -238,6 +258,8 @@ au VimResized * :wincmd =
 """"""""""
 " window navigation
 """"""""""
+"" navigate cursor to adjoining window
+""""""""""
 " terminal mode
 if has('nvim')
   tnoremap <Esc> <C-\><C-n>
@@ -254,10 +276,19 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 " insert mode
-inoremap <C-h> <Esc><C-w>h
+inoremap <C-h> <Esc><C-W>h
 inoremap <C-j> <Esc><C-w>j
 inoremap <C-k> <Esc><C-w>k
 inoremap <C-l> <Esc><C-w>l
+""""""""""
+"" move window to <position> of other windows
+""""""""""
+" normal mode
+nnoremap <C-S-H> <C-W>H
+"nnoremap <C-S-J> <C-W>J
+"nnoremap <C-S-K> <C-W>K
+"nnoremap <C-S-L> <C-W>L
+"nnoremap <C-S-T> <C-W>T
 
 """"""""""
 " backup/persistance settings
@@ -323,6 +354,20 @@ set directory=~/.vim/tmp/swap//                   " nvim default : see above
 " Instead of failing a command because of unsaved changes,
 " raise a dialogue asking if you wish to save changed files
 "set confirm                                       " nvim default : off
+
+""""""""""
+"" save marks
+""""""""""
+" Use the shada to save marks also
+"   TODO: Not working
+"set shada+=f1                                     " nvim default : !,'100,<50,s10,h
+
+""""""""""
+"" sessions
+""""""""""
+" Allow Windows & Linux to share session files
+"   nvim default : blank,buffers, curdir, folds,help,tabpages,winsize
+set sessionoptions+=slash,unix
 
 """"""""""
 " List mode
