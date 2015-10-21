@@ -1,13 +1,33 @@
 #!/bin/bash
 # Update atom from downloaded 64-bit deb file
 
+useBeta=true
+
+# sanity
+haveJQ=$(which jq)
+if [ -z "$haveJQ" ]; then
+  apt-cache show jq
+  echo
+  echo "Pleae install ./jq first."
+  echo "  see: https://stedolan.github.io/jq"
+  exit 1
+fi
+
 curAtom=$(atom --version)
-newAtom=$(curl https://github.com/atom/atom/releases/latest 2>/dev/null | sed -e 's;^.*/v\([^"]*\).*;\1\n;g')
+stableAtom=$(curl https://github.com/atom/atom/releases/latest 2>/dev/null | sed -e 's;^.*/v\([^"]*\).*;\1\n;g')
+betaAtom=$(curl -s "https://api.github.com/repos/atom/atom/releases" | jq '.[] | select(.prerelease == true).tag_name' | sed -e 's;"v*;;g')
+
+download_url="https://atom.io/download/deb"
+newAtom=$stableAtom
+if [ $useBeta == true ]; then
+  download_url=$(curl -s "https://api.github.com/repos/atom/atom/releases" | jq '.[] | select(.prerelease == true) | .assets[] | select(.name == "atom-amd64.deb").browser_download_url' | sed -e 's;";;g')
+  newAtom=$betaAtom
+fi
 
 [ "$curAtom" != "$newAtom" ] && (
   echo "atom : [$curAtom] -> [$newAtom]"
   rm -rf /tmp/atom-amd64.deb
-  curl -L https://atom.io/download/deb 2>/dev/null > /tmp/atom-amd64.deb
+  curl -L "$download_url" 2>/dev/null > /tmp/atom-amd64.deb
   sudo dpkg --install /tmp/atom-amd64.deb
   echo "done"
 ) || (
