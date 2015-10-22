@@ -1,0 +1,11 @@
+#!/bin/bash
+# Toggle touchpad on/off
+
+curState=$(synclient -l | awk '/TouchpadOff/ { print $3 }')
+
+[ "$curState" == "1" ] && (
+  synclient touchpadoff=0
+) || (
+  synclient touchpadoff=1
+)
+
