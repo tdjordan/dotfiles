@@ -1,7 +1,7 @@
 #!/bin/bash
 # Update atom from downloaded 64-bit deb file
 
-useBeta=true
+#useBeta=true
 
 # sanity
 haveJQ=$(which jq)
@@ -13,26 +13,36 @@ if [ -z "$haveJQ" ]; then
   exit 1
 fi
 
-curAtom=$(atom --version)
+# install function
+install_atom () {
+  curAtom=$1
+  newAtom=$2
+  download_url=$3
+
+  [ "$curAtom" != "$newAtom" ] && (
+    echo "atom : [$curAtom] -> [$newAtom]"
+    rm -rf /tmp/atom-amd64.deb
+    curl -L "$download_url" 2>/dev/null > /tmp/atom-amd64.deb
+    sudo dpkg --install /tmp/atom-amd64.deb
+    echo "done"
+  ) || (
+    echo "Already at the latest version. [$curAtom]"
+  )
+}
+
+curAtom_stable=$(atom --version)
+curAtom_beta=$(atom-beta --version)
+
 stableAtom=$(curl https://github.com/atom/atom/releases/latest 2>/dev/null | sed -e 's;^.*/v\([^"]*\).*;\1\n;g')
-betaAtom=$(curl -s "https://api.github.com/repos/atom/atom/releases" | jq '.[] | select(.prerelease == true).tag_name' | sed -e 's;"v*;;g')
 
-download_url="https://atom.io/download/deb"
-newAtom=$stableAtom
-if [ $useBeta == true ]; then
-  download_url=$(curl -s "https://api.github.com/repos/atom/atom/releases" | jq '.[] | select(.prerelease == true) | .assets[] | select(.name == "atom-amd64.deb").browser_download_url' | sed -e 's;";;g')
-  newAtom=$betaAtom
-fi
+atomReleases=$(curl -s "https://api.github.com/repos/atom/atom/releases")
+betaAtom=$(echo "$atomReleases" | jq '.[] | select(.prerelease == true).tag_name' | sed -e 's;"v*;;g')
 
-[ "$curAtom" != "$newAtom" ] && (
-  echo "atom : [$curAtom] -> [$newAtom]"
-  rm -rf /tmp/atom-amd64.deb
-  curl -L "$download_url" 2>/dev/null > /tmp/atom-amd64.deb
-  sudo dpkg --install /tmp/atom-amd64.deb
-  echo "done"
-) || (
-  echo "Already at the latest version. [$curAtom]"
-)
+downloadUrl_stable="https://atom.io/download/deb"
+downloadUrl_beta=$(echo "$atomReleases" | jq '.[] | select(.prerelease == true) | .assets[] | select(.name == "atom-amd64.deb").browser_download_url' | sed -e 's;";;g')
+
+install_atom "$curAtom_stable" "$stableAtom" "$downloadUrl_stable"
+install_atom "$curAtom_beta"   "$betaAtom"  "$downloadUrl_beta"
 
 exit 0
 
