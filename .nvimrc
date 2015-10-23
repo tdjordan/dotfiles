@@ -30,10 +30,16 @@ call plug#begin('~/.vim/plugged')
 "end
 
 """"""""""
-Plug 'rking/ag.vim'
+Plug 'rking/ag.vim'                               " :help ag
 """"""""""
-Plug 'SirVer/ultisnips'
-" :help ultisnips
+" Better comand-line completion
+set wildmenu                                  """"" nvim default : on
+set wildmode=longest:full,full                    " nvim default : full
+let g:ag_prg="ag --vimgrep --smart-case"          " plug default : --vimgrep
+""""""""""
+
+""""""""""
+Plug 'SirVer/ultisnips'                           " :help ultisnips
 """"""""""
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
 """"""""""
@@ -45,6 +51,17 @@ Plug 'kien/ctrlp.vim'                             " :help ctrlp
 """"""""""
 " open fuzzy buffer mode
 nmap <Leader>r :CtrlPBuffer<CR>
+let g:ctrlp_show_hidden=1                         " plug default : 0 - hide hidden files
+"if has('win32') || has('win64')
+  "set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\* " nvim default : blank
+"else
+  "set wildignore+=*/.git/*,*/.hg/*,*/.svn/*       " nvim default : blank
+"end
+let g:ctrlp_custom_ignore={
+  \ 'dir':  '\v[\/].(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': '',
+  \ }
 """"""""""
 
 """"""""""
@@ -69,6 +86,39 @@ Plug 'scrooloose/nerdcommenter'                   " :help nerdcommenter
 """"""""""
 nmap <C-_> <Leader>c<Space>
 vmap <C-_> <Leader>c<Space>
+""""""""""
+
+""""""""""
+Plug 'scrooloose/nerdtree'                        " :help nerdtree
+""""""""""
+nmap <Leader>k :NERDTreeToggle<CR>
+" exit nvim when nerdtree is the only buffer open
+au bufenter *
+  \ if
+    \ (winnr("$") == 1
+    \ && exists("b:NERDTreeType")
+    \ && b:NERDTreeType
+    \ == "primary")
+      \ | q |
+  \ endif
+" open nerdtree when nvim starts up
+"au VimEnter * NERDTree
+" open nerdtee when no files wer specified on startup
+au StdinReadPre * let s:std_in=1
+au VimEnter *
+  \ if
+    \ argc() == 0
+    \ && !exists("s:std_in")
+      \ | NERDTree |
+  \ endif
+""""""""""
+
+""""""""""
+Plug 'Xuyuanp/nerdtree-git-plugin'
+""""""""""
+
+""""""""""
+Plug 'tpope/vim-fugitive'                         " 
 """"""""""
 
 """"""""""
@@ -209,6 +259,9 @@ set nowrap                                        " nvim default : on
 set backspace=indent,eol,start                """"" nvim default : 'ident,eol,start'
 set shell=/bin/bash                               " nvim default : $SHELL or sh or cmd.exe
 
+" Allow for old vim shell muscle memory
+cnoreabbrev sh te
+
 " Insert mode completion options
 "   menu
 "   : use a popup menu to show the possible completeions
@@ -233,8 +286,6 @@ set completeopt -=preview                         " nvim default : 'menu,preview
 " Zero disables this feature.
 "set textwidth=100                                 " nvim default : 0
 
-" Better comand-line completion
-set wildmenu                                  """"" nvim default : on
 "set ttyfast                                   """"" not in nvim - always set
 set noshowmode
 
