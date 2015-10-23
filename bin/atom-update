@@ -19,30 +19,34 @@ install_atom () {
   newAtom=$2
   download_url=$3
 
+  if [[ $newAtom =~ beta ]]; then
+    isBeta="-beta"
+  fi
+
   [ "$curAtom" != "$newAtom" ] && (
-    echo "atom : [$curAtom] -> [$newAtom]"
+    echo "atom$isBeta : [$curAtom] -> [$newAtom]"
     rm -rf /tmp/atom-amd64.deb
     curl -L "$download_url" 2>/dev/null > /tmp/atom-amd64.deb
     sudo dpkg --install /tmp/atom-amd64.deb
     echo "done"
   ) || (
-    echo "Already at the latest version. [$curAtom]"
+  echo "Already at the latest version. atom$isBeta -> [$curAtom]"
   )
 }
 
 curAtom_stable=$(atom --version)
 curAtom_beta=$(atom-beta --version)
 
-stableAtom=$(curl https://github.com/atom/atom/releases/latest 2>/dev/null | sed -e 's;^.*/v\([^"]*\).*;\1\n;g')
+verAtom_stable=$(curl https://github.com/atom/atom/releases/latest 2>/dev/null | sed -e 's;^.*/v\([^"]*\).*;\1\n;g')
 
 atomReleases=$(curl -s "https://api.github.com/repos/atom/atom/releases")
-betaAtom=$(echo "$atomReleases" | jq '.[] | select(.prerelease == true).tag_name' | sed -e 's;"v*;;g')
+verAtom_beta=$(echo "$atomReleases" | jq '.[] | select(.prerelease == true).tag_name' | sed -e 's;"v*;;g')
 
 downloadUrl_stable="https://atom.io/download/deb"
 downloadUrl_beta=$(echo "$atomReleases" | jq '.[] | select(.prerelease == true) | .assets[] | select(.name == "atom-amd64.deb").browser_download_url' | sed -e 's;";;g')
 
-install_atom "$curAtom_stable" "$stableAtom" "$downloadUrl_stable"
-install_atom "$curAtom_beta"   "$betaAtom"  "$downloadUrl_beta"
+install_atom "$curAtom_stable" "$verAtom_stable" "$downloadUrl_stable"
+install_atom "$curAtom_beta"   "$verAtom_beta"   "$downloadUrl_beta"
 
 exit 0
 
