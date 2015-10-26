@@ -47,7 +47,8 @@ Plug 'SirVer/ultisnips'                           " :help ultisnips
 """"""""""
 " Fuzzy finder
 """"""""""
-Plug 'kien/ctrlp.vim'                             " :help ctrlp
+"Plug 'kien/ctrlp.vim'                             " :help ctrlp
+Plug 'ctrlpvim/ctrlp.vim'                             " :help ctrlp
 """"""""""
 " open fuzzy buffer mode
 nmap <Leader>r :CtrlPBuffer<CR>
@@ -335,7 +336,7 @@ inoremap <C-l> <Esc><C-w>l
 "" move window to <position> of other windows
 """"""""""
 " normal mode
-nnoremap <C-S-H> <C-W>H
+"nnoremap <C-S-H> <C-W>H
 "nnoremap <C-S-J> <C-W>J
 "nnoremap <C-S-K> <C-W>K
 "nnoremap <C-S-L> <C-W>L
