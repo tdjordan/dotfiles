@@ -33,12 +33,15 @@ mkdir -p ~/.original.config
 [ -e ~/.vimrc  ] && ( mv ~/.vimrc  ~/.original.config/. )
 [ -e ~/.nvimrc ] && ( mv ~/.nvimrc ~/.original.config/. )
 [ -e ~/.vim    ] && ( mv ~/.vim    ~/.original.config/. )
+[ -e ~/.nvim   ] && ( mv ~/.nvim   ~/.original.config/. )
 
 [ -e ~/.config/nvim/init.vim  ] && ( mv ~/.config/nvim/init.vim ~/.original.config/. )
 
 # link in new config
 mkdir -p ~/.config/nvim
-ln -s .files/.config/nvim/init.vim .config/nvim/init.vim
+pushd ~/.config/nvim
+ln -s ../../.files/.config/nvim/init.vim
+pushd ~
 ln -s .config/nvim/init.vim .nvimrc
 ln -s .nvimrc .vimrc
 ln -s .local/share/nvim .nvim
@@ -47,4 +50,7 @@ ln -s .nvim .vim
 # bootstrap some vim plugins
 vimplug-update 2>/dev/null
 molokai-update 2>/dev/null
+
+popd
+popd
 
