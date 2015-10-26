@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# fetch plug.vim from github
+curl -fLo ~/.config/nvim/colors/molokai.vim --create-dirs https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim 2>/dev/null

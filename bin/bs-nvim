@@ -22,3 +22,29 @@ sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
 # bring in powerline fonts
 sudo apt-get install -y fonts-powerline
 
+# make useful directories
+mkdir -p ~/.local/share/nvim/tmp/undo
+mkdir -p ~/.local/share/nvim/tmp/backup
+mkdir -p ~/.local/share/nvim/tmp/swap
+mkdir -p ~/.local/share/nvim/plugged
+
+# backup original config before linking in new one
+mkdir -p ~/.original.config
+[ -e ~/.vimrc  ] && ( mv ~/.vimrc  ~/.original.config/. )
+[ -e ~/.nvimrc ] && ( mv ~/.nvimrc ~/.original.config/. )
+[ -e ~/.vim    ] && ( mv ~/.vim    ~/.original.config/. )
+
+[ -e ~/.config/nvim/init.vim  ] && ( mv ~/.config/nvim/init.vim ~/.original.config/. )
+
+# link in new config
+mkdir -p ~/.config/nvim
+ln -s .files/.config/nvim/init.vim .config/nvim/init.vim
+ln -s .config/nvim/init.vim .nvimrc
+ln -s .nvimrc .vimrc
+ln -s .local/share/nvim .nvim
+ln -s .nvim .vim
+
+# bootstrap some vim plugins
+vimplug-update 2>/dev/null
+molokai-update 2>/dev/null
+

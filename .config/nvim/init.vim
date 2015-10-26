@@ -28,7 +28,7 @@ let mapleader=','
 "if has('win32') || has('win64')
   "call plug#begin($VIM.'/vimfiles/plugged')
 "else
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 "end
 
 """"""""""
@@ -41,7 +41,18 @@ let g:ag_prg="ag --vimgrep --smart-case"          " plug default : --vimgrep
 """"""""""
 
 """"""""""
-Plug 'SirVer/ultisnips'                           " :help ultisnips
+" Snippets
+""""""""""
+Plug 'Shougo/neocomplete'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+""""""""""
+
+""""""""""
+
+
+""""""""""
+"Plug 'SirVer/ultisnips'                           " :help ultisnips
 """"""""""
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
 """"""""""
@@ -361,7 +372,7 @@ inoremap <C-l> <Esc><C-w>l
 "" undo
 """"""""""
 " List of directory names for undo files
-set undodir=~/.vim/tmp/undo//                     " nvim default : '.'
+set undodir=~/.local/share/nvim/tmp/undo//                     " nvim default : '.'
 
 " Automatically save undo history to an undo file
 "  when writing a buffer to a file, and
@@ -385,7 +396,7 @@ set writebackup                               """"" nvim default : (+writebackup
 
 " List of directories for backup files
 "   nvim default : (unix) ? '.,~/tmp,~/' ; '.,$TEMP,c:\\tmp,c:\\temp'
-set backupdir=~/.vim/tmp/backup//                 " nvim default : see above
+set backupdir=~/.local/share/nvim/tmp/backup//                 " nvim default : see above
 
 " List of file patterns to skip creating a backup of
 "   nvim default : '/tmp/*,/$TMPDIR/*,$TMP/*,$TEMP/*'
@@ -406,7 +417,7 @@ set noswapfile                                    " nvim default : on
 
 " List of directories for swap files
 "   nvim default : (unix) ? '.,~/tmp,/var/tmp,/tmp' : '.,$TEMP,c:\\tmp,c:\\temp'
-set directory=~/.vim/tmp/swap//                   " nvim default : see above
+set directory=~/.local/share/nvim/tmp/swap//                   " nvim default : see above
 
 " How many to remember?
 "   of:
