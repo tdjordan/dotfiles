@@ -1,6 +1,8 @@
 " Set 'nocompatible' to ward off unexpected things that the distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
-set nocompatible                                  " nvim default
+if !has('nvim')
+  set nocompatible                                  " nvim default
+end
 
 " Attempt to determine the type of a file based on its name and possibly its contents.
 " Used to allow intelligent auto-indenting for each filetype,
