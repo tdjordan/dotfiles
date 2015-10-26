@@ -64,6 +64,15 @@ let g:ctrlp_custom_ignore={
   \ 'link': '',
   \ }
 """"""""""
+"" ctrlp extensions
+""""""""""
+Plug 'tacahiroy/ctrlp-funky'                      " :help ctrlp-funky
+""""""""""
+nnoremap <Leader>fu :CtrlPFunky<CR>
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<CR>
+let g:ctrlp_funky_matchtype='path'
+let g:ctrlp_funky_syntax_highlight=1
+""""""""""
 
 """"""""""
 Plug 'bling/vim-airline'                          " :help airline
@@ -119,7 +128,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 """"""""""
 
 """"""""""
-Plug 'tpope/vim-fugitive'                         " 
+Plug 'tpope/vim-fugitive'                         " :help fugitive
 """"""""""
 
 """"""""""
