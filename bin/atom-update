@@ -35,8 +35,8 @@ install_atom () {
   )
 }
 
-curAtom_stable=$(atom --version)
-curAtom_beta=$(atom-beta --version)
+curAtom_stable=$(atom --version 2>/dev/null)
+curAtom_beta=$(atom-beta --version 2>/dev/null)
 
 verAtom_stable=$(curl https://github.com/atom/atom/releases/latest 2>/dev/null | sed -e 's;^.*/v\([^"]*\).*;\1\n;g')
 
