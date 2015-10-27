@@ -18,6 +18,12 @@ sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
 #sudo update-alternatives --config vim
 sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
 #sudo update-alternatives --config editor
+sudo update-alternatives --install /usr/bin/vimdiff vimdiff /usr/bin/nvim 60
+#sudo update-alternatives --config vimdiff
+sudo update-alternatives --install /usr/bin/view view /usr/bin/nvim 60
+#sudo update-alternatives --config view
+sudo update-alternatives --install /usr/bin/ex ex /usr/bin/nvim 60
+#sudo update-alternatives --config ex
 
 # bring in powerline fonts
 sudo apt-get install -y fonts-powerline
@@ -30,12 +36,12 @@ mkdir -p ~/.local/share/nvim/plugged
 
 # backup original config before linking in new one
 mkdir -p ~/.original.config
-[ -e ~/.vimrc  ] && ( mv ~/.vimrc  ~/.original.config/. )
-[ -e ~/.nvimrc ] && ( mv ~/.nvimrc ~/.original.config/. )
-[ -e ~/.vim    ] && ( mv ~/.vim    ~/.original.config/. )
-[ -e ~/.nvim   ] && ( mv ~/.nvim   ~/.original.config/. )
+( mv -n ~/.vimrc  ~/.original.config/. ; rm ~/.vimrc  ) 2>/dev/null
+( mv -n ~/.nvimrc ~/.original.config/. ; rm ~/.nvimrc ) 2>/dev/null
+( mv -n ~/.vim    ~/.original.config/. ; rm ~/.vim    ) 2>/dev/null
+( mv -n ~/.nvim   ~/.original.config/. ; rm ~/.nvim   ) 2>/dev/null
 
-[ -e ~/.config/nvim/init.vim  ] && ( mv ~/.config/nvim/init.vim ~/.original.config/. )
+( mv -n ~/.config/nvim/init.vim ~/.original.config/. ; rm ~/.config/nvim/init.vim ) 2>/dev/null
 
 # link in new config
 mkdir -p ~/.config/nvim

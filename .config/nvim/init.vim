@@ -187,6 +187,13 @@ Plug 'terryma/vim-multiple-cursors'               " :help multiple-cursors
 """"""""""
 
 """"""""""
+"Plug 'jszakmeister/vim-togglecursor'              " : help togglecursor
+"""""""""""
+"let g:togglecursor_insert='line'
+"let g:togglecursor_disable_neovim=1
+""""""""""
+
+""""""""""
 "
 " Settings & Keybindings
 "
@@ -481,4 +488,6 @@ vmap <C-S-d>   Y`<Pgv
 
 " vim-plug : add plugins to &runtimepath
 call plug#end()
+
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
