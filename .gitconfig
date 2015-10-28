@@ -18,6 +18,17 @@
 	lg3 = !git lg-base-decorate --pretty=oneline --stat
 	lg4 = !git lg-base --pretty=oneline --stat
 
+  # current branch name
+  current-br = !git branch | cut -b3-
+
+  # incoming changes
+  incoming = !git fetch && git log $(git current-br)..origin/$(git current-br)
+  in = !git incoming
+
+  # outgoing changes
+  outgoing = !git log origin/$(git current-br)..$(git current-br)
+  out = !git outgoing
+
 [core]
 	editor = vi
 [push]
