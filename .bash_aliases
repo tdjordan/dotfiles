@@ -8,6 +8,7 @@ alias ll='ls -AlF --color=auto'
 #alias grep='grep --color=auto 2>/dev/null'
 alias grep='ag $*' 2>/dev/null
 alias tree='tree -a -I .git $* 2>/dev/null'
+alias dtree='tree -ad -I .git $* 2>/dev/null'
 
 #export TERM=xterm-256colors
 #export TERM=screen-256colors
