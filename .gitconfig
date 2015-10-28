@@ -21,11 +21,11 @@
   # current branch name
   current-br = !git branch | cut -b3-
 
-  # incoming changes
+  # incoming changes - like hg
   incoming = !git fetch && git log $(git current-br)..origin/$(git current-br)
   in = !git incoming
 
-  # outgoing changes
+  # outgoing changes - like hg
   outgoing = !git log origin/$(git current-br)..$(git current-br)
   out = !git outgoing
 
