@@ -103,6 +103,9 @@ nmap <F8> :TagbarToggle<CR>
 """"""""""
 Plug 'scrooloose/syntastic'                       " :help syntastic
 """"""""""
+"let g:syntastic_enable_ballons=1                  " plug default : 1
+"let g:syntastic_error_symbol = "✗"                " plug default : $>
+""""""""""
 
 """"""""""
 Plug 'scrooloose/nerdcommenter'                   " :help nerdcommenter
