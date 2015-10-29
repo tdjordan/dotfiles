@@ -66,11 +66,16 @@ Plug 'ctrlpvim/ctrlp.vim'                             " :help ctrlp
 " open fuzzy buffer mode
 nmap <Leader>r :CtrlPBuffer<CR>
 let g:ctrlp_show_hidden=1                         " plug default : 0 - hide hidden files
-"if has('win32') || has('win64')
-  "set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\* " nvim default : blank
-"else
-  "set wildignore+=*/.git/*,*/.hg/*,*/.svn/*       " nvim default : blank
-"end
+" set up patterns to ignore
+set wildignore+=.hg,.git,.svn                     " version control
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg    " images - binary
+set wildignore+=*.o,*.obj,*.manifest              " compiled object files
+set wildignore+=*.exe,*.so,*dll                   " exe/lib binaries
+set wildignore+=*.DS_Store                        " OSX custom folder attributes
+set wildignore+=*.luac                            " byte code - lua
+set wildignore+=*.pyc                             " byte code - python
+set wildignore+=*.sw?                             " nvim swap files
+set wildignore+=Session.vim                       " nvim mksession - default
 let g:ctrlp_custom_ignore={
   \ 'dir':  '\v[\/].(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll)$',
@@ -121,11 +126,11 @@ nmap <Leader>k :NERDTreeToggle<CR>
 " exit nvim when nerdtree is the only buffer open
 au bufenter *
   \ if
-    \ (winnr("$") == 1
-    \ && exists("b:NERDTreeType")
-    \ && b:NERDTreeType
-    \ == "primary")
-      \ | q |
+  \   (winnr("$") == 1
+  \   && exists("b:NERDTreeType")
+  \   && b:NERDTreeType
+  \   == "primary")
+  \     | q |
   \ endif
 " open nerdtree when nvim starts up
 "au VimEnter * NERDTree
@@ -133,9 +138,9 @@ au bufenter *
 au StdinReadPre * let s:std_in=1
 au VimEnter *
   \ if
-    \ argc() == 0
-    \ && !exists("s:std_in")
-      \ | NERDTree |
+  \   argc() == 0
+  \   && !exists("s:std_in")
+  \     | NERDTree |
   \ endif
 """"""""""
 
@@ -229,7 +234,8 @@ set showmatch                                     " nvim default : off
 set incsearch                                 """"" nvim default : on
 
 " Highlight searches
-set hlsearch                                  """"" nvim default : on
+"set hlsearch                                  """"" nvim default : on
+set nohlsearch                                    " nvim default : on
 
 " Display line numbers in the left gutter
 set number                                        " nvim default : off
@@ -338,6 +344,15 @@ set showcmd                                       " nvim default: (unix) ? off :
 
 " Resize splits when the window is resized
 au VimResized * :wincmd =
+
+" When reopening a file, return to same line
+augroup return_to_line
+  au!
+  au BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line('$') |
+    \   execute 'normal! g`"' |
+    \ endif
+augroup END
 
 """"""""""
 " window navigation
