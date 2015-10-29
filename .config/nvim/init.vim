@@ -123,6 +123,7 @@ vmap <C-_> <Leader>c<Space>
 Plug 'scrooloose/nerdtree'                        " :help nerdtree
 """"""""""
 nmap <Leader>k :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1                          " plug default : 0
 " exit nvim when nerdtree is the only buffer open
 au bufenter *
   \ if
@@ -267,7 +268,7 @@ set nowrap                                        " nvim default : on
 "set sessionoptions                   " nvim doesn't include 'options'
 "set tabpagemax                       " nvim defaults to 50
 "set tags                             " nvim defaults to './tags;,tags'
-"set viminfo                          " nvim includes '!'
+"set viminfo                          " nvim includes '!' : nvim alias for shada
 """"""""""
 " TODO: nvim defaults - not currently used
 """"""""""
@@ -345,8 +346,8 @@ set showcmd                                       " nvim default: (unix) ? off :
 " Resize splits when the window is resized
 au VimResized * :wincmd =
 
-" When reopening a file, return to same line
-augroup return_to_line
+" When opening a file, return to last edit postion
+augroup return_to_last_edit_position
   au!
   au BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line('$') |
@@ -388,6 +389,12 @@ inoremap <C-l> <Esc><C-w>l
 "nnoremap <C-S-K> <C-W>K
 "nnoremap <C-S-L> <C-W>L
 "nnoremap <C-S-T> <C-W>T
+
+""""""""""
+" tab manipulations
+""""""""""
+"nmap <Leader>te :tabedit <C-R>=expand("%:p:h")<CR>/
+""""""""""
 
 """"""""""
 " backup/persistance settings
