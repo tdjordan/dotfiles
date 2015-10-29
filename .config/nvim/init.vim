@@ -124,11 +124,10 @@ vmap <C-_> <Leader>c<Space>
 """"""""""
 Plug 'scrooloose/nerdtree'                        " :help NERDtree
 """"""""""
-let NERDTreeShowHidden=1                          " plug default : 0
-let NERDTreeMinimalUI=1                           " plug default : 0
-let NERDTreeShowBookmarks=1                       " plug default : 0
 nmap <Leader>k :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1                          " plug default : 0
+"let NERDTreeMinimalUI=1                           " plug default : 0
+"let NERDTreeShowBookmarks=1                       " plug default : 0
 " exit nvim when nerdtree is the only buffer open
 au bufenter *
   \ if
