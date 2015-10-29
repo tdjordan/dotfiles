@@ -83,8 +83,10 @@ Plug 'tacahiroy/ctrlp-funky'                      " :help ctrlp-funky
 """"""""""
 nnoremap <Leader>fu :CtrlPFunky<CR>
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<CR>
-let g:ctrlp_funky_matchtype='path'
-let g:ctrlp_funky_syntax_highlight=1
+let g:ctrlp_funky_matchtype='path'                " plug default : line
+let g:ctrlp_funky_syntax_highlight=1              " plug default : 0
+let g:ctrlp_funky_multi_buffers=1                 " plug default : 0
+let g:ctrlp_funky_use_cache=1                     " plug default : 0
 """"""""""
 
 """"""""""
@@ -112,8 +114,11 @@ vmap <C-_> <Leader>c<Space>
 """"""""""
 
 """"""""""
-Plug 'scrooloose/nerdtree'                        " :help nerdtree
+Plug 'scrooloose/nerdtree'                        " :help NERDtree
 """"""""""
+let NERDTreeShowHidden=1                          " plug default : 0
+let NERDTreeMinimalUI=1                           " plug default : 0
+let NERDTreeShowBookmarks=1                       " plug default : 0
 nmap <Leader>k :NERDTreeToggle<CR>
 " exit nvim when nerdtree is the only buffer open
 au bufenter *
