@@ -8,7 +8,6 @@ newNvm=$(curl -s https://github.com/creationix/nvm/releases/latest | sed -e 's;^
 
 [ "$curNvm" != "$newNvm" ] && (
   echo "nvm : [$curNvm] -> [$newNvm]"
-  exit 0
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v$newNvm/install.sh 2>/dev/null | bash
   echo "done"
 ) || (
