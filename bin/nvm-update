@@ -1,0 +1,19 @@
+#!/bin/bash
+# Update atom from downloaded 64-bit deb file
+
+#curNvm=$(. ~/.bashrc; nvm --version)
+#curNvm=$(~/.nvm/nvm.sh --version)
+curNvm=$(awk '/"--version/ { getline t; print t }' ~/.nvm/nvm.sh | sed -e 's;echo ";;g' | sed -e 's;";;g' | sed -e 's;^[ \t]*;;g')
+newNvm=$(curl -s https://github.com/creationix/nvm/releases/latest | sed -e 's;^.*/v\([^"]*\).*;\1\n;g')
+
+[ "$curNvm" != "$newNvm" ] && (
+  echo "nvm : [$curNvm] -> [$newNvm]"
+  exit 0
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v$newNvm/install.sh 2>/dev/null | bash
+  echo "done"
+) || (
+  echo "Already at the latest version [$curNvm]"
+)
+
+exit 0
+

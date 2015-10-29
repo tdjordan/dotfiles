@@ -66,11 +66,16 @@ Plug 'ctrlpvim/ctrlp.vim'                             " :help ctrlp
 " open fuzzy buffer mode
 nmap <Leader>r :CtrlPBuffer<CR>
 let g:ctrlp_show_hidden=1                         " plug default : 0 - hide hidden files
-"if has('win32') || has('win64')
-  "set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\* " nvim default : blank
-"else
-  "set wildignore+=*/.git/*,*/.hg/*,*/.svn/*       " nvim default : blank
-"end
+" set up patterns to ignore
+set wildignore+=.hg,.git,.svn                     " version control
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg    " images - binary
+set wildignore+=*.o,*.obj,*.manifest              " compiled object files
+set wildignore+=*.exe,*.so,*dll                   " exe/lib binaries
+set wildignore+=*.DS_Store                        " OSX custom folder attributes
+set wildignore+=*.luac                            " byte code - lua
+set wildignore+=*.pyc                             " byte code - python
+set wildignore+=*.sw?                             " nvim swap files
+set wildignore+=Session.vim                       " nvim mksession - default
 let g:ctrlp_custom_ignore={
   \ 'dir':  '\v[\/].(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll)$',
@@ -105,6 +110,9 @@ nmap <F8> :TagbarToggle<CR>
 """"""""""
 Plug 'scrooloose/syntastic'                       " :help syntastic
 """"""""""
+"let g:syntastic_enable_ballons=1                  " plug default : 1
+"let g:syntastic_error_symbol = "✗"                " plug default : $>
+""""""""""
 
 """"""""""
 Plug 'scrooloose/nerdcommenter'                   " :help nerdcommenter
@@ -120,14 +128,15 @@ let NERDTreeShowHidden=1                          " plug default : 0
 let NERDTreeMinimalUI=1                           " plug default : 0
 let NERDTreeShowBookmarks=1                       " plug default : 0
 nmap <Leader>k :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1                          " plug default : 0
 " exit nvim when nerdtree is the only buffer open
 au bufenter *
   \ if
-    \ (winnr("$") == 1
-    \ && exists("b:NERDTreeType")
-    \ && b:NERDTreeType
-    \ == "primary")
-      \ | q |
+  \   (winnr("$") == 1
+  \   && exists("b:NERDTreeType")
+  \   && b:NERDTreeType
+  \   == "primary")
+  \     | q |
   \ endif
 " open nerdtree when nvim starts up
 "au VimEnter * NERDTree
@@ -135,9 +144,9 @@ au bufenter *
 au StdinReadPre * let s:std_in=1
 au VimEnter *
   \ if
-    \ argc() == 0
-    \ && !exists("s:std_in")
-      \ | NERDTree |
+  \   argc() == 0
+  \   && !exists("s:std_in")
+  \     | NERDTree |
   \ endif
 """"""""""
 
@@ -231,7 +240,8 @@ set showmatch                                     " nvim default : off
 set incsearch                                 """"" nvim default : on
 
 " Highlight searches
-set hlsearch                                  """"" nvim default : on
+"set hlsearch                                  """"" nvim default : on
+set nohlsearch                                    " nvim default : on
 
 " Display line numbers in the left gutter
 set number                                        " nvim default : off
@@ -263,7 +273,7 @@ set nowrap                                        " nvim default : on
 "set sessionoptions                   " nvim doesn't include 'options'
 "set tabpagemax                       " nvim defaults to 50
 "set tags                             " nvim defaults to './tags;,tags'
-"set viminfo                          " nvim includes '!'
+"set viminfo                          " nvim includes '!' : nvim alias for shada
 """"""""""
 " TODO: nvim defaults - not currently used
 """"""""""
@@ -341,6 +351,15 @@ set showcmd                                       " nvim default: (unix) ? off :
 " Resize splits when the window is resized
 au VimResized * :wincmd =
 
+" When opening a file, return to last edit postion
+augroup return_to_last_edit_position
+  au!
+  au BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line('$') |
+    \   execute 'normal! g`"' |
+    \ endif
+augroup END
+
 """"""""""
 " window navigation
 """"""""""
@@ -375,6 +394,12 @@ inoremap <C-l> <Esc><C-w>l
 "nnoremap <C-S-K> <C-W>K
 "nnoremap <C-S-L> <C-W>L
 "nnoremap <C-S-T> <C-W>T
+
+""""""""""
+" tab manipulations
+""""""""""
+"nmap <Leader>te :tabedit <C-R>=expand("%:p:h")<CR>/
+""""""""""
 
 """"""""""
 " backup/persistance settings
