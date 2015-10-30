@@ -41,10 +41,11 @@ curAtom_beta=$(atom-beta --version 2>/dev/null)
 verAtom_stable=$(curl https://github.com/atom/atom/releases/latest 2>/dev/null | sed -e 's;^.*/v\([^"]*\).*;\1\n;g')
 
 atomReleases=$(curl -s "https://api.github.com/repos/atom/atom/releases")
-verAtom_beta=$(echo "$atomReleases" | jq '.[] | select(.prerelease == true).tag_name' | sed -e 's;"v*;;g')
+preReleases_latest=$(echo "$atomReleases" | jq '[ .[] | select(.prerelease == true) ] | .[0]')
+verAtom_beta=$(echo "$preReleases_latest" | sed -e 's;"v*;;g')
 
 downloadUrl_stable="https://atom.io/download/deb"
-downloadUrl_beta=$(echo "$atomReleases" | jq '.[] | select(.prerelease == true) | .assets[] | select(.name == "atom-amd64.deb").browser_download_url' | sed -e 's;";;g')
+downloadUrl_beta=$(echo "$preReleases_latest" | jq '.assets[] | select(.name == "atom-amd64.deb").browser_download_url' | sed -e 's;";;g')
 
 install_atom "$curAtom_stable" "$verAtom_stable" "$downloadUrl_stable"
 install_atom "$curAtom_beta"   "$verAtom_beta"   "$downloadUrl_beta"
