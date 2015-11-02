@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# install clang
+sudo apt-get install -y clang
+
+# install clang 3.6 support
+#sudo apt-get install -y clang-3.6
+sudo apt-get install -y clang-3.6-doc
+sudo apt-get install -y clang-3.6-examples
+sudo apt-get install -y clang-format-3.6
+sudo apt-get install -y clang-modernize-3.6
+
+# install clang 3.7 support
+sudo apt-get install -y clang-3.7
+sudo apt-get install -y clang-3.7-doc
+sudo apt-get install -y clang-3.7-examples
+sudo apt-get install -y clang-format-3.7
+sudo apt-get install -y clang-modernize-3.7
+
+# establish alternatives for
+#   clang-format
+sudo update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-3.6 60
+sudo update-alternatives --install /usr/bin/clang-format-diff clang-format-diff /usr/bin/clang-format-diff-3.6 60
+sudo update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-3.7 60
+sudo update-alternatives --install /usr/bin/clang-format-diff clang-format-diff /usr/bin/clang-format-diff-3.7 60
+#sudo update-alternatives --config clang-format
+#sudo update-alternatives --config clang-format-diff
+#   clang-modernize
+sudo update-alternatives --install /usr/bin/clang-modernize clang-modernize /usr/bin/clang-modernize-3.6 60
+sudo update-alternatives --install /usr/bin/clang-modernize clang-modernize /usr/bin/clang-modernize-3.7 60
+
+# install lldb
+sudo apt-get install -y lldb
+#sudo apt-get install -y lldb-3.7
+
+
