@@ -22,12 +22,12 @@
   current-br = !git branch | cut -b3-
 
   # incoming changes - like hg
-  incoming = !git fetch && git log  $(git current-br)..origin/$(git current-br)
+  incoming = !git fetch && git lg3  $(git current-br)..origin/$(git current-br)
   in = !git incoming
   in-diff =  !git fetch && git diff $(git current-br)..origin/$(git current-br)
 
   # outgoing changes - like hg
-  outgoing = !git log  origin/$(git current-br)..$(git current-br)
+  outgoing = !git lg3  origin/$(git current-br)..$(git current-br)
   out = !git outgoing
   out-diff = !git diff origin/$(git current-br)..$(git current-br)
 
