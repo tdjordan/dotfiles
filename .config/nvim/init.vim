@@ -112,6 +112,12 @@ Plug 'scrooloose/syntastic'                       " :help syntastic
 """"""""""
 "let g:syntastic_enable_ballons=1                  " plug default : 1
 "let g:syntastic_error_symbol = "✗"                " plug default : $>
+let g:syntastic_check_on_open=1                   " plug default : 0
+""""""""""
+
+""""""""""
+"Plug 'benekastah/neomake'                         " :help neomake
+""""""""""
 """"""""""
 
 """"""""""
@@ -246,6 +252,10 @@ set nohlsearch                                    " nvim default : on
 set number                                        " nvim default : off
 set relativenumber                                " nvim default : off
 
+" display space above/below left/right of cursor
+set scrolloff=1
+set sidescrolloff=5
+
 " When will the last window have a status line?
 "   0 : never
 "   1 : only if there are at least two windows
@@ -304,7 +314,7 @@ set backspace=indent,eol,start                """"" nvim default : 'ident,eol,st
 set shell=/bin/bash                               " nvim default : $SHELL or sh or cmd.exe
 
 " Allow for old vim shell muscle memory
-cnoreabbrev sh te
+"cnoreabbrev sh te
 
 " Insert mode completion options
 "   menu
