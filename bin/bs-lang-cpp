@@ -40,6 +40,9 @@ sudo update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-$ver 60
 sudo update-alternatives --install /usr/bin/lldb-mi lldb-mi /usr/bin/lldb-mi-$ver 60
 sudo update-alternatives --install /usr/bin/lldb-server lldb-server /usr/bin/lldb-server-$ver 60
 
+# additional cpp syntax checkers
+sudo apt-get install -y cppcheck
+
 # cleanup
 sudo apt-get autoremove -y
 
