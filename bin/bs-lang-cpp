@@ -5,17 +5,37 @@ sudo apt-get install -y clang
 
 # install clang 3.6 support
 #sudo apt-get install -y clang-3.6
-sudo apt-get install -y clang-3.6-doc
-sudo apt-get install -y clang-3.6-examples
-sudo apt-get install -y clang-format-3.6
-sudo apt-get install -y clang-modernize-3.6
+#sudo apt-get install -y clang-3.6-doc
+#sudo apt-get install -y clang-3.6-examples
+#sudo apt-get install -y clang-format-3.6
+#sudo apt-get install -y clang-modernize-3.6
 
 # install clang 3.7 support
+sudo apt-get install -y libllvm3.7
+sudo apt-get install -y libllvm3.7-dbg
+sudo apt-get install -y libllvm-3.7-ocaml-dev
+sudo apt-get install -y llvm-3.7
+sudo apt-get install -y llvm-3.7-dev
+sudo apt-get install -y llvm-3.7-doc
+sudo apt-get install -y llvm-3.7-examples
+sudo apt-get install -y llvm-3.7-runtime
+sudo apt-get install -y llvm-3.7-tools
+sudo apt-get install -y libclang1-3.7
+sudo apt-get install -y libclang1-3.7-dbg
+sudo apt-get install -y libclang-common-3.7-dev
+sudo apt-get install -y libclang-3.7-dev
 sudo apt-get install -y clang-3.7
 sudo apt-get install -y clang-3.7-doc
 sudo apt-get install -y clang-3.7-examples
 sudo apt-get install -y clang-format-3.7
 sudo apt-get install -y clang-modernize-3.7
+sudo apt-get install -y python-clang-3.7
+sudo apt-get install -y python-lldb-3.7
+sudo apt-get install -y lldb-3.7
+sudo apt-get install -y liblldb-3.7-dev
+sudo apt-get install -y lldb-3.7-dev
+sudo apt-get install -y liblldb-3.7
+sudo apt-get install -y liblldb-3.7-dbg
 
 # establish alternatives for
 #   clang-format
@@ -31,7 +51,13 @@ sudo update-alternatives --install /usr/bin/clang-modernize clang-modernize /usr
 #sudo update-alternatives --config clang-modernize
 
 # install lldb
-sudo apt-get install -y lldb
+#sudo apt-get install -y lldb
+#sudo apt-get install -y python-lldb-3.7
 #sudo apt-get install -y lldb-3.7
+#sudo update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-3.7 60
+
+# install cmake
+sudo apt-get install -y cmake
+sudo apt-get autoremove -y
 
 

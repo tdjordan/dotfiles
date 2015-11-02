@@ -508,6 +508,7 @@ vmap <C-Up>   <Plug>MoveBlockUp
 vmap <C-Down> <Plug>MoveBlockDown
 "vmap <C-Up>   :m '<-2<CR>gv=gv
 "vmap <C-Down> :m '>+1<CR>gv=gv
+""""""""""
 
 """"""""""
 " Duplicate ines
@@ -515,8 +516,28 @@ vmap <C-Down> <Plug>MoveBlockDown
 nmap <C-S-d> maYp`aj
 vmap <C-S-d>   Y`<Pgv
 
+"""""""""
+"
+" Language - cpp
+"
+""""""""""
+Plug 'critiqjo/lldb.nvim'                         " :help lldb-start
+""""""""""
+nmap      <M-b> <Plug>LLBreadSwitch
+vmap       <F2> <Plug>LLStdInSelected
+nnoremap   <F4> :LLstdin<CR>
+nnoremap <S-F4> : LLstdin --raw<CR>
+nnoremap   <F5> :LLmode debug<CR>
+nnoremap <S-F5> :LLmode code<CR>
+nnoremap   <F8> :LL continue<CR>
+nnoremap <S-F8> :LL process interrupt<CR>
+nnoremap   <F9> :LL print <C-R>=expand('<cword>')<CR>
+vnoremap   <F9> :<C-U>LL print <C-R>=lldb#util#get_selection()<CR>
+""""""""""
+
 " vim-plug : add plugins to &runtimepath
 call plug#end()
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
 
