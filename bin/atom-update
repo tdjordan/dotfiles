@@ -42,7 +42,7 @@ verAtom_stable=$(curl https://github.com/atom/atom/releases/latest 2>/dev/null |
 
 atomReleases=$(curl -s "https://api.github.com/repos/atom/atom/releases")
 preReleases_latest=$(echo "$atomReleases" | jq '[ .[] | select(.prerelease == true) ] | .[0]')
-verAtom_beta=$(echo "$preReleases_latest" | sed -e 's;"v*;;g')
+verAtom_beta=$(echo "$preReleases_latest" | jq '.tag_name' | sed -e 's;"v*;;g')
 
 downloadUrl_stable="https://atom.io/download/deb"
 downloadUrl_beta=$(echo "$preReleases_latest" | jq '.assets[] | select(.name == "atom-amd64.deb").browser_download_url' | sed -e 's;";;g')
