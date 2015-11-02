@@ -28,6 +28,7 @@ sudo update-alternatives --install /usr/bin/clang-format-diff clang-format-diff 
 #   clang-modernize
 sudo update-alternatives --install /usr/bin/clang-modernize clang-modernize /usr/bin/clang-modernize-3.6 60
 sudo update-alternatives --install /usr/bin/clang-modernize clang-modernize /usr/bin/clang-modernize-3.7 60
+#sudo update-alternatives --config clang-modernize
 
 # install lldb
 sudo apt-get install -y lldb
