@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# which clang version
+ver=3.7
+
+# remove clang support
+sudo apt-get remove -y libllvm$ver
+sudo apt-get remove -y libllvm$ver-dbg
+sudo apt-get remove -y libllvm-$ver-ocaml-dev
+sudo apt-get remove -y llvm-$ver
+sudo apt-get remove -y llvm-$ver-dev
+sudo apt-get remove -y llvm-$ver-doc
+sudo apt-get remove -y llvm-$ver-examples
+sudo apt-get remove -y llvm-$ver-runtime
+sudo apt-get remove -y llvm-$ver-tools
+sudo apt-get remove -y libclang1-$ver
+sudo apt-get remove -y libclang1-$ver-dbg
+sudo apt-get remove -y libclang-common-$ver-dev
+sudo apt-get remove -y libclang-$ver-dev
+sudo apt-get remove -y clang-$ver
+sudo apt-get remove -y clang-$ver-doc
+sudo apt-get remove -y clang-$ver-examples
+sudo apt-get remove -y clang-format-$ver
+sudo apt-get remove -y clang-modernize-$ver
+sudo apt-get remove -y python-clang-$ver
+sudo apt-get remove -y python-lldb-$ver
+sudo apt-get remove -y lldb-$ver
+sudo apt-get remove -y liblldb-$ver-dev
+sudo apt-get remove -y lldb-$ver-dev
+sudo apt-get remove -y liblldb-$ver
+sudo apt-get remove -y liblldb-$ver-dbg
+
+sudo apt-get autoremove -y
+

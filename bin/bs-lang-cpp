@@ -1,63 +1,46 @@
 #!/bin/bash
 
-# install clang
-sudo apt-get install -y clang
+# which clang version
+ver=3.7
 
-# install clang 3.6 support
-#sudo apt-get install -y clang-3.6
-#sudo apt-get install -y clang-3.6-doc
-#sudo apt-get install -y clang-3.6-examples
-#sudo apt-get install -y clang-format-3.6
-#sudo apt-get install -y clang-modernize-3.6
-
-# install clang 3.7 support
-sudo apt-get install -y libllvm3.7
-sudo apt-get install -y libllvm3.7-dbg
-sudo apt-get install -y libllvm-3.7-ocaml-dev
-sudo apt-get install -y llvm-3.7
-sudo apt-get install -y llvm-3.7-dev
-sudo apt-get install -y llvm-3.7-doc
-sudo apt-get install -y llvm-3.7-examples
-sudo apt-get install -y llvm-3.7-runtime
-sudo apt-get install -y llvm-3.7-tools
-sudo apt-get install -y libclang1-3.7
-sudo apt-get install -y libclang1-3.7-dbg
-sudo apt-get install -y libclang-common-3.7-dev
-sudo apt-get install -y libclang-3.7-dev
-sudo apt-get install -y clang-3.7
-sudo apt-get install -y clang-3.7-doc
-sudo apt-get install -y clang-3.7-examples
-sudo apt-get install -y clang-format-3.7
-sudo apt-get install -y clang-modernize-3.7
-sudo apt-get install -y python-clang-3.7
-sudo apt-get install -y python-lldb-3.7
-sudo apt-get install -y lldb-3.7
-sudo apt-get install -y liblldb-3.7-dev
-sudo apt-get install -y lldb-3.7-dev
-sudo apt-get install -y liblldb-3.7
-sudo apt-get install -y liblldb-3.7-dbg
+# install clang support
+sudo apt-get install -y libllvm$ver-dbg
+sudo apt-get install -y llvm-$ver-doc
+sudo apt-get install -y llvm-$ver-examples
+sudo apt-get install -y llvm-$ver-tools
+sudo apt-get install -y libclang1-$ver-dbg
+sudo apt-get install -y libclang-$ver-dev
+sudo apt-get install -y clang-$ver-doc
+sudo apt-get install -y clang-$ver-examples
+sudo apt-get install -y clang-format-$ver
+sudo apt-get install -y clang-modernize-$ver
+sudo apt-get install -y python-clang-$ver
+sudo apt-get install -y lldb-$ver-dev
+sudo apt-get install -y liblldb-$ver-dbg
+sudo apt-get install -y libllvm-$ver-ocaml-dev
 
 # establish alternatives for
+#   clang
+sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-$ver 60
+sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-$ver 60
+#   clang tools
+sudo update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-$ver 60
+sudo update-alternatives --install /usr/bin/clang-check clang-check /usr/bin/clang-check-$ver 60
+sudo update-alternatives --install /usr/bin/clang-query clang-query /usr/bin/clang-query-$ver 60
+sudo update-alternatives --install /usr/bin/clang-rename clang-rename /usr/bin/clang-rename-$ver 60
+sudo update-alternatives --install /usr/bin/clang-tblgen clang-tblgen /usr/bin/clang-tblgen-$ver 60
+sudo update-alternatives --install /usr/bin/clang-apply-replacements clang-apply-replacements /usr/bin/clang-apply-replacements-$ver 60
 #   clang-format
-sudo update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-3.6 60
-sudo update-alternatives --install /usr/bin/clang-format-diff clang-format-diff /usr/bin/clang-format-diff-3.6 60
-sudo update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-3.7 60
-sudo update-alternatives --install /usr/bin/clang-format-diff clang-format-diff /usr/bin/clang-format-diff-3.7 60
-#sudo update-alternatives --config clang-format
-#sudo update-alternatives --config clang-format-diff
+sudo update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-$ver 60
+sudo update-alternatives --install /usr/bin/clang-format-diff clang-format-diff /usr/bin/clang-format-diff-$ver 60
 #   clang-modernize
-sudo update-alternatives --install /usr/bin/clang-modernize clang-modernize /usr/bin/clang-modernize-3.6 60
-sudo update-alternatives --install /usr/bin/clang-modernize clang-modernize /usr/bin/clang-modernize-3.7 60
-#sudo update-alternatives --config clang-modernize
+sudo update-alternatives --install /usr/bin/clang-modernize clang-modernize /usr/bin/clang-modernize-$ver 60
+#   lldb
+sudo update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-$ver 60
+sudo update-alternatives --install /usr/bin/lldb-mi lldb-mi /usr/bin/lldb-mi-$ver 60
+sudo update-alternatives --install /usr/bin/lldb-server lldb-server /usr/bin/lldb-server-$ver 60
 
-# install lldb
-#sudo apt-get install -y lldb
-#sudo apt-get install -y python-lldb-3.7
-#sudo apt-get install -y lldb-3.7
-#sudo update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-3.7 60
-
-# install cmake
-sudo apt-get install -y cmake
+# cleanup
 sudo apt-get autoremove -y
 
 
