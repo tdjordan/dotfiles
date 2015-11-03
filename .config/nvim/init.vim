@@ -108,6 +108,10 @@ nmap <F8> :TagbarToggle<CR>
 """"""""""
 
 """"""""""
+Plug 'lilydjwg/colorizer'                         " colrize color codes
+""""""""""
+
+""""""""""
 Plug 'scrooloose/syntastic'                       " :help syntastic
 """"""""""
 "let g:syntastic_enable_ballons=1                  " plug default : 1
@@ -118,6 +122,9 @@ let g:syntastic_check_on_open=1                   " plug default : 0
 """"""""""
 "Plug 'benekastah/neomake'                         " :help neomake
 """"""""""
+
+""""""""""
+" TODO: see http://vimawesome.com/plugin/vim-thematic
 """"""""""
 
 """"""""""
