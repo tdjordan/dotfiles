@@ -1,0 +1,43 @@
+%include ~/.hgrc.local
+
+[extensions]
+hgext.churn =
+hgext.color =
+hgext.convert =
+hgext.gpg =
+hgext.graphlog =
+hgext.mq =
+hgext.pager =
+hgext.progress =
+hgext.purge =
+hgext.rebase =
+hgext.histedit=
+flow = ~/.hgext/hgflow/src/hgflow.py
+prompt = ~/.hgext/hg-prompt/prompt.py
+
+[flow]
+autoshelve = true
+
+[web]
+style = gitweb
+
+[color]
+status.added = yellow
+status.modified = cyan
+status.unknown = magenta
+status.deleted = red
+
+[pager]
+pager = LESS='FSRX' less
+ignore = verion, help, update, flow init
+
+[alias]
+metrics = churn -f '%Y-%m' -s
+day_metrics = churn -f '%Y-%m-%d' -s
+author_metrics = churn -t '{author|email}'
+push = push --new-branch
+log = log -G
+
+[hooks]
+post-init.flow = hg flow init -d
+
