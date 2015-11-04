@@ -167,7 +167,14 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 """"""""""
 
 """"""""""
+" Version Control
+""""""""""
+" git
 Plug 'tpope/vim-fugitive'                         " :help fugitive
+""""""""""
+" hg
+"Plug 'jlfwong/vim-mercenary'                      " :help mercenary
+Plug 'ludovicchabant/vim-lawrencium'              " :help lawrencium
 """"""""""
 
 """"""""""
