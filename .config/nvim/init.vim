@@ -116,11 +116,17 @@ Plug 'scrooloose/syntastic'                       " :help syntastic
 """"""""""
 "let g:syntastic_enable_ballons=1                  " plug default : 1
 "let g:syntastic_error_symbol = "✗"                " plug default : $>
-let g:syntastic_check_on_open=1                   " plug default : 0
+"let g:syntastic_check_on_open=1                   " plug default : 0
 """"""""""
 
 """"""""""
-"Plug 'benekastah/neomake'                         " :help neomake
+Plug 'benekastah/neomake'                         " :help neomake
+""""""""""
+augroup neomake
+  au! BufWritePost * Neomake
+  au BufReadPost * Neomake
+  au BufWinEnter * Neomake
+augroup END
 """"""""""
 
 """"""""""
@@ -539,6 +545,12 @@ vmap <C-Down> <Plug>MoveBlockDown
 """"""""""
 nmap <C-S-d> maYp`aj
 vmap <C-S-d>   Y`<Pgv
+
+""""""""""
+" Reselect visual selection when indenting
+""""""""""
+vmap < <gv
+vmap > >gv
 
 """""""""
 "
