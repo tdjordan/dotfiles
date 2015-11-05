@@ -122,10 +122,15 @@ Plug 'scrooloose/syntastic'                       " :help syntastic
 """"""""""
 Plug 'benekastah/neomake'                         " :help neomake
 """"""""""
+let g:neomake_open_list=1
+"let g:neomake_logfile='neomake.log'
+nnoremap <silent> <Leader>s :Neomake<CR>`"              " lint file
 augroup neomake
   au! BufWritePost * Neomake
+  "au BufReadPost *
+    "\ execute 'normal! :Neomake<CR>'
   au BufReadPost * Neomake
-  au BufWinEnter * Neomake
+  "au! BufWinEnter * Neomake
 augroup END
 """"""""""
 
