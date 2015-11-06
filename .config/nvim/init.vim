@@ -134,6 +134,12 @@ augroup neomake
 augroup END
 """"""""""
 
+" Hello tom
+
+
+
+
+
 """"""""""
 " TODO: see http://vimawesome.com/plugin/vim-thematic
 """"""""""

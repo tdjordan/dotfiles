@@ -17,6 +17,12 @@
   lg2 = !git lg-base-decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
   lg3 = !git lg-base-decorate --pretty=oneline --stat
   lg4 = !git lg-base --pretty=oneline --stat
+  lg5 = log --oneline --reverse
+
+  # interesting diffs
+  ds = diff --staged
+  wd = diff --word-diff --ignore-all-space
+  wds = !git wd --staged
 
   # current branch name
   current-br = !git branch | cut -b3-
