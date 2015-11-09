@@ -116,29 +116,23 @@ Plug 'scrooloose/syntastic'                       " :help syntastic
 """"""""""
 "let g:syntastic_enable_ballons=1                  " plug default : 1
 "let g:syntastic_error_symbol = "✗"                " plug default : $>
-"let g:syntastic_check_on_open=1                   " plug default : 0
+let g:syntastic_check_on_open=1                   " plug default : 0
 """"""""""
 
 """"""""""
-Plug 'benekastah/neomake'                         " :help neomake
+"Plug 'benekastah/neomake'                         " :help neomake
+"""""""""""
+"let g:neomake_open_list=1
+""let g:neomake_logfile='neomake.log'
+"nnoremap <silent> <Leader>s :Neomake<CR>`"              " lint file
+"augroup neomake
+  "au! BufWritePost * Neomake
+  ""au BufReadPost *
+    ""\ execute 'normal! :Neomake<CR>'
+  ""au BufReadPost * Neomake
+  ""au! BufWinEnter * Neomake
+"augroup END
 """"""""""
-let g:neomake_open_list=1
-"let g:neomake_logfile='neomake.log'
-nnoremap <silent> <Leader>s :Neomake<CR>`"              " lint file
-augroup neomake
-  au! BufWritePost * Neomake
-  "au BufReadPost *
-    "\ execute 'normal! :Neomake<CR>'
-  au BufReadPost * Neomake
-  "au! BufWinEnter * Neomake
-augroup END
-""""""""""
-
-" Hello tom
-
-
-
-
 
 """"""""""
 " TODO: see http://vimawesome.com/plugin/vim-thematic
@@ -582,9 +576,17 @@ nnoremap   <F9> :LL print <C-R>=expand('<cword>')<CR>
 vnoremap   <F9> :<C-U>LL print <C-R>=lldb#util#get_selection()<CR>
 """"""""""
 
+"""""""""
+"
+" Language - elm
+"
+""""""""""
+Plug 'lambdatoast/elm.vim'                        " :help elm
+"Plug 'ElmCast/elm-vim'                            " :help elm-vim
+""""""""""
+
+""""""""""
 " vim-plug : add plugins to &runtimepath
 call plug#end()
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
-

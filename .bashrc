@@ -126,9 +126,9 @@ export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # bring in current node into environemtn by default
-if [ "$(which node)" == "" ]; then
-  nvm use node >/dev/null
-fi
+#if [ "$NVM_PATH" == "" ]; then
+  #nvm use node >/dev/null
+#fi
 
 export TERM=xterm-256color
 
