@@ -112,26 +112,20 @@ Plug 'lilydjwg/colorizer'                         " colrize color codes
 """"""""""
 
 """"""""""
-Plug 'scrooloose/syntastic'                       " :help syntastic
-""""""""""
-"let g:syntastic_enable_ballons=1                  " plug default : 1
-"let g:syntastic_error_symbol = "✗"                " plug default : $>
-let g:syntastic_check_on_open=1                   " plug default : 0
+"Plug 'scrooloose/syntastic'                       " :help syntastic
+"""""""""""
+""let g:syntastic_enable_ballons=1                  " plug default : 1
+""let g:syntastic_error_symbol = "✗"                " plug default : $>
+"let g:syntastic_check_on_open=1                   " plug default : 0
 """"""""""
 
 """"""""""
-"Plug 'benekastah/neomake'                         " :help neomake
-"""""""""""
+Plug 'benekastah/neomake'                         " :help neomake
+""""""""""
+au! BufWritePost * Neomake
+au! BufEnter * Neomake
+let g:neomake_open_list=2
 "let g:neomake_open_list=1
-""let g:neomake_logfile='neomake.log'
-"nnoremap <silent> <Leader>s :Neomake<CR>`"              " lint file
-"augroup neomake
-  "au! BufWritePost * Neomake
-  ""au BufReadPost *
-    ""\ execute 'normal! :Neomake<CR>'
-  ""au BufReadPost * Neomake
-  ""au! BufWinEnter * Neomake
-"augroup END
 """"""""""
 
 """"""""""
