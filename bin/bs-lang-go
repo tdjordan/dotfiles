@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# install go support
+sudo apt-get install -y golang
+
+# cleanup
+sudo apt-get autoremove -y
+
+
