@@ -117,8 +117,8 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 export GOPATH=~/.gopath
+export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:~/.cabal/bin
 export PATH=$PATH:~/.local/bin
 
