@@ -243,7 +243,8 @@ set expandtab                                     " nvim default : off
 set smarttab                                  """"" nvim default : on
 set shiftwidth=2                                  " nvim default : 8
 set softtabstop=2                                 " nvim default : 8
-set tabstop=2
+set tabstop=2                                     " nvim default : 8
+set shiftround                                    " nvim default : off
 
 " When opening a new line and no filetype-specific indenting is enabled,
 " keep the same indent as the line you are currently on.
