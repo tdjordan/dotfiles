@@ -253,6 +253,10 @@ set autoindent                                """"" nvim default : on
 " or in the status line of a window
 set ruler                                         " nvim default : off
 
+" Open splits below and to the right
+set splitbelow
+set splitright
+
 " Allow window re-use to switch from an unsaved buffer without saving it first.
 " Allows multiple file undo history for the same window.
 set hidden
