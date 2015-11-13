@@ -257,7 +257,7 @@ set autoindent                                """"" nvim default : on
 set ruler                                         " nvim default : off
 
 " Open splits below and to the right
-set splitbelow
+"set splitbelow
 set splitright
 
 " Allow window re-use to switch from an unsaved buffer without saving it first.

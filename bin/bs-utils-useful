@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# install gnu parallel
+sudo apt-get install -y parallel
+
+#cleanup
+sudo apt-get autoremove -y
+
