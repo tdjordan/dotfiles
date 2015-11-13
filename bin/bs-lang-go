@@ -3,6 +3,9 @@
 # install go support
 sudo apt-get install -y golang
 
+# instal the gb builder
+go get -u github.com/constabulary/gb/...
+
 # cleanup
 sudo apt-get autoremove -y
 
