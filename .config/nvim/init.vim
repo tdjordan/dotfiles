@@ -64,7 +64,7 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'ctrlpvim/ctrlp.vim'                             " :help ctrlp
 """"""""""
 " open fuzzy buffer mode
-nmap <Leader>r :CtrlPBuffer<CR>
+nnoremap <leader>r :CtrlPBuffer<CR>
 let g:ctrlp_show_hidden=1                         " plug default : 0 - hide hidden files
 " set up patterns to ignore
 set wildignore+=.hg,.git,.svn                     " version control
@@ -86,8 +86,8 @@ let g:ctrlp_custom_ignore={
 """"""""""
 Plug 'tacahiroy/ctrlp-funky'                      " :help ctrlp-funky
 """"""""""
-nnoremap <Leader>fu :CtrlPFunky<CR>
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<CR>
+nnoremap <leader>fu :CtrlPFunky<CR>
+nnoremap <leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<CR>
 let g:ctrlp_funky_matchtype='path'                " plug default : line
 let g:ctrlp_funky_syntax_highlight=1              " plug default : 0
 let g:ctrlp_funky_multi_buffers=1                 " plug default : 0
@@ -104,7 +104,7 @@ let g:airline_powerline_fonts=1
 """"""""""
 Plug 'majutsushi/tagbar'                          " :help tagbar
 """"""""""
-nmap <F8> :TagbarToggle<CR>
+nnoremap <silent><F8> :TagbarToggle<CR>
 """"""""""
 
 """"""""""
@@ -123,9 +123,11 @@ Plug 'lilydjwg/colorizer'                         " colrize color codes
 Plug 'benekastah/neomake'                         " :help neomake
 """"""""""
 au! BufWritePost * Neomake
-au! BufEnter * Neomake
-let g:neomake_open_list=2
+au! BufWinEnter * Neomake
+"let g:neomake_open_list=2
 "let g:neomake_open_list=1
+let g:neomake_open_list=0
+"let g:neomake_airline=1
 """"""""""
 
 """"""""""
@@ -135,14 +137,14 @@ let g:neomake_open_list=2
 """"""""""
 Plug 'scrooloose/nerdcommenter'                   " :help nerdcommenter
 """"""""""
-nmap <C-_> <Leader>c<Space>
-vmap <C-_> <Leader>c<Space>
+nmap <C-_> <plug>NERDCommenterToggle
+vmap <C-_> <plug>NERDCommenterToggle
 """"""""""
 
 """"""""""
 Plug 'scrooloose/nerdtree'                        " :help NERDtree
 """"""""""
-nmap <Leader>k :NERDTreeToggle<CR>
+nnoremap <leader>k :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1                          " plug default : 0
 "let NERDTreeMinimalUI=1                           " plug default : 0
 "let NERDTreeShowBookmarks=1                       " plug default : 0
@@ -394,7 +396,7 @@ augroup return_to_last_edit_position
 augroup END
 
 """"""""""
-" window navigation
+" uindow navigation
 """"""""""
 "" navigate cursor to adjoining window
 """"""""""
@@ -431,7 +433,7 @@ inoremap <C-l> <Esc><C-w>l
 """"""""""
 " tab manipulations
 """"""""""
-"nmap <Leader>te :tabedit <C-R>=expand("%:p:h")<CR>/
+"nnoremap <leader>te :tabedit <C-R>=expand("%:p:h")<CR>/
 """"""""""
 
 """"""""""
@@ -536,25 +538,23 @@ set sessionoptions+=slash,unix
 """"""""""
 Plug 'matze/vim-move'
 """"""""""
-nmap <C-Up>   <Plug>MoveLineUp
-nmap <C-Down> <Plug>MoveLineDown
-vmap <C-Up>   <Plug>MoveBlockUp
-vmap <C-Down> <Plug>MoveBlockDown
-"vmap <C-Up>   :m '<-2<CR>gv=gv
-"vmap <C-Down> :m '>+1<CR>gv=gv
+nmap <C-Up>   <plug>MoveLineUp
+nmap <C-Down> <plug>MoveLineDown
+vmap <C-Up>   <plug>MoveBlockUp
+vmap <C-Down> <plug>MoveBlockDown
 """"""""""
 
 """"""""""
 " Duplicate ines
 """"""""""
-nmap <C-S-d> maYp`aj
-vmap <C-S-d>   Y`<Pgv
+nnoremap <C-S-d> maYp`aj
+vnoremap <C-S-d>   Y`<Pgv
 
 """"""""""
 " Reselect visual selection when indenting
 """"""""""
-vmap < <gv
-vmap > >gv
+vnoremap < <gv
+vnoremap > >gv
 
 """""""""
 "
@@ -566,10 +566,10 @@ Plug 'critiqjo/lldb.nvim'                         " :help lldb-start
 nmap      <M-b> <Plug>LLBreadSwitch
 vmap       <F2> <Plug>LLStdInSelected
 nnoremap   <F4> :LLstdin<CR>
-nnoremap <S-F4> : LLstdin --raw<CR>
+nnoremap <S-F4> :LLstdin --raw<CR>
 nnoremap   <F5> :LLmode debug<CR>
 nnoremap <S-F5> :LLmode code<CR>
-nnoremap   <F8> :LL continue<CR>
+"nnoremap   <F8> :LL continue<CR>
 nnoremap <S-F8> :LL process interrupt<CR>
 nnoremap   <F9> :LL print <C-R>=expand('<cword>')<CR>
 vnoremap   <F9> :<C-U>LL print <C-R>=lldb#util#get_selection()<CR>

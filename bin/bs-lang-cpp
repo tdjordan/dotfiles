@@ -43,6 +43,9 @@ sudo update-alternatives --install /usr/bin/lldb-server lldb-server /usr/bin/lld
 # additional cpp syntax checkers
 sudo apt-get install -y cppcheck
 
+# ctags
+sudo apt-get install -y exuberant-ctags
+
 # cleanup
 sudo apt-get autoremove -y
 
