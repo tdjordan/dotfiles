@@ -2,6 +2,10 @@
 
 # install gnu parallel
 sudo apt-get install -y parallel
+mkdir -p ~/.parallel
+pushd ~/.parallel
+ln -s ../.files/.parallel/config 2>/dev/null
+popd
 
 #cleanup
 sudo apt-get autoremove -y
