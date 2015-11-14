@@ -3,8 +3,15 @@
 # install go support
 sudo apt-get install -y golang
 
-# instal the gb builder
+##########
+# Fetch useful tools
+##########
+## install the gb builder
 go get -u github.com/constabulary/gb/...
+## godeps
+#go get -u github.com/tools/godep
+## glide
+#go get -u github.com/Masterminds/glide
 
 # cleanup
 sudo apt-get autoremove -y
