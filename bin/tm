@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# abort if already inside a tmux session
+[ "$TMUX" == "" ] || exit 0
+
+# which tmux session do you want to use?
+sessions=("new session" $(tmux ls -F "#S") "zsh")
+
+echo "Active tmux sessions:"
+echo
+
+PS3="Attach to which session: "
+
+select session in "${sessions[@]}"; do
+  case $session in
+    "new session")
+      read -r -p "Set new session name to: " sessName
+      tmux new -s "$sessName"
+      break
+      ;;
+    "zsh")
+      zsh --login
+      break
+      ;;
+    *)
+      tmux attach -t "$session"
+      break
+      ;;
+  esac
+done
+

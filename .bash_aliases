@@ -1,3 +1,4 @@
+#!/bin/bash
 alias l='ls -CF --color=auto'
 alias l.='ls -d .*[^.$] --color=auto 2>/dev/null'
 alias la='ls -A --color=auto'

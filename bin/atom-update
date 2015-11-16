@@ -2,7 +2,7 @@
 # Update atom from downloaded 64-bit deb file
 
 # only use beta
-useBeta=true
+#useBeta=true
 
 # sanity
 haveJQ=$(which jq)
