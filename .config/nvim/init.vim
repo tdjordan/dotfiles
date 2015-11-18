@@ -60,6 +60,7 @@ Plug 'Shougo/neosnippet-snippets'
 """"""""""
 " Fuzzy finder
 """"""""""
+"" ctrlp
 "Plug 'kien/ctrlp.vim'                             " :help ctrlp
 Plug 'ctrlpvim/ctrlp.vim'                             " :help ctrlp
 """"""""""
@@ -92,6 +93,11 @@ let g:ctrlp_funky_matchtype='path'                " plug default : line
 let g:ctrlp_funky_syntax_highlight=1              " plug default : 0
 let g:ctrlp_funky_multi_buffers=1                 " plug default : 0
 let g:ctrlp_funky_use_cache=1                     " plug default : 0
+""""""""""
+"" fzf
+""""""""""
+"                                                 " :help fzf
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 """"""""""
 
 """"""""""

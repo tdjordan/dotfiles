@@ -136,3 +136,5 @@ export TERM=xterm-256color
 # https://github.com/koalaman/shellcheck/wiki/SC2015
 export SHELLCHECK_OPTS="-e SC2015"
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
