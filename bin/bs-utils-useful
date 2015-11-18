@@ -7,6 +7,12 @@ pushd ~/.parallel
 ln -s ../.files/.parallel/config 2>/dev/null
 popd
 
+# perl based colortest from vim.org
+curl -sfLo ~/bin/colortest --create-dirs wget http://www.vim.org/scripts/download_script.php?src_id=4568
+pushd ~/bin
+chmod +x colortest
+popd
+
 #cleanup
 sudo apt-get autoremove -y
 
