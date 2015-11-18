@@ -1,6 +1,15 @@
 [include]
   path = ~/.gitconfig.local
 
+[pretty]
+  compact=%h %ad, %s
+  f-lg1=%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)
+  f-lg1-1=%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)[%an]%C(reset)%C(bold yellow)%d%C(reset)
+  f-lg2=%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)
+  f-g=%C(yellow)%h%C(reset) - %s%d %C(dim white)- %an%C(reset)
+  f-q=%an, %h, %ar, %s
+  f-json={%n  \"commit\": \"%H\",%n  \"abbreviated_commit\": \"%h\",%n  \"tree\": \"%T\",%n  \"abbreviated_tree\": \"%t\",%n  \"parent\": \"%P\",%n  \"abbreviated_parent\": \"%p\",%n  \"refs\": \"%D\",%n  \"encoding\": \"%e\",%n  \"subject\": \"%s\",%n  \"sanitized_subject_line\": \"%f\",%n  \"body\": \"%b\",%n  \"commit_notes\": \"%N\",%n  \"verification_flag\": \"%G?\",%n  \"signer\": \"%GS\",%n  \"signer_key\": \"%GK\",%n  \"author\": {%n    \"name\": \"%aN\",%n    \"email\": \"%aE\",%n    \"date\": \"%aD\"%n  },%n  \"commiter\": {%n    \"name\": \"%cN\",%n    \"email\": \"%cE\",%n    \"date\": \"%cD\"%n  }%n},
+
 [alias]
   visual = !gitk
   st = status -s
@@ -13,11 +22,12 @@
   lg-base-decorate = !git lg-base --decorate
 
   # log builds
-  lg1 = !git lg-base-decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-  lg2 = !git lg-base-decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+  lg1 = !git lg-base-decorate --date=relative --format=f-lg1 --all
+  lg2 = !git lg-base-decorate --format=f-lg2 --all
   lg3 = !git lg-base-decorate --pretty=oneline --stat
   lg4 = !git lg-base --pretty=oneline --stat
   lg5 = log --oneline --reverse
+  lgg = !git lg-base-decorate --format=f-g
 
   # interesting diffs
   ds = diff --staged
@@ -43,3 +53,5 @@
 [push]
   default = simple
 
+[color "decorate"]
+	HEAD = red
