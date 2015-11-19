@@ -12,6 +12,9 @@ go get -u github.com/constabulary/gb/...
 #go get -u github.com/tools/godep
 ## glide
 #go get -u github.com/Masterminds/glide
+# gocode
+got get -u github.com/nsf/gocode
+# godef
 
 # cleanup
 sudo apt-get autoremove -y
