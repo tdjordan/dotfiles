@@ -119,6 +119,13 @@ Plug 'lilydjwg/colorizer'                         " colrize color codes
 """"""""""
 
 """"""""""
+"Plug 'ryanoasis/vim-devicons'
+"Plug 'ryanoasis/nerd-fonts'
+""""""""""
+"set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 11
+""""""""""
+
+""""""""""
 "Plug 'scrooloose/syntastic'                       " :help syntastic
 """""""""""
 ""let g:syntastic_enable_ballons=1                  " plug default : 1
