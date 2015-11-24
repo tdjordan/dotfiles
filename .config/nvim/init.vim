@@ -105,6 +105,7 @@ Plug 'bling/vim-airline'                          " :help airline
 """"""""""
 let g:airline_theme="powerlineish"
 let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1
 """"""""""
 
 """"""""""
@@ -595,3 +596,5 @@ Plug 'lambdatoast/elm.vim'                        " :help elm
 call plug#end()
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
