@@ -599,6 +599,15 @@ Plug 'lambdatoast/elm.vim'                        " :help elm
 "Plug 'ElmCast/elm-vim'                            " :help elm-vim
 """"""""""
 
+"""""""""
+"
+" Language - .tmux.conf
+"
+""""""""""
+Plug 'tmux-plugins/vim-tmux'                      " :help vim-tmux
+""""""""""
+
+
 """"""""""
 " vim-plug : add plugins to &runtimepath
 call plug#end()
