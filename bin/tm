@@ -1,5 +1,12 @@
 #!/bin/bash
 
+case $1 in
+  "ls")                                           # list current sessions
+    tmux ls
+    exit 0
+    ;;
+esac
+
 # abort if already inside a tmux session
 [ "$TMUX" == "" ] || exit 0
 
