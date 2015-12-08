@@ -18,7 +18,7 @@ sudo pip2 install vim-vint
 sudo apt-get install -y libyaml-dev
 sudo apt-get install -y libyaml-doc
 sudo apt-get install -y libyaml-cpp-dev
-sudo pip2 install pyyaml >/dev/null
+
 sudo pip3 install pyyaml >/dev/null
 #sudo pip2 install msgpack-python
 #sudo pip3 install msgpack-python
@@ -39,6 +39,9 @@ sudo update-alternatives --install /usr/bin/ex ex /usr/bin/nvim 60
 
 # bring in powerline fonts
 sudo apt-get install -y fonts-powerline
+
+# cleanup
+sudo apt-get autoclean -y
 
 # make useful directories
 mkdir -p ~/.local/share/nvim/tmp/undo
