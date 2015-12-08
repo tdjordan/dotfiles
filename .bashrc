@@ -132,6 +132,9 @@ export NVM_DIR=~/.nvm
 
 export TERM=xterm-256color
 
+# default editor
+export EDITOR=vim
+
 # disable shellcheck warning SC2015
 # https://github.com/koalaman/shellcheck/wiki/SC2015
 export SHELLCHECK_OPTS="-e SC2015"
