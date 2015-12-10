@@ -1,0 +1,30 @@
+#!/bin/bash
+
+srcList_docker=/etc/apt/sources.list.d/docker.list
+
+codeName=$(awk '/DISTRIB_CODENAME=/ {print}' < /etc/lsb-release | tr '=' '|' | sed -e 's;^.*|\(.*\);\1;g')
+
+# add repository
+[ ! -x /etc/apt/docker.list ] && (
+  echo "deb https://apt.dockerproject.org/repo ubuntu-$codeName main" | sudo tee -a "$srcList_docker"
+)
+
+# update apt
+sudo apt-get update
+
+# purge old repo
+sudo apt-get purge lxc-docker -y
+sudo apt-get autoremove -y
+
+# verify apt is pulling from right repository
+#apt-cache policy docker-engine
+
+# pull docker
+sudo apt-get install -y docker-engine
+
+# start docker daemon
+sudo service docker start
+
+# verify docker is running
+sudo docker run hello-world
+
