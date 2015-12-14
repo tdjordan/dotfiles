@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# install tomcat
+sudo apt-get install -y tomcat8
+
+# install docs
+sudo apt-get install -y tomcat8-docs
+sudo apt-get install -y tomcat8-examples
+sudo apt-get install -y tomcat8-admin
+sudo apt-get install -y tomcat8-user
+
+# NOTE
+#   http://localhost:8080
+#   : default port
+#
+#   http://localhost:8080/docs
+#   : local tomcat documentation
+#
+#   http://localhost:8080/examples
+#   : local tomcat examples
+#
+#   /etc/default/tomcat8
+#   : gloabl default runtime settings
+#
+#   /etc/tomcat8/tomcat-users.xml
+#   : web management interface settings
+
+# get new admin password
+while : ; do
+  read -r -sp "Enter your new tomcat admin password: " adminPW
+  if [ "$adminPW" == "" ]; then
+    echo "[blank]"
+    echo
+    echo ">>> you should not have a blank admin password <<<<"
+    echo "    Please try again"
+    echo
+  else
+    echo
+    break
+  fi
+done
+
+# save admin password to configuration
+sudo cp /etc/tomcat8/tomcat-users.xml /tmp/tomcat-users.xml.bak
+sudo cat /etc/tomcat8/tomcat-users.xml | sed -e "s|</tomcat-users>|  <user username='admin' password='""$adminPW""' roles='manager-gui,admin-gui'/>\n</tomcat-users>|g" > /tmp/tomcat-users.xml
+sudo mv /tmp/tomcat-users.xml /etc/tomcat8/tomcat-users.xml
+sudo service tomcat8 restart
+
+# cleanup
+sudo apt-get autoremove -y
+
