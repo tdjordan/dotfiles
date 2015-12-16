@@ -42,9 +42,21 @@ let g:ag_prg="ag --vimgrep --smart-case"          " plug default : --vimgrep
 """"""""""
 
 """"""""""
+" Autocomplete
+""""""""""
+if has('python3')
+  Plug 'Shougo/deoplete.nvim'                     " :help deoplete
+  """"""""""
+  let g:deoplete#enable_at_startup=1
+""""""""""
+else
+  Plug 'Shougo/neocomplete'
+endif
+""""""""""
+
+""""""""""
 " Snippets
 """"""""""
-Plug 'Shougo/neocomplete'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 """"""""""
@@ -576,7 +588,7 @@ vnoremap > >gv
 " Language - cpp
 "
 """"""""""
-Plug 'critiqjo/lldb.nvim'                         " :help lldb-start
+"Plug 'critiqjo/lldb.nvim'                         " :help lldb-start
 """"""""""
 nmap      <M-b> <Plug>LLBreadSwitch
 vmap       <F2> <Plug>LLStdInSelected
