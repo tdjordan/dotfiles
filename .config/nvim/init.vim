@@ -619,6 +619,13 @@ Plug 'lambdatoast/elm.vim'                        " :help elm
 Plug 'tmux-plugins/vim-tmux'                      " :help vim-tmux
 """"""""""
 
+"""""""""
+"
+" Language - .tmux.conf
+"
+""""""""""
+Plug 'atweiden/vim-uzbl'
+""""""""""
 
 """"""""""
 " vim-plug : add plugins to &runtimepath
