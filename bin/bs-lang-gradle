@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# install sdkman
+curl -s http://get.sdkman.io | bash
+
+# source in sdk
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# what is the verison
+sdk version
+
+# install groovy
+sdk install groovy
+sdk install gradle
+
