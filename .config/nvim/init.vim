@@ -109,8 +109,8 @@ let g:ctrlp_funky_use_cache=1                     " plug default : 0
 """"""""""
 "" fzf
 """"""""""
-"                                                 " :help fzf
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf',                              " :help fzf
+  \ { 'dir': '~/.fzf', 'do': './install --all' }
 """"""""""
 
 """"""""""
@@ -169,7 +169,8 @@ vmap <C-_> <plug>NERDCommenterToggle
 """"""""""
 
 """"""""""
-Plug 'scrooloose/nerdtree'                        " :help NERDtree
+Plug 'scrooloose/nerdtree',                       " :help NERDtree
+  \ { 'on': 'NERDTreeToggle' }
 """"""""""
 nnoremap <leader>k :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1                          " plug default : 0
