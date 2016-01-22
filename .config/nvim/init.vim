@@ -628,6 +628,14 @@ Plug 'tmux-plugins/vim-tmux'                      " :help vim-tmux
 Plug 'atweiden/vim-uzbl'
 """"""""""
 
+"""""""""
+"
+" Utility - simplenote
+"
+""""""""""
+Plug 'mrtazz/simplenote.vim'
+""""""""""
+
 """"""""""
 " vim-plug : add plugins to &runtimepath
 call plug#end()
