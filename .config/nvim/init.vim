@@ -114,7 +114,8 @@ Plug 'junegunn/fzf',                              " :help fzf
 """"""""""
 
 """"""""""
-Plug 'bling/vim-airline'                          " :help airline
+Plug 'vim-airline/vim-airline'                    " :help airline
+Plug 'vim-airline/vim-airline-themes'
 """"""""""
 let g:airline_theme="powerlineish"
 let g:airline_powerline_fonts=1
