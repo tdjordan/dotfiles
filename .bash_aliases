@@ -1,13 +1,21 @@
 #!/bin/bash
-alias l='ls -CF --color=auto'
-alias l.='ls -d .*[^.$] --color=auto 2>/dev/null'
-alias la='ls -A --color=auto'
-alias ls='ls --color=auto'
-alias ll.='ls -dl .*[^.$] --color=auto 2>/dev/null'
-alias ll='ls -AlF --color=auto'
+
+os=$(uname)
+
+case "$os" in
+  Darwin) color='-G' ;;
+  Linux)  color='--color=auto' ;;
+esac
+
+alias l='ls -CF ${color}'
+alias l.='ls -d .*[^.$] ${color} 2>/dev/null'
+alias la='ls -A ${color}'
+alias ls='ls ${color}'
+alias ll.='ls -dl .*[^.$] ${color} 2>/dev/null'
+alias ll='ls -AlF ${color}'
 
 #alias grep='grep --color=auto 2>/dev/null'
-alias grep='ag $*' 2>/dev/null
+#alias grep='ag $*' 2>/dev/null
 alias tree='tree -a -I .git $* 2>/dev/null'
 alias dtree='tree -ad -I .git $* 2>/dev/null'
 
