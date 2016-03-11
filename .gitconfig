@@ -54,4 +54,4 @@
   default = simple
 
 [color "decorate"]
-	HEAD = red
+  HEAD = red
