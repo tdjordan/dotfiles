@@ -141,6 +141,10 @@ export SHELLCHECK_OPTS="-e SC2015"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# local machine specific
+if [ -f ~/.bash_local ]; then
+    . ~/.bash_local
+fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

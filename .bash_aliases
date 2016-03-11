@@ -2,9 +2,18 @@
 
 os=$(uname)
 
+env_osx() {
+  color='-G'
+  alias xclip='pbcopy $*'
+} 
+
+env_linux() {
+  color='--color=auto'
+}
+
 case "$os" in
-  Darwin) color='-G' ;;
-  Linux)  color='--color=auto' ;;
+  Darwin) env_osx   ;;
+  Linux)  env_linux ;;
 esac
 
 alias l='ls -CF ${color}'
