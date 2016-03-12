@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# tap the cask
+brew tap caskroom/cask
+brew install brew-cask
+
+# tap cask versions
+brew tap caskroom/versions
+
+# to save apps in /Applications
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# install iterm2 beta version
+brew cask install iterm2-beta
+
+# call the doctor
+brew doctor
+

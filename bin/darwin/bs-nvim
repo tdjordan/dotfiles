@@ -1,47 +1,60 @@
 #!/bin/bash
 
-sudo add-apt-repository -y ppa:neovim-ppa/unstable
-sudo apt-get update
-sudo apt-get install -y neovim
+#sudo add-apt-repository -y ppa:neovim-ppa/unstable
+#sudo apt-get update
+#sudo apt-get install -y neovim
+
+brew update
+brew install neovim/neovim/neovim
 
 # python prerequisites
-sudo apt-get install -y python-dev python-pip python3-dev python3-pip python3.5-dev
+#sudo apt-get install -y python-dev python-pip python3-dev python3-pip python3.5-dev
+brew install python
 
 # from :help nvim_python
-sudo pip2 install neovim
-sudo pip3 install neovim
+pip2 install --upgrade pip
+pip2 install neovim
+#sudo pip3 install neovim
 
 # bring in some makers/checkers for neomake
-sudo pip2 install vim-vint
+pip2 install vim-vint
 
-# from : help msgpack_rpc
-sudo apt-get install -y libyaml-dev
-sudo apt-get install -y libyaml-doc
-sudo apt-get install -y libyaml-cpp-dev
+## from : help msgpack_rpc
+#sudo apt-get install -y libyaml-dev
+#sudo apt-get install -y libyaml-doc
+#sudo apt-get install -y libyaml-cpp-dev
 
-sudo pip3 install pyyaml >/dev/null
-#sudo pip2 install msgpack-python
-#sudo pip3 install msgpack-python
+#sudo pip3 install pyyaml >/dev/null
+##sudo pip2 install msgpack-python
+##sudo pip3 install msgpack-python
 
 # setup the alternatives
-sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
-#sudo update-alternatives --config vi
-sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
-#sudo update-alternatives --config vim
-sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
-#sudo update-alternatives --config editor
-sudo update-alternatives --install /usr/bin/vimdiff vimdiff /usr/bin/nvim 60
-#sudo update-alternatives --config vimdiff
-sudo update-alternatives --install /usr/bin/view view /usr/bin/nvim 60
-#sudo update-alternatives --config view
-sudo update-alternatives --install /usr/bin/ex ex /usr/bin/nvim 60
-#sudo update-alternatives --config ex
+pushd /usr/bin
+[ ! -f vim.orig ] && sudo mv vim vim.orig
+[   -f vim      ] && sudo rm vim
+sudo ln -s /usr/local/bin/nvim vim
+
+sudo rm vi
+sudo ln -s nvim vi
+
+sudo rm editor
+sudo ln -s nvim editor
+
+sudo rm vimdiff
+sudo ln -s nvim vimdiff
+
+sudo rm view
+sudo ln -s nvim view
+
+sudo rm ex
+sudo ln -s nvim ex
+popd
 
 # bring in powerline fonts
-sudo apt-get install -y fonts-powerline
+#sudo apt-get install -y fonts-powerline
 
 # cleanup
-sudo apt-get autoclean -y
+#sudo apt-get autoclean -y
 
 # make useful directories
 mkdir -p ~/.local/share/nvim/tmp/undo
@@ -51,12 +64,15 @@ mkdir -p ~/.local/share/nvim/plugged
 
 # backup original config before linking in new one
 mkdir -p ~/.original.config
-( mv -n ~/.vimrc  ~/.original.config/. ; rm ~/.vimrc  ) 2>/dev/null
-( mv -n ~/.nvimrc ~/.original.config/. ; rm ~/.nvimrc ) 2>/dev/null
-( mv -n ~/.vim    ~/.original.config/. ; rm ~/.vim    ) 2>/dev/null
-( mv -n ~/.nvim   ~/.original.config/. ; rm ~/.nvim   ) 2>/dev/null
+[   -f ~/.vimrc  ] && ( mv -n ~/.vimrc  ~/.original.config/. ; rm ~/.vimrc  ) 2>/dev/null
+[   -f ~/.nvimrc ] && ( mv -n ~/.nvimrc ~/.original.config/. ; rm ~/.nvimrc ) 2>/dev/null
+[   -d ~/.vim    ] && ( mv -n ~/.vim    ~/.original.config/. ; rm ~/.vim    ) 2>/dev/null
+[   -d ~/.nvim   ] && ( mv -n ~/.nvim   ~/.original.config/. ; rm ~/.nvim   ) 2>/dev/null
 
-( mv -n ~/.config/nvim/init.vim ~/.original.config/. ; rm ~/.config/nvim/init.vim ) 2>/dev/null
+[   -L ~/.vimrc  ] && ( rm -f ~/.vimrc  ) 2>/dev/null
+[   -L ~/.nvimrc ] && ( rm -f ~/.nvimrc ) 2>/dev/null
+
+[ ! -L ~/.config ] && ( mv -n ~/.config/nvim/init.vim ~/.original.config/. ; rm ~/.config/nvim/init.vim ) 2>/dev/null
 
 # link in new config
 mkdir -p ~/.config/nvim
