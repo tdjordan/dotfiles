@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# tap the cask
+brew tap caskroom/cask
+#brew install brew-cask
+
+# tap cask versions
+brew tap caskroom/versions
+
+# http://www.vagrantup.com
+brew cask install vagrant
+
+# to save apps in /Applications
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# http://vagrantmanager.com
+brew cask install vagrant-manager
+

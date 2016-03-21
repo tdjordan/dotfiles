@@ -1,0 +1,43 @@
+# vim: ft=sh
+# initial work proxy settings
+network_location=$(networksetup -getcurrentlocation)
+case $network_location in
+  Home)
+    export http_proxy=
+    target_machine=default
+    ;;
+  *)
+    export http_proxy="http://$(cat ~/.my_proxy 2>/dev/null)"
+    target_machine=work
+    ;;
+esac
+
+export https_proxy="$http_proxy"
+export ftp_proxy="$http_proxy"
+export rsync_proxy="$http_proxy"
+export all_proxy="$http_proxy"
+
+# don't include the docker machines in initial no_proxy setting
+export no_proxy="localhost,127.0.0.1,3.232.127.237,3.232.164.20,192.168.122.1,172.17.0.1,*.ge.com,ge.com,api.grc-apps.svc.ice.ge.com,login.grc-apps.svc.ice.ge.com"
+
+# let's work around digital garden hooks
+export DYLD_INSERT_LIBRARIES=
+
+# include all docker machines into the no_proxy env variable
+machines=$(docker-machine ls -f "{{.Name}}" --filter "state=running")
+for machine in $machines; do
+  [ "$machine" = "$target_machine" ] && continue
+  eval $(docker-machine env --no-proxy $machine)
+done
+
+# source the default docker machine
+eval $(docker-machine env --no-proxy $target_machine)
+
+# for some apps that require all caps
+export NO_PROXY="$no_proxy"
+export HTTP_PROXY="$http_proxy"
+export HTTPS_PROXY="$http_proxy"
+export FTP_PROXY="$http_proxy"
+export RSYNC_PROXY="$http_proxy"
+export ALL_PROXY="$http_proxy"
+
