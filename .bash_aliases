@@ -36,3 +36,7 @@ alias e.='nautilus . 2>/dev/null'
 #export TERM=gnome-256colors
 #export TERM=mate-terminal
 
+# docker
+alias d='docker'
+alias dm='docker-machine'
+
