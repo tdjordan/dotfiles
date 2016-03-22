@@ -13,9 +13,10 @@ brew update
 # zsh
 brew install zsh
 brew install zsh-completions
+brew install zshdb
 
 # add brew's zsh to /etc/shell
-sudo echo /usr/local/bin/zsh >> /etc/shell
+sudo echo /usr/local/bin/zsh >> /etc/shells
 
 # fetch oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
