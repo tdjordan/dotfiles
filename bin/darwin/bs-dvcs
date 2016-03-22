@@ -10,7 +10,11 @@ brew update
 # tap cask versions
 #brew tap caskroom/versions
 
-# zsh
+# git
 brew install git
 brew install git-flow-avh
+
+# hg - mercurial
+brew install hg
+brew install hg-flow
 
