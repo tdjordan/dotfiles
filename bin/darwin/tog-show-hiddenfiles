@@ -1,0 +1,24 @@
+#!/bin/bash
+# This script toggles the showing of hidden files - dot files in Finder
+
+toggleVisibility () {
+  defaults write com.apple.finder AppleShowAllFiles $1
+  killall Finder
+}
+
+current=$(defaults read com.apple.finder AppleShowAllFiles 2>/dev/null)
+
+echo $current
+
+case "$current" in
+  NO)
+    toggleVisibility YES
+    ;;
+  YES)
+    toggleVisibility NO
+    ;;
+  *)
+    toggleVisibility YES
+    ;;
+esac
+
