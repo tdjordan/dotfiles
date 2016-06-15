@@ -19,9 +19,11 @@ esac
 alias l='ls -CF ${color}'
 alias l.='ls -d .*[^.$] ${color} 2>/dev/null'
 alias la='ls -A ${color}'
+alias lah='ls -lah ${color}'
 alias ls='ls ${color}'
 alias ll.='ls -dl .*[^.$] ${color} 2>/dev/null'
 alias ll='ls -AlF ${color}'
+alias lla='ls -AlFh ${color}'
 
 #alias grep='grep --color=auto 2>/dev/null'
 #alias grep='ag $*' 2>/dev/null
@@ -39,4 +41,12 @@ alias e.='nautilus . 2>/dev/null'
 # docker
 alias d='docker'
 alias dm='docker-machine'
+docker_select() { eval $(docker-machine env $1) }
+alias dms='docker_select'
+
+# cat
+alias c='cat'
+
+# overload ag
+alias ag='ag --hidden'
 

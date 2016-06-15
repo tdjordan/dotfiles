@@ -9,13 +9,12 @@ brew tap caskroom/cask
 # tap cask versions
 brew tap caskroom/versions
 
-# install iterm2 beta version
-brew cask install iterm2-beta
-
 # to save apps in /Applications
-brew linkapps iterm2-beta
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# install xmind
+brew cask install calibre
 
 # cleanup
 brew cleanup
-brew cask cleanup
 

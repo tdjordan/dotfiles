@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# checksums
+brew install md5sha1sum
+
+# cleanup
+brew cleanup
+

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# install latest maven
+brew install maven
+
+# maven completion
+brew install maven-completion
+
+# cleanup
+brew cleanup
+

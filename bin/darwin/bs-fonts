@@ -4,11 +4,10 @@
 brew update
 
 # tap the cask
-#brew tap caskroom/cask
-#brew install brew-cask
+brew tap caskroom/cask
 
 # tap cask versions
-#brew tap caskroom/versions
+brew tap caskroom/versions
 
 # Hack
 brew cask install caskroom/fonts/font-hack

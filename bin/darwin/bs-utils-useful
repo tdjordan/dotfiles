@@ -4,12 +4,48 @@
 brew update
 
 # tap the cask
-#brew tap caskroom/cask
-#brew install brew-cask
+brew tap caskroom/cask
 
 # tap cask versions
 #brew tap caskroom/versions
 
 # ssh-copy-id
 brew install ssh-copy-id
+
+# pandoc
+brew install pandoc
+brew cask install mactex
+mkdir -p ~/.local/bin
+pushd ~/.local/bin
+ln -s /usr/local/texlive/2015/bin/x86_64-darwin/pdflatex
+popd
+
+# Let's Encrypt : letsencrypt.org
+brew install letsencrypt
+
+# htop
+#brew tap homebrew/dupes
+#brew install ncurses
+brew install htop
+
+# cheat
+brew install cheat
+
+# watchman
+brew install watchman
+
+# desk
+brew install desk
+
+# parallel
+brew install parallel
+
+# json processor
+brew install jq
+
+# ag - silver searcher
+brew install the_silver_searcher
+
+# brew cleanup
+brew cleanup
 

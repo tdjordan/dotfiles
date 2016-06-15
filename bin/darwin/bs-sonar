@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# install latest sonar
+brew install sonar
+
+# install latest sonar-runner
+brew install sonar-runner
+
+# sonar completion
+brew install sonar-completion
+
+# cleanup
+brew cleanup
+

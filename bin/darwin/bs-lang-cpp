@@ -1,0 +1,80 @@
+#!/bin/bash
+
+# update brew
+brew update
+
+# tap the cask
+#brew tap caskroom/cask
+
+# tap cask version
+#brew tap caskroom/versions
+
+# which clang version
+#ver=3.7
+
+# go ninja go
+brew install ninja
+
+
+# install clang support
+#sudo apt-get install -y libllvm$ver-dbg
+#sudo apt-get install -y llvm-$ver-doc
+#sudo apt-get install -y llvm-$ver-examples
+#sudo apt-get install -y llvm-$ver-tools
+#sudo apt-get install -y libclang1-$ver-dbg
+#sudo apt-get install -y libclang-$ver-dev
+#sudo apt-get install -y clang-$ver-doc
+#sudo apt-get install -y clang-$ver-examples
+#sudo apt-get install -y clang-format-$ver
+brew install clang-format
+#sudo apt-get install -y clang-modernize-$ver
+#sudo apt-get install -y python-clang-$ver
+#sudo apt-get install -y lldb-$ver-dev
+#sudo apt-get install -y liblldb-$ver-dbg
+#sudo apt-get install -y libllvm-$ver-ocaml-dev
+#brew install clang-omp
+
+# establish alternatives for
+#   clang
+#sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-$ver 60
+#sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-$ver 60
+#   clang tools
+#sudo update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-$ver 60
+#sudo update-alternatives --install /usr/bin/clang-check clang-check /usr/bin/clang-check-$ver 60
+#sudo update-alternatives --install /usr/bin/clang-query clang-query /usr/bin/clang-query-$ver 60
+##sudo update-alternatives --install /usr/bin/clang-rename clang-rename /usr/bin/clang-rename-$ver 60
+#sudo update-alternatives --install /usr/bin/clang-tblgen clang-tblgen /usr/bin/clang-tblgen-$ver 60
+#sudo update-alternatives --install /usr/bin/clang-apply-replacements clang-apply-replacements /usr/bin/clang-apply-replacements-$ver 60
+#   clang-format
+#sudo update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-$ver 60
+#sudo update-alternatives --install /usr/bin/clang-format-diff clang-format-diff /usr/bin/clang-format-diff-$ver 60
+#   clang-modernize
+#sudo update-alternatives --install /usr/bin/clang-modernize clang-modernize /usr/bin/clang-modernize-$ver 60
+#   lldb
+#sudo update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-$ver 60
+#sudo update-alternatives --install /usr/bin/lldb-mi lldb-mi /usr/bin/lldb-mi-$ver 60
+#sudo update-alternatives --install /usr/bin/lldb-server lldb-server /usr/bin/lldb-server-$ver 60
+
+# additional cpp syntax checkers
+brew install cppcheck
+
+# tags
+brew install ctags
+brew install rtags
+
+# cscope
+brew install cscope
+
+# cgrep
+brew install cgrep
+
+# cppformt
+brew install cppformat
+
+# conan - dependency manager
+brew install conan
+
+# cleanup
+brew cleanup
+
+

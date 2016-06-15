@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# install docker toolbox
+#brew cask install dockertoolbox
+brew install docker
+brew install docker-machine
+brew install docker-compose
+brew install docker-swarm
+brew install docker-gen
+brew install docker-clean
+
+# tap the cask
+brew tap caskroom/cask
+
+# to save apps in /Applications
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# install kitematic
+brew cask install kitematic
+
+# cleanup
+brew cleanup
+brew cask cleanup
+
+# create default machine
+#docker-machine create -d virtualbox default
+

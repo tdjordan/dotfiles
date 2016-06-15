@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# install arangodb
+brew install arangodb
+
+# cleanup
+brew cleanup
+

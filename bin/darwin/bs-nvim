@@ -53,8 +53,11 @@ popd
 # bring in powerline fonts
 #sudo apt-get install -y fonts-powerline
 
+# install editorconfig
+brew install editorconfig
+
 # cleanup
-#sudo apt-get autoclean -y
+brew cleanup
 
 # make useful directories
 mkdir -p ~/.local/share/nvim/tmp/undo

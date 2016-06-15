@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# nvm
+brew install node
+
+# cleanup
+brew cleanup
+

@@ -1,14 +1,13 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # update brew receipe list
 brew update
 
 # tap the cask
-#brew tap caskroom/cask
-#brew install brew-cask
+brew tap caskroom/cask
 
 # tap cask versions
-#brew tap caskroom/versions
+brew tap caskroom/versions
 
 # git
 brew install git
@@ -17,4 +16,14 @@ brew install git-flow-avh
 # hg - mercurial
 brew install hg
 brew install hg-flow
+
+# hg extensions
+mkdir -p ~/.hgext
+pushd ~/.hgext
+[ ! -d hgflow   ] && hg clone https://bitbucket.org/yujiewu/hgflow
+[ ! -d hg-prompt ] && hg clone https://bitbucket.org/sjl/hg-prompt
+popd
+
+# pull in subversion
+brew install subversion
 

@@ -3,13 +3,6 @@
 # update brew receipe list
 brew update
 
-# tap the cask
-#brew tap caskroom/cask
-#brew install brew-cask
-
-# tap cask versions
-#brew tap caskroom/versions
-
 # zsh
 brew install zsh
 brew install zsh-completions
@@ -24,4 +17,6 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 # switch default shells
 chsh -s /usr/local/bin/zsh
 
+# cleanup
+brew cleanup
 

@@ -1,0 +1,12 @@
+#!/bin/bash -x
+
+# update brew receipe list
+brew update
+
+# ansible
+brew install ansible
+brew install ansible-cmdb
+
+# cleanup
+brew cleanup
+

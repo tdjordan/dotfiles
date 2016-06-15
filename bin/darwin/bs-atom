@@ -9,11 +9,12 @@ brew tap caskroom/cask
 # tap cask versions
 brew tap caskroom/versions
 
-# install iterm2 beta version
-brew cask install iterm2-beta
-
 # to save apps in /Applications
-brew linkapps iterm2-beta
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# install atom released & beta versions
+brew cask install atom
+brew cask install atom-beta
 
 # cleanup
 brew cleanup

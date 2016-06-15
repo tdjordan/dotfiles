@@ -9,11 +9,11 @@ brew tap caskroom/cask
 # tap cask versions
 brew tap caskroom/versions
 
-# install iterm2 beta version
-brew cask install iterm2-beta
-
 # to save apps in /Applications
-brew linkapps iterm2-beta
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# install veracrypt
+brew cask install veracrypt
 
 # cleanup
 brew cleanup

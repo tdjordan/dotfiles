@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# tap the cask
+brew tap caskroom/cask
+
+# tap cask versions
+brew tap caskroom/versions
+
+# to save apps in /Applications
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# install eclipse released & beta versions
+brew cask install eclipse-cpp
+mv -f /Applications/Eclipse.app /Applications/Eclipse-cpp.app
+
+brew cask install eclipse-java
+mv -f /Applications/Eclipse.app /Applications/Eclipse-java.app
+
+brew cask install eclipse-jee
+mv -f /Applications/Eclipse.app /Applications/Eclipse-jee.app
+
+brew cask install eclipse-modeling
+mv -f /Applications/Eclipse.app /Applications/Eclipse-modeling.app
+
+brew cask install nodeclipse
+mv -f /Applications/Eclipse.app /Applications/Eclipse-nodeclipse.app
+
+# cleanup
+brew cleanup
+brew cask cleanup
+

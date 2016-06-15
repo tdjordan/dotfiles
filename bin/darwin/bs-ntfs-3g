@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# install latest ntfs-3g
+brew install ntfs-3g
+
+# fix up mount_ntfs links
+sudo mv /sbin/mount_ntfs /sbin/mount_ntfs.orig
+sudo ln -s /usr/local/sbin/mount_ntfs /sbin/mount_ntfs
+
+# cleanup
+brew cleanup
+
