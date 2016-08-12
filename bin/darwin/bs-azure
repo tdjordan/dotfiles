@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# install dependencies
+brew install node
+
+# install latest azure-cli
+brew install azure-cli
+
+# cleanup
+brew cleanup
+

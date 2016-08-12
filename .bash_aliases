@@ -5,7 +5,7 @@ os=$(uname)
 env_osx() {
   color='-G'
   alias xclip='pbcopy $*'
-} 
+}
 
 env_linux() {
   color='--color=auto'
@@ -44,9 +44,13 @@ alias dm='docker-machine'
 docker_select() { eval $(docker-machine env $1) }
 alias dms='docker_select'
 
+# brew
+alias bi='brew info'
+
 # cat
 alias c='cat'
 
 # overload ag
 alias ag='ag --hidden'
+
 

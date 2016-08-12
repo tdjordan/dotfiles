@@ -46,6 +46,16 @@ brew install jq
 # ag - silver searcher
 brew install the_silver_searcher
 
+# graphviz
+brew install graphviz
+
+# pick
+brew install pick
+
+# unetbootin
+brew cask install unetbootin
+
 # brew cleanup
 brew cleanup
+brew cask cleanup
 

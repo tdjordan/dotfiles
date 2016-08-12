@@ -4,18 +4,20 @@
 brew update
 
 # tap the cask
-brew tap caskroom/cask
+#brew tap caskroom/cask
 
 # tap cask versions
 #brew tap caskroom/versions
 
 # to save apps in /Applications
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+#export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-# install latest dia
-brew cask install dia
+# install latest swift
+#brew install swift
+
+# syntax tools
+brew install tailor
 
 # cleanup
 brew cleanup
-brew cask cleanup
 

@@ -3,6 +3,10 @@
 # update brew receipe list
 brew update
 
+# opam
+brew install opma
+opam init
+
 # install docker toolbox
 #brew cask install dockertoolbox
 brew install docker
@@ -11,6 +15,12 @@ brew install docker-compose
 brew install docker-swarm
 brew install docker-gen
 brew install docker-clean
+brew install docker-cloud
+
+# install xhyve driver
+brew install docker-machine-driver-xhyve
+sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
 
 # tap the cask
 brew tap caskroom/cask

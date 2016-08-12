@@ -1,4 +1,5 @@
 Session.vim
 .config/nvim/autoload
 .config/nvim/colors
+.config/filezilla
 .DS_Store

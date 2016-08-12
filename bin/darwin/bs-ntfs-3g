@@ -3,13 +3,28 @@
 # update brew receipe list
 brew update
 
+# tap the cask
+brew tap caskroom/cask
+
+# tap cask versions
+brew tap caskroom/versions
+
+# ensure osxfuse 3.0+ is installed
+brew cask install osxfuse-beta
+
 # install latest ntfs-3g
 brew install ntfs-3g
 
 # fix up mount_ntfs links
+# NOTE:
+#   Replacing /sbin/mount_ntfs ensures
+#     auto-mounted NTFS volumes are mounted
+#     in read-write mode.
+# See: https://github.com/osxfuse/osxfuse/wiki/NTFS-3G
 sudo mv /sbin/mount_ntfs /sbin/mount_ntfs.orig
 sudo ln -s /usr/local/sbin/mount_ntfs /sbin/mount_ntfs
 
 # cleanup
 brew cleanup
+brew cask cleanup
 

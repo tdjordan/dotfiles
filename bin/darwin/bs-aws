@@ -3,11 +3,8 @@
 # update brew receipe list
 brew update
 
-# checksums
-brew install md5sha1sum
-
-# b2sum
-brew install b2sum
+# install latest aws-cli
+brew install awscli
 
 # cleanup
 brew cleanup

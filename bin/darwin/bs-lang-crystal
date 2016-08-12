@@ -3,11 +3,8 @@
 # update brew receipe list
 brew update
 
-# checksums
-brew install md5sha1sum
-
-# b2sum
-brew install b2sum
+# install latest crystal
+brew install crystal-lang
 
 # cleanup
 brew cleanup

@@ -3,11 +3,9 @@
 # update brew receipe list
 brew update
 
-# checksums
-brew install md5sha1sum
-
-# b2sum
-brew install b2sum
+# install autocode
+#   see: https://autocode.run
+brew install autocode
 
 # cleanup
 brew cleanup

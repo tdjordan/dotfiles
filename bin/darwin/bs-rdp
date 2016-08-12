@@ -3,19 +3,18 @@
 # update brew receipe list
 brew update
 
-# tap the cask
-brew tap caskroom/cask
-
-# tap cask versions
-#brew tap caskroom/versions
+# tap homebrew/x11
+brew tap homebrew/x11
 
 # to save apps in /Applications
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-# install latest dia
-brew cask install dia
+# xquartz
+brew cask install xquartz
+
+# install latest freerdp
+brew install freerdp
 
 # cleanup
 brew cleanup
-brew cask cleanup
 

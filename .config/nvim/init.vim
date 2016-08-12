@@ -16,7 +16,7 @@ colorscheme molokai
 "colorscheme dalek
 
 " New <leaderi> of the band
-let mapleader=','
+let g:mapleader=','
 "nnoremap <leader>V :tabnew ~/.nvimrc<CR>
 
 """"""""""
@@ -38,7 +38,7 @@ Plug 'rking/ag.vim'                               " :help ag
 " Better comand-line completion
 set wildmenu                                  """"" nvim default : on
 set wildmode=longest:full,full                    " nvim default : full
-let g:ag_prg="ag --vimgrep --smart-case"          " plug default : --vimgrep
+let g:ag_prg='ag --vimgrep --smart-case'          " plug default : --vimgrep
 """"""""""
 
 """"""""""
@@ -117,7 +117,7 @@ Plug 'junegunn/fzf',                              " :help fzf
 Plug 'vim-airline/vim-airline'                    " :help airline
 Plug 'vim-airline/vim-airline-themes'
 """"""""""
-let g:airline_theme="powerlineish"
+let g:airline_theme='powerlineish'
 let g:airline_powerline_fonts=1
 "let g:airline#extensions#tabline#enabled=1
 """"""""""
@@ -174,7 +174,7 @@ Plug 'scrooloose/nerdtree',                       " :help NERDtree
   \ { 'on': 'NERDTreeToggle' }
 """"""""""
 nnoremap <leader>k :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1                          " plug default : 0
+let g:NERDTreeShowHidden=1                         " plug default : 0
 "let NERDTreeMinimalUI=1                           " plug default : 0
 "let NERDTreeShowBookmarks=1                       " plug default : 0
 " exit nvim when nerdtree is the only buffer open
@@ -623,10 +623,18 @@ Plug 'tmux-plugins/vim-tmux'                      " :help vim-tmux
 
 """""""""
 "
-" Language - .tmux.conf
+" Language - uzbl config
 "
 """"""""""
 Plug 'atweiden/vim-uzbl'
+""""""""""
+
+"""""""""
+"
+" Language - brew formulae
+"
+""""""""""
+Plug 'xu-cheng/brew.vim'
 """"""""""
 
 """""""""
