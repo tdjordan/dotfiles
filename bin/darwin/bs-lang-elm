@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# install latest elm
+brew install elm
+
+# cleanup
+brew cleanup
+

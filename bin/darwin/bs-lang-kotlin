@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# latest kotlin
+brew install kotlin
+
+# cleanup
+brew cleanup
+

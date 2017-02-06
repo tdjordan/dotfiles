@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# install latest kubernetes-cli
+brew install kubernetes-cli
+
+# cleanup
+brew cleanup
+

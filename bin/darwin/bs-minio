@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# minio
+brew install minio
+brew install minio-mc
+
+# cleanup
+brew cleanup
+

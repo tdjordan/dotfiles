@@ -40,6 +40,8 @@ set wildmenu                                  """"" nvim default : on
 set wildmode=longest:full,full                    " nvim default : full
 let g:ag_prg='ag --vimgrep --smart-case'          " plug default : --vimgrep
 """"""""""
+nnoremap <leader>f :execute 'Ag "' . input('Ag/') . '"'<CR>
+""""""""""
 
 """"""""""
 " Autocomplete
@@ -60,9 +62,8 @@ endif
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 """"""""""
-
+Plug 'honza/vim-snippets'
 """"""""""
-
 
 """"""""""
 "Plug 'SirVer/ultisnips'                           " :help ultisnips
@@ -130,6 +131,12 @@ nnoremap <silent><F8> :TagbarToggle<CR>
 
 """"""""""
 Plug 'lilydjwg/colorizer'                         " colrize color codes
+""""""""""
+
+""""""""""
+" Themes
+""""""""""
+Plug 'fatih/molokai'
 """"""""""
 
 """"""""""
@@ -205,12 +212,20 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 """"""""""
 " Version Control
 """"""""""
+" vim-fugitive
+""""""""""
 " git
 Plug 'tpope/vim-fugitive'                         " :help fugitive
 """"""""""
 " hg
 "Plug 'jlfwong/vim-mercenary'                      " :help mercenary
 Plug 'ludovicchabant/vim-lawrencium'              " :help lawrencium
+""""""""""
+
+""""""""""
+" gitv
+""""""""""
+"Plug 'gregsexton/gitv'
 """"""""""
 
 """"""""""
@@ -232,7 +247,88 @@ let g:indent_guides_guide_size  = 1               " plug default : 0
 """"""""""
 
 """"""""""
+" auto-pairs
+""""""""""
+Plug 'jiangmiao/auto-pairs'
+""""""""""
+"let g:AutoPairsShortcutToggle = '<C-s>'
+"let g:AutoPairsShortcutFastWrap = '<C-s>'
+""""""""""
+
+""""""""""
+" vim-go
+""""""""""
 Plug 'fatih/vim-go'                               " :help vim-go
+""""""""""
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+""""""""""
+au FileType go nmap <leader>ds <Plug>(go-def-split)
+au FileType go nmap <leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <leader>dt <Plug>(go-def-tab)
+""""""""""
+au FileType go nmap <leader>gd <Plug>(go-doc)
+au FileType go nmap <leader>gv <Plug>(go-dock-vertical)
+au FileType go nmap <leader>gb <Plug>(go-dock-browser)
+""""""""""
+au FileType go nmap <leader>s <Plug>(go-implements)
+au FileType go nmap <leader>s <Plug>(go-info)
+au FileType go nmap <leader>e <Plug>(go-rename)
+""""""""""
+" enable syntax highlighting
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+""""""""""
+let g:go_fmt_command = "goimports"            """"" use goimports instead of gofmt
+"let g:go_fmt_fail_silently = 0                """"" plug default : show fmt errors
+""""""""""
+" neovim support
+au Filetype go nmap <leader>rt <Plug>(go-run-tab)
+au Filetype go nmap <leader>rs <Plug>(go-run-split)
+au Filetype go nmap <leader>rv <Plug>(go-run-vertical)
+"let g:go_term_mode = "vsplit"                 """"" plug default : vertical split
+" make testing commands run in a new terminal
+let g:go_term_enabled = 1
+""""""""""
+" syntastic vim-go settings
+" let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] )
+" let g:go_list_type = "quickfix"
+""""""""""
+
+""""""""""
+" go-explorer
+""""""""""
+Plug 'garyburd/go-explorer'
+""""""""""
+
+""""""""""
+" ansible-vim
+""""""""""
+Plug 'pearofducks/ansible-vim'
+""""""""""
+"let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
+let g:ansible_attribute_highlight = "ab"
+let g:ansible_name_highlight = 'b'
+let g:ansible_extra_keywords_highlight = 1
+"""""""""""
+
+""""""""""
+" vim-jinga2-syntax
+""""""""""
+"Plug 'glench/vim-jinja2-syntax'
+""""""""""
+
+""""""""""
+" vim-ps1
+""""""""""
+Plug 'PProvost/vim-ps1'
 """"""""""
 
 """"""""""

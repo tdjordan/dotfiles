@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# install latest golang
+brew install golang
+
+# other tools
+brew install godep
+brew install gotags
+brew install govendor
+
+# goenv
+brew install goenv
+
+# cleanup
+brew cleanup
+

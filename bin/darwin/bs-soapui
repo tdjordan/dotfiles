@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# tap the cask
+brew tap caskroom/cask
+
+# http://www.vagrantup.com
+brew cask install soapui
+
+# cleanup
+brew cleanup
+

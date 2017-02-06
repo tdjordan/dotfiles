@@ -14,7 +14,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # install atom released & beta versions
 brew cask install atom
-brew cask install atom-beta
+#brew cask install atom-beta
 
 # cleanup
 brew cleanup

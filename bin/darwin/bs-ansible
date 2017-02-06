@@ -7,6 +7,10 @@ brew update
 brew install ansible
 brew install ansible-cmdb
 
+# local roles
+mkdir -p /usr/local/etc/ansible/roles
+mkdir -p ~/.ansible/roles
+
 # cleanup
 brew cleanup
 

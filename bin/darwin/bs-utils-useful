@@ -43,6 +43,9 @@ brew install parallel
 # json processor
 brew install jq
 
+# make json greppable
+brew install gron
+
 # ag - silver searcher
 brew install the_silver_searcher
 

@@ -53,4 +53,6 @@ alias c='cat'
 # overload ag
 alias ag='ag --hidden'
 
-
+# ansible
+alias ap='ansible-playbook'
+alias ad='ansible-doc'

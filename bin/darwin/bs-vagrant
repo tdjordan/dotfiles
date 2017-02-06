@@ -15,6 +15,18 @@ brew cask install vagrant
 # http://vagrantmanager.com
 brew cask install vagrant-manager
 
+# https://github.com/BipSync/VagrantBar
+#brew cask install vagrant-bar
+
+# update openssl
+brew install openssl
+
+# work-around for verify cert issue
+sudo ln -sf $(brew --cellar)/openssl/*/bin/openssl /opt/vagrant/embedded/bin/openssl
+
+# fetch vagrant-vsphere
+vagrant plugin install vagrant-vsphere
+
 # to save apps in /Applications
 brew linkapps
 

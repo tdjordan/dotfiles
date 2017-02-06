@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# collectd
+brew install collectd
+
+# cleanup
+brew cleanup
+

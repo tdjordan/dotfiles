@@ -1,0 +1,11 @@
+#!/bin/bash -x
+
+# update brew receipe list
+brew update
+
+# hashcat
+brew install hashcat
+
+# cleanup
+brew cleanup
+

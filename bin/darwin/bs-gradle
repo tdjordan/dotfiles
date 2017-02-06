@@ -20,6 +20,9 @@ brew install gradle
 
 echo "export GROOVY_HOME=/usr/local/opt/groovy/libexec" >> ~/.bash_local
 
+# gssh - gradle ssh automation tool based on Groovy DSL
+brew install gssh
+
 # install nodeclipe  released & beta versions
 #brew cask install nodeclipse
 

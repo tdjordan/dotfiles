@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# http://www.terraform.io
+brew install terraform
+
+# cleanup
+brew cleanup
+
