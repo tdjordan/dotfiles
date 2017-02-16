@@ -12,6 +12,9 @@ brew install sonar-runner
 # sonar completion
 brew install sonar-completion
 
+# sonarlint
+brew install sonarlint
+
 # cleanup
 brew cleanup
 
