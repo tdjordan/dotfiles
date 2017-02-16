@@ -56,3 +56,5 @@ alias ag='ag --hidden'
 # ansible
 alias ap='ansible-playbook'
 alias ad='ansible-doc'
+alias al='ansible-lint'
+
