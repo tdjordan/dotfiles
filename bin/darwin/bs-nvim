@@ -91,6 +91,9 @@ ln -s .nvim .vim
 vimplug-update 2>/dev/null
 molokai-update 2>/dev/null
 
+# proselint
+brew install proselint
+
 popd
 popd
 
