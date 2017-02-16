@@ -1,0 +1,11 @@
+#!/bin/bash -x
+
+# update brew receipe list
+brew update
+
+# kitchen
+gem install test-kitchen
+
+# cleanup
+brew cleanup
+
