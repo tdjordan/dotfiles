@@ -1,0 +1,14 @@
+#!/bin/bash -x
+
+# update brew receipe list
+brew update
+
+# bitrisse
+brew install bitrise
+
+# install dependencies
+bitrise setup
+
+# cleanup
+brew cleanup
+
