@@ -51,7 +51,7 @@ alias bi='brew info'
 alias c='cat'
 
 # overload ag
-alias ag='ag --hidden'
+alias ag='ag --hidden --ignore-dir .git'
 
 # ansible
 alias ap='ansible-playbook'
