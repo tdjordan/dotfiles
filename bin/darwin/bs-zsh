@@ -8,6 +8,9 @@ brew install zsh
 brew install zsh-completions
 brew install zshdb
 
+# shellcheck
+brew install shellcheck
+
 # add brew's zsh to /etc/shell
 sudo echo /usr/local/bin/zsh >> /etc/shells
 
