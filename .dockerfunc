@@ -5,3 +5,7 @@ dclean() {
   docker rm -v $(docker ps     --filter status=exited -q  2>/dev/null) 2>/dev/null
   docker rmi   $(docker images --filter dangling=true -q  2>/dev/null) 2>/dev/null
 }
+
+ctop() {
+  docker run -ti --name ctop --rm -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest
+}
