@@ -159,3 +159,6 @@ done
 #export SDKMAN_DIR="$HOME/.sdkman"
 #[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh" &> /dev/null
 
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
