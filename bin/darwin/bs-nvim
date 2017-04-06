@@ -97,3 +97,9 @@ brew install proselint
 popd
 popd
 
+# fzf
+brew install fzf
+
+# install fzf shell extensions
+/usr/local/opt/fzf/install
+
