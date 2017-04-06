@@ -13,6 +13,10 @@ brew tap caskroom/versions
 brew install git
 brew install git-flow-avh
 
+# git lfs
+brew install git-lfs
+git lfs install
+
 # hg - mercurial
 brew install hg
 brew install hg-flow
