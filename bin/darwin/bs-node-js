@@ -6,6 +6,9 @@ brew update
 # nvm
 brew install node
 
+# yarn
+brew install yarn
+
 # cleanup
 brew cleanup
 
