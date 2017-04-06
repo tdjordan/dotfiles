@@ -31,6 +31,9 @@ brew tap caskroom/cask
 # install kitematic
 brew cask install kitematic
 
+# ctop
+brew install ctop
+
 # cleanup
 brew cleanup
 brew cask cleanup
