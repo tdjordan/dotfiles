@@ -110,8 +110,9 @@ let g:ctrlp_funky_use_cache=1                     " plug default : 0
 """"""""""
 "" fzf
 """"""""""
-Plug 'junegunn/fzf',                              " :help fzf
-  \ { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf',
+"  \ { 'dir': '~/.fzf', 'do': './install --all' }
+set rtp+=/usr/local/opt/fzf                      " :help fzf
 """"""""""
 
 """"""""""
@@ -155,14 +156,20 @@ Plug 'fatih/molokai'
 """"""""""
 
 """"""""""
-Plug 'benekastah/neomake'                         " :help neomake
+"Plug 'benekastah/neomake'                         " :help neomake
+"""""""""""
+"au! BufWritePost * Neomake
+"au! BufWinEnter * Neomake
+""let g:neomake_open_list=2
+""let g:neomake_open_list=1
+"let g:neomake_open_list=0
+""let g:neomake_airline=1
+"""""""""""
+
 """"""""""
-au! BufWritePost * Neomake
-au! BufWinEnter * Neomake
-"let g:neomake_open_list=2
-"let g:neomake_open_list=1
-let g:neomake_open_list=0
-"let g:neomake_airline=1
+Plug 'w0rp/ale'                                   " :help ale
+""""""""""
+"let g:ale_sign_column_always = 1
 """"""""""
 
 """"""""""
@@ -256,6 +263,31 @@ Plug 'jiangmiao/auto-pairs'
 """"""""""
 
 """"""""""
+" vim-gradle
+""""""""""
+Plug 'gisphm/vim-gradle'
+""""""""""
+
+""""""""""
+" kotlin-vim
+""""""""""
+"Plug 'udalov/kotlin-vim'                          " :help kotlin-vim
+""""""""""
+
+""""""""""
+" vim-polygot
+""""""""""
+Plug 'sheerun/vim-polyglot'
+""""""""""
+""""""""""
+
+""""""""""
+" pony-vim-syntax
+""""""""""
+Plug 'dleonard0/pony-vim-syntax'
+""""""""""
+
+""""""""""
 " vim-go
 """"""""""
 Plug 'fatih/vim-go'                               " :help vim-go
@@ -286,6 +318,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 """"""""""
 let g:go_fmt_command = "goimports"            """"" use goimports instead of gofmt
+"let g:go_fmt_autosave = 0
 "let g:go_fmt_fail_silently = 0                """"" plug default : show fmt errors
 """"""""""
 " neovim support
