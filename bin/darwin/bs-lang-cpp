@@ -65,6 +65,9 @@ brew install rtags
 # cscope
 brew install cscope
 
+# codequery
+brew install codequery
+
 # cgrep
 brew install cgrep
 
@@ -73,6 +76,9 @@ brew install cppformat
 
 # conan - dependency manager
 brew install conan
+
+# check - a unit tester
+brew install check
 
 # cleanup
 brew cleanup

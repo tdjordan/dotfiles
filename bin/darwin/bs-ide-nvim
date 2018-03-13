@@ -1,14 +1,9 @@
 #!/bin/bash
 
-#sudo add-apt-repository -y ppa:neovim-ppa/unstable
-#sudo apt-get update
-#sudo apt-get install -y neovim
-
 brew update
 brew install neovim/neovim/neovim
 
 # python prerequisites
-#sudo apt-get install -y python-dev python-pip python3-dev python3-pip python3.5-dev
 brew install python
 
 # from :help nvim_python
@@ -19,10 +14,6 @@ pip2 install neovim
 # bring in some makers/checkers for neomake
 pip2 install vim-vint
 
-## from : help msgpack_rpc
-#sudo apt-get install -y libyaml-dev
-#sudo apt-get install -y libyaml-doc
-#sudo apt-get install -y libyaml-cpp-dev
 
 #sudo pip3 install pyyaml >/dev/null
 ##sudo pip2 install msgpack-python
@@ -49,9 +40,6 @@ sudo ln -s nvim view
 sudo rm ex
 sudo ln -s nvim ex
 popd
-
-# bring in powerline fonts
-#sudo apt-get install -y fonts-powerline
 
 # install editorconfig
 brew install editorconfig

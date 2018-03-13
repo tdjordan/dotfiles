@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# http://docs.saltstack.com
+brew install saltstack
+
+# setup first tiem use
+sudo mkdir -p /var/log/salt
+sudo chmod a+w /var/log/salt
+sudo mkdir -p /etc/salt/cloud.providers.d
+sudo mkdir -p /etc/salt/cloud.profiles.d
+
+# cleanup
+brew cleanup
+

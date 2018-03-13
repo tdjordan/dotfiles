@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# tap the cask
+brew tap caskroom/cask
+
+# install latest visual studio code
+brew cask install visual-studio-code
+
+# cleanup
+brew cleanup
+brew cask cleanup
+

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# tap the cask
+brew tap caskroom/cask
+
+# powershell
+brew cask install powershell
+
+# cleanup
+brew cleanup
+brew cask cleanup
+

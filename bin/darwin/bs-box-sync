@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# install latest box-sync
+brew cask install box-sync
+
+# cleanup
+brew cleanup
+

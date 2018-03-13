@@ -122,6 +122,7 @@ export GOPATH=~/.gopath
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:~/.cabal/bin
 export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/.cargo/bin
 
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -161,4 +162,4 @@ done
 
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+#export PATH="$PATH:$HOME/.rvm/bin"

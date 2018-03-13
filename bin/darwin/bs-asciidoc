@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# asciidoc
+brew install asciidoc
+
+# asciidoctor
+brew install asciidoctor
+
+# cleanup
+brew cleanup
+

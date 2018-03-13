@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# osquery
+brew install osquery
+
+# setup environment
+sudo ln -s /usr/local/share/osquery /var/osquery
+sudo mkdir /var/log/osquery
+sudo chown root /usr/local/Cellar/osquery/*/bin/osqueryd
+sudo cp /var/osquery/osquery.example.conf /var/osquery/osquery.conf
+
+# cleanup
+brew cleanup
+

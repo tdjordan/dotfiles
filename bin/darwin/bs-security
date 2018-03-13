@@ -6,6 +6,15 @@ brew update
 # hashcat
 brew install hashcat
 
+# certigo
+brew install certigo
+
+# gopass
+brew install gopass
+
+# vault
+brew install vault
+
 # cleanup
 brew cleanup
 

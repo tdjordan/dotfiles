@@ -6,6 +6,9 @@ brew update
 # install latest kubernetes-cli
 brew install kubernetes-cli
 
+# minikube
+brew cask install minikube
+
 # cleanup
 brew cleanup
 

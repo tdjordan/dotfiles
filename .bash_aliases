@@ -41,7 +41,9 @@ alias e.='nautilus . 2>/dev/null'
 # docker
 alias d='docker'
 alias dm='docker-machine'
-docker_select() { eval $(docker-machine env $1) }
+docker_select() {
+  eval $(docker-machine env $1)
+}
 alias dms='docker_select'
 
 # brew
@@ -57,4 +59,13 @@ alias ag='ag --hidden --ignore-dir .git'
 alias ap='ansible-playbook'
 alias ad='ansible-doc'
 alias al='ansible-lint'
+
+# gopass
+alias p='gopass'
+
+# rsync
+alias qcp='rsync -avzh'
+
+# vagrant
+alias v='vagrant'
 

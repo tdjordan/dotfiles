@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# install rust
+brew install rust
+
+# install rustup
+brew install rustup-init
+
+# cleanup
+brew cleanup
+

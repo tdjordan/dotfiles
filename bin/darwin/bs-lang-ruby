@@ -3,33 +3,15 @@
 # update brew receipe list
 brew update
 
-# tap the cask
-#brew tap caskroom/cask
-
-# tap cask versions
-#brew tap caskroom/versions
-
-# to save apps in /Applications
-#export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
-# install latest swift
-#brew install swift
-
-# syntax tools
-#brew install tailor
-#brew install swiftlint
-
-# generation tools
-#brew install swiftgen
-
-# isntall ruby
+# install ruby
 brew install ruby
 
-wget https://rubygems.org/downloads/rubygems-update-2.6.7.gem
-/usr/local/bin/gem install --local rubygems-update-2.6.7.gem
-update_rubygems --no-ri --no-rdoc
-/usr/local/bin/gem uninstall rubygems-update -x
-rm rubygems-update*gem
+ln -s /usr/local/opt/ruby/lib/libruby.2.4.1.dylib /usr/local/opt/ruby/lib/libruby.2.4.0.dylib
+#wget https://rubygems.org/downloads/rubygems-update-2.6.7.gem
+#/usr/local/bin/gem install --local rubygems-update-2.6.7.gem
+#update_rubygems --no-ri --no-rdoc
+#/usr/local/bin/gem uninstall rubygems-update -x
+#rm rubygems-update*gem
 
 # cleanup
 brew cleanup

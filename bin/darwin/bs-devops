@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# unetbootin
+brew install jfrog-cli-go
+
+# brew cleanup
+brew cleanup
+

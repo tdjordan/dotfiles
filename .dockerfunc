@@ -9,3 +9,19 @@ dclean() {
 ctop() {
   docker run -ti --name ctop --rm -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest
 }
+
+dockerfile_lint() {
+  docker run -it --rm --priviledge -v 'pwd':/root/ projectatomic/dockerfile-lint dockerfile_lint -f $0
+}
+
+dockerimage_lint() {
+  docker run -it --rm --priviledge -v 'pwd':/root/ projectatomic/dockerfile-lint dockerfile_lint image $0
+}
+
+#hadolint() {
+  #docker run --rm -i lukasmartinelli/hadolint < $0
+#}
+
+#packer() {
+  #docker run -it --rm hashicorp/packer:light $0
+#}

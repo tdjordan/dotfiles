@@ -16,6 +16,7 @@
   co = checkout
   ci = commit
   br = branch
+  cp = cherry-pick
 
   # log bases
   lg-base = log --graph --abbrev-commit
@@ -47,11 +48,26 @@
   out = !git outgoing
   out-diff = !git diff origin/$(git current-br)..$(git current-br)
 
+  # make remote braches local
+  remote-local = $(!git br -a | sed "s;remotes/origin/;;" | grep -v master | xargs -Isnip git co snip)
+
 [core]
   editor = vi
+	excludesfile = ~/.gitignore_global
 
 [push]
   default = simple
 
 [color "decorate"]
   HEAD = red
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

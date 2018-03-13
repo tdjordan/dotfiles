@@ -49,11 +49,29 @@ brew install gron
 # ag - silver searcher
 brew install the_silver_searcher
 
+# rg - ripgrep
+#brew install ripgrep
+# above install currently doesn't work
+# instead do:
+#   git clone https://github.com/BurntSushi/ripgrep.git
+#   cd ripgrep
+#   brew install rust
+#   brew install rustup-intt (optional)
+#   cargo build --release
+#   cargo install
+# then add ~/.cargo/bin to your path
+
 # graphviz
 brew install graphviz
 
 # pick
 brew install pick
+
+# di
+brew install di
+
+# miller
+brew install miller
 
 # unetbootin
 brew cask install unetbootin

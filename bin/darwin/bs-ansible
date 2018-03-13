@@ -6,6 +6,7 @@ brew update
 # ansible
 brew install ansible
 brew install ansible-cmdb
+brew install ansible-lint
 
 # local roles
 mkdir -p /usr/local/etc/ansible/roles
