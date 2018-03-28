@@ -58,6 +58,10 @@
 [push]
   default = simple
 
+[pager]
+  tag = off
+  branch = off
+
 [color "decorate"]
   HEAD = red
 [difftool "sourcetree"]
