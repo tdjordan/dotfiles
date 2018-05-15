@@ -288,6 +288,14 @@ Plug 'dleonard0/pony-vim-syntax'
 """"""""""
 
 """"""""""
+" salt-vim
+""""""""""
+Plug 'saltstack/salt-vim'
+""""""""""
+
+""""""""""
+
+""""""""""
 " vim-go
 """"""""""
 Plug 'fatih/vim-go'                               " :help vim-go
@@ -772,6 +780,30 @@ Plug 'xu-cheng/brew.vim'
 "
 """"""""""
 Plug 'mrtazz/simplenote.vim'
+""""""""""
+
+"""""""""
+"
+" Utility - vim-easy-align
+"
+""""""""""
+Plug 'junegunn/vim-easy-align'
+""""""""""
+" (vipga) start interactive EasyAlign in visual mode
+xmap ga <Plug>(EasyAlign)
+" (gaip ) start interactive EasyAlign for motion/text object
+nmap ga <Plug>(EasyAlign)
+""""""""""
+
+
+"""""""""
+"
+" Utility - FlyGrep
+"
+""""""""""
+Plug 'wsdjeg/FlyGrep.vim'
+""""""""""
+noremap <Space>s/ :FlyGrep<cr>
 """"""""""
 
 """"""""""

@@ -108,7 +108,11 @@ done
 #export SDKMAN_DIR="~/.sdkman"
 #[[ -s "~/.sdkman/bin/sdkman-init.sh" ]] && source "~/.sdkman/bin/sdkman-init.sh"
 
+#path=(/usr/local/share/zsh-completions $fpath)
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 #export PATH="$PATH:$HOME/.rvm/bin"
+#export PATH="/usr/local/opt/sqlite/bin:$PATH"
+#export PATH="/usr/local/opt/gettext/bin:$PATH"
