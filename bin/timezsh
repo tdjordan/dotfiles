@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+for i in $(seq 1 10)
+do
+  time /bin/zsh -i -c exit
+  #time /usr/bin/env zsh -i -c exit
+done
