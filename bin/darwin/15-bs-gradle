@@ -15,6 +15,9 @@ brew update
 # install latest groovy
 brew install groovy
 
+# You should set GROOVY_HOME:
+#   export GROOVY_HOME=/usr/local/opt/groovy/libexec
+
 # install latest gradle
 brew install gradle
 

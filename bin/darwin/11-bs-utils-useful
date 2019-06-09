@@ -1,0 +1,143 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# tap the cask
+brew tap caskroom/cask
+
+# tap cask versions
+#brew tap caskroom/versions
+
+# ssh-copy-id
+brew install ssh-copy-id
+
+# pandoc
+brew install pandoc
+
+# Bash completion has been installed to:
+#   /usr/local/etc/bash_completion.d
+
+brew cask install mactex
+mkdir -p ~/.local/bin
+pushd ~/.local/bin
+ln -s /usr/local/texlive/2015/bin/x86_64-darwin/pdflatex
+popd
+
+# Lenses have been installed to:
+#   /usr/local/share/augeas/lenses/dist
+
+#= brew install ghostscript
+# Error: The `brew link` step did not complete successfully
+# The formula built, but is not symlinked into /usr/local
+# Could not symlink bin/dvipdf
+# Target /usr/local/bin/dvipdf
+# already exists. You may want to remove it:
+#   rm '/usr/local/bin/dvipdf'
+#
+# To force the link and overwrite all conflicting files:
+#   brew link --overwrite ghostscript
+#
+# To list all files that would be deleted:
+#   brew link --overwrite --dry-run ghostscript
+
+# Let's Encrypt : letsencrypt.org
+brew install letsencrypt
+
+# htop
+#brew tap homebrew/dupes
+#brew install ncurses
+brew install htop
+
+# htop requires root privileges to correctly display all running processes,
+# so you will need to run `sudo htop`.
+# You should be certain that you trust any software you grant root privileges.
+
+# cheat
+brew install cheat
+
+# Bash completion has been installed to:
+#   /usr/local/etc/bash_completion.d
+#
+# zsh completions have been installed to:
+#   /usr/local/share/zsh/site-functions
+
+# watchman
+brew install watchman
+
+# Bash completion has been installed to:
+#   /usr/local/etc/bash_completion.d
+#
+#   /usr/local/share/zsh/site-functions
+# zsh completions have been installed to:
+
+# desk
+brew install desk
+
+# parallel
+brew install parallel
+
+# json processor
+brew install jq
+
+# make json greppable
+brew install gron
+
+# ag - silver searcher
+brew install the_silver_searcher
+
+# Bash completion has been installed to:
+#   /usr/local/etc/bash_completion.d
+#
+# zsh completions have been installed to:
+#   /usr/local/share/zsh/site-functions
+
+# rg - ripgrep
+#brew install ripgrep
+# above install currently doesn't work
+# instead do:
+#   git clone https://github.com/BurntSushi/ripgrep.git
+#   cd ripgrep
+#   brew install rust
+#   brew install rustup-intt (optional)
+#   cargo build --release
+#   cargo install
+# then add ~/.cargo/bin to your path
+
+# graphviz
+brew install graphviz
+
+# In order to prevent conflicts with Apple's own libtool we have prepended a "g"
+# so, you have instead: glibtool and glibtoolize.
+
+# pick
+brew install pick
+
+# di
+brew install di
+
+# miller
+brew install miller
+
+# unetbootin
+brew cask install unetbootin
+
+# tree
+brew install tree
+
+# iproute2mac
+brew install iproute2mac
+
+# watchexec
+#brew install watchexec
+
+# watch
+brew install watch
+
+# cdrtools
+brew install cdrtools
+
+# brew cleanup
+brew cleanup
+brew cask cleanup
+

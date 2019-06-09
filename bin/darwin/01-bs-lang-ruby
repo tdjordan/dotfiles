@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -x
 
 # update brew receipe list
 brew update

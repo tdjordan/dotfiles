@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -x
+
+# update brew receipe list
+brew update
+
+# hashcat
+brew install hashcat
+
+# certigo
+brew install certigo
+
+# gopass
+brew install gopass
+
+# = bash install libffi
+# This formula is keg-only, which means it was not symlinked into /usr/local,
+# because some formulae require a newer version of libffi.
+#
+# For compilers to find this software you may need to set:
+#     LDFLAGS:  -L/usr/local/opt/libffi/lib
+
+# - brew install gnupg
+# Once you run this version of gpg you may find it difficult to return to using
+# a prior 1.4.x or 2.0.x. Most notably the prior versions will not automatically
+# know about new secret keys created or imported by this version. We recommend
+# creating a backup of your `~/.gnupg` prior to first use.
+#
+# For full details on each change and how it could impact you please see
+#   https://www.gnupg.org/faq/whats-new-in-2.1.html
+
+# Bash completion has been installed to:
+#   /usr/local/etc/bash_completion.d
+#
+# zsh completions have been installed to:
+#   /usr/local/share/zsh/site-functions
+
+# vault
+brew install vault
+
+# cleanup
+brew cleanup
+

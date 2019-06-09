@@ -6,6 +6,10 @@ brew update
 # http://www.terraform.io
 brew install terraform
 
+brew install terraform-docs
+
+brew install terraform_landscape
+
 # cleanup
 brew cleanup
 

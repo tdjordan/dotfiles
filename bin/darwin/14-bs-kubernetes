@@ -6,6 +6,12 @@ brew update
 # install latest kubernetes-cli
 brew install kubernetes-cli
 
+# Bash completion has been installed to:
+#   /usr/local/etc/bash_completion.d
+#
+# zsh completions have been installed to:
+#   /usr/local/share/zsh/site-functions
+
 # minikube
 brew cask install minikube
 

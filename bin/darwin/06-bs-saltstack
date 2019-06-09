@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -x
+
+# update brew receipe list
+brew update
+
+# http://docs.saltstack.com
+brew install saltstack
+
+# Sample configuration files have been placed in /usr/local/etc/saltstack.
+# Saltstack will not use these by default.
+
+# setup first tiem use
+#sudo mkdir -p /var/log/salt
+#sudo chmod a+w /var/log/salt
+#sudo mkdir -p /etc/salt/cloud.providers.d
+#sudo mkdir -p /etc/salt/cloud.profiles.d
+
+# cleanup
+brew cleanup
+

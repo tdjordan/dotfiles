@@ -3,12 +3,10 @@
 # update brew receipe list
 brew update
 
-# nvm
-brew install node
-
-# yarn
-brew install yarn
+# x2goclient
+brew cask install brave
 
 # cleanup
 brew cleanup
+brew cask cleanup
 

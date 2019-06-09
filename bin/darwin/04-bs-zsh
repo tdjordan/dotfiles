@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+set -x
+
+# update brew receipe list
+brew update
+
+# zsh
+brew install zsh
+brew install zsh-completions
+
+# To activate these completions, add the following to your .zshrc:
+#
+#  fpath=(/usr/local/share/zsh-completions $fpath)
+#
+# You may also need to force rebuild `zcompdump`:
+#
+#   rm -f ~/.zcompdump; compinit
+#
+# Additionally, if you receive "zsh compinit: insecure directories" warnings when attempting
+# to load these completions, you may need to run this:
+#
+#   chmod go-w '/usr/local/share'
+
+brew install zshdb
+
+# zsh-syntax-highlighting
+brew install zsh-syntax-highlighting
+
+# To activate the syntax highlighting, add the following at the end of your .zshrc:
+#   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# If you receive "highlighters directory not found" error message,
+# you may need to add the following to your .zshenv:
+#   export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
+
+# .shellcheck
+brew install shellcheck
+
+# add brew's zsh to /etc/shell
+sudo echo /usr/local/bin/zsh | sudo tee -a /etc/shells
+
+# fetch oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# switch default shells
+chsh -s /usr/local/bin/zsh
+
+# cleanup
+brew cleanup
+

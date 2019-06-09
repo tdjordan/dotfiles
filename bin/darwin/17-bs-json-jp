@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -x
+
+# update brew receipe list
+brew update
+
+# tap the cask
+brew tap jmespath/jmespath
+
+# jp
+brew install jp
+
+# cleanup
+brew cleanup
+brew cask cleanup
+

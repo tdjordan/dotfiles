@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+set -x
+
+# update brew receipe list
+brew update
+
+# install sqlite
+brew install sqlite
+
+# This formula is keg-only, which means it was not symlinked into /usr/local,
+# because macOS provides an older sqlite3.
+
+# If you need to have this software first in your PATH run:
+#   echo 'export PATH="/usr/local/opt/sqlite/bin:$PATH"' >> ~/.zshrc
+# 
+# For compilers to find this software you may need to set:
+#     LDFLAGS:  -L/usr/local/opt/sqlite/lib
+#     CPPFLAGS: -I/usr/local/opt/sqlite/include
+
+# install python
+brew install python
+brew link python
+pip3 install pyVmomi
+pip3 install pyVim
+brew unlink python
+
+# Python has been installed as
+#  /usr/local/bin/python3
+
+# Unversioned symlinks `python`, `python-config`, `pip` etc. pointing to
+# `python3`, `python3-config`, `pip3` etc., respectively, have been installed into
+#   /usr/local/opt/python/libexec/bin
+#
+# If you need Homebrew's Python 2.7 run
+#   brew install python@2
+#
+# Pip, setuptools, and wheel have been installed. To update them run
+#   pip3 install --upgrade pip setuptools wheel
+#
+# You can install Python packages with
+#   pip3 install <package>
+# They will install into the site-package directory
+#   /usr/local/lib/python3.6/site-packages
+#
+# See: https://docs.brew.sh/Homebrew-and-Python
+
+# install python@2
+brew install python@2
+brew link python@2
+pip install pyVmomi
+pip install pyVim
+#brew unlink python@2
+
+# Pip and setuptools have been installed. To update them
+#  pip install --upgrade pip setuptools
+#
+# You can install Python packages with
+#   pip install <package>
+#
+# They will install into the site-package directory
+#   /usr/local/lib/python2.7/site-packages
+#
+# See: https://docs.brew.sh/Homebrew-and-Python
+
+# cleanup
+brew cleanup
+

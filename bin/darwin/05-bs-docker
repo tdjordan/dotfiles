@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+set -x
+
+# update brew receipe list
+brew update
+
+# opam
+brew install opma
+opam init
+
+# install docker toolbox
+#brew cask install dockertoolbox
+brew install docker
+
+# Bash completion has been installed to:
+#   /usr/local/etc/bash_completion.d
+#
+# zsh completions have been installed to:
+#   /usr/local/share/zsh/site-functions
+
+brew install docker-machine
+
+# Bash completion has been installed to:
+#   /usr/local/etc/bash_completion.d
+#
+# zsh completions have been installed to:
+#   /usr/local/share/zsh/site-functions
+#
+# To have launchd start docker-machine now and restart at login:
+#   brew services start docker-machine
+# Or, if you don't want/need a background service you can just run:
+#   docker-machine start
+
+brew install docker-compose
+
+# Bash completion has been installed to:
+#   /usr/local/etc/bash_completion.d
+#
+# zsh completions have been installed to:
+#   /usr/local/share/zsh/site-functions
+
+brew install docker-swarm
+brew install docker-gen
+brew install docker-clean
+brew install docker-cloud
+
+# install xhyve driver
+brew install docker-machine-driver-xhyve
+
+# This driver requires superuser privileges to access the hypervisor. To
+# enable, execute
+#      sudo chown root:wheel /usr/local/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+#      sudo chmod u+s /usr/local/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+
+sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+
+# Dockerfile lint
+brew install hadolint
+
+# tap the cask
+brew tap caskroom/cask
+
+# install kitematic
+brew cask install kitematic
+
+# ctop
+brew install ctop
+
+# cleanup
+brew cleanup
+brew cask cleanup
+
+# create default machine
+#docker-machine create -d virtualbox default
+

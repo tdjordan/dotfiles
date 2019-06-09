@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# tap Cloud Foundry
+brew tap cloudfoundry/tap
+
+# bosh
+brew install bosh-cli
+
+# Bash completion has been installed to:
+#   /usr/local/etc/bash_completion.d
+
+# cleanup
+brew cleanup
+

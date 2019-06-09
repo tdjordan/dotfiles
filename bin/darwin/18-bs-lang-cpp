@@ -1,19 +1,19 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # update brew
 brew update
-
-# tap the cask
-#brew tap caskroom/cask
-
-# tap cask version
-#brew tap caskroom/versions
 
 # which clang version
 #ver=3.7
 
 # go ninja go
 brew install ninja
+
+# Bash completion has been installed to:
+#   /usr/local/etc/bash_completion.d
+#
+# zsh completions have been installed to:
+#   /usr/local/share/zsh/site-functions
 
 
 # install clang support
@@ -60,7 +60,48 @@ brew install cppcheck
 
 # tags
 brew install ctags
+
+# Under some circumstances, emacs and ctags can conflict. By default,
+# emacs provides an executable `ctags` that would conflict with the
+# executable of the same name that ctags provides. To prevent this,
+# Homebrew removes the emacs `ctags` and its manpage before linking.
+#
+# However, if you install emacs with the `--keep-ctags` option, then
+# the `ctags` emacs provides will not be removed. In that case, you
+# won't be able to install ctags successfully. It will build but not
+# link
+
 brew install rtags
+
+#- brew install emacs
+# To have launchd start emacs now and restart at login:
+#   brew services start emacs
+# Or, if you don't want/need a background service you can just run:
+#   emacs
+
+#- brew install llvm
+# To use the bundled libc++ please add the following LDFLAGS:
+#   LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+#
+# This formula is keg-only, which means it was not symlinked into /usr/local,
+# because macOS already provides this software and installing another version in
+# parallel can cause all kinds of trouble.
+#
+# If you need to have this software first in your PATH run:
+#   echo 'export PATH="/usr/local/opt/llvm/bin:$PATH"' >> ~/.zshrc
+#
+# For compilers to find this software you may need to set:
+#     LDFLAGS:  -L/usr/local/opt/llvm/lib
+#     CPPFLAGS: -I/usr/local/opt/llvm/include
+
+#- brew isntall rtags
+# To have launchd start rtags now and restart at login:
+#   brew services start rtags
+# Or, if you don't want/need a background service you can just run:
+#   /usr/local/bin/rdm --verbose --inactivity-timeout=300 --log-file=/usr/local/var/log/rtags.log
+#
+# Emacs Lisp files have been installed to:
+#   /usr/local/share/emacs/site-lisp/rtags
 
 # cscope
 brew install cscope
@@ -79,6 +120,9 @@ brew install conan
 
 # check - a unit tester
 brew install check
+
+# infer
+brew install infer
 
 # cleanup
 brew cleanup
