@@ -1,16 +1,14 @@
-# vim: ft=sh
-# initial work proxy settings
 network_location=$(networksetup -getcurrentlocation)
 case $network_location in
-  Home)
+  Home|AutomaticMyApps)
     export http_proxy=
     target_machine=default
-    apm config set https-proxy
+    #apm config set https-proxy
     ;;
   *)
     export http_proxy="http://$(cat ~/.my_proxy 2>/dev/null)"
     target_machine=work
-    apm config set https-proxy $http_proxy
+    #apm config set https-proxy $http_proxy
     ;;
 esac
 
@@ -20,24 +18,25 @@ export rsync_proxy="$http_proxy"
 #export all_proxy="$http_proxy"
 
 # don't include the docker machines in initial no_proxy setting
-docker_vms=$(echo 192.168.99.{100..120} | sed 's/ /,/g')
+#docker_vms=$(echo 192.168.99.{100..120} | sed 's/ /,/g')
 no_proxy_local=$(cat ~/.my_no_proxy 2>/dev/null)
-export no_proxy="localhost,127.0.0.1,3.232.127.237,3.232.164.20,192.168.122.1,172.17.0.1,$docker_vms$no_proxy_local"
+range=$(echo {0..255})
+export no_proxy="$no_proxy_local,localhost,.${range// /,.}"
 
 # let's work around digital garden hooks
 export DYLD_INSERT_LIBRARIES=
 
 # include all docker machines into the no_proxy env variable
-machines=($(docker-machine ls -f "{{.Name}}" --filter "driver=generic"))
-for machine in $machines; do
-  [[ "$machine" == "$target_machine" ]] && (echo "1"; continue)
-  docker_ip=$(docker-machine ip $machine 2>/dev/null)
-  [[ $docker_ip ]] && no_proxy="$no_proxy,$docker_ip"
-done
+#machines=($(docker-machine ls -f "{{.Name}}" --filter "driver=generic"))
+#for machine in $machines; do
+  #[[ "$machine" == "$target_machine" ]] && (echo "1"; continue)
+  #docker_ip=$(docker-machine ip $machine 2>/dev/null)
+  #[[ $docker_ip ]] && no_proxy="$no_proxy,$docker_ip"
+#done
 
 # source the default docker machine
-target_status=$(docker-machine status $target_machine)
-[[ "$target_status" == "Running" ]] && eval $(docker-machine env --no-proxy $target_machine)
+#target_status=$(docker-machine status $target_machine)
+#[[ "$target_status" == "Running" ]] && eval $(docker-machine env --no-proxy $target_machine)
 
 # for some apps that require all caps
 export NO_PROXY="$no_proxy"
