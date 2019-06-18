@@ -1,0 +1,73 @@
+#!/bin/zsh
+
+## Print a horizontal rule
+rule () {
+  printf -v _hr "%*s" $(tput cols) && echo ${_hr// /${1--}}
+}
+
+alias right="printf '%*s' $(tput cols)"
+
+## Print horizontal ruler with message
+rulem ()  {
+	if [ $# -eq 0 ]; then
+		echo "Usage: rulem MESSAGE [RULE_CHARACTER]"
+		return 1
+	fi
+	# Fill line with ruler character ($2, default "-"), reset cursor, move 2 cols right, print message
+	printf -v _hr "%*s" $(tput cols) && echo -en ${_hr// /${2--}} && echo -e "\r\033[2C$1"
+}
+
+#for d in ./*/ ; do (cd "$d" && echo -n "\u001b[32m  ::: " && echo -n $(basename "$d") && echo -n " ("  && echo -n $(git rev-parse --abbrev-ref HEAD 2>/dev/null) && echo ")\u001b[0m" && "$@"); done
+
+rulex ()  {
+	if [ $# -eq 0 ]; then
+		echo "Usage: rulem MESSAGE [RULE_CHARACTER]"
+		return 1
+	fi
+	# Fill line with ruler character ($2, default "-"), reset cursor, move 2 cols right, print message
+	printf -v _hr "%*s" $(tput cols) && echo -en ${_hr} && echo -e "\r\033[2C$1"
+}
+
+ruley ()  {
+	if [ $# -eq 0 ]; then
+		echo "Usage: rulem MESSAGE [RULE_CHARACTER]"
+		return 1
+	fi
+	# Fill line with ruler character ($2, default "-"), reset cursor, move 2 cols right, print message
+  printf -v _hr "%*s" $(tput cols) && echo -en ${_hr// /${--1}} && echo -e "\r\033[2C$1"
+}
+
+rulez ()  {
+	if [ $# -eq 0 ]; then
+		echo "Usage: rulem MESSAGE [RULE_CHARACTER]"
+		return 1
+	fi
+	# Fill line with ruler character ($2, default "-"), reset cursor, move 2 cols right, print message
+  #printf -v _hr "%*s" $(tput cols) && echo -en ${_hr// /${--1}} && echo -e "\r\033[2C$1"
+}
+
+
+for d in ./*/ ; do
+  (
+    cd "$d"
+    br="( $(git rev-parse --abbrev-ref HEAD 2>>/dev/null) )"
+    br_s=$(echo "${br}" | wc -c)
+    dr="  ::: $(basename ${d})"
+    dr_s=$(echo "${dr}" | wc -c)
+    printf "\u001b[32m${dr}%$((${COLUMNS}-${dr_s}))s\n" "$(echo ${br})" &&
+    #echo -n $(git rev-parse --abbrev-ref HEAD 2>/dev/null) &&
+    echo -n "\u001b[0m" &&
+    eval "$@"
+    #echo " "
+      );
+done
+
+#for d in */ ; do
+  #zsh -c '
+  #cd "$d"
+  #echo -n "\u001b[32m  ::: "
+  #basename "$d"
+  #echo -n "\u001b[0m"
+  #"$*"
+  #'
+#done

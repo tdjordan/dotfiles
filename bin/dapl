@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+time ansible-playbook -i inv -e role=$1 test-role.yml -vv

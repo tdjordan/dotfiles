@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# tap the cask
+brew tap caskroom/cask
+
+# install docker-machine-driver-xhyve
+brew install docker-machine-driver-xhyve
+
+# This driver requires superuser privileges to access the hypervisor. To
+# enable, execute
+#     sudo chown root:wheel /usr/local/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+#     sudo chmod u+s /usr/local/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+
+sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+
+# display the info
+
+# install latest minishift
+brew cask install minishift
+
+# You should set GROOVY_HOME:
+#   export GROOVY_HOME=/usr/local/opt/groovy/libexec
+
+# install latest gradle
+brew install gradle
+
+echo "export GROOVY_HOME=/usr/local/opt/groovy/libexec" >> ~/.bash_local
+
+# gssh - gradle ssh automation tool based on Groovy DSL
+brew install gssh
+
+# install nodeclipe  released & beta versions
+#brew cask install nodeclipse
+
+# cleanup
+brew cleanup
+#brew cask cleanup
+

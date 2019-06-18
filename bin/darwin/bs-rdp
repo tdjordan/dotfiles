@@ -6,9 +6,6 @@ brew update
 # tap homebrew/x11
 brew tap homebrew/x11
 
-# to save apps in /Applications
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
 # xquartz
 brew cask install xquartz
 

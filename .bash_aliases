@@ -4,7 +4,7 @@ os=$(uname)
 
 env_osx() {
   color='-G'
-  alias xclip='pbcopy $*'
+  alias xclip='pbcopy'
 }
 
 env_linux() {
@@ -27,8 +27,8 @@ alias lla='ls -AlFh ${color}'
 
 #alias grep='grep --color=auto 2>/dev/null'
 #alias grep='ag $*' 2>/dev/null
-alias tree='tree -a -I .git $* 2>/dev/null'
-alias dtree='tree -ad -I .git $* 2>/dev/null'
+alias tree='tree -a -I .git'
+alias dtree='tree -ad -I .git'
 
 # open file manager cwd
 alias e.='nautilus . 2>/dev/null'
@@ -69,3 +69,11 @@ alias qcp='rsync -avzh'
 # vagrant
 alias v='vagrant'
 
+# salt
+alias sc='salt-cloud -c ./salt'
+
+# blind
+alias viu='vi -u NONE'
+
+# loop
+alias lo='_lo '

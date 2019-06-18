@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# x2goclient
+brew cask install brave
+
+# cleanup
+brew cleanup
+brew cask cleanup
+

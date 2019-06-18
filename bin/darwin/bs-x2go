@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# update brew receipe list
+brew update
+
+# x2goclient
+brew cask install x2goclient
+
+# cleanup
+brew cleanup
+

@@ -15,7 +15,7 @@ ZSH_THEME="robbyrussell"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -50,10 +50,12 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
-plugins+=(zsh-completions)
-autoload -U compinit && compinit
-plugins+=(mercurial)
+#plugins+=(zsh-completions)
+#autoload -U compinit && compinit
+#plugins+=(mercurial)
 plugins+=(osx)
+#plugins+=(dotenv)
+#plugins+=(autoenv)
 
 # User configuration
 
@@ -63,9 +65,11 @@ export PATH=$PATH:~/.cabal/bin
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/.files/bin
 export PATH=$PATH:~/.cargo/bin
+export PATH=$PATH:~/go/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
+#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -116,3 +120,15 @@ done
 #export PATH="$PATH:$HOME/.rvm/bin"
 #export PATH="/usr/local/opt/sqlite/bin:$PATH"
 #export PATH="/usr/local/opt/gettext/bin:$PATH"
+
+#autoload -U +X bashcompinit && bashcompinit
+#complete -o nospace -C /usr/local/Cellar/terraform/0.11.8/bin/terraform terraform
+
+#eval "$(direnv hook zsh)"
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+. $HOME/.asdf/asdf.sh
+# Hook for desk activation
+[ -n "$DESK_ENV" ] && source "$DESK_ENV" || true

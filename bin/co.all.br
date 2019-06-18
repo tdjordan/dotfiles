@@ -9,6 +9,7 @@ git pull
 git br -a                   \
 | sed 's;remotes/origin/;;' \
 | grep -v HEAD              \
+| grep -v master            \
 | sort | uniq | sort -r     \
 | sed 's;\*;;g'             \
 | sed 's; ;;g'              \

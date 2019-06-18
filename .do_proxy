@@ -4,11 +4,13 @@ case $network_location in
     export http_proxy=
     target_machine=default
     #apm config set https-proxy
+    no_proxy_local=
     ;;
   *)
     export http_proxy="http://$(cat ~/.my_proxy 2>/dev/null)"
     target_machine=work
     #apm config set https-proxy $http_proxy
+    no_proxy_local=$(cat ~/.my_no_proxy 2>/dev/null)
     ;;
 esac
 
@@ -19,7 +21,6 @@ export rsync_proxy="$http_proxy"
 
 # don't include the docker machines in initial no_proxy setting
 #docker_vms=$(echo 192.168.99.{100..120} | sed 's/ /,/g')
-no_proxy_local=$(cat ~/.my_no_proxy 2>/dev/null)
 range=$(echo {0..255})
 export no_proxy="$no_proxy_local,localhost,.${range// /,.}"
 

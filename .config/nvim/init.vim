@@ -25,6 +25,12 @@ let g:mapleader=','
 "
 """"""""""
 
+"if empty(glob('~/.vim/autoload/plug.vim'))
+  "silent !curl -fLo ~/.vim/autoload/plug.vim --create-dires
+    "\ https://raw.githubusercontent.com/junegunn/vim-plug/maaster/plug.vim
+  "autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"endif
+
 " vim-plug : config section
 if has('win32') || has('win64')
   call plug#begin($VIM.'/vimfiles/plugged')
@@ -63,6 +69,14 @@ Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 """"""""""
 Plug 'honza/vim-snippets'
+""""""""""
+
+""""""""""
+" Conquer of Completion
+""""""""""
+Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+""""""""""
+
 """"""""""
 
 """"""""""
@@ -128,6 +142,12 @@ let g:airline_powerline_fonts=1
 Plug 'majutsushi/tagbar'                          " :help tagbar
 """"""""""
 nnoremap <silent><F8> :TagbarToggle<CR>
+""""""""""
+
+""""""""""
+Plug 'editorconfig/editorconfig-vim'              " :help editorconfig
+""""""""""
+"let g:EditorConfig_max_line_indicator='line'
 """"""""""
 
 """"""""""
@@ -242,6 +262,12 @@ Plug 'flazz/vim-colorschemes'
 """"""""""
 
 """"""""""
+Plug 'Yggdroot/indentLine'
+"let g:indentLine_char = '|'
+let g:indentLine_char = '┆'
+""""""""""
+
+""""""""""
 Plug 'nathanaelkane/vim-indent-guides'            " :help indent-guides
 """"""""""
 let g:indent_guides_start_level = 2               " plug default : 1
@@ -256,7 +282,7 @@ let g:indent_guides_guide_size  = 1               " plug default : 0
 """"""""""
 " auto-pairs
 """"""""""
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
 """"""""""
 "let g:AutoPairsShortcutToggle = '<C-s>'
 "let g:AutoPairsShortcutFastWrap = '<C-s>'
@@ -784,6 +810,16 @@ Plug 'mrtazz/simplenote.vim'
 
 """""""""
 "
+" Utility - EditorConfig
+"
+""""""""""
+Plug 'editorconfig/editorconfig-vim'              " :help editorconfig
+""""""""""
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+""""""""""
+
+"""""""""
+"
 " Utility - vim-easy-align
 "
 """"""""""
@@ -804,6 +840,14 @@ nmap ga <Plug>(EasyAlign)
 Plug 'wsdjeg/FlyGrep.vim'
 """"""""""
 noremap <Space>s/ :FlyGrep<cr>
+""""""""""
+
+"""""""""
+"
+" Syntax - vim-jsonnet
+"
+""""""""""
+Plug 'google/vim-jsonnet'
 """"""""""
 
 """"""""""

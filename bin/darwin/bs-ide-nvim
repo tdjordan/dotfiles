@@ -1,10 +1,27 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -x
 
 brew update
+
+# install gettext
+brew install gettext
+
+# This formula is keg-only, which means it was not symlinked into /usr/local,
+# because macOS provides the BSD gettext library & some software gets confused if both are in the library path.
+
+# If you need to have this software first in your PATH run:
+#   echo 'export PATH="/usr/local/opt/gettext/bin:$PATH"' >> ~/.zshrc
+#
+#   For compilers to find this software you may need to set:
+#       LDFLAGS:  -L/usr/local/opt/gettext/lib
+#       CPPFLAGS: -I/usr/local/opt/gettext/include
+
+
+# install neovim
 brew install neovim/neovim/neovim
 
 # python prerequisites
-brew install python
+#brew install python
 
 # from :help nvim_python
 pip2 install --upgrade pip
@@ -13,7 +30,6 @@ pip2 install neovim
 
 # bring in some makers/checkers for neomake
 pip2 install vim-vint
-
 
 #sudo pip3 install pyyaml >/dev/null
 ##sudo pip2 install msgpack-python
@@ -90,4 +106,20 @@ brew install fzf
 
 # install fzf shell extensions
 /usr/local/opt/fzf/install
+
+# Update ~/.bashrc:
+#   - [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+#   - Already exists: line #157
+#
+# Update ~/.zshrc:
+#   - [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#   + Added
+#
+# Finished. Restart your shell or reload config file.
+# source ~/.bashrc  # bash
+# source ~/.zshrc   # zsh
+#
+# Use uninstall script to remove fzf.
+#
+# For more information, see: https://github.com/junegunn/fzf
 
