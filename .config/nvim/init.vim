@@ -9,12 +9,6 @@ end
 " and for plugins that are filetype specific
 filetype indent plugin on
 
-" Enable syntax highlighting
-syntax on
-colorscheme molokai
-"colorscheme neon
-"colorscheme dalek
-
 " New <leaderi> of the band
 let g:mapleader=','
 "nnoremap <leader>V :tabnew ~/.nvimrc<CR>
@@ -39,6 +33,16 @@ else
 end
 
 """"""""""
+" matchup
+""""""""""
+Plug 'andymass/vim-matchup'
+""""""""""
+
+""""""""""
+Plug 'jkramer/vim-checkbox'                       " <leader>tt : insert/toggle checkbox
+""""""""""
+
+""""""""""
 Plug 'rking/ag.vim'                               " :help ag
 """"""""""
 " Better comand-line completion
@@ -52,14 +56,14 @@ nnoremap <leader>f :execute 'Ag "' . input('Ag/') . '"'<CR>
 """"""""""
 " Autocomplete
 """"""""""
-if has('python3')
-  Plug 'Shougo/deoplete.nvim'                     " :help deoplete
-  """"""""""
-  let g:deoplete#enable_at_startup=1
-""""""""""
-else
-  Plug 'Shougo/neocomplete'
-endif
+"if has('python3')
+  "Plug 'Shougo/deoplete.nvim'                     " :help deoplete
+  """""""""""
+  "let g:deoplete#enable_at_startup=1
+  """""""""""
+"else
+  "Plug 'Shougo/neocomplete'
+"endif
 """"""""""
 
 """"""""""
@@ -74,7 +78,18 @@ Plug 'honza/vim-snippets'
 """"""""""
 " Conquer of Completion
 """"""""""
-Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+" :help coc
+Plug 'neoclide/coc.nvim', {'branch': 'release' }
+let g:coc_global_extensions=[
+  \ 'coc-vimlsp',
+  \ 'coc-snippets',
+  \ 'coc-java',
+  \ 'coc-json',
+  \ 'coc-git',
+  \ 'coc-diagnostic'
+  \ ]
+  "\ 'coc-tailwindcss'
+imap <C-l> <Plug>(coc-snippets-expand)
 """"""""""
 
 """"""""""
@@ -139,9 +154,13 @@ let g:airline_powerline_fonts=1
 """"""""""
 
 """"""""""
-Plug 'majutsushi/tagbar'                          " :help tagbar
+" :help tagbar
+"Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+" ;help vista
+Plug 'liuchengxu/vista.vim', { 'on' : 'Vista!!' }
 """"""""""
-nnoremap <silent><F8> :TagbarToggle<CR>
+"nnoremap <silent><F8> :TagbarToggle<CR>
+nnoremap <silent><F8> :Vista!!<CR>
 """"""""""
 
 """"""""""
@@ -204,8 +223,9 @@ vmap <C-_> <plug>NERDCommenterToggle
 """"""""""
 
 """"""""""
-Plug 'scrooloose/nerdtree',                       " :help NERDtree
-  \ { 'on': 'NERDTreeToggle' }
+" :help NERDtree
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+"autocmd! User NERD_tree.vim echom 'NERDTree is now loaded!'
 """"""""""
 nnoremap <leader>k :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden=1                         " plug default : 0
@@ -224,12 +244,12 @@ au bufenter *
 "au VimEnter * NERDTree
 " open nerdtee when no files wer specified on startup
 au StdinReadPre * let s:std_in=1
-au VimEnter *
-  \ if
-  \   argc() == 0
-  \   && !exists("s:std_in")
-  \     | NERDTree |
-  \ endif
+"au VimEnter *
+  "\ if
+  "\   argc() == 0
+  "\   && !exists("s:std_in")
+  "\     | NERDTree |
+  "\ endif
 """"""""""
 
 """"""""""
@@ -245,8 +265,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'                         " :help fugitive
 """"""""""
 " hg
-"Plug 'jlfwong/vim-mercenary'                      " :help mercenary
-Plug 'ludovicchabant/vim-lawrencium'              " :help lawrencium
+""Plug 'jlfwong/vim-mercenary'                      " :help mercenary
+" :help lawrencium
+Plug 'ludovicchabant/vim-lawrencium', { 'on': 'Hg' }
 """"""""""
 
 """"""""""
@@ -530,6 +551,7 @@ set nowrap                                        " nvim default : on
 " Allow backspacing over autoindent, line br
 set backspace=indent,eol,start                """"" nvim default : 'ident,eol,start'
 "set shell=/bin/bash                               " nvim default : $SHELL or sh or cmd.exe
+set shell=/bin/sh
 
 " Allow for old vim shell muscle memory
 "cnoreabbrev sh te
@@ -608,10 +630,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 " insert mode
-inoremap <C-h> <Esc><C-W>h
-inoremap <C-j> <Esc><C-w>j
-inoremap <C-k> <Esc><C-w>k
-inoremap <C-l> <Esc><C-w>l
+"inoremap <C-h> <Esc><C-W>h
+"inoremap <C-j> <Esc><C-w>j
+"inoremap <C-k> <Esc><C-w>k
+"inoremap <C-l> <Esc><C-w>l
 """"""""""
 "" move window to <position> of other windows
 """"""""""
@@ -789,7 +811,7 @@ Plug 'tmux-plugins/vim-tmux'                      " :help vim-tmux
 " Language - uzbl config
 "
 """"""""""
-Plug 'atweiden/vim-uzbl'
+"Plug 'atweiden/vim-uzbl'
 """"""""""
 
 """""""""
@@ -856,4 +878,23 @@ call plug#end()
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 "let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+""""""""""
+"
+" Syntax Coloring
+"
+""""""""""
+" Enable syntax highlighting
+syntax on
+
+" default colorscheme
+colorscheme molokai
+"colorscheme github
+"colorscheme neon
+"colorscheme dalek
+"
+" Better readability diff colorscheme
+if &diff
+  colorscheme github
+endif
 

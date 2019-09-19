@@ -1,3 +1,5 @@
+#zmodload zsh/zprof
+
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
@@ -5,7 +7,10 @@ export ZSH=~/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+#ZSH_THEME=""
+ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="robbyrussell"
+#ZSH_THEME="random"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -16,12 +21,13 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 DISABLE_AUTO_UPDATE="true"
+DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -35,12 +41,13 @@ DISABLE_AUTO_UPDATE="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -69,6 +76,7 @@ export PATH=$PATH:~/go/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
+#source $ZSH/plugins/git/git.plugin.zsh
 #source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # You may need to manually set your language environment
@@ -96,6 +104,17 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# gitstatus
+#source ~/.gitstatus/gitstatus.prompt.zsh
+#[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+#source ~/.powerlevel10k/powerlevel10k.zsh-theme
+#POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+#PROMPT='%~%# '               # left prompt: directory followed by %/# (normal/root)
+#PROMPT='%~%# '               # left prompt: directory followed by %/# (normal/root)
+#RPROMPT='$GITSTATUS_PROMPT'  # right prompt: git status
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 ## Contained configurations
 #   bash_aliases : alias definitions
 #   bash_local   : local machine specific
@@ -132,3 +151,7 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 . $HOME/.asdf/asdf.sh
 # Hook for desk activation
 [ -n "$DESK_ENV" ] && source "$DESK_ENV" || true
+
+
+#zprof
+
