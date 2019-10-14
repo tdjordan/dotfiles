@@ -1,14 +1,19 @@
 #zmodload zsh/zprof
+#echo .zshrc
+#return 0
+#[[ $- == *i* ]] && echo 'Interactive' || echo 'Not interactive'
+#[[ $- != *i* ]] && echo 'Not Interactive'
+#echo $SHLVL
 
 # Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
+#export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME=""
-ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="powerlevel10k/powerlevel10k"
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME="random"
 
@@ -30,7 +35,7 @@ DISABLE_UPDATE_PROMPT="true"
 DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -56,28 +61,63 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+#plugins=(git)
+ZGEN_RESET_ON_CHANGE=(${HOME}/.zshrc)
+[ -f ~/.zgen/zgen.zsh ] && . ~/.zgen/zgen.zsh
+if ! zgen saved ; then
+  zgen oh-my-zsh
+  #zgen oh-my-zsh themes/arrow
+  zgen oh-my-zsh plugins/git
+  #zgen oh-my-zsh lib/directories.zsh
+  zgen load romkatv/powerlevel10k powerlevel10k
+  zgen save
+fi
+#. $ZSH/plugins/git/git.plugin.zsh
 #plugins+=(zsh-completions)
 #autoload -U compinit && compinit
 #plugins+=(mercurial)
-plugins+=(osx)
+#plugins+=(osx)
+#plugins+=(ripgrep)
 #plugins+=(dotenv)
 #plugins+=(autoenv)
+#plugins+=(terraform)
 
 # User configuration
 
-export PATH=/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
-export PATH=$PATH:~/.gopath/bin
-export PATH=$PATH:~/.cabal/bin
-export PATH=$PATH:~/.local/bin
-export PATH=$PATH:~/.files/bin
-export PATH=$PATH:~/.cargo/bin
-export PATH=$PATH:~/go/bin
-# export MANPATH="/usr/local/man:$MANPATH"
+#[[ -f ~/.paths ]] && . ~/.paths
 
-source $ZSH/oh-my-zsh.sh
-#source $ZSH/plugins/git/git.plugin.zsh
-#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+### Interactive Shells ###
+
+if [[ $- == *i* ]]; then
+  #[ -f $ZSH/oh-my-zsh.sh ] && . $ZSH/oh-my-zsh.sh
+  [ -f ~/.p10k.zsh ]                    && . ~/.p10k.zsh
+  [ -f ~/.skim/shell/key-bindings.zsh ] && . ~/.skim/shell/key-bindings.zsh
+  #[ -f ~/.zsh.d/git.aliases ]           && . ~/.zsh.d/git.aliases
+  #[ -f ~/.zsh.d/directories.zsh ]       && . ~/.zsh.d/directories.zsh
+  #[ -f /usr/local/share/zsh/site-functions/key-bindings.zsh ] && . /usr/local/share/zsh/site-functions/key-bindings.zsh
+  #[ -f ~/.fzf.zsh ]        && . ~/.fzf.zsh
+
+
+  ## Contained configurations
+  #   aliases      : alias definitions
+  #   bash_local   : local machine specific
+  #   dockerfunc   : dockerized apps
+  for file in ~/.{bash_local,aliases,dockerfunc} ; do
+    [ -f "$file" ] && . "$file"
+  done
+
+  #. $HOME/.asdf/asdf.sh
+
+  # Hook for desk activation
+  [ -n "$DESK_ENV" ] && . "$DESK_ENV" || true
+fi
+
+#[[ $- == *i*  ]] && . ~/.zshrc.interactive
+#if [[ $SHLVL == 1 ]] ; then
+#[[ $- == *i* ]] && . $ZSH/oh-my-zsh.sh
+#fi
+#. $ZSH/plugins/git/git.plugin.zsh
+#. /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -105,23 +145,26 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # gitstatus
-#source ~/.gitstatus/gitstatus.prompt.zsh
-#[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-#source ~/.powerlevel10k/powerlevel10k.zsh-theme
+#. ~/.gitstatus/gitstatus.prompt.zsh
+#[[ -f ~/.p10k.zsh ]] && . ~/.p10k.zsh
+#. ~/.powerlevel10k/powerlevel10k.zsh-theme
 #POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 #PROMPT='%~%# '               # left prompt: directory followed by %/# (normal/root)
 #PROMPT='%~%# '               # left prompt: directory followed by %/# (normal/root)
 #RPROMPT='$GITSTATUS_PROMPT'  # right prompt: git status
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+  #[[ -f ~/.p10k.zsh ]] && . ~/.p10k.zsh
+
 ## Contained configurations
-#   bash_aliases : alias definitions
+#   aliases      : alias definitions
 #   bash_local   : local machine specific
 #   dockerfunc   : dockerized apps
-for file in ~/.{bash_local,bash_aliases,dockerfunc} ; do
-  [[ -r "$file" ]] && [[ -f "$file" ]] && source "$file"
-done
+#if [[ $SHLVL == 1 ]] ; then
+  #for file in ~/.{bash_local,aliases,dockerfunc} ; do
+    #[[ -r "$file" ]] && [[ -f "$file" ]] && . "$file"
+  #done
+#fi
 
 # NVM Hooks
 #export NVM_DIR="$HOME/.nmv"
@@ -129,11 +172,12 @@ done
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 #export SDKMAN_DIR="~/.sdkman"
-#[[ -s "~/.sdkman/bin/sdkman-init.sh" ]] && source "~/.sdkman/bin/sdkman-init.sh"
+#[[ -s "~/.sdkman/bin/sdkman-init.sh" ]] && . "~/.sdkman/bin/sdkman-init.sh"
 
 #path=(/usr/local/share/zsh-completions $fpath)
+#echo $path
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#[ -f ~/.fzf.zsh ] && . ~/.fzf.zsh
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 #export PATH="$PATH:$HOME/.rvm/bin"
@@ -144,14 +188,27 @@ done
 #complete -o nospace -C /usr/local/Cellar/terraform/0.11.8/bin/terraform terraform
 
 #eval "$(direnv hook zsh)"
-export PATH="/usr/local/opt/icu4c/bin:$PATH"
-export PATH="/usr/local/opt/icu4c/sbin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
+#export PATH="/usr/local/opt/icu4c/bin:$PATH"
+#export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+#export PATH="/usr/local/opt/ruby/bin:$PATH"
 
-. $HOME/.asdf/asdf.sh
+#. $HOME/.asdf/asdf.sh
 # Hook for desk activation
-[ -n "$DESK_ENV" ] && source "$DESK_ENV" || true
+#[ -n "$DESK_ENV" ] && . "$DESK_ENV" || true
 
 
 #zprof
+#zmodload -u zsh/zprof
 
+#autoload -U +X bashcompinit && bashcompinit
+
+### zplugin
+### Added by Zplugin's installer
+#source "$HOME/.zplugin/bin/zplugin.zsh"
+#autoload -Uz _zplugin
+#(( ${+_comps} )) && _comps[zplugin]=_zplugin
+### End of Zplugin installer's chunk
+
+## zplug
+#export ZPLUG_HOME=/usr/local/opt/zplug
+#.      $ZPLUG_HOME/init.zsh

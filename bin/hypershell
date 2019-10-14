@@ -1,0 +1,65 @@
+#!/bin/bash
+
+declare -a shells=(
+  bash
+  #dash
+  sh
+  ksh
+  zsh
+  #mksh
+)
+declare -a brokenLogin=(
+  csh
+)
+declare -a switches=(
+  -l
+  -i
+  -il
+  -li
+)
+cmd=''
+
+for shell in "${shells[@]}" ; do
+  # no option runs
+  cmd="$cmd '$shell -c \"exit\"'"
+
+  # common option runs
+  for switch in "${switches[@]}" ; do
+    cmd="$cmd '$shell $switch -c \"exit\"'"
+  done
+
+  # add a run for no interactive rc processing
+  case $shell in
+    bash)
+      cmd="$cmd '$shell --norc -c \"exit\"'"
+      ;;
+    ksh)
+      cmd="$cmd '$shell -orc -c \"exit\"'"
+      ;;
+    dash|mksh)  # there is none for these shells
+      :
+      ;;
+    *)
+      cmd="$cmd '$shell -f -c \"exit\"'"
+      ;;
+  esac
+done
+
+for shell in "${brokenLogin[@]}" ; do
+  cmd="$cmd '$shell    -c \"exit\"'"
+  cmd="$cmd '$shell -i -c \"exit\"'"
+  cmd="$cmd '$shell -f -c \"exit\"'"
+done
+
+echo "$cmd"
+
+# all shells
+eval hyperfine --warmup 1 "$cmd"
+
+#hyperfine --warmup 1  'bash -l -c "exit"' 'bash -i -c "exit"' 'bash -il -c "exit"' 'bash -li -c "exit"' 'bash -c "exit"' 'bash --norc -c "exit"' 'zsh -l -c "exit"' 'zsh -i -c "exit"' 'zsh -il -c "exit"' 'zsh -li -c "exit"' 'zsh -c "exit"' 'zsh -f -c "exit"' 'sh -l -c "exit"' 'sh -i -c "exit"' 'sh -il -c "exit"' 'sh -li -c "exit"' 'sh -c "exit"' 'sh --norc -c "exit"' 'csh -i -c "exit"' 'csh -c "exit"' 'csh -f -c "exit"' 'ksh -l -c "exit"' 'ksh -i -c "exit"' 'ksh -il -c "exit"' 'ksh -li -c "exit"' 'ksh -c "exit"' 'ksh --norc -c "exit"'
+
+## bash
+#hyperfine --warmup 1  'bash -l -c "exit"' 'bash -i -c "exit"' 'bash -il -c "exit"' 'bash -li -c "exit"' 'bash -c "exit"' 'bash --norc -c "exit"'
+
+## zsh
+#hyperfine --warmup 1  'zsh -l -c "exit"' 'zsh -i -c "exit"' 'zsh -il -c "exit"' 'zsh -li -c "exit"' 'zsh -c "exit"' 'zsh -f -c "exit"'

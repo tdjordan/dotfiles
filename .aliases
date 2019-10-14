@@ -3,7 +3,11 @@
 os=$(uname)
 
 env_osx() {
-  color='-G'
+  _ls_command="gls"
+  case "$_ls_command" in
+    ls)  color='-G'           ;;
+    gls) color="--color=auto" ;;
+  esac
   alias xclip='pbcopy'
 }
 
@@ -16,14 +20,14 @@ case "$os" in
   Linux)  env_linux ;;
 esac
 
-alias l='ls -CF ${color}'
-alias l.='ls -d .*[^.$] ${color} 2>/dev/null'
-alias la='ls -A ${color}'
-alias lah='ls -lah ${color}'
-alias ls='ls ${color}'
-alias ll.='ls -dl .*[^.$] ${color} 2>/dev/null'
-alias ll='ls -AlF ${color}'
-alias lla='ls -AlFh ${color}'
+alias l='${_ls_command} -CF ${color}'
+alias l.='${_ls_command} -d .*[^.$] ${color} 2>/dev/null'
+alias la='${_ls_command} -A ${color}'
+alias lah='${_ls_command} -lah ${color}'
+alias ls='${_ls_command} ${color}'
+alias ll.='${_ls_command} -dl .*[^.$] ${color} 2>/dev/null'
+alias ll='${_ls_command} -AlF ${color}'
+alias lla='${_ls_command} -AlFh ${color}'
 
 #alias grep='grep --color=auto 2>/dev/null'
 #alias grep='ag $*' 2>/dev/null
@@ -77,3 +81,9 @@ alias viu='vi -u NONE'
 
 # loop
 alias lo='_lo '
+
+# search dot files
+agdf_imp() {
+  ag $* $(ls -dFL .* | ag -v "(/)$" | ag -v "(\*)$" | ag -v history)
+}
+alias agdf='agdf_imp '

@@ -1,0 +1,21 @@
+#echo .paths
+export PATH=/usr/local/opt/ruby/bin
+export PATH=$PATH:/usr/local/lib/ruby/gems/bin
+export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+export PATH=$PATH:~/.gopath/bin
+#export PATH=$PATH:~/.cabal/bin
+export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/.files/bin
+export PATH=$PATH:~/.cargo/bin
+export PATH=$PATH:~/go/bin
+export PATH=$PATH:/Library/TeX/texbin:/Library/GE/bin:/opt/X11/bin
+# export MANPATH="/usr/local/man:$MANPATH"
+
+
+#export PATH="/usr/local/opt/icu4c/bin:$PATH"
+#export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+#export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+export LDFLAGS="-L/usr/local/opt/ruby/lib"
+export CPPFLAGS="-I/usr/local/opt/ruby/include"
+

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#echo :::
+#echo ::: /usr/local/bin/bash
+#echo :::
+
+#for i in $(seq 1 10)
+#do
+  #time /usr/local/bin/bash $* -c exit
+#done
+
+echo :::
+echo ::: /bin/bash
+echo :::
+
+for i in $(seq 1 10)
+do
+  time /bin/bash $* -c exit
+done

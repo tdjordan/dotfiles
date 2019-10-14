@@ -1,0 +1,2 @@
+#echo .zprofile
+#. ~/.paths

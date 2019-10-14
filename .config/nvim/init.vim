@@ -86,10 +86,16 @@ let g:coc_global_extensions=[
   \ 'coc-java',
   \ 'coc-json',
   \ 'coc-git',
-  \ 'coc-diagnostic'
+  \ 'coc-diagnostic',
+  \ 'coc-marketplace',
+  \ 'coc-lists'
   \ ]
   "\ 'coc-tailwindcss'
 imap <C-l> <Plug>(coc-snippets-expand)
+"inoremap <silent><expr> <c-space> coc#refresh()
+let g:markdown_fenced_languages = [
+  \ 'vim'
+  \]
 """"""""""
 
 """"""""""
@@ -139,10 +145,20 @@ let g:ctrlp_funky_use_cache=1                     " plug default : 0
 """"""""""
 "" fzf
 """"""""""
-Plug 'junegunn/fzf',
+"Plug 'junegunn/fzf',
 "  \ { 'dir': '~/.fzf', 'do': './install --all' }
-set rtp+=/usr/local/opt/fzf                      " :help fzf
+"set rtp+=/usr/local/opt/fzf                      " :help fzf
 """"""""""
+
+""""""""""
+"" sk
+""""""""""
+Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install -all' }
+""""""""""
+if executable("rg")
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
 
 """"""""""
 Plug 'vim-airline/vim-airline'                    " :help airline
@@ -372,7 +388,7 @@ let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 """"""""""
-let g:go_fmt_command = "goimports"            """"" use goimports instead of gofmt
+let g:go_fmt_command = 'goimports'            """"" use goimports instead of gofmt
 "let g:go_fmt_autosave = 0
 "let g:go_fmt_fail_silently = 0                """"" plug default : show fmt errors
 """"""""""
@@ -402,7 +418,7 @@ Plug 'garyburd/go-explorer'
 Plug 'pearofducks/ansible-vim'
 """"""""""
 "let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
-let g:ansible_attribute_highlight = "ab"
+let g:ansible_attribute_highlight = 'ab'
 let g:ansible_name_highlight = 'b'
 let g:ansible_extra_keywords_highlight = 1
 """""""""""
@@ -550,8 +566,8 @@ set nowrap                                        " nvim default : on
 
 " Allow backspacing over autoindent, line br
 set backspace=indent,eol,start                """"" nvim default : 'ident,eol,start'
-"set shell=/bin/bash                               " nvim default : $SHELL or sh or cmd.exe
-set shell=/bin/sh
+set shell=/bin/bash                               " nvim default : $SHELL or sh or cmd.exe
+"set shell=/bin/sh
 
 " Allow for old vim shell muscle memory
 "cnoreabbrev sh te

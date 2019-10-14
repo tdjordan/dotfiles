@@ -1,4 +1,9 @@
+#PS4='+ $(gdate "+%s.%N")\011 '
+#exec 3>&2 2>/tmp/bashstart.$$.log
 #set -x
+
+#set -x
+#echo .bashrc
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -32,7 +37,7 @@ shopt -s checkwinsize
 #shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
@@ -47,36 +52,36 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-force_color_prompt=yes
+#force_color_prompt=yes
 
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+#if [ -n "$force_color_prompt" ]; then
+    #if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
 	# We have color support; assume it's compliant with Ecma-48
 	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
 	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
+	#color_prompt=yes
+    #else
+	#color_prompt=
+    #fi
+#fi
 
-if [ "$color_prompt" = yes ]; then
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
-else
-    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\n\$ '
-fi
-unset color_prompt force_color_prompt
+#if [ "$color_prompt" = yes ]; then
+    ##PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
+#else
+    ##PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\n\$ '
+#fi
+#unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+#case "$TERM" in
+#xterm*|rxvt*)
+    #PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    #;;
+#*)
+    #;;
+#esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -106,28 +111,34 @@ alias l='ls -CF'
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-gotBrew=$(which brew)
-if ! shopt -oq posix; then
-  if [ -x "$gotBrew" ]; then
-    if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
-      #. $(brew --prefix)/share/bash-completion/bash_completion
-      true
+if [ "$0" == "brew" ] ; then
+  true
+else
+  #gotBrew=$(which brew)
+  gotBrew=/usr/local/bin/brew
+  if ! shopt -oq posix; then
+    if [ -x "$gotBrew" ]; then
+      #if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
+        #. $(brew --prefix)/share/bash-completion/bash_completion
+        true
+      #fi
+    #elif [ -f /usr/share/bash-completion/bash_completion ]; then
+      #. /usr/share/bash-completion/bash_completion
+    #elif [ -f /etc/bash_completion ]; then
+      #. /etc/bash_completion
     fi
-  elif [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
   fi
 fi
-export GOPATH=~/.gopath
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:~/.cabal/bin
-export PATH=$PATH:~/.local/bin
-export PATH=$PATH:~/.cargo/bin
-export PATH=$PATH:~/go/bin
 
-export NVM_DIR=~/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+#export GOPATH=~/.gopath
+#export PATH=$PATH:$GOPATH/bin
+#export PATH=$PATH:~/.cabal/bin
+#export PATH=$PATH:~/.local/bin
+#export PATH=$PATH:~/.cargo/bin
+#export PATH=$PATH:~/go/bin
+
+#export NVM_DIR=~/.nvm
+#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # bring in current node into environemtn by default
 #if [ "$NVM_PATH" == "" ]; then
@@ -149,11 +160,16 @@ export SHELLCHECK_OPTS="-e SC2015"
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 ## Contained configurations
-#   bash_aliases : alias definitions
+#   aliases      : alias definitions
 #   bash_local   : local machine specific
 #   dockerfunc   : dockerized apps
-for file in ~/.{bash_local,bash_aliases,dockerfunc} ; do
-  [[ -r "$file" ]] && [[ -f "$file" ]] && source "$file"
+for file in ~/.{bash_local,aliases,dockerfunc} ; do
+#for file in ~/.{bash_local,aliases} ; do
+#for file in ~/.{aliases,dockerfunc} ; do
+#for file in ~/.{dockerfunc} ; do
+#for file in ~/.{aliases} ; do
+#for file in ~/.{bash_local} ; do
+  [[ -f "$file" ]] && . "$file"
 done
 
 #[ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -166,4 +182,10 @@ done
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 #export PATH="$PATH:$HOME/.rvm/bin"
 
+
+#if [[ $- == *i* ]]; then
+  #[[ -f ~/.gitstatus/gitstatus.prompt.sh ]] && source ~/.gitstatus/gitstatus.prompt.sh
+#fi
+
 #set +x
+#exec 2>&3 3>&-

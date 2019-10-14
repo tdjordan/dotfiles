@@ -1,19 +1,22 @@
+#echo .do_proxy
+#[[ -n -z "$network_location" ]] && export network_location=$(networksetup -getcurrentlocation)
 network_location=$(networksetup -getcurrentlocation)
 case $network_location in
   Home|AutomaticMyApps)
     export http_proxy=
-    target_machine=default
+    #target_machine=default
     #apm config set https-proxy
     no_proxy_local=
     ;;
   *)
-    export http_proxy="http://$(cat ~/.my_proxy 2>/dev/null)"
-    target_machine=work
+    [ -f ~/.my_proxy ] && http_proxy="http://$(sed 11q ~/.my_proxy)"
+    #target_machine=work
     #apm config set https-proxy $http_proxy
-    no_proxy_local=$(cat ~/.my_no_proxy 2>/dev/null)
+    [ -f ~/.my_no_proxy ] && no_proxy_local=$(sed 11q ~/.my_no_proxy)
     ;;
 esac
 
+export http_proxy="$http_proxy"
 export https_proxy="$http_proxy"
 export ftp_proxy="$http_proxy"
 export rsync_proxy="$http_proxy"
