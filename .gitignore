@@ -1,5 +1,13 @@
 Session.vim
-.config/nvim/autoload
-.config/nvim/colors
-.config/filezilla
+.config
+!.config/alacritty
+!.config/amethyst
+!.config/coc
+!.config/htop
+!.config/kitty
+!.config/nvim
+!.config/ripgrep
+!.config/skhd
+!.config/yabai
+!.config/zsh
 .DS_Store
