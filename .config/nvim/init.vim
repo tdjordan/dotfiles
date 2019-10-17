@@ -36,14 +36,128 @@ end
 " matchup
 """"""""""
 Plug 'andymass/vim-matchup'
-""""""""""
-
-""""""""""
 Plug 'jkramer/vim-checkbox'                       " <leader>tt : insert/toggle checkbox
+Plug 'rking/ag.vim'                               " :help ag
+""""""""""
+" snippets
+""""""""""
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips'                           " :help ultisnips
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
+""""""""""
+" Language Protocol Server - LPS
+""""""""""
+Plug 'neoclide/coc.nvim', {'branch': 'release' }
+""""""""""
+" control-p
+""""""""""
+"Plug 'kien/ctrlp.vim'                             " :help ctrlp
+Plug 'ctrlpvim/ctrlp.vim'                             " :help ctrlp
+Plug 'tacahiroy/ctrlp-funky'                      " :help ctrlp-funky
+""""""""""
+" search
+""""""""""
+"Plug 'junegunn/fzf',
+"  \ { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install -all' }
+Plug 'wsdjeg/FlyGrep.vim'
+""""""""""
+" themes
+""""""""""
+Plug 'flazz/vim-colorschemes'
+Plug 'vim-airline/vim-airline'                    " :help airline
+Plug 'vim-airline/vim-airline-themes'
+Plug 'lilydjwg/colorizer'                         " colrize color codes
+Plug 'fatih/molokai'
+"Plug 'ryanoasis/vim-devicons'
+"Plug 'ryanoasis/nerd-fonts'
+""""""""""
+" language navigation
+""""""""""
+"Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+Plug 'liuchengxu/vista.vim', { 'on' : 'Vista!!' }
+""""""""""
+" editor configs
+""""""""""
+Plug 'editorconfig/editorconfig-vim'              " :help editorconfig
+""""""""""
+" convience
+""""""""""
+"Plug 'benekastah/neomake'                         " :help neomake
+Plug 'scrooloose/nerdcommenter'                   " :help nerdcommenter
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+""""""""""
+" version control systems
+""""""""""
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-fugitive'                         " :help fugitive
+"Plug 'jlfwong/vim-mercenary'                      " :help mercenary
+Plug 'ludovicchabant/vim-lawrencium', { 'on': 'Hg' }
+"Plug 'gregsexton/gitv'
+Plug 'airblade/vim-gitgutter'                     " :help gitgutter
+""""""""""
+" guides
+""""""""""
+Plug 'Yggdroot/indentLine'
+Plug 'nathanaelkane/vim-indent-guides'            " :help indent-guides
+"Plug 'jiangmiao/auto-pairs'
+""""""""""
+" language syntax
+""""""""""
+"Plug 'scrooloose/syntastic'                       " :help syntastic
+Plug 'w0rp/ale'                                   " :help ale
+Plug 'gisphm/vim-gradle'
+"Plug 'udalov/kotlin-vim'                          " :help kotlin-vim
+Plug 'sheerun/vim-polyglot'
+Plug 'dleonard0/pony-vim-syntax'
+Plug 'saltstack/salt-vim'
+Plug 'fatih/vim-go'                               " :help vim-go
+Plug 'garyburd/go-explorer'
+Plug 'pearofducks/ansible-vim'
+"Plug 'glench/vim-jinja2-syntax'
+Plug 'PProvost/vim-ps1'
+Plug 'lambdatoast/elm.vim'                        " :help elm
+"Plug 'ElmCast/elm-vim'                            " :help elm-vim
+Plug 'tmux-plugins/vim-tmux'                      " :help vim-tmux
+Plug 'google/vim-jsonnet'
+""""""""""
+" language debug
+""""""""""
+"Plug 'critiqjo/lldb.nvim'                         " :help lldb-start
+""""""""""
+" annoyances
+""""""""""
+Plug 'bronson/vim-trailing-whitespace'            " :help trailing-whitespace
+""""""""""
+" automation ?
+""""""""""
+Plug 'tpope/vim-surround'                         " :help surround
+Plug 'terryma/vim-multiple-cursors'               " :help multiple-cursors
+"Plug 'jszakmeister/vim-togglecursor'              " : help togglecursor
+Plug 'matze/vim-move'
+Plug 'junegunn/vim-easy-align'
+""""""""""
+" preview panels
+""""""""""
+"Plug 'atweiden/vim-uzbl'
+Plug 'xu-cheng/brew.vim'
+""""""""""
+" service hooks
+""""""""""
+Plug 'mrtazz/simplenote.vim'
+""""""""""
+" vim-plug : add plugins to &runtimepath
+call plug#end()
+
+
+""""""""""
+" abandoned for now
 """"""""""
 
 """"""""""
-Plug 'rking/ag.vim'                               " :help ag
+"Plug 'rking/ag.vim'                               " :help ag
 """"""""""
 " Better comand-line completion
 set wildmenu                                  """"" nvim default : on
@@ -69,17 +183,17 @@ nnoremap <leader>f :execute 'Ag "' . input('Ag/') . '"'<CR>
 """"""""""
 " Snippets
 """"""""""
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
+"Plug 'Shougo/neosnippet'
+"Plug 'Shougo/neosnippet-snippets'
 """"""""""
-Plug 'honza/vim-snippets'
+"Plug 'honza/vim-snippets'
 """"""""""
 
 """"""""""
 " Conquer of Completion
 """"""""""
 " :help coc
-Plug 'neoclide/coc.nvim', {'branch': 'release' }
+"Plug 'neoclide/coc.nvim', {'branch': 'release' }
 let g:coc_global_extensions=[
   \ 'coc-vimlsp',
   \ 'coc-snippets',
@@ -111,7 +225,7 @@ let g:markdown_fenced_languages = [
 """"""""""
 "" ctrlp
 "Plug 'kien/ctrlp.vim'                             " :help ctrlp
-Plug 'ctrlpvim/ctrlp.vim'                             " :help ctrlp
+"Plug 'ctrlpvim/ctrlp.vim'                             " :help ctrlp
 """"""""""
 " open fuzzy buffer mode
 nnoremap <leader>r :CtrlPBuffer<CR>
@@ -134,7 +248,7 @@ let g:ctrlp_custom_ignore={
 """"""""""
 "" ctrlp extensions
 """"""""""
-Plug 'tacahiroy/ctrlp-funky'                      " :help ctrlp-funky
+"Plug 'tacahiroy/ctrlp-funky'                      " :help ctrlp-funky
 """"""""""
 nnoremap <leader>fu :CtrlPFunky<CR>
 nnoremap <leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<CR>
@@ -153,7 +267,7 @@ let g:ctrlp_funky_use_cache=1                     " plug default : 0
 """"""""""
 "" sk
 """"""""""
-Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install -all' }
+"Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install -all' }
 """"""""""
 if executable("rg")
     set grepprg=rg\ --vimgrep\ --no-heading
@@ -161,8 +275,8 @@ if executable("rg")
 endif
 
 """"""""""
-Plug 'vim-airline/vim-airline'                    " :help airline
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'                    " :help airline
+"Plug 'vim-airline/vim-airline-themes'
 """"""""""
 let g:airline_theme='powerlineish'
 let g:airline_powerline_fonts=1
@@ -173,26 +287,26 @@ let g:airline_powerline_fonts=1
 " :help tagbar
 "Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 " ;help vista
-Plug 'liuchengxu/vista.vim', { 'on' : 'Vista!!' }
+"Plug 'liuchengxu/vista.vim', { 'on' : 'Vista!!' }
 """"""""""
 "nnoremap <silent><F8> :TagbarToggle<CR>
 nnoremap <silent><F8> :Vista!!<CR>
 """"""""""
 
 """"""""""
-Plug 'editorconfig/editorconfig-vim'              " :help editorconfig
+"Plug 'editorconfig/editorconfig-vim'              " :help editorconfig
 """"""""""
 "let g:EditorConfig_max_line_indicator='line'
 """"""""""
 
 """"""""""
-Plug 'lilydjwg/colorizer'                         " colrize color codes
+"Plug 'lilydjwg/colorizer'                         " colrize color codes
 """"""""""
 
 """"""""""
 " Themes
 """"""""""
-Plug 'fatih/molokai'
+"Plug 'fatih/molokai'
 """"""""""
 
 """"""""""
@@ -240,7 +354,7 @@ vmap <C-_> <plug>NERDCommenterToggle
 
 """"""""""
 " :help NERDtree
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+"Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 "autocmd! User NERD_tree.vim echom 'NERDTree is now loaded!'
 """"""""""
 nnoremap <leader>k :NERDTreeToggle<CR>
@@ -269,7 +383,7 @@ au StdinReadPre * let s:std_in=1
 """"""""""
 
 """"""""""
-Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
 """"""""""
 
 """"""""""
@@ -278,12 +392,12 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " vim-fugitive
 """"""""""
 " git
-Plug 'tpope/vim-fugitive'                         " :help fugitive
+"Plug 'tpope/vim-fugitive'                         " :help fugitive
 """"""""""
 " hg
 ""Plug 'jlfwong/vim-mercenary'                      " :help mercenary
 " :help lawrencium
-Plug 'ludovicchabant/vim-lawrencium', { 'on': 'Hg' }
+"Plug 'ludovicchabant/vim-lawrencium', { 'on': 'Hg' }
 """"""""""
 
 """"""""""
@@ -293,19 +407,19 @@ Plug 'ludovicchabant/vim-lawrencium', { 'on': 'Hg' }
 """"""""""
 
 """"""""""
-Plug 'airblade/vim-gitgutter'                     " :help gitgutter
+"Plug 'airblade/vim-gitgutter'                     " :help gitgutter
 """"""""""
-Plug 'flazz/vim-colorschemes'
+"Plug 'flazz/vim-colorschemes'
 """"""""""
 
 """"""""""
-Plug 'Yggdroot/indentLine'
+"Plug 'Yggdroot/indentLine'
 "let g:indentLine_char = '|'
 let g:indentLine_char = '┆'
 """"""""""
 
 """"""""""
-Plug 'nathanaelkane/vim-indent-guides'            " :help indent-guides
+"Plug 'nathanaelkane/vim-indent-guides'            " :help indent-guides
 """"""""""
 let g:indent_guides_start_level = 2               " plug default : 1
 let g:indent_guides_guide_size  = 1               " plug default : 0
@@ -328,7 +442,7 @@ let g:indent_guides_guide_size  = 1               " plug default : 0
 """"""""""
 " vim-gradle
 """"""""""
-Plug 'gisphm/vim-gradle'
+"Plug 'gisphm/vim-gradle'
 """"""""""
 
 """"""""""
@@ -340,20 +454,20 @@ Plug 'gisphm/vim-gradle'
 """"""""""
 " vim-polygot
 """"""""""
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 """"""""""
 """"""""""
 
 """"""""""
 " pony-vim-syntax
 """"""""""
-Plug 'dleonard0/pony-vim-syntax'
+"Plug 'dleonard0/pony-vim-syntax'
 """"""""""
 
 """"""""""
 " salt-vim
 """"""""""
-Plug 'saltstack/salt-vim'
+"Plug 'saltstack/salt-vim'
 """"""""""
 
 """"""""""
@@ -361,7 +475,7 @@ Plug 'saltstack/salt-vim'
 """"""""""
 " vim-go
 """"""""""
-Plug 'fatih/vim-go'                               " :help vim-go
+"Plug 'fatih/vim-go'                               " :help vim-go
 """"""""""
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
@@ -409,13 +523,13 @@ let g:go_term_enabled = 1
 """"""""""
 " go-explorer
 """"""""""
-Plug 'garyburd/go-explorer'
+"Plug 'garyburd/go-explorer'
 """"""""""
 
 """"""""""
 " ansible-vim
 """"""""""
-Plug 'pearofducks/ansible-vim'
+"Plug 'pearofducks/ansible-vim'
 """"""""""
 "let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
 let g:ansible_attribute_highlight = 'ab'
@@ -432,21 +546,21 @@ let g:ansible_extra_keywords_highlight = 1
 """"""""""
 " vim-ps1
 """"""""""
-Plug 'PProvost/vim-ps1'
+"Plug 'PProvost/vim-ps1'
 """"""""""
 
 """"""""""
-Plug 'bronson/vim-trailing-whitespace'            " :help trailing-whitespace
+"Plug 'bronson/vim-trailing-whitespace'            " :help trailing-whitespace
 """"""""""
 "let g:extra_whitespace_ignored_filetypes=[]   """"" plug default : []
 """"""""""
 
 """"""""""
-Plug 'tpope/vim-surround'                         " :help surround
+"Plug 'tpope/vim-surround'                         " :help surround
 """"""""""
 
 """"""""""
-Plug 'terryma/vim-multiple-cursors'               " :help multiple-cursors
+"Plug 'terryma/vim-multiple-cursors'               " :help multiple-cursors
 """"""""""
 "let g:multi_cursor_use_default_mapping=0
 "let g:multi_cursor_next_key='<C-n>'
@@ -462,11 +576,11 @@ Plug 'terryma/vim-multiple-cursors'               " :help multiple-cursors
 "let g:togglecursor_disable_neovim=1
 """"""""""
 
-""""""""""
-"
-" Settings & Keybindings
-"
-""""""""""
+""""""""""""
+"""
+""" Settings & Keybindings
+"""
+""""""""""""
 
 " Indention settings for 2
 " spaces instead of tabs
@@ -766,7 +880,7 @@ set sessionoptions+=slash,unix
 " Atom editor work-alike
 "
 """"""""""
-Plug 'matze/vim-move'
+"Plug 'matze/vim-move'
 """"""""""
 nmap <C-Up>   <plug>MoveLineUp
 nmap <C-Down> <plug>MoveLineDown
@@ -810,7 +924,7 @@ vnoremap   <F9> :<C-U>LL print <C-R>=lldb#util#get_selection()<CR>
 " Language - elm
 "
 """"""""""
-Plug 'lambdatoast/elm.vim'                        " :help elm
+"Plug 'lambdatoast/elm.vim'                        " :help elm
 "Plug 'ElmCast/elm-vim'                            " :help elm-vim
 """"""""""
 
@@ -819,7 +933,7 @@ Plug 'lambdatoast/elm.vim'                        " :help elm
 " Language - .tmux.conf
 "
 """"""""""
-Plug 'tmux-plugins/vim-tmux'                      " :help vim-tmux
+"Plug 'tmux-plugins/vim-tmux'                      " :help vim-tmux
 """"""""""
 
 """""""""
@@ -835,7 +949,7 @@ Plug 'tmux-plugins/vim-tmux'                      " :help vim-tmux
 " Language - brew formulae
 "
 """"""""""
-Plug 'xu-cheng/brew.vim'
+"Plug 'xu-cheng/brew.vim'
 """"""""""
 
 """""""""
@@ -843,7 +957,7 @@ Plug 'xu-cheng/brew.vim'
 " Utility - simplenote
 "
 """"""""""
-Plug 'mrtazz/simplenote.vim'
+"Plug 'mrtazz/simplenote.vim'
 """"""""""
 
 """""""""
@@ -851,7 +965,7 @@ Plug 'mrtazz/simplenote.vim'
 " Utility - EditorConfig
 "
 """"""""""
-Plug 'editorconfig/editorconfig-vim'              " :help editorconfig
+"Plug 'editorconfig/editorconfig-vim'              " :help editorconfig
 """"""""""
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 """"""""""
@@ -861,7 +975,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 " Utility - vim-easy-align
 "
 """"""""""
-Plug 'junegunn/vim-easy-align'
+"Plug 'junegunn/vim-easy-align'
 """"""""""
 " (vipga) start interactive EasyAlign in visual mode
 xmap ga <Plug>(EasyAlign)
@@ -875,7 +989,7 @@ nmap ga <Plug>(EasyAlign)
 " Utility - FlyGrep
 "
 """"""""""
-Plug 'wsdjeg/FlyGrep.vim'
+"Plug 'wsdjeg/FlyGrep.vim'
 """"""""""
 noremap <Space>s/ :FlyGrep<cr>
 """"""""""
@@ -885,21 +999,18 @@ noremap <Space>s/ :FlyGrep<cr>
 " Syntax - vim-jsonnet
 "
 """"""""""
-Plug 'google/vim-jsonnet'
+"Plug 'google/vim-jsonnet'
 """"""""""
-
-""""""""""
-" vim-plug : add plugins to &runtimepath
-call plug#end()
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 "let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-""""""""""
+""""""""""""
+"""
+""" Syntax Coloring
+"""
+""""""""""""
 "
-" Syntax Coloring
-"
-""""""""""
 " Enable syntax highlighting
 syntax on
 
@@ -922,7 +1033,7 @@ set nobackup
 set nowritebackup
 
 " Better display for messages
-set cmdheight=2
+set cmdheight=1
 
 " You will have bad experience for diagnostic messages when it's default 4000.
 "set updatetime=300
@@ -1011,8 +1122,8 @@ omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
 " Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-"nmap <silent> <C-d> <Plug>(coc-range-select)
-"xmap <silent> <C-d> <Plug>(coc-range-select)
+nmap <silent> <C-d> <Plug>(coc-range-select)
+xmap <silent> <C-d> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
