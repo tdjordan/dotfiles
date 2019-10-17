@@ -62,29 +62,33 @@ HIST_STAMPS="yyyy-mm-dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git)
+autoload -Uz compinit
+#local zcd=("${ZOOTDIR:-$HOME}/.zcompdump")
+#local zcdc="$zcd.zwc"
+ZSH_COMPDUMP="${ZOOTDIR:-$HOME}/.zcompdump"
+zcdc="${ZSH_COMPDUMP}.zwc"
+setopt extendedglob
+if [[ -f "${ZSH_COMPDUMP}"(#qN.m+1) ]] ; then
+  compinit -i -d "${ZSH_COMPDUMP}"
+  { rm -f "${ZSH_COMPDUMP}c" && zcompile "$zcd" } &!
+else
+  compinit -C -d "${ZSH_COMPDUMP}"
+  { [[ ! -f "$zcdc" || "${ZSH_COMPDUMP}" -nt "$zcdc" ]] && rm -f "$zcdc" && zcompile "${ZSH_COMPDUMP}" } &!
+fi
+unsetopt extendedglob
+#ZSH_COMPDUMP=$zcd
 ZGEN_RESET_ON_CHANGE=(${HOME}/.zshrc)
 [ -f ~/.zgen/zgen.zsh ] && . ~/.zgen/zgen.zsh
 if ! zgen saved ; then
-  zgen oh-my-zsh
+  #zgen oh-my-zsh
   #zgen oh-my-zsh themes/arrow
   zgen oh-my-zsh plugins/git
+  zgen oh-my-zsh lib
   #zgen oh-my-zsh lib/directories.zsh
   zgen load romkatv/powerlevel10k powerlevel10k
   zgen save
 fi
-#. $ZSH/plugins/git/git.plugin.zsh
-#plugins+=(zsh-completions)
-#autoload -U compinit && compinit
-#plugins+=(mercurial)
-#plugins+=(osx)
-#plugins+=(ripgrep)
-#plugins+=(dotenv)
-#plugins+=(autoenv)
-#plugins+=(terraform)
 
-# User configuration
-
-#[[ -f ~/.paths ]] && . ~/.paths
 
 ### Interactive Shells ###
 
@@ -92,11 +96,6 @@ if [[ $- == *i* ]]; then
   #[ -f $ZSH/oh-my-zsh.sh ] && . $ZSH/oh-my-zsh.sh
   [ -f ~/.p10k.zsh ]                    && . ~/.p10k.zsh
   [ -f ~/.skim/shell/key-bindings.zsh ] && . ~/.skim/shell/key-bindings.zsh
-  #[ -f ~/.zsh.d/git.aliases ]           && . ~/.zsh.d/git.aliases
-  #[ -f ~/.zsh.d/directories.zsh ]       && . ~/.zsh.d/directories.zsh
-  #[ -f /usr/local/share/zsh/site-functions/key-bindings.zsh ] && . /usr/local/share/zsh/site-functions/key-bindings.zsh
-  #[ -f ~/.fzf.zsh ]        && . ~/.fzf.zsh
-
 
   ## Contained configurations
   #   aliases      : alias definitions
