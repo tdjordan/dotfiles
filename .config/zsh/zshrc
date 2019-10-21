@@ -214,3 +214,4 @@ fi
 
 ## Vim Mode : This prevents up-arrow completions
 #bindkey -v
+#
