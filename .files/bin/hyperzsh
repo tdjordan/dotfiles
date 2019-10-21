@@ -42,6 +42,25 @@ for shell in "${shells[@]}" ; do
       cmd="$cmd '$shell -f -c \"exit\"'"
       ;;
   esac
+
+  # add a run for no interactive rc processing
+  case $shell in
+    zsh)
+      cmd="$cmd '$shell -df -c \"exit\"'"
+      cmd="$cmd '$shell -dl -c \"exit\"'"
+      cmd="$cmd '$shell -fd -c \"exit\"'"
+      cmd="$cmd '$shell -ld -c \"exit\"'"
+      cmd="$cmd '$shell -dfl -c \"exit\"'"
+      cmd="$cmd '$shell -dlf -c \"exit\"'"
+      cmd="$cmd '$shell -fdl -c \"exit\"'"
+      cmd="$cmd '$shell -ldf -c \"exit\"'"
+      cmd="$cmd '$shell -fld -c \"exit\"'"
+      cmd="$cmd '$shell -lfd -c \"exit\"'"
+      ;;
+    *)
+      :
+      ;;
+  esac
 done
 
 for shell in "${brokenLogin[@]}" ; do

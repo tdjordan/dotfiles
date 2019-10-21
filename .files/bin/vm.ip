@@ -1,0 +1,5 @@
+#!/bin/sh
+
+. ~/.local/bin/.env_govc
+
+govc vm.ip $1

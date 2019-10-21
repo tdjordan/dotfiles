@@ -211,3 +211,6 @@ fi
 ## zplug
 #export ZPLUG_HOME=/usr/local/opt/zplug
 #.      $ZPLUG_HOME/init.zsh
+
+## Vim Mode : This prevents up-arrow completions
+#bindkey -v

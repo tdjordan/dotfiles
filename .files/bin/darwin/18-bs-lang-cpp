@@ -59,7 +59,8 @@ brew install clang-format
 brew install cppcheck
 
 # tags
-brew install ctags
+#brew install ctags
+brew install --with-jansson --HEAD universal-ctags/universal-ctags/universal-ctags
 
 # Under some circumstances, emacs and ctags can conflict. By default,
 # emacs provides an executable `ctags` that would conflict with the

@@ -54,6 +54,10 @@
   # make remote braches local
   remote-local = $(!git br -a | sed "s;remotes/origin/;;" | grep -v master | xargs -Isnip git co snip)
 
+  tags = for-each-ref --sort=taggerdate --format=\"%(color:green)%(subject)%(color:reset), tagged: %(refname:short)\n%(taggerdate)\n%(taggername) %(taggeremail)\n\n%(contents:body)\n\" refs/tags
+  taghist = for-each-ref --format=\"%(refname:short) %(taggerdate) %(subject) %(body)\" refs/tags
+  tags2 = for-each-ref --sort=taggerdate --format=\"%(color:yellow)%(refname:short)%(color:reset)\n%>(4)%(color:green)%(subject)%(color:reset)\nTagger:\t%(taggername) %(taggeremail)\nDate:\t%(taggerdate)\n\n%(*body)\n\" refs/tags
+
 [core]
   editor = vi
 	excludesfile = ~/.gitignore_global

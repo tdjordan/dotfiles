@@ -1,0 +1,41 @@
+#!/bin/bash
+set -x
+
+# update brew receipe list
+#brew update
+
+# yabai : https://github.com/koekeishiya/yabai
+brew tap koekeishiya/formulae
+brew install yabai
+
+### yabai
+# Copy the example configuration into your home directory:
+#   cp /usr/local/opt/yabai/share/yabai/examples/yabairc ~/.yabairc
+#   cp /usr/local/opt/yabai/share/yabai/examples/skhdrc ~/.skhdrc
+#
+# Logs will be found in
+#   /usr/local/var/log/yabai/yabai.[out|err].log
+#
+# To have launchd start koekeishiya/formulae/yabai now and restart at login:
+#   brew services start koekeishiya/formulae/yabai
+# Or, if you don't want/need a background service you can just run:
+#   yabai
+
+# skhd : https://github.com/koekeishiya/skhd
+brew install skhd
+
+### skhd
+# Copy the example configuration into your home directory:
+#   cp /usr/local/opt/skhd/share/skhd/examples/skhdrc ~/.skhdrc
+#
+# If the formula has been built with --with-logging, logs will be found in
+#   /usr/local/var/log/skhd/skhd.[out|err].log
+#
+# To have launchd start koekeishiya/formulae/skhd now and restart at login:
+#   brew services start koekeishiya/formulae/skhd
+# Or, if you don't want/need a background service you can just run:
+#   skhd
+
+# cleanup
+brew cleanup
+

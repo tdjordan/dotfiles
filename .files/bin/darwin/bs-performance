@@ -1,0 +1,48 @@
+#!/bin/bash
+set -x
+
+# update brew receipe list
+brew update
+
+# fd : https://github.com/sharkdp/fd
+brew install fd
+
+# hyperfine : https://github.com/sharkdp/eyperfine
+brew install hyperfine
+
+# skim : https://github.com/lotabout/skim
+brew install sk
+
+### sk
+# Bash completion has been installed to:
+#   /usr/local/etc/bash_completion.d
+#
+# zsh functions have been installed to:
+#   /usr/local/share/zsh/site-functions
+
+# bat : https://github.com/sharkdp/bat
+brew install bat
+
+# tldr : tealdeer : https://github.com/dbrgn/tealdeer
+brew install tealdeer
+
+# lf : https://github.com/gokcehan/lf
+brew install lf
+
+# autojump : https://github.com/wting/autojump
+brew install autojump
+
+### autojump
+# Add the following line to your ~/.bash_profile or ~/.zshrc file (and remember
+# to source the file to update your current session):
+#   [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+#
+# If you use the Fish shell then add the following line to your ~/.config/fish/config.fish:
+#   [ -f /usr/local/share/autojump/autojump.fish ]; and source /usr/local/share/autojump/autojump.fish
+#
+# zsh completions have been installed to:
+#   /usr/local/share/zsh/site-functions
+
+# cleanup
+brew cleanup
+

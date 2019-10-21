@@ -189,3 +189,6 @@ done
 
 #set +x
 #exec 2>&3 3>&-
+
+## Vim Mode
+#set -o vi

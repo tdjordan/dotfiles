@@ -1,0 +1,104 @@
+#!/bin/zsh -f
+
+count=3
+
+echo :::
+echo ::: [ $(rg --version | head -1) ] ::: rg $*
+echo :::
+echo ::: $(rg $* 2>/dev/null | wc -l)
+echo :::
+
+for i in $(seq 1 $count)
+do
+  time rg $* >/dev/null
+done
+
+#echo :::
+#echo ::: [ $(\rg --version | head -1) ] ::: backslash rg $*
+#echo :::
+#echo ::: $(\rg $* 2>/dev/null | wc -l)
+#echo :::
+
+#for i in $(seq 1 $count)
+#do
+  #time \rg $* >/dev/null
+#done
+
+
+#echo :::
+#echo ::: [ $(command rg --version | head -1) ] ::: command rg $*
+#echo :::
+#echo ::: $(command rg $* 2>/dev/null | wc -l)
+#echo :::
+
+#for i in $(seq 1 $count)
+#do
+  #time command rg $* >/dev/null
+#done
+
+echo :::
+echo ::: [ $(ag --version | head -1) ] ::: ag $*
+echo :::
+echo ::: $(ag $* 2>/dev/null | wc -l)
+echo :::
+
+for i in $(seq 1 $count)
+do
+  time ag $* >/dev/null
+done
+
+#echo :::
+#echo ::: [ $(\ag --version | head -1) ] ::: \ag $*
+#echo :::
+#echo ::: $(\ag $* 2>/dev/null | wc -l)
+#echo :::
+
+#for i in $(seq 1 $count)
+#do
+  #time \ag $* >/dev/null
+#done
+
+#echo :::
+#echo ::: [ $(command ag --version | head -1) ] ::: command ag $*
+#echo :::
+#echo ::: $(command ag $* 2>/dev/null | wc -l)
+#echo :::
+
+#for i in $(seq 1 $count)
+#do
+  #time command ag $* >/dev/null
+#done
+
+#echo :::
+#echo ::: [ $(/usr/local/bin/ag --version | head -1) ] ::: /usr/local/bin/ag $*
+#echo :::
+#echo ::: $(/usr/local/bin/ag $* 2>/dev/null | wc -l)
+#echo :::
+
+#for i in $(seq 1 $count)
+#do
+  #time /usr/local/bin/ag $* >/dev/null
+#done
+
+#echo :::
+#echo ::: [ $(grep --version | head -1) ] ::: grep $* *
+#echo :::
+#echo ::: $(grep $* 2>/dev/null | wc -l)
+#echo :::
+
+#for i in $(seq 1 $count)
+#do
+  #time grep $* * >/dev/null
+#done
+
+#echo :::
+#echo ::: [ $(\grep --version | head -1) ] ::: backslash grep $*
+#echo :::
+#echo ::: $(\grep $* 2>/dev/null | wc -l)
+#echo :::
+
+#for i in $(seq 1 $count)
+#do
+  #time \grep $* * >/dev/null
+#done
+

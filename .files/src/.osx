@@ -1,0 +1,8 @@
+##
+#
+# Dock
+#
+##
+
+# Do not automatically hide the Dock
+defaults write com.apple.dock autohide -bool false

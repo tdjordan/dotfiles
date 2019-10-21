@@ -1,0 +1,37 @@
+#!/bin/zsh -f
+
+echo :::
+echo ::: /usr/local/bin/bash $*
+echo :::
+
+for i in $(seq 1 10)
+do
+  time /usr/local/bin/bash $* -c exit
+done
+
+echo :::
+echo ::: /bin/bash $*
+echo :::
+
+for i in $(seq 1 10)
+do
+  time /bin/bash $* -c exit
+done
+
+echo :::
+echo ::: /usr/local/bin/zsh $*
+echo :::
+
+for i in $(seq 1 10)
+do
+  time /usr/local/bin/zsh $* -c exit
+done
+
+echo :::
+echo ::: /bin/zsh $*
+echo :::
+
+for i in $(seq 1 10)
+do
+  time /bin/zsh $* -c exit
+done

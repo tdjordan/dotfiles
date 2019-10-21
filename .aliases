@@ -87,3 +87,8 @@ agdf_imp() {
   ag $* $(ls -dFL .* | ag -v "(/)$" | ag -v "(\*)$" | ag -v history)
 }
 alias agdf='agdf_imp '
+
+# dotfile configuration
+alias config='git --git-dir=$HOME/.files.git --work-tree=$HOME'
+
+[ -f ~/.aliases.local ] && . ~/.aliases.local

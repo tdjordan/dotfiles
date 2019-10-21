@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -x
+
+# update brew receipe list
+brew update
+
+# zsh
+brew install bash
+
+# add brew's zsh to /etc/shell
+sudo echo /usr/local/bin/bash | sudo tee -a /etc/shells
+
+# switch default shells
+#chsh -s /usr/local/bin/zsh
+
+# cleanup
+brew cleanup
+

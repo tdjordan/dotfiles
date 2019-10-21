@@ -3,7 +3,7 @@
 #set -x
 
 # Ensure we know about all remote branches
-git pull
+#git pull
 
 # Identify all remote branches
 git br -a                   \
