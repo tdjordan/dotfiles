@@ -83,12 +83,12 @@ autoload -Uz _zplugin
 #zplugin ice depth=1
 #zplugin light romkatv/powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-zplugin ice silent wait'!0'
+zplugin ice silent wait
 zplugin snippet OMZ::plugins/git/git.plugin.zsh
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-zplugin ice silent wait'!0'
+zplugin ice silent wait
 zplugin light zsh-users/zsh-autosuggestions
-zplugin ice silent wait'!0'
+zplugin ice silent wait
 zplugin light zdharma/fast-syntax-highlighting
 #zplugin ice atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
 #zplugin light trapd00r/LS_COLORS
@@ -105,8 +105,8 @@ PS1="READY > "
 #zplugin ice silent wait'!0' atload'prompt_example' #atload'promptinit; prompt scala3'
 zplugin ice silent wait'!0' atload'!source ~/.p10k.zsh; _p9k_precmd'
 zplugin load romkatv/powerlevel10k
-#zplugin ice silent wait'!0'
-#zplugin snippet ~/.p10k.zsh
+#zplugin ice wait"2" lucid from"gh-r" mv"exa* -> exa" sbin"exa" fbin"exa"
+#zplugin light ogham/exa
 #zplugin ice wait'!0' pick"async.zsh" src"pure.zsh"
 #zplugin light sindresorhus/pure
 #zplugin ice wait'!0' atload'promptinit; prompt scala3'
