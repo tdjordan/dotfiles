@@ -62,54 +62,54 @@ HIST_STAMPS="yyyy-mm-dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git)
-autoload -Uz compinit
+#autoload -Uz compinit
 #local zcd=("${ZOOTDIR:-$HOME}/.zcompdump")
+#ZSH_COMPDUMP="${ZOOTDIR:-$HOME}/.zcompdump"
 #local zcdc="$zcd.zwc"
-ZSH_COMPDUMP="${ZOOTDIR:-$HOME}/.zcompdump"
-zcdc="${ZSH_COMPDUMP}.zwc"
-setopt extendedglob
-if [[ -f "${ZSH_COMPDUMP}"(#qN.m+1) ]] ; then
-  compinit -i -d "${ZSH_COMPDUMP}"
-  { rm -f "${ZSH_COMPDUMP}c" && zcompile "$zcd" } &!
-else
-  compinit -C -d "${ZSH_COMPDUMP}"
-  { [[ ! -f "$zcdc" || "${ZSH_COMPDUMP}" -nt "$zcdc" ]] && rm -f "$zcdc" && zcompile "${ZSH_COMPDUMP}" } &!
-fi
-unsetopt extendedglob
+#zcdc="${ZSH_COMPDUMP}.zwc"
+#setopt extendedglob
+#if [[ -f "${ZSH_COMPDUMP}"(#qN.m+1) ]] ; then
+  #compinit -i -d "${ZSH_COMPDUMP}"
+  #{ rm -f "${ZSH_COMPDUMP}c" && zcompile "$zcd" } &!
+#else
+  #compinit -C -d "${ZSH_COMPDUMP}"
+  #{ [[ ! -f "$zcdc" || "${ZSH_COMPDUMP}" -nt "$zcdc" ]] && rm -f "$zcdc" && zcompile "${ZSH_COMPDUMP}" } &!
+#fi
+#unsetopt extendedglob
 #ZSH_COMPDUMP=$zcd
-ZGEN_RESET_ON_CHANGE=(${HOME}/.zshrc)
-[ -f ~/.zgen/zgen.zsh ] && . ~/.zgen/zgen.zsh
-if ! zgen saved ; then
-  #zgen oh-my-zsh
-  #zgen oh-my-zsh themes/arrow
-  zgen oh-my-zsh plugins/git
-  zgen oh-my-zsh lib
-  #zgen oh-my-zsh lib/directories.zsh
-  zgen load romkatv/powerlevel10k powerlevel10k
-  zgen save
-fi
+#ZGEN_RESET_ON_CHANGE=(${HOME}/.zshrc)
+#[ -f ~/.zgen/zgen.zsh ] && . ~/.zgen/zgen.zsh
+#if ! zgen saved ; then
+  ##zgen oh-my-zsh
+  ##zgen oh-my-zsh themes/arrow
+  #zgen oh-my-zsh plugins/git
+  #zgen oh-my-zsh lib
+  ##zgen oh-my-zsh lib/directories.zsh
+  #zgen load romkatv/powerlevel10k powerlevel10k
+  #zgen save
+#fi
 
 
 ### Interactive Shells ###
 
-if [[ $- == *i* ]]; then
+#if [[ $- == *i* ]]; then
   #[ -f $ZSH/oh-my-zsh.sh ] && . $ZSH/oh-my-zsh.sh
-  [ -f ~/.p10k.zsh ]                    && . ~/.p10k.zsh
-  [ -f ~/.skim/shell/key-bindings.zsh ] && . ~/.skim/shell/key-bindings.zsh
+  #[ -f ~/.p10k.zsh ]                    && . ~/.p10k.zsh
 
+  #[ -f ~/.skim/shell/key-bindings.zsh ] && . ~/.skim/shell/key-bindings.zsh
   ## Contained configurations
   #   aliases      : alias definitions
   #   bash_local   : local machine specific
   #   dockerfunc   : dockerized apps
-  for file in ~/.{bash_local,aliases,dockerfunc} ; do
-    [ -f "$file" ] && . "$file"
-  done
+    #[ -f "$file" ] && . "$file"
+    #for file in ~/.{bash_local,aliases,dockerfunc} ; do
+  #done
 
   #. $HOME/.asdf/asdf.sh
 
   # Hook for desk activation
-  [ -n "$DESK_ENV" ] && . "$DESK_ENV" || true
-fi
+  #[ -n "$DESK_ENV" ] && . "$DESK_ENV" || true
+#fi
 
 #[[ $- == *i*  ]] && . ~/.zshrc.interactive
 #if [[ $SHLVL == 1 ]] ; then
@@ -215,3 +215,10 @@ fi
 ## Vim Mode : This prevents up-arrow completions
 #bindkey -v
 #
+. ~/.zplugin/bin/zplugin.zsh
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+#zplugin ice pick"async.zsh" src"pure.zsh"
+#zplugin light sindresorhus/pure
+zplugin ice depth=1
+zplugin light romkatv/powerlevel10k
