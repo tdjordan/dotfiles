@@ -334,6 +334,8 @@ let g:ag_prg='ag --vimgrep --smart-case'          " plug default : --vimgrep
 nnoremap <leader>f :execute 'Ag "' . input('Ag/') . '"'<CR>
 "::
 
+imap jj <esc>
+
 ":: Conquer of Completion
 """"""""""
 " :help coc
