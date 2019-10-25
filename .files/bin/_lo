@@ -5,13 +5,9 @@ for d (./*/)
   (
     cd "$d"
     br="( $(git rev-parse --abbrev-ref HEAD 2>/dev/null) )"
-    br_s=$(echo "${br}" | wc -c)
     dr="  ::: $(basename ${d})"
-    dr_s=$(echo "${dr}" | wc -c)
-    printf "\u001b[32m${dr}%$((${COLUMNS}-${dr_s}))s\n" "$(echo ${br})" &&
-    #echo -n $(git rev-parse --abbrev-ref HEAD 2>/dev/null) &&
+    printf "\u001b[32m${dr}%$((${COLUMNS}-${#dr}))s\n" "$(echo ${br})" &&
     echo -n "\u001b[0m" &&
-    eval "$@"
-    #echo " "
+    $@
   )
 
