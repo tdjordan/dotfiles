@@ -40,4 +40,7 @@ yabai -m config left_padding                 5
 yabai -m config right_padding                5
 yabai -m config window_gap                   5
 
+# window management rules
+yabai -m rule --add app="^System Preferences$" manage=off
+
 echo "yabai configuration loaded.."
