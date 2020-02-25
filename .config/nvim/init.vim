@@ -1,17 +1,79 @@
 " vim:foldmarker=\:\:\ ,\:\:
-" Set 'nocompatible' to ward off unexpected things that the distro might
-" have made, as well as sanely reset options when re-sourcing .vimrc
-if !has('nvim')
-  set nocompatible                                  " nvim default
-end
 
-" Attempt to determine the type of a file based on its name and possibly its contents.
-" Used to allow intelligent auto-indenting for each filetype,
-" and for plugins that are filetype specific
-filetype indent plugin on
+""""""""""
+"""
+""" nvim defaults
+"""
+""""""""""
+":: Reset vim defaults to nvim defaults
+if !has('nvim')
+
+  " Set 'nocompatible' to ward off unexpected things that the distro might
+  " have made, as well as sanely reset options when re-sourcing .vimrc
+  set nocompatible                                  " nvim default
+
+  " Attempt to determine the type of a file based on its name and possibly its contents.
+  " Used to allow intelligent auto-indenting for each filetype,
+  " and for plugins that are filetype specific
+  filetype plugin indent on
+
+  set smarttab                                  """"" nvim default : on
+
+  " When opening a new line and no filetype-specific indenting is enabled,
+  " keep the same indent as the line you are currently on.
+  set autoindent                                """"" nvim default : on
+
+  set incsearch                                 """"" nvim default : on
+
+  set hlsearch                                  """"" nvim default : on
+
+
+" - 'autoindent' is enabled
+" - 'autoread' is enabled
+" - 'background' defaults to "dark" (unless set automatically by the terminal/UI)
+" - 'backspace' defaults to "indent,eol,start"
+" - 'backupdir' defaults to .,~/.local/share/nvim/backup (|xdg|)
+" - 'belloff' defaults to "all"
+" - 'compatible' is always disabled
+" - 'complete' excludes "i"
+" - 'cscopeverbose' is enabled
+" - 'directory' defaults to ~/.local/share/nvim/swap// (|xdg|), auto-created
+" - 'display' defaults to "lastline,msgsep"
+" - 'encoding' is UTF-8 (cf. 'fileencoding' for file-content encoding)
+" - 'fillchars' defaults (in effect) to "vert:│,fold:·"
+" - 'formatoptions' defaults to "tcqj"
+" - 'fsync' is disabled
+" - 'history' defaults to 10000 (the maximum)
+" - 'hlsearch' is enabled
+" - 'incsearch' is enabled
+" - 'langnoremap' is enabled
+" - 'langremap' is disabled
+" - 'laststatus' defaults to 2 (statusline is always shown)
+" - 'listchars' defaults to "tab:> ,trail:-,nbsp:+"
+" - 'nrformats' defaults to "bin,hex"
+" - 'ruler' is enabled
+" - 'sessionoptions' excludes "options"
+" - 'shortmess' includes "F", excludes "S"
+" - 'showcmd' is enabled
+" - 'sidescroll' defaults to 1
+" - 'smarttab' is enabled
+" - 'tabpagemax' defaults to 50
+" - 'tags' defaults to "./tags;,tags"
+" - 'ttimeoutlen' defaults to 50
+" - 'ttyfast' is always set
+" - 'undodir' defaults to ~/.local/share/nvim/undo (|xdg|), auto-created
+" - 'viminfo' includes "!"
+" - 'wildmenu' is enabled
+" - 'wildoptions' defaults to "pum,tagfile"
+
+end
+"::
 
 " New <leaderi> of the band
-let g:mapleader=','
+"let g:mapleader=','
+nnoremap <space> <nop>
+vnoremap <space> <nop>
+let g:mapleader=' '
 "nnoremap <leader>V :tabnew ~/.nvimrc<CR>
 
 " Enable folding
@@ -41,7 +103,7 @@ end
 "::
 ":: matchup
 """"""""""
-Plug 'andymass/vim-matchup'
+"Plug 'andymass/vim-matchup'
 Plug 'jkramer/vim-checkbox'                       " <leader>tt : insert/toggle checkbox
 "::
 ":: snippets
@@ -55,6 +117,7 @@ Plug 'honza/vim-snippets'
 ":: Language Protocol Server - LPS
 """"""""""
 Plug 'neoclide/coc.nvim', {'branch': 'release' }
+"Plug 'tjdevries/coc-zsh'
 "::
 "::  control-p
 """"""""""
@@ -75,6 +138,7 @@ Plug 'wsdjeg/FlyGrep.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'                    " :help airline
 Plug 'vim-airline/vim-airline-themes'
+"Plug 'itchyny/lightline.vim'
 Plug 'lilydjwg/colorizer'                         " colrize color codes
 Plug 'fatih/molokai'
 "Plug 'ryanoasis/vim-devicons'
@@ -83,7 +147,7 @@ Plug 'fatih/molokai'
 ":: language navigation
 """"""""""
 "Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
-Plug 'liuchengxu/vista.vim', { 'on' : 'Vista!!' }
+"Plug 'liuchengxu/vista.vim', { 'on' : 'Vista!!' }
 "::
 ":: editor configs
 """"""""""
@@ -103,6 +167,7 @@ Plug 'tpope/vim-fugitive'                         " :help fugitive
 Plug 'ludovicchabant/vim-lawrencium', { 'on': 'Hg' }
 "Plug 'gregsexton/gitv'
 Plug 'airblade/vim-gitgutter'                     " :help gitgutter
+"Plug 'mhinz/vim-signify'
 "::
 ":: guides
 """"""""""
@@ -113,21 +178,24 @@ Plug 'nathanaelkane/vim-indent-guides'            " :help indent-guides
 ":: language syntax
 """"""""""
 "Plug 'scrooloose/syntastic'                       " :help syntastic
-Plug 'w0rp/ale'                                   " :help ale
+"Plug 'w0rp/ale'                                   " :help ale
 Plug 'gisphm/vim-gradle'
 "Plug 'udalov/kotlin-vim'                          " :help kotlin-vim
 Plug 'sheerun/vim-polyglot'
+"Plug 'prurigro/vim-polyglot-darkcloud'
 Plug 'dleonard0/pony-vim-syntax'
 Plug 'saltstack/salt-vim'
 Plug 'fatih/vim-go'                               " :help vim-go
 Plug 'garyburd/go-explorer'
 Plug 'pearofducks/ansible-vim'
+let g:ansible_extra_keywords_highlight = 1
 "Plug 'glench/vim-jinja2-syntax'
 Plug 'PProvost/vim-ps1'
 Plug 'lambdatoast/elm.vim'                        " :help elm
 "Plug 'ElmCast/elm-vim'                            " :help elm-vim
 Plug 'tmux-plugins/vim-tmux'                      " :help vim-tmux
 Plug 'google/vim-jsonnet'
+"Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 "::
 ":: language debug
 """"""""""
@@ -170,7 +238,7 @@ call plug#end()
 " Indention settings for 2
 " spaces instead of tabs
 set expandtab                                     " nvim default : off
-set smarttab                                  """"" nvim default : on
+"set smarttab                                  """"" nvim default : on
 set shiftwidth=2                                  " nvim default : 8
 set softtabstop=2                                 " nvim default : 8
 set tabstop=2                                     " nvim default : 8
@@ -178,7 +246,9 @@ set shiftround                                    " nvim default : off
 
 " When opening a new line and no filetype-specific indenting is enabled,
 " keep the same indent as the line you are currently on.
-set autoindent                                """"" nvim default : on
+"if !has('nvim')
+  "set autoindent                                """"" nvim default : on
+"end
 
 " Display the cursor position on the last line of the screen
 " or in the status line of a window
@@ -196,7 +266,7 @@ set hidden
 set ignorecase                                    " nvim default : off
 set smartcase                                     " nvim default : off
 set showmatch                                     " nvim default : off
-set incsearch                                 """"" nvim default : on
+"set incsearch                                 """"" nvim default : on
 
 " Highlight searches
 "set hlsearch                                  """"" nvim default : on
@@ -216,11 +286,27 @@ set sidescrolloff=5
 "   2 : always
 set laststatus=2                              """"" nvim default : 2
 
-" Hightlight the screen line of the cursof with CursorLine
+" Hightlight the screen line of the cursor with CursorLine
 set cursorline                                    " nvim default : off
 
 " When on, lines longer than width of window will wrap
 "set nowrap                                        " nvim default : on
+
+" Enable use of the mouse
+"    options [useful]
+"      n = Normal mode
+"      v = Visual mode
+"      i = Insert mode
+"      c = Command-line mode
+"      h = all previous modes when editing a help file
+"      a = all previous modes
+"      r = for hit-enter & more-propmt prompts
+"set mouse=a                                       " nvim defaults : 'a'
+
+"set guioptions=A
+
+" Enable 24-bit RGB color in the TUI
+set termguicolors
 "::
 
 ":: TODO: nvim defaults - not currently used
@@ -231,7 +317,6 @@ set cursorline                                    " nvim default : off
 "set langnoremap                      " nvim default
 "set laststatus                       " nvim defaults to 2 (statusline is alwasys shown)
 "set listchars=tab:> ,trail:-,nbsp:+  " nvim default
-"set mouse=a                          " nvim defaults to 'a'
 "set nrformats                        " nvim defaults to 'hex'
 "set sessionoptions                   " nvim doesn't include 'options'
 "set tabpagemax                       " nvim defaults to 50
@@ -264,8 +349,8 @@ set cursorline                                    " nvim default : off
 
 ":: Allow backspacing over autoindent, line br
 set backspace=indent,eol,start                """"" nvim default : 'ident,eol,start'
-set shell=/bin/bash                               " nvim default : $SHELL or sh or cmd.exe
-"set shell=/bin/sh
+"set shell=/bin/bash                               " nvim default : $SHELL or sh or cmd.exe
+set shell=/bin/sh
 
 " Allow for old vim shell muscle memory
 "cnoreabbrev sh te
@@ -306,13 +391,16 @@ set autoread                                  """"" nvim default : on
 
 " Set the command window height to 2 lines,
 " to avoid many cases of having to "press <Enter> to continue"
-set cmdheight=1                               """"" nvim default: 1
+set cmdheight=1                               """"" nvim default : 1
 
 " Show partial commands in the last line of the screen
-set showcmd                                       " nvim default: (unix) ? off : on
+set showcmd                                       " nvim default : (unix) ? off : on
 
 " Resize splits when the window is resized
-au VimResized * :wincmd =
+augroup resize_splits_when_window_resizes
+  au!
+  au VimResized * :wincmd =
+augroup END
 
 " When opening a file, return to last edit postion
 augroup return_to_last_edit_position
@@ -341,16 +429,17 @@ imap jj <esc>
 " :help coc
 "" Plug 'neoclide/coc.nvim', {'branch': 'release' }
 let g:coc_global_extensions=[
-  \ 'coc-vimlsp',
-  \ 'coc-snippets',
-  \ 'coc-java',
-  \ 'coc-json',
-  \ 'coc-git',
-  \ 'coc-diagnostic',
-  \ 'coc-marketplace',
-  \ 'coc-lists'
+  \   'coc-json'
+  \ , 'coc-vimlsp'
+  \ , 'coc-git'
+  \ , 'coc-lists'
+  \ , 'coc-diagnostic'
   \ ]
-  "\ 'coc-tailwindcss'
+  "\ , 'coc-snippets'
+  "\ , 'coc-java'
+  "\ , 'coc-json'
+  "\ , 'coc-marketplace'
+  "\ , 'coc-tailwindcss'
 imap <C-l> <Plug>(coc-snippets-expand)
 "inoremap <silent><expr> <c-space> coc#refresh()
 let g:markdown_fenced_languages = [
@@ -405,8 +494,8 @@ let g:ctrlp_funky_use_cache=1                     " plug default : 0
 " Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install -all' }
 """"""""""
 if executable("rg")
-    set grepprg=rg\ --vimgrep\ --no-heading
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 "::
 "::
@@ -416,6 +505,7 @@ endif
 """"""""""
 let g:airline_theme='powerlineish'
 let g:airline_powerline_fonts=1
+"let g:airline_extensions = []
 "let g:airline#extensions#tabline#enabled=1
 "::
 
@@ -571,8 +661,12 @@ let g:go_term_enabled = 1
 "let g:multi_cursor_prev_key='<C-p>'
 "let g:multi_cursor_skip_key='<C-x>'
 "let g:multi_cursor_quit_key='<Esc>'
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+"if has('nvim')
+  "" https://github.com/neovim/neovim/wiki/Following-HEAD#20170402
+  ""  :set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+  "set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
+"let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+"endif
 "::
 
 ":: Auto Toggle
@@ -647,10 +741,10 @@ set undofile                                      " nvim default : off
 ":: backup
 """"""""""
 " Make a backup before overwriting a file.
-set backup                                        " nvim default : off
+"set backup                                        " nvim default : off
 
 " Make a backup
-set writebackup                               """"" nvim default : (+writebackup) ? on : off
+"set writebackup                               """"" nvim default : (+writebackup) ? on : off
 
 " List of directories for backup files
 "   nvim default : (unix) ? '.,~/tmp,~/' ; '.,$TEMP,c:\\tmp,c:\\temp'
@@ -854,11 +948,12 @@ set nobackup
 set nowritebackup
 
 " Better display for messages
-set cmdheight=1
+"set cmdheight=1
+"set cmdheight=2
 
 " You will have bad experience for diagnostic messages when it's default 4000.
 "set updatetime=300
-set updatetime=10
+set updatetime=100
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
@@ -868,23 +963,23 @@ set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"inoremap <silent><expr> <TAB>
+      "\ pumvisible() ? "\<C-n>" :
+      "\ <SID>check_back_space() ? "\<TAB>" :
+      "\ coc#refresh()
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+"function! s:check_back_space() abort
+  "let col = col('.') - 1
+  "return !col || getline('.')[col - 1]  =~# '\s'
+"endfunction
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+"inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Or use `complete_info` if your vim support it, like:
 " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
@@ -899,82 +994,82 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+"nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+"function! s:show_documentation()
+  "if (index(['vim','help'], &filetype) >= 0)
+    "execute 'h '.expand('<cword>')
+  "else
+    "call CocAction('doHover')
+  "endif
+"endfunction
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+"nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
+"augroup mygroup
+  "autocmd!
+  "" Setup formatexpr specified filetype(s).
+  "autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  "" Update signature help on jump placeholder
+  "autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+"augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+"xmap <leader>a  <Plug>(coc-codeaction-selected)
+"nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+"nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
+"nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Create mappings for function text object, requires document symbols feature of languageserver.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
+"xmap if <Plug>(coc-funcobj-i)
+"xmap af <Plug>(coc-funcobj-a)
+"omap if <Plug>(coc-funcobj-i)
+"omap af <Plug>(coc-funcobj-a)
 
 " Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
+"nmap <silent> <C-s> <Plug>(coc-range-select)
+"xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
+"command! -nargs=0 Format :call CocAction('format')
 
 " Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+"command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+"command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+"nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+"nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+"nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+"nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+"nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+"nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+"nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+"nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 "::
 "::
 
