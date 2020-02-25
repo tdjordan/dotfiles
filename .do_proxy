@@ -9,10 +9,10 @@ case $network_location in
     no_proxy_local=
     ;;
   *)
-    [ -f ~/.my_proxy ] && http_proxy="http://$(sed 11q ~/.my_proxy)"
+    [ -f ~/.my_proxy ] && http_proxy="http://$(sed < ~/.my_proxy)"
     #target_machine=work
     #apm config set https-proxy $http_proxy
-    [ -f ~/.my_no_proxy ] && no_proxy_local=$(sed 11q ~/.my_no_proxy)
+    [ -f ~/.my_no_proxy ] && no_proxy_local=$(sed < ~/.my_no_proxy)
     ;;
 esac
 
@@ -25,7 +25,7 @@ export rsync_proxy="$http_proxy"
 # don't include the docker machines in initial no_proxy setting
 #docker_vms=$(echo 192.168.99.{100..120} | sed 's/ /,/g')
 range=$(echo {0..255})
-export no_proxy="$no_proxy_local,localhost,.${range// /,.}"
+export no_proxy="$no_proxy_local,localhost,.docker.internal,.${range// /,.}"
 
 # let's work around digital garden hooks
 export DYLD_INSERT_LIBRARIES=

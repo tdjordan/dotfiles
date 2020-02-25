@@ -10,6 +10,8 @@ brew install terraform-docs
 
 brew install terraform_landscape
 
+brew install tflint
+
 # cleanup
 brew cleanup
 
