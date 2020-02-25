@@ -59,7 +59,7 @@
   tags2 = for-each-ref --sort=taggerdate --format=\"%(color:yellow)%(refname:short)%(color:reset)\n%>(4)%(color:green)%(subject)%(color:reset)\nTagger:\t%(taggername) %(taggeremail)\nDate:\t%(taggerdate)\n\n%(*body)\n\" refs/tags
 
 [core]
-  editor = vi
+  editor = nvim
 	excludesfile = ~/.gitignore_global
   commentchar = :
 

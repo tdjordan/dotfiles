@@ -22,33 +22,41 @@ cmd=''
 for shell in "${shells[@]}" ; do
   # no option runs
   cmd="$cmd '$shell -c \"exit\"'"
+  cmd="$cmd '/usr/bin/env $shell -c \"exit\"'"
 
   # common option runs
   for switch in "${switches[@]}" ; do
     cmd="$cmd '$shell $switch -c \"exit\"'"
+    cmd="$cmd '/usr/bin/env $shell $switch -c \"exit\"'"
   done
 
   # add a run for no interactive rc processing
   case $shell in
     bash)
       cmd="$cmd '$shell --norc -c \"exit\"'"
+      cmd="$cmd '/usr/bin/env $shell --norc -c \"exit\"'"
       ;;
     ksh)
       cmd="$cmd '$shell -orc -c \"exit\"'"
+      cmd="$cmd '/usr/bin/env $shell -orc -c \"exit\"'"
       ;;
     dash|mksh)  # there is none for these shells
       :
       ;;
     *)
       cmd="$cmd '$shell -f -c \"exit\"'"
+      cmd="$cmd '/usr/bin/env $shell -f -c \"exit\"'"
       ;;
   esac
 done
 
 for shell in "${brokenLogin[@]}" ; do
   cmd="$cmd '$shell    -c \"exit\"'"
+  cmd="$cmd '/usr/bin/env $shell -c \"exit\"'"
   cmd="$cmd '$shell -i -c \"exit\"'"
+  cmd="$cmd '/usr/bin/env $shell -i -c \"exit\"'"
   cmd="$cmd '$shell -f -c \"exit\"'"
+  cmd="$cmd '/usr/bin/env $shell -f -c \"exit\"'"
 done
 
 echo "$cmd"

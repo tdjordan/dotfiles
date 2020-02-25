@@ -74,7 +74,10 @@ alias qcp='rsync -avzh'
 alias v='vagrant'
 
 # salt
-alias sc='salt-cloud -c ./salt'
+#alias sc='salt-cloud -c ./salt'
+
+# neovim
+alias vi='nvim '
 
 # blind
 alias viu='vi -u NONE'
@@ -89,6 +92,9 @@ agdf_imp() {
 alias agdf='agdf_imp '
 
 # dotfile configuration
-alias config='git --git-dir=$HOME/.files.git --work-tree=$HOME'
+alias config='git --git-dir=$HOME/.files.git --work-tree=$HOME --no-pager'
 
 [ -f ~/.aliases.local ] && . ~/.aliases.local
+
+# kubernetes
+alias kk='kubectl'

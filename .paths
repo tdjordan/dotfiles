@@ -1,7 +1,13 @@
 #echo .paths
 export PATH=/usr/local/opt/ruby/bin
-export PATH=$PATH:/usr/local/lib/ruby/gems/bin
-export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+export PATH=$PATH:~/.gem/ruby/2.6.0
+export PATH=$PATH:/usr/local/lib/ruby/gems/2.6.0/bin
+export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:/usr/bin
+export PATH=$PATH:/bin
+export PATH=$PATH:/usr/local/sbin
+export PATH=$PATH:/usr/sbin
+export PATH=$PATH:/sbin
 export PATH=$PATH:~/.gopath/bin
 #export PATH=$PATH:~/.cabal/bin
 export PATH=$PATH:~/.local/bin
