@@ -54,16 +54,14 @@ POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 ### End of Zplugin installer's chunk
-#zplugin ice pick"async.zsh" src"pure.zsh"
-#zplugin light sindresorhus/pure
-#zplugin ice depth=1
-#zplugin light romkatv/powerlevel10k
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+
+zplugin ice lucid wait blockf atpull'zplugin creinstall -q .'
+zplugin light zsh-users/zsh-completions
 
 #for snippet in "{functions.misc,history,directories,git}.zsh"
 #zplugin ice lucid wait multisrc'{functions,misc,history,directories,git}.zsh' pick'/dev/null'
 for file in {functions,misc,history,directories,git} ; do
-  zplugin ice lucid wait blockf
+  zplugin ice lucid wait
   zplugin snippet OMZ::lib/$file.zsh
 done
 
@@ -73,18 +71,30 @@ zplugin snippet OMZ::plugins/git/git.plugin.zsh
 #zplugin ice lucid wait
 #zplugin snippet OMZ::plugins/osx/osx.plugin.zsh
 
-zplugin ice lucid wait blockf atpull'zplugin creinstall -q .'
-zplugin light zsh-users/zsh-completions
-
 #zplugin ice lucid wait atinit'zmodload zsh/zprof' atload'zprof | head -n 20; zmodload -u zsh/zprof'
-#zplugin ice lucid wait atinit'zpcompinit; zpcdreplay'
-#zplugin light zdharma/fast-syntax-highlighting
-
-zplugin ice lucid wait
-zplugin light zsh-users/zsh-autosuggestions
 
 #zplugin ice atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
 #zplugin light trapd00r/LS_COLORS
+
+#https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
+  #[ -f ~/.skim/shell/key-bindings.zsh ] && . ~/.skim/shell/key-bindings.zsh
+  [ -f ~/.skim/shell/key-bindings.zsh ] && zplugin ice lucid wait && zplugin snippet ~/.skim/shell/key-bindings.zsh
+  #[ -f ~/.skim/shell/key-bindings.zsh ] && . ~/.skim/shell/key-bindings.zsh
+
+PS1="READY > "
+#zplugin ice lucid nocd wait'!' atload'!source ~/.p10k.zsh; _p9k_precmd'
+#zplugin light romkatv/powerlevel10k
+zplugin lucid nocd wait'!' atload'!source ~/.p10k.zsh; _p9k_precmd' for romkatv/powerlevel10k
+
+#zplugin load romkatv/powerlevel10k
+#zplugin load'![[ $MYPROMPT = 8 ]]' unload'![[ $MYPROMPT != 8 ]]' \
+
+#zplugin ice wait"2" lucid from"gh-r" mv"exa* -> exa" sbin"exa" fbin"exa"
+#zplugin light ogham/exa
+#zplugin ice wait'!0' pick"async.zsh" src"pure.zsh"
+#zplugin light sindresorhus/pure
+#zplugin ice wait'!0' atload'promptinit; prompt scala3'
+#zplugin load psprint/zprompts
 
 ## Contained configurations
 #   aliases      : alias definitions
@@ -94,29 +104,20 @@ for file in ~/.{bash_local,aliases,dockerfunc} ; do
   [ -f "$file" ] && zplugin ice lucid wait && zplugin snippet "$file"
 done
 
-#https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
-  #[ -f ~/.skim/shell/key-bindings.zsh ] && . ~/.skim/shell/key-bindings.zsh
-
-PS1="READY > "
-#zplugin ice lucid wait'!0' atload'prompt_example' #atload'promptinit; prompt scala3'
-zplugin ice lucid nocd wait'!' atload'!source ~/.p10k.zsh; _p9k_precmd'
-zplugin light romkatv/powerlevel10k
-#zplugin load romkatv/powerlevel10k
-#zplugin lucid wait'!0' atload'!source ~/.p10k.zsh; _p9k_precmd' for romkatv/powerlevel10k
-#zplugin load'![[ $MYPROMPT = 8 ]]' unload'![[ $MYPROMPT != 8 ]]' \
-#zplugin wait'!0' atload'!source ~/.p10k.zsh; _p9k_precmd' lucid nocd for romkatv/powerlevel10k
-
-#zplugin ice wait"2" lucid from"gh-r" mv"exa* -> exa" sbin"exa" fbin"exa"
-#zplugin light ogham/exa
-#zplugin ice wait'!0' pick"async.zsh" src"pure.zsh"
-#zplugin light sindresorhus/pure
-#zplugin ice wait'!0' atload'promptinit; prompt scala3'
-#zplugin load psprint/zprompts
-
 # change directories without cd
 setopt auto_cd
+
+#export ZSH_AUTOSUGGEST_USE_ASYNC=1
+#export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+zplugin ice nocd lucid wait atload'_zsh_autosuggest_start'
+zplugin light zsh-users/zsh-autosuggestions
+
+# must be last
+zplugin ice lucid wait atinit'zpcompinit; zpcdreplay'
+zplugin light zdharma/fast-syntax-highlighting
+
+function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}
 
 #zprof
 #zmodload -u zsh/zprof
 
-function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}

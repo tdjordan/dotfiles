@@ -10,25 +10,25 @@ run=$1
 
 set -- -i -l -il -li --norc
 
-mkdir -p $run
+mkdir -p "$run"
 
 echo "plain"
-sudo bash -c "echo exit|dtruss bash |& less|grep '^open'" > ${run}/tt.bash..${run}
+(sudo bash -c "echo exit|dtruss bash |& less|grep '^open'") > "${run}/tt.bash..${run}"
 
 for i in $* ; do
-  echo ${i}
-  sudo bash -c "echo exit|dtruss bash ${i}|& less|grep '^open'" > ${run}/tt.bash.${i}.${run}
+  echo "${i}"
+  (sudo bash -c "echo exit|dtruss bash ${i}|& less|grep '^open'") > "${run}/tt.bash.${i}.${run}"
 done
 
 set -- -i -l -il -li -f
 
-mkdir -p $run
+mkdir -p "$run"
 
 echo "plain"
-sudo bash -c "echo exit|dtruss zsh |& less|grep '^open'" > ${run}/tt.zsh..${run}
+(sudo bash -c "echo exit|dtruss zsh |& less|grep '^open'") > "${run}/tt.zsh..${run}"
 
 for i in $* ; do
-  echo ${i}
-  sudo bash -c "echo exit|dtruss zsh ${i}|& less|grep '^open'" > ${run}/tt.zsh.${i}.${run}
+  echo "${i}"
+  (sudo bash -c "echo exit|dtruss zsh ${i}|& less|grep '^open'") > "${run}/tt.zsh.${i}.${run}"
 done
 
