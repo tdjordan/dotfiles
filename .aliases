@@ -77,7 +77,7 @@ alias v='vagrant'
 #alias sc='salt-cloud -c ./salt'
 
 # neovim
-alias vi='nvim '
+alias vi='nvim'
 
 # blind
 alias viu='vi -u NONE'
@@ -98,3 +98,15 @@ alias config='git --git-dir=$HOME/.files.git --work-tree=$HOME --no-pager'
 
 # kubernetes
 alias kk='kubectl'
+
+# python 3
+alias python=/usr/local/opt/python@3.8/bin/python3
+alias pip=/usr/local/opt/python@3.8/bin/pip3
+
+# vifm
+alias vf='vifm'
+
+## yabai
+#  restat yabai quickly
+#  # ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+alias reup='launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"'
