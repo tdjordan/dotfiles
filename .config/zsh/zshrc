@@ -1,3 +1,4 @@
+
 # Enable Powerlevel10k instant prompt. Should stay at the top of ~/.zshrc.
 #if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   #. "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -48,76 +49,95 @@ HIST_STAMPS="yyyy-mm-dd"
 # gitstatus
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 
-### zplugin
-### Added by Zplugin's installer
-. ~/.zplugin/bin/zplugin.zsh
-autoload -Uz _zplugin
-(( ${+_comps} )) && _comps[zplugin]=_zplugin
-### End of Zplugin installer's chunk
+### zinit
+### Added by zinit's installer
+. ~/.zinit/bin/zinit.zsh
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### End of zinit installer's chunk
 
-zplugin ice lucid wait blockf atpull'zplugin creinstall -q .'
-zplugin light zsh-users/zsh-completions
+#zinit ice lucid wait"2" blockf atpull'zinit creinstall -q .'
+#zinit light zsh-users/zsh-completions
 
-#for snippet in "{functions.misc,history,directories,git}.zsh"
-#zplugin ice lucid wait multisrc'{functions,misc,history,directories,git}.zsh' pick'/dev/null'
-for file in {functions,misc,history,directories,git} ; do
-  zplugin ice lucid wait
-  zplugin snippet OMZ::lib/$file.zsh
-done
+zinit wait"1" lucid nocd is-snippet for \
+  OMZ::lib/functions.zsh \
+  OMZ::lib/misc.zsh \
+  OMZ::lib/history.zsh \
+  OMZ::lib/directories.zsh \
+  OMZ::lib/git.zsh \
+  OMZ::plugins/git/git.plugin.zsh
+#  OMZ::plugins/jenv/jenv.plugin.zsh
 
-zplugin ice lucid wait
-zplugin snippet OMZ::plugins/git/git.plugin.zsh
+#zinit ice lucid wait
+#zinit snippet OMZ::plugins/osx/osx.plugin.zsh
 
-#zplugin ice lucid wait
-#zplugin snippet OMZ::plugins/osx/osx.plugin.zsh
+#zinit ice lucid wait atinit'zmodload zsh/zprof' atload'zprof | head -n 20; zmodload -u zsh/zprof'
 
-#zplugin ice lucid wait atinit'zmodload zsh/zprof' atload'zprof | head -n 20; zmodload -u zsh/zprof'
-
-#zplugin ice atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
-#zplugin light trapd00r/LS_COLORS
+#zinit ice atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
+#zinit light trapd00r/LS_COLORS
 
 #https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
   #[ -f ~/.skim/shell/key-bindings.zsh ] && . ~/.skim/shell/key-bindings.zsh
-  [ -f ~/.skim/shell/key-bindings.zsh ] && zplugin ice lucid wait && zplugin snippet ~/.skim/shell/key-bindings.zsh
+
+[ -f ~/.skim/shell/key-bindings.zsh ] && \
+  zinit wait"1" lucid nocd is-snippet for \
+    ~/.skim/shell/key-bindings.zsh
+
   #[ -f ~/.skim/shell/key-bindings.zsh ] && . ~/.skim/shell/key-bindings.zsh
 
-PS1="READY > "
-#zplugin ice lucid nocd wait'!' atload'!source ~/.p10k.zsh; _p9k_precmd'
-#zplugin light romkatv/powerlevel10k
-zplugin lucid nocd wait'!' atload'!source ~/.p10k.zsh; _p9k_precmd' for romkatv/powerlevel10k
+#zinit load romkatv/powerlevel10k
+#zinit load'![[ $MYPROMPT = 8 ]]' unload'![[ $MYPROMPT != 8 ]]' \
 
-#zplugin load romkatv/powerlevel10k
-#zplugin load'![[ $MYPROMPT = 8 ]]' unload'![[ $MYPROMPT != 8 ]]' \
-
-#zplugin ice wait"2" lucid from"gh-r" mv"exa* -> exa" sbin"exa" fbin"exa"
-#zplugin light ogham/exa
-#zplugin ice wait'!0' pick"async.zsh" src"pure.zsh"
-#zplugin light sindresorhus/pure
-#zplugin ice wait'!0' atload'promptinit; prompt scala3'
-#zplugin load psprint/zprompts
+#zinit ice wait"2" lucid from"gh-r" mv"exa* -> exa" sbin"exa" fbin"exa"
+#zinit light ogham/exa
+#zinit ice wait'!0' pick"async.zsh" src"pure.zsh"
+#zinit light sindresorhus/pure
+#zinit ice wait'!0' atload'promptinit; prompt scala3'
+#zinit load psprint/zprompts
 
 ## Contained configurations
 #   aliases      : alias definitions
 #   bash_local   : local machine specific
 #   dockerfunc   : dockerized apps
-for file in ~/.{bash_local,aliases,dockerfunc} ; do
-  [ -f "$file" ] && zplugin ice lucid wait && zplugin snippet "$file"
-done
+#for file in ~/.{bash_local,aliases,dockerfunc} ; do
+  #[ -f "$file" ] && zinit ice lucid wait'2' && zinit snippet "$file"
+#done
+
+zinit wait lucid nocd is-snippet for \
+  .bash_local \
+  .aliases \
+  .dockerfunc
+
 
 # change directories without cd
 setopt auto_cd
 
 #export ZSH_AUTOSUGGEST_USE_ASYNC=1
 #export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-zplugin ice nocd lucid wait atload'_zsh_autosuggest_start'
-zplugin light zsh-users/zsh-autosuggestions
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+#zinit ice nocd lucid wait atload'_zsh_autosuggest_start' for \
+#zinit light zdharma/fast-syntax-highlighting
+zinit wait lucid nocd light-mode for \
+  zsh-users/zsh-autosuggestions \
+  zdharma/fast-syntax-highlighting \
+  zsh-users/zsh-completions
+
+PS1="READY > "
+zinit wait"!" lucid nocd atload'!source ~/.p10k.zsh; _p9k_precmd' for \
+  romkatv/powerlevel10k
 
 # must be last
-zplugin ice lucid wait atinit'zpcompinit; zpcdreplay'
-zplugin light zdharma/fast-syntax-highlighting
+zinit ice wait lucid nocd atinit'zpcompinit; zpcdreplay'
 
 function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}
 
 #zprof
 #zmodload -u zsh/zprof
 
+### End of Zinit's installer chunk
+
+#source /Users/thomasjordan/.config/broot/launcher/bash/br
+### End of Zinit's installer chunk
+### End of Zinit's installer chunk
+### End of Zinit's installer chunk
+### End of Zinit's installer chunk
