@@ -1,46 +1,122 @@
 #!/usr/bin/env sh
 
-# bar settings
-yabai -m config status_bar                   off
-yabai -m config status_bar_text_font         "Helvetica Neue:Bold:12.0"
-yabai -m config status_bar_icon_font         "FontAwesome:Regular:12.0"
-yabai -m config status_bar_background_color  0xff202020
-yabai -m config status_bar_foreground_color  0xffa8a8a8
-yabai -m config status_bar_space_icon_strip  I II III IV V VI VII VIII IX X
-yabai -m config status_bar_power_icon_strip   
-yabai -m config status_bar_space_icon        
-yabai -m config status_bar_clock_icon        
+###
+###   bar settings
+###
 
-# global settings
-yabai -m config mouse_follows_focus          off
-yabai -m config focus_follows_mouse          off
-yabai -m config window_placement             second_child
+### External Bar
+#
+#   Specifiy top and bottom padding for a potiential custom bar
+#
+#     options: [ <main|all|off>:<top padding>:<bottom padding> ]
+#
+#       main : apply the given padding to only spaces located on the main display
+#       all  : apply the given padding to all  spaces regardles of their  display
+#       off  : do not apply any special padding
+yabai -m config external_bar                 off
+
+###
+###   global settings
+###
+
+### Mouse Modifications
+#
+#   yabai allows modifying the way macOS presents windows.
+#
+#     floating windows are always on top ( default: off )
 yabai -m config window_topmost               off
+#
+#     modify window shadows ( default: on, options: [ on, off, float ]
+#
+#       example: show shadows only for floating windows
+#                yabai -m config window_shadow float
+yabai -m config window_shadow                on
+#
+#     window opacity ( default: off )
+#
+#       example: render all unfocused windows with 90% opacity
+#                yabai -m config window_opacity on
+#                yabai -m config active_window_opacity 1.0
+#                yabai -m config normal_window_opacity 0.9
 yabai -m config window_opacity               off
 yabai -m config window_opacity_duration      0.0
-yabai -m config window_shadow                on
-yabai -m config window_border                off
-yabai -m config window_border_width          4
-yabai -m config active_window_border_color   0xff775759
-yabai -m config normal_window_border_color   0xff505050
-yabai -m config insert_window_border_color   0xffd75f5f
 yabai -m config active_window_opacity        1.0
 yabai -m config normal_window_opacity        0.90
-yabai -m config split_ratio                  0.50
+yabai -m config insert_feedback_color        0xaad75f5f
+
+yabai -m config window_border                off
+#yabai -m config window_border_width          4
+#yabai -m config active_window_border_color   0xff775759
+#yabai -m config normal_window_border_color   0xff505050
+#yabai -m config insert_window_border_color   0xffd75f5f
+
+### Split Ratios
+#
+#   Auto balance makes it so all windows always occupy the same space, independent of how deeply nested they are in the window tree.
+#   When a new window is inserted or a window is removed, the split ratios will be automatically adjusted.
+#
+#     on or off ( default: off)
 yabai -m config auto_balance                 off
+#
+#   If auto balance is disabled, the split ratio defines how much space each window occupies after a new split is created.
+#   A value of 0.5 means that both old and new window occupy the same space;
+#   a value of 0.2 means that the old window occupies 20% of the available space and the new window occupies 80% of the available space.
+#   New windows are inserted at the right or bottom side. The ratio needs to be between 0 and 1.
+#
+#     Floading oint value between 0 and 1 ( default: 0.5 )
+yabai -m config split_ratio                  0.50
+
+### Mouse Support
+#
+#   When you drag a tiled window onto another, yabai swaps their positions in the window tree.
+#   If you resize a tiled window, yabai will adjust splits to fit automatically.
+#
+#   Additionally, yabai can enable you to move and resize windows by clicking anywhere on them while holding a modifier key.
+#
+#     set focus follows mouse mode ( default: off, options: [ off, autoraise, autofocus ] )
+yabai -m config focus_follows_mouse          off
+#
+#     when focusing a window, put the mouse at its center ( default: off )
+yabai -m config mouse_follows_focus          off
+#
+#     keyboard modifier used for moving and resizing windows ( optoons: [ cmd, alt, shift, ctrl, fn ] )
 yabai -m config mouse_modifier               fn
+#
+#     action performed when pressing *mouse_modifier + button* ( options: [ move, resize ] )
 yabai -m config mouse_action1                move
 yabai -m config mouse_action2                resize
 
-# general space settings
+###
+###   tiling settings
+###
+
+### Layout
+#
+#   Layout defines wether windows are tiled ( managed / bsp ) or left alone ( float )
+#   This setting can be defined on a per-space basis.
+#
+# bsp or float ( default: bsp )
 yabai -m config layout                       bsp
+#
+#   By default, new windows become the right or bottom split when tiled, which can be changed to left or top.
+#
+#     first_child  : new window spawns to the left  if vertical split, or top    if horizontal split
+#     second_child : new window spawns to the right if vertical split, or bottom if horizontal split
+yabai -m config window_placement             second_child
+
+### Padding and Gaps
+#
+#   When tiling windows, yabai can maintain gaps between windows and padding towards menu bar, dock and screen edges.
+#   This setting can be defined on a per-space basis.
 yabai -m config top_padding                  5
 yabai -m config bottom_padding               5
 yabai -m config left_padding                 5
 yabai -m config right_padding                5
 yabai -m config window_gap                   5
 
-# window management rules
+###
+###   window management rules
+###
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^zoom.us$" manage=off
