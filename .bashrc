@@ -192,3 +192,5 @@ done
 
 ## Vim Mode
 #set -o vi
+
+source /Users/thomasjordan/.config/broot/launcher/bash/br
