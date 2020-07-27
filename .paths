@@ -1,5 +1,8 @@
 #echo .paths
-export PATH=/usr/local/opt/openssl@1.1/bin
+export PATH=/usr/local/opt/libressl/bin
+export PATH=$PATH:/usr/local/opt/curl/bin
+#export PATH=$PATH:/usr/local/opt/curl-openssl/bin
+#export PATH=$PATH:/usr/local/opt/openssl@1.1/bin
 export PATH=$PATH:/usr/local/opt/ruby/bin
 export PATH=$PATH:~/.gem/ruby/2.6.0
 export PATH=$PATH:/usr/local/lib/ruby/gems/2.6.0/bin
