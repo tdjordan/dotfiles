@@ -1,6 +1,6 @@
 #echo .zshenv
 # Skip the not really helping Ubuntu global compinit
 skip_global_compinit=1
-. ~/.paths
+source ~/.paths
 export RIPGREP_CONFIG_PATH=~/.config/ripgrep/rc
 export HOMEBREW_NO_AUTO_UPDATE=1
