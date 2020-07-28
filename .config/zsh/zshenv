@@ -4,3 +4,4 @@ skip_global_compinit=1
 source ~/.paths
 export RIPGREP_CONFIG_PATH=~/.config/ripgrep/rc
 export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_ENV_FILTERING=1
