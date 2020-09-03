@@ -107,16 +107,12 @@ Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release' }
 "Plug 'tjdevries/coc-zsh'
 
-"""  control-p
-"""
-"Plug 'kien/ctrlp.vim'                             " :help ctrlp
-"Plug 'ctrlpvim/ctrlp.vim'                         " :help ctrlp
-"Plug 'tacahiroy/ctrlp-funky'                      " :help ctrlp-funky
-
 """  search
 ""
-Plug 'rking/ag.vim'                               " :help ag
-"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'rking/ag.vim'                                 " :help ag
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " :help fzf
+Plug 'junegunn/fzf.vim'                             " :help fzf-vim
+Plug 'stsewd/fzf-checkout.vim'
 "Plug 'junegunn/fzf',
 "  \ { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install -all' }
@@ -164,7 +160,7 @@ Plug 'airblade/vim-gitgutter'                     " :help gitgutter
 """
 Plug 'Yggdroot/indentLine'
 Plug 'nathanaelkane/vim-indent-guides'            " :help indent-guides
-Plug 'jiangmiao/auto-pairs'                       " :help autopairs
+"Plug 'jiangmiao/auto-pairs'                       " :help autopairs
 
 """  language syntax
 """
@@ -383,6 +379,29 @@ set cmdheight=1                               """"" nvim default : 1
 " Show partial commands in the last line of the screen
 set showcmd                                       " nvim default : (unix) ? off : on
 
+"""
+""" noremap bindings
+"""
+
+" Reload init.vim from standard config path
+" note that the stdpath makes this portable
+nnoremap <leader><cr> :so `=stdpath('config').'/init.vim'`<cr>
+
+"""
+""" p* mappings
+"""
+nnoremap <leader>pf :Files<cr>
+nnoremap <leader>pl :Lines<cr>
+nnoremap <leader>ps :Rg<space>
+nnoremap <leader>pw :Rg <c-r>=expand("<cword>")<cr><cr>
+nnoremap <leader>pc :Colors<cr>
+
+nnoremap <c-p> :GFiles<cr>
+
+"""
+""" g* mappings
+"""
+
 " Resize splits when the window is resized
 augroup resize_splits_when_window_resizes
   au!
@@ -431,15 +450,8 @@ let g:markdown_fenced_languages = [
   \ 'vim'
   \]
 
-"""  Fuzzy finder
+"""  Fuzzy finders
 """
-"""  ctrlp
-" Plug 'kien/ctrlp.vim'                             " :help ctrlp
-" Plug 'ctrlpvim/ctrlp.vim'                             " :help ctrlp
-"""
-" open fuzzy buffer mode
-nnoremap <leader>r :CtrlPBuffer<CR>
-let g:ctrlp_show_hidden=1                         " plug default : 0 - hide hidden files
 " set up patterns to ignore
 set wildignore+=.hg,.git,.svn                     " version control
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg    " images - binary
@@ -450,28 +462,12 @@ set wildignore+=*.luac                            " byte code - lua
 set wildignore+=*.pyc                             " byte code - python
 set wildignore+=*.sw?                             " nvim swap files
 set wildignore+=Session.vim                       " nvim mksession - default
-let g:ctrlp_custom_ignore={
-  \ 'dir':  '\v[\/].(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': '',
-  \ }
-
-"""  ctrlp extensions
-"""
-" Plug 'tacahiroy/ctrlp-funky'                      " :help ctrlp-funky
-"""
-nnoremap <leader>fu :CtrlPFunky<CR>
-nnoremap <leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<CR>
-let g:ctrlp_funky_matchtype='path'                " plug default : line
-let g:ctrlp_funky_syntax_highlight=1              " plug default : 0
-let g:ctrlp_funky_multi_buffers=1                 " plug default : 0
-let g:ctrlp_funky_use_cache=1                     " plug default : 0
 
 """  fzf
 """
-" Plug 'junegunn/fzf',
-"  \ { 'dir': '~/.fzf', 'do': './install --all' }
-"set rtp+=/usr/local/opt/fzf                      " :help fzf
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+let $FZF_DEFAULT_OPTS='--reverse'
+let g:fzf_checkout_track_key = 'ctrl-t'
 
 """  sk
 """
