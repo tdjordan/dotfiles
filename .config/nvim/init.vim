@@ -182,6 +182,7 @@ Plug 'lambdatoast/elm.vim'                        " :help elm
 "Plug 'ElmCast/elm-vim'                            " :help elm-vim
 Plug 'tmux-plugins/vim-tmux'                      " :help vim-tmux
 Plug 'google/vim-jsonnet'
+"Plug 'zinit-zsh/zinit-vim-syntax'
 "Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 """  language debug
@@ -467,7 +468,17 @@ set wildignore+=Session.vim                       " nvim mksession - default
 """
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS='--reverse'
-let g:fzf_checkout_track_key = 'ctrl-t'
+"let g:fzf_checkout_track_key = 'ctrl-t'
+let g:fzf_branch_actions = {
+  \ 'track': {
+  \   'prompt': 'Track> ',
+  \   'execute': 'echo system("{git} checkout --track {branch}")',
+  \   'mulitple': v:false,
+  \   'keymap': 'ctrl-t',
+  \   'required': ['branch'],
+  \   'confirm': v:false,
+  \ },
+  \}
 
 """  sk
 """
