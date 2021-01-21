@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  #source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
+
 # Disable bi-weekly auto-update checks
 DISABLE_AUTO_UPDATE="true"
 DISABLE_UPDATE_PROMPT="true"
@@ -14,7 +21,12 @@ HIST_STAMPS="yyyy-mm-dd"
 # Disable initial powerlevel10k config wizard
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+#
+export DISABLE_AUTO_TITLE='true'
 
+#declare -A ZINIT
+#ZINIT[COMPINIT_OPTS]="-C"
+#ZINIT[OPTIMIZE_OUT_DISK_ACCESSES]=1
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
   print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
@@ -36,18 +48,33 @@ autoload -Uz _zinit
 #  zinit-zsh/z-a-patch-dl \
 #  zinit-zsh/z-a-bin-gem-node
 
-# Thom's environment
-zinit wait"1" lucid nocd is-snippet for \
+###  Thom's environment
+###
+zinit wait"0" lucid is-snippet for \
+  $HOME/.aliases \
+
+zinit wait"2" lucid nocd is-snippet for \
   OMZ::lib/functions.zsh \
   OMZ::lib/misc.zsh \
   OMZ::lib/history.zsh \
   OMZ::lib/directories.zsh \
   OMZ::lib/git.zsh \
   OMZ::plugins/git/git.plugin.zsh \
+  https://raw.githubusercontent.com/shihyuho/zsh-jenv-lazy/master/jenv-lazy.plugin.zsh \
   $HOME/.bash_local \
-  $HOME/.aliases \
   $HOME/.dockerfunc
+  #https://github.com/sainnhe/dotfiles/raw/master/.zsh-theme-gruvbox-material-dark \
+
+#zinit load black7375/zsh-lazyenv
+
+#zinit wait"8" lucid nocd is-snippet for \
   #OMZ::plugins/jenv/jenv.plugin.zsh
+#zinit wait"1" lucid nocd light-mode for \
+  #shihyuho/zsh-jenv-lazy
+
+#zinit load zinit-zsh/z-a-bin-gem-node
+#zinit ice from"gh-r" sbin"jenv"
+#zinit load OMZ::plugins/jenv/jenv.plugin.zsh
 
 zinit wait"1" lucid nocd light-mode for \
   zsh-users/zsh-autosuggestions \
@@ -55,21 +82,37 @@ zinit wait"1" lucid nocd light-mode for \
   zsh-users/zsh-completions \
   hlissner/zsh-autopair
 
+#zinit wait lucid nocd light-mode for \
+  #atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    #zdharma/fast-syntax-highlighting \
+  #blockf \
+    #zsh-users/zsh-completions \
+  #atload"!_zsh_autosuggest_start" \
+    #zsh-users/zsh-autosuggestions \
+
 [ -f $HOME/.skim/shell/key-bindings.zsh ] && \
-  zinit wait"1" lucid nocd is-snippet for \
+  zinit wait"2" lucid nocd is-snippet for \
     $HOME/.skim/shell/key-bindings.zsh
 
 #zinit wait lucid nocd is-snippet for \
 
-# change directories without cd
+###  change directories without cd
+###
 setopt auto_cd
+
+###  history config
+###
+setopt inc_append_history
+setopt share_history              # share hsitory across instances
+setopt hist_ignore_space          # ignore commands that start with space
+
 
 PS1="READY > "
 zinit wait"!" lucid nocd atload"!source ~/.p10k.zsh; _p9k_precmd" for \
   romkatv/powerlevel10k
 
 # must be last
-zinit ice wait"2" lucid nocd atinit"zpcompinit; zpcdreplay"
+#zinit ice wait"3" lucid nocd atinit"zpcompinit; zpcdreplay"
 
 function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}
 
@@ -77,3 +120,6 @@ function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}
 #zmodload -u zsh/zprof
 
 ### End of Zinit's installer chunk
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

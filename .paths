@@ -1,11 +1,16 @@
 #echo .paths
 export PATH=/usr/local/opt/libressl/bin
+export PATH=$PATH:/usr/local/opt/ruby/bin
 export PATH=$PATH:/usr/local/opt/curl/bin
+export PATH=$PATH:/usr/local/opt/llvm/bin
+export PATH=$PATH:~/.cargo/bin
 #export PATH=$PATH:/usr/local/opt/curl-openssl/bin
 #export PATH=$PATH:/usr/local/opt/openssl@1.1/bin
 export PATH=$PATH:/usr/local/opt/ruby/bin
-export PATH=$PATH:~/.gem/ruby/2.6.0
-export PATH=$PATH:/usr/local/lib/ruby/gems/2.6.0/bin
+export PATH=$PATH:~/.gem/ruby/3.0.0
+export PATH=$PATH:/usr/local/lib/ruby/gems/3.0.0/bin
+#export PATH=$PATH:~/.gem/ruby/2.6.0
+#export PATH=$PATH:/usr/local/lib/ruby/gems/2.6.0/bin
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/usr/bin
 export PATH=$PATH:/bin
@@ -16,7 +21,6 @@ export PATH=$PATH:~/.gopath/bin
 #export PATH=$PATH:~/.cabal/bin
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/.files/bin
-export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:~/go/bin
 export PATH=$PATH:/Library/TeX/texbin:/Library/GE/bin:/opt/X11/bin
 # export MANPATH="/usr/local/man:$MANPATH"

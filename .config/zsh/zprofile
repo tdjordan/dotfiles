@@ -1,2 +1,4 @@
 #echo .zprofile
 #. ~/.paths
+
+export PATH="$HOME/.cargo/bin:$PATH"
