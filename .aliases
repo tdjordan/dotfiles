@@ -29,6 +29,10 @@ alias ll.='${_ls_command} -dl .*[^.$] ${color} 2>/dev/null'
 alias ll='${_ls_command} -AlF ${color}'
 alias lla='${_ls_command} -AlFh ${color}'
 
+alias h='history'
+
+alias fdi="fd --ignore-file .gitignore "
+
 #alias grep='grep --color=auto 2>/dev/null'
 #alias grep='ag $*' 2>/dev/null
 alias tree='tree -a -I .git'
@@ -54,7 +58,8 @@ alias dms='docker_select'
 alias bi='brew info'
 
 # cat
-alias c='cat'
+#alias c='cat'
+alias c='cargo'
 
 # overload ag
 alias ag='ag --hidden --ignore-dir .git'
@@ -82,6 +87,9 @@ alias vi='nvim'
 # blind
 alias viu='vi -u NONE'
 
+# neovim config
+alias vic='nvim ~/.config/nvim/init.vim'
+
 # loop
 alias lo='_lo '
 
@@ -100,8 +108,8 @@ alias config='git --git-dir=$HOME/.files.git --work-tree=$HOME --no-pager'
 alias kk='kubectl'
 
 # python 3
-alias python=/usr/local/opt/python@3.8/bin/python3
-alias pip=/usr/local/opt/python@3.8/bin/pip3
+alias python=/usr/local/opt/python@3.9/bin/python3
+alias pip=/usr/local/opt/python@3.9/bin/pip3
 
 # vifm
 alias vf='vifm'
@@ -110,3 +118,14 @@ alias vf='vifm'
 #  restat yabai quickly
 #  # ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 alias reup='launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"'
+
+# clangd
+#alias clangd='/usr/local/Cellar/llvm/10.0.1_1/bin/clangd'
+
+#  clear
+#
+alias cls='clear'
+
+#  ssh
+##
+alias ssh='TERM=xterm-256color ssh '

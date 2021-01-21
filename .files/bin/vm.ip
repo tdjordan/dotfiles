@@ -1,5 +1,5 @@
 #!/bin/sh
 
-. ~/.local/bin/.env_govc
+. ~/.local/bin/.env_govc.ci-bot
 
 govc vm.ip $1

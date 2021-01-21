@@ -13,3 +13,24 @@ do
   time /usr/local/bin/zsh $* -c exit
   #time /usr/bin/env zsh $* -c exit
 done
+
+for i in $(seq 1 10)
+do
+  #time /bin/zsh $* -c exit
+  time /usr/local/bin/zsh --emulate sh $* -c exit
+  #time /usr/bin/env zsh $* -c exit
+done
+
+for i in $(seq 1 10)
+do
+  #time /bin/zsh $* -c exit
+  time /usr/bin/env zsh $* -c exit
+  #time /usr/bin/env zsh $* -c exit
+done
+
+for i in $(seq 1 10)
+do
+  #time /bin/zsh $* -c exit
+  time /usr/bin/env zsh --emulate sh $* -c exit
+  #time /usr/bin/env zsh $* -c exit
+done

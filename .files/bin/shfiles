@@ -32,3 +32,12 @@ for i in $* ; do
   (sudo bash -c "echo exit|dtruss zsh ${i}|& less|grep '^open'") > "${run}/tt.zsh.${i}.${run}"
 done
 
+echo "root"
+(sudo bash -c "echo exit|dtruss /bin/zsh |& less|grep '^open'") > "${run}/tt.bin.zsh..${run}"
+
+for i in $* ; do
+  echo "${i}"
+  (sudo bash -c "echo exit|dtruss /bin/zsh ${i}|& less|grep '^open'") > "${run}/tt.bin.zsh.${i}.${run}"
+done
+
+
