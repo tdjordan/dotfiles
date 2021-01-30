@@ -40,6 +40,7 @@ local servers = {
   , 'gopls'
   , 'clangd'
   , 'jedi_language_server'
+  , 'pyright'
 }
 
 --  just attach completions to simple list
