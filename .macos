@@ -1,0 +1,22 @@
+#!/bin/bash
+
+sudo -v
+
+# Close any open System Preferences panes
+# to prevent them from overrriding settings
+# that are about to change
+osascript -e 'tell application "System Preferences" to quit'
+
+# install vim-plug
+#curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+  #https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# Save screenshots to the folder under the Desktop
+mkdir -p "${HOME}/Desktop/Screen Shots"
+defaults write com.apple.screencapture location -string "${HOME}/Desktop/Screen Shots"
+
+# speed up the keyboard
+#defaults write -g InitialKeyRepeat -int 10
+#defaults write -g KeyRepeat -int 2
+defaults write -g InitialKeyRepeat -int 15
+defaults write -g KeyRepeat -int 1
