@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cpan -i CPAN::DistnameInfo
+cpan -i Neovim::Ext
+cpsn -i App::cpanminus
