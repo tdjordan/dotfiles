@@ -17,45 +17,55 @@
 "let g:polyglot_is_disabled = []
 "call plugpac#end()
 
-"""  vim-plug : config section
-call plug#begin(stdpath('data').'/plugged')
+if has('nvim')
 
-"""  Language Protocol Server - LSP               " :h lsp
-"""
-Plug 'neovim/nvim-lspconfig'
-"Plug 'mattn/vim-lsp-settings'                     " :h vim-lsp-settings
-Plug 'nvim-lua/completion-nvim'                   " :h completion-nvim
-"Plug 'steelsojka/completion-buffers'
-"Plug 'nvim-lua/diagnostic-nvim'                   " :h diagnostic-nvim
-Plug 'tjdevries/nlua.nvim'
-Plug 'tjdevries/lsp_extensions.nvim'
+  """  vim-plug : config section
+  """
+  "call plug#begin(stdpath('data').'/plugged')
+  call plug#begin('$V/plugged')
 
-"Plug 'neoclide/coc.nvim', {'branch': 'release' }
-"Plug 'tjdevries/coc-zsh'
+  """  Language Protocol Server - LSP               " :h lsp
+  """
+  Plug 'neovim/nvim-lspconfig'
+  "Plug 'mattn/vim-lsp-settings'                     " :h vim-lsp-settings
+  Plug 'nvim-lua/completion-nvim'                   " :h completion-nvim
+  "Plug 'steelsojka/completion-buffers'
+  "Plug 'nvim-lua/diagnostic-nvim'                   " :h diagnostic-nvim
+  Plug 'tjdevries/nlua.nvim'
+  Plug 'tjdevries/lsp_extensions.nvim'
 
-"""  Telescope
-"""
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+  "Plug 'neoclide/coc.nvim', {'branch': 'release' }
+  "Plug 'tjdevries/coc-zsh'
 
-""" tree sitter
-"""
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }   " :h nvim-treesitter
-Plug 'nvim-treesitter/playground'
-Plug 'nvim-treesitter/completion-treesitter'
-Plug 'nvim-treesitter/nvim-treesitter-refactor'   " :h nvim-treesitter
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-Plug 'romgrk/nvim-treesitter-context'
+  """  Telescope
+  """
+  Plug 'nvim-lua/popup.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
 
-"""  highlight on yank
-"""
-if !has('nvim')
+  """ tree sitter
+  """
+  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }   " :h nvim-treesitter
+  Plug 'nvim-treesitter/playground'
+  Plug 'nvim-treesitter/completion-treesitter'
+  Plug 'nvim-treesitter/nvim-treesitter-refactor'   " :h nvim-treesitter
+  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+  Plug 'romgrk/nvim-treesitter-context'
+
+else " !has('nvim')
+
+  """  vim-plug : config section
+  """
+  call plug#begin('$V/plugged')
+
+  """  highlight on yank
+  """
   Plug 'machakann/vim-highlightedyank'
   if !exists('##TextYankPost')
     map y <Plug>(highlightedyank)
   endif
   let g:highlightedyank_highlight_duration = 40
+
 endif
 
 """  history
@@ -197,12 +207,13 @@ Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
 """  annoyances
 """
 Plug 'ntpeters/vim-better-whitespace'             " :h better-whitespace
-"let g:strip_whitespace_on_save = 1
-"let g:strip_whitespace_confirm = 0
 
 """  automation ?
 """
-"Plug 'tpope/vim-surround'                         " :h surround
+Plug 'tpope/vim-surround'                         " :h surround
+Plug 'kana/vim-textobj-user'
+Plug 't9md/vim-surround_custom_mapping'
+"Plug 'machakann/vim-sandwich'
 " [ DEPRECATED ] Plug 'terryma/vim-multiple-cursors'               " :h multiple-cursors
 "Plug 'mg979/vim-visual-multi'
 "Plug 'jszakmeister/vim-togglecursor'              " : help togglecursor

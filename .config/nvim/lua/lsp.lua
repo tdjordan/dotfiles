@@ -27,11 +27,11 @@ local servers = {
 
 --  lsp configs with installers
 --
-  , 'jdtls'
-  , 'sqlls'
+  --, 'jdtls'
+  --, 'sqlls'
   , 'tsserver'
   --, 'diagnosticls'
-  , 'angularls'
+  --, 'angularls'
   , 'elmls'
 --  lsp configs needing installers
 --
