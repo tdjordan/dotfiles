@@ -9,7 +9,12 @@ scriptencoding utf-8
 
 """  neovim 0.5 plugin mix
 """
-let $V=stdpath('config')
+if has('nvim')
+  let $V=stdpath('config')
+else
+  let $V='~/.config/nvim'
+  "setenv VIM ~/.config/nvim
+endif
 source $V/plugins.vim
 
 "source $V/plugins-paq.vim
@@ -142,7 +147,7 @@ set nohlsearch                                    " nvim default : on
 
 " Display line numbers in the left gutter
 set number                                        " nvim default : off
-set relativenumber                                " nvim default : off
+"set relativenumber                                " nvim default : off
 
 " display space above/below left/right of cursor
 set scrolloff=1
@@ -276,7 +281,11 @@ set showcmd                                       " nvim default : (unix) ? off 
 """  undo
 """
 " List of directory names for undo files
-set undodir=~/.local/share/nvim/tmp/undo/                     " nvim default : '.'
+if has('nvim')
+  set undodir=~/.local/share/nvim/tmp/undo/nvim/              " nvim default : '.'
+else
+  set undodir=~/.local/share/nvim/tmp/undo/vim8/
+endif
 
 "  when writing a buffer to a file, and
 "  restore undo history from same file on buffer read
@@ -371,8 +380,11 @@ set nowritebackup
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=100
 
-" don't give |ins-completion-menu| messages.
+" do not give |ins-completion-menu| messages.
 set shortmess+=c
+
+" do not display intro message on startup
+set shortmess+=I
 
 " always show signcolumns
 set signcolumn=yes
@@ -389,7 +401,7 @@ set signcolumn=yes
 
 " Reload init.vim from standard config path
 " note that the stdpath makes this portable
-nnoremap <leader><cr> :so `=stdpath('config').'/init.vim'`<cr>
+nnoremap <leader><cr> :so $V/init.vim<cr>
 
 """
 """ p* mappings
@@ -446,8 +458,12 @@ nnoremap <leader>u :UndotreeToggle<cr>
 
 """  Plug 'ntpetters/vim-beetter-whitespace'
 """
-let g:strip_whitespace_on_save = 1
-let g:strip_whitespace_confirm = 0
+augroup strip_whitespace_on_save
+  autocmd!
+  let g:strip_whitespace_on_save = 1
+  let g:strip_whitespace_confirm = 0
+  autocmd  BufWritePre * StripWhitespace
+augroup END
 
 """  Plug 'rking/ag.vim'                               " :h ag
 """
@@ -531,7 +547,7 @@ let g:lightline = {
   \     ],
   \     'right': [
   \       [ 'percent', 'lineinfo' ],
-  \       [ 'file_airline' ],
+  \       [ 'fileencoding', 'fileformat' ],
   \       [ 'file', 'filetype' ],
   \     ],
   \   },
@@ -556,10 +572,10 @@ let g:lightline = {
   \     'gitbranch': 'gitbranch#name',
   "\     'filename': 'LightlineFilename',
   \   },
-  \   'separator': {
-  \     'left': "\ue0b8",
-  \     'right': "\ue0be"
-  \   },
+  "\   'separator': {
+  "\     'left': "\ue0b8",
+  "\     'right': "\ue0be"
+  "\   },
   \ }
   "\   'mode_map': {
   "\     'n': 'N',
@@ -758,8 +774,22 @@ if has('nvim')
   tnoremap <C-j> <C-\><C-n><C-w>j
   tnoremap <C-k> <C-\><C-n><C-w>k
   tnoremap <C-l> <C-\><C-n><C-w>l
-  autocmd BufWinEnter,WinEnter term://* startinsert
-  autocmd BufLeave term://* stopinsert
+  nnoremap <silent> <leader>t :split term://$SHELL<cr>
+  tnoremap <silent> <leader>t <c-\><c-n>:split term://$SHELL<cr>
+  augroup terminal_settings
+    autocmd!
+    autocmd BufWinEnter,WinEnter,TermEnter term://* startinsert
+    autocmd BufLeave                       term://* stopinsert
+    autocmd TermClose                      term://*
+      \ if    (expand('<afile>') !~ "fzf")
+      \    && (expand('<afile>') !~ "ranger")
+      \    && (expand('<afile>') !~ "coc")    |
+      \   call nvim_input('<cr>') |
+      \ endif
+  augroup END
+else
+  nnoremap <silent> <leader>t :term ++close<cr>
+  tnoremap <silent> <leader>t <c-w>:term ++close<cr>
 endif
 " normal mode
 "nnoremap <C-h> <C-w>h
@@ -787,12 +817,14 @@ nnoremap <silent><c-l> :wincmd l<cr>
 
 """  terminal behaviour
 """
-augroup configure_terminal_buffer
-  autocmd!
-  autocmd TermOpen * :set nonumber
-  autocmd TermOpen * :set norelativenumber
-  "autocmd Buf
-augroup END
+if has('nvim')
+  augroup configure_terminal_buffer
+    autocmd!
+    autocmd TermOpen * :set nonumber
+    autocmd TermOpen * :set norelativenumber
+    "autocmd Buf
+  augroup END
+endif
 
 
 """  Tab Minipulation
@@ -922,6 +954,9 @@ let g:gruvbox_material_diagnostic_line_highlight = 1    " default: 0 ( off )
 "let g:gruvbox_material_statusline_style = 'original'    " default: 'default'
 let g:gruvbox_material_lightline_disable_bold = 1       " default: 0 ( off )
 let g:gruvbox_material_enable_italic = 1                " default: 1 ( on )
+"let g:gruvbox_material_menu_selectionbackground = 'orange'  " default: 'default'
+"let g:gruvbox_material_diagnostic_line_highlight = 0    " default: 1
+"let g:gruvbox_material_diagnostic_text_highlight = 0    " default: 1
 
 "let g:gruvbox_material_palette = 'material'             " default: 'material'
 
@@ -934,8 +969,8 @@ colorscheme gruvbox-material
 if &diff
   colorscheme github
 endif
-if has('nvim-0.3.2') || has("patch-8.1.0360")
-    set diffopt=filler,internal,algorithm:histogram,indent-heuristic
+if has('nvim')
+  set diffopt=filler,internal,algorithm:histogram,indent-heuristic
 endif
 
 """  Enable syntax highlighting
@@ -943,10 +978,12 @@ endif
 syntax on
 
 " highlight on yank
-augroup highlight_yank
-  autocmd!
-  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {timeout = 100}
-augroup END
+if has('nvim')
+  augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {timeout = 100}
+  augroup END
+endif
 
 "vnoremap <leader>p "_dP
 
@@ -1023,12 +1060,67 @@ endfunction
     "\   }
     "\ }
 
+"""  textobjs
+"""
+call textobj#user#plugin('datetiem', {
+  \   'date': {
+  \     'pattern': '\<\d\d\d\d-\d\d-\d\d\>',
+  \     'select': ['ad', 'id'],
+  \   },
+  \   'time': {
+  \     'pattern': '\<\d\d:\d\d:\d\d\>',
+  \     'select': ['at', 'it'],
+  \   },
+  \ })
+
+"call textobj#user#plugin('variable', {
+  "\   'variable': {
+  "\     '*sfile*': expand('<sfile>:p'),
+  "\     'select-a': 'av', '*select-a-function*': 's:select_a',
+  "\     'select-i': 'iv', '*select-i-function*': 's:select_i'
+  "\   }
+  "\ })
+
+"function! s:select_a()
+  "normal! F$
+
+  "let end_pos = getpos('.')
+
+  "normal! e
+
+  "let start_pos = getpos('.')
+  "return ['v', start_pos, end_pos]
+"endfunction
+
+"function! s:select_i()
+  "normal! T$
+
+  "let end_pos = getpos('.')
+
+  "normal! e
+
+  "let start_pos = getpos('.')
+
+  "return ['v', start_pos, end_pos]
+"endfunction
+
+nnoremap <leader>v T$i{<esc>e i}<esc>
+
+
+"""  surround mappings
+"""
+"let g:surround_custom_mapping.groovy = {
+  "\ 'v': "
+"}
+
 """ terminals
 """
 "lua require'terminal'.setup()
 
 """  rlease the lua goodness
 """
-lua require 'init'
+if has('nvim')
+  lua require 'init'
+endif
 "luafile init
 "autocmd BufEnter * lua require'completion'.on_attach()
