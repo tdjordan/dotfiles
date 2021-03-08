@@ -19,6 +19,7 @@
   br = branch
   cp = cherry-pick
   up = pull --prune
+  gr = !cd $(git rev-parse --show-toplevel)
   deleted = log --diff-filter=D --summary
 
   # log bases
@@ -39,7 +40,7 @@
   wds = !git wd --staged
 
   # current branch name
-  current-br = !git branch | cut -b3-
+  current-br = !git branch --show-current
 
   # incoming changes - like hg
   incoming = !git fetch && git lg3  $(git current-br)..origin/$(git current-br)
