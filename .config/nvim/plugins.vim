@@ -6,9 +6,22 @@
 """  Plugins
 
 """  autoload install
+"""
+"""    https://github.com/junegunn/vim-plug/issues/739#issuecomment-516953621
+"""
+let plug_install = 0
+let autoload_plug_path = stdpath('config') . '/autoload/plug.vim'
+if !filereadable(autoload_plug_path)
+  silent exe '!curl -fL --create-dirs -o ' . autoload_plug_path . 
+    \ ' https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+  execute 'source ' . fnameescape(autoload_plug_path)
+  let plug_install = 1
+endif
+unlet autoload_plug_path
+
 "if empty(glob('~/.vim/autoload/plug.vim'))
-"  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dires
-    "\ https://raw.githubusercontent.com/junegunn/vim-plug/maaster/plug.vim
+"  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+"    \ https://raw.githubusercontent.com/junegunn/vim-plug/maaster/plug.vim
 "endif
 "autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 
@@ -223,4 +236,8 @@ Plug 'xu-cheng/brew.vim'
 " vim-plug : add plugins to &runtimepath
 call plug#end()
 
-
+" install plugins if we just installed vim-plug
+if plug_install
+  PlugInstall --sync
+endif
+unlet plug_install

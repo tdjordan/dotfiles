@@ -30,6 +30,7 @@ for shell in "${shells[@]}" ; do
   # common option runs
   for switch in "${switches[@]}" ; do
     cmd="$cmd '$shell $switch -c \"exit\"'"
+    cmd="$cmd '/bin/$shell $switch -c \"exit\"'"
     cmd="$cmd '/usr/bin/env $shell $switch -c \"exit\"'"
   done
 done
