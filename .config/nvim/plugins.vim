@@ -27,8 +27,10 @@ if has('nvim')
   """  Language Protocol Server - LSP               " :h lsp
   """
   Plug 'neovim/nvim-lspconfig'
+  Plug 'hrsh7th/nvim-compe'
+  Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
   "Plug 'mattn/vim-lsp-settings'                     " :h vim-lsp-settings
-  Plug 'nvim-lua/completion-nvim'                   " :h completion-nvim
+  "Plug 'nvim-lua/completion-nvim'                   " :h completion-nvim
   "Plug 'steelsojka/completion-buffers'
   "Plug 'nvim-lua/diagnostic-nvim'                   " :h diagnostic-nvim
   Plug 'tjdevries/nlua.nvim'
