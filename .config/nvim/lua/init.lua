@@ -1,8 +1,8 @@
 --  local configs
 --
-require'treesitter'
+--require'plugins/treesitter-config'
 --nvim.o.termguicolors = true
-require'colorizer'.setup()
+--require'colorizer'.setup()
 
 --  lua tree
 --
@@ -11,7 +11,7 @@ require'colorizer'.setup()
 
 --  lsp configs
 --
-require 'lsp'
+--require 'lsp/lsp'
 
 --  lsp configs with installers
 --
@@ -37,4 +37,4 @@ require 'lsp'
 
 --  telescope
 --
-require 'ts'
+--require 'plugins/telescope-config'

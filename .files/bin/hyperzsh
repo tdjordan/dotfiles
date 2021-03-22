@@ -25,12 +25,16 @@ cmd=''
 for shell in "${shells[@]}" ; do
   # no option runs
   cmd="$cmd '$shell -c \"exit\"'"
-  cmd="$cmd '/usr/bin/env $shell -c \"exit\"'"
+  [ -x /bin/$shell ]             && cmd="$cmd '/bin/$shell -c \"exit\"'"
+  [ -x /usr/local/bin/$shell ]   && cmd="$cmd '/usr/local/bin/$shell -c \"exit\"'"
+  [ -x /usr/bin/env ]            && cmd="$cmd '/usr/bin/env $shell -c \"exit\"'"
 
   # common option runs
   for switch in "${switches[@]}" ; do
     cmd="$cmd '$shell $switch -c \"exit\"'"
-    cmd="$cmd '/usr/bin/env $shell $switch -c \"exit\"'"
+    [ -x /bin/$shell ]           && cmd="$cmd '/bin/$shell $switch -c \"exit\"'"
+    [ -x /usr/local/bin/$shell ] && cmd="$cmd '/usr/local/bin/$shell $switch -c \"exit\"'"
+    [ -x /usr/bin/env ]          && cmd="$cmd '/usr/bin/env $shell $switch -c \"exit\"'"
   done
 done
 

@@ -4,22 +4,27 @@
 ---
 ----------
 
+local cmd    = vim.cmd
+local fn     = vim.fn
+local input  = fn.input
+local system = fn.system
+
 ---   packer.vim : config section
-local packer_exists = pcall( vim.cmd, [[packadd packer.nvim]] )
+local packer_exists = pcall( cmd, [[packadd packer.nvim]] )
 
 if not packer_exists then
-  if vim.fn.input("Download Packer? (y for yes)") ~= "y" then
+  if input("Download Packer? (y for yes)") ~= "y" then
     return
   end
 
   local directory = string.format(
     '%s/site/pack/packer/opt/',
-    vim.fn.stdpath('data')
+    fn.stdpath('data')
   )
 
-  vim.fn.mkdir(directory, 'p')
+  fn.mkdir(directory, 'p')
 
-  local out = vim.fn.system(string.format(
+  local out = system(string.format(
       'git clone %s %s',
       'https://github.com/wbthomason/packer.nvim',
       directory .. '/packer.nvim'

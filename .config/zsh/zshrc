@@ -76,6 +76,7 @@ zinit wait"2" lucid nocd is-snippet for \
 #zinit ice from"gh-r" sbin"jenv"
 #zinit load OMZ::plugins/jenv/jenv.plugin.zsh
 
+#zinit wait"1" lucid nocd light-mode atload"zicompinit; zicdreplay" for \
 zinit wait"1" lucid nocd light-mode for \
   zsh-users/zsh-autosuggestions \
   zdharma/fast-syntax-highlighting \

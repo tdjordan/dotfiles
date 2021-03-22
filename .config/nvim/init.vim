@@ -147,7 +147,7 @@ set nohlsearch                                    " nvim default : on
 
 " Display line numbers in the left gutter
 set number                                        " nvim default : off
-"set relativenumber                                " nvim default : off
+set relativenumber                                " nvim default : off
 
 " display space above/below left/right of cursor
 set scrolloff=1
@@ -1120,7 +1120,27 @@ nnoremap <leader>v T$i{<esc>e i}<esc>
 """  rlease the lua goodness
 """
 if has('nvim')
-  lua require 'init'
+  """  lsp servers
+  luafile $V/lua/lsp/lsp-config.lua
+  luafile $V/lua/lsp/lua-ls.lua
+  luafile $V/lua/lsp/vim-ls.lua
+  luafile $V/lua/lsp/efm-ls.lua
+  luafile $V/lua/lsp/bash-ls.lua
+  luafile $V/lua/lsp/html-ls.lua
+  luafile $V/lua/lsp/json-ls.lua
+  luafile $V/lua/lsp/yaml-ls.lua
+  luafile $V/lua/lsp/rust-ls.lua
+  luafile $V/lua/lsp/python-ls.lua
+  luafile $V/lua/lsp/docker-ls.lua
+  luafile $V/lua/lsp/terraform-ls.lua
+  "luafile $V/lua/lsp/diagnostic-ls.lua
+
+  "luafile $V/lua/init.lua
+  luafile $V/lua/plugins/compe-config.lua
+  luafile $V/lua/plugins/colorizer-config.lua
+  luafile $V/lua/plugins/telescope-config.lua
+  luafile $V/lua/plugins/treesitter-config.lua
+
 endif
 "luafile init
 "autocmd BufEnter * lua require'completion'.on_attach()
