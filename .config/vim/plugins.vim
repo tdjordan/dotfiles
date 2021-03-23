@@ -5,13 +5,6 @@
 """"""""""
 """  Plugins
 
-"""  autoload install
-"if empty(glob('~/.vim/autoload/plug.vim'))
-"  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dires
-    "\ https://raw.githubusercontent.com/junegunn/vim-plug/maaster/plug.vim
-"endif
-"autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-
 "call plugpac#begin()
 "Pack 'sheerun/vim-polyglot'
 "let g:polyglot_is_disabled = []
@@ -23,6 +16,10 @@ if has('nvim')
   """
   "call plug#begin(stdpath('data').'/plugged')
   call plug#begin('$V/plugged')
+
+  """  Lua Information
+  """
+  Plug 'nanotee/nvim-lua-guide'
 
   """  Language Protocol Server - LSP               " :h lsp
   """
@@ -55,6 +52,13 @@ if has('nvim')
   Plug 'romgrk/nvim-treesitter-context'
 
 else " !has('nvim')
+
+  """  autoload install
+  if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  endif
 
   """  vim-plug : config section
   """
@@ -141,7 +145,7 @@ Plug 'editorconfig/editorconfig-vim'              " :h editorconfig
 """  convience
 """
 "Plug 'benekastah/neomake'                         " :h neomake
-Plug 'scrooloose/nerdcommenter', { 'on': '<plug>NERDCommenterToggle' } " :h nerdcommenter
+Plug 'preservim/nerdcommenter', { 'on': '<plug>NERDCommenterToggle' } " :h NERDCommenterToggle
 
 """  file trees
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
