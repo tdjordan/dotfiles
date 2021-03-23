@@ -12,7 +12,7 @@ scriptencoding utf-8
 if has('nvim')
   let $V=stdpath('config')
 else
-  let $V='~/.config/nvim'
+  let $V='~/.config/vim'
   "setenv VIM ~/.config/nvim
 endif
 source $V/plugins.vim
@@ -642,7 +642,7 @@ endfunction
 
 """  Comment Handling
 "nmap <C-_> :NERDComment(1, 'toggle')<cr>
-"nmap <C-_> :Plug 'scrooloose/nerdcommenter'<cr>
+"nmap <C-_> :Plug 'preservim/nerdcommenter'<cr>
 nmap <C-_> <plug>NERDCommenterToggle
 vmap <C-_> <plug>NERDCommenterToggle
 
