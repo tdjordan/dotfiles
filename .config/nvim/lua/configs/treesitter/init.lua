@@ -1,5 +1,6 @@
 require 'nvim-treesitter.configs'.setup {
-  ensure_installed = "all",
+  -- ensure_installed = "all",
+  ensure_installed = "maintained",
   highlight = {
     enable = true
   },
@@ -43,7 +44,7 @@ require 'nvim-treesitter.configs'.setup {
         ["ic"] = "@class.inner",
       },
     },
-  },
+  }
 }
 
   --indent = {

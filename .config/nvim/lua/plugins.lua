@@ -42,16 +42,16 @@ return require 'packer'.startup(function(use)
 
   ---  Lua Information
   ---
-  use 'nanotee/nvim-lua-guide'
+  use { 'nanotee/nvim-lua-guide'       }
 
   ---  Language Protocol Server - LSP
   ---
-  use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/nvim-compe'
-  use 'glepnir/lspsaga.nvim'
+  use { 'neovim/nvim-lspconfig'        }
+  use { 'hrsh7th/nvim-compe'           }
+  use { 'glepnir/lspsaga.nvim'         }
   --use { 'nvim-lua/completion-nvim' }
-  use 'nvim-lua/lsp_extensions.nvim'
-  use 'tjdevries/nlua.nvim'
+  use { 'nvim-lua/lsp_extensions.nvim' }
+  use { 'tjdevries/nlua.nvim'          }
 
   ---  Telescope
   ---
@@ -121,11 +121,11 @@ return require 'packer'.startup(function(use)
   --use { 'flazz/vim-colorschemes' }
   --use { 'morhetz/gruvbox' }
   --use { 'gruvbox-community/gruvbox' }
-  use 'sainnhe/gruvbox-material'
+  use { 'sainnhe/gruvbox-material' }
   --use { 'vim-airline/vim-airline' }
   --use { 'vim-airline/vim-airline-themes' }
   --use { 'itchyny/lightline.vim' }
-  --use { 'norcalli/nvim-colorizer.lua' }
+  use { 'norcalli/nvim-colorizer.lua' }
   --use { 'fatih/molokai' }
   --use { 'kyazdani42/nvim-tree.lua' }
   --use { 'hardcoreplayers/spaceline.vim' }
@@ -147,6 +147,7 @@ return require 'packer'.startup(function(use)
   ---
   --use { 'benekastah/neomake' }
   --use { 'preservim/nerdcommenter' }
+  use { 'b3nj5m1n/kommentary' }
 
   ---  file trees
   --use {
@@ -175,7 +176,7 @@ return require 'packer'.startup(function(use)
 
   ---  performance
   ---
-  use 'tweekmonster/startuptime.vim'
+  use { 'tweekmonster/startuptime.vim' }
 
   ---  braces
   ---
@@ -223,7 +224,7 @@ return require 'packer'.startup(function(use)
   --use { 'jszakmeister/vim-togglecursor' }
   --use { 'matze/vim-move' }
   ---  Utility - Alignment
-  --use { 'junegunn/vim-easy-align' }
+  use { 'junegunn/vim-easy-align' }
   --use { 'godlygeek/tabular' }
 
   ---  preview panels
