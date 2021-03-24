@@ -121,6 +121,19 @@ return require 'packer'.startup(function(use)
   --use { 'flazz/vim-colorschemes' }
   --use { 'morhetz/gruvbox' }
   --use { 'gruvbox-community/gruvbox' }
+  -- use { 'rktjmp/lush.nvim' }
+  -- use {
+  --   'npxbr/gruvbox.nvim',
+  --   requires = {
+  --     'rktjmp/lush.nvim'
+  --   }
+  -- }
+  -- use {
+  --   'tjdevries/gruvbuddy.nvim',
+  --   requires = {
+  --     'tjdevries/colorbuddy.vim'
+  --   }
+  -- }
   use { 'sainnhe/gruvbox-material' }
   --use { 'vim-airline/vim-airline' }
   --use { 'vim-airline/vim-airline-themes' }
