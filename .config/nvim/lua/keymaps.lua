@@ -1,6 +1,6 @@
-local cmd = vim.cmd
---local api = vim.api
---local keymap = api.nvim_set_keymap
+local cmd    = vim.cmd
+local api    = vim.api
+local keymap = api.nvim_set_keymap
 
 --function nnoremap(key, command)
 --  keymap('n', key, command, { noremap = true, silent = true })
@@ -135,4 +135,10 @@ cmd [[
 --nnoremap <C-S-L> <C-W>L
 --nnoremap <C-S-T> <C-W>T
 
-
+---  Comments
+---
+--[[ keymap( "n", "<c-_>",      "<Plug>kommentary_line_default",   { } )
+keymap( "v", "<c-_>",      "<Plug>kommentary_visual_default", { } )
+keymap( "n", "<leader>cc", "<Plug>kommentary_line_default",   { } )
+keymap( "n", "<leader>c",  "<Plug>kommentary_motion_default", { } )
+keymap( "v", "<leader>c",  "<Plug>kommentary_visual_default", { } ) ]]

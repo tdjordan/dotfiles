@@ -3,7 +3,12 @@ require 'settings'
 require 'keymaps'
 require 'colorscheme'
 
---  lsp
---
---require 'lsp'
-require 'lsp.lua-ls'
+---  plugin configs
+---
+require 'configs'
+
+--require 'configs.kommentary'
+
+---  lsp
+---
+require 'lsp'

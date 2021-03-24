@@ -2,4 +2,4 @@
 
 cpan -i CPAN::DistnameInfo
 cpan -i Neovim::Ext
-cpsn -i App::cpanminus
+cpan -i App::cpanminus

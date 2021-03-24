@@ -1,15 +1,15 @@
-local lspconfigs = require 'lspconfig'
+-- local lspconfigs = require 'lspconfig'
 --local util       = require 'lspconfig/util'
 
-local on_attach = function(_, bufnr)
+-- local on_attach = function(_, bufnr)
   --require 'diagnostic'.on_attach()
   --vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<cmd>lua.lsp.buf.hover()<CR>', { noremap = true },
   --require 'completion'.on_attach()
-end
+-- end
 
 --  simpleton configs ( no specializations )
 --
-local servers = {
+-- local servers = {
   --  lsp configs /w notes on how to install
   --
   --'vimls'             -- yarn global add vim-language-server
@@ -22,7 +22,7 @@ local servers = {
   --, 'terraformls'     -- brew install hashicorp/tap/terraform-ls
   --, 'yamlls'          -- yarn global add yaml-language-server
   --, 'solargraph'      -- gem install solargraph
-    'sorbet'          -- gem install sorbet
+  -- 'sorbet'          -- gem install sorbet
   --, 'rust_analyzer'   -- brew install rust-analyzer
   --, 'diagnosticls'    -- yarn global add diagnostic-languageserver
 
@@ -30,25 +30,25 @@ local servers = {
 --
   --, 'jdtls'
   --, 'sqlls'
-  , 'tsserver'
+   -- 'tsserver'
   --, 'angularls'
-  , 'elmls'
+  -- , 'elmls'
 --  lsp configs needing installers
 --
-  , 'cmake'
-  , 'rls'
-  , 'gopls'
-  , 'clangd'
+  -- , 'cmake'
+  -- , 'rls'
+  -- , 'gopls'
+   -- 'clangd'
   --, 'jedi_language_server'
   --, 'pyright'         -- yarn global add pyright
-}
+-- }
 
 --  just attach completions to simple list
-for _, lsp in ipairs(servers) do
-  lspconfigs[lsp].setup {
-    on_attach = on_attach,
-  }
-end
+-- for _, lsp in ipairs(servers) do
+--   lspconfigs[lsp].setup {
+--     on_attach = on_attach,
+--   }
+-- end
 
 --  groovyls configuration
 --
