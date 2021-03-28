@@ -189,6 +189,10 @@ return require 'packer'.startup(function(use)
   ---
   --use { 'Yggdroot/indentLine' }
   --use { 'nathanaelkane/vim-indent-guides' }
+  use {
+    'lukas-reineke/indent-blankline.nvim'
+    , branch = 'lua'
+  }
 
   ---  performance
   ---
