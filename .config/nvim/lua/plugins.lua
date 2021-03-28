@@ -36,28 +36,28 @@ return require 'packer'.startup(function(use)
   ---  Packer itself
   ---
   use {
-    'wbthomason/packer.nvim',
-    opt = true
+    'wbthomason/packer.nvim'
+    , opt = true
   }
 
   ---  Lua Information
   ---
-  use { 'nanotee/nvim-lua-guide'       }
+  use   'nanotee/nvim-lua-guide'
 
   ---  Language Protocol Server - LSP
   ---
-  use { 'neovim/nvim-lspconfig'        }
-  use { 'hrsh7th/nvim-compe'           }
-  use { 'glepnir/lspsaga.nvim'         }
+  use   'neovim/nvim-lspconfig'
+  use   'hrsh7th/nvim-compe'
+  use   'glepnir/lspsaga.nvim'
   --use { 'nvim-lua/completion-nvim' }
-  use { 'nvim-lua/lsp_extensions.nvim' }
-  use { 'tjdevries/nlua.nvim'          }
+  use   'nvim-lua/lsp_extensions.nvim'
+  use   'tjdevries/nlua.nvim'
 
   ---  Telescope
   ---
   use {
-    'nvim-telescope/telescope.nvim',
-    requires = {
+    'nvim-telescope/telescope.nvim'
+    , requires = {
       'nvim-lua/popup.nvim'
       , 'nvim-lua/plenary.nvim'
     }
@@ -66,13 +66,16 @@ return require 'packer'.startup(function(use)
   ---  tree sitter
   ---
   use {
-    'nvim-treesitter/nvim-treesitter',
-    run = 'TSUpdate'
+    'nvim-treesitter/nvim-treesitter'
+    , run = 'TSUpdate'
   }
-  --use { 'nvim-treesitter/playground' }
+  use {
+    'nvim-treesitter/playground'
+    , cmd = 'TSPlaygroundToggle'
+  }
   --use { 'nvim-treesitter/completion-treesitter' }
   --use { 'nvim-treesitter/nvim-treesitter-refactor' }
-  --use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+  -- use { 'nvim-treesitter/nvim-treesitter-textobjects' }
   --use { 'romgrk/nvim-treesitter-context' }
 
   ---  history
@@ -121,10 +124,10 @@ return require 'packer'.startup(function(use)
   --use { 'flazz/vim-colorschemes' }
   --use { 'morhetz/gruvbox' }
   --use { 'gruvbox-community/gruvbox' }
-  -- use { 'rktjmp/lush.nvim' }
+  use { 'rktjmp/lush.nvim' }
   -- use {
-  --   'npxbr/gruvbox.nvim',
-  --   requires = {
+  --   'npxbr/gruvbox.nvim'
+  --   , requires = {
   --     'rktjmp/lush.nvim'
   --   }
   -- }
@@ -134,7 +137,7 @@ return require 'packer'.startup(function(use)
   --     'tjdevries/colorbuddy.vim'
   --   }
   -- }
-  use { 'sainnhe/gruvbox-material' }
+  -- use { 'sainnhe/gruvbox-material' }
   --use { 'vim-airline/vim-airline' }
   --use { 'vim-airline/vim-airline-themes' }
   --use { 'itchyny/lightline.vim' }
@@ -154,7 +157,7 @@ return require 'packer'.startup(function(use)
 
   ---  editor configs
   ---
-  --use { 'editorconfig/editorconfig-vim' }
+  use { 'editorconfig/editorconfig-vim' }
 
   ---  convience
   ---
@@ -189,7 +192,8 @@ return require 'packer'.startup(function(use)
 
   ---  performance
   ---
-  use { 'tweekmonster/startuptime.vim' }
+  use   'tweekmonster/startuptime.vim'
+  -- use   'norcalli/profiler.nvim'
 
   ---  braces
   ---

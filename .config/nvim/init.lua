@@ -1,3 +1,8 @@
+---  performance
+---
+-- require 'profiler'
+
+
 require 'plugins'
 require 'settings'
 require 'keymaps'
@@ -12,3 +17,4 @@ require 'configs'
 ---  lsp
 ---
 require 'lsp'
+
