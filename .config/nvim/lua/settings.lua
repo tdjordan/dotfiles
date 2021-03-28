@@ -45,8 +45,8 @@ bo.tabstop       = 2                            -- nvim default : 8
  o.hlsearch       = false                       -- nvim default : on
 
 -- Display line numbers in the left gutter
- o.number         = true                        -- nvim default : off
- o.relativenumber = true                        -- nvim default : off
+wo.number         = true                        -- nvim default : off
+wo.relativenumber = true                        -- nvim default : off
 
 -- display space above/below left/right of cursor
  o.scrolloff      = 1
@@ -79,7 +79,7 @@ bo.tabstop       = 2                            -- nvim default : 8
 
 -- Enable 24-bit RGB color in the TUI
 --if has ('termguicolors')
-  o.termguicolors = true
+ o.termguicolors = true
 --endif
 
 ------  TODO: nvim defaults - not currently used
