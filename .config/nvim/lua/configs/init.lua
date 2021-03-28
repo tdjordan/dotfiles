@@ -4,3 +4,5 @@ require 'configs.telescope'
 require 'configs.treesitter'
 
 require 'configs.kommentary'
+
+require 'configs.indentline'
