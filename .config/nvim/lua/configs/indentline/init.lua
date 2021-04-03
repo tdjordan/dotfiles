@@ -14,6 +14,16 @@ g.indent_blankline_show_trailing_blankline_indent = false
 g.indent_blankline_show_first_indent_level        = false
 g.indent_blankline_show_current_context           = true
 
+-- g.indent_blankline_char = '┆'
+
+g.indent_blankline_char = '¦'
+
+-- g.indent_blankline_char = '|'
+
+-- g.indent_blankline_char = '┊'
+
+-- g.indent_blankline_char_list = {'|', '¦', '┆', '┊'}
+
 g.indent_blankline_context_patterns = {
     'class'
   , 'return'
