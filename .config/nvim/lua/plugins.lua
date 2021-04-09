@@ -140,6 +140,10 @@ return require 'packer'.startup(function(use)
   -- use { 'vim-airline/vim-airline' }
   -- use { 'vim-airline/vim-airline-themes' }
   -- use { 'itchyny/lightline.vim' }
+  use {
+    'glepnir/galaxyline.nvim'
+    , branch = 'main'
+  }
   use { 'norcalli/nvim-colorizer.lua' }
   -- use { 'fatih/molokai' }
   -- use { 'kyazdani42/nvim-tree.lua' }

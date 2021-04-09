@@ -80,8 +80,11 @@ zinit wait"2" lucid nocd is-snippet for \
 zinit wait"1" lucid nocd light-mode for \
   zsh-users/zsh-autosuggestions \
   zdharma/fast-syntax-highlighting \
-  zsh-users/zsh-completions \
   hlissner/zsh-autopair
+
+# zinit wait"3" lucid nocd light-mode atload"zicompinit; zicdreplay" for \
+zinit wait"1" lucid nocd light-mode for \
+  zsh-users/zsh-completions
 
 #zinit wait lucid nocd light-mode for \
   #atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
