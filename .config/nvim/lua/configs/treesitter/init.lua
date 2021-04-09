@@ -5,17 +5,17 @@ require 'nvim-treesitter.configs'.setup {
     enable = true
   },
   refactor = {
-    highlight_definitions = { enable = true },
-    --highlight_current_scope = { enable = true },
+    highlight_definitions = { enable = true }
+    -- , highlight_current_scope = { enable = true }
   },
   playground = {
     enable          = true,
     disable         = {},
     updatetime      = 25,
-    persist_queries = false,
+    persist_queries = false
   },
   navigation = {
-    enable = true,
+    enable  = true,
     keymaps = {
       goto_definition      = "gnd",
       list_definitions     = "gnD",
@@ -25,7 +25,7 @@ require 'nvim-treesitter.configs'.setup {
     },
   },
   incremental_selection = {
-    enable = true,
+    enable  = true,
     keymaps = {
       init_selection    = "gnn",
       node_incremental  = "grn",
@@ -35,7 +35,7 @@ require 'nvim-treesitter.configs'.setup {
   },
   textobjects = {
     select = {
-      enable = true,
+      enable  = true,
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
         ["af"] = "@function.outer",
@@ -47,7 +47,10 @@ require 'nvim-treesitter.configs'.setup {
   }
 }
 
-  --indent = {
-    --enable = true
-  --},
+  -- indent = {
+  --   enable = true
+  -- },
 
+local keymap = vim.api.nvim_set_keymap
+
+keymap( 'n', '<leader>T', '<cmd>TSHighlightCapturesUnderCursor<cr>', { noremap = true, silent = true } )

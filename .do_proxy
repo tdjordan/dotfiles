@@ -1,17 +1,18 @@
-#echo .do_proxy
-#[[ -n -z "$network_location" ]] && export network_location=$(networksetup -getcurrentlocation)
+# set -x
+# echo .do_proxy
+# [[ -n -z "$network_location" ]] && export network_location=$(networksetup -getcurrentlocation)
 network_location=$(networksetup -getcurrentlocation)
 case $network_location in
-  Home|AutomaticMyApps)
+  Home)
     export http_proxy=
-    #target_machine=default
-    #apm config set https-proxy
+    # target_machine=default
+    # apm config set https-proxy
     no_proxy_local=
     ;;
   *)
     [ -f ~/.my_proxy ] && http_proxy="http://$(sed < ~/.my_proxy)"
-    #target_machine=work
-    #apm config set https-proxy $http_proxy
+    # target_machine=work
+    # apm config set https-proxy $http_proxy
     [ -f ~/.my_no_proxy ] && no_proxy_local=$(sed < ~/.my_no_proxy)
     ;;
 esac
@@ -20,10 +21,10 @@ export http_proxy="$http_proxy"
 export https_proxy="$http_proxy"
 export ftp_proxy="$http_proxy"
 export rsync_proxy="$http_proxy"
-#export all_proxy="$http_proxy"
+# export all_proxy="$http_proxy"
 
 # don't include the docker machines in initial no_proxy setting
-#docker_vms=$(echo 192.168.99.{100..120} | sed 's/ /,/g')
+# docker_vms=$(echo 192.168.99.{100..120} | sed 's/ /,/g')
 range=$(echo {0..255})
 export no_proxy="$no_proxy_local,localhost,.docker.internal,.${range// /,.}"
 
@@ -31,16 +32,16 @@ export no_proxy="$no_proxy_local,localhost,.docker.internal,.${range// /,.}"
 export DYLD_INSERT_LIBRARIES=
 
 # include all docker machines into the no_proxy env variable
-#machines=($(docker-machine ls -f "{{.Name}}" --filter "driver=generic"))
-#for machine in $machines; do
-  #[[ "$machine" == "$target_machine" ]] && (echo "1"; continue)
-  #docker_ip=$(docker-machine ip $machine 2>/dev/null)
-  #[[ $docker_ip ]] && no_proxy="$no_proxy,$docker_ip"
-#done
+# machines=($(docker-machine ls -f "{{.Name}}" --filter "driver=generic"))
+# for machine in $machines; do
+#   [[ "$machine" == "$target_machine" ]] && (echo "1"; continue)
+#   docker_ip=$(docker-machine ip $machine 2>/dev/null)
+#   [[ $docker_ip ]] && no_proxy="$no_proxy,$docker_ip"
+# done
 
 # source the default docker machine
-#target_status=$(docker-machine status $target_machine)
-#[[ "$target_status" == "Running" ]] && eval $(docker-machine env --no-proxy $target_machine)
+# target_status=$(docker-machine status $target_machine)
+# [[ "$target_status" == "Running" ]] && eval $(docker-machine env --no-proxy $target_machine)
 
 # for some apps that require all caps
 export NO_PROXY="$no_proxy"
@@ -48,5 +49,5 @@ export HTTP_PROXY="$http_proxy"
 export HTTPS_PROXY="$http_proxy"
 export FTP_PROXY="$http_proxy"
 export RSYNC_PROXY="$http_proxy"
-#export ALL_PROXY="$http_proxy"
-
+# export ALL_PROXY="$http_proxy"
+# set +x

@@ -10,7 +10,7 @@
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  #TERM: xterm-256color
+  # TERM: xterm-256color
 
 window:
   # Window dimensions (changes require restart)
@@ -63,23 +63,23 @@ window:
   startup_mode: Windowed
 
   # Window title
-  #title: Alacritty
+  # title: Alacritty
 
   # Allow terminal applications to change Alacritty's window title.
-  #dynamic_title: true
+  # dynamic_title: true
 
   # Window class (Linux/BSD only):
-  #class:
-    # Application instance name
-    #instance: Alacritty
-    # General application class
-    #general: Alacritty
+  # class:
+  #   Application instance name
+  #   instance: Alacritty
+  #   General application class
+  #   general: Alacritty
 
   # GTK theme variant (Linux/BSD only)
   #
   # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
   # Set this to `None` to use the default theme variant.
-  #gtk_theme_variant: None
+  # gtk_theme_variant: None
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -100,11 +100,44 @@ font:
     #   - (Linux) monospace
     #   - (Windows) Consolas
     family: Fira Code
+    # family: Fira Sans
+    # family: DaddyTimeMono Nerd Font
+    # family: SauceCodePro Nerd Font
+    # family: Jetbrains Mono
+    # family: JetBrainsMono Nerd Font
+    # family: Iosevka Nerd Font
+    # family: Iosevka Curly Slab
+    # family: Iosevka Aile
+    # family: Iosevka
+    # family: Iosevka Slab
+    # family: Iosevka Sparkle
+    # family: Iosevka ss17
+    # family: Iosevka Fixed
+    # family: Iosevka Term
+    # family: Monoid
+    # family: Monoid Nerd Font
+    # family: Monoisome
+    # family: Hack
+    # family: Hasklig
+    # family: Hasklug Nerd Font
+    # family: VictorMono
+    # family: Sometype Mono
+    # family: Source Code Pro
+    # family: Office Code Pro
+    # family: mononoki Nerd Font
+    # family: monofur Nerd Font
+    # family: Meslo LG L
+    # family: InputMono
+    # family: InputSerif
+    # family: InputSans
 
     # The `style` can be specified to pick a specific face.
-    #style: ExtraLight
-    #style: Light
-    #style: Regular
+    # style: ExtraLight
+    # style: Light
+    # style: Heavy
+    # style: Regular
+    # style: Oblique
+    # style: Book
 
   # Bold font face
   bold:
@@ -112,18 +145,18 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
-    #family: Jetbrains Mono
+    # family: monospace
+    # family: Jetbrains Mono
     family: Fira Code
-    #family: Victor Mono
-    #family: Operator Mono Lig
-    #family: Input Mono
+    # family: Victor Mono
+    # family: Operator Mono Lig
+    # family: Input Mono
 
     # The `style` can be specified to pick a specific face.
-    #style: SemiBold
-    #style: Light
-    #style: Bold
-    #style: Book
+    # style: SemiBold
+    # style: Light
+    # style: Bold
+    style: Book
 
   # Italic font face
   italic:
@@ -131,14 +164,26 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
-    #family: Jetbrains Mono
-    #family: Victor Mono
-    family: Operator Mono Lig
+    # family: Jetbrains Mono
+    family: Source Code Pro
+    # family: Fira Code
+    # family: JetBrainsMono Nerd Font
+    # family: SauceCodePro Nerd Font
+    # family: Hack
+    # family: Victor Mono
+    # family: Iosevka Nerd Font
+    # family: Monoid
+    # family: Monoid Nerd Font
+    # family: Hasklig
+    # family: DaddyTimeMono Nerd Font
+    # family: Operator Mono Lig
+    # family: Office Code Pro
+    # family: InputMono
 
     # The `style` can be specified to pick a specific face.
-    #style: Italic
-    style: Book Italic
+    # style: Italic
+    # style: Oblique
+    # style: Book Italic
 
   # Bold italic font face
   bold_italic:
@@ -146,14 +191,14 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
-    #family: Jetbrains Mono
-    #family: Victor Mono
-    family: Operator Mono Lig
+    # family: Jetbrains Mono
+    # family: Hack
+    family: Victor Mono
+    # family: Operator Mono Lig
 
     # The `style` can be specified to pick a specific face.
-    #style: Bold Italic
-    style: Book Italic
+    style: Bold Italic
+    # style: Book Italic
 
   # Point size
   size: 17.0
@@ -186,8 +231,8 @@ schemes:
     primary:
       background: '#282828'
       foreground: '#ebdbb2'
-      #background: '0x1d2021'
-      #foreground: '0xd4be98'
+      # background: '0x1d2021'
+      # foreground: '0xd4be98'
 
     normal:
       black:   '0x32302f'
@@ -426,16 +471,16 @@ schemes:
     primary:
       background: '#282828'
       foreground: '#ebdbb2'
-      #background: '0x000000'
-      #foreground: '0xeaeaea'
+      # background: '0x000000'
+      # foreground: '0xeaeaea'
 
       # Bright and dim foreground colors
       #
       # The dimmed foreground color is calculated automatically if it is not present.
       # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
       # is `false`, the normal foreground color will be used.
-      #dim_foreground: '0x9a9a9a'
-      #bright_foreground: '0xffffff'
+      # dim_foreground: '0x9a9a9a'
+      # bright_foreground: '0xffffff'
 
     # Cursor colors
     #
@@ -528,8 +573,8 @@ schemes:
   #indexed_colors: []
 
 # Apply the color scheme.
-#colors: *gruvbox_material_medium_dark
-#colors: *gruvbox_material_hard_dark
+# colors: *gruvbox_material_medium_dark
+# colors: *gruvbox_material_hard_dark
 colors: *gruvbox_dark
 
 # Bell
@@ -571,17 +616,17 @@ bell:
   #     program: notify-send
   #     args: ["Hello, World!"]
   #
-  #command: None
+  # command: None
 
 # Background opacity
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-#background_opacity: 0.0
-#background_opacity: 0.75
-#background_opacity: 0.8
-#background_opacity: 0.85
-#background_opacity: 0.9
+# background_opacity: 0.0
+# background_opacity: 0.75
+# background_opacity: 0.8
+# background_opacity: 0.85
+# background_opacity: 0.9
 background_opacity: 1.0
 
 selection:
@@ -605,7 +650,7 @@ cursor:
   # the style of the active value of the normal cursor.
   #
   # See `cursor.style` for available options.
-  #vi_mode_style: None
+  # vi_mode_style: None
 
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
@@ -613,7 +658,7 @@ cursor:
 
   # Thickness of the cursor relative to the cell width as floating point number
   # from `0.0` to `1.0`.
-  #thickness: 0.15
+  # thickness: 0.15
 
 # Live config reload (changes require restart)
 live_config_reload: true
@@ -646,7 +691,7 @@ working_directory: None
 #
 # Setting this option to `true` makes Alacritty use the legacy WinPTY backend,
 # even if the ConPTY backend is available.
-#winpty_backend: false
+# winpty_backend: false
 
 # Send ESC (\x1b) before characters when alt is pressed.
 alt_send_esc: true
@@ -853,122 +898,122 @@ mouse_bindings:
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
 key_bindings:
-  #- { key: Paste,                                action: Paste          }
-  #- { key: Copy,                                 action: Copy           }
-  #- { key: L,         mods: Control,             action: ClearLogNotice }
-  #- { key: L,         mods: Control, mode: ~Vi,  chars: "\x0c"          }
-  #- { key: PageUp,    mods: Shift,   mode: ~Alt, action: ScrollPageUp,  }
-  #- { key: PageDown,  mods: Shift,   mode: ~Alt, action: ScrollPageDown }
-  #- { key: Home,      mods: Shift,   mode: ~Alt, action: ScrollToTop,   }
-  #- { key: End,       mods: Shift,   mode: ~Alt, action: ScrollToBottom }
+  # - { key: Paste,                                action: Paste          }
+  # - { key: Copy,                                 action: Copy           }
+  # - { key: L,         mods: Control,             action: ClearLogNotice }
+  # - { key: L,         mods: Control, mode: ~Vi,  chars: "\x0c"          }
+  # - { key: PageUp,    mods: Shift,   mode: ~Alt, action: ScrollPageUp,  }
+  # - { key: PageDown,  mods: Shift,   mode: ~Alt, action: ScrollPageDown }
+  # - { key: Home,      mods: Shift,   mode: ~Alt, action: ScrollToTop,   }
+  # - { key: End,       mods: Shift,   mode: ~Alt, action: ScrollToBottom }
 
   # Vi Mode
-  #- { key: Space,  mods: Shift|Control, mode: Vi, action: ScrollToBottom          }
-  #- { key: Space,  mods: Shift|Control,           action: ToggleViMode            }
-  #- { key: Escape,                      mode: Vi, action: ClearSelection          }
-  #- { key: I,                           mode: Vi, action: ScrollToBottom          }
-  #- { key: I,                           mode: Vi, action: ToggleViMode            }
-  #- { key: Y,      mods: Control,       mode: Vi, action: ScrollLineUp            }
-  #- { key: E,      mods: Control,       mode: Vi, action: ScrollLineDown          }
-  #- { key: G,                           mode: Vi, action: ScrollToTop             }
-  #- { key: G,      mods: Shift,         mode: Vi, action: ScrollToBottom          }
-  #- { key: B,      mods: Control,       mode: Vi, action: ScrollPageUp            }
-  #- { key: F,      mods: Control,       mode: Vi, action: ScrollPageDown          }
-  #- { key: U,      mods: Control,       mode: Vi, action: ScrollHalfPageUp        }
-  #- { key: D,      mods: Control,       mode: Vi, action: ScrollHalfPageDown      }
-  #- { key: Y,                           mode: Vi, action: Copy                    }
-  #- { key: Y,                           mode: Vi, action: ClearSelection          }
-  #- { key: Copy,                        mode: Vi, action: ClearSelection          }
-  #- { key: V,                           mode: Vi, action: ToggleNormalSelection   }
-  #- { key: V,      mods: Shift,         mode: Vi, action: ToggleLineSelection     }
-  #- { key: V,      mods: Control,       mode: Vi, action: ToggleBlockSelection    }
-  #- { key: V,      mods: Alt,           mode: Vi, action: ToggleSemanticSelection }
-  #- { key: Return,                      mode: Vi, action: Open                    }
-  #- { key: K,                           mode: Vi, action: Up                      }
-  #- { key: J,                           mode: Vi, action: Down                    }
-  #- { key: H,                           mode: Vi, action: Left                    }
-  #- { key: L,                           mode: Vi, action: Right                   }
-  #- { key: Up,                          mode: Vi, action: Up                      }
-  #- { key: Down,                        mode: Vi, action: Down                    }
-  #- { key: Left,                        mode: Vi, action: Left                    }
-  #- { key: Right,                       mode: Vi, action: Right                   }
-  #- { key: Key0,                        mode: Vi, action: First                   }
-  #- { key: Key4,   mods: Shift,         mode: Vi, action: Last                    }
-  #- { key: Key6,   mods: Shift,         mode: Vi, action: FirstOccupied           }
-  #- { key: H,      mods: Shift,         mode: Vi, action: High                    }
-  #- { key: M,      mods: Shift,         mode: Vi, action: Middle                  }
-  #- { key: L,      mods: Shift,         mode: Vi, action: Low                     }
-  #- { key: B,                           mode: Vi, action: SemanticLeft            }
-  #- { key: W,                           mode: Vi, action: SemanticRight           }
-  #- { key: E,                           mode: Vi, action: SemanticRightEnd        }
-  #- { key: B,      mods: Shift,         mode: Vi, action: WordLeft                }
-  #- { key: W,      mods: Shift,         mode: Vi, action: WordRight               }
-  #- { key: E,      mods: Shift,         mode: Vi, action: WordRightEnd            }
-  #- { key: Key5,   mods: Shift,         mode: Vi, action: Bracket                 }
-  #- { key: Slash,                       mode: Vi, action: SearchForward           }
-  #- { key: Slash,  mods: Shift,         mode: Vi, action: SearchBackward          }
-  #- { key: N,                           mode: Vi, action: SearchNext              }
-  #- { key: N,      mods: Shift,         mode: Vi, action: SearchPrevious          }
+  # - { key: Space,  mods: Shift|Control, mode: Vi, action: ScrollToBottom          }
+  # - { key: Space,  mods: Shift|Control,           action: ToggleViMode            }
+  # - { key: Escape,                      mode: Vi, action: ClearSelection          }
+  # - { key: I,                           mode: Vi, action: ScrollToBottom          }
+  # - { key: I,                           mode: Vi, action: ToggleViMode            }
+  # - { key: Y,      mods: Control,       mode: Vi, action: ScrollLineUp            }
+  # - { key: E,      mods: Control,       mode: Vi, action: ScrollLineDown          }
+  # - { key: G,                           mode: Vi, action: ScrollToTop             }
+  # - { key: G,      mods: Shift,         mode: Vi, action: ScrollToBottom          }
+  # - { key: B,      mods: Control,       mode: Vi, action: ScrollPageUp            }
+  # - { key: F,      mods: Control,       mode: Vi, action: ScrollPageDown          }
+  # - { key: U,      mods: Control,       mode: Vi, action: ScrollHalfPageUp        }
+  # - { key: D,      mods: Control,       mode: Vi, action: ScrollHalfPageDown      }
+  # - { key: Y,                           mode: Vi, action: Copy                    }
+  # - { key: Y,                           mode: Vi, action: ClearSelection          }
+  # - { key: Copy,                        mode: Vi, action: ClearSelection          }
+  # - { key: V,                           mode: Vi, action: ToggleNormalSelection   }
+  # - { key: V,      mods: Shift,         mode: Vi, action: ToggleLineSelection     }
+  # - { key: V,      mods: Control,       mode: Vi, action: ToggleBlockSelection    }
+  # - { key: V,      mods: Alt,           mode: Vi, action: ToggleSemanticSelection }
+  # - { key: Return,                      mode: Vi, action: Open                    }
+  # - { key: K,                           mode: Vi, action: Up                      }
+  # - { key: J,                           mode: Vi, action: Down                    }
+  # - { key: H,                           mode: Vi, action: Left                    }
+  # - { key: L,                           mode: Vi, action: Right                   }
+  # - { key: Up,                          mode: Vi, action: Up                      }
+  # - { key: Down,                        mode: Vi, action: Down                    }
+  # - { key: Left,                        mode: Vi, action: Left                    }
+  # - { key: Right,                       mode: Vi, action: Right                   }
+  # - { key: Key0,                        mode: Vi, action: First                   }
+  # - { key: Key4,   mods: Shift,         mode: Vi, action: Last                    }
+  # - { key: Key6,   mods: Shift,         mode: Vi, action: FirstOccupied           }
+  # - { key: H,      mods: Shift,         mode: Vi, action: High                    }
+  # - { key: M,      mods: Shift,         mode: Vi, action: Middle                  }
+  # - { key: L,      mods: Shift,         mode: Vi, action: Low                     }
+  # - { key: B,                           mode: Vi, action: SemanticLeft            }
+  # - { key: W,                           mode: Vi, action: SemanticRight           }
+  # - { key: E,                           mode: Vi, action: SemanticRightEnd        }
+  # - { key: B,      mods: Shift,         mode: Vi, action: WordLeft                }
+  # - { key: W,      mods: Shift,         mode: Vi, action: WordRight               }
+  # - { key: E,      mods: Shift,         mode: Vi, action: WordRightEnd            }
+  # - { key: Key5,   mods: Shift,         mode: Vi, action: Bracket                 }
+  # - { key: Slash,                       mode: Vi, action: SearchForward           }
+  # - { key: Slash,  mods: Shift,         mode: Vi, action: SearchBackward          }
+  # - { key: N,                           mode: Vi, action: SearchNext              }
+  # - { key: N,      mods: Shift,         mode: Vi, action: SearchPrevious          }
 
   # (Windows, Linux, and BSD only)
-  #- { key: V,        mods: Control|Shift,           action: Paste            }
-  #- { key: C,        mods: Control|Shift,           action: Copy             }
-  #- { key: F,        mods: Control|Shift,           action: SearchForward    }
-  #- { key: B,        mods: Control|Shift,           action: SearchBackward   }
-  #- { key: C,        mods: Control|Shift, mode: Vi, action: ClearSelection   }
-  #- { key: Insert,   mods: Shift,                   action: PasteSelection   }
-  #- { key: Key0,     mods: Control,                 action: ResetFontSize    }
-  #- { key: Equals,   mods: Control,                 action: IncreaseFontSize }
-  #- { key: Add,      mods: Control,                 action: IncreaseFontSize }
-  #- { key: Subtract, mods: Control,                 action: DecreaseFontSize }
-  #- { key: Minus,    mods: Control,                 action: DecreaseFontSize }
+  # - { key: V,        mods: Control|Shift,           action: Paste            }
+  # - { key: C,        mods: Control|Shift,           action: Copy             }
+  # - { key: F,        mods: Control|Shift,           action: SearchForward    }
+  # - { key: B,        mods: Control|Shift,           action: SearchBackward   }
+  # - { key: C,        mods: Control|Shift, mode: Vi, action: ClearSelection   }
+  # - { key: Insert,   mods: Shift,                   action: PasteSelection   }
+  # - { key: Key0,     mods: Control,                 action: ResetFontSize    }
+  # - { key: Equals,   mods: Control,                 action: IncreaseFontSize }
+  # - { key: Add,      mods: Control,                 action: IncreaseFontSize }
+  # - { key: Subtract, mods: Control,                 action: DecreaseFontSize }
+  # - { key: Minus,    mods: Control,                 action: DecreaseFontSize }
 
   # (Windows only)
-  #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
+  # - { key: Return,   mods: Alt,           action: ToggleFullscreen }
 
   # (macOS only)
-  #- { key: K,      mods: Command, mode: ~Vi, chars: "\x0c"            }
-  #- { key: Key0,   mods: Command,            action: ResetFontSize    }
-  #- { key: Equals, mods: Command,            action: IncreaseFontSize }
-  #- { key: Add,    mods: Command,            action: IncreaseFontSize }
-  #- { key: Minus,  mods: Command,            action: DecreaseFontSize }
-  #- { key: K,      mods: Command,            action: ClearHistory     }
-  #- { key: V,      mods: Command,            action: Paste            }
-  #- { key: C,      mods: Command,            action: Copy             }
-  #- { key: C,      mods: Command, mode: Vi,  action: ClearSelection   }
-  #- { key: H,      mods: Command,            action: Hide             }
-  #- { key: M,      mods: Command,            action: Minimize         }
-  #- { key: Q,      mods: Command,            action: Quit             }
-  #- { key: W,      mods: Command,            action: Quit             }
-  #- { key: N,      mods: Command,            action: SpawnNewInstance }
-  #- { key: F,      mods: Command|Control,    action: ToggleFullscreen }
-  #- { key: F,      mods: Command,            action: SearchForward    }
-  #- { key: B,      mods: Command,            action: SearchBackward   }
+  # - { key: K,      mods: Command, mode: ~Vi, chars: "\x0c"            }
+  # - { key: Key0,   mods: Command,            action: ResetFontSize    }
+  # - { key: Equals, mods: Command,            action: IncreaseFontSize }
+  # - { key: Add,    mods: Command,            action: IncreaseFontSize }
+  # - { key: Minus,  mods: Command,            action: DecreaseFontSize }
+  # - { key: K,      mods: Command,            action: ClearHistory     }
+  # - { key: V,      mods: Command,            action: Paste            }
+  # - { key: C,      mods: Command,            action: Copy             }
+  # - { key: C,      mods: Command, mode: Vi,  action: ClearSelection   }
+  # - { key: H,      mods: Command,            action: Hide             }
+  # - { key: M,      mods: Command,            action: Minimize         }
+  # - { key: Q,      mods: Command,            action: Quit             }
+  # - { key: W,      mods: Command,            action: Quit             }
+  # - { key: N,      mods: Command,            action: SpawnNewInstance }
+  # - { key: F,      mods: Command|Control,    action: ToggleFullscreen }
+  # - { key: F,      mods: Command,            action: SearchForward    }
+  # - { key: B,      mods: Command,            action: SearchBackward   }
 
   # (Windows/Linux only)
-  #- { key: V,        mods: Control|Shift, action: Paste            }
-  #- { key: C,        mods: Control|Shift, action: Copy             }
-  #- { key: Insert,   mods: Shift,         action: PasteSelection   }
-  #- { key: Key0,     mods: Control,       action: ResetFontSize    }
-  #- { key: Equals,   mods: Control,       action: IncreaseFontSize }
-  #- { key: Add,      mods: Control,       action: IncreaseFontSize }
-  #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
-  #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
-  #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
+  # - { key: V,        mods: Control|Shift, action: Paste            }
+  # - { key: C,        mods: Control|Shift, action: Copy             }
+  # - { key: Insert,   mods: Shift,         action: PasteSelection   }
+  # - { key: Key0,     mods: Control,       action: ResetFontSize    }
+  # - { key: Equals,   mods: Control,       action: IncreaseFontSize }
+  # - { key: Add,      mods: Control,       action: IncreaseFontSize }
+  # - { key: Subtract, mods: Control,       action: DecreaseFontSize }
+  # - { key: Minus,    mods: Control,       action: DecreaseFontSize }
+  # - { key: Return,   mods: Alt,           action: ToggleFullscreen }
 
   # (macOS only)
-  #- { key: Key0,   mods: Command,         action: ResetFontSize    }
-  #- { key: Equals, mods: Command,         action: IncreaseFontSize }
-  #- { key: Add,    mods: Command,         action: IncreaseFontSize }
-  #- { key: Minus,  mods: Command,         action: DecreaseFontSize }
-  #- { key: K,      mods: Command,         action: ClearHistory     }
-  #- { key: K,      mods: Command,         chars: "\x0c"            }
-  #- { key: V,      mods: Command,         action: Paste            }
-  #- { key: C,      mods: Command,         action: Copy             }
-  #- { key: H,      mods: Command,         action: Hide             }
-  #- { key: Q,      mods: Command,         action: Quit             }
-  #- { key: W,      mods: Command,         action: Quit             }
-  #- { key: F,      mods: Command|Control, action: ToggleFullscreen }
+  # - { key: Key0,   mods: Command,         action: ResetFontSize    }
+  # - { key: Equals, mods: Command,         action: IncreaseFontSize }
+  # - { key: Add,    mods: Command,         action: IncreaseFontSize }
+  # - { key: Minus,  mods: Command,         action: DecreaseFontSize }
+  # - { key: K,      mods: Command,         action: ClearHistory     }
+  # - { key: K,      mods: Command,         chars: "\x0c"            }
+  # - { key: V,      mods: Command,         action: Paste            }
+  # - { key: C,      mods: Command,         action: Copy             }
+  # - { key: H,      mods: Command,         action: Hide             }
+  # - { key: Q,      mods: Command,         action: Quit             }
+  # - { key: W,      mods: Command,         action: Quit             }
+  # - { key: F,      mods: Command|Control, action: ToggleFullscreen }
 
   - { key: N,        mods: Control | Shift, action: SpawnNewInstance         }
 

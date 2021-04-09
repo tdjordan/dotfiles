@@ -1,4 +1,7 @@
--- local cmd = vim.api.nvim_command
+local cmd = vim.api.nvim_command
+cmd [[
+  colorscheme jellybeans-nvim
+]]
 -- cmd ([[
 --  augroup! lushify-theme-file
 --    au!
@@ -43,6 +46,7 @@ local pallette = {
     , bg_visual_blue   = hsl( 180, 12, 21 ) -- hsl('#2e3b3b')
     , bg_visual_yellow = hsl(  38, 27, 22 ) -- hsl('#473c29')
     , bg_current_word  = hsl(  20,  3, 19 ) -- hsl('#32302f')
+    , fg               = hsl('#ebdbb2')
     , fg0              = hsl(  38, 41, 71 ) -- hsl('#d4be98')
     , fg1              = hsl(  38, 47, 75 ) -- hsl('#ddc7a1')
     , red              = base.hslea6962     -- hsl('#ea6962')
@@ -65,9 +69,13 @@ local p = pallette.dark
 
 return lush( function()
   return {
-    Normal         { bg = p.black.lighten(3), fg = p.fg0 }
-    , Whitespace   { fg = Normal.fg.darken( 40 )         }  -- listchars
-    , Comment      { Whitespace, gui = it                }
+    -- Normal         { bg = p.black.lighten(7), fg = p.fg  }
+    Normal         { bg = p.bg.darken(7), fg = p.fg                }
+    -- Normal         { bg = p.bg0.lighten(9), fg = p.fg0 }
+    , Whitespace   { fg = p.grey0                        }  -- listchars
+    -- , Whitespace   { fg = Normal.fg.darken( 40 )         }  -- listchars
+    , Comment      { fg = p.grey2, gui = it              }
+    -- , Comment      { Whitespace, gui = it                }
     , Terminal     { fg = Normal.fg                      }
     , EndOfBuffer  { bg = Normal.bg.lighten(2)           }
     , SignColumn   { Normal                              }
@@ -82,7 +90,15 @@ return lush( function()
     , Pmenu        { bg = p.bg3, fg = p.fg1 }
     , PmenuSbar    { fg = Pmenu.fg }
 
-    --- Tree Sitter
+    ---  Indent Blankline
+    ---
+    -- , IndentBlanklineChar               { }
+    -- , IndentBlanklineSpaceChar          { }
+    -- , IndentBlanklineSpaceCharBlankline { }
+    -- , IndentBlanklineContextChar        { }
+
+    ---  Tree Sitter
+    ---
     , TSField   { Normal }
   }
 end)
