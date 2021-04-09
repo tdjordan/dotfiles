@@ -1,12 +1,12 @@
 local cmd    = vim.cmd
-local api    = vim.api
-local keymap = api.nvim_set_keymap
+-- local api    = vim.api
+-- local keymap = api.nvim_set_keymap
 
---function nnoremap(key, command)
---  keymap('n', key, command, { noremap = true, silent = true })
---end
+-- function nnoremap(key, command)
+--   keymap('n', key, command, { noremap = true, silent = true })
+-- end
 
---nnoremap('<space>', '<nop>')
+-- nnoremap('<space>', '<nop>')
 
 -- New <leader> of the band
 cmd [[
@@ -16,7 +16,7 @@ cmd [[
 ]]
 
 ---
---- noremap bindings
+---  noremap bindings
 ---
 
 -- Reload init.lua from standard config path
@@ -26,7 +26,7 @@ cmd [[
 ]]
 
 ---
---- p* mappings
+---  p* mappings
 ---
 cmd [[
   nnoremap <leader>pf :Files<cr>
@@ -40,7 +40,7 @@ cmd [[
 ]]
 
 ---
---- f* mappings
+---  f* mappings
 ---
 cmd [[
   nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -52,7 +52,7 @@ cmd [[
 ]]
 
 ---
---- g* mappings
+---  g* mappings
 ---
 
 ---  resize operations
@@ -65,7 +65,7 @@ cmd [[
 ]]
 
 ---
---- u* mappings
+---  u* mappings
 ---
 cmd [[
   nnoremap <leader>u :UndotreeToggle<cr>
@@ -86,7 +86,7 @@ nnoremap <leader>k <cmd>NERDTreeToggle<cr>
 
 ---  Window Navigation
 ---
----- navigate cursor to adjoining window
+---  navigate cursor to adjoining window
 ---
 -- terminal mode
 cmd [[
@@ -109,36 +109,44 @@ cmd [[
 --      \   call nvim_input('<cr>') |
 --      \ endif
 --  augroup END
--- normal mode
---nnoremap <C-h> <C-w>h
---nnoremap <C-j> <C-w>j
---nnoremap <C-k> <C-w>k
---nnoremap <C-l> <C-w>l
+---  normal mode
+-- nnoremap <C-h> <C-w>h
+-- nnoremap <C-j> <C-w>j
+-- nnoremap <C-k> <C-w>k
+-- nnoremap <C-l> <C-w>l
 cmd [[
   nnoremap <silent><c-h> <cmd>wincmd h<cr>
   nnoremap <silent><c-j> <cmd>wincmd j<cr>
   nnoremap <silent><c-k> <cmd>wincmd k<cr>
   nnoremap <silent><c-l> <cmd>wincmd l<cr>
 ]]
--- insert mode
---inoremap <C-h> <Esc><C-W>h
---inoremap <C-j> <Esc><C-w>j
---inoremap <C-k> <Esc><C-w>k
---inoremap <C-l> <Esc><C-w>l
+---  insert mode
+-- inoremap <C-h> <Esc><C-W>h
+-- inoremap <C-j> <Esc><C-w>j
+-- inoremap <C-k> <Esc><C-w>k
+-- inoremap <C-l> <Esc><C-w>l
 ---
----- move window to <position> of other windows
+---  move window to <position> of other windows
 ---
--- normal mode
---nnoremap <C-S-H> <C-W>H
---nnoremap <C-S-J> <C-W>J
---nnoremap <C-S-K> <C-W>K
---nnoremap <C-S-L> <C-W>L
---nnoremap <C-S-T> <C-W>T
+---  normal mode
+-- nnoremap <C-S-H> <C-W>H
+-- nnoremap <C-S-J> <C-W>J
+-- nnoremap <C-S-K> <C-W>K
+-- nnoremap <C-S-L> <C-W>L
+-- nnoremap <C-S-T> <C-W>T
 
 ---  Comments
 ---
---[[ keymap( "n", "<c-_>",      "<Plug>kommentary_line_default",   { } )
-keymap( "v", "<c-_>",      "<Plug>kommentary_visual_default", { } )
-keymap( "n", "<leader>cc", "<Plug>kommentary_line_default",   { } )
-keymap( "n", "<leader>c",  "<Plug>kommentary_motion_default", { } )
-keymap( "v", "<leader>c",  "<Plug>kommentary_visual_default", { } ) ]]
+-- keymap( "n", "<c-_>",      "<Plug>kommentary_line_default",   { } )
+-- keymap( "v", "<c-_>",      "<Plug>kommentary_visual_default", { } )
+-- keymap( "n", "<leader>cc", "<Plug>kommentary_line_default",   { } )
+-- keymap( "n", "<leader>c",  "<Plug>kommentary_motion_default", { } )
+-- keymap( "v", "<leader>c",  "<Plug>kommentary_visual_default", { } )
+
+---  Escape
+---
+cmd [[
+  inoremap jk    <esc>
+  inoremap kj    <esc>
+  inoremap <C-c> <esc>
+]]
