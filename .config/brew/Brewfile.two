@@ -1,0 +1,113 @@
+brew "mas"
+brew "curl"
+brew "editorconfig"
+
+###  base build tools
+brew "cmake"
+brew "ninja"
+brew "conan"
+
+###  search tools
+###
+brew "fd"
+brew "ripgrep"
+brew "tree"
+
+###  cli testing
+###
+brew "hyperfine"
+
+###  json utils
+###
+brew "jq"
+brew "jql"
+brew "jsonnet"
+brew "jfrog-cli"
+
+###  nodejs
+###
+brew "node"
+brew "yarn"
+
+###  neovim
+###
+brew "luajit", args: ["HEAD"]
+brew "neovim", args: ["HEAD"]
+brew "tree-sitter"
+
+###  terminals
+###
+cask "alacritty"
+cask "kitty"
+brew "tmux"
+
+###  terminal enhanements
+###
+brew "coreutils"
+
+###  java
+###
+cask "adoptopenjdk"
+
+tap    "adoptopenjdk/openjdk"
+  cask "adoptopenjdk8"
+
+brew "jenv"
+
+###  collaboration
+###
+cask "microsoft-teams"
+
+###  shells
+###
+#brew "zsh"
+
+###  shell utilities
+###
+cask "day-o"
+cask "hammerspoon"
+tap    "koekeishiya/formulae"
+  brew "yabai"
+  brew "skhd"
+
+###  browsers
+###
+cask "chromium"
+
+###  ansible
+###
+brew "ansible"
+brew "ansible-lint"
+
+###  speed
+###
+brew "parallel"
+brew "dsh"
+brew "glances"
+brew "htop"
+brew "ctop"
+
+###  Docker & K8s
+###
+cask "docker"
+
+###  virtual machines
+###
+brew "terraform"
+brew "terraform-docs"
+brew "terraform-ls"
+brew "packer"
+
+###  fonts
+###
+tap    "homebrew/cask-fonts"
+  cask "font-fira-code"
+  cask "font-fira-code-nerd-font"
+  cask "font-fira-mono"
+  cask "font-fira-mono-nerd-font"
+  cask "font-jetbrains-mono"
+  cask "font-jetbrains-mono-nerd-font"
+  cask "font-victor-mono"
+  cask "font-victor-mono-nerd-font"
+  cask "font-hack"
+  cask "font-hack-nerd-font"
