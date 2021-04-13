@@ -179,9 +179,9 @@ set cursorline                                    " nvim default : off
 "set guioptions=A
 
 " Enable 24-bit RGB color in the TUI
-if has ('termguicolors')
+" if has ('termguicolors')
   set termguicolors
-endif
+" endif
 
 """  TODO: nvim defaults - not currently used
 """
