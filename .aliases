@@ -31,7 +31,7 @@ alias lla='${_ls_command} -AlFh ${color}'
 
 alias h='history'
 
-alias fdi="fd --ignore-file .gitignore "
+alias fdi="fd -H --no-ignore -E '.git/*'"
 
 #alias grep='grep --color=auto 2>/dev/null'
 #alias grep='ag $*' 2>/dev/null
