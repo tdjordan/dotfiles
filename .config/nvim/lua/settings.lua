@@ -178,11 +178,11 @@ wo.relativenumber = true                        -- nvim default : off
 ------  undo
 ------
 -- List of directory names for undo files
- o.undodir = '~/.local/share/nvim/tmp/undo/nvim/'   -- nvim default : '.'
+ o.undodir = vim.fn.stdpath('data')..'/tmp/undo/nvim/'   -- nvim default : '.'
 
 --  when writing a buffer to a file, and
 --  restore undo history from same file on buffer read
- o.undofile = true                              -- nvim default : off
+bo.undofile = true                              -- nvim default : off
 
 -- Maximum number of changes that can be undone.
 -- o.undolevels = 1000                             -- nvim default : 1000
