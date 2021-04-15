@@ -32,7 +32,7 @@ bo.tabstop       = 2                            -- nvim default : 8
  o.splitright     = true
 
 -- Allow window re-use to switch from an unsaved buffer without saving it first.
--- Allows multiple file undo history for the same window.
+-- Allows moltiple file undo history for the same window.
  o.hidden         = true
 
 -- Use case insensitive search, except when using capital letters
@@ -245,8 +245,8 @@ bo.undofile = true                              -- nvim default : off
 ------
 -- Allow Windows & Linux to share session files
 --   nvim default : blank,buffers, curdir, folds,help,tabpages,winsize
-cmd [[ set sessionoptions+=slash,unix ]]
---o.sessionoptions = o.sessionoptions .. [[ slash,unix ]]
+-- cmd [[ set sessionoptions+=slash,unix ]]
+ o.sessionoptions = o.sessionoptions .. [[,slash,unix]]
 
 ------  List mode
 ------
