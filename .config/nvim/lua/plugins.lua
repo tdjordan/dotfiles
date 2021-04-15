@@ -150,7 +150,7 @@ return require 'packer'.startup(function(use)
   -- use { 'kyazdani42/nvim-tree.lua' }
   -- use { 'hardcoreplayers/spaceline.vim' }
   -- use { 'glepnir/spaceline.vim' }
-  -- use { 'kyazdani42/nvim-web-devicons' }
+  use { 'kyazdani42/nvim-web-devicons' }
   -- use { 'ryanoasis/vim-devicons' }
   -- use { 'ryanoasis/nerd-fonts' }
 
