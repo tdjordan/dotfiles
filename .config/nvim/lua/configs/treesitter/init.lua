@@ -5,8 +5,14 @@ require 'nvim-treesitter.configs'.setup {
     enable = true
   },
   refactor = {
-    highlight_definitions = { enable = true }
-    -- , highlight_current_scope = { enable = true }
+    highlight_definitions = { enable = true },
+    -- highlight_current_scope = { enable = true },
+    smart_rename = {
+      enable = true,
+      keymaps = {
+        smart_rename = 'grr'
+      }
+    }
   },
   playground = {
     enable          = true,
@@ -33,6 +39,9 @@ require 'nvim-treesitter.configs'.setup {
       node_decremental  = "grm"
     },
   },
+  indentation = {
+    enable = { true }
+  },
   textobjects = {
     select = {
       enable  = true,
@@ -44,8 +53,13 @@ require 'nvim-treesitter.configs'.setup {
         ["ic"] = "@class.inner",
       },
     },
-  }
+  },
+  -- rainbow = {
+  --   enable = true,
+  --   extended_mode = true
+  -- }
 }
+
 
   -- indent = {
   --   enable = true

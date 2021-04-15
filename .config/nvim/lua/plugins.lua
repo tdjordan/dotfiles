@@ -67,13 +67,14 @@ return require 'packer'.startup(function(use)
   ---
   use {
     'nvim-treesitter/nvim-treesitter'
-    , run = '<cmt>TSUpdate'
+    , run = ':TSUpdate'
   }
   use { 'nvim-treesitter/playground' }
   -- use { 'nvim-treesitter/completion-treesitter' }
-  -- use { 'nvim-treesitter/nvim-treesitter-refactor' }
-  -- use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+  use { 'nvim-treesitter/nvim-treesitter-refactor' }
+  use { 'nvim-treesitter/nvim-treesitter-textobjects' }
   -- use { 'romgrk/nvim-treesitter-context' }
+  -- use { 'p00f/nvim-ts-rainbow' }
 
   ---  history
   ---
@@ -124,12 +125,12 @@ return require 'packer'.startup(function(use)
   use { 'rktjmp/lush.nvim' }
   use { 'savq/melange' }
   use { 'metalelf0/jellybeans-nvim' }
-  -- use {
-  --   'npxbr/gruvbox.nvim'
+  use {
+    'npxbr/gruvbox.nvim'
   --   , requires = {
   --     'rktjmp/lush.nvim'
   --   }
-  -- }
+  }
   -- use {
   --   'tjdevries/gruvbuddy.nvim',
   --   requires = {
@@ -213,7 +214,7 @@ return require 'packer'.startup(function(use)
   -- use { 'w0rp/ale' }
   -- use { 'gisphm/vim-gradle' }
   -- use { 'udalov/kotlin-vim' }
-  use { 'sheerun/vim-polyglot' }
+  -- use { 'sheerun/vim-polyglot' }
   -- use { 'prurigro/vim-polyglot-darkcloud' }
   -- use { 'dleonard0/pony-vim-syntax' }
   -- use { 'saltstack/salt-vim' }

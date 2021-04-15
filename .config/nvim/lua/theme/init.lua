@@ -70,14 +70,16 @@ local p = pallette.dark
 return lush( function()
   return {
     -- Normal         { bg = p.black.lighten(7), fg = p.fg  }
-    Normal         { bg = p.bg.darken(7), fg = p.fg                }
+    -- Normal         { bg = p.bg.darken(7), fg = p.fg                }
+    Normal         { bg = p.bg.darken(49), fg = p.fg                }
+    -- Normal         { bg = p.bg.darken(9), fg = p.fg                }
     -- Normal         { bg = p.bg0.lighten(9), fg = p.fg0 }
     , Whitespace   { fg = p.grey0                        }  -- listchars
     -- , Whitespace   { fg = Normal.fg.darken( 40 )         }  -- listchars
     , Comment      { fg = p.grey2, gui = it              }
     -- , Comment      { Whitespace, gui = it                }
     , Terminal     { fg = Normal.fg                      }
-    , EndOfBuffer  { bg = Normal.bg.lighten(2)           }
+    , EndOfBuffer  { Normal, bg = Normal.bg.lighten(2)           }
     , SignColumn   { Normal                              }
     , Toolbarline  { Normal                              }
     , IncSearch    { bg = p.bg0, fg = p.bg_red           }
