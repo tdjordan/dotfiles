@@ -29,12 +29,13 @@ cmd [[
 ---  p* mappings
 ---
 cmd [[
-  nnoremap <leader>pf :Files<cr>
-  nnoremap <leader>pl :Lines<cr>
-  nnoremap <leader>ps :Rg<space>
+  nnoremap <leader>pf <cmd>lua require('telescope.builtin').find_files()<cr>
+  nnoremap <leader>pl <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
+  nnoremap <leader>ps <cmd>lua require('telescope.builtin').live_grep()<cr>
   nnoremap <leader>pw :Rg <c-r>=expand("<cword>")<cr><cr>
-  nnoremap <leader>pc :Colors<cr>
-  nnoremap <leader>pm :Maps<cr>
+  nnoremap <leader>pc <cmd>lua require('telescope.builtin').colorscheme()<cr>
+  nnoremap <leader>pv <cmd>lua require('telescope.builtin').vim_options()<cr>
+  nnoremap <leader>pa <cmd>lua require('telescope.builtin').autocommands()<cr>
 
   nnoremap <c-p> :GFiles<cr>
 ]]
@@ -43,12 +44,20 @@ cmd [[
 ---  f* mappings
 ---
 cmd [[
-  nnoremap <leader>ff <cmd>Telescope find_files<cr>
-  nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-  nnoremap <leader>fb <cmd>Telescope buffers<cr>
-  nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-  nnoremap <leader>ft <cmd>Telescope filetypes<cr>
-  nnoremap <leader>fr <cmd>Telescope reloader<cr>
+  nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+  nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+  nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+  nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+  nnoremap <leader>ft <cmd>lua require('telescope.builtin').filetypes()<cr>
+  nnoremap <leader>fr <cmd>lua require('telescope.builtin').reloader()<cr>
+  nnoremap <leader>fm <cmd>lua require('telescope.builtin').man_pages()<cr>
+  nnoremap <leader>fq <cmd>lua require('telescope.builtin').quickfix()<cr>
+  nnoremap <leader>fo <cmd>lua require('telescope.builtin').oldfiles()<cr>
+  nnoremap <leader>fs <cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>
+  nnoremap <leader>fd <cmd>lua require('telescope.builtin').lsp_workspace_diagnostics()<cr>
+  nnoremap <leader>fi <cmd>lua require('telescope.builtin').builtin()<cr>
+  nnoremap <leader>fk <cmd>lua require('telescope.builtin').keymaps()<cr>
+  nnoremap <leader>fl <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
 ]]
 
 ---
