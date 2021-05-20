@@ -1,6 +1,9 @@
 local cmd = vim.api.nvim_command
+-- cmd [[
+--   colorscheme jellybeans-nvim
+-- ]]
 cmd [[
-  colorscheme jellybeans-nvim
+  colorscheme melange
 ]]
 -- cmd ([[
 --  augroup! lushify-theme-file

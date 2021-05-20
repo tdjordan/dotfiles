@@ -2,19 +2,34 @@
 ---
 -- require 'profiler'
 
-
 ---  base
 ---
-require 'plugins'
 require 'settings'
 require 'keymaps'
-require 'colorscheme'
 
----  plugin configs
----
-require 'configs'
+---  configs
+init_config = function()
+  require 'colorscheme'
 
----  lsp
+  ---  plugin configs
+  ---
+  require 'configs'
+
+  ---  lsp
+  ---
+  require 'lsp'
+end
+
+---  bootstrap plugins
 ---
-require 'lsp'
+require 'plugins'
+-- local packer_installed = require 'plugins'.is_installed()
+
+--if not paker_installed then
+--  require 'plugins'.bootstrap_packer()
+--  vim.cmd( 'autocmd User PackerComplete ++once lua init_config()' )
+--else
+--  init_config()
+--end
+
 

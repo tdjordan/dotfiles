@@ -6,3 +6,5 @@ require 'configs.treesitter'
 require 'configs.kommentary'
 
 require 'configs.indentline'
+
+require 'configs.autopairs'

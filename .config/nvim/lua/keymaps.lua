@@ -30,14 +30,16 @@ cmd [[
 ---
 cmd [[
   nnoremap <leader>pf <cmd>lua require('telescope.builtin').find_files()<cr>
+  nnoremap <leader>pg <cmd>lua require('telescope.builtin').live_grep()<cr>
   nnoremap <leader>pl <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
   nnoremap <leader>ps <cmd>lua require('telescope.builtin').live_grep()<cr>
-  nnoremap <leader>pw :Rg <c-r>=expand("<cword>")<cr><cr>
+  "nnoremap <leader>pw :Rg <c-r>=expand("<cword>")<cr><cr>
+  nnoremap <leader>pw <cmd>lua require('telescope.builtin').grep_string()<cr>
   nnoremap <leader>pc <cmd>lua require('telescope.builtin').colorscheme()<cr>
   nnoremap <leader>pv <cmd>lua require('telescope.builtin').vim_options()<cr>
   nnoremap <leader>pa <cmd>lua require('telescope.builtin').autocommands()<cr>
 
-  nnoremap <c-p> :GFiles<cr>
+  nnoremap <leader><c-p> <cmd>lua require('telescope.builtin').git_files()<cr>
 ]]
 
 ---
