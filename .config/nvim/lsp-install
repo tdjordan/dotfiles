@@ -1,0 +1,56 @@
+#!/bin/zsh
+# set -x
+
+yarn=(
+  yaml-language-server
+)
+
+pnpm=(
+  typescript typescript-language-server
+  vscode-css-languageserver-bin
+  vscode-html-languageserver-bin
+  dot-language-server
+  vscode-json-languageserver
+  pyright
+  vim-language-server
+  diagnostic-languageserver
+  graphql-language-service-cli
+  bash-language-server
+  dockerfile-language-server-nodejs
+  elm elm-test elm-format @elm-tooling/elm-language-server
+)
+
+# npm=(
+#   graphql-language-service-cli
+#   bash-language-server
+#   dockerfile-language-server-nodejs
+# )
+
+pip=(
+  fortran-language-server
+  cmake-language-server
+)
+
+gem=(
+  sorbet
+)
+
+brew=(
+  hashicopr/tap/terraform-ls
+  deno
+  gopls
+  rust-analyzer
+  efm-langserver
+  llvm
+  bear
+)
+
+time yarn global add ${yarn// / }
+time yarn global upgrade --latest
+
+time pnpm i  -g --loglevel error ${pnpm// / }
+time pnpm up -g --loglevel error
+
+time pip3 install -U ${pip// / }
+
+time gem install --user-install ${gem// / }

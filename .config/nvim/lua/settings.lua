@@ -5,7 +5,9 @@
 ------------------------
 
 -- local cmd = vim.cmd
+local opt = vim.opt
 local o   = vim.o
+local go  = vim.go
 local wo  = vim.wo
 local bo  = vim.bo
 local g   = vim.g
@@ -13,11 +15,15 @@ local g   = vim.g
 ------  Vim Settings
 ------
 -- Indention settings for 2 spaces instead of tabs
-bo.expandtab     = true                         -- nvim default : off
  o.smarttab      = true                         -- nvim default : on
-bo.shiftwidth    = 2                            -- nvim default : 8
-bo.softtabstop   = 2                            -- nvim default : 8
-bo.tabstop       = 2                            -- nvim default : 8
+ o.expandtab     = true                         -- nvim default : off
+bo.expandtab     = o.expandtab                  -- nvim default : off
+ o.shiftwidth    = 2                            -- nvim default : 8
+bo.shiftwidth    = o.shiftwidth                 -- nvim default : 8
+ o.softtabstop   = 2                            -- nvim default : 8
+bo.softtabstop   = o.softtabstop                -- nvim default : 8
+ o.tabstop       = 2                            -- nvim default : 8
+bo.tabstop       = o.tabstop                    -- nvim default : 8
  o.shiftround    = true                         -- nvim default : off
 
 -- When opening a new line and no filetype-specific indenting is enabled,
@@ -145,7 +151,7 @@ wo.relativenumber = true                        -- nvim default : off
 --   : do not select a match in the menu
 --   : force user to slect one from the menu
 --set completeopt -=preview                        -- nvim default : 'menu,preview'
- o.completeopt = 'menuone,noinsert,noselect'
+opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
 
 -- Maximum width of text that is being inserted.
 -- A longer line will be broken after white space to get this width.
@@ -178,7 +184,7 @@ wo.relativenumber = true                        -- nvim default : off
 ------  undo
 ------
 -- List of directory names for undo files
- o.undodir = vim.fn.stdpath('data')..'/tmp/undo/nvim/'   -- nvim default : '.'
+opt.undodir = vim.fn.stdpath('data')..'/tmp/undo/nvim/'   -- nvim default : '.'
 
 --  when writing a buffer to a file, and
 --  restore undo history from same file on buffer read
@@ -275,10 +281,11 @@ bo.undofile = true                              -- nvim default : off
  o.updatetime  = 100
 
 -- do not give |ins-completion-menu| messages.
- o.shortmess   = o.shortmess .. 'c'
+opt.shortmess:append { c = true }
 
 -- do not display intro message on startup
- o.shortmess   = o.shortmess .. 'I'
+opt.shortmess:append { I = true }
+-- opt.shortmess = opt.shortmess + { I = true }
 
 -- always show signcolumns
 wo.signcolumn = 'yes'

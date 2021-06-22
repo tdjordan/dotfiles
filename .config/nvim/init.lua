@@ -2,34 +2,20 @@
 ---
 -- require 'profiler'
 
----  base
----
-require 'settings'
-require 'keymaps'
-
----  configs
-init_config = function()
-  require 'colorscheme'
-
-  ---  plugin configs
+-- vim.defer_fn(vim.schedule_wrap(function()
+  ---  base
   ---
-  require 'configs'
+  require 'settings'
+  require 'keymaps'
 
-  ---  lsp
+  ---  bootstrap plugins
   ---
-  require 'lsp'
-end
+  require 'plugins'
 
----  bootstrap plugins
----
-require 'plugins'
--- local packer_installed = require 'plugins'.is_installed()
-
---if not paker_installed then
---  require 'plugins'.bootstrap_packer()
---  vim.cmd( 'autocmd User PackerComplete ++once lua init_config()' )
---else
---  init_config()
---end
-
-
+  -- vim.defer_fn(function()
+  --   vim.cmd [[
+  --     PackerLoad gruvbox-material
+  --     silent! bufdo e
+  --   ]]
+  -- end, 15)
+-- end), 0)

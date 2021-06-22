@@ -8,3 +8,9 @@ require 'configs.kommentary'
 require 'configs.indentline'
 
 require 'configs.autopairs'
+
+require 'configs.lualine'
+
+require 'configs.yank'
+
+require 'configs.which-key'

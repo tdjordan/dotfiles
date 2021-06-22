@@ -32,6 +32,8 @@ alias lla='${_ls_command} -AlFh ${color}'
 alias h='history'
 
 alias fdi="fd -H --no-ignore -E '.git/*'"
+alias fdip="fd -H --no-ignore -E '.git/*' --full-path"
+alias fdp="fd --full-path"
 
 #alias grep='grep --color=auto 2>/dev/null'
 #alias grep='ag $*' 2>/dev/null
@@ -56,6 +58,8 @@ alias dms='docker_select'
 
 # brew
 alias bi='brew info'
+alias bs='brew search'
+alias blr='brew list | rg '
 
 # cat
 #alias c='cat'
@@ -88,7 +92,8 @@ alias vi='nvim'
 alias viu='vi -u NONE'
 
 # neovim config
-alias vic='nvim ~/.config/nvim/init.vim'
+alias vic='nvim ~/.config/nvim/init.lua'
+alias luamake=~/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/3rd/luamake/luamake
 
 # loop
 alias lo='_lo '
@@ -129,3 +134,10 @@ alias cls='clear'
 #  ssh
 ##
 alias ssh='TERM=xterm-256color ssh '
+
+###  tmux
+###
+alias t='tmux'
+alias ta='t a -t'
+alias tls='t ls'
+alias tn='t new -t'

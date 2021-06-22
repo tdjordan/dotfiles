@@ -1,12 +1,11 @@
 -- local cmd = vim.cmd
-local o   = vim.o
+-- local o   = vim.o
 local g   = vim.g
 
-o.background = 'dark'
 -- o.background = 'light'
 
-local lush = require 'lush'
-lush(require 'theme')
+-- local lush = require 'lush'
+-- lush(require 'theme')
 
 ---  gruvbox-material settings
 ---
@@ -41,4 +40,3 @@ g.gruvbox_material_enable_italic               = 1         -- default: 1 ( on )
 
 -- require 'colorbuddy'.colorscheme 'gruvbuddy'
 --
-

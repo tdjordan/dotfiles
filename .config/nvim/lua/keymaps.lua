@@ -1,19 +1,20 @@
 local cmd    = vim.cmd
--- local api    = vim.api
--- local keymap = api.nvim_set_keymap
-
--- function nnoremap(key, command)
---   keymap('n', key, command, { noremap = true, silent = true })
--- end
-
--- nnoremap('<space>', '<nop>')
 
 -- New <leader> of the band
 cmd [[
   nnoremap <space> <nop>
   vnoremap <space> <nop>
-  let g:mapleader=' '
 ]]
+
+vim.g.mapleader = ' '
+
+---  local mappings
+---
+local ku = require 'keymap.utility'
+local nnoremap = ku.nnoremap
+local inoremap = ku.inoremap
+local vnoremap = ku.vnoremap
+local tnoremap = ku.tnoremap
 
 ---
 ---  noremap bindings
@@ -21,46 +22,40 @@ cmd [[
 
 -- Reload init.lua from standard config path
 -- note that the stdpath makes this portable
-cmd [[
-  nnoremap <leader><cr> <cmd>luafile ~/.config/nvim/init.lua<cr>
-]]
+-- nnoremap( '<leader><cr>', '<cmd>luafile ~/.config/nvim/init.lua<cr>' )
 
 ---
 ---  p* mappings
 ---
-cmd [[
-  nnoremap <leader>pf <cmd>lua require('telescope.builtin').find_files()<cr>
-  nnoremap <leader>pg <cmd>lua require('telescope.builtin').live_grep()<cr>
-  nnoremap <leader>pl <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
-  nnoremap <leader>ps <cmd>lua require('telescope.builtin').live_grep()<cr>
-  "nnoremap <leader>pw :Rg <c-r>=expand("<cword>")<cr><cr>
-  nnoremap <leader>pw <cmd>lua require('telescope.builtin').grep_string()<cr>
-  nnoremap <leader>pc <cmd>lua require('telescope.builtin').colorscheme()<cr>
-  nnoremap <leader>pv <cmd>lua require('telescope.builtin').vim_options()<cr>
-  nnoremap <leader>pa <cmd>lua require('telescope.builtin').autocommands()<cr>
+-- nnoremap( '<leader>pf', "<cmd>lua require('telescope.builtin').find_files()<cr>" )
+-- nnoremap( '<leader>pg', "<cmd>lua require('telescope.builtin').live_grep()<cr>" )
+-- nnoremap( '<leader>pl', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>" )
+-- nnoremap( '<leader>ps', "<cmd>lua require('telescope.builtin').live_grep()<cr>" )
+-- nnoremap( 'leader>pw :Rg', "c-r>=expand("<cword>")<cr><cr>" )
+-- nnoremap( '<leader>pw', "<cmd>lua require('telescope.builtin').grep_string()<cr>" )
+-- nnoremap( '<leader>pc', "<cmd>lua require('telescope.builtin').colorscheme()<cr>" )
+-- nnoremap( '<leader>pv', "<cmd>lua require('telescope.builtin').vim_options()<cr>" )
+-- nnoremap( '<leader>pa', "<cmd>lua require('telescope.builtin').autocommands()<cr>" )
 
-  nnoremap <leader><c-p> <cmd>lua require('telescope.builtin').git_files()<cr>
-]]
+-- nnoremap( '<leader><c-p>', "<cmd>lua require('telescope.builtin').git_files()<cr>" )
 
 ---
 ---  f* mappings
 ---
-cmd [[
-  nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-  nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-  nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-  nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-  nnoremap <leader>ft <cmd>lua require('telescope.builtin').filetypes()<cr>
-  nnoremap <leader>fr <cmd>lua require('telescope.builtin').reloader()<cr>
-  nnoremap <leader>fm <cmd>lua require('telescope.builtin').man_pages()<cr>
-  nnoremap <leader>fq <cmd>lua require('telescope.builtin').quickfix()<cr>
-  nnoremap <leader>fo <cmd>lua require('telescope.builtin').oldfiles()<cr>
-  nnoremap <leader>fs <cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>
-  nnoremap <leader>fd <cmd>lua require('telescope.builtin').lsp_workspace_diagnostics()<cr>
-  nnoremap <leader>fi <cmd>lua require('telescope.builtin').builtin()<cr>
-  nnoremap <leader>fk <cmd>lua require('telescope.builtin').keymaps()<cr>
-  nnoremap <leader>fl <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
-]]
+-- nnoremap( '<leader>ff', '<cmd>lua require("telescope.builtin").find_files()<cr>' )
+-- nnoremap( '<leader>fg', '<cmd>lua require("telescope.builtin").live_grep()<cr>' )
+-- nnoremap( '<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<cr>' )
+-- nnoremap( '<leader>fh', '<cmd>lua require("telescope.builtin").help_tags()<cr>' )
+-- nnoremap( '<leader>ft', '<cmd>lua require("telescope.builtin").filetypes()<cr>' )
+-- nnoremap( '<leader>fr', '<cmd>lua require("telescope.builtin").reloader()<cr>' )
+-- nnoremap( '<leader>fm', '<cmd>lua require("telescope.builtin").man_pages()<cr>' )
+-- nnoremap( '<leader>fq', '<cmd>lua require("telescope.builtin").quickfix()<cr>' )
+-- nnoremap( '<leader>fo', '<cmd>lua require("telescope.builtin").oldfiles()<cr>' )
+-- nnoremap( '<leader>fs', '<cmd>lua require("telescope.builtin").lsp_workspace_symbols()<cr>' )
+-- nnoremap( '<leader>fd', '<cmd>lua require("telescope.builtin").lsp_workspace_diagnostics()<cr>' )
+-- nnoremap( '<leader>fi', '<cmd>lua require("telescope.builtin").builtin()<cr>' )
+-- nnoremap( '<leader>fk', '<cmd>lua require("telescope.builtin").keymaps()<cr>' )
+-- nnoremap( '<leader>fl', '<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find()<cr>' )
 
 ---
 ---  g* mappings
@@ -68,49 +63,45 @@ cmd [[
 
 ---  resize operations
 ---
-cmd [[
-  nnoremap <silent><leader>- :resize -5<cr>
-  nnoremap <silent><leader>= :resize +5<cr>
-  nnoremap <silent><leader>\ :vertical resize -5<cr>
-  nnoremap <silent><leader>q :vertical resize +5<cr>
-]]
+-- nnoremap( '<leader>-', '<cmd>:resize -5<cr>' )
+-- nnoremap( '<leader>=', '<cmd>:resize +5<cr>' )
+-- nnoremap( [[<leader>\]], '<cmd>:vertical resize -5<cr>' )
+-- nnoremap( '<leader>q', '<cmd>:vertical resize +5<cr>' )
 
 ---
 ---  u* mappings
 ---
-cmd [[
-  nnoremap <leader>u :UndotreeToggle<cr>
-]]
+-- nnoremap( '<leader>u', '<cmd>UndotreeToggle<cr>' )
 
 ---  Comment Handling
 ---
-cmd [[
-nmap <C-_> <plug>NERDCommenterToggle
-vmap <C-_> <plug>NERDCommenterToggle
-]]
+nnoremap( '<C-_>', '<plug>NERDCommenterToggle' )
+vnoremap( '<C-_>', '<plug>NERDCommenterToggle' )
 
 ---  File Browser
 ---
-cmd [[
-nnoremap <leader>k <cmd>NERDTreeToggle<cr>
-]]
+-- nnoremap( '<leader>k', '<cmd>NERDTreeToggle<cr>' )
 
 ---  Window Navigation
 ---
 ---  navigate cursor to adjoining window
 ---
 -- terminal mode
-cmd [[
-  tnoremap <Esc> <C-\><C-n>
-  tnoremap <C-h> <C-\><C-n><C-w>h
-  tnoremap <C-j> <C-\><C-n><C-w>j
-  tnoremap <C-k> <C-\><C-n><C-w>k
-  tnoremap <C-l> <C-\><C-n><C-w>l
-  nnoremap <silent> <leader>t :split term://$SHELL<cr>
-  tnoremap <silent> <leader>t <c-\><c-n>:split term://$SHELL<cr>
-]]
+tnoremap( '<Esc>', [[<C-\><C-n>]] )
+tnoremap( '<C-h>', [[<C-\><C-n><C-w>h]] )
+tnoremap( '<C-j>', [[<C-\><C-n><C-w>j]] )
+tnoremap( '<C-k>', [[<C-\><C-n><C-w>k]] )
+tnoremap( '<C-l>', [[<C-\><C-n><C-w>l]] )
+nnoremap( '<leader>t', ':split term://$SHELL<cr>' )
+-- tnoremap( '', [[<c-\><c-n>:split term://$SHELL<cr>]] )
+-- tnoremap( '<M-t>', [[<c-\><c-n>:split term://$SHELL<cr>]] )
+tnoremap( '<A-t>', [[<c-\><c-n>:split term://$SHELL<cr>]] )
 --  augroup terminal_settings
 --    autocmd!
+cmd [[ autocmd BufWinEnter,WinEnter,TermEnter term://* setlocal nonumber norelativenumber ]]
+cmd [[ autocmd BufWinEnter,WinEnter,TermEnter term://* startinsert                        ]]
+cmd [[ autocmd BufLeave                       term://* stopinsert                         ]]
+cmd [[ autocmd TermClose                      term://* call nvim_input('<cr>')            ]]
 --    autocmd BufWinEnter,WinEnter,TermEnter term://* startinsert
 --    autocmd BufLeave                       term://* stopinsert
 --    autocmd TermClose                      term://*
@@ -125,12 +116,10 @@ cmd [[
 -- nnoremap <C-j> <C-w>j
 -- nnoremap <C-k> <C-w>k
 -- nnoremap <C-l> <C-w>l
-cmd [[
-  nnoremap <silent><c-h> <cmd>wincmd h<cr>
-  nnoremap <silent><c-j> <cmd>wincmd j<cr>
-  nnoremap <silent><c-k> <cmd>wincmd k<cr>
-  nnoremap <silent><c-l> <cmd>wincmd l<cr>
-]]
+nnoremap( '<c-h>', '<cmd>wincmd h<cr>' )
+nnoremap( '<c-j>', '<cmd>wincmd j<cr>' )
+nnoremap( '<c-k>', '<cmd>wincmd k<cr>' )
+nnoremap( '<c-l>', '<cmd>wincmd l<cr>' )
 ---  insert mode
 -- inoremap <C-h> <Esc><C-W>h
 -- inoremap <C-j> <Esc><C-w>j
@@ -156,8 +145,16 @@ cmd [[
 
 ---  Escape
 ---
+-- cmd [[ :imap jk <esc> ]]
+inoremap( 'jk',    '<esc>' )
+inoremap( 'kj',    '<esc>' )
+inoremap( '<C-c>', '<esc>' )
+
+cmd [[ autocmd BufWinEnter,WinEnter TelescopePrompt :iunremap jk ]]
+cmd [[ autocmd BufWinLeave,WinLeave TelescopePrompt :inoremap jk <esc> ]]
+
+---  When opening a file, return to last edit postion
+---
 cmd [[
-  inoremap jk    <esc>
-  inoremap kj    <esc>
-  inoremap <C-c> <esc>
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line('$') | execute 'normal! g`"' | endif
 ]]

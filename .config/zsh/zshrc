@@ -40,6 +40,10 @@ source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh.zwc ]]; then
+  zinit self-update
+fi
+
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 #zinit lucid nocd light-mode for \
@@ -82,12 +86,18 @@ zinit wait"1" lucid nocd light-mode for \
   zdharma/fast-syntax-highlighting \
   hlissner/zsh-autopair
 
-# zinit wait"3" lucid nocd light-mode atload"zicompinit; zicdreplay" for \
-zinit wait"1" lucid nocd light-mode for \
+# zinit wait"1" lucid nocd light-mode for \
+zinit wait"3" lucid nocd light-mode atload"zicompinit; zicdreplay" for \
   zsh-users/zsh-completions
 
-#zinit wait lucid nocd light-mode for \
-  #atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+if [[ ! -f $HOME/Library/Caches/sfdx/autocomplete/zsh_setup ]]; then
+  # zinit wait"1" lucid nocd light-mode atload"zicompinit; zicdreplay" for \
+  zinit wait"2" lucid nocd light-mode for \
+    $HOME/Library/Caches/sfdx/autocomplete/zsh_setup
+fi
+
+# zinit wait lucid nocd light-mode for \
+  # atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     #zdharma/fast-syntax-highlighting \
   #blockf \
     #zsh-users/zsh-completions \
@@ -96,7 +106,8 @@ zinit wait"1" lucid nocd light-mode for \
 
 [ -f $HOME/.skim/shell/key-bindings.zsh ] && \
   zinit wait"2" lucid nocd is-snippet for \
-    $HOME/.skim/shell/key-bindings.zsh
+    latoabout/skim/shell/key-bindings.zsh
+    # $HOME/.skim/shell/key-bindings.zsh
 
 #zinit wait lucid nocd is-snippet for \
 
