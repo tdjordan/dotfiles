@@ -1,0 +1,1149 @@
+scriptencoding utf-8
+
+""""""""""
+"""
+"""  Plugins
+"""
+""""""""""
+"""  Plugins
+
+"""  neovim 0.5 plugin mix
+"""
+if has('nvim')
+  let $V=stdpath('config')
+else
+  let $V='~/.config/vim'
+  "setenv VIM ~/.config/nvim
+endif
+source $V/plugins.vim
+
+"source $V/plugins-paq.vim
+"lua require 'plugins-paq'
+
+"lua require 'plugins-packer'
+"augroup auto_compile_packer_plugins
+"  autocmd!
+"  autocmd BufWritePost plugins-packer.lua PackerCompile
+"augroup END
+
+""""""""""
+"""
+"""  nvim defaults
+"""
+""""""""""
+"""  Reset vim defaults to nvim defaults
+"""
+if !has('nvim')
+
+  " Set 'nocompatible' to ward off unexpected things that the distro might
+  " have made, as well as sanely reset options when re-sourcing .vimrc
+  set nocompatible                                  " nvim default
+
+  " Attempt to determine the type of a file based on its name and possibly its contents.
+  " Used to allow intelligent auto-indenting for each filetype,
+  " and for plugins that are filetype specific
+  filetype plugin indent on
+
+  set smarttab                                  """"" nvim default : on
+
+  " When opening a new line and no filetype-specific indenting is enabled,
+  " keep the same indent as the line you are currently on.
+  set autoindent                                """"" nvim default : on
+
+  set incsearch                                 """"" nvim default : on
+  set hlsearch                                  """"" nvim default : on
+
+  " - 'autoread' is enabled
+  " - 'background' defaults to "dark" (unless set automatically by the terminal/UI)
+  "set background=dark
+  " - 'backspace' defaults to "indent,eol,start"
+  " - 'backupdir' defaults to .,~/.local/share/nvim/backup (|xdg|)
+  " - 'belloff' defaults to "all"
+  " - 'compatible' is always disabled
+  " - 'complete' excludes "i"
+  " - 'cscopeverbose' is enabled
+  " - 'directory' defaults to ~/.local/share/nvim/swap// (|xdg|), auto-created
+  " - 'display' defaults to "lastline,msgsep"
+  " - 'encoding' is UTF-8 (cf. 'fileencoding' for file-content encoding)
+  " - 'fillchars' defaults (in effect) to "vert:│,fold:·"
+  " - 'formatoptions' defaults to "tcqj"
+  " - 'fsync' is disabled
+  " - 'history' defaults to 10000 (the maximum)
+  " - 'langnoremap' is enabled
+  " - 'langremap' is disabled
+  " - 'laststatus' defaults to 2 (statusline is always shown)
+  " - 'listchars' defaults to "tab:> ,trail:-,nbsp:+"
+  " - 'nrformats' defaults to "bin,hex"
+  " - 'ruler' is enabled
+  " - 'sessionoptions' excludes "options"
+  " - 'shortmess' includes "F", excludes "S"
+  " - 'showcmd' is enabled
+  " - 'sidescroll' defaults to 1
+  " - 'smarttab' is enabled
+  " - 'tabpagemax' defaults to 50
+  " - 'tags' defaults to "./tags;,tags"
+  " - 'ttimeoutlen' defaults to 50
+  " - 'ttyfast' is always set
+  " - 'undodir' defaults to ~/.local/share/nvim/undo (|xdg|), auto-created
+  " - 'viminfo' includes "!"
+  " - 'wildmenu' is enabled
+  " - 'wildoptions' defaults to "pum,tagfile"
+
+end
+
+" New <leaderi> of the band
+nnoremap <space> <nop>
+vnoremap <space> <nop>
+let g:mapleader=' '
+"nnoremap <leader>V :tabnew ~/.nvimrc<CR>
+set timeoutlen=500
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<cr>
+"nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<cr>
+
+" Enable folding
+"set foldmethod=marker
+"set foldmarker=::\ ,::
+
+""""""""""""
+"""
+"""  Settings & Keybindings
+"""
+""""""""""""
+
+"""  Vim Settings
+"""
+" Indention settings for 2
+" spaces instead of tabs
+set expandtab                                     " nvim default : off
+set smarttab                                  """"" nvim default : on
+set shiftwidth=2                                  " nvim default : 8
+set softtabstop=2                                 " nvim default : 8
+set tabstop=2                                     " nvim default : 8
+set shiftround                                    " nvim default : off
+
+" When opening a new line and no filetype-specific indenting is enabled,
+" keep the same indent as the line you are currently on.
+"if !has('nvim')
+  "set autoindent                                """"" nvim default : on
+"end
+
+" Display the cursor position on the last line of the screen
+" or in the status line of a window
+set ruler                                         " nvim default : off
+
+" Open splits below and to the right
+"set splitbelow
+set splitright
+
+" Allow window re-use to switch from an unsaved buffer without saving it first.
+" Allows multiple file undo history for the same window.
+set hidden
+
+" Use case insensitive search, except when using capital letters
+set ignorecase                                    " nvim default : off
+set smartcase                                     " nvim default : off
+set showmatch                                     " nvim default : off
+"set incsearch                                 """"" nvim default : on
+
+" Highlight searches
+set nohlsearch                                    " nvim default : on
+
+" Display line numbers in the left gutter
+set number                                        " nvim default : off
+set relativenumber                                " nvim default : off
+
+" display space above/below left/right of cursor
+set scrolloff=1
+set sidescrolloff=5
+
+" When will the last window have a status line?
+"   0 : never
+"   1 : only if there are at least two windows
+"   2 : always
+set laststatus=2                              """"" nvim default : 2
+
+" Hightlight the screen line of the cursor with CursorLine
+set cursorline                                    " nvim default : off
+
+" When on, lines longer than width of window will wrap
+"set nowrap                                        " nvim default : on
+
+" Enable use of the mouse
+"    options [useful]
+"      n = Normal mode
+"      v = Visual mode
+"      i = Insert mode
+"      c = Command-line mode
+"      h = all previous modes when editing a help file
+"      a = all previous modes
+"      r = for hit-enter & more-propmt prompts
+"set mouse=a                                       " nvim defaults : 'a'
+
+"set guioptions=A
+
+" Enable 24-bit RGB color in the TUI
+" if has ('termguicolors')
+  set termguicolors
+" endif
+
+"""  TODO: nvim defaults - not currently used
+"""
+"set complete                          " nvim doesn't include 'i'
+"set display=lastline                  " nvim defaults to 'lastline'
+set encoding=utf-8                    " nvim defaults to 'utf-8'
+set concealcursor=nc                  " n:Normal v:Visual i:Insert c:Command ( Modes )
+set conceallevel=2                    " 'Conceal' hi group / text hidden unless has replacement ch
+"set langnoremap                       " nvim default
+"set laststatus                        " nvim defaults to 2 (statusline is alwasys shown)
+"set listchars=tab:> ,trail:-,nbsp:+   " nvim default
+"set nrformats                         " nvim defaults to 'hex'
+"set sessionoptions                    " nvim doesn't include 'options'
+"set tabpagemax                        " nvim defaults to 50
+"set tags                              " nvim defaults to './tags;,tags'
+"set viminfo                           " nvim includes '!' : nvim alias for shada
+"""
+" TODO: nvim defaults - not currently used
+
+"""  vim settings removed in nvim
+"""
+" compatible      cp
+" cryptmethod
+" edcompatible    ed
+" guipty
+" key
+" macatsui
+" shortname       sn
+" termencoding    tenc
+" toolbar         tb
+" toolbariconsize tbis
+" ttybuiltin      tbi
+" ttyfast         tf
+" ttymouse        ttym
+" ttyscroll       tsl
+" weirdinvert     wiv
+"""
+" vim settings removed in nvim
+
+"""  Allow backspacing over autoindent, line br
+set backspace=indent,eol,start                """"" nvim default : 'ident,eol,start'
+"set shell=/bin/bash                               " nvim default : $SHELL or sh or cmd.exe
+"set shell=/bin/sh
+set shell=/bin/zsh
+
+" Allow for old vim shell muscle memory
+"cnoreabbrev sh te
+
+" Insert mode completion options
+"   menu
+"   : use a popup menu to show the possible completeions
+"   : does not show if there is only one match
+"   menuone
+"   : use a popup menu also when there is only one match
+"   longest
+"   : only insert the longest common text of the matches
+"   preview
+"   : show extra information about the currently selected completion
+"   : only works with 'menu' or 'menuone'
+"   noinsert
+"   : do not insert any text for a match until the user selects a match
+"   : no effect if 'longest' is present
+"   noselect
+"   : do not select a match in the menu
+"   : force user to slect one from the menu
+"set completeopt -=preview                         " nvim default : 'menu,preview'
+set completeopt=menuone,noinsert,noselect
+
+" Maximum width of text that is being inserted.
+" A longer line will be broken after white space to get this width.
+" Zero disables this feature.
+"set textwidth=100                                 " nvim default : 0
+
+"set ttyfast                                   """"" not in nvim - always set
+set noshowmode
+
+" If a file changes outside of nvim, automatically read it again.
+set autoread                                  """"" nvim default : on
+
+" If file content changes, automatically write it when buffer loses focus.
+"set autowrite                                     " nvim default : off
+"set autowriteall                                  " nvim default : off
+
+" Set the command window height to 2 lines,
+" to avoid many cases of having to "press <Enter> to continue"
+set cmdheight=1                               """"" nvim default : 1
+
+" Show partial commands in the last line of the screen
+set showcmd                                       " nvim default : (unix) ? off : on
+
+""""""""""
+"""
+"""  backup/persistance settings
+"""
+""""""""""
+
+"""  undo
+"""
+" List of directory names for undo files
+if has('nvim')
+  set undodir=~/.local/share/nvim/tmp/undo/nvim/              " nvim default : '.'
+else
+  set undodir=~/.local/share/nvim/tmp/undo/vim8/
+endif
+
+"  when writing a buffer to a file, and
+"  restore undo history from same file on buffer read
+set undofile                                      " nvim default : off
+
+" Maximum number of changes that can be undone.
+"set undolevels=1000                           """"" nvim default : 1000
+
+" Save whole buffer for undo when reloading it.
+"set undoreload=10000                          """"" nvim default : 10000
+
+"""  backup
+"""
+" Make a backup before overwriting a file.
+"set backup                                        " nvim default : off
+
+" Make a backup
+"set writebackup                               """"" nvim default : (+writebackup) ? on : off
+
+" List of directories for backup files
+"   nvim default : (unix) ? '.,~/tmp,~/' ; '.,$TEMP,c:\\tmp,c:\\temp'
+set backupdir=~/.local/share/nvim/tmp/backup/                 " nvim default : see above
+
+" List of file patterns to skip creating a backup of
+"   nvim default : '/tmp/*,/$TMPDIR/*,$TMP/*,$TEMP/*'
+set backupskip=/tmp/*,/private/tmp/*              " nvim default : see above
+
+" When writing a backup file, how should it be done?
+"   yes  : make a copy and overwrite the original
+"   no   : rename file and write a new one
+"   auto : one of the previous that works best
+"set backupcopy=yes                            """"" nvim default : (unix) ? 'yes' : 'auto'
+
+"""  swap
+"""
+" Use a swapfile for the buffer.
+set noswapfile                                    " nvim default : on
+
+" List of directories for swap files
+"   nvim default : (unix) ? '.,~/tmp,/var/tmp,/tmp' : '.,$TEMP,c:\\tmp,c:\\temp'
+set directory=~/.local/share/nvim/tmp/swap/                   " nvim default : see above
+
+" How many to remember?
+"   of:
+"     ':' commands
+"     search patterns
+"set history=10000                             """"" nvim default : 10000
+
+" Instead of failing a command because of unsaved changes,
+" raise a dialogue asking if you wish to save changed files
+"set confirm                                       " nvim default : off
+
+"""  save marks
+"""
+" Use the shada to save marks also
+"   TODO: Not working
+"set shada+=f1                                     " nvim default : !,'100,<50,s10,h
+
+"""  sessions
+"""
+" Allow Windows & Linux to share session files
+"   nvim default : blank,buffers, curdir, folds,help,tabpages,winsize
+set sessionoptions+=slash,unix
+
+"""  List mode
+"""
+" Show listchars
+"set list                                        " nvim default : off
+
+"characters for displaying non-printable characters
+"set listchars=tab:> ,trail:-,nbsp:+
+"set listchars=eol:$,tab:>-,trail:.,nbsp:_,extends:+,precedes:+
+"set listchars=tab:> ,trail:.,nbsp:_,extends:+,precedes:+
+
+" center view on the search result
+"noremap n nzz
+"noremap N Nzz
+
+"""  Spell
+"set spell
+"set spelllang=us_en
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+"set cmdheight=1
+"set cmdheight=2
+"set cmdheight=5
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=100
+
+" do not give |ins-completion-menu| messages.
+set shortmess+=c
+
+" do not display intro message on startup
+set shortmess+=I
+
+" always show signcolumns
+set signcolumn=yes
+
+""""""""""""
+"""
+"""  Settings & Keybindings
+"""
+""""""""""""
+
+"""
+""" noremap bindings
+"""
+
+" Reload init.vim from standard config path
+" note that the stdpath makes this portable
+nnoremap <leader><cr> :so $V/init.vim<cr>
+
+"""
+""" p* mappings
+"""
+nnoremap <leader>pf :Files<cr>
+nnoremap <leader>pl :Lines<cr>
+nnoremap <leader>ps :Rg<space>
+nnoremap <leader>pw :Rg <c-r>=expand("<cword>")<cr><cr>
+nnoremap <leader>pc :Colors<cr>
+nnoremap <leader>pm :Maps<cr>
+
+nnoremap <c-p> :GFiles<cr>
+
+"""
+""" f* mappings
+"""
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>ft <cmd>Telescope filetypes<cr>
+nnoremap <leader>fr <cmd>Telescope reloader<cr>
+
+"""
+""" g* mappings
+"""
+
+"""  resize operations
+"""
+nnoremap <silent><leader>- :resize -5<cr>
+nnoremap <silent><leader>= :resize +5<cr>
+nnoremap <silent><leader>\ :vertical resize -5<cr>
+nnoremap <silent><leader>q :vertical resize +5<cr>
+
+" Resize splits when the window is resized
+augroup resize_splits_when_window_resizes
+  autocmd!
+  autocmd VimResized * :wincmd =
+augroup END
+
+" When opening a file, return to last edit postion
+augroup return_to_last_edit_position
+  autocmd!
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line('$') |
+    \   execute 'normal! g`"' |
+    \ endif
+augroup END
+
+"""
+""" u* mappings
+"""
+nnoremap <leader>u :UndotreeToggle<cr>
+
+"""  Plug 'ntpetters/vim-beetter-whitespace'
+"""
+augroup strip_whitespace_on_save
+  autocmd!
+  let g:strip_whitespace_on_save = 1
+  let g:strip_whitespace_confirm = 0
+  autocmd  BufWritePre * StripWhitespace
+augroup END
+
+"""  Plug 'rking/ag.vim'                               " :h ag
+"""
+" Better comand-line completion
+set wildmenu                                  """"" nvim default : on
+set wildmode=longest:full,full                    " nvim default : full
+let g:ag_prg='ag --vimgrep --smart-case'          " plug default : --vimgrep
+"""
+"nnoremap <leader>f :execute 'Ag "' . input('Ag/') . '"'<CR>
+
+imap jk <esc>
+imap kj <esc>
+inoremap <C-c> <esc>
+
+let g:markdown_fenced_languages = [
+  \ 'vim'
+  \]
+
+"""  Fuzzy finders
+"""
+" set up patterns to ignore
+set wildignore+=.hg,.git,.svn                     " version control
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg    " images - binary
+set wildignore+=*.o,*.obj,*.manifest              " compiled object files
+set wildignore+=*.exe,*.so,*dll                   " exe/lib binaries
+set wildignore+=*.DS_Store                        " OSX custom folder attributes
+set wildignore+=*.luac                            " byte code - lua
+set wildignore+=*.pyc                             " byte code - python
+set wildignore+=*.sw?                             " nvim swap files
+set wildignore+=Session.vim                       " nvim mksession - default
+
+"""  fzf
+"""
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+let $FZF_DEFAULT_OPTS='--reverse'
+"let g:fzf_checkout_track_key = 'ctrl-t'
+let g:fzf_branch_actions = {
+  \ 'track': {
+  \   'prompt': 'Track> ',
+  \   'execute': 'echo system("{git} checkout --track {branch}")',
+  \   'mulitple': v:false,
+  \   'keymap': 'ctrl-t',
+  \   'required': ['branch'],
+  \   'confirm': v:false,
+  \ },
+  \}
+
+"""  sk
+"""
+" Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install -all' }
+"""
+if executable("rg")
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
+"""  Plug 'vim-airline/vim-airline'                    " :h airline
+" Plug 'vim-airline/vim-airline-themes'
+"""
+"""  themes : airline
+"""
+"let g:airline_theme='powerlineish'
+"let g:airline_theme='gruvbox_material'
+let g:airline_powerline_fonts=1
+"let g:spaceline_colorscheme='gruvbox_material'
+"let g:airline#extensions#coc#enabled = 1
+"let g:airline_extensions = []
+"let g:airline#extensions#tabline#enabled=1
+
+"""  themes : lightline
+"""
+"let g:lightline = {}
+" :h statusline
+let g:lightline = {
+  \   'colorscheme': 'gruvbox_material',
+  \   'active': {
+  \     'left': [
+  \       [ 'mode', 'past' ],
+  \       [ 'gitbranch', 'readonly' ],
+  \       [ 'filename', 'modified' ]
+  \     ],
+  \     'right': [
+  \       [ 'percent', 'lineinfo' ],
+  \       [ 'fileencoding', 'fileformat' ],
+  \       [ 'file', 'filetype' ],
+  \     ],
+  \   },
+  \   'inactive': {
+  \     'left': [
+  \       [ '' ],
+  \       [ 'past' ],
+  \       [ 'readonly', 'filename' ]
+  \     ],
+  \     'right': [
+  \       [ 'lineinfo' ],
+  \       [ 'percent' ],
+  \       [ 'file', 'filetype', 'fileencoding', 'fileformat' ],
+  \     ],
+  \   },
+  \   'component': {
+  \     'helloworld': 'Hello, world!',
+  \     'charvaluehex': '0x%B',
+  \     'file_airline': '%{&fenc!=#""?&fenc:&enc}[%{&ff}]'
+  \   },
+  \   'component_function': {
+  \     'gitbranch': 'gitbranch#name',
+  "\     'filename': 'LightlineFilename',
+  \   },
+  "\   'separator': {
+  "\     'left': "\ue0b8",
+  "\     'right': "\ue0be"
+  "\   },
+  \ }
+  "\   'mode_map': {
+  "\     'n': 'N',
+  "\     'n': 'N',
+  "\     'n': 'N',
+  "\     'n': 'N',
+  "\     'n': 'N',
+  "\     'n': 'N',
+  "\     'n': 'N',
+  "\     'n': 'N',
+  "\   }
+  "\   'separator': {
+  "\     'left': "\ue0b8",
+  "\     'right': "\ue0be"
+  "\   },
+
+function! LightlineFilename()
+  let filename = expand('%t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? '[+]' : ''
+  return filename . modified
+endfunction
+
+function! LightlineReadonly()
+  return &readonly && &filetype !=# 'help' ? 'RO' : ''
+endfunction
+
+"""  Tagbars
+" :h tagbar
+" Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+" ;help vista
+" Plug 'liuchengxu/vista.vim', { 'on' : 'Vista!!' }
+"""
+"nnoremap <silent><F8> :TagbarToggle<CR>
+"nnoremap <silent><F8> :Vista!!<cr>
+
+"""  Themes
+"""
+" Plug 'fatih/molokai'
+" Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/nerd-fonts'
+"""
+"if ( x === 1 )
+"set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 11
+"set guifont=Fira\ Code
+
+"""  Plug 'scrooloose/syntastic'                       " :h syntastic
+"""
+""let g:syntastic_enable_ballons=1                  " plug default : 1
+""let g:syntastic_error_symbol = "✗"                " plug default : $>
+"let g:syntastic_check_on_open=1                   " plug default : 0
+
+"""  Plug 'benekastah/neomake'                         " :h neomake
+"autocmd! BufWritePost * Neomake
+"autocmd! BufWinEnter * Neomake
+""let g:neomake_open_list=2
+""let g:neomake_open_list=1
+"let g:neomake_open_list=0
+""let g:neomake_airline=1
+
+"""  Plug 'w0rp/ale'                                   " :h ale
+"let g:ale_sign_column_always = 1
+
+"""  TODO: see http://vimawesome.com/plugin/vim-thematic
+
+"""  Comment Handling
+"nmap <C-_> :NERDComment(1, 'toggle')<cr>
+"nmap <C-_> :Plug 'preservim/nerdcommenter'<cr>
+nmap <C-_> <plug>NERDCommenterToggle
+vmap <C-_> <plug>NERDCommenterToggle
+
+"""  File Browser
+"autocmd! User NERD_tree.vim echom 'NERDTree is now loaded!'
+"""
+nnoremap <leader>k :NERDTreeToggle<cr>
+let g:NERDTreeShowHidden=1                         " plug default : 0
+"let NERDTreeMinimalUI=1                           " plug default : 0
+"let NERDTreeShowBookmarks=1                       " plug default : 0
+" exit nvim when nerdtree is the only buffer open
+"autocmd bufenter *
+  "\ if
+  "\   (winnr("$") == 1
+  "\   && exists("b:NERDTreeType")
+  "\   && b:NERDTreeType
+  "\   == "primary")
+  "\     | q |
+  "\ endif
+" open nerdtree when nvim starts up
+"autocmd VimEnter * NERDTree
+" open nerdtee when no files wer specified on startup
+autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter *
+  "\ if
+  "\   argc() == 0
+  "\   && !exists("s:std_in")
+  "\     | NERDTree |
+  "\ endif
+
+"""  Indention
+"let g:indentLine_char = '|'
+let g:indentLine_char = '┆'
+let g:indentLine_setConceal = 0
+augroup indent_levels
+  autocmd!
+  autocmd FileType help IndentLinesDisable
+augroup END
+"let g:indent_guides_start_level = 2               " plug default : 1
+"let g:indent_guides_guide_size  = 1               " plug default : 0
+"let g:indent_guides_space_guides= 1               " plug default : 1
+"let g:indent_guides_soft_pattern= ' '             " plug default : '\s'
+"let g:indent_guides_enable_on_vim_startup= 0      " plug default : 0
+"let g:indent_guides_exclude_filetypes=['help','nerdtree']    " plug default : ['help']
+"let g:indent_guides_default_mapping = 0           " plug default : 1
+
+"""  auto-pairs
+"""
+"let g:AutoPairsShortcutToggle = '<C-s>'
+"let g:AutoPairsShortcutFastWrap = '<C-s>'
+
+"""  vim-go
+"""
+" Plug 'fatih/vim-go'                               " :h vim-go
+"""
+"""
+" enable syntax highlighting
+"let g:go_highlight_functions = 1
+"let g:go_highlight_methods = 1
+"let g:go_highlight_fields = 1
+"let g:go_highlight_types = 1
+"let g:go_highlight_operators = 1
+"let g:go_highlight_build_constraints = 1
+"""
+"let g:go_fmt_command = 'goimports'            """"" use goimports instead of gofmt
+"let g:go_fmt_autosave = 0
+"let g:go_fmt_fail_silently = 0                """"" plug default : show fmt errors
+"""
+"let g:go_term_mode = 'vsplit'                 """"" plug default : vertical split
+" make testing commands run in a new terminal
+"let g:go_term_enabled = 1
+"""
+" syntastic vim-go settings
+" let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] )
+" let g:go_list_type = "quickfix"
+"augroup vim_go
+  "autocmd!
+  "autocmd FileType go nmap <leader>r <Plug>(go-run)
+  "autocmd FileType go nmap <leader>b <Plug>(go-build)
+  "autocmd FileType go nmap <leader>t <Plug>(go-test)
+  "autocmd FileType go nmap <leader>c <Plug>(go-coverage)
+  """"
+  "autocmd FileType go nmap <leader>ds <Plug>(go-def-split)
+  "autocmd FileType go nmap <leader>dv <Plug>(go-def-vertical)
+  "autocmd FileType go nmap <leader>dt <Plug>(go-def-tab)
+  """"
+  ""autocmd FileType go nmap <leader>gd <Plug>(go-doc)
+  "autocmd FileType go nmap <leader>gv <Plug>(go-dock-vertical)
+  "autocmd FileType go nmap <leader>gb <Plug>(go-dock-browser)
+  """"
+  "autocmd FileType go nmap <leader>s <Plug>(go-implements)
+  "autocmd FileType go nmap <leader>s <Plug>(go-info)
+  "autocmd FileType go nmap <leader>e <Plug>(go-rename)
+  "" neovim support
+  "autocmd Filetype go nmap <leader>rt <Plug>(go-run-tab)
+  "autocmd Filetype go nmap <leader>rs <Plug>(go-run-split)
+  "autocmd Filetype go nmap <leader>rv <Plug>(go-run-vertical)
+"augroup END
+"""
+
+"""  Cursor Configuration
+"""  Multiple Cursors
+"let g:multi_cursor_use_default_mapping=0
+"let g:multi_cursor_next_key='<C-n>'
+"let g:multi_cursor_prev_key='<C-p>'
+"let g:multi_cursor_skip_key='<C-x>'
+"let g:multi_cursor_quit_key='<Esc>'
+"if has('nvim')
+  "" https://github.com/neovim/neovim/wiki/Following-HEAD#20170402
+  ""  :set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+  "set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
+"let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+"endif
+
+"""  Auto Toggle
+"""
+"let g:togglecursor_insert='line'
+"let g:togglecursor_disable_neovim=1
+
+"""  Window Navigation
+"""
+"" navigate cursor to adjoining window
+"""
+" terminal mode
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+  tnoremap <C-h> <C-\><C-n><C-w>h
+  tnoremap <C-j> <C-\><C-n><C-w>j
+  tnoremap <C-k> <C-\><C-n><C-w>k
+  tnoremap <C-l> <C-\><C-n><C-w>l
+  nnoremap <silent> <leader>t :split term://$SHELL<cr>
+  tnoremap <silent> <leader>t <c-\><c-n>:split term://$SHELL<cr>
+  augroup terminal_settings
+    autocmd!
+    autocmd BufWinEnter,WinEnter,TermEnter term://* startinsert
+    autocmd BufLeave                       term://* stopinsert
+    autocmd TermClose                      term://*
+      \ if    (expand('<afile>') !~ "fzf")
+      \    && (expand('<afile>') !~ "ranger")
+      \    && (expand('<afile>') !~ "coc")    |
+      \   call nvim_input('<cr>') |
+      \ endif
+  augroup END
+else
+  nnoremap <silent> <leader>t :term ++close<cr>
+  tnoremap <silent> <leader>t <c-w>:term ++close<cr>
+endif
+" normal mode
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-l> <C-w>l
+nnoremap <silent><c-h> :wincmd h<cr>
+nnoremap <silent><c-j> :wincmd j<cr>
+nnoremap <silent><c-k> :wincmd k<cr>
+nnoremap <silent><c-l> :wincmd l<cr>
+" insert mode
+"inoremap <C-h> <Esc><C-W>h
+"inoremap <C-j> <Esc><C-w>j
+"inoremap <C-k> <Esc><C-w>k
+"inoremap <C-l> <Esc><C-w>l
+"""
+"" move window to <position> of other windows
+"""
+" normal mode
+"nnoremap <C-S-H> <C-W>H
+"nnoremap <C-S-J> <C-W>J
+"nnoremap <C-S-K> <C-W>K
+"nnoremap <C-S-L> <C-W>L
+"nnoremap <C-S-T> <C-W>T
+
+"""  terminal behaviour
+"""
+if has('nvim')
+  augroup configure_terminal_buffer
+    autocmd!
+    autocmd TermOpen * :set nonumber
+    autocmd TermOpen * :set norelativenumber
+    "autocmd Buf
+  augroup END
+endif
+
+
+"""  Tab Minipulation
+"""
+"nnoremap <leader>te :tabedit <C-R>=expand("%:p:h")<CR>/
+
+"""  Atom editor work-alike
+"""
+" Plug 'matze/vim-move'
+"""
+"nmap <C-Up>   <plug>MoveLineUp
+"nmap <C-Down> <plug>MoveLineDown
+"vmap <C-Up>   <plug>MoveBlockUp
+"vmap <C-Down> <plug>MoveBlockDown
+let g:move_mapkeys     = 0
+let g:move_auto_indent = 0
+nmap ˚   <plug>MoveLineUp
+nmap ∆   <plug>MoveLineDown
+vmap ˚   <plug>MoveBlockUp
+vmap ∆   <plug>MoveBlockDown
+"""
+
+"""
+" Duplicate lines
+"""
+nnoremap <C-S-d> maYp`aj
+vnoremap <C-S-d>   Y`<Pgv
+
+"""
+" Reselect visual selection when indenting
+"""
+vnoremap < <gv
+vnoremap > >gv
+
+"""  Languages
+"""
+"""  Language - ansible
+"""
+"let g:ansible_extra_syntaxes           = "sh.vim ruby.vim"
+let g:ansible_attribute_highlight      = 'ab'
+let g:ansible_name_highlight           = 'b'
+let g:ansible_extra_keywords_highlight = 1
+
+"""  Language - cpp
+"""
+" Plug 'critiqjo/lldb.nvim'                         " :h lldb-start
+"""
+nmap      <M-b> <Plug>LLBreadSwitch
+vmap       <F2> <Plug>LLStdInSelected
+nnoremap   <F4> :LLstdin<CR>
+nnoremap <S-F4> :LLstdin --raw<CR>
+nnoremap   <F5> :LLmode debug<CR>
+nnoremap <S-F5> :LLmode code<CR>
+"nnoremap   <F8> :LL continue<CR>
+nnoremap <S-F8> :LL process interrupt<CR>
+nnoremap   <F9> :LL print <C-R>=expand('<cword>')<CR>
+vnoremap   <F9> :<C-U>LL print <C-R>=lldb#util#get_selection()<CR>
+
+"""
+
+"""  Utliities
+"""
+
+"""  Utility - EditorConfig
+"""
+"    :h editorconfig
+"""
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+"""
+
+"""  Utility - Alignment
+" Plug 'junegunn/vim-easy-align'
+"""
+" (vipga) start interactive EasyAlign in visual mode
+"xmap ga <Plug>(EasyAlign)
+" (gaip ) start interactive EasyAlign for motion/text object
+"nmap ga <Plug>(EasyAlign)
+"if exists(":Tabularize")
+  "nmap <Leader>a= :Tabularize /=<CR>
+  "vmap <Leader>a= :Tabularize /=<CR>
+  "nmap <Leader>a: :Tabularize /:\zs<CR>
+  "vmap <Leader>a: :Tabularize /:\zs<CR>
+"endif
+
+"""  Utility - FlyGrep
+"noremap <Space>s/ :FlyGrep<cr>
+
+"""
+
+""""""""""
+"""
+"""  Syntax Coloring
+"""
+""""""""""
+"
+" Transparent background
+"augroup transparent_background
+  "autocmd!
+  "autocmd ColorScheme * hi! Normal ctermbg=none guibg=none
+  "autocmd ColorScheme * hi! Normal ctermbg=Black guibg=none
+  "autocmd ColorScheme * hi! NonText ctermbg=Black guibg=none guifg=none ctermfg=Black
+"augroup END
+
+" default colorscheme
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+"let g:gruvbox_contrast_dark = 'hard'
+"let g:gruvbox_invert_selection = '0'
+
+"""  gruvbox-material settings
+"""
+" The loading time of this color scheme is very long because too many file types
+" and plugins are optimized. This feature allows you to load part of the code on
+" demand by placing them in the `after/ftplugin` directory.
+"
+" Enabling this option will reduce loading time by approximately 50%.
+let g:gruvbox_material_better_performance = 1           " default: 0 ( off )
+
+let g:gruvbox_material_background = 'hard'              " default: 'medium'
+"let g:gruvbox_material_transparent_background = 1       " defualt: 0 ( off )
+let g:gruvbox_material_visual = 'reverse'               " default: 'grey background'
+let g:gruvbox_material_sign_column_background = 'none'  " default: 'default'
+let g:gruvbox_material_diagnostic_line_highlight = 1    " default: 0 ( off )
+"let g:gruvbox_material_current_word = 'bold'            " defautl: 'grey background'
+"let g:gruvbox_material_statusline_style = 'original'    " default: 'default'
+let g:gruvbox_material_lightline_disable_bold = 1       " default: 0 ( off )
+let g:gruvbox_material_enable_italic = 1                " default: 1 ( on )
+"let g:gruvbox_material_menu_selectionbackground = 'orange'  " default: 'default'
+"let g:gruvbox_material_diagnostic_line_highlight = 0    " default: 1
+"let g:gruvbox_material_diagnostic_text_highlight = 0    " default: 1
+
+"let g:gruvbox_material_palette = 'material'             " default: 'material'
+
+"nnoremap <leader>dc :let g:gruvbox_material_transparent_background=0 <bar>
+
+"colorscheme gruvbox
+colorscheme gruvbox-material
+
+" Better readability diff colorscheme
+if &diff
+  colorscheme github
+endif
+if has('nvim')
+  set diffopt=filler,internal,algorithm:histogram,indent-heuristic
+endif
+
+"""  Enable syntax highlighting
+"""
+syntax on
+
+" highlight on yank
+if has('nvim')
+  augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {timeout = 100}
+  augroup END
+endif
+
+"vnoremap <leader>p "_dP
+
+"""  nvim lsp
+"""
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+"let g:completion_chain_complete_list = {
+  "\ "default": [
+  "\     { 'complete_items': [ 'lsp', 'ts' ] }
+  "\   ]
+  "\ }
+
+"let g:completion_chain_complete_list = {
+  "\ "default": [
+  "\     { 'complete_items': [ 'lsp', 'buffers' ] }
+  "\   ]
+  "\ }
+
+"let g:completion_chain_complete_list = {
+  "\ "default": [
+  "\     { 'complete_items': [ 'lsp'     ] },
+  "\     { 'complete_items': [ 'buffers' ] }
+  "\   ]
+  "\ }
+
+"""  auto complete
+"""
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ completion#trigger_completion()
+      "\ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+"""  mappings
+"""
+" Use K to show documentation in previw window
+"nnoremap <silent> K :call <sid>show_documentation()<cr>
+"nnoremap <silent> K call lua vim.lsp.buf.hover()<cr>
+
+"function! s:show_documenttion()
+  "if (index(['vim', 'help'], &filetype) >= 0)
+    "execute 'h '.expand('<cword>')
+  "else
+    "lua vim.lsp.buf.hover()<cr>
+  "endif
+"endfunction
+
+
+"autocmd BufEnter * lua require'completion'.on_attach()
+
+" default will show icon by default if no icon is provided
+" default shows no icon by default
+"let g:lua_tree_icons = {
+    "\ 'default': ' ',
+    "\ 'symlink': ' ',
+    "\ 'git': {
+    "\   'unstaged': "✗",
+    "\   'staged': "✓",
+    "\   'unmerged': ".",
+    "\   'renamed': "➜",
+    "\   'untracked': "★"
+    "\   },
+    "\ 'folder': {
+    "\   'default': ">",
+    "\   'open': "<"
+    "\   }
+    "\ }
+
+"""  textobjs
+"""
+call textobj#user#plugin('datetiem', {
+  \   'date': {
+  \     'pattern': '\<\d\d\d\d-\d\d-\d\d\>',
+  \     'select': ['ad', 'id'],
+  \   },
+  \   'time': {
+  \     'pattern': '\<\d\d:\d\d:\d\d\>',
+  \     'select': ['at', 'it'],
+  \   },
+  \ })
+
+"call textobj#user#plugin('variable', {
+  "\   'variable': {
+  "\     '*sfile*': expand('<sfile>:p'),
+  "\     'select-a': 'av', '*select-a-function*': 's:select_a',
+  "\     'select-i': 'iv', '*select-i-function*': 's:select_i'
+  "\   }
+  "\ })
+
+"function! s:select_a()
+  "normal! F$
+
+  "let end_pos = getpos('.')
+
+  "normal! e
+
+  "let start_pos = getpos('.')
+  "return ['v', start_pos, end_pos]
+"endfunction
+
+"function! s:select_i()
+  "normal! T$
+
+  "let end_pos = getpos('.')
+
+  "normal! e
+
+  "let start_pos = getpos('.')
+
+  "return ['v', start_pos, end_pos]
+"endfunction
+
+nnoremap <leader>v T$i{<esc>e i}<esc>
+
+
+"""  surround mappings
+"""
+"let g:surround_custom_mapping.groovy = {
+  "\ 'v': "
+"}
+
+""" terminals
+"""
+"lua require'terminal'.setup()
+
+"""  rlease the lua goodness
+"""
+if has('nvim')
+  """  lsp servers
+  luafile $V/lua/lsp/lsp-config.lua
+  luafile $V/lua/lsp/lua-ls.lua
+  luafile $V/lua/lsp/vim-ls.lua
+  luafile $V/lua/lsp/efm-ls.lua
+  luafile $V/lua/lsp/bash-ls.lua
+  luafile $V/lua/lsp/html-ls.lua
+  luafile $V/lua/lsp/json-ls.lua
+  luafile $V/lua/lsp/yaml-ls.lua
+  luafile $V/lua/lsp/rust-ls.lua
+  luafile $V/lua/lsp/python-ls.lua
+  luafile $V/lua/lsp/docker-ls.lua
+  luafile $V/lua/lsp/terraform-ls.lua
+  "luafile $V/lua/lsp/diagnostic-ls.lua
+
+  "luafile $V/lua/init.lua
+  luafile $V/lua/plugins/compe-config.lua
+  luafile $V/lua/plugins/colorizer-config.lua
+  luafile $V/lua/plugins/telescope-config.lua
+  luafile $V/lua/plugins/treesitter-config.lua
+
+endif
+"luafile init
+"autocmd BufEnter * lua require'completion'.on_attach()

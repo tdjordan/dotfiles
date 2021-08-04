@@ -1,0 +1,245 @@
+-- New <leader> of the band
+-- vim.cmd [[
+--   nnoremap <silent> <space> <nop>
+--   vnoremap <silent> <space> <nop>
+-- ]]
+
+vim.g.mapleader = ' '
+
+local wk = require 'which-key'
+
+wk.setup {
+  plugins = {
+    marks = true
+    , registers = true
+  }
+  -- , layout = {
+  --   spacing = 5
+  -- }
+}
+
+local normal_mode = {
+  mode = 'n'
+  , prefix = "<leader>"
+  , buffer = nil
+  , silent = true
+  , noremap = true
+  , nowait = false
+}
+
+local normal_mappings = {
+  ---
+  ---  window resize operations
+  ---
+  ['-']     = { '<cmd>resize -5<cr>',          'decrease up-down'      },
+  ['=']     = { '<cmd>resize +5<cr>',          'increase up-down'      },
+  ['\\']    = { '<cmd>vertical resize -5<cr>', 'increase side-to-side' },
+  ['<tab>'] = { '<cmd>vertical resize +5<cr>', 'increase side-to-side' },
+
+  ---
+  --- surround with *
+  ---
+  s = {
+    name = '+surround'
+    , ['"'] = { [[msciw""<esc>P`sl]], 'word with double quotes'     }
+    , ["'"] = { [[msciw'<c-r><c-o>"'<esc>`sl]], 'word with single quotes'     }
+    -- , ["'"] = { [[msea'<esc>bi'<esc>`sl]], 'word with single quotes'     }
+    -- , ["'"] = { [[ciw'<c-r><c-o>"'<esc>]], 'word with single quotes'     }
+    -- , ["'"] = { [[ciw''<esc>P]], 'word with single quotes'     }
+    , ['['] = { 'ciw[]<esc>P',   'word with square brackets'   }
+    , ['9'] = { 'ciw()<esc>P',   'word with round  brackets'   }
+    , [']'] = { 'ciw{}<esc>P',   'word with squiggly brackets' }
+
+    , d = { [[daw''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
+    -- , d = { [[daW''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
+    , c = {
+      name = 'change'
+      , ['"'] = { [[ciwxx""P]], 'to signle quotes' }
+      , ["'"] = { [[ciw''<esc>P]], 'surround word with single   quotes'   }
+      , ['['] = { 'ciw[]<esc>P',   'surround word with square   brackets' }
+      , [']'] = { 'ciw{}<esc>P',   'surround word with squiggly brackets' }
+      , ['9'] = { 'ciw()<esc>P',   'surround word with round    brackets' }
+    }
+
+    , t = { [[<cmd>lua require('theme').ThemeToggle()<cr>]], 'toggle dark/light' }
+  },
+
+  ---
+  ---  do we really want to do this?
+  ---
+  ['<c-p>'] = { "<cmd>lua require 'telescope.builtin'.git_files()<cr>", 'search git files' },
+
+  -- Reload init.lua from standard config path
+  -- note that the stdpath makes this portable
+  --
+  ['<cr>']  = { '<cmd>luafile ~/.config/nvim/init.lua<cr>', 'reload config' },
+
+  ---
+  ---  b* mappings
+  ---
+  b = {
+    name = '+browse'
+    , ['.'] = { '<cmd>lua require "telescope.builtin".file_browser()<cr>', 'files' }
+  },
+
+  ---
+  ---  k* mappings
+  ---
+  -- k = {
+  --   name = '+nerd'
+  --   , t = { '<cmd>lua require "telescope.builtin".file_browser()<cr>',             'tree' }
+  -- },
+
+  ---
+  ---  f* mappings
+  ---
+  f = {
+    name = '+search'
+    , b = { '<cmd>lua require "telescope.builtin".buffers()<cr>',                   'in open buffers' }
+    , d = { '<cmd>lua require "telescope.builtin".lsp_workspace_diagnostics()<cr>', 'lsp diagnostics' }
+    , f = { '<cmd>lua require "telescope.builtin".find_files()<cr>',                'by file name'    }
+    , g = { '<cmd>lua require "telescope.builtin".live_grep()<cr>',                 'with live grep'  }
+    , h = { '<cmd>lua require "telescope.builtin".help_tags()<cr>',                 'help tags'       }
+    , i = { '<cmd>lua require "telescope.builtin".builtin()<cr>',                   'builtins'        }
+    , k = { '<cmd>lua require "telescope.builtin".keymaps()<cr>',                   'keymaps'         }
+    , l = { '<cmd>lua require "telescope.builtin".current_buffer_fuzzy_find()<cr>', 'current buffer'  }
+    , m = { '<cmd>lua require "telescope.builtin".man_pages()<cr>',                 'man pages'       }
+    , o = { '<cmd>lua require "telescope.builtin".oldfiles()<cr>',                  'recent files'    }
+    , q = { '<cmd>lua require "telescope.builtin".quickfix()<cr>',                  'quickfix'        }
+    , r = { '<cmd>lua require "telescope.builtin".reloader()<cr>',                  'reloader'        }
+    , s = { '<cmd>lua require "telescope.builtin".lsp_workspace_symbols()<cr>',     'lsp symbols'     }
+    , t = { '<cmd>lua require "telescope.builtin".filetypes()<cr>',                 'filetypes'       }
+    , [';'] = { '<cmd>lua require "telescope.builtin".command_history()<cr>',       'command history' }
+    , ['/'] = { '<cmd>lua require "telescope.builtin".search_history()<cr>',        'search history'  }
+  },
+
+  ---
+  ---  p* mappings
+  ---
+  p = {
+    name = '+pick'
+    , a = { '<cmd>lua require "telescope.builtin".autocommands()<cr>',                          'an autocommand'      }
+    , b = { '<cmd>lua require "telescope.builtin".buffers()<cr>',                               'from open buffers'   }
+    , c = { '<cmd>lua require "telescope.builtin".colorscheme()<cr>',                           'a colorscheme'       }
+    , e = { '<cmd>lua require "telescope.builtin".symbols{sources = {"emoji", "gitmoji"}}<cr>', '*moji'               }
+    , f = { '<cmd>lua require "telescope.builtin".find_files()<cr>',                            'a file'              }
+    , g = { '<cmd>lua require "telescope.builtin".live_grep()<cr>',                             'from live grep'      }
+    , l = { '<cmd>lua require "telescope.builtin".current_buffer_fuzzy_find()<cr>',             'from current buffer' }
+    -- , v = { '<cmd>lua require "telescope.builtin".vim_options()<cr>',               'vim options'      }
+    , s = { '<cmd>lua require "telescope.builtin".grep_string()<cr>',               'with grep string' }
+    , w = { '<cmd>lua require "telescope".extensions.project.project{ display_type = "full" }<cr>', 'workspace' }
+    -- , w = { '<cmd>lua require "telescope".extensions.project.project{ theme = "ivy" }<cr>', 'workspace' }
+    , v = {
+      name = '+vim'
+      , h = { '<cmd>lua require "telescope.builtin".highlights()<cr>',  'vim highlights' }
+      , o = { '<cmd>lua require "telescope.builtin".vim_options()<cr>', 'vim options'    }
+      , r = { '<cmd>lua require "telescope.builtin".registers()<cr>',   'vim registers'  }
+    }
+  },
+
+  ---
+  ---  c* mappings
+  ---
+  c = {
+    name = '+comments'
+    , ["<c-_>"] = { '<Plug>kommentary_line_default',   'comment line'   }
+    , c =         { '<Plug>kommentary_motion_deafult', 'comment motion' }
+  },
+
+  ---
+  ---  i* mappings
+  ---
+  ---  Indentation
+  ---
+  i = { '<cmd>IndentBlanklineToggle<cr>', 'toggle indentation guides' },
+
+  ---
+  ---  k* mappings
+  ---
+  ---  File Browser
+  ---
+  k = { '<cmd>NvimTreeToggle<cr>', 'toggle file tree sidebar' },
+
+  ---
+  ---  t* mappings
+  ---
+  t = { '<cmd>split term://$SHELL<cr>', 'terminal' },
+
+  ---  Comment Handling
+  ---
+  ['<C-_>'] = { '<plug>NERDCommenterToggle', 'toggle comment'},
+}
+
+wk.register(normal_mappings, normal_mode)
+
+-- wk.register({
+--   ["<leader>f"] = { name = "+file" }
+--   , ["<leader>fx"] = { '<nop>', 'no operation'}
+-- })
+
+-- wk.register({
+--   f = {
+--     x = { '<nop>', 'no operation'}
+--   }
+-- }, { prefix = "<leader>"})
+
+---  Window Navigation
+---
+---  navigate cursor to adjoining window
+---
+-- normal mode
+wk.register({
+  ['<c-h>'] = { '<cmd>wincmd h<cr>', "focus left"  },
+  ['<c-j>'] = { '<cmd>wincmd j<cr>', "focus down"  },
+  ['<c-k>'] = { '<cmd>wincmd k<cr>', "focus up"    },
+  ['<c-l>'] = { '<cmd>wincmd l<cr>', "focus right" }
+})
+-- termainl mode
+-- wk.register({
+--   ['<esc>'] = { [[<c-\><c-n>]],       'escape'      },
+--   ['<c-h>'] = { [[<c-\><c-n><c-w>h]], 'focus left'  },
+--   ['<c-j>'] = { [[<c-\><c-n><c-w>j]], 'focus down'  },
+--   ['<c-k>'] = { [[<c-\><c-n><c-w>k]], 'focus up'    },
+--   ['<c-l>'] = { [[<c-\><c-n><c-w>l]], 'focus right' },
+-- }, {
+--   mode = 't'
+-- })
+local ku = require 'keymap.utility'
+local tnoremap = ku.tnoremap
+tnoremap( '<Esc>', [[<C-\><C-n>]] )
+tnoremap( '<C-h>', [[<C-\><C-n><C-w>h]] )
+tnoremap( '<C-j>', [[<C-\><C-n><C-w>j]] )
+tnoremap( '<C-k>', [[<C-\><C-n><C-w>k]] )
+tnoremap( '<C-l>', [[<C-\><C-n><C-w>l]] )
+vim.cmd [[ autocmd BufWinEnter,WinEnter,TermEnter term://* setlocal nonumber norelativenumber ]]
+vim.cmd [[ autocmd BufWinEnter,WinEnter,TermEnter term://* startinsert                        ]]
+vim.cmd [[ autocmd BufLeave                       term://* stopinsert                         ]]
+vim.cmd [[ autocmd TermClose                      term://* call nvim_input('<cr>')            ]]
+
+---  Escape
+---
+wk.register({
+  ['jk'] = { '<esc>', 'escape' },
+}, {
+  mode = 'i'
+})
+vim.cmd [[ autocmd BufWinEnter,WinEnter TelescopePrompt :iunremap jk ]]
+vim.cmd [[ autocmd BufWinLeave,WinLeave TelescopePrompt :inoremap jk <esc> ]]
+
+-- wk.register({
+--   ['C-_'] = { '<plug>NERDCommenterToggle', 'comment visual block' },
+-- }, {
+--   mode = 'v'
+  -- , prefix = ''
+  -- , buffer = nil
+  -- , silent = true
+  -- , noremap = true
+  -- , nowait = false
+  -- , nowait = true
+-- })
+
+---  When opening a file, return to last edit postion
+---
+vim.cmd [[
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line('$') | execute 'normal! g`"' | endif
+]]

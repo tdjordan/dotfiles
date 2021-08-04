@@ -2,3 +2,4 @@
 #. ~/.paths
 
 export PATH="$HOME/.cargo/bin:$PATH"
+# [ -x ~/.zprofile_local ] && source ~/.zprofile_local

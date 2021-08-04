@@ -1,0 +1,11 @@
+GET httpbin.org/get
+
+GET https://httpbin.org/get
+
+POST http://localhost:3000/api/v1/products
+Content-Type: application/json
+{
+  "title": "Terraria T-Shirt",
+  "description": "A simple Terraria T-Shirt",
+  "price": 20
+}

@@ -1,5 +1,10 @@
+[user]
+	name = Tom Jordan
+	email = tdjordan@gmail.com
+
 [include]
   path = ~/.gitconfig.local
+  path = ~/.config/delta/themes.gitconfig
 
 [pretty]
   compact=%h %ad, %s
@@ -76,6 +81,10 @@
 [pager]
   tag = off
   branch = off
+  diff = delta
+  show = delta
+  log = delta
+  reflog = delta
 
 [color "decorate"]
   HEAD = red
@@ -93,3 +102,55 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  features = default decorations side-by-side
+  ; features = default collared-trogon
+  ; features = default coracias-caudatus
+  ; features = default tangara-chilensis
+  ; features = default villsau
+  ; features = default wooly-mammoth
+  ; whitespace-error-sytle = 22 reverse
+
+[delta "default"]
+  line-numbers = true
+  zero-style = dim
+  ; true-color = never
+  ; file-style = bold yellow
+  ; file-decoration-style = none
+  ; navigate = true
+  ; commit-decoration-style = ol
+  ; hunk-header-file-style = cyan
+  ; hunk-header-line-number-style = cyan
+  ; hunk-header-style = file line-number
+  ; hunk-header-style = omit
+  ; hunk-header-style = cyan auto file
+  ; hunk-header-decoration-style = cyan ul
+  ; hunk-header-decoration-style = cyan box
+  ; hunk-header-decoration-style = cyan
+  ; tabs = 2
+  ; line-numbers-minus-style = 124
+  ; line-numbers-minus-style = "#444444"
+  ; line-numbers-plus-style = "#444444"
+  ; line-numbers-plus-style = 28
+  ; line-numbers-left-style = cyan
+  ; line-numbers-right-style = cyan
+  ; minus-style = auto "#AB4642"
+  ; minus-style = "#AB4642" "#A16946"
+  ; minus-style = syntax bold auto
+
+[delta "side-by-side"]
+  side-by-side = true
+  line-numbers-left-format = "{np:>4} "
+  line-numbers-right-format = "{np:>4} "
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
+  ; hunk-header-decoration-style = yellow box
+  hunk-header-decoration-style = yellow ol
+  hunk-header-style = omit
