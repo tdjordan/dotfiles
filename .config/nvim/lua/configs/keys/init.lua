@@ -211,10 +211,11 @@ tnoremap( '<C-h>', [[<C-\><C-n><C-w>h]] )
 tnoremap( '<C-j>', [[<C-\><C-n><C-w>j]] )
 tnoremap( '<C-k>', [[<C-\><C-n><C-w>k]] )
 tnoremap( '<C-l>', [[<C-\><C-n><C-w>l]] )
-vim.cmd [[ autocmd BufWinEnter,WinEnter,TermEnter term://* setlocal nonumber norelativenumber ]]
-vim.cmd [[ autocmd BufWinEnter,WinEnter,TermEnter term://* startinsert                        ]]
-vim.cmd [[ autocmd BufLeave                       term://* stopinsert                         ]]
-vim.cmd [[ autocmd TermClose                      term://* call nvim_input('<cr>')            ]]
+local cmd = vim.cmd
+cmd [[ autocmd BufWinEnter,WinEnter,TermEnter term://* setlocal nonumber norelativenumber ]]
+cmd [[ autocmd BufWinEnter,WinEnter,TermEnter term://* startinsert                        ]]
+cmd [[ autocmd BufLeave                       term://* stopinsert                         ]]
+cmd [[ autocmd TermClose                      term://* call nvim_input('<cr>')            ]]
 
 ---  Escape
 ---
@@ -223,8 +224,8 @@ wk.register({
 }, {
   mode = 'i'
 })
-vim.cmd [[ autocmd BufWinEnter,WinEnter TelescopePrompt :iunremap jk ]]
-vim.cmd [[ autocmd BufWinLeave,WinLeave TelescopePrompt :inoremap jk <esc> ]]
+cmd [[ autocmd BufWinEnter,WinEnter TelescopePrompt :iunremap jk ]]
+cmd [[ autocmd BufWinLeave,WinLeave TelescopePrompt :inoremap jk <esc> ]]
 
 -- wk.register({
 --   ['C-_'] = { '<plug>NERDCommenterToggle', 'comment visual block' },
@@ -237,9 +238,3 @@ vim.cmd [[ autocmd BufWinLeave,WinLeave TelescopePrompt :inoremap jk <esc> ]]
   -- , nowait = false
   -- , nowait = true
 -- })
-
----  When opening a file, return to last edit postion
----
-vim.cmd [[
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line('$') | execute 'normal! g`"' | endif
-]]

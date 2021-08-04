@@ -25,14 +25,9 @@ local cmd = vim.cmd
 --   syntax on
 --   filetype on
 --   filetype plugin indent on
---   au BufNewFile,BufRead *.http setf http
 -- ]]
-cmd [[
-  au BufNewFile,BufRead *.http setf http
-]]
 -- vim.cmd [[
   -- rshada!
---   au BufNewFile,BufRead *.http setf http
 -- ]]
 
 ---  bypass unused default plugins
@@ -54,5 +49,5 @@ g.loaded_remote_plugins = false
 ---  lazy laod config ?
 ---
 
-require 'plugins'
+-- require 'plugins'
 cmd [[ hi String gui=NONE  ]]
