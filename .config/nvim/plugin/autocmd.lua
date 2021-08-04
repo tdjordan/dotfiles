@@ -17,3 +17,9 @@ cmd [[
 cmd [[
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line('$') | execute 'normal! g`"' | endif
 ]]
+
+---  Text Yank
+---
+vim.cmd [[
+  autocmd TextYankPost * silent lua require'vim.highlight'.on_yank {timeout = 100}
+]]

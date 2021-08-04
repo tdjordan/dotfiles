@@ -762,10 +762,10 @@ M.init_packer = function ()
       -- use { 'w0rp/ale' }
       -- use { 'gisphm/vim-gradle' }
       -- use { 'udalov/kotlin-vim' }
-      use {
-        'sheerun/vim-polyglot'
-        , event = 'CursorHold'
-      }
+      -- use {
+      --   'sheerun/vim-polyglot'
+      --   , event = 'CursorHold'
+      -- }
       -- use { 'prurigro/vim-polyglot-darkcloud' }
       -- use { 'dleonard0/pony-vim-syntax' }
       -- use { 'saltstack/salt-vim' }
