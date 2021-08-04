@@ -25,7 +25,10 @@ M.init_packer = function ()
       use {
         'wbthomason/packer.nvim'
         , opt = true
-        , module_pattern = 'packer.*'
+        -- , module_pattern = 'packer.*'
+        -- , setup = function()
+        --   vim.cmd [[ packeradd packer.nvim ]]
+        -- end
       }
 
       ---  Lua Information
@@ -297,8 +300,12 @@ M.init_packer = function ()
       use {
         'folke/which-key.nvim'
         , event = 'CursorHold'
+        , setup = function()
+          vim.opt.timeoutlen = 10
+        end
         , config = function()
             require 'configs.keys'
+            vim.opt.timeoutlen = 400
         end
         -- , event = 'ColorScheme'
         -- , opt = true
