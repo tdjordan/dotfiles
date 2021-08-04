@@ -85,13 +85,17 @@ Plug 'voldikss/vim-floaterm'                      " :h floaterm
 
 """  debugger
 """
-Plug 'puremourning/vimspector'
+"Plug 'puremourning/vimspector'
 "Plug 'critiqjo/lldb.nvim'                         " :h lldb-start
 
 """  matchup
 """
 "Plug 'andymass/vim-matchup'
 Plug 'jkramer/vim-checkbox'                       " <leader>tt : insert/toggle checkbox
+
+"""  keymap visibility
+"""
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] } " :h vim-which-key
 
 """  snippets
 """

@@ -7,10 +7,10 @@
 -- local cmd = vim.cmd
 local opt = vim.opt
 local o   = vim.o
-local go  = vim.go
+-- local go  = vim.go
 local wo  = vim.wo
 local bo  = vim.bo
-local g   = vim.g
+-- local g   = vim.g
 
 ------  Vim Settings
 ------
@@ -28,7 +28,12 @@ bo.tabstop       = o.tabstop                    -- nvim default : 8
 
 -- When opening a new line and no filetype-specific indenting is enabled,
 -- keep the same indent as the line you are currently on.
- o.autoindent     = true                         -- nvim default : on
+-- opt.autoindent     = true                        -- nvim default : on
+ o.autoindent     = true                        -- nvim default : on
+bo.autoindent     = true                        -- nvim default : on
+-- opt.smartindent    = true                        -- nvim default : off
+ -- o.smartindent    = true                        -- nvim default : off
+-- bo.smartindent    = true                        -- nvim default : off
 
 -- Display the cursor position on the last line of the screen
 -- or in the status line of a window
@@ -41,14 +46,14 @@ bo.tabstop       = o.tabstop                    -- nvim default : 8
 -- Allows moltiple file undo history for the same window.
  o.hidden         = true
 
+-- Highlight searches
+ o.hlsearch       = false                       -- nvim default : on
+
 -- Use case insensitive search, except when using capital letters
  o.ignorecase     = true                        -- nvim default : off
  o.smartcase      = true                        -- nvim default : off
  o.showmatch      = true                        -- nvim default : off
 -- o.incsearch    = true                           -- nvim default : on
-
--- Highlight searches
- o.hlsearch       = false                       -- nvim default : on
 
 -- Display line numbers in the left gutter
 wo.number         = true                        -- nvim default : off
@@ -85,16 +90,18 @@ wo.relativenumber = true                        -- nvim default : off
 
 -- Enable 24-bit RGB color in the TUI
 --if has ('termguicolors')
- o.termguicolors = true
+opt.termguicolors = true
 --endif
 
 ------  TODO: nvim defaults - not currently used
 ------
 -- o.complete       = true                         -- nvim doesn't include 'i'
 -- o.display        = lastline                     -- nvim defaults to 'lastline'
+ -- o.fileencoding   = 'utf-8'                     -- nvim defaults to ''
  o.encoding       = 'utf-8'                     -- nvim defaults to 'utf-8'
  o.concealcursor  = 'nc'                        -- n:Normal v:Visual i:Insert c:Command ( Modes )
  o.conceallevel   = 2                           -- 'Conceal' hi group / text hidden unless has replacement ch
+  -- TODO : to allow '' to be visible in markdown files, set conceallevel to 0
 -- o.langnoremap    = true                         -- nvim default
 -- o.laststatus     = true                         -- nvim defaults to 2 (statusline is alwasys shown)
 -- o.listchars      = 'tab:> ,trail:-,nbsp:+'      -- nvim default
@@ -150,8 +157,10 @@ wo.relativenumber = true                        -- nvim default : off
 --   noselect
 --   : do not select a match in the menu
 --   : force user to slect one from the menu
---set completeopt -=preview                        -- nvim default : 'menu,preview'
-opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
+--
+--  nvim default : 'menu,preview'
+-- opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
+opt.completeopt = { 'menuone', 'noselect' }
 
 -- Maximum width of text that is being inserted.
 -- A longer line will be broken after white space to get this width.
@@ -168,6 +177,7 @@ opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
 -- o.autowrite    = true                           -- nvim default : off
 -- o.autowriteall = true                           -- nvim default : off
 
+-- Better display for messages
 -- Set the command window height to 2 lines,
 -- to avoid many cases of having to --press <Enter> to continue--
  o.cmdheight = 1                                -- nvim default : 1
@@ -251,8 +261,7 @@ bo.undofile = true                              -- nvim default : off
 ------
 -- Allow Windows & Linux to share session files
 --   nvim default : blank,buffers, curdir, folds,help,tabpages,winsize
--- cmd [[ set sessionoptions+=slash,unix ]]
- o.sessionoptions = o.sessionoptions .. [[,slash,unix]]
+opt.sessionoptions:append { 'slash', 'unix' }
 
 ------  List mode
 ------
@@ -272,23 +281,14 @@ bo.undofile = true                              -- nvim default : off
 --set spell
 --set spelllang=us_en
 
--- Better display for messages
---set cmdheight=1
---set cmdheight=2
---set cmdheight=5
-
 -- You will have bad experience for diagnostic messages when it's default 4000.
  o.updatetime  = 100
 
 -- do not give |ins-completion-menu| messages.
 opt.shortmess:append { c = true }
 
--- do not display intro message on startup
-opt.shortmess:append { I = true }
--- opt.shortmess = opt.shortmess + { I = true }
+-- time to wait for a mpped sequence ot complete ( in milliseconds )
+opt.timeoutlen = 300
 
 -- always show signcolumns
 wo.signcolumn = 'yes'
-
--- do not load the default komentary mappings
-g.kommentary_create_default_mappings = true

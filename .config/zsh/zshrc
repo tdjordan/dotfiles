@@ -104,9 +104,10 @@ fi
   #atload"!_zsh_autosuggest_start" \
     #zsh-users/zsh-autosuggestions \
 
-[ -f $HOME/.skim/shell/key-bindings.zsh ] && \
-  zinit wait"2" lucid nocd is-snippet for \
-    latoabout/skim/shell/key-bindings.zsh
+[ -f /usr/local/share/zsh/site-functions/key-bindings.zsh ] && \
+  zinit wait"1" lucid nocd is-snippet for \
+    /usr/local/share/zsh/site-functions/key-bindings.zsh
+    # latoabout/skim/shell/key-bindings.zsh
     # $HOME/.skim/shell/key-bindings.zsh
 
 #zinit wait lucid nocd is-snippet for \

@@ -1,10 +1,10 @@
-vim.o.background = 'dark'
+-- vim.o.background = 'dark'
 -- vim.o.background = 'light'
 -- local cmd = vim.api.nvim_command
 -- cmd [[
 --   colorscheme jellybeans-nvim
 -- ]]
-vim.g.colors_name = 'melange'
+-- vim.g.colors_name = 'melange'
 -- vim.g.colors_name = 'jellybeans-nvim'
 -- vim.g.colors_name = 'oak'
 -- vim.g.material_style = "deep ocean"
@@ -21,12 +21,15 @@ vim.g.colors_name = 'melange'
 -- vim.g.colors_name = 'gruvbox-material'
 -- vim.g.colors_name = 'base16-ocean'
 
-function ThemeToggle()
+local M = {}
+
+M.ThemeToggle = function()
   if vim.api.nvim_get_option('background') == 'dark' then
     vim.api.nvim_set_option('background', 'light')
   else
     vim.api.nvim_set_option('background', 'dark')
   end
 end
-local nnoremap = require 'keymap.utility'.nnoremap
-nnoremap( '<leader>st', '<cmd>lua ThemeToggle()<cr>' )
+-- local nnoremap = require 'keymap.utility'.nnoremap
+-- nnoremap( '<leader>st', '<cmd>lua ThemeToggle()<cr>' )
+return M

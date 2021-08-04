@@ -52,13 +52,14 @@ alias e.='nautilus . 2>/dev/null'
 alias d='docker'
 alias dm='docker-machine'
 docker_select() {
-  eval $(docker-machine env $1)
+  eval $(docker-machine env "$1")
 }
 alias dms='docker_select'
 
 # brew
 alias bi='brew info'
 alias bs='brew search'
+alias bl='brew list'
 alias blr='brew list | rg '
 
 # cat

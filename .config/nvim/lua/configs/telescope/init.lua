@@ -46,4 +46,39 @@ require 'telescope'.setup {
       }
     }
   },
+  pickers = {
+    find_files                = {
+      theme = 'ivy'
+      -- , mirror = true
+    },
+
+    jumplist                  = { theme = 'dropdown' },
+
+    buffers = {
+      theme = 'dropdown'
+      , layout_strategy = 'bottom_pane'
+    },
+
+    builtin = {
+      -- theme = 'ivy',
+      previewer = false
+    },
+
+    current_buffer_fuzzy_find = {
+      theme = 'ivy'
+      , previewer = false
+      , mirror = true
+    },
+
+    file_browser = {
+      theme = 'ivy'
+    }
+  },
+  extensions = {
+    project = {
+      -- base_dir = vim.env.HOME.."/devRoot/_bf"
+      base_dir = '~/devRoot/_bf'
+      , max_depth = 3
+    }
+  }
 }

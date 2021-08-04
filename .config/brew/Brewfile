@@ -73,6 +73,8 @@ brew "editorconfig"
 cask "alacritty"
 cask "kitty"
 brew "tmux"
+tap    "wez/wezterm"
+  cask "wezterm"
 
 ###  java
 ###
@@ -144,6 +146,10 @@ brew "rust-analyzer"
 brew "deno"
 brew "efm-langserver"
 brew "bear"
+
+###  language code formaters
+###
+brew "black"
 
 ###  Comms
 ###

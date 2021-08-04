@@ -3,14 +3,13 @@
 
 yarn=(
   yaml-language-server
+  neovim
 )
 
 pnpm=(
   typescript typescript-language-server
-  vscode-css-languageserver-bin
-  vscode-html-languageserver-bin
+  vscode-langservers-extracted
   dot-language-server
-  vscode-json-languageserver
   pyright
   vim-language-server
   diagnostic-languageserver
@@ -18,6 +17,7 @@ pnpm=(
   bash-language-server
   dockerfile-language-server-nodejs
   elm elm-test elm-format @elm-tooling/elm-language-server
+  @angular/language-server
 )
 
 # npm=(
@@ -27,11 +27,13 @@ pnpm=(
 # )
 
 pip=(
+  neovim
   fortran-language-server
   cmake-language-server
 )
 
 gem=(
+  neovim
   sorbet
 )
 

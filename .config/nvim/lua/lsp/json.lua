@@ -1,6 +1,6 @@
 --  jsonls configuration
 --
---      yarn global add vscode-json-languageserver
+--      yarn global add vscode-langservers-extracted
 --
 --require 'lspconfig'.jsonls.setup { }
 

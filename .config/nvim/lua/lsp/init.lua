@@ -1,6 +1,6 @@
 -- require 'lsp.lsp'
 require 'lsp.go'
-require 'lsp.zk'
+-- require 'lsp.zk'
 require 'lsp.dot'
 require 'lsp.efm'
 require 'lsp.elm'

@@ -1,6 +1,6 @@
 --  html configuration
 --
---      yarn global add vscode-html-languageserver-bin
+--      yarn global add vscode-langservers-extracted
 --
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true

@@ -1,5 +1,8 @@
+local api = vim.api
+
 -- o.completeopt = 'menuone,noselect'
-vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
+-- vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
+vim.opt.completeopt = { 'menuone', 'noselect' }
 
 require 'compe'.setup {
   enabled          = true,
@@ -22,16 +25,17 @@ require 'compe'.setup {
     -- vsnip         = true,
     nvim_lsp      = true,
     nvim_lua      = true,
-    spell         = true,
+    -- spell         = true,
     tags          = true,
     -- snippets_nvim = true,
     treesitter    = true,
     -- ultisnips     = true,
+    neorg         = true,
   }
 }
 
 local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
+  return api.nvim_replace_termcodes(str, true, true, true)
 end
 
 local check_back_space = function()
@@ -69,10 +73,10 @@ _G.s_tab_complete = function()
   end
 end
 
-vim.api.nvim_set_keymap( "i", "<Tab>",   "v:lua.tab_complete()",   {expr = true} )
-vim.api.nvim_set_keymap( "s", "<Tab>",   "v:lua.tab_complete()",   {expr = true} )
-vim.api.nvim_set_keymap( "i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true} )
-vim.api.nvim_set_keymap( "s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true} )
+api.nvim_set_keymap( "i", "<Tab>",   "v:lua.tab_complete()",   {expr = true} )
+api.nvim_set_keymap( "s", "<Tab>",   "v:lua.tab_complete()",   {expr = true} )
+api.nvim_set_keymap( "i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true} )
+api.nvim_set_keymap( "s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true} )
 
 ---  speed up compe
 ---

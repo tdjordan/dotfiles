@@ -96,6 +96,9 @@ nnoremap <space> <nop>
 vnoremap <space> <nop>
 let g:mapleader=' '
 "nnoremap <leader>V :tabnew ~/.nvimrc<CR>
+set timeoutlen=500
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<cr>
+"nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<cr>
 
 " Enable folding
 "set foldmethod=marker
