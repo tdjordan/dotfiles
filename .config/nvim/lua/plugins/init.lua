@@ -25,7 +25,7 @@ M.init_packer = function ()
       use {
         'wbthomason/packer.nvim'
         , opt = true
-        , cmd = 'PackerSync'
+        , module_pattern = 'packer.*'
       }
 
       ---  Lua Information
@@ -604,7 +604,7 @@ M.init_packer = function ()
         }
         , setup = function()
           vim.g.nvim_tree_update_cwd = 1
-          vim.g.nvim_tree_quit_on_open = 1
+          vim.g.nvim_tree_quit_on_open = 0
           vim.g.nvim_tree_git_hl = 1
           vim.g.nvim_tree_lsp_diagnostics = 1
           vim.g.nvim_tree_show_icons = {

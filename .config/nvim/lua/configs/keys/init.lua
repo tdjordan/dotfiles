@@ -127,6 +127,11 @@ local normal_mappings = {
     , l = { '<cmd>lua require "telescope.builtin".current_buffer_fuzzy_find()<cr>',             'from current buffer' }
     -- , v = { '<cmd>lua require "telescope.builtin".vim_options()<cr>',               'vim options'      }
     , s = { '<cmd>lua require "telescope.builtin".grep_string()<cr>',               'with grep string' }
+    , p = {
+      name = '+packer'
+      , s = { '<cmd>lua require("plugins") require("packer").sync()<cr>',    'packer sync'    }
+      , c = { '<cmd>lua require("plugins") require("packer").compile()<cr>', 'packer compile' }
+    }
     , w = { '<cmd>lua require "telescope".extensions.project.project{ display_type = "full" }<cr>', 'workspace' }
     -- , w = { '<cmd>lua require "telescope".extensions.project.project{ theme = "ivy" }<cr>', 'workspace' }
     , v = {
