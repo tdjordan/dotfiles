@@ -387,6 +387,7 @@ M.init_packer = function ()
           -- vim.cmd [[ filetype on ]]
           -- vim.cmd [[ filetype plugin indent on ]]
           require 'gruvbox-material'.set()
+          vim.cmd [[ hi String gui=NONE  ]]
           -- vim.cmd [[ hi String gui=NONE  ]]
         end
         -- , after = 'nvim-treesitter'
@@ -765,14 +766,18 @@ M.init_packer = function ()
 
       ---  language syntax
       ---
+      use {
+        'martinda/Jenkinsfile-vim-syntax'
+        , event = 'CursorHold'
+      }
       -- use { 'scrooloose/syntastic' }
       -- use { 'w0rp/ale' }
       -- use { 'gisphm/vim-gradle' }
       -- use { 'udalov/kotlin-vim' }
-      -- use {
-      --   'sheerun/vim-polyglot'
-      --   , event = 'CursorHold'
-      -- }
+      use {
+        'sheerun/vim-polyglot'
+        , event = 'CursorHold'
+      }
       -- use { 'prurigro/vim-polyglot-darkcloud' }
       -- use { 'dleonard0/pony-vim-syntax' }
       -- use { 'saltstack/salt-vim' }

@@ -72,7 +72,18 @@ require 'telescope'.setup {
 
     file_browser = {
       theme = 'ivy'
-    }
+    },
+
+    -- git_branches = {
+    --   theme = 'dropdown'
+      -- , layout_config = {
+      --   height = 200
+        -- , vertical = {
+        --   mirror = true
+        -- }
+      -- }
+      -- , layout_strategy = 'bottom_pane'
+    -- }
   },
   extensions = {
     project = {

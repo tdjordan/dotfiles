@@ -152,6 +152,18 @@ local normal_mappings = {
   },
 
   ---
+  ---  g* mappings
+  ---
+  g = {
+    name = '+git'
+    , b = { '<cmd>lua require "telescope.builtin".git_branches()<cr>', 'git branches' }
+    , c = { '<cmd>lua require "telescope.builtin".git_commits()<cr>',  'git commits'  }
+    , h = { '<cmd>lua require "telescope.builtin".git_stash()<cr>',    'git stash'    }
+    , l = { '<cmd>lua require "telescope.builtin".git_bcommits()<cr>', 'git buffer commits' }
+    , s = { '<cmd>lua require "telescope.builtin".git_status()<cr>',   'git status'   }
+  },
+
+  ---
   ---  i* mappings
   ---
   ---  Indentation
