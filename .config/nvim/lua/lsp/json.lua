@@ -6,11 +6,11 @@
 
 require 'lspconfig'.jsonls.setup {
   commands = {
-    format = {
+    Format = {
       function()
-        vim.lsp.range_formatting(
+        vim.lsp.buf.range_formatting(
           {}
-          , {0,0}
+          , { 0, 0 }
           , { vim.fn.line('$'), 0 }
         )
       end

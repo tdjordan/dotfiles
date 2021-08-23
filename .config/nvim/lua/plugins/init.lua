@@ -25,6 +25,7 @@ M.init_packer = function ()
       use {
         'wbthomason/packer.nvim'
         , opt = true
+        -- , event = 'VimEnter'
         -- , module_pattern = 'packer.*'
         -- , setup = function()
         --   vim.cmd [[ packeradd packer.nvim ]]
@@ -52,34 +53,9 @@ M.init_packer = function ()
       ---
       -- use {
       --   'glepnir/lspsaga.nvim'
+      --   , after = 'nvim-lspconfig'
       --   , config = function()
-      --     local ku = require 'keymap.utility'
-      --     ku.nnoremap( '<leader>gh', '<cmd>Lspsaga lsp_finder<cr>' )
-      --     ku.nnoremap( '<leader>ca', '<cmd>Lspsaga code_action<cr>' )
-
-      --     require 'lspsaga'.init_lsp_saga {
-      --         error_sign              = '❌'
-      --       , warn_sign               = '⚠️'
-      --       , hint_sign               = '💡'
-      --       , infor_sign              = 'ℹ️'
-      --       , dianostic_header_icon   = ' 🚒 '
-      --       , definition_preview_icon = '📖 '
-      --       , code_action_icon        = '💡'
-      --       , finder_definition_icon  = '📖 '
-      --       , finder_reference_icon   = '🔖 '
-      --       , finder_action_keys = {
-      --           open        = '<cr>'
-      --         , split       = 's'
-      --         , vsplit      = 'v'
-      --         , quit        = '<esc>'
-      --         , scroll_down = '<c-f>'
-      --         , scroll_up   = '<c-b>'
-      --       }
-      --       , code_action_keys = {
-      --           quit = '<esc>'
-      --         , exec = '<cr>'
-      --       }
-      --     }
+      --     require 'configs.lspsaga'
       --   end
       -- }
 
@@ -99,10 +75,44 @@ M.init_packer = function ()
       use {
         'hrsh7th/nvim-compe'
         , event = 'InsertEnter'
+        -- , after = {
+        --   'LuaSnip'
+        --   , 'snippets.nvim'
+        -- }
+        , module_pattern = 'compe.*'
         , config = function()
           require 'configs.compe'
         end
       }
+
+      ---  snippets
+      ---
+      -- use { 'Shougo/neosnippet' }
+      -- use { 'Shougo/neosnippet-snippets' }
+      -- use { 'honza/vim-snippets' }
+      -- use { 'SirVer/ultisnips' }
+      -- use { 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
+      use {
+        'norcalli/snippets.nvim'
+        , event = 'InsertEnter'
+        , config = function()
+          require 'configs.snippets.snippets-nvim'
+        end
+      }
+      -- use {
+      --   'L3MON4D3/LuaSnip'
+      --   , event = 'CursorHold'
+      --   -- , config = function()
+      --   --   require 'configs.snippets.luasnip'
+      --   -- end
+      --   -- , config = function()
+      --   --   require 'configs.luasnip'
+      --   -- end
+      -- }
+      -- use {
+      --   'rafamadriz/friendly-snippets'
+      --   , event = 'CursorHold'
+      -- }
 
       ---  Telescope
       ---
@@ -143,24 +153,15 @@ M.init_packer = function ()
         'nvim-telescope/telescope-project.nvim'
         , after = 'telescope.nvim'
         , config = function()
-          require 'telescope'.setup {
-            extensions = {
-              project = {
-                base_dirs = {
-                  { '~/devRoot/_bf', max_depth = 4 }
-                  , { '~/devRoot/neovim', max_depth = 4 }
-                }
-              }
-            }
-          }
+          require 'configs.telescope.project'
         end
       }
 
       ---  TODO : Add keymapping
       use {
         'camgraff/telescope-tmux.nvim'
-        , after = 'telescope.nvim'
         , cmd = 'Telescope tmux'
+        , after = 'telescope.nvim'
       }
 
       ---  TODO : Add keymapping
@@ -174,9 +175,25 @@ M.init_packer = function ()
       use {
         'nvim-treesitter/nvim-treesitter'
         , run = ':TSUpdate'
-        , opt = true
-        -- , event = 'BufReadPost'
         , event = 'CursorHold'
+        , cmd =
+          { 'TSBufEnable'
+          , 'TSBufDisable'
+          , 'TSBufToggle'
+          , 'TSEnableAll'
+          , 'TSDisableAll'
+          , 'TSToggleAll'
+          , 'TSEditQuery'
+          , 'TSEditQueryAfter'
+          , 'TSModuleInfo'
+          , 'TSInstallInfo'
+          , 'TSInstall'
+          , 'TSInstallSync'
+          , 'TSUpdate'
+          , 'TSUpdateSync'
+          , 'TSUninstall'
+        }
+        -- , module_pattern = 'treesitter.*'
         , config = function()
           require 'configs.treesitter'
         end
@@ -190,45 +207,21 @@ M.init_packer = function ()
         }
       }
       -- use { 'nvim-treesitter/completion-treesitter' }
-      -- use {
-      --   'nvim-treesitter/nvim-treesitter-refactor'
-        -- , evnet = 'CursorMoved'
-        -- , after = 'nvim-treesitter'
-        -- , module = 'nvim-treesitter-refactor'
-        -- , config = function()
-        --   require 'nvim-treesitter.configs'.setup {
-        --     refactor = {
-        --       navigation = {
-        --         enable  = true,
-        --         keymaps = {
-        --           goto_definition      = "gnd",
-        --           list_definitions     = "gnD",
-        --           list_definitions_toc = "gO",
-        --           goto_next_usage      = "<a-*>",
-        --           goto_previous_usage  = "<a-*>",
-        --         }
-        --       }
-        --     },
-        --   }
-        -- end
-      -- }
-      -- use {
-      --   'nvim-treesitter/nvim-treesitter-textobjects'
-      --   , after = 'nvim-treesitter'
-      -- }
+      use {
+        'nvim-treesitter/nvim-treesitter-refactor'
+        , after = 'nvim-treesitter'
+      }
+      use {
+        'nvim-treesitter/nvim-treesitter-textobjects'
+        , after = 'nvim-treesitter'
+      }
       -- use { 'romgrk/nvim-treesitter-context' }
       -- use {
       --   'p00f/nvim-ts-rainbow'
       --   , disable = true
       --   , after = 'nvim-treesitter'
       --   , config = function()
-      --     require 'nvim-treesitter.configs'.setup {
-      --       rainbow = {
-      --         enable = true
-      --         , extended_mode = true
-      --         , max_file_lines = 1000
-      --       }
-      --     }
+      --     require 'configs.treesitter.rainbow'
       --   end
       -- }
 
@@ -244,15 +237,15 @@ M.init_packer = function ()
       ---
       use {
         'NTBBloodbath/rest.nvim'
-        -- , after = 'plenary.nvim'
         -- , cmd = {
         --   'RestNvim'
         --   , 'RestNvimPreview'
+        --   , 'RestNvimLast'
         -- }
         , ft = 'http'
         , module_pattern = 'rest-nvim.*'
         , config = function()
-          require 'rest-nvim'.setup()
+          require 'configs.rest'
         end
       }
 
@@ -268,6 +261,13 @@ M.init_packer = function ()
       ---  tmux
       ---
       -- use { 'tmux-plugins/vim-tmux' }
+      use {
+        'aserowy/tmux.nvim'
+        , event = 'CursorHold'
+        , config = function()
+          require 'configs.tmux'
+        end
+      }
 
       ---  debugger
       ---
@@ -275,13 +275,18 @@ M.init_packer = function ()
       -- use { 'critiqjo/lldb.nvim' }
       use {
         'mfussenegger/nvim-dap'
+        , module_pattern = 'dap.*'
       }
       use {
         'nvim-telescope/telescope-dap.nvim'
-        , after = {
-          'telescope.nvim'
+        , after =
+          { 'telescope.nvim'
           , 'nvim-dap'
         }
+      }
+      use {
+        'jbyuki/one-small-step-for-vimkind'
+        , after = 'nvim-dap'
       }
 
       ---  matchup
@@ -289,41 +294,14 @@ M.init_packer = function ()
       -- use { 'andymass/vim-matchup' }
       -- use { 'jkramer/vim-checkbox' }
 
-      ---  snippets
+      ---  keymap management
       ---
-      -- use { 'Shougo/neosnippet' }
-      -- use { 'Shougo/neosnippet-snippets' }
-      -- use { 'honza/vim-snippets' }
-      -- use { 'SirVer/ultisnips' }
-      -- use { 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
-
       use {
         'folke/which-key.nvim'
         , event = 'CursorHold'
-        , setup = function()
-          vim.opt.timeoutlen = 10
-        end
         , config = function()
             require 'configs.keys'
-            vim.opt.timeoutlen = 400
         end
-        -- , event = 'ColorScheme'
-        -- , opt = true
-        -- , after = 'nvim-treesitter'
-        -- , setup = function()
-        --   require 'configs.keys'
-        -- end
-        -- , keys = ' '
-        -- , as = 'wk'
-        -- , module = 'which-key'
-        -- , config = function()
-        --   require 'configs.keys'.register_keys()
-        -- end
-        -- , config = function()
-        --   local wk = require 'which-key'
-        --   local keys = require 'configs.keys'
-        --   wk.register(keys.normal_mappings, keys.normal_mode)
-        -- end
       }
 
       ---  search
@@ -350,8 +328,6 @@ M.init_packer = function ()
         --       print(result[1])
         --     end
         --   end)()
-
-
         -- end
       -- }
 
@@ -365,12 +341,34 @@ M.init_packer = function ()
 
       -- use {
       --   'sainnhe/gruvbox-material'
-      --   , event = 'ColorSchemePre'
+      --   -- , event = 'ColorSchemePre'
+      --   , setup = function()
+      --     local g = vim.g
+      --     g.gruvbox_material_better_performance          = 1         -- default: 0 ( off )
+
+      --     g.gruvbox_material_background                  = 'hard'    -- default: 'medium'
+      --     -- g.gruvbox_material_transparent_background    = 1           -- defualt: 0 ( off )
+      --     g.gruvbox_material_visual                      = 'reverse' -- default: 'grey background'
+      --     g.gruvbox_material_sign_column_background      = 'none'    -- default: 'default'
+      --     g.gruvbox_material_diagnostic_line_highlight   = 1         -- default: 0 ( off )
+      --     -- g.gruvbox_material_current_word              = 'bold'      -- default: 'grey background'
+      --     -- g.gruvbox_material_statusline_style          = 'original'  -- default: 'default'
+      --     g.gruvbox_material_lightline_disable_bold      = 1         -- default: 0 ( off )
+      --     g.gruvbox_material_enable_italic               = 1         -- default: 1 ( on )
+      --   end
       -- }
 
       -- use {
       --   'RRethy/nvim-base16'
       --   , event = 'ColorSchemePre'
+      -- }
+
+      -- use {
+      --   'siduck76/nvim-base16.lua'
+      --   , config = function()
+      --     local base16 = require 'base16'
+      --     base16(base16.themes('mountaineer'), true)
+      --   end
       -- }
 
       use {
@@ -380,23 +378,10 @@ M.init_packer = function ()
 
       use {
         'eddyekofo94/gruvbox-material.nvim'
-        -- , opt = true
-        , config = function ()
-          vim.opt.background = 'dark'
-          -- vim.cmd [[ syntax on ]]
-          -- vim.cmd [[ filetype on ]]
-          -- vim.cmd [[ filetype plugin indent on ]]
-          require 'gruvbox-material'.set()
-          vim.cmd [[ hi String gui=NONE  ]]
-          -- vim.cmd [[ hi String gui=NONE  ]]
-        end
-        -- , after = 'nvim-treesitter'
-        -- , event = {
-        --   'ColorSchemePre'
-        --   , 'BufReadPost'
-        -- }
-        -- , requires = 'nvim-treesitter'
-        -- , module = 'gruvbox-material'
+        , event = 'CursorMoved'
+        -- , config = function ()
+        --   require "theme.gruvbox.material"
+        -- end
       }
 
       use {
@@ -404,10 +389,10 @@ M.init_packer = function ()
         , event = 'CursorMoved'
       }
 
-      use {
-        'monsonjeremy/onedark.nvim'
-        , event = 'CursorMoved'
-      }
+      -- use {
+      --   'monsonjeremy/onedark.nvim'
+      --   , event = 'CursorMoved'
+      -- }
 
       -- use {
       --   'ii14/onedark.nvim'
@@ -418,12 +403,13 @@ M.init_packer = function ()
         'NTBBloodbath/doom-one.nvim'
         , event = 'CursorMoved'
         , setup = function()
-          -- vim.g.doom_one_enable_treesitter      = true -- default: true
-          vim.g.doom_one_terminal_colors        = true -- default: false
-          vim.g.doom_one_italic_comments        = true -- default: false
-          -- vim.g.doom_one_transparent_background = true -- default: false
-          vim.g.doom_one_cursor_coloring        = true -- default: false
-          vim.g.doom_one_telescope_highlights   = true -- default: false
+          local g = vim.g
+          -- g.doom_one_enable_treesitter      = true -- default: true
+          g.doom_one_terminal_colors        = true -- default: false
+          g.doom_one_italic_comments        = true -- default: false
+          -- g.doom_one_transparent_background = true -- default: false
+          g.doom_one_cursor_coloring        = true -- default: false
+          g.doom_one_telescope_highlights   = true -- default: false
         end
       }
 
@@ -431,15 +417,16 @@ M.init_packer = function ()
         'folke/tokyonight.nvim'
         , event = 'CursorMoved'
         , setup = function()
-          vim.g.tokyonight_style = "night"
-          vim.g.tokyonight_terminal_colors = true
-          vim.g.tokyonight_dark_sidebar = false
-          vim.g.tokyonight_italic_comments = true
-          vim.g.tokyonight_italic_keywords = true
-          -- vim.g.tokyonight_italic_functions = true
-          -- vim.g.tokyonight_italic_variables = true
-          -- vim.g.tokyonight_sidebars = { 'terminal' }
-          -- vim.g.tokyongiht_dark_float = true
+          local g = vim.g
+          g.tokyonight_style = "night"
+          g.tokyonight_terminal_colors = true
+          g.tokyonight_dark_sidebar = false
+          g.tokyonight_italic_comments = true
+          g.tokyonight_italic_keywords = true
+          -- g.tokyonight_italic_functions = true
+          -- g.tokyonight_italic_variables = true
+          -- g.tokyonight_sidebars = { 'terminal' }
+          -- g.tokyongiht_dark_float = true
         end
       }
 
@@ -451,44 +438,81 @@ M.init_packer = function ()
         , module_pattern = 'lush.*'
       }
 
-      use {
-        'savq/melange'
-        -- , event = {
-        --   'ColorschemePre'
-        --   , 'BufReadPost'
-        -- }
-        , event = 'CursorMoved'
-      }
+      -- use {
+      --   'savq/melange'
+      --   -- , event = {
+      --   --   'ColorschemePre'
+      --   --   , 'BufReadPost'
+      --   -- }
+      --   , event = 'CursorMoved'
+      -- }
 
       -- TODO
       -- use {
       --   'metalelf0/jellybeans-nvim'
-      --   , event = 'ColorSchemePre'
+      --   , event = 'CursorMoved'
+      --   , requires = { 'rktjmp/lush.nvim' }
       -- }
 
       -- use {
-      --   'kunzaatko/nord.nvim'
-      --   , event = 'ColorSchemePre'
+      --   'nanotech/jellybeans.vim'
+      --   , event = 'CursorMoved'
       --   , setup = function()
-      --     vim.g.italic = 1
-      --     vim.g.nord_italic_comments = 1
+      --     vim.g.jellybeans_use_term_italics = 1
       --   end
       -- }
 
-      -- TODO
-      -- use { 'ful1e5/onedark.nvim' }
+      use {
+        'kunzaatko/nord.nvim'
+        , event = 'CursorMoved'
+        , setup = function()
+          local g = vim.g
+          g.italic = 1
+          g.nord_italic_comments = 1
+        end
+      }
+
+      use {
+        'EdenEast/nightfox.nvim'
+        , event = 'CursorMoved'
+        , module_pattern = 'nightfox'
+        , setup = function()
+          local g = vim.g
+          g.nightfox_style = 'nordfox'
+          -- g.nightfox_transparent = false
+          -- g.nightfox_terminal_colors = true
+          g.nightfox_italic_comments = true
+          g.nightfox_italic_functions = true
+          g.nightfox_italic_keywords = true
+          -- g.nightfox_italic_strings = false
+          -- g.nightfox_italic_variables = false
+          -- g.nightfox_color_delimiter = ''
+          -- g.nightfox_colors = {}
+        end
+        , config = function()
+          require 'nightfox'.set()
+        end
+      }
+      use {
+        'ful1e5/onedark.nvim'
+        , event = 'CursorMoved'
+        -- , config = function()
+        --   require 'theme.onedark'
+        -- end
+      }
 
       -- use {
       --   'vigoux/oak'
-      --   , event = 'ColorSchemePre'
+      --   , event = 'CursorMoved'
       -- }
 
       use {
         'ayu-theme/ayu-vim'
         , event = 'CursorMoved'
         , setup = function()
-          vim.g.ayucolor = 'dark'
-          -- vim.g.ayucolor = 'mirage'
+          local g = vim.g
+          g.ayucolor = 'dark'
+          -- g.ayucolor = 'mirage'
         end
       }
 
@@ -503,15 +527,20 @@ M.init_packer = function ()
         , event = 'CursorMoved'
         , module = 'material'
         , setup = function()
-          -- vim.g.material_style = 'deep ocean'
-          vim.g.material_style = 'darker'
-          vim.g.material_italic_comments = true
-          vim.g.material_italic_keywords = true
-          -- vim.g.material_italic_functions = true
-          -- vim.g.material_italic_variables = true
-          -- vim.g.material_borders = true
-          -- vim.g.material_contrast = true
+          local g = vim.g
+          -- g.material_style = 'deep ocean'
+          g.material_style = 'darker'
+          g.material_italic_comments = true
+          g.material_italic_keywords = true
+          -- g.material_italic_functions = true
+          -- g.material_italic_variables = true
+          -- g.material_borders = true
+          g.material_contrast = true
+          -- g.material_disable_background = true
         end
+        -- , config = function()
+        --   require 'material'.set()
+        -- end
       }
 
       -- use {
@@ -543,35 +572,16 @@ M.init_packer = function ()
       --   'windwp/windline.nvim'
       -- }
 
+      -- use {
+      --   'nvim-lua/lsp-status.nvim'
+      --   , after = 'nvim-lspconfig'
+      -- }
+
       use {
         'hoob3rt/lualine.nvim'
         , event = 'BufReadPost'
         , module = 'lualine'
-        , config = function()
-          require 'lualine'.setup {
-            options = {
-              theme = 'onedark'
-              -- theme = 'gruvbox_material'
-              -- theme = 'tokyonight'
-              -- theme = 'material'
-              -- theme = 'melange'
-              -- theme = '<amatch>'
-              -- , section_separators = {'', ''},
-              -- , extenstions = {
-              --   'nvim-tree'
-              -- }
-              , disabled_filetypes = {
-                'NvimTree'
-              }
-            }
-          }
-        end
-        -- , setup = function()
-        --   require 'configs.lauline'
-        -- end
-        -- , config = function()
-        --   require 'configs.lauline'
-        -- end
+        , config = "require 'configs.lualine'"
       }
 
       -- use {
@@ -600,6 +610,14 @@ M.init_packer = function ()
         'kyazdani42/nvim-web-devicons'
         , event = 'CursorHold'
       }
+      -- use {
+      --   'lambdalisue/glyph-palette.vim'
+      --   , event = 'CursorHold'
+      -- }
+      -- use {
+      --   'yamatsum/nvim-nonicons'
+      --   , after = 'nvim-web-devicons'
+      -- }
       use {
         'kyazdani42/nvim-tree.lua'
         , cmd =
@@ -611,32 +629,7 @@ M.init_packer = function ()
           , 'NvimTreeToggle'
         }
         , setup = function()
-          vim.g.nvim_tree_update_cwd = 1
-          vim.g.nvim_tree_quit_on_open = 0
-          vim.g.nvim_tree_git_hl = 1
-          vim.g.nvim_tree_lsp_diagnostics = 1
-          vim.g.nvim_tree_show_icons = {
-            folders = 1,
-            files = 1,
-          }
-          vim.g.nvim_tree_icons = {
-            default = '',
-            -- symlink = '',
-            -- git = {
-              -- unstaged = "",
-      --         staged = "✓",
-      --         unmerged = "",
-      --         renamed = "➜",
-      --         untracked = ""
-            -- },
-            -- folder = {
-            --   default = "",
-              -- open = "",
-      --         empty = "",
-      --         empty_open = "",
-      --         symlink = ""
-            -- }
-          }
+          require 'configs.filetree.nvim-tree.setup'
         end
       }
       -- use { 'hardcoreplayers/spaceline.vim' }
@@ -661,8 +654,9 @@ M.init_packer = function ()
         'b3nj5m1n/kommentary'
         , event = 'CursorHold'
         , setup = function()
+          local g = vim.g
           -- do not load the default komentary mappings
-          vim.g.kommentary_create_default_mappings = false
+          g.kommentary_create_default_mappings = false
         end
         , config = function()
           require 'configs.kommentary'
@@ -687,7 +681,7 @@ M.init_packer = function ()
 
       use {
         'lewis6991/gitsigns.nvim'
-        , after = 'plenary.nvim'
+        , event = 'CursorHold'
         , config = function()
           require 'gitsigns'.setup()
         end
@@ -695,52 +689,11 @@ M.init_packer = function ()
 
       ---  guides
       ---
-      -- use { 'Yggdroot/indentLine' }
-      -- use { 'nathanaelkane/vim-indent-guides' }
       use {
         'lukas-reineke/indent-blankline.nvim'
         , cmd = 'IndentBlanklineToggle'
         , setup = function()
-          vim.g.indent_blankline_buftype_exclude  = {
-            'terminal'
-          }
-
-          vim.g.indent_blankline_filetype_exclude = {
-            'help'
-            , 'packer'
-            , 'man'
-          }
-
-          -- vim.g.indent_blankline_char = '┆'
-
-          vim.g.indent_blankline_use_treesitter                 = true
-          vim.g.indent_blankline_show_trailing_blankline_indent = false
-          vim.g.indent_blankline_show_first_indent_level        = false
-          vim.g.indent_blankline_show_current_context           = true
-
-          vim.g.indent_blankline_char = '¦'
-          vim.g.indent_blankline_context_patterns = {
-            'class'
-            , 'return'
-            , 'function'
-            , 'method'
-            , '^if'
-            , '^while'
-            , 'jsx_element'
-            , '^for'
-            , '^object'
-            , '^table'
-            , 'block'
-            , 'arguments'
-            , 'if_statement'
-            , 'else_clause'
-            , 'jsx_element'
-            , 'jsx_self_closing_element'
-            , 'try_statement'
-            , 'catch_clause'
-            , 'import_statement'
-            , 'operation_type'
-          }
+          require 'configs.indention.blankline.setup'
         end
       }
 
@@ -768,23 +721,40 @@ M.init_packer = function ()
       ---
       use {
         'martinda/Jenkinsfile-vim-syntax'
-        , event = 'CursorHold'
+        -- , event = 'CursorHold'
+        , ft = {
+          'Jenkinsfile'
+          , 'groovy'
+        }
       }
+      use {
+        'gisphm/vim-gradle'
+        , ft = {
+          'gradle'
+          , 'groovy'
+        }
+      }
+      -- use {
+      --   'sheerun/vim-polyglot'
+      --   , after = 'nvim-treesitter'
+      --   , config = function()
+      --     require 'configs.polyglot'
+      --   end
+      -- }
+      -- use {
+      --   'pearofducks/ansible-vim'
+      --   , setup = function()
+      --     vim.g.ansible_extra_keywords_highlight = true
+      --   end
+      -- }
+      -- use { 'udalov/kotlin-vim' }
       -- use { 'scrooloose/syntastic' }
       -- use { 'w0rp/ale' }
-      -- use { 'gisphm/vim-gradle' }
-      -- use { 'udalov/kotlin-vim' }
-      use {
-        'sheerun/vim-polyglot'
-        , event = 'CursorHold'
-      }
       -- use { 'prurigro/vim-polyglot-darkcloud' }
       -- use { 'dleonard0/pony-vim-syntax' }
       -- use { 'saltstack/salt-vim' }
       -- use { 'fatih/vim-go' }
       -- use { 'garyburd/go-explorer' }
-      -- use { 'pearofducks/ansible-vim' }
-      -- let g:ansible_extra_keywords_highlight = 1
       -- use { 'glench/vim-jinja2-syntax' }
       -- use { 'PProvost/vim-ps1' }
       -- use { 'lambdatoast/elm.vim' }
@@ -799,19 +769,7 @@ M.init_packer = function ()
         'ntpeters/vim-better-whitespace'
         , event = 'CursorHold'
         , setup = function()
-          vim.g.strip_whitespace_on_save      = true
-          vim.g.strip_whitespace_confirm      = false
-          vim.g.strip_whitelines_at_eof       = true
-          vim.g.show_spaces_that_precede_tabs = true
-          vim.g.better_whitespace_filetypes_blacklist = {
-            'diff'
-            , 'gitcommit'
-            , 'unite'
-            , 'qf'
-            , 'help'
-            , 'packer'
-            , 'man'
-          }
+          require 'configs.whitespace.setup'
         end
       }
 
@@ -847,46 +805,25 @@ M.init_packer = function ()
       --   , after = 'nvim-telescope'
       -- }
 
+      ---  Notes & Org Mode
+      ---
       use {
         'vhyrro/neorg'
-        , after = 'plenary.nvim'
+        , ft = 'norg'
         , config = function()
-          require 'neorg'.setup {
-            load = {
-              ['core.defaults'] = {}
-            }
-            , logger = {
-              use_console = true
-            }
-          }
+          require 'configs.neorg'
         end
       }
-
-      -- use {
-      --   'vhyrro/neorg'
-      --   , requires = 'nvim-lua/plenary.nvim'
-      --   , config = function()
-      --     require 'neorg'.setup {
-      --       load = {
-      --         ['core.defaults'] = {}
-      --         , ['core.norg.concealer'] = {}
-      --         , ['core.norg.dirman'] = {
-      --           config = {
-      --             workspaces = {
-      --               my_workspace = '~/neorg'
-      --             }
-      --           }
-      --         }
-      --       }
-      --     }
-      --   end
-      -- }
-
     end
     , config = {
       profile = {
         enable = true
       }
+      -- , display = {
+      --   open_fn = function()
+      --     return require 'packer.util'.float { border = 'single' }
+      --   end
+      -- }
     }
   })
 end

@@ -50,8 +50,6 @@ local normal_mappings = {
     , ['9'] = { 'ciw()<esc>P',   'word with round  brackets'   }
     , [']'] = { 'ciw{}<esc>P',   'word with squiggly brackets' }
 
-    , d = { [[daw''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
-    -- , d = { [[daW''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
     , c = {
       name = 'change'
       , ['"'] = { [[ciwxx""P]], 'to signle quotes' }
@@ -60,7 +58,10 @@ local normal_mappings = {
       , [']'] = { 'ciw{}<esc>P',   'surround word with squiggly brackets' }
       , ['9'] = { 'ciw()<esc>P',   'surround word with round    brackets' }
     }
+    , d = { [[daw''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
+    -- , d = { [[daW''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
 
+    , p = { [[<cmd>split<cr>]], 'split top-bottom' }
     , t = { [[<cmd>lua require('theme').ThemeToggle()<cr>]], 'toggle dark/light' }
   },
 
@@ -129,8 +130,13 @@ local normal_mappings = {
     , s = { '<cmd>lua require "telescope.builtin".grep_string()<cr>',               'with grep string' }
     , p = {
       name = '+packer'
-      , s = { '<cmd>lua require("plugins") require("packer").sync()<cr>',    'packer sync'    }
-      , c = { '<cmd>lua require("plugins") require("packer").compile()<cr>', 'packer compile' }
+      , s = { '<cmd>PackerSync<cr>',                                          'sync'    }
+      , c = { '<cmd>PackerCompile<cr>',                                       'compile' }
+      , l = { '<cmd>lua require "telescope".extensions.packer.plugins()<cr>', 'list'    }
+      , t = { '<cmd>PackerStatus<cr>',                                        'status'  }
+      , p = { '<cmd>PackerProfile<cr>',                                       'profile' }
+      , u = { '<cmd>PackerUpdate<cr>',                                        'update'  }
+      , w = { '<cmd>PackerClean<cr>',                                         'clean'   }
     }
     , w = { '<cmd>lua require "telescope".extensions.project.project{ display_type = "full" }<cr>', 'workspace' }
     -- , w = { '<cmd>lua require "telescope".extensions.project.project{ theme = "ivy" }<cr>', 'workspace' }
@@ -180,14 +186,31 @@ local normal_mappings = {
   ---
   ---  t* mappings
   ---
-  t = { '<cmd>split term://$SHELL<cr>', 'terminal' },
+  t = {
+    name = '+toggle'
+    , h = { '<cmd>TSHighlightCapturesUnderCursor<cr>', 'highlight captures' }
+    , t = { '<cmd>split term://$SHELL<cr>',            'terminal' }
+    , s = { '<cmd>TSPlaygroundToggle<cr>',             'tree-sitter playgournd' }
+  },
+
+  ---  v* mapptings
+  ---
+  v = {
+    p = { [[<cmd>vsplit<cr>]], 'split side-to-side' }
+  },
 
   ---  Comment Handling
   ---
-  ['<C-_>'] = { '<plug>NERDCommenterToggle', 'toggle comment'},
+  ['<c-_>'] = { '<plug>NERDCommenterToggle', 'toggle comment'},
 }
 
 wk.register(normal_mappings, normal_mode)
+
+---  Fix wierd default mappings
+---
+wk.register({
+  Y = { 'y$', 'yank to end of line instead of whole line' }
+})
 
 -- wk.register({
 --   ["<leader>f"] = { name = "+file" }
@@ -205,12 +228,12 @@ wk.register(normal_mappings, normal_mode)
 ---  navigate cursor to adjoining window
 ---
 -- normal mode
-wk.register({
-  ['<c-h>'] = { '<cmd>wincmd h<cr>', "focus left"  },
-  ['<c-j>'] = { '<cmd>wincmd j<cr>', "focus down"  },
-  ['<c-k>'] = { '<cmd>wincmd k<cr>', "focus up"    },
-  ['<c-l>'] = { '<cmd>wincmd l<cr>', "focus right" }
-})
+-- wk.register({
+--   ['<c-h>'] = { '<cmd>wincmd h<cr>', "focus left"  },
+--   ['<c-j>'] = { '<cmd>wincmd j<cr>', "focus down"  },
+--   ['<c-k>'] = { '<cmd>wincmd k<cr>', "focus up"    },
+--   ['<c-l>'] = { '<cmd>wincmd l<cr>', "focus right" }
+-- })
 -- termainl mode
 -- wk.register({
 --   ['<esc>'] = { [[<c-\><c-n>]],       'escape'      },
@@ -228,6 +251,7 @@ tnoremap( '<C-h>', [[<C-\><C-n><C-w>h]] )
 tnoremap( '<C-j>', [[<C-\><C-n><C-w>j]] )
 tnoremap( '<C-k>', [[<C-\><C-n><C-w>k]] )
 tnoremap( '<C-l>', [[<C-\><C-n><C-w>l]] )
+
 local cmd = vim.cmd
 cmd [[ autocmd BufWinEnter,WinEnter,TermEnter term://* setlocal nonumber norelativenumber ]]
 cmd [[ autocmd BufWinEnter,WinEnter,TermEnter term://* startinsert                        ]]
@@ -255,3 +279,5 @@ cmd [[ autocmd BufWinLeave,WinLeave TelescopePrompt :inoremap jk <esc> ]]
   -- , nowait = false
   -- , nowait = true
 -- })
+
+vim.opt.timeoutlen = 300

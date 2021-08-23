@@ -47,9 +47,20 @@ require 'telescope'.setup {
     }
   },
   pickers = {
+    -- autocommands = {
+    --   theme = 'dropdown'
+    --   , layout_config = {
+    --     width = 0.9
+    --     , height = 0.7
+    --   }
+    -- },
+
     find_files                = {
       theme = 'ivy'
       -- , mirror = true
+      , layout_config = {
+        height = 0.75
+      }
     },
 
     jumplist                  = { theme = 'dropdown' },
@@ -67,7 +78,9 @@ require 'telescope'.setup {
     current_buffer_fuzzy_find = {
       theme = 'ivy'
       , previewer = false
-      , mirror = true
+      , layout_config = {
+        height = 0.75
+      }
     },
 
     file_browser = {

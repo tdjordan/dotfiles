@@ -1,13 +1,22 @@
+local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
+
+parser_config.norg = {
+  install_info =
+    { url    = 'https://github.com/vhyrro/tree-sitter-norg'
+    , files  = { 'src/parser.c' }
+    , branch = 'main'
+  }
+}
+
 require 'nvim-treesitter.configs'.setup {
-  -- ensure_installed = "all",
   ensure_installed = 'all',
-  ignore_install = {
-    'haskell'
+  ignore_install =
+    { 'haskell'
     , 'hcl'
-    , 'cmake'
   },
-  highlight = {
-    enable = true
+  highlight =
+    { enable = true
+    , additional_vim_regex_highlighting = false
   },
   refactor = {
     -- highlight_definitions = { enable = true },
@@ -21,11 +30,11 @@ require 'nvim-treesitter.configs'.setup {
     -- navigation = {
     --   enable  = true,
     --   keymaps = {
-    --     goto_definition      = "gnd",
-    --     list_definitions     = "gnD",
-    --     list_definitions_toc = "gO",
-    --     goto_next_usage      = "<a-*>",
-    --     goto_previous_usage  = "<a-*>",
+    --     goto_definition      = 'gnd',
+    --     list_definitions     = 'gnD',
+    --     list_definitions_toc = 'gO',
+    --     goto_next_usage      = '<a-*>',
+    --     goto_previous_usage  = '<a-*>',
     --   },
     -- },
   },
@@ -33,20 +42,40 @@ require 'nvim-treesitter.configs'.setup {
     enable          = true,
     disable         = {},
     updatetime      = 25,
-    persist_queries = false
+    persist_queries = false,
+    keybindings     =
+      { toggle_query_editor       = 'o'
+      , toggle_hl_groups          = 'i'
+      , toggle_injected_languages = 't'
+      , toggle_anonymous_nodes    = 'a'
+      , toggle_language_display   = 'I'
+      , focus_language            = 'f'
+      , unfocus_language          = 'F'
+      , update                    = 'R'
+      , goto_node                 = '<cr>'
+      , show_help                 = '?'
+    }
+  },
+  query_linter = {
+    enable = true
+    , use_viratual_text = true
+    , lint_events =
+      { 'BufWrite'
+      , 'CursorHold'
+    }
   },
   incremental_selection = {
     enable  = true,
     keymaps = {
-      init_selection    = "gnn",
-      node_incremental  = "grn",
-      scope_incremental = "grc",
-      node_decremental  = "grm"
+      init_selection    = 'gnn',
+      node_incremental  = 'grn',
+      scope_incremental = 'grc',
+      node_decremental  = 'grm'
     },
   },
-  indentation = {
-    enable = { true }
-  },
+  -- indent = {
+  --   enable = true
+  -- },
   textobjects = {
     select = {
       enable  = true,
@@ -54,47 +83,47 @@ require 'nvim-treesitter.configs'.setup {
       lookahead = true;
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
+        ['af'] = '@function.outer',
+        ['if'] = '@function.inner',
+        ['ac'] = '@class.outer',
+        ['ic'] = '@class.inner',
       },
     },
-    swap = {
-      enable = true,
-      swap_next = {
-        ['<leader>a'] = "@parameter.inneer"
-      },
-      swap_previous = {
-        ['<leader>A'] = "@parameter.inneer"
-      }
-    },
+    -- swap = {
+    --   enable = true,
+    --   swap_next = {
+    --     ['<leader>a'] = '@parameter.inner'
+    --   },
+    --   swap_previous = {
+    --     ['<leader>A'] = '@parameter.inner'
+    --   }
+    -- },
     move = {
       enable = true,
       set_jumps = true,
       goto_next_start = {
-        ["]m"] = "@function.outer",
-        -- ["]]"] = "@class.outer"
+        [']m'] = '@function.outer',
+        -- [']]'] = '@class.outer'
       },
       goto_next_end = {
-        ["]M"] = "@function.outer",
-        -- ["]["] = "@class.outer"
+        [']M'] = '@function.outer',
+        -- [']['] = '@class.outer'
       },
       goto_previous_start = {
-        ["[m"] = "@function.outer",
-        -- ["[["] = "@class.outer"
+        ['[m'] = '@function.outer',
+        -- ['[['] = '@class.outer'
       },
       goto_previous_end = {
-        ["[M"] = "@function.outer",
-        -- ["[]"] = "@class.outer"
+        ['[M'] = '@function.outer',
+        -- ['[]'] = '@class.outer'
       },
     },
     lsp_interop = {
       enable = true,
       border = 'none',
       peek_definition_code = {
-        ["df"] = "@function.outer",
-        ["dF"] = "@class.outer"
+        ['df'] = '@function.outer',
+        ['dF'] = '@class.outer'
       }
     }
   },
@@ -107,6 +136,8 @@ require 'nvim-treesitter.configs'.setup {
   }
 }
 
+-- local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
+parser_config.java.used_by = 'Jenkinsfile'
 
   -- indent = {
   --   enable = true

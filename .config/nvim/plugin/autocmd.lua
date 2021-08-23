@@ -2,7 +2,7 @@ local cmd = vim.cmd
 
 ---  establish new filetyp detection
 cmd [[
-  au BufNewFile,BufRead *.http setf http
+  autocmd BufNewFile,BufRead *.http setf http
 ]]
 
 ---  Nofifications of packer workflows
@@ -22,4 +22,10 @@ cmd [[
 ---
 vim.cmd [[
   autocmd TextYankPost * silent lua require'vim.highlight'.on_yank {timeout = 100}
+]]
+
+---  Resize splits when the window is resized
+---
+cmd [[
+  autocmd VimResized * silent :wincmd =
 ]]
