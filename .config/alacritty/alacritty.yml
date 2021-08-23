@@ -1176,8 +1176,8 @@ mouse_bindings:
 key_bindings:
   - { key: Paste,                                       action: Paste          }
   - { key: Copy,                                        action: Copy           }
-  - { key: L,         mods: Control,                    action: ClearLogNotice }
-  - { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
+  # - { key: L,         mods: Control,                    action: ClearLogNotice }
+  # - { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
   - { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollPageUp,  }
   - { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ScrollPageDown }
   - { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop,   }
@@ -1288,7 +1288,7 @@ key_bindings:
 
   - { key: N,        mods: Control | Shift, action: SpawnNewInstance         }
 
-  - { key: L,        mods: Control, chars: "\x0c"                            }
+  # - { key: L,        mods: Control, chars: "\x0c"                            }
   - { key: Home,     mods: Alt,     chars: "\x1b[1;3H"                       }
   - { key: Home,                    chars: "\x1bOH",        mode: AppCursor  }
   - { key: Home,                    chars: "\x1b[H",        mode: ~AppCursor }

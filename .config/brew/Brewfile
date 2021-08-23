@@ -138,6 +138,11 @@ brew "shfmt"
 ###
 brew "go"
 
+###  Mint Language
+###
+tap    "mint-lang/mint-lang"
+  brew "mint-lang"
+
 ###  language server protocol ( lsp )
 ###
 brew "efm-langserver"

@@ -29,3 +29,7 @@ dockerimage_lint() {
 jf() {
   docker run -v ~/.jfrog:/root/.jfrog docker.bintray.io/jfrog/jfrog-cli-go:latest jfrog $0
 }
+
+# neuron() {
+#   docker run --rm -it -v ${PWD}:/notes sridca/neuron neuron $*
+# }

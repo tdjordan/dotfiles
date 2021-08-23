@@ -19,6 +19,7 @@
   mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
   visual = !gitk
   st = status -s
+  stu = status -s --untracked-files all .
   co = checkout
   ci = commit
   br = branch
@@ -81,10 +82,11 @@
 [pager]
   tag = off
   branch = off
-  diff = delta
-  show = delta
-  log = delta
-  reflog = delta
+  # diff = delta
+  ; show = delta
+  ; log = nvim
+  ; log = delta
+  ; reflog = delta
 
 [color "decorate"]
   HEAD = red
