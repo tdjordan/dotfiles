@@ -18,6 +18,7 @@
 
 ---  do not display intro message on startup
 ---
+-- require 'impatient'
 vim.opt.shortmess:append { I = true }
 
 ---  bypass unused default plugins
