@@ -129,6 +129,7 @@ brew "terraform-docs"
 brew "terraform-ls"
 brew "tflint"
 brew "packer"
+brew "terrascan"
 
 ###  Shell SCA Tools
 brew "shellcheck"
@@ -201,6 +202,16 @@ brew "pandoc"
 ###
 mas "monday.com", id: 1298450641
 
+###  Graphic Editors
+###
+brew "gimp"
+brew "inkscape"
+
+###  Specialized Linters
+###
+tap    "shopify/shopify"
+  brew "theme-check"
+
 ###  fonts
 ###
 brew "fontforge"
@@ -222,5 +233,8 @@ tap    "homebrew/cask-fonts"
   cask "font-sauce-code-pro-nerd-font"
   cask "font-ubuntu-nerd-font"
   cask "font-ubuntu-mono-nerd-font"
+  cask "font-stardos-stencil"
+  cask "font-black-ops-one"
+  cask "font-lato"
 tap    "epk/epk"
   cask "font-sf-mono-nerd-font"
