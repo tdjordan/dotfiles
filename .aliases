@@ -63,8 +63,8 @@ alias bl='brew list'
 alias blr='brew list | rg '
 
 # cat
-#alias c='cat'
-alias c='cargo'
+alias k='cat'
+alias cg='cargo'
 
 # overload ag
 alias ag='ag --hidden --ignore-dir .git'
@@ -107,6 +107,7 @@ alias agdf='agdf_imp '
 
 # dotfile configuration
 alias config='git --git-dir=$HOME/.files.git --work-tree=$HOME --no-pager'
+alias c='config '
 
 [ -f ~/.aliases.local ] && . ~/.aliases.local
 
