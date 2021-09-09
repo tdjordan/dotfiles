@@ -1,9 +1,44 @@
 require 'lualine'.setup {
   options = {
+    -- theme = 'onedark'
+    -- theme = 'tokyonight'
     -- theme = 'gruvbox_material'
-    theme = 'onedark'
+    -- theme = 'tokyonight'
+    -- theme = 'material-nvim'
+    theme = 'nightfox'
+    -- theme = 'melange'
+    -- theme = '<amatch>'
+    -- , section_separators = {'', ''}
+    -- , extenstions = {
+    --   'nvim-tree'
+    -- }
+    , disabled_filetypes = {
+      'NvimTree'
+    }
+  }
+  , sections = {
+    lualine_c = {
+      {
+        'diagnostics'
+        , sources = { 'nvim_lsp' }
+      }
+      , {
+        'filename'
+        , path = 1 -- relative path
+      }
+    }
+    -- , lualine_z = {
+    --   clock
+    -- }
   }
 }
+
+-- require 'lualine'.setup {
+--   options = {
+--     -- theme = 'gruvbox_material'
+--     theme = 'onedark'
+--   }
+-- }
 
 
 -- local windline = require 'windline'

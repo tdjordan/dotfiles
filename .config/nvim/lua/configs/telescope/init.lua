@@ -31,28 +31,41 @@ require 'telescope'.setup {
     color_devicons = true,
     --use_less = true,
     --scroll_strategy = 'cycle'
-    mappings = {
-      i = {
-        ["<c-j>"] = actions.move_selection_next,
-        ["<c-k>"] = actions.move_selection_previous,
-        ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-        ["<esc>"] = actions.close,
-      },
-      n = {
-        ["<c-j>"] = actions.move_selection_next,
-        ["<c-k>"] = actions.move_selection_previous,
-        ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-        ["<esc>"] = actions.close,
-      }
-    }
+    -- mappings = {
+    --   i = {
+    --     ["<c-j>"] = actions.move_selection_next,
+    --     ["<c-k>"] = actions.move_selection_previous,
+    --     ["<c-n>"] = actions.move_selection_next,
+    --     ["<c-p>"] = actions.move_selection_previous,
+    --     ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+    --     ["<esc>"] = actions.close,
+    --   },
+    --   n = {
+    --     ["<c-j>"] = actions.move_selection_next,
+    --     ["<c-k>"] = actions.move_selection_previous,
+    --     ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+    --     ["<esc>"] = actions.close,
+    --   }
+    -- }
   },
   pickers = {
-    find_files                = {
+    -- autocommands = {
+    --   theme = 'dropdown'
+    --   , layout_config = {
+    --     width = 0.9
+    --     , height = 0.7
+    --   }
+    -- },
+
+    find_files = {
       theme = 'ivy'
       -- , mirror = true
+      , layout_config = {
+        height = 0.75
+      }
     },
 
-    jumplist                  = { theme = 'dropdown' },
+    jumplist = { theme = 'dropdown' },
 
     buffers = {
       theme = 'dropdown'
@@ -67,12 +80,25 @@ require 'telescope'.setup {
     current_buffer_fuzzy_find = {
       theme = 'ivy'
       , previewer = false
-      , mirror = true
+      , layout_config = {
+        height = 0.75
+      }
     },
 
     file_browser = {
       theme = 'ivy'
-    }
+    },
+
+    -- git_branches = {
+    --   theme = 'dropdown'
+      -- , layout_config = {
+      --   height = 200
+        -- , vertical = {
+        --   mirror = true
+        -- }
+      -- }
+      -- , layout_strategy = 'bottom_pane'
+    -- }
   },
   extensions = {
     project = {

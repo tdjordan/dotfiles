@@ -573,12 +573,7 @@ let g:lightline = {
   \   },
   \   'component_function': {
   \     'gitbranch': 'gitbranch#name',
-  "\     'filename': 'LightlineFilename',
   \   },
-  "\   'separator': {
-  "\     'left': "\ue0b8",
-  "\     'right': "\ue0be"
-  "\   },
   \ }
   "\   'mode_map': {
   "\     'n': 'N',

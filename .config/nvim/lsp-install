@@ -45,6 +45,7 @@ brew=(
   efm-langserver
   llvm
   bear
+  mint-lang
 )
 
 time yarn global add ${yarn// / }

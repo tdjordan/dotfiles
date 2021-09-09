@@ -50,8 +50,6 @@ local normal_mappings = {
     , ['9'] = { 'ciw()<esc>P',   'word with round  brackets'   }
     , [']'] = { 'ciw{}<esc>P',   'word with squiggly brackets' }
 
-    , d = { [[daw''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
-    -- , d = { [[daW''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
     , c = {
       name = 'change'
       , ['"'] = { [[ciwxx""P]], 'to signle quotes' }
@@ -60,7 +58,10 @@ local normal_mappings = {
       , [']'] = { 'ciw{}<esc>P',   'surround word with squiggly brackets' }
       , ['9'] = { 'ciw()<esc>P',   'surround word with round    brackets' }
     }
+    , d = { [[daw''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
+    -- , d = { [[daW''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
 
+    , p = { [[<cmd>split<cr>]], 'split top-bottom' }
     , t = { [[<cmd>lua require('theme').ThemeToggle()<cr>]], 'toggle dark/light' }
   },
 
@@ -100,6 +101,7 @@ local normal_mappings = {
     , f = { '<cmd>lua require "telescope.builtin".find_files()<cr>',                'by file name'    }
     , g = { '<cmd>lua require "telescope.builtin".live_grep()<cr>',                 'with live grep'  }
     , h = { '<cmd>lua require "telescope.builtin".help_tags()<cr>',                 'help tags'       }
+    , j = { '<cmd>lua require "telescope.builtin".jumplist()<cr>',                  'jumplist'        }
     , i = { '<cmd>lua require "telescope.builtin".builtin()<cr>',                   'builtins'        }
     , k = { '<cmd>lua require "telescope.builtin".keymaps()<cr>',                   'keymaps'         }
     , l = { '<cmd>lua require "telescope.builtin".current_buffer_fuzzy_find()<cr>', 'current buffer'  }
@@ -127,6 +129,16 @@ local normal_mappings = {
     , l = { '<cmd>lua require "telescope.builtin".current_buffer_fuzzy_find()<cr>',             'from current buffer' }
     -- , v = { '<cmd>lua require "telescope.builtin".vim_options()<cr>',               'vim options'      }
     , s = { '<cmd>lua require "telescope.builtin".grep_string()<cr>',               'with grep string' }
+    , p = {
+      name = '+packer'
+      , s = { '<cmd>PackerSync<cr>',                                          'sync'    }
+      , c = { '<cmd>PackerCompile<cr>',                                       'compile' }
+      , l = { '<cmd>lua require "telescope".extensions.packer.plugins()<cr>', 'list'    }
+      , t = { '<cmd>PackerStatus<cr>',                                        'status'  }
+      , p = { '<cmd>PackerProfile<cr>',                                       'profile' }
+      , u = { '<cmd>PackerUpdate<cr>',                                        'update'  }
+      , w = { '<cmd>PackerClean<cr>',                                         'clean'   }
+    }
     , w = { '<cmd>lua require "telescope".extensions.project.project{ display_type = "full" }<cr>', 'workspace' }
     -- , w = { '<cmd>lua require "telescope".extensions.project.project{ theme = "ivy" }<cr>', 'workspace' }
     , v = {
@@ -147,11 +159,23 @@ local normal_mappings = {
   },
 
   ---
+  ---  g* mappings
+  ---
+  g = {
+    name = '+git'
+    , b = { '<cmd>lua require "telescope.builtin".git_branches()<cr>', 'git branches' }
+    , c = { '<cmd>lua require "telescope.builtin".git_commits()<cr>',  'git commits'  }
+    , h = { '<cmd>lua require "telescope.builtin".git_stash()<cr>',    'git stash'    }
+    , l = { '<cmd>lua require "telescope.builtin".git_bcommits()<cr>', 'git buffer commits' }
+    , s = { '<cmd>lua require "telescope.builtin".git_status()<cr>',   'git status'   }
+  },
+
+  ---
   ---  i* mappings
   ---
   ---  Indentation
   ---
-  i = { '<cmd>IndentBlanklineToggle<cr>', 'toggle indentation guides' },
+  i = { '<cmd>DoIndentBlankline<cr>', 'toggle indentation guides' },
 
   ---
   ---  k* mappings
@@ -163,14 +187,52 @@ local normal_mappings = {
   ---
   ---  t* mappings
   ---
-  t = { '<cmd>split term://$SHELL<cr>', 'terminal' },
+  t = {
+    name = '+toggle'
+    , h = { '<cmd>TSHighlightCapturesUnderCursor<cr>', 'highlight captures'     }
+    , t = { '<cmd>split term://$SHELL<cr>',            'terminal'               }
+    , s = { '<cmd>TSPlaygroundToggle<cr>',             'tree-sitter playgournd' }
+  },
+
+  ---
+  ---  r* mappings
+  ---
+  r = {
+    name = '+rest'
+    , l = { "<cmd>lua require 'rest-nvim'.last()<cr>",    'run last request'         }
+    , p = { "<cmd>lua require 'rest-nvim'.run(true)<cr>", 'preview the curl command' }
+    , r = { "<cmd>lua require 'rest-nvim'.run()<cr>",     'run request under cursor' }
+  },
+
+  ---  v* mapptings
+  ---
+  v = {
+    p = { [[<cmd>vsplit<cr>]], 'split side-to-side' }
+  },
+
+  ---  v* mapptings
+  ---
+  x = {
+    name = '+trouble'
+    , l = { [[<cmd>TroubleToggle loclist<cr>]],                   'lsp references'        }
+    , d = { [[<cmd>TroubleToggle lsp_document_diagnositcs<cr>]],  'document diagnositcs'  }
+    , q = { [[<cmd>TroubleToggle quickfix<cr>]],                  'quickfix'              }
+    , w = { [[<cmd>TroubleToggle lsp_workspace_diagnostics<cr>]], 'workspace diagnostics' }
+    , x = { [[<cmd>TroubleToggle<cr>]],                           'trouble toggle'        }
+  },
 
   ---  Comment Handling
   ---
-  ['<C-_>'] = { '<plug>NERDCommenterToggle', 'toggle comment'},
+  ['<c-_>'] = { '<plug>NERDCommenterToggle', 'toggle comment'},
 }
 
 wk.register(normal_mappings, normal_mode)
+
+---  Fix wierd default mappings
+---
+wk.register({
+  Y = { 'y$', 'yank to end of line instead of whole line' }
+})
 
 -- wk.register({
 --   ["<leader>f"] = { name = "+file" }
@@ -188,12 +250,12 @@ wk.register(normal_mappings, normal_mode)
 ---  navigate cursor to adjoining window
 ---
 -- normal mode
-wk.register({
-  ['<c-h>'] = { '<cmd>wincmd h<cr>', "focus left"  },
-  ['<c-j>'] = { '<cmd>wincmd j<cr>', "focus down"  },
-  ['<c-k>'] = { '<cmd>wincmd k<cr>', "focus up"    },
-  ['<c-l>'] = { '<cmd>wincmd l<cr>', "focus right" }
-})
+-- wk.register({
+--   ['<c-h>'] = { '<cmd>wincmd h<cr>', "focus left"  },
+--   ['<c-j>'] = { '<cmd>wincmd j<cr>', "focus down"  },
+--   ['<c-k>'] = { '<cmd>wincmd k<cr>', "focus up"    },
+--   ['<c-l>'] = { '<cmd>wincmd l<cr>', "focus right" }
+-- })
 -- termainl mode
 -- wk.register({
 --   ['<esc>'] = { [[<c-\><c-n>]],       'escape'      },
@@ -211,10 +273,12 @@ tnoremap( '<C-h>', [[<C-\><C-n><C-w>h]] )
 tnoremap( '<C-j>', [[<C-\><C-n><C-w>j]] )
 tnoremap( '<C-k>', [[<C-\><C-n><C-w>k]] )
 tnoremap( '<C-l>', [[<C-\><C-n><C-w>l]] )
-vim.cmd [[ autocmd BufWinEnter,WinEnter,TermEnter term://* setlocal nonumber norelativenumber ]]
-vim.cmd [[ autocmd BufWinEnter,WinEnter,TermEnter term://* startinsert                        ]]
-vim.cmd [[ autocmd BufLeave                       term://* stopinsert                         ]]
-vim.cmd [[ autocmd TermClose                      term://* call nvim_input('<cr>')            ]]
+
+local cmd = vim.cmd
+cmd [[ autocmd BufWinEnter,WinEnter,TermEnter term://* setlocal nonumber norelativenumber ]]
+cmd [[ autocmd BufWinEnter,WinEnter,TermEnter term://* startinsert                        ]]
+cmd [[ autocmd BufLeave                       term://* stopinsert                         ]]
+cmd [[ autocmd TermClose                      term://* call nvim_input('<cr>')            ]]
 
 ---  Escape
 ---
@@ -223,8 +287,8 @@ wk.register({
 }, {
   mode = 'i'
 })
-vim.cmd [[ autocmd BufWinEnter,WinEnter TelescopePrompt :iunremap jk ]]
-vim.cmd [[ autocmd BufWinLeave,WinLeave TelescopePrompt :inoremap jk <esc> ]]
+cmd [[ autocmd BufWinEnter,WinEnter TelescopePrompt :iunremap jk ]]
+cmd [[ autocmd BufWinLeave,WinLeave TelescopePrompt :inoremap jk <esc> ]]
 
 -- wk.register({
 --   ['C-_'] = { '<plug>NERDCommenterToggle', 'comment visual block' },
@@ -238,8 +302,37 @@ vim.cmd [[ autocmd BufWinLeave,WinLeave TelescopePrompt :inoremap jk <esc> ]]
   -- , nowait = true
 -- })
 
----  When opening a file, return to last edit postion
+---  Treesitter Unit
 ---
-vim.cmd [[
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line('$') | execute 'normal! g`"' | endif
-]]
+-- vim.api.nvim_set_keymap('x', 'iu', '<cmd>lua require "treesitter-unit".select()<cr>',     { noremap = true })
+-- vim.api.nvim_set_keymap('x', 'au', '<cmd>lua require "treesitter-unit".select(true)<cr>', { noremap = true })
+-- vim.api.nvim_set_keymap('o', 'iu', '<cmd>lua require "treesitter-unit".select()<cr>',     { noremap = true })
+-- vim.api.nvim_set_keymap('o', 'au', '<cmd>lua require "treesitter-unit".select(true)<cr>', { noremap = true })
+wk.register({
+  i =  {
+    name = '+inner'
+    , u = { '<cmd>lua require "treesitter-unit".select()<cr>',     'unit select' },
+  }
+  , a = {
+    name = '+outer'
+    , u = { '<cmd>lua require "treesitter-unit".select(true)<cr>', 'unit select' },
+  }
+}, {
+  mode = 'x'
+})
+
+wk.register({
+  i =  {
+    name = '+inner'
+    , u = { '<cmd>lua require "treesitter-unit".select()<cr>',     'inner unit' },
+  }
+  , a = {
+    name = '+outer'
+    , u = { '<cmd>lua require "treesitter-unit".select(true)<cr>', 'a unit (with white space)' },
+  }
+}, {
+  mode = 'o'
+})
+
+---  effect initial timeout
+vim.opt.timeoutlen = 300
