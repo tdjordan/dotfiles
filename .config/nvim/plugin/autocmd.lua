@@ -1,9 +1,9 @@
 local cmd = vim.cmd
 
 ---  establish new filetyp detection
-cmd [[
-  autocmd BufNewFile,BufRead *.http setf http
-]]
+-- cmd [[
+--   autocmd BufNewFile,BufRead *.http setf http
+-- ]]
 
 ---  Nofifications of packer workflows
 ---
@@ -28,4 +28,12 @@ vim.cmd [[
 ---
 cmd [[
   autocmd VimResized * silent :wincmd =
+]]
+
+-- cmd [[
+--   autocmd FileType NvimTree call glyph_palette#apply()
+-- ]]
+
+cmd [[
+  silent! command DoIndentBlanklineToggle lua require('functions.toggle').indent_blankline()
 ]]

@@ -110,6 +110,14 @@ opt.conceallevel   = 2                           -- 'Conceal' hi group / text hi
   -- TODO : to allow '' to be visible in markdown files, set conceallevel to 0
 -- o.langnoremap    = true                         -- nvim default
 -- o.laststatus     = true                         -- nvim defaults to 2 (statusline is alwasys shown)
+-- opt.listchars      = 'tab:> ,trail:-,nbsp:+,eol:↴'      -- nvim default
+opt.listchars =
+  { tab   = '> '
+  , trail = '-'
+  , nbsp  = '+'
+  , eol   = "↴"
+  -- , space = "."
+}
 -- o.listchars      = 'tab:> ,trail:-,nbsp:+'      -- nvim default
 -- o.nrformats      = true                         -- nvim defaults to 'hex'
 -- o.sessionoptions = true                         -- nvim doesn't include 'options'

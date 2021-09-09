@@ -17,6 +17,7 @@ cmd [[ silent! command PackerClean   lua require('plugins').init_packer() requir
 cmd [[ silent! command PackerProfile lua require('plugins').init_packer() require('packer').profile_output() ]]
 cmd [[ silent! command PackerStatus  lua require('plugins').init_packer() require('packer').status()         ]]
 
+-- require 'impatient'
 if packer_installed and packer_compiled then return end
 
 -- if not packer_installed then
