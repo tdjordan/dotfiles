@@ -31,20 +31,22 @@ require 'telescope'.setup {
     color_devicons = true,
     --use_less = true,
     --scroll_strategy = 'cycle'
-    mappings = {
-      i = {
-        ["<c-j>"] = actions.move_selection_next,
-        ["<c-k>"] = actions.move_selection_previous,
-        ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-        ["<esc>"] = actions.close,
-      },
-      n = {
-        ["<c-j>"] = actions.move_selection_next,
-        ["<c-k>"] = actions.move_selection_previous,
-        ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-        ["<esc>"] = actions.close,
-      }
-    }
+    -- mappings = {
+    --   i = {
+    --     ["<c-j>"] = actions.move_selection_next,
+    --     ["<c-k>"] = actions.move_selection_previous,
+    --     ["<c-n>"] = actions.move_selection_next,
+    --     ["<c-p>"] = actions.move_selection_previous,
+    --     ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+    --     ["<esc>"] = actions.close,
+    --   },
+    --   n = {
+    --     ["<c-j>"] = actions.move_selection_next,
+    --     ["<c-k>"] = actions.move_selection_previous,
+    --     ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+    --     ["<esc>"] = actions.close,
+    --   }
+    -- }
   },
   pickers = {
     -- autocommands = {
@@ -55,7 +57,7 @@ require 'telescope'.setup {
     --   }
     -- },
 
-    find_files                = {
+    find_files = {
       theme = 'ivy'
       -- , mirror = true
       , layout_config = {
@@ -63,7 +65,7 @@ require 'telescope'.setup {
       }
     },
 
-    jumplist                  = { theme = 'dropdown' },
+    jumplist = { theme = 'dropdown' },
 
     buffers = {
       theme = 'dropdown'

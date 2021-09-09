@@ -101,6 +101,7 @@ local normal_mappings = {
     , f = { '<cmd>lua require "telescope.builtin".find_files()<cr>',                'by file name'    }
     , g = { '<cmd>lua require "telescope.builtin".live_grep()<cr>',                 'with live grep'  }
     , h = { '<cmd>lua require "telescope.builtin".help_tags()<cr>',                 'help tags'       }
+    , j = { '<cmd>lua require "telescope.builtin".jumplist()<cr>',                  'jumplist'        }
     , i = { '<cmd>lua require "telescope.builtin".builtin()<cr>',                   'builtins'        }
     , k = { '<cmd>lua require "telescope.builtin".keymaps()<cr>',                   'keymaps'         }
     , l = { '<cmd>lua require "telescope.builtin".current_buffer_fuzzy_find()<cr>', 'current buffer'  }
@@ -174,7 +175,7 @@ local normal_mappings = {
   ---
   ---  Indentation
   ---
-  i = { '<cmd>IndentBlanklineToggle<cr>', 'toggle indentation guides' },
+  i = { '<cmd>DoIndentBlankline<cr>', 'toggle indentation guides' },
 
   ---
   ---  k* mappings
@@ -188,15 +189,36 @@ local normal_mappings = {
   ---
   t = {
     name = '+toggle'
-    , h = { '<cmd>TSHighlightCapturesUnderCursor<cr>', 'highlight captures' }
-    , t = { '<cmd>split term://$SHELL<cr>',            'terminal' }
+    , h = { '<cmd>TSHighlightCapturesUnderCursor<cr>', 'highlight captures'     }
+    , t = { '<cmd>split term://$SHELL<cr>',            'terminal'               }
     , s = { '<cmd>TSPlaygroundToggle<cr>',             'tree-sitter playgournd' }
+  },
+
+  ---
+  ---  r* mappings
+  ---
+  r = {
+    name = '+rest'
+    , l = { "<cmd>lua require 'rest-nvim'.last()<cr>",    'run last request'         }
+    , p = { "<cmd>lua require 'rest-nvim'.run(true)<cr>", 'preview the curl command' }
+    , r = { "<cmd>lua require 'rest-nvim'.run()<cr>",     'run request under cursor' }
   },
 
   ---  v* mapptings
   ---
   v = {
     p = { [[<cmd>vsplit<cr>]], 'split side-to-side' }
+  },
+
+  ---  v* mapptings
+  ---
+  x = {
+    name = '+trouble'
+    , l = { [[<cmd>TroubleToggle loclist<cr>]],                   'lsp references'        }
+    , d = { [[<cmd>TroubleToggle lsp_document_diagnositcs<cr>]],  'document diagnositcs'  }
+    , q = { [[<cmd>TroubleToggle quickfix<cr>]],                  'quickfix'              }
+    , w = { [[<cmd>TroubleToggle lsp_workspace_diagnostics<cr>]], 'workspace diagnostics' }
+    , x = { [[<cmd>TroubleToggle<cr>]],                           'trouble toggle'        }
   },
 
   ---  Comment Handling
@@ -280,4 +302,37 @@ cmd [[ autocmd BufWinLeave,WinLeave TelescopePrompt :inoremap jk <esc> ]]
   -- , nowait = true
 -- })
 
+---  Treesitter Unit
+---
+-- vim.api.nvim_set_keymap('x', 'iu', '<cmd>lua require "treesitter-unit".select()<cr>',     { noremap = true })
+-- vim.api.nvim_set_keymap('x', 'au', '<cmd>lua require "treesitter-unit".select(true)<cr>', { noremap = true })
+-- vim.api.nvim_set_keymap('o', 'iu', '<cmd>lua require "treesitter-unit".select()<cr>',     { noremap = true })
+-- vim.api.nvim_set_keymap('o', 'au', '<cmd>lua require "treesitter-unit".select(true)<cr>', { noremap = true })
+wk.register({
+  i =  {
+    name = '+inner'
+    , u = { '<cmd>lua require "treesitter-unit".select()<cr>',     'unit select' },
+  }
+  , a = {
+    name = '+outer'
+    , u = { '<cmd>lua require "treesitter-unit".select(true)<cr>', 'unit select' },
+  }
+}, {
+  mode = 'x'
+})
+
+wk.register({
+  i =  {
+    name = '+inner'
+    , u = { '<cmd>lua require "treesitter-unit".select()<cr>',     'inner unit' },
+  }
+  , a = {
+    name = '+outer'
+    , u = { '<cmd>lua require "treesitter-unit".select(true)<cr>', 'a unit (with white space)' },
+  }
+}, {
+  mode = 'o'
+})
+
+---  effect initial timeout
 vim.opt.timeoutlen = 300

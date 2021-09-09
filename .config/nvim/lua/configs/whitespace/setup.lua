@@ -7,6 +7,7 @@ g.show_spaces_that_precede_tabs         = true
 -- g.strip_max_file_size                   = 1000
 -- g.better_whitespace_skip_empty_lines    = false
 -- g.better_whitespace_verbosity           = false
+g.better_whitespace_operator            = ''
 g.better_whitespace_filetypes_blacklist =
   { 'diff'
   , 'gitcommit'

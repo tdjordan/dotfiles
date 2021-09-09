@@ -1,9 +1,17 @@
 local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
 
-parser_config.norg = {
+-- parser_config.norg = {
+--   install_info =
+--     { url    = 'https://github.com/vhyrro/tree-sitter-norg'
+--     , files  = { 'src/parser.c', 'src/scanner.cc' }
+--     , branch = 'main'
+--   }
+-- }
+
+parser_config.http = {
   install_info =
-    { url    = 'https://github.com/vhyrro/tree-sitter-norg'
-    , files  = { 'src/parser.c' }
+    { url = 'https://github.com/NTBBloodbath/tree-sitter-http'
+    , files = { 'src/parser.c' }
     , branch = 'main'
   }
 }
