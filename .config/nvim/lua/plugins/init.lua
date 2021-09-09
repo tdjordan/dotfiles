@@ -12,6 +12,7 @@
 -- local execute = vim.api.nvim_command
 
 local M = {}
+-- vim.fn.setenv("MACOSX_DEPLOYMENT_TARGET", "10.15")
 
 ---  Install all the plugins
 ---
@@ -49,15 +50,27 @@ M.init_packer = function ()
         end
       }
 
-      ---  LSP Extenstions
+      ---  LSP Extensions
       ---
       -- use {
       --   'glepnir/lspsaga.nvim'
       --   , after = 'nvim-lspconfig'
       --   , config = function()
-      --     require 'configs.lspsaga'
+      --     require 'configs.lsp.saga'
       --   end
       -- }
+
+      use {
+        'folke/trouble.nvim'
+        , event = 'CursorHold'
+        , cmd =
+          { 'Trouble'
+          , 'TroubleToggle'
+        }
+        , config = function()
+          require 'configs.trouble'
+        end
+      }
 
       ---  Inlay Hints for rust-analyzer
       ---
@@ -72,21 +85,107 @@ M.init_packer = function ()
 
       ---  Auto Completion
       ---
+      -- use {
+      --   'hrsh7th/nvim-compe'
+      --   , event = 'InsertEnter'
+      --   -- , after = {
+      --   --   'LuaSnip'
+      --   --   , 'snippets.nvim'
+      --   -- }
+      --   , module_pattern = 'compe.*'
+      --   , config = function()
+      --     require 'configs.completion.compe'
+      --   end
+      -- }
       use {
-        'hrsh7th/nvim-compe'
-        , event = 'InsertEnter'
-        -- , after = {
-        --   'LuaSnip'
-        --   , 'snippets.nvim'
-        -- }
-        , module_pattern = 'compe.*'
+        'onsails/lspkind-nvim'
+        -- , event = 'CursorHold'
+        -- , after = 'nvim-cmp'
+        , module_pattern = 'lspkind.*'
         , config = function()
-          require 'configs.compe'
+          require 'configs.lsp.kind'
         end
       }
+      use {
+        'hrsh7th/nvim-cmp'
+        -- , event = 'InsertEnter'
+        -- , after = 'vim-vsnip'
+        , module_pattern = 'cmp.*'
+        , config = function()
+          require 'configs.completion.cmp'
+        end
+      }
+      use {
+        'hrsh7th/cmp-buffer'
+        , after = 'nvim-cmp'
+      }
+      use {
+        'hrsh7th/cmp-nvim-lua'
+        , after = 'nvim-cmp'
+      }
+      use {
+        'hrsh7th/cmp-nvim-lsp'
+        -- , event = 'InsertEnter'
+        , after = 'nvim-cmp'
+        , wants = 'nvim-cmp'
+        , module_pattern = {
+          'cmp.*'
+          -- 'cmp_nvim_lsp.*'
+          -- , 'cmp.*'
+        }
+        , config = function()
+          require 'cmp_nvim_lsp'._on_insert_enter()
+        end
+      }
+      use {
+        'hrsh7th/cmp-path'
+        , after = 'nvim-cmp'
+        -- , module_pattern = 'cmp.*'
+      }
+      use {
+        'andersevenrud/compe-tmux'
+        , branch = 'cmp'
+        , after = 'nvim-cmp'
+      }
+      use {
+        'ray-x/cmp-treesitter'
+        , after = 'nvim-cmp'
+      }
+      use {
+        'quangnguyen30192/cmp-nvim-tags'
+        , after = 'nvim-cmp'
+      }
+      use {
+        'hrsh7th/cmp-calc'
+        , after = 'nvim-cmp'
+      }
+      -- use {
+      --   'hrsh7th/cmp-look'
+      -- }
+      -- use {
+      --   'hrsh7th/cmp-emoji'
+      -- }
+      -- use {
+      --   'hrsh7th/cmp-vsnip'
+      --   , after = 'nvim-cmp'
+      -- }
 
       ---  snippets
       ---
+      -- use {
+      --   'hrsh7th/vim-vsnip'
+      --   , event = 'InsertEnter'
+      --   , after = 'friendly-snippets'
+      -- }
+      -- use {
+      --   'hrsh7th/vim-vsnip-integ'
+      --   , event = 'InsertEnter'
+      --   , after = 'vim-vsnip'
+      -- }
+      use {
+        'rafamadriz/friendly-snippets'
+        , event = 'InsertEnter'
+      }
       -- use { 'Shougo/neosnippet' }
       -- use { 'Shougo/neosnippet-snippets' }
       -- use { 'honza/vim-snippets' }
@@ -99,20 +198,21 @@ M.init_packer = function ()
           require 'configs.snippets.snippets-nvim'
         end
       }
-      -- use {
-      --   'L3MON4D3/LuaSnip'
-      --   , event = 'CursorHold'
-      --   -- , config = function()
-      --   --   require 'configs.snippets.luasnip'
-      --   -- end
-      --   -- , config = function()
-      --   --   require 'configs.luasnip'
-      --   -- end
-      -- }
-      -- use {
-      --   'rafamadriz/friendly-snippets'
-      --   , event = 'CursorHold'
-      -- }
+      use {
+        'L3MON4D3/LuaSnip'
+        , event = 'InsertEnter'
+        , module_pattern = 'luasnip.*'
+        -- , config = function()
+        --   require 'configs.snippets.luasnip'
+        -- end
+        -- , config = function()
+        --   require 'configs.luasnip'
+        -- end
+      }
+      use {
+        'saadparwaiz1/cmp_luasnip'
+        , after = 'nvim-cmp'
+      }
 
       ---  Telescope
       ---
@@ -213,6 +313,10 @@ M.init_packer = function ()
       }
       use {
         'nvim-treesitter/nvim-treesitter-textobjects'
+        , after = 'nvim-treesitter'
+      }
+      use {
+        'David-Kunz/treesitter-unit'
         , after = 'nvim-treesitter'
       }
       -- use { 'romgrk/nvim-treesitter-context' }
@@ -415,7 +519,8 @@ M.init_packer = function ()
 
       use {
         'folke/tokyonight.nvim'
-        , event = 'CursorMoved'
+        -- , event = 'CursorMoved'
+        , module_pattern = 'telescope.builtin.*'
         , setup = function()
           local g = vim.g
           g.tokyonight_style = "night"
@@ -472,25 +577,16 @@ M.init_packer = function ()
         end
       }
 
+      -- use {
+      --   'lambdalisue/glyph-palette.vim'
+      -- }
+
       use {
         'EdenEast/nightfox.nvim'
         , event = 'CursorMoved'
         , module_pattern = 'nightfox'
-        , setup = function()
-          local g = vim.g
-          g.nightfox_style = 'nordfox'
-          -- g.nightfox_transparent = false
-          -- g.nightfox_terminal_colors = true
-          g.nightfox_italic_comments = true
-          g.nightfox_italic_functions = true
-          g.nightfox_italic_keywords = true
-          -- g.nightfox_italic_strings = false
-          -- g.nightfox_italic_variables = false
-          -- g.nightfox_color_delimiter = ''
-          -- g.nightfox_colors = {}
-        end
         , config = function()
-          require 'nightfox'.set()
+          require 'theme.nightfox'
         end
       }
       use {
@@ -527,20 +623,20 @@ M.init_packer = function ()
         , event = 'CursorMoved'
         , module = 'material'
         , setup = function()
-          local g = vim.g
+          -- local g = vim.g
           -- g.material_style = 'deep ocean'
-          g.material_style = 'darker'
-          g.material_italic_comments = true
-          g.material_italic_keywords = true
+          -- g.material_style = 'darker'
+          -- -- g.material_italic_comments = true
+          -- g.material_italic_keywords = true
           -- g.material_italic_functions = true
           -- g.material_italic_variables = true
           -- g.material_borders = true
-          g.material_contrast = true
+          -- g.material_contrast = true
           -- g.material_disable_background = true
         end
-        -- , config = function()
-        --   require 'material'.set()
-        -- end
+        , config = function()
+          require 'theme.material'
+        end
       }
 
       -- use {
@@ -692,8 +788,9 @@ M.init_packer = function ()
       use {
         'lukas-reineke/indent-blankline.nvim'
         , cmd = 'IndentBlanklineToggle'
-        , setup = function()
-          require 'configs.indention.blankline.setup'
+        , module_pattern = 'indent_blankline.*'
+        , config = function()
+          require 'configs.indention.blankline'
         end
       }
 
@@ -703,6 +800,10 @@ M.init_packer = function ()
         'tweekmonster/startuptime.vim'
         , cmd = 'StartupTime'
       }
+      -- use {
+      --   'lewis6991/impatient.nvim'
+      --   , rocks = 'mpack'
+      -- }
       -- use   'norcalli/profiler.nvim'
 
       ---  braces
@@ -768,6 +869,7 @@ M.init_packer = function ()
       use {
         'ntpeters/vim-better-whitespace'
         , event = 'CursorHold'
+        , after = 'which-key.nvim'
         , setup = function()
           require 'configs.whitespace.setup'
         end
