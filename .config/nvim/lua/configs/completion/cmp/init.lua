@@ -74,10 +74,11 @@ cmp.setup {
     , { name = 'luasnip'    }
     , { name = 'buffer'     }
     , { name = 'path'       }
-    , { name = 'tmux'       }
+    -- , { name = 'tmux'       }
     , { name = 'treesitter' }
     , { name = 'tags'       }
     , { name = 'calc'       }
+    , { name = 'orgmode'    }
     -- , { name = 'vsnip'    }
     -- , { name = 'look'     }
     -- , { name = 'emjoi'    }

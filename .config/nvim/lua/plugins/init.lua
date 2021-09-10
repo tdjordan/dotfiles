@@ -142,11 +142,11 @@ M.init_packer = function ()
         , after = 'nvim-cmp'
         -- , module_pattern = 'cmp.*'
       }
-      use {
-        'andersevenrud/compe-tmux'
-        , branch = 'cmp'
-        , after = 'nvim-cmp'
-      }
+      -- use {
+      --   'andersevenrud/compe-tmux'
+      --   , branch = 'cmp'
+      --   , after = 'nvim-cmp'
+      -- }
       use {
         'ray-x/cmp-treesitter'
         , after = 'nvim-cmp'
@@ -222,14 +222,9 @@ M.init_packer = function ()
         , module_pattern = 'plenary.*'
       }
       use {
-        'nvim-lua/popup.nvim'
-        , module_pattern = 'popup.*'
-      }
-      use {
         'nvim-telescope/telescope.nvim'
         , cmd = 'Telescope'
         , module_pattern = 'telescope.*'
-        , after = 'popup.nvim'
         , config = function()
           require 'configs.telescope'
         end
@@ -505,7 +500,8 @@ M.init_packer = function ()
 
       use {
         'NTBBloodbath/doom-one.nvim'
-        , event = 'CursorMoved'
+        -- , event = 'CursorMoved'
+        , keys = ' pc'
         , setup = function()
           local g = vim.g
           -- g.doom_one_enable_treesitter      = true -- default: true
@@ -909,6 +905,21 @@ M.init_packer = function ()
 
       ---  Notes & Org Mode
       ---
+      use {
+        'kristijanhusak/orgmode.nvim'
+        , ft = 'org'
+        , config = function()
+          require 'configs.orgmode'
+        end
+      }
+      use {
+        'akinsho/org-bullets.nvim'
+        , config = function()
+          require("org-bullets").setup {
+            symbols = { "◉", "○", "✸", "✿" }
+          }
+        end
+      }
       use {
         'vhyrro/neorg'
         , ft = 'norg'

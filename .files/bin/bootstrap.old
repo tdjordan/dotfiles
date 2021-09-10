@@ -1,0 +1,8 @@
+#!/bin/bash
+
+curCMake=$(cmake --version 2>/dev/null | head -1 | cut -f3 -d" ")
+newCMake=$(curl https://cmake.org/download/#latest 2>/dev/null | awk -e '/id="latest"/ { getline t; print t }' | tr '()' '|' | sed -e 's;^.*|\(.*\)|.*;\1;g' | head -1)
+
+echo $curCMake
+echo $newCMake
+
