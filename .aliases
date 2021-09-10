@@ -108,6 +108,9 @@ alias agdf='agdf_imp '
 # dotfile configuration
 alias config='git --git-dir=$HOME/.files.git --work-tree=$HOME --no-pager'
 alias c='config '
+alias ca='config add '
+alias cci='config commit -v '
+alias ciu='config status -s -u '
 
 [ -f ~/.aliases.local ] && . ~/.aliases.local
 
