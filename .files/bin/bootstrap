@@ -1,0 +1,20 @@
+#!/bin/bash
+set -x
+
+###  Is brew installed ?
+###
+which -s brew
+if [[ $? != 0 ]] ; then
+  ###  No, then install it
+  ###
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+  # brew update
+fi
+
+###  Ensure base packages are installed
+###
+export HOMEBREW_BUNDLE_FILE=~/.config/brew/Brewfile
+brew bundle -v
+
+
