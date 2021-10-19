@@ -89,7 +89,8 @@ opt.cursorline     = true                        -- nvim default : off
 --      h = all previous modes when editing a help file
 --      a = all previous modes
 --      r = for hit-enter & more-propmt prompts
--- o.mouse = 'a'                                   -- nvim defaults : 'a'
+-- opt.mouse         = 'a'                          -- nvim defaults : 'a'
+opt.mouse = 'n'
 
 -- o.guioptions = 'A'
 

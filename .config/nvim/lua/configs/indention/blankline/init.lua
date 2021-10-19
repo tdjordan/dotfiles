@@ -30,6 +30,7 @@ require 'indent_blankline'.setup
     , 'gitmessengerpopup'
     , 'vimwiki'
     , 'defx'
+    , 'notify'
   }
   , context_patterns =
     { 'class'

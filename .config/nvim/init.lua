@@ -47,3 +47,11 @@ g.loaded_remote_plugins    = false
 
 
 -- g.colors_name = 'onedark'
+
+-- g.cfg = {
+--   theme = {
+--     doomone = {
+--       active = true
+--     }
+--   }
+-- }

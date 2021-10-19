@@ -4,15 +4,7 @@
 ---
 ----------
 
--- local g       = vim.g
--- local cmd     = vim.cmd
--- local fn      = vim.fn
--- local input   = fn.input
--- local system  = fn.system
--- local execute = vim.api.nvim_command
-
 local M = {}
--- vim.fn.setenv("MACOSX_DEPLOYMENT_TARGET", "10.15")
 
 ---  Install all the plugins
 ---
@@ -44,9 +36,20 @@ M.init_packer = function ()
       ---
       use {
         'neovim/nvim-lspconfig'
-        , after = 'nvim-treesitter'
+        , event = 'CursorHold'
+        -- , after = 'nvim-treesitter'
         , config = function()
           require 'lsp'
+        end
+      }
+      use {
+        'jose-elias-alvarez/null-ls.nvim'
+      }
+      use {
+        'williamboman/nvim-lsp-installer'
+        , after = 'nvim-lspconfig'
+        , config = function()
+          require 'configs.lsp.installer'
         end
       }
 
@@ -110,6 +113,7 @@ M.init_packer = function ()
         'hrsh7th/nvim-cmp'
         -- , event = 'InsertEnter'
         -- , after = 'vim-vsnip'
+        , after = 'LuaSnip'
         , module_pattern = 'cmp.*'
         , config = function()
           require 'configs.completion.cmp'
@@ -121,18 +125,15 @@ M.init_packer = function ()
       }
       use {
         'hrsh7th/cmp-nvim-lua'
-        , after = 'nvim-cmp'
+        , ft = 'lua'
+        , wants = 'nvim-cmp'
       }
       use {
         'hrsh7th/cmp-nvim-lsp'
         -- , event = 'InsertEnter'
         , after = 'nvim-cmp'
         , wants = 'nvim-cmp'
-        , module_pattern = {
-          'cmp.*'
-          -- 'cmp_nvim_lsp.*'
-          -- , 'cmp.*'
-        }
+        , module_pattern = 'cmp.*'
         , config = function()
           require 'cmp_nvim_lsp'._on_insert_enter()
         end
@@ -205,9 +206,9 @@ M.init_packer = function ()
         -- , config = function()
         --   require 'configs.snippets.luasnip'
         -- end
-        -- , config = function()
-        --   require 'configs.luasnip'
-        -- end
+        , config = function()
+          require 'configs.luasnip'
+        end
       }
       use {
         'saadparwaiz1/cmp_luasnip'
@@ -251,6 +252,13 @@ M.init_packer = function ()
           require 'configs.telescope.project'
         end
       }
+
+      -- use {
+      --   'ahmedkhalf/project.nvim'
+      --   , config = function()
+      --     require 'project_nvim'.setup {}
+      --   end
+      -- }
 
       ---  TODO : Add keymapping
       use {
@@ -375,6 +383,9 @@ M.init_packer = function ()
       use {
         'mfussenegger/nvim-dap'
         , module_pattern = 'dap.*'
+        , config = function()
+          require 'configs.dap'
+        end
       }
       use {
         'nvim-telescope/telescope-dap.nvim'
@@ -386,6 +397,9 @@ M.init_packer = function ()
       use {
         'jbyuki/one-small-step-for-vimkind'
         , after = 'nvim-dap'
+      }
+      use {
+        'Pocco81/DAPInstall.nvim'
       }
 
       ---  matchup
@@ -501,16 +515,11 @@ M.init_packer = function ()
       use {
         'NTBBloodbath/doom-one.nvim'
         -- , event = 'CursorMoved'
-        , keys = ' pc'
-        , setup = function()
-          local g = vim.g
-          -- g.doom_one_enable_treesitter      = true -- default: true
-          g.doom_one_terminal_colors        = true -- default: false
-          g.doom_one_italic_comments        = true -- default: false
-          -- g.doom_one_transparent_background = true -- default: false
-          g.doom_one_cursor_coloring        = true -- default: false
-          g.doom_one_telescope_highlights   = true -- default: false
+        , keys = "<leader>pc"
+        , config = function()
+          require 'theme.doom-one'
         end
+        -- , disable = not vim.g.cfg.theme.doomone.active
       }
 
       use {
@@ -519,15 +528,11 @@ M.init_packer = function ()
         , module_pattern = 'telescope.builtin.*'
         , setup = function()
           local g = vim.g
-          g.tokyonight_style = "night"
+          g.tokyonight_style = 'storm'
           g.tokyonight_terminal_colors = true
-          g.tokyonight_dark_sidebar = false
           g.tokyonight_italic_comments = true
           g.tokyonight_italic_keywords = true
-          -- g.tokyonight_italic_functions = true
-          -- g.tokyonight_italic_variables = true
-          -- g.tokyonight_sidebars = { 'terminal' }
-          -- g.tokyongiht_dark_float = true
+          g.tokyonight_italic_functions = true
         end
       }
 
@@ -618,18 +623,6 @@ M.init_packer = function ()
         'marko-cerovac/material.nvim'
         , event = 'CursorMoved'
         , module = 'material'
-        , setup = function()
-          -- local g = vim.g
-          -- g.material_style = 'deep ocean'
-          -- g.material_style = 'darker'
-          -- -- g.material_italic_comments = true
-          -- g.material_italic_keywords = true
-          -- g.material_italic_functions = true
-          -- g.material_italic_variables = true
-          -- g.material_borders = true
-          -- g.material_contrast = true
-          -- g.material_disable_background = true
-        end
         , config = function()
           require 'theme.material'
         end
@@ -720,8 +713,12 @@ M.init_packer = function ()
           , 'NvimTreeRefresh'
           , 'NvimTreeToggle'
         }
+        , module_pattern = 'nvim-tree.*'
         , setup = function()
           require 'configs.filetree.nvim-tree.setup'
+        end
+        , config = function()
+          require 'configs.filetree.nvim-tree'
         end
       }
       -- use { 'hardcoreplayers/spaceline.vim' }
@@ -775,7 +772,7 @@ M.init_packer = function ()
         'lewis6991/gitsigns.nvim'
         , event = 'CursorHold'
         , config = function()
-          require 'gitsigns'.setup()
+          require 'configs.git.signs'
         end
       }
 
@@ -808,6 +805,7 @@ M.init_packer = function ()
       -- use { 'jiangmiao/auto-pairs' }
       use {
         'windwp/nvim-autopairs'
+        -- , after = 'nvim-cmp'
         , event = 'InsertEnter'
         , config = function()
           require 'configs.autopairs'

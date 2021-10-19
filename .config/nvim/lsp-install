@@ -16,12 +16,15 @@ pnpm=(
   graphql-language-service-cli
   bash-language-server
   dockerfile-language-server-nodejs
+  emmet-ls
   elm elm-test elm-format @elm-tooling/elm-language-server
   @angular/language-server
+  @cucumber/language-server
 )
 
 # npm=(
 #   graphql-language-service-cli
+#   ansible-language-server
 #   bash-language-server
 #   dockerfile-language-server-nodejs
 # )
@@ -46,6 +49,8 @@ brew=(
   llvm
   bear
   mint-lang
+  haskell-language-server
+  kotlin-language-server
 )
 
 time yarn global add ${yarn// / }

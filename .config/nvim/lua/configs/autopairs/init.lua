@@ -6,8 +6,13 @@ local cond    = require 'nvim-autopairs.conds'
 
 require 'nvim-autopairs.completion.cmp'.setup {
   map_cr = true         -- map <cr> on insert mode
-  , map_complete = true -- it will autoinsert '(' after select fucntion or method item
+  , map_complete = true -- it will autoinsert '(' after select function or method item
   , auto_select = false -- auto select first item
+  , insert = false      -- use insert conrim behavior instead of replace
+  , map_char = {        -- modifies the function or method delimiter by filetype
+    all = '(',
+    tex = '{'
+  }
 }
 
 npairs.setup {

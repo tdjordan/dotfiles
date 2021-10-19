@@ -35,5 +35,5 @@ cmd [[
 -- ]]
 
 cmd [[
-  silent! command DoIndentBlanklineToggle lua require('functions.toggle').indent_blankline()
+  autocmd FileType * lua require'utility.ft'.do_filetype(vim.fn.expand("<amatch>"))
 ]]

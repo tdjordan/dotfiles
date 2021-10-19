@@ -140,7 +140,6 @@ local normal_mappings = {
       , w = { '<cmd>PackerClean<cr>',                                         'clean'   }
     }
     , w = { '<cmd>lua require "telescope".extensions.project.project{ display_type = "full" }<cr>', 'workspace' }
-    -- , w = { '<cmd>lua require "telescope".extensions.project.project{ theme = "ivy" }<cr>', 'workspace' }
     , v = {
       name = '+vim'
       , h = { '<cmd>lua require "telescope.builtin".highlights()<cr>',  'vim highlights' }
@@ -155,7 +154,28 @@ local normal_mappings = {
   c = {
     name = '+comments'
     , ["<c-_>"] = { '<Plug>kommentary_line_default',   'comment line'   }
-    , c =         { '<Plug>kommentary_motion_deafult', 'comment motion' }
+    , l =         { '<Plug>kommentary_line_default',   'comment line'   }
+    , m =         { '<Plug>kommentary_motion_default', 'comment motion' }
+  },
+
+  ---
+  ---  d* mappings
+  ---
+  d = {
+    name = '+Debug'
+    , t = { '<cmd>lua require "dap".toggle_breakpoint()<cr>', 'Toggle Breakpoint' }
+    , b = { '<cmd>lua require "dap".step_back()<cr>',         'Step Back'         }
+    , c = { '<cmd>lua require "dap".continue()<cr>',          'Continue'          }
+    , C = { '<cmd>lua require "dap".run_to_cursor()<cr>',     'Run to Cursor'     }
+    , d = { '<cmd>lua require "dap".disconnect()<cr>',        'Disconnect'        }
+    , g = { '<cmd>lua require "dap".session()<cr>',           'Get Session'       }
+    , i = { '<cmd>lua require "dap".step_into()<cr>',         'Step Into'         }
+    , o = { '<cmd>lua require "dap".step_over()<cr>',         'Step Over'         }
+    , u = { '<cmd>lua require "dap".step_out()<cr>',          'Step Out'          }
+    , p = { '<cmd>lua require "dap".pause.toggle()<cr>',      'Pause'             }
+    , r = { '<cmd>lua require "dap".repl.toggle.()<cr>',      'Toggle Repl'       }
+    , s = { '<cmd>lua require "dap".continue()<cr>',          'Start'             }
+    , q = { '<cmd>lua require "dap".close()<cr>',             'Quit'              }
   },
 
   ---
@@ -175,23 +195,24 @@ local normal_mappings = {
   ---
   ---  Indentation
   ---
-  i = { '<cmd>DoIndentBlankline<cr>', 'toggle indentation guides' },
+  i = { [[<cmd>lua require 'functions.toggle'.indent_blankline()<cr>]], 'toggle indentation guides' },
 
   ---
   ---  k* mappings
   ---
   ---  File Browser
   ---
-  k = { '<cmd>NvimTreeToggle<cr>', 'toggle file tree sidebar' },
 
   ---
   ---  t* mappings
   ---
   t = {
     name = '+toggle'
-    , h = { '<cmd>TSHighlightCapturesUnderCursor<cr>', 'highlight captures'     }
-    , t = { '<cmd>split term://$SHELL<cr>',            'terminal'               }
-    , s = { '<cmd>TSPlaygroundToggle<cr>',             'tree-sitter playgournd' }
+    , h = { '<cmd>TSHighlightCapturesUnderCursor<cr>',                      'highlight captures'        }
+    , i = { [[<cmd>lua require 'functions.toggle'.indent_blankline()<cr>]], 'toggle indentation guides' }
+    , k = { [[<cmd>lua require 'functions.toggle'.nvim_tree()<cr>]],        'toggle file tree sidebar'  }
+    , t = { '<cmd>split term://$SHELL<cr>',                                 'terminal'                  }
+    , s = { '<cmd>TSPlaygroundToggle<cr>',                                  'tree-sitter playgournd'    }
   },
 
   ---

@@ -1,18 +1,28 @@
-local cmd = vim.cmd
+-- local cmd = vim.cmd
 
-local indent_blankline = function()
-  -- require 'indent_blankline'
-  -- local packer = require 'packer'
-  if packer_plugins["indent-blankline.nvim"] and not packer_plugins["indent-blankline.nvim"].loaded then
-    require 'packer'.loader('indent-blankline.nvim')
-    vim.schedule_wrap(function()
-      cmd [[ IndentBlanklineToggle ]]
-    end)
+local toggle = function(plugin_name, not_loaded, loaded)
+  if packer_plugins[plugin_name] and not packer_plugins[plugin_name].loaded then
+    require 'packer'.loader(plugin_name)
+    not_loaded()
   else
-    cmd [[ IndentBlanklineToggle ]]
+    loaded()
   end
 end
 
 return {
-  indent_blankline = indent_blankline
+  indent_blankline = function()
+    toggle(
+      'indent-blankline.nvim',
+      function() vim.schedule_wrap(function() vim.cmd[[IndentBlanklineToggle]] end) end,
+      function() vim.cmd[[IndentBlanklineToggle]] end
+    )
+  end,
+
+  nvim_tree = function()
+    toggle(
+      'nvim-tree.lua',
+      function() require 'nvim-tree'.open() end,
+      function() require 'nvim-tree'.toggle() end
+    )
+  end
 }
