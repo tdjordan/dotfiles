@@ -20,6 +20,8 @@ brew "gh"
 brew "gitui"
 brew "git-delta"
 brew "git-extras"
+brew "actionlint"
+brew "pre-commit"
 
 ###  base build tools
 brew "cmake"
@@ -54,6 +56,7 @@ brew "jfrog-cli"
 ###  yaml utils
 ###
 brew "yq"
+brew "yamllint"
 
 ###  nodejs
 ###
@@ -84,6 +87,7 @@ tap    "adoptopenjdk/openjdk"
   cask "adoptopenjdk8"
 
 brew "jenv"
+brew "maven"
 
 ###  shell utilities
 ###
@@ -152,6 +156,7 @@ brew "rust-analyzer"
 brew "deno"
 brew "efm-langserver"
 brew "bear"
+brew "haskell-language-server"
 
 ###  language code formaters
 ###
