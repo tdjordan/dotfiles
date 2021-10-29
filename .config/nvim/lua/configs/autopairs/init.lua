@@ -4,16 +4,20 @@ local Rule    = require 'nvim-autopairs.rule'
 local cond    = require 'nvim-autopairs.conds'
 -- local endwise = require('nvim-autopairs.ts-rule').endwise
 
-require 'nvim-autopairs.completion.cmp'.setup {
-  map_cr = true         -- map <cr> on insert mode
-  , map_complete = true -- it will autoinsert '(' after select function or method item
-  , auto_select = false -- auto select first item
-  , insert = false      -- use insert conrim behavior instead of replace
-  , map_char = {        -- modifies the function or method delimiter by filetype
-    all = '(',
-    tex = '{'
-  }
-}
+local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+local cmp = require 'cmp'
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done() )
+
+-- require 'nvim-autopairs.completion.cmp'.setup {
+--   map_cr = true         -- map <cr> on insert mode
+--   , map_complete = true -- it will autoinsert '(' after select function or method item
+--   , auto_select = false -- auto select first item
+--   , insert = false      -- use insert conrim behavior instead of replace
+--   , map_char = {        -- modifies the function or method delimiter by filetype
+--     all = '(',
+--     tex = '{'
+--   }
+-- }
 
 npairs.setup {
   disable_filetype = {
@@ -21,6 +25,11 @@ npairs.setup {
     , 'vim'
   }
   , check_ts = true
+  -- , ts_config = {
+  --   lua = { 'string' }  -- do hot add a pair on string treesitter node
+  --   , javascript = { 'template_sring' }
+  --   , java = false      -- do not check treesitter on java
+  -- }
 }
 
 -- require 'nvim-treesitter.configs'.setup {
