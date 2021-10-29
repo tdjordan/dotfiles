@@ -138,6 +138,7 @@ brew "packer"
 brew "terrascan"
 brew "tfenv"
 brew "tgenv"
+brew "tfsec"
 
 ###  Shell SCA Tools
 brew "shellcheck"
