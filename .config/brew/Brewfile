@@ -88,6 +88,7 @@ tap    "adoptopenjdk/openjdk"
 
 brew "jenv"
 brew "maven"
+brew "gradle"
 
 ###  shell utilities
 ###
@@ -128,12 +129,15 @@ brew "docker-slim"
 
 ###  virtual machines
 ###
-brew "terraform"
+# brew "terraform"
+# brew "terragrunt"
 brew "terraform-docs"
 brew "terraform-ls"
 brew "tflint"
 brew "packer"
 brew "terrascan"
+brew "tfenv"
+brew "tgenv"
 
 ###  Shell SCA Tools
 brew "shellcheck"
@@ -173,7 +177,6 @@ brew "k9s"
 cask "lens"
 brew "helm"
 brew "linkerd"
-brew "terragrunt"
 
 ###  AWS Tools
 ###
@@ -182,11 +185,17 @@ brew "aws-okta"
 brew "gimme-aws-creds"
 brew "aws-iam-authenticator"
 cask "session-manager-plugin"
+brew "eksctl"
 
 ###  Jenkins X
 ###
 tap    "jenkins-x/jx"
   brew "jx"
+
+###  Jekins CLI
+###
+tap    "jenkins-zh/jcli"
+  brew "jcli"
 
 ###  Other Things
 ###
