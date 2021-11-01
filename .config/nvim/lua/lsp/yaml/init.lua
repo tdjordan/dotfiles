@@ -4,8 +4,28 @@ local common = require 'lsp.common'
 --
 --      yarn global add yaml-language-server
 --
-require 'lspconfig'.yamlls.setup {
+-- require 'lspconfig'.yamlls.setup {
+local opts = {
   on_attach = common.on_attach
   , capabilities = common.capabilities
   , flags = common.flags
+  , settings = {
+    yaml = {
+      hover = true
+      , completion = true
+      , validate = true
+      , schemaStore = {
+        enable = true
+        , url = "https://www.schemastore.org/api/json/catalog.json"
+      }
+      , schemas = {
+        kubernetes = {
+          'daemon.{yml,yaml}'
+          ,'kubectl-edit*.yaml'
+        }
+      }
+    }
+  }
 }
+
+return opts

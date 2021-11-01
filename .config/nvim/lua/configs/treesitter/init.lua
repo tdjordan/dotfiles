@@ -16,12 +16,11 @@ parser_config.http = {
   }
 }
 
+require 'configs.treesitter.parsers.org'
+
 require 'nvim-treesitter.configs'.setup {
   ensure_installed = 'all',
-  ignore_install =
-    { 'haskell'
-    , 'hcl'
-  },
+  ignore_install = { 'haskell' },
   highlight =
     { enable = true
     , additional_vim_regex_highlighting = false

@@ -159,6 +159,11 @@ local normal_mappings = {
   },
 
   ---
+  ---  e* mappings
+  ---
+  e = { [[<cmd>lua require 'functions.toggle'.nvim_tree()<cr>]], 'explorer'  },
+
+  ---
   ---  d* mappings
   ---
   d = {

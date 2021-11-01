@@ -6,6 +6,15 @@
 
 local M = {}
 
+local packer_lazy_load = function(plugin, timer)
+  if plugin then
+    timer = timer or 0
+    vim.defer_fn(function()
+      require 'packer'.loader(plugin)
+    end, timer)
+  end
+end
+
 ---  Install all the plugins
 ---
 M.init_packer = function ()
@@ -25,6 +34,16 @@ M.init_packer = function ()
         -- end
       }
 
+      ---  Notifications
+      ---
+      use {
+        'rcarriga/nvim-notify'
+        , event = 'BufReadPost'
+        -- , config = function()
+        --   require 'configs.notify'
+        -- end
+      }
+
       ---  Lua Information
       ---
       use {
@@ -36,14 +55,23 @@ M.init_packer = function ()
       ---
       use {
         'neovim/nvim-lspconfig'
-        , event = 'CursorHold'
+        -- , event = 'CursorHold'
+        , event = 'BufReadPost'
         -- , after = 'nvim-treesitter'
+        -- , setup = function()
+        --   packer_lazy_load( 'nvim-lspconfig', 5 )
+        -- end
         , config = function()
           require 'lsp'
         end
       }
       use {
         'jose-elias-alvarez/null-ls.nvim'
+        , after = 'nvim-lspconfig'
+        , module_pattern = 'null-ls.*'
+        , config = function()
+          require 'configs.lsp.null'
+        end
       }
       use {
         'williamboman/nvim-lsp-installer'
@@ -72,6 +100,24 @@ M.init_packer = function ()
         }
         , config = function()
           require 'configs.trouble'
+        end
+      }
+
+      use {
+        'folke/todo-comments.nvim'
+        -- , requires = 'nvim-lua/plenary.nvim'
+        , event = 'CursorHold'
+        , module_pattern = 'todo-comments.*'
+        , config = function()
+          require 'configs.todo.comments'
+        end
+      }
+
+      use {
+        'simrat39/symbols-outline.nvim'
+        , event = 'BufReadPost'
+        , config = function()
+          require 'configs.symbols.outline'
         end
       }
 
@@ -122,11 +168,14 @@ M.init_packer = function ()
       use {
         'hrsh7th/cmp-buffer'
         , after = 'nvim-cmp'
+        , wants = 'nvim-cmp'
+        , module_pattern = 'cmp.*'
       }
       use {
         'hrsh7th/cmp-nvim-lua'
         , ft = 'lua'
         , wants = 'nvim-cmp'
+        , module_pattern = 'cmp.*'
       }
       use {
         'hrsh7th/cmp-nvim-lsp'
@@ -141,6 +190,8 @@ M.init_packer = function ()
       use {
         'hrsh7th/cmp-path'
         , after = 'nvim-cmp'
+        , wants = 'nvim-cmp'
+        , module_pattern = 'cmp.*'
         -- , module_pattern = 'cmp.*'
       }
       -- use {
@@ -151,14 +202,20 @@ M.init_packer = function ()
       use {
         'ray-x/cmp-treesitter'
         , after = 'nvim-cmp'
+        , wants = 'nvim-cmp'
+        , module_pattern = 'cmp.*'
       }
       use {
         'quangnguyen30192/cmp-nvim-tags'
         , after = 'nvim-cmp'
+        -- , wants = 'nvim-cmp'
+        -- , module_pattern = 'cmp.*'
       }
       use {
         'hrsh7th/cmp-calc'
         , after = 'nvim-cmp'
+        -- , wants = 'nvim-cmp'
+        -- , module_pattern = 'cmp.*'
       }
       -- use {
       --   'hrsh7th/cmp-look'
@@ -169,6 +226,33 @@ M.init_packer = function ()
       -- use {
       --   'hrsh7th/cmp-vsnip'
       --   , after = 'nvim-cmp'
+      -- }
+      use {
+        'hrsh7th/cmp-cmdline'
+        , after = 'nvim-cmp'
+        , config = function()
+          require 'configs.completion.cmp.cmdline'
+        end
+      }
+      -- use {
+      --   'hrsh7th/cmp-nvim-lsp-document-symbol'
+      --   , after = 'nvim-cmp'
+      -- }
+      -- use {
+      --   'petertriho/cmp-git'
+      --   , after = 'nvim-cmp'
+      --   , module_pattern = 'cmp_git.*'
+      --   , config = function()
+      --     require 'configs.completion.cmp.git'
+      --   end
+      -- }
+      -- use {
+      --   'Saecki/crates.nvim'
+      --   , ft = 'toml'
+      --   , after = 'nvim-cmp'
+      --   , config = function()
+      --     require 'configs.completion.cmp.crates'
+      --   end
       -- }
 
       ---  snippets
@@ -578,31 +662,48 @@ M.init_packer = function ()
         end
       }
 
+
+
       -- use {
       --   'lambdalisue/glyph-palette.vim'
+        -- end
       -- }
-
       use {
         'EdenEast/nightfox.nvim'
-        , event = 'CursorMoved'
-        , module_pattern = 'nightfox'
+        , event = 'CursorHold'
+        -- , event = 'CursorMoved'
+        , module_pattern = 'nightfox.*'
         , config = function()
           require 'theme.nightfox'
         end
       }
-      use {
-        'ful1e5/onedark.nvim'
-        , event = 'CursorMoved'
-        -- , config = function()
-        --   require 'theme.onedark'
-        -- end
-      }
+      -- use {
+      --   'ful1e5/onedark.nvim'
+      --   -- , event = 'CursorMoved'
+      --   -- , event = 'CursorHold'
+      --   , config = function()
+      --     require 'theme.onedark'
+      --   end
+      -- }
 
       -- use {
       --   'vigoux/oak'
       --   , event = 'CursorMoved'
       -- }
 
+      -- use {
+      --   'Shatur/neovim-ayu'
+      --   , config = function()
+      --     require 'theme.ayu'
+      --   end
+      -- }
+      -- use {
+      --   'Luxed/ayu-vim'
+      --   , event = 'CursorMoved'
+      --   , config = function()
+      --     require 'theme.ayu.setup'
+      --   end
+      -- }
       use {
         'ayu-theme/ayu-vim'
         , event = 'CursorMoved'
@@ -610,6 +711,16 @@ M.init_packer = function ()
           local g = vim.g
           g.ayucolor = 'dark'
           -- g.ayucolor = 'mirage'
+        end
+      }
+
+      use {
+        'LunarVim/onedarker.nvim'
+        -- , event = 'BufReadPost'
+        , config = function()
+          -- local g = vim.g
+          -- g.colors_name = 'onedarker'
+          vim.cmd [[colorscheme onedarker]]
         end
       }
 
@@ -663,10 +774,14 @@ M.init_packer = function ()
       -- }
 
       use {
-        'hoob3rt/lualine.nvim'
+        'nvim-lualine/lualine.nvim'
         , event = 'BufReadPost'
+        -- , event = 'CursorHold'
+        -- , event = 'CursorMoved'
         , module = 'lualine'
-        , config = "require 'configs.lualine'"
+        , config = function()
+          require 'configs.lualine'
+        end
       }
 
       -- use {
@@ -911,6 +1026,13 @@ M.init_packer = function ()
         end
       }
       use {
+        'milisims/tree-sitter-org'
+        , after = 'orgmode.nvim'
+        , config = function()
+          require 'configs.treesitter.parsers.org'
+        end
+      }
+      use {
         'akinsho/org-bullets.nvim'
         , config = function()
           require("org-bullets").setup {
@@ -918,13 +1040,13 @@ M.init_packer = function ()
           }
         end
       }
-      use {
-        'vhyrro/neorg'
-        , ft = 'norg'
-        , config = function()
-          require 'configs.neorg'
-        end
-      }
+      -- use {
+      --   'vhyrro/neorg'
+      --   , ft = 'norg'
+      --   , config = function()
+      --     require 'configs.neorg'
+      --   end
+      -- }
     end
     , config = {
       profile = {

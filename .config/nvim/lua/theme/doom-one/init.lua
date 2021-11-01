@@ -13,7 +13,7 @@ require 'doom-one'.setup {
     transparent_amount = 20,
   },
   plugins_integrations = {
-    neorg = true,
+    -- neorg = true,
     barber = true,
     bufferline = false,
     gitgutter = false,

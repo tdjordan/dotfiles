@@ -126,7 +126,7 @@ opt.listchars =
 -- o.tags           = true                         -- nvim defaults to './tags;,tags'
 -- o.viminfo        = true                         -- nvim includes '!' : nvim alias for shada
 ------
--- TODO: nvim defaults - not currently used
+-- INFO : nvim defaults - not currently used
 
 ------  vim settings removed in nvim
 ------
@@ -309,3 +309,5 @@ opt.timeoutlen = 10
 
 -- always show signcolumns
 opt.signcolumn = 'yes'
+
+-- vim.g.italic_keywords = 'italic'

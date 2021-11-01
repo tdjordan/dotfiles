@@ -27,7 +27,7 @@ local g = vim.g
 -- vim.opt.shadafile          = 'NONE'
 g.loaded_gzip              = false
 g.loaded_matchit           = false
-g.loaded_matchparen        = false
+-- g.loaded_matchparen        = false
 g.loaded_netrwPlugin       = false
 g.loaded_tarPlugin         = false
 g.loaded_zipPlugin         = false
@@ -45,6 +45,7 @@ g.loaded_remote_plugins    = false
 
 -- cmd [[ hi String gui=NONE  ]]
 
+g.italic_keywords = 'italic'
 
 -- g.colors_name = 'onedark'
 

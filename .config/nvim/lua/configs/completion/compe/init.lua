@@ -31,7 +31,7 @@ require 'compe'.setup {
     snippets_nvim = true,
     treesitter    = true,
     -- ultisnips     = true,
-    neorg         = true,
+    -- neorg         = true,
   }
 }
 

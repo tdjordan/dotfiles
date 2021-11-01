@@ -11,10 +11,10 @@ end
 --   return api.nvim_replace_termcodes(str, true, true, true)
 -- end
 
--- local check_back_space = function()
---   local line, col = unpack( api.nvim_win_get_cursor(0) )
---   return col == 0 or api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') ~= nil
--- end
+local check_back_space = function()
+  local line, col = unpack( api.nvim_win_get_cursor(0) )
+  return col == 0 or api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') ~= nil
+end
 
 -- local feedkey = function(key, mode)
 --   api.nvim_feedkeys( api.nvim_replace_termcodes(key, true, true, true), mode, true )
@@ -84,8 +84,8 @@ cmp.setup {
       --   feedkey( "<c-n>", 'n' )
       -- elseif luasnip.expand_or_jumpable() then
         -- luasnip.expand_or_jump()
-      -- elseif check_back_space() then
-      --   return t("<tab>")
+      elseif check_back_space() then
+        fallback()
       elseif has_words_before() then
         cmp.complete()
       else
@@ -110,6 +110,10 @@ cmp.setup {
     , ['<C-f>']     = cmp.mapping.scroll_docs(4)
     , ['<C-Space>'] = cmp.mapping.complete()
     , ['<C-e>']     = cmp.mapping.close()
+    -- , ['<C-e>']     = cmp.mapping {
+    --   i = cmp.mapping.abort(),
+    --   c = cmp.mapping.close()
+    -- }
     , ['<CR>']      = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true
@@ -124,7 +128,7 @@ cmp.setup {
     , { name = 'path'       }
     -- , { name = 'tmux'       }
     , { name = 'tags'       }
-    , { name = 'treesitter' }
+    -- , { name = 'treesitter' }
     , { name = 'calc'       }
     , { name = 'orgmode'    }
     -- , { name = 'vsnip'    }
@@ -178,6 +182,7 @@ cmp.setup {
     ghost_text = true
   }
 }
+
 -- require 'compe'.setup {
 --   enabled          = true,
 --   autocomplete     = true,

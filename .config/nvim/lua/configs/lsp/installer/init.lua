@@ -43,6 +43,14 @@ end
 lsp_installer.on_server_ready(function(server)
   local opts = {}
 
+  if server.name == 'yamls' then
+    opts = require 'lsp.yaml'
+  end
+
+  if server.name == 'sumneko_lua' then
+    opts = require 'lsp.lua'
+  end
+
   server:setup(opts)
   vim.cmd [[ do User LspAttachBuffers ]]
 end)

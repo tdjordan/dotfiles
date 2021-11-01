@@ -2,25 +2,29 @@
 # set -x
 
 yarn=(
-  yaml-language-server
   neovim
 )
 
+###  yarn retired
+  # yaml-language-server
+
 pnpm=(
-  typescript typescript-language-server
   vscode-langservers-extracted
-  dot-language-server
-  pyright
-  vim-language-server
-  diagnostic-languageserver
-  graphql-language-service-cli
-  bash-language-server
-  dockerfile-language-server-nodejs
-  emmet-ls
-  elm elm-test elm-format @elm-tooling/elm-language-server
-  @angular/language-server
   @cucumber/language-server
 )
+
+###  pnpm retired
+  # @angular/language-server
+  # bash-language-server
+  # diagnostic-languageserver
+  # dockerfile-language-server-nodejs
+  # dot-language-server
+  # elm elm-test elm-format @elm-tooling/elm-language-server
+  # emmet-ls
+  # graphql-language-service-cli
+  # pyright
+  # typescript typescript-language-server
+  # vim-language-server
 
 # npm=(
 #   graphql-language-service-cli
@@ -32,8 +36,10 @@ pnpm=(
 pip=(
   neovim
   fortran-language-server
-  cmake-language-server
 )
+
+###  pip retired
+  # cmake-language-server
 
 gem=(
   neovim
@@ -52,6 +58,8 @@ brew=(
   haskell-language-server
   kotlin-language-server
 )
+
+###  pip retired
 
 time yarn global add ${yarn// / }
 time yarn global upgrade --latest

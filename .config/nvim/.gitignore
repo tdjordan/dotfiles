@@ -3,3 +3,7 @@ packer_compiled.vim
 out.me
 old.me
 out/
+.gradle/
+.pnpm-debug.log
+lsp-install-tom.lua
+init.lua.next
