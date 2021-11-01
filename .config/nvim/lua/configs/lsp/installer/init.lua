@@ -51,6 +51,10 @@ lsp_installer.on_server_ready(function(server)
     opts = require 'lsp.lua'
   end
 
+  if server.name == 'jsonls' then
+    opts = require 'lsp.json'
+  end
+
   server:setup(opts)
   vim.cmd [[ do User LspAttachBuffers ]]
 end)

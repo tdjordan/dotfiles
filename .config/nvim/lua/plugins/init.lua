@@ -6,14 +6,14 @@
 
 local M = {}
 
-local packer_lazy_load = function(plugin, timer)
-  if plugin then
-    timer = timer or 0
-    vim.defer_fn(function()
-      require 'packer'.loader(plugin)
-    end, timer)
-  end
-end
+-- local packer_lazy_load = function(plugin, timer)
+--   if plugin then
+--     timer = timer or 0
+--     vim.defer_fn(function()
+--       require 'packer'.loader(plugin)
+--     end, timer)
+--   end
+-- end
 
 ---  Install all the plugins
 ---
