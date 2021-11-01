@@ -1,0 +1,12 @@
+plugins {
+  id('com.android.application') version '4.2.2'
+}
+
+repositories {
+  google()
+  mavenCentral()
+}
+
+android {
+
+}

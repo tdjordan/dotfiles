@@ -7,6 +7,8 @@ type Application struct {
   closedb func()
 }
 
+fun
+
 func main() {
   fmt.Println("test")
 }
