@@ -121,6 +121,9 @@ setopt auto_cd
 setopt inc_append_history
 setopt share_history              # share hsitory across instances
 setopt hist_ignore_space          # ignore commands that start with space
+export HISTSIZE=1000000000
+export SAVEHIST=$HISTSIZE
+setopt extended_history
 
 
 PS1="READY > "
