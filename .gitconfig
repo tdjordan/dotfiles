@@ -29,6 +29,8 @@
   deleted = log --diff-filter=D --summary
   di = diff
   dif = diff
+  dd = !git diff | delta
+  ddc = !git diff --cached | delta
 
   # log bases
   lg-base = log --graph --abbrev-commit
