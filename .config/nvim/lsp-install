@@ -47,7 +47,7 @@ gem=(
 )
 
 brew=(
-  hashicopr/tap/terraform-ls
+  hashicorp/tap/terraform-ls
   deno
   gopls
   rust-analyzer
@@ -57,6 +57,7 @@ brew=(
   mint-lang
   haskell-language-server
   kotlin-language-server
+  black
 )
 
 ###  pip retired
