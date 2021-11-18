@@ -139,3 +139,5 @@ lvim.plugins = {
     end
   }
 }
+
+require 'user.lsp.null'
