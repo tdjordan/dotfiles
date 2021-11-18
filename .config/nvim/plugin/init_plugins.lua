@@ -1,13 +1,11 @@
-local fn      = vim.fn
-local cmd     = vim.cmd
--- local execute = vim.api.nvim_command
+local fn  = vim.fn
+local cmd = vim.cmd
 
-local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
-local packer_installed = fn.isdirectory(install_path)
--- local packer_installed, _ = pcall(vim.cmd, [[packadd packer.nvim]])
--- local _, packer = pcall(require, 'packer')
-local compiled_file = fn.stdpath('config')..'/plugin/packer_compiled.lua'
-local packer_compiled = fn.filereadable(compiled_file) == 1
+local packer_installed, _ = pcall(cmd, [[packadd packer.nvim]])
+local packer_compiled_fn  = fn.stdpath('config')..'/lua/packer_compiled.lua'
+local packer_compiled     = fn.filereadable(packer_compiled_fn) == 1
+
+if not packer_installed or not packer_compiled then require 'bootstrap' end
 
 cmd [[ silent! command PackerSync    lua require('plugins').init_packer() require('packer').sync()           ]]
 cmd [[ silent! command PackerCompile lua require('plugins').init_packer() require('packer').compile()        ]]
@@ -18,10 +16,5 @@ cmd [[ silent! command PackerProfile lua require('plugins').init_packer() requir
 cmd [[ silent! command PackerStatus  lua require('plugins').init_packer() require('packer').status()         ]]
 
 -- require 'impatient'
-if packer_installed and packer_compiled then return end
-
--- if not packer_installed then
---   require 'bootstrap.install'()
--- end
--- if not packer_compiled  then require 'bootstrap.compile' end
-if not packer_installed or not packer_compiled then require 'bootstrap' end
+local packer_compiled_post_boot = fn.filereadable(packer_compiled_fn) == 1
+if packer_installed and packer_compiled_post_boot then require 'packer_compiled' end

@@ -22,6 +22,21 @@ M.init_packer = function ()
 
   packer.startup({
     function(use)
+      ---  Filetype Identification Replacement
+      ---
+      use {
+        'nathom/filetype.nvim'
+        , config = function()
+          require 'configs.filetype'
+        end
+      }
+
+      ---  lua performance
+      ---
+      use {
+        'lewis6991/impatient.nvim'
+      }
+
       ---  Packer itself
       ---
       use {
@@ -64,6 +79,9 @@ M.init_packer = function ()
         , config = function()
           require 'lsp'
         end
+      }
+      use {
+        'b0o/schemastore.nvim'
       }
       use {
         'jose-elias-alvarez/null-ls.nvim'
@@ -433,7 +451,7 @@ M.init_packer = function ()
         --   , 'RestNvimPreview'
         --   , 'RestNvimLast'
         -- }
-        , ft = 'http'
+        -- , ft = 'http'
         , module_pattern = 'rest-nvim.*'
         , config = function()
           require 'configs.rest'
@@ -484,6 +502,7 @@ M.init_packer = function ()
       }
       use {
         'Pocco81/DAPInstall.nvim'
+        , after = 'nvim-dap'
       }
 
       ---  matchup
@@ -908,10 +927,6 @@ M.init_packer = function ()
         'tweekmonster/startuptime.vim'
         , cmd = 'StartupTime'
       }
-      -- use {
-      --   'lewis6991/impatient.nvim'
-      --   , rocks = 'mpack'
-      -- }
       -- use   'norcalli/profiler.nvim'
 
       ---  braces
@@ -931,18 +946,20 @@ M.init_packer = function ()
       ---
       use {
         'martinda/Jenkinsfile-vim-syntax'
+        , opt = true
         -- , event = 'CursorHold'
-        , ft = {
-          'Jenkinsfile'
-          , 'groovy'
-        }
+        -- , ft = {
+        --   'Jenkinsfile'
+        --   , 'groovy'
+        -- }
       }
       use {
         'gisphm/vim-gradle'
-        , ft = {
-          'gradle'
-          , 'groovy'
-        }
+        , opt = true
+        -- , ft = {
+        --   'gradle'
+        --   , 'groovy'
+        -- }
       }
       -- use {
       --   'sheerun/vim-polyglot'
@@ -1020,7 +1037,7 @@ M.init_packer = function ()
       ---
       use {
         'kristijanhusak/orgmode.nvim'
-        , ft = 'org'
+        , opt = true
         , config = function()
           require 'configs.orgmode'
         end
@@ -1034,6 +1051,7 @@ M.init_packer = function ()
       }
       use {
         'akinsho/org-bullets.nvim'
+        , after = 'orgmode.nvim'
         , config = function()
           require("org-bullets").setup {
             symbols = { "◉", "○", "✸", "✿" }
@@ -1049,6 +1067,7 @@ M.init_packer = function ()
       -- }
     end
     , config = {
+      compile_path = vim.fn.stdpath('config') .. '/lua/packer_compiled.lua',
       profile = {
         enable = true
       }

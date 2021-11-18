@@ -11,6 +11,7 @@ local servers =
   -- , 'efm'
   , 'elmls'
   , 'emmet_ls'
+  , 'eslint'
   -- , 'fortls'
   , 'gopls'
   , 'graphql'
@@ -23,6 +24,7 @@ local servers =
   , 'rust_analyzer'
   , 'sumneko_lua'
   , 'terraformls'
+  -- , 'tflint'
   , 'tsserver'
   , 'vimls'
   , 'yamlls'
@@ -54,6 +56,18 @@ lsp_installer.on_server_ready(function(server)
   if server.name == 'jsonls' then
     opts = require 'lsp.json'
   end
+
+  -- if server.name == 'eslint' then
+  --   opts.on_attach = function(client, bufnr)
+  --     client.resolved_capabilities.document_formatting = true
+  --     require 'lsp.common'.on_attach(client, bufnr)
+  --   end
+  --   opts.settings = {
+  --     format = {
+  --       enable = true
+  --     }
+  --   }
+  -- end
 
   server:setup(opts)
   vim.cmd [[ do User LspAttachBuffers ]]

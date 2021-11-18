@@ -38,7 +38,7 @@ g.loaded_2html_plugin      = false
 g.loaded_tutor_mode_plugin = false
 g.loaded_remote_plugins    = false
 -- g.did_indent_on            = true
--- g.did_load_filetypes       = true
+g.did_load_filetypes       = true
 -- cmd "syntax off"
 -- g.xyntax_on                = true
 -- g.syntax_cmd               = 'off'

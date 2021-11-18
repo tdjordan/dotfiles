@@ -6,14 +6,12 @@ local cmd = vim.cmd
 local bootstrap_packer = function()
   local install_path        = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
   local packer_installed, _ = pcall(vim.cmd, [[packadd packer.nvim]])
-  local compiled_file       = fn.stdpath('config')..'/plugin/packer_compiled.lua'
-  local packer_compiled     = fn.filereadable(compiled_file) == 1
+  local packer_compiled_fn  = fn.stdpath('config')..'/lua/packer_compiled.lua'
+  local packer_compiled     = fn.filereadable(packer_compiled_fn) == 1
 
   if packer_installed and packer_compiled then return end
 
   if not packer_installed then
-    -- local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
-
     print("Cloning packer ....")
     fn.delete(install_path, 'rf')
     fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
@@ -25,7 +23,6 @@ local bootstrap_packer = function()
     if not packer_compiled then
       cmd [[ packadd packer.nvim ]]
       require 'plugins'.init_packer()
-      -- local _, packer = pcall(require, 'packer')
       require 'packer'.compile()
     end
   end

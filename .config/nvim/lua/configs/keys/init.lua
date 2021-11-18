@@ -40,7 +40,7 @@ local normal_mappings = {
   --- surround with *
   ---
   s = {
-    name = '+surround'
+    name = '+surround / search'
     , ['"'] = { [[msciw""<esc>P`sl]], 'word with double quotes'     }
     , ["'"] = { [[msciw'<c-r><c-o>"'<esc>`sl]], 'word with single quotes'     }
     -- , ["'"] = { [[msea'<esc>bi'<esc>`sl]], 'word with single quotes'     }
@@ -62,7 +62,8 @@ local normal_mappings = {
     -- , d = { [[daW''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
 
     , p = { [[<cmd>split<cr>]], 'split top-bottom' }
-    , t = { [[<cmd>lua require('theme').ThemeToggle()<cr>]], 'toggle dark/light' }
+    -- , t = { [[<cmd>lua require('theme').ThemeToggle()<cr>]], 'toggle dark/light' }
+    , t = { '<cmd>lua require "telescope.builtin".live_grep()<cr>', 'search text' }
   },
 
   ---
@@ -113,6 +114,39 @@ local normal_mappings = {
     , t = { '<cmd>lua require "telescope.builtin".filetypes()<cr>',                 'filetypes'       }
     , [';'] = { '<cmd>lua require "telescope.builtin".command_history()<cr>',       'command history' }
     , ['/'] = { '<cmd>lua require "telescope.builtin".search_history()<cr>',        'search history'  }
+  },
+
+  ---
+  ---  l* mappings
+  ---
+  l = {
+    name = '+lsp'
+    , a = { '<cmd>lua require "telescope.builtin".autocommands()<cr>',                          'an autocommand'      }
+    , b = { '<cmd>lua require "telescope.builtin".buffers()<cr>',                               'from open buffers'   }
+    , c = { '<cmd>lua require "telescope.builtin".colorscheme()<cr>',                           'a colorscheme'       }
+    , e = { '<cmd>lua require "telescope.builtin".symbols{sources = {"emoji", "gitmoji"}}<cr>', '*moji'               }
+    , f = { '<cmd>lua require "telescope.builtin".find_files()<cr>',                            'a file'              }
+    , g = { '<cmd>lua require "telescope.builtin".live_grep()<cr>',                             'from live grep'      }
+    , l = { '<cmd>lua require "telescope.builtin".current_buffer_fuzzy_find()<cr>',             'from current buffer' }
+    -- , v = { '<cmd>lua require "telescope.builtin".vim_options()<cr>',               'vim options'      }
+    , s = { '<cmd>lua require "telescope.builtin".grep_string()<cr>',               'with grep string' }
+    , p = {
+      name = '+packer'
+      , s = { '<cmd>PackerSync<cr>',                                          'sync'    }
+      , c = { '<cmd>PackerCompile<cr>',                                       'compile' }
+      , l = { '<cmd>lua require "telescope".extensions.packer.plugins()<cr>', 'list'    }
+      , t = { '<cmd>PackerStatus<cr>',                                        'status'  }
+      , p = { '<cmd>PackerProfile<cr>',                                       'profile' }
+      , u = { '<cmd>PackerUpdate<cr>',                                        'update'  }
+      , w = { '<cmd>PackerClean<cr>',                                         'clean'   }
+    }
+    , w = { '<cmd>lua require "telescope".extensions.project.project{ display_type = "full" }<cr>', 'workspace' }
+    , v = {
+      name = '+vim'
+      , h = { '<cmd>lua require "telescope.builtin".highlights()<cr>',  'vim highlights' }
+      , o = { '<cmd>lua require "telescope.builtin".vim_options()<cr>', 'vim options'    }
+      , r = { '<cmd>lua require "telescope.builtin".registers()<cr>',   'vim registers'  }
+    }
   },
 
   ---

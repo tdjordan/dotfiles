@@ -34,6 +34,6 @@ cmd [[
 --   autocmd FileType NvimTree call glyph_palette#apply()
 -- ]]
 
-cmd [[
-  autocmd FileType * lua require'utility.ft'.do_filetype(vim.fn.expand("<amatch>"))
-]]
+-- cmd [[
+--   autocmd FileType * lua require'utility.ft'.do_filetype(vim.fn.expand("<amatch>"))
+-- ]]

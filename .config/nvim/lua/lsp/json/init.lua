@@ -5,19 +5,19 @@ local common = require 'lsp.common'
 --      yarn global add vscode-langservers-extracted
 --
 
-local url_schemastore = 'https://json.schemastore.org/'
+-- local url_schemastore = 'https://json.schemastore.org/'
 -- local url_gitcontents = 'https://raw.githubusercontent.com/'
 
-local mapping_json_simple =
-  { 'packer.json'
-  , 'package.json'
-  , 'lerna.json'
-  , 'bsconfig.json'
-  , 'now.json'
-  , 'launchsettings.json'
-  , 'commands.json'
-  , 'feed.json'
-}
+-- local mapping_json_simple =
+--   { 'packer.json'
+--   , 'package.json'
+--   , 'lerna.json'
+--   , 'bsconfig.json'
+--   , 'now.json'
+--   , 'launchsettings.json'
+--   , 'commands.json'
+--   , 'feed.json'
+-- }
 
 -- local mapping_json_many = {
 --   {
@@ -63,16 +63,16 @@ local mapping_json_simple =
 --   }
 -- }
 
-local schemas = {}
+-- local schemas = {}
 
-local expand_single_file_mappings = function(mappings, url)
-  for _, value in pairs(mappings) do
-    table.insert(schemas, {
-      fileMatch = { value },
-      url = url .. value
-    })
-  end
-end
+-- local expand_single_file_mappings = function(mappings, url)
+--   for _, value in pairs(mappings) do
+--     table.insert(schemas, {
+--       fileMatch = { value },
+--       url = url .. value
+--     })
+--   end
+-- end
 
 -- local expand_mappings = function(mappings, url_p)
 --   for _, value in pairs(mappings) do
@@ -101,7 +101,7 @@ end
 --   },
 -- }
 
-expand_single_file_mappings(mapping_json_simple, url_schemastore)
+-- expand_single_file_mappings(mapping_json_simple, url_schemastore)
 -- expand_mappings(mapping_json_many, url_schemastore)
 
 -- expand_mappings(mapping_git_files, url_gitcontents)
@@ -113,7 +113,7 @@ local opts = {
   , flags = common.flags
   , settings = {
     json = {
-      schemas = schemas
+      schemas = require 'schemastore'.json.schemas()
     }
   }
   , commands = {

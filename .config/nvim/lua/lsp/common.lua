@@ -1,6 +1,8 @@
 local api = vim.api
 local lsp = vim.lsp
 
+-- local M = {}
+
 -- local function prequire(...)
 --   local status, lib = pcall(require, ...)
 --   if (status) then return lib end
@@ -9,6 +11,18 @@ local lsp = vim.lsp
 
 -- local prequire = require 'utility'.require
 -- local nvim_lsp = prequire 'lspconfig'
+
+-- vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+--   vim.lsp.handlers.hover, {
+--     border = 'single'
+--   }
+-- )
+
+-- vim.lsp.handlers['textDocument.signatureHelp'] = vim.lsp.with(
+--   vim.lsp.handlers.signature_help, {
+--     border = 'single'
+--   }
+-- )
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -45,26 +59,34 @@ local on_attach = function(_, bufnr)
 
 end
 
-local capabilities = lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.documentFormating = {
-  'markdown'
-  , 'plaintext'
-}
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.preselectSupport = true
-capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
-capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
-capabilities.textDocument.completion.completionItem.deprecatedSupport = true
-capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
-capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    'documentation',
-    'detail',
-    'additionalTextEdits',
+local common_capabilities = function()
+  local capabilities = lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.documentFormating = {
+    'markdown'
+    , 'plaintext'
   }
-}
-capabilities = require 'cmp_nvim_lsp'.update_capabilities(capabilities)
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+  capabilities.textDocument.completion.completionItem.preselectSupport = true
+  capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+  capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+  capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+  capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+  capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+  capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+      'documentation',
+      'detail',
+      'additionalTextEdits',
+    }
+  }
+
+  local ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+  if ok then
+    capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+  end
+
+  return capabilities
+end
 
 local flags = {
   debounce_text_changes = 150
@@ -82,8 +104,10 @@ local flags = {
 --   }
 -- end
 
+-- return M
+
 return {
-  capabilities = capabilities
+  capabilities = common_capabilities()
   , on_attach = on_attach
   , flags = flags
 }

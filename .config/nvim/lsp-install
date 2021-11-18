@@ -58,6 +58,7 @@ brew=(
   haskell-language-server
   kotlin-language-server
   black
+  hadolint
 )
 
 ###  pip retired

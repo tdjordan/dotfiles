@@ -24,8 +24,8 @@ require 'lspconfig'.tsserver.setup {
 --
 --      yarn global add vscode-langservers-extracted
 --
-require 'lspconfig'.eslint.setup {
-  on_attach = common.on_attach
-  , capabilities = common.capabilities
-  , flags = common.flags
-}
+-- require 'lspconfig'.eslint.setup {
+--   on_attach = common.on_attach
+--   , capabilities = common.capabilities
+--   , flags = common.flags
+-- }

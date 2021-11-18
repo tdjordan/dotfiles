@@ -1,8 +1,10 @@
+require 'lsp.handlers'.setup()
+
 -- require 'lsp.lsp'
 require 'lsp.go'
 require 'lsp.zk'
 require 'lsp.dot'
-require 'lsp.efm'
+-- require 'lsp.efm'
 require 'lsp.elm'
 -- require 'lsp.lua'
 require 'lsp.vim'
@@ -25,5 +27,3 @@ require 'lsp.cucumber'
 -- require 'lsp.terraform'
 require 'lsp.typescript'
 -- require 'lsp.diagnostic'
-
-require 'lsp.handlers'.setup()
