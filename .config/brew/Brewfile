@@ -81,10 +81,13 @@ tap    "wez/wezterm"
 
 ###  java
 ###
-cask "adoptopenjdk"
+# cask "adoptopenjdk"
+cask "temurin"
 
-tap    "adoptopenjdk/openjdk"
-  cask "adoptopenjdk8"
+tap    "homebrew/cask-versions"
+  cask "temurin8"
+# tap    "adoptopenjdk/openjdk"
+#   cask "adoptopenjdk8"
 
 brew "jenv"
 brew "maven"
@@ -126,6 +129,7 @@ brew "iftop"
 cask "docker"
 brew "whalebrew"
 brew "docker-slim"
+brew "hadolint"
 
 ###  virtual machines
 ###
@@ -143,6 +147,7 @@ brew "tfsec"
 ###  Shell SCA Tools
 brew "shellcheck"
 brew "shfmt"
+brew "shellharden"
 
 ###  Go Language
 ###
