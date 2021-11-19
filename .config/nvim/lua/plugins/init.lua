@@ -1068,6 +1068,7 @@ M.init_packer = function ()
     end
     , config = {
       compile_path = vim.fn.stdpath('config') .. '/lua/packer_compiled.lua',
+      max_jobs = 70,
       profile = {
         enable = true
       }
