@@ -25,6 +25,7 @@ brew "pre-commit"
 
 ###  base build tools
 brew "cmake"
+brew "cmake-docs"
 brew "ninja"
 brew "conan"
 brew "llvm"
@@ -144,6 +145,12 @@ brew "tfenv"
 brew "tgenv"
 brew "tfsec"
 
+###  WebAssembly
+###
+brew "wasmer"
+brew "wasm3"
+brew "wapm"
+
 ###  Shell SCA Tools
 brew "shellcheck"
 brew "shfmt"
@@ -152,6 +159,8 @@ brew "shellharden"
 ###  Go Language
 ###
 brew "go"
+# tap    "tinygo-org/tools"
+# brew   "tinygo"
 
 ###  Mint Language
 ###
@@ -192,6 +201,8 @@ brew "gimme-aws-creds"
 brew "aws-iam-authenticator"
 cask "session-manager-plugin"
 brew "eksctl"
+brew "clusterctl"
+brew "driftctl"
 
 ###  Jenkins X
 ###
