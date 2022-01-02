@@ -8,6 +8,7 @@ brew "coreutils"
 brew "curl"
 brew "wget"
 brew "lsd"
+brew "sl"
 
 ###  version control systems
 ###
@@ -71,14 +72,14 @@ brew "luajit"
 brew "tree-sitter"
 brew "neovim", args: ["HEAD"]
 brew "editorconfig"
+brew "markdownlint-cli"
 
 ###  terminals
 ###
 cask "alacritty"
 cask "kitty"
 brew "tmux"
-tap    "wez/wezterm"
-  cask "wezterm"
+cask "wezterm"
 
 ###  java
 ###
@@ -141,7 +142,9 @@ brew "terraform-ls"
 brew "tflint"
 brew "packer"
 brew "terrascan"
-brew "tfenv"
+brew "terraform", link: false
+brew "tfenv", conflicts_with: ["terraform"]
+brew "cdktf"
 brew "tgenv"
 brew "tfsec"
 
@@ -192,6 +195,7 @@ brew "k9s"
 cask "lens"
 brew "helm"
 brew "linkerd"
+brew "cdk8s"
 
 ###  AWS Tools
 ###
@@ -203,6 +207,7 @@ cask "session-manager-plugin"
 brew "eksctl"
 brew "clusterctl"
 brew "driftctl"
+brew "aws-cdk"
 
 ###  Jenkins X
 ###
