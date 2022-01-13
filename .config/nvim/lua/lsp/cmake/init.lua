@@ -1,8 +1,8 @@
 -- local common = require 'lsp.common'
 
---  elmls configuration
+--  cmake configuration
 --
---      yarn global add elm elm-test elm-format @elm-tooling/elm-language-server
+--      pip install cmake-language-server
 --
 -- local opts = {
 --   on_attach = common.on_attach

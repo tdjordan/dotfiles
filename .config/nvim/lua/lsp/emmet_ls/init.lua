@@ -1,8 +1,8 @@
 -- local common = require 'lsp.common'
 
---  elmls configuration
+--  emmet configuration
 --
---      yarn global add elm elm-test elm-format @elm-tooling/elm-language-server
+--      yarn global add emmet-ls
 --
 -- local opts = {
 --   on_attach = common.on_attach

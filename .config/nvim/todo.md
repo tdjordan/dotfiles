@@ -2,36 +2,33 @@
 
 .fold in capabilities
 
-
-# python environment
+## python environment
 
 .debugger
 .proper lsp configuration
 
-# dap configurations
+## dap configurations
 
 .lua debugger
 .python debugger
 
-
-# groovy
-
-.treesitter
-.dap
-.syntax
-.lsp
-
-# gradle
+## groovy
 
 .treesitter
 .dap
 .syntax
 .lsp
 
-# jenkins
+## gradle
 
 .treesitter
 .dap
 .syntax
 .lsp
 
+## jenkins
+
+.treesitter
+.dap
+.syntax
+.lsp

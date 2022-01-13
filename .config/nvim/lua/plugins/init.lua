@@ -53,10 +53,10 @@ M.init_packer = function ()
       ---
       use {
         'rcarriga/nvim-notify'
-        , event = 'BufReadPost'
-        -- , config = function()
-        --   require 'configs.notify'
-        -- end
+        -- , event = 'BufReadPost'
+        , config = function()
+          require 'configs.notify'
+        end
       }
 
       ---  Lua Information
@@ -137,6 +137,11 @@ M.init_packer = function ()
         , config = function()
           require 'configs.symbols.outline'
         end
+      }
+
+      use {
+        'simrat39/rust-tools.nvim'
+        , after = 'nvim-lspconfig'
       }
 
       ---  Inlay Hints for rust-analyzer
@@ -503,6 +508,9 @@ M.init_packer = function ()
       use {
         'Pocco81/DAPInstall.nvim'
         , after = 'nvim-dap'
+        , config = function ()
+          require 'configs.dap.install'
+        end
       }
 
       ---  matchup
@@ -671,15 +679,15 @@ M.init_packer = function ()
       --   end
       -- }
 
-      use {
-        'kunzaatko/nord.nvim'
-        , event = 'CursorMoved'
-        , setup = function()
-          local g = vim.g
-          g.italic = 1
-          g.nord_italic_comments = 1
-        end
-      }
+      -- use {
+      --   'kunzaatko/nord.nvim'
+      --   , event = 'CursorMoved'
+      --   , setup = function()
+      --     local g = vim.g
+      --     g.italic = 1
+      --     g.nord_italic_comments = 1
+      --   end
+      -- }
 
 
 

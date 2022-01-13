@@ -23,7 +23,7 @@ local setup = function()
     vim.lsp.diagnostic.on_publish_diagnostics, {
       virtual_text = {
         prefix = "",     --        
-        spacing = 0
+        spacing = 3
       },
       severity_sort = true
     }

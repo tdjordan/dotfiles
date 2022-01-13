@@ -1,4 +1,4 @@
-local common = require 'lsp.common'
+-- local common = require 'lsp.common'
 
 --  graphql configuration
 --
@@ -8,8 +8,10 @@ local common = require 'lsp.common'
 --
 --      TODO : research graphql more
 --
-require 'lspconfig'.graphql.setup {
-  on_attach = common.on_attach
-  , capabilities = common.capabilities
-  , flags = common.flags
-}
+-- local opts = {
+--   on_attach = common.on_attach
+--   , capabilities = common.capabilities
+--   , flags = common.flags
+-- }
+
+-- return opts

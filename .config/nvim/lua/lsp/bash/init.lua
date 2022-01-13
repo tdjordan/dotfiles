@@ -1,4 +1,4 @@
-local common = require 'lsp.common'
+-- local common = require 'lsp.common'
 
 --  bashls configuration
 --
@@ -6,8 +6,10 @@ local common = require 'lsp.common'
 --
 -- local capabilities = common.capabilities
 -- capabilities = require 'cmp_nvim_lsp'.update_capabilities(capabilities)
-require 'lspconfig'.bashls.setup {
-  on_attach = common.on_attach
-  , capabilities = common.capabilities
-  , flags = common.flags
-}
+-- local opts = {
+--   on_attach = common.on_attach
+--   , capabilities = common.capabilities
+--   , flags = common.flags
+-- }
+
+-- return opts

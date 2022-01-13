@@ -1,11 +1,13 @@
 local common = require 'lsp.common'
 
---  sorbet configuration
+--  tsserver configuration
 --
---      gem install sorbet
+--      yarn global add typescript typescript-language-server
 --
-require 'lspconfig'.sorbet.setup {
+local opts = {
   on_attach = common.on_attach
   , capabilities = common.capabilities
   , flags = common.flags
 }
+
+return opts

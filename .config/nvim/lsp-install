@@ -11,6 +11,8 @@ yarn=(
 pnpm=(
   vscode-langservers-extracted
   @cucumber/language-server
+  @microsoft/rush
+  @stoplight/spectral-cli
 )
 
 ###  pnpm retired
@@ -35,7 +37,7 @@ pnpm=(
 
 pip=(
   neovim
-  fortran-language-server
+  # fortran-language-server
 )
 
 ###  pip retired
@@ -43,22 +45,23 @@ pip=(
 
 gem=(
   neovim
-  sorbet
+  # sorbet
 )
 
 brew=(
   hashicorp/tap/terraform-ls
   deno
-  gopls
-  rust-analyzer
+  # gopls
+  # rust-analyzer
   efm-langserver
   llvm
   bear
   mint-lang
   haskell-language-server
-  kotlin-language-server
+  # kotlin-language-server
   black
   hadolint
+  composer
 )
 
 ###  pip retired

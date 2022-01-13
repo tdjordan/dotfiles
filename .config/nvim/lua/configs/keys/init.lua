@@ -80,8 +80,10 @@ local normal_mappings = {
   ---  b* mappings
   ---
   b = {
-    name = '+browse'
+    name = 'buffer / browse'
+    -- name = 'buffer / browse'
     , ['.'] = { '<cmd>lua require "telescope.builtin".file_browser()<cr>', 'files' }
+    -- , c = { '<cmd>BufferClose<cr>', 'close buffer' }
   },
 
   ---
@@ -98,7 +100,7 @@ local normal_mappings = {
   f = {
     name = '+search'
     , b = { '<cmd>lua require "telescope.builtin".buffers()<cr>',                   'in open buffers' }
-    , d = { '<cmd>lua require "telescope.builtin".lsp_workspace_diagnostics()<cr>', 'lsp diagnostics' }
+    , d = { '<cmd>lua require "telescope.builtin".diagnostics()<cr>',               'lsp diagnostics' }
     , f = { '<cmd>lua require "telescope.builtin".find_files()<cr>',                'by file name'    }
     , g = { '<cmd>lua require "telescope.builtin".live_grep()<cr>',                 'with live grep'  }
     , h = { '<cmd>lua require "telescope.builtin".help_tags()<cr>',                 'help tags'       }
@@ -121,32 +123,25 @@ local normal_mappings = {
   ---
   l = {
     name = '+lsp'
-    , a = { '<cmd>lua require "telescope.builtin".autocommands()<cr>',                          'an autocommand'      }
-    , b = { '<cmd>lua require "telescope.builtin".buffers()<cr>',                               'from open buffers'   }
-    , c = { '<cmd>lua require "telescope.builtin".colorscheme()<cr>',                           'a colorscheme'       }
-    , e = { '<cmd>lua require "telescope.builtin".symbols{sources = {"emoji", "gitmoji"}}<cr>', '*moji'               }
-    , f = { '<cmd>lua require "telescope.builtin".find_files()<cr>',                            'a file'              }
-    , g = { '<cmd>lua require "telescope.builtin".live_grep()<cr>',                             'from live grep'      }
-    , l = { '<cmd>lua require "telescope.builtin".current_buffer_fuzzy_find()<cr>',             'from current buffer' }
-    -- , v = { '<cmd>lua require "telescope.builtin".vim_options()<cr>',               'vim options'      }
-    , s = { '<cmd>lua require "telescope.builtin".grep_string()<cr>',               'with grep string' }
+    , a = { '<cmd>lua require "telescope.builtin".lsp_code_actions()<cr>',                     'code action'     }
+    , d = { '<cmd>lua require "telescope.builtin".diagnostics({buffnr = 0})<cr>',                          'document diagnostics' }
+    , f = { '<cmd>lua vim.lsp.buf.formatting()<cr>',                                           'format'          }
+    , i = { '<cmd>LspInfo<cr>',                                                                'info'            }
+    , I = { '<cmd>LspInstallInfo<cr>',                                                         'installer info'  }
+    , j = { '<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts = { border = "single" }})<cr>', 'next diagnositc' }
+    , k = { '<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts = { border = "single" }})<cr>', 'prev diagnositc' }
+    , l = { '<cmd>lua vim.lsp.codelens.run()<cr>',                                             'codelens action' }
     , p = {
-      name = '+packer'
-      , s = { '<cmd>PackerSync<cr>',                                          'sync'    }
-      , c = { '<cmd>PackerCompile<cr>',                                       'compile' }
-      , l = { '<cmd>lua require "telescope".extensions.packer.plugins()<cr>', 'list'    }
-      , t = { '<cmd>PackerStatus<cr>',                                        'status'  }
-      , p = { '<cmd>PackerProfile<cr>',                                       'profile' }
-      , u = { '<cmd>PackerUpdate<cr>',                                        'update'  }
-      , w = { '<cmd>PackerClean<cr>',                                         'clean'   }
+      name = '+peek'
+      , d = { '<cmd>lua require "lvim.lsp.peek".Peek("definition")<cr>',     'definition'      }
+      , i = { '<cmd>lua require "lvim.lsp.peek".Peek("implementation")<cr>', 'implementation'  }
+      , t = { '<cmd>lua require "lvim.lsp.peek".Peek("typeDefinition")<cr>', 'type definition' }
     }
-    , w = { '<cmd>lua require "telescope".extensions.project.project{ display_type = "full" }<cr>', 'workspace' }
-    , v = {
-      name = '+vim'
-      , h = { '<cmd>lua require "telescope.builtin".highlights()<cr>',  'vim highlights' }
-      , o = { '<cmd>lua require "telescope.builtin".vim_options()<cr>', 'vim options'    }
-      , r = { '<cmd>lua require "telescope.builtin".registers()<cr>',   'vim registers'  }
-    }
+    , q = { '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>',                        'quickfix'              }
+    , r = { '<cmd>lua vimlsp.buf.rename()<cr>',                                     'rename'                }
+    , s = { '<cmd>Telescope lsp_document_symbols<cr>',                              'document symbols'      }
+    , S = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>',                     'workspace symbols'     }
+    , w = { '<cmd>lua require "telescope.builtin".diagnostics()<cr>', 'workspace diagnostics' }
   },
 
   ---
@@ -274,11 +269,14 @@ local normal_mappings = {
   ---
   x = {
     name = '+trouble'
-    , l = { [[<cmd>TroubleToggle loclist<cr>]],                   'lsp references'        }
-    , d = { [[<cmd>TroubleToggle lsp_document_diagnositcs<cr>]],  'document diagnositcs'  }
-    , q = { [[<cmd>TroubleToggle quickfix<cr>]],                  'quickfix'              }
-    , w = { [[<cmd>TroubleToggle lsp_workspace_diagnostics<cr>]], 'workspace diagnostics' }
-    , x = { [[<cmd>TroubleToggle<cr>]],                           'trouble toggle'        }
+    , l = { [[<cmd>Trouble loclist<cr>]],                   'window location list'  }
+    , d = { [[<cmd>Trouble lsp_document_diagnositcs<cr>]],  'document diagnositcs'  }
+    , D = { [[<cmd>Trouble lsp_definitions<cr>]],           'lsp definitions'       }
+    , q = { [[<cmd>Trouble quickfix<cr>]],                  'quickfix'              }
+    , r = { [[<cmd>Trouble lsp_references<cr>]],            'lsp references'        }
+    , t = { [[<cmd>Trouble lsp_type_definitions<cr>]],      'lsp type definitions'  }
+    , w = { [[<cmd>Trouble lsp_workspace_diagnostics<cr>]], 'workspace diagnostics' }
+    , x = { [[<cmd>TroubleToggle<cr>]],                     'trouble toggle'        }
   },
 
   ---  Comment Handling

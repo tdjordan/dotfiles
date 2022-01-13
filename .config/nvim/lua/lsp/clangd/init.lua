@@ -1,8 +1,14 @@
 -- local common = require 'lsp.common'
 
---  elmls configuration
+--  clangd configuration
 --
---      yarn global add elm elm-test elm-format @elm-tooling/elm-language-server
+--      https://clangd.llvm.org/installation.html
+--
+--      - brew install llvm
+--
+--      https://github.com/rizsotto/Bear
+--
+--      - brew install bear
 --
 -- local opts = {
 --   on_attach = common.on_attach

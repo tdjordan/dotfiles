@@ -1,6 +1,8 @@
 -- local actions = require 'telescope.actions'
 
-require 'telescope'.setup {
+local telescope = require 'telescope'
+
+telescope.setup {
   defaults = {
     vimgrep_arguments = {
       'rg',
@@ -109,3 +111,5 @@ require 'telescope'.setup {
     }
   }
 }
+
+require 'telescope'.load_extension('notify')

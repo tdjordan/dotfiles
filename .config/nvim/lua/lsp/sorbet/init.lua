@@ -1,8 +1,8 @@
 -- local common = require 'lsp.common'
 
---  elmls configuration
+--  sorbet configuration
 --
---      yarn global add elm elm-test elm-format @elm-tooling/elm-language-server
+--      gem install sorbet
 --
 -- local opts = {
 --   on_attach = common.on_attach

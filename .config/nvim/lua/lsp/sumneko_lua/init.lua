@@ -2,8 +2,9 @@ local common = require 'lsp.common'
 
 --  sumnelo_lua configuration
 --
---      https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
+--      https://github.com/sumneko/lua-language-server/wiki/Build-and-Run
 --
+
 -- local system_type
 -- if       vim.fn.has("mac")   == 1 then system_type = 'macOS'
 --   elseif vim.fn.has("unix")  == 1 then system_type = 'Linux'

@@ -1,4 +1,4 @@
-local common = require 'lsp.common'
+-- local common = require 'lsp.common'
 
 --  dockerls configuration
 --
@@ -6,8 +6,8 @@ local common = require 'lsp.common'
 --
 --      npm install -g dockerfile-language-server-nodejs
 --
-require 'lspconfig'.dockerls.setup {
-  on_attach = common.on_attach
-  , capabilities = common.capabilities
-  , flags = common.flags
-}
+-- require 'lspconfig'.dockerls.setup {
+--   on_attach = common.on_attach
+--   , capabilities = common.capabilities
+--   , flags = common.flags
+-- }
