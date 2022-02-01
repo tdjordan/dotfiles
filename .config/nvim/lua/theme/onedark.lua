@@ -1,5 +1,5 @@
 require 'onedark'.setup {
-  -- , comment_style = 'italic'
+  comment_style = 'italic'
   -- , keyword_style = 'italic'
   function_style = 'italic'
   -- , variable_style = 'NONE'

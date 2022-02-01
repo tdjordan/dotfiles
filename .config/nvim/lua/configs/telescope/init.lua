@@ -113,3 +113,5 @@ telescope.setup {
 }
 
 require 'telescope'.load_extension('notify')
+-- vim.cmd [[packadd telescope-packer.nvim]]
+-- require 'telescope'.load_extension('packer')

@@ -30,6 +30,12 @@ cmd [[
   autocmd VimResized * silent :wincmd =
 ]]
 
+---  Always set TSComment to italic
+---
+cmd [[
+  autocmd ColorScheme * silent highlight TSComment gui=italic
+]]
+
 -- cmd [[
 --   autocmd FileType NvimTree call glyph_palette#apply()
 -- ]]

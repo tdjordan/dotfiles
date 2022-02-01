@@ -13,11 +13,14 @@ npairs.setup {
     'TelescopePrompt'
     , 'vim'
   }
-  , check_ts = true
+  -- , check_ts = true
   -- , ts_config = {
   --   lua = { 'string' }  -- do hot add a pair on string treesitter node
   --   , javascript = { 'template_sring' }
   --   , java = false      -- do not check treesitter on java
+  -- }
+  -- , fast_wrap = {
+  --   map = '<D-e>'
   -- }
 }
 

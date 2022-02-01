@@ -10,7 +10,7 @@ yarn=(
 
 pnpm=(
   vscode-langservers-extracted
-  @cucumber/language-server
+  # @cucumber/language-server
   @microsoft/rush
   @stoplight/spectral-cli
 )
@@ -45,6 +45,7 @@ pip=(
 
 gem=(
   neovim
+  cocoapods
   # sorbet
 )
 
@@ -62,6 +63,7 @@ brew=(
   black
   hadolint
   composer
+  cocoapods
 )
 
 ###  pip retired

@@ -2,11 +2,14 @@ local lsp_installer = require 'nvim-lsp-installer'
 local common = require 'lsp.common'
 
 local servers =
+  -- { 'awk_ls'
+  -- , 'bashls'
   { 'bashls'
   -- , 'ansiblels'
   , 'clangd'
   , 'cmake'
   , 'cssls'
+  , 'cucumber_language_server'
   -- , 'denols'
   , 'dockerls'
   , 'dotls'
@@ -19,21 +22,24 @@ local servers =
   , 'graphql'
   , 'groovyls'
   , 'html'
+  , 'jdtls'
   , 'jsonls'
   , 'kotlin_language_server'
   , 'lemminx'
   -- , 'mint'
   -- , 'powershell_es'
   , 'pyright'
+  , 'rnix'
   , 'rust_analyzer'
   , 'sorbet'
-  , 'spectral'
+  -- , 'spectral'
   , 'sumneko_lua'
   , 'terraformls'
   -- , 'tflint'
   , 'tsserver'
   , 'vimls'
   , 'yamlls'
+  -- , 'zeta_note'
   , 'zk'
 }
 
@@ -53,6 +59,7 @@ local customized_servers = {
   ['yamlls'] = 'yaml',
   ['sumneko_lua'] = 'lua',
   ['jsonls'] = 'json',
+  ['kotlin_language_server'] = 'kotlin'
   -- ['rust_analyzer'] = 'rust_analyzer',
 }
 

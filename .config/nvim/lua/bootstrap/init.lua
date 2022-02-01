@@ -14,7 +14,14 @@ local bootstrap_packer = function()
   if not packer_installed then
     print("Cloning packer ....")
     fn.delete(install_path, 'rf')
-    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+    fn.system {
+      'git',
+      'clone',
+      '--depth',
+      '1',
+      'https://github.com/wbthomason/packer.nvim',
+      install_path
+    }
 
     cmd [[ packadd packer.nvim ]]
     require 'plugins'.init_packer()

@@ -79,12 +79,12 @@ local normal_mappings = {
   ---
   ---  b* mappings
   ---
-  b = {
-    name = 'buffer / browse'
-    -- name = 'buffer / browse'
-    , ['.'] = { '<cmd>lua require "telescope.builtin".file_browser()<cr>', 'files' }
-    -- , c = { '<cmd>BufferClose<cr>', 'close buffer' }
-  },
+  -- b = {
+  --   name = 'buffer / browse'
+  --   -- name = 'buffer / browse'
+  --   , ['.'] = { '<cmd>lua require "telescope.builtin".file_browser()<cr>', 'files' }
+  --   -- , c = { '<cmd>BufferClose<cr>', 'close buffer' }
+  -- },
 
   ---
   ---  k* mappings
@@ -123,24 +123,24 @@ local normal_mappings = {
   ---
   l = {
     name = '+lsp'
-    , a = { '<cmd>lua require "telescope.builtin".lsp_code_actions()<cr>',                     'code action'     }
-    , d = { '<cmd>lua require "telescope.builtin".diagnostics({buffnr = 0})<cr>',                          'document diagnostics' }
-    , f = { '<cmd>lua vim.lsp.buf.formatting()<cr>',                                           'format'          }
-    , i = { '<cmd>LspInfo<cr>',                                                                'info'            }
-    , I = { '<cmd>LspInstallInfo<cr>',                                                         'installer info'  }
-    , j = { '<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts = { border = "single" }})<cr>', 'next diagnositc' }
-    , k = { '<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts = { border = "single" }})<cr>', 'prev diagnositc' }
-    , l = { '<cmd>lua vim.lsp.codelens.run()<cr>',                                             'codelens action' }
+    , a = { '<cmd>lua require "telescope.builtin".lsp_code_actions()<cr>',        'code action'     }
+    , d = { '<cmd>lua require "telescope.builtin".diagnostics({buffnr = 0})<cr>', 'document diagnostics' }
+    , f = { '<cmd>lua vim.lsp.buf.formatting()<cr>',                              'format'          }
+    , i = { '<cmd>LspInfo<cr>',                                                   'info'            }
+    , I = { '<cmd>LspInstallInfo<cr>',                                            'installer info'  }
+    , j = { '<cmd>lua vim.diagnostic.goto_next()<cr>',                            'next diagnositc' }
+    , k = { '<cmd>lua vim.diagnostic.goto_prev()<cr>',                            'prev diagnositc' }
+    , l = { '<cmd>lua vim.lsp.codelens.run()<cr>',                                'codelens action' }
     , p = {
       name = '+peek'
       , d = { '<cmd>lua require "lvim.lsp.peek".Peek("definition")<cr>',     'definition'      }
       , i = { '<cmd>lua require "lvim.lsp.peek".Peek("implementation")<cr>', 'implementation'  }
       , t = { '<cmd>lua require "lvim.lsp.peek".Peek("typeDefinition")<cr>', 'type definition' }
     }
-    , q = { '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>',                        'quickfix'              }
-    , r = { '<cmd>lua vimlsp.buf.rename()<cr>',                                     'rename'                }
-    , s = { '<cmd>Telescope lsp_document_symbols<cr>',                              'document symbols'      }
-    , S = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>',                     'workspace symbols'     }
+    , q = { '<cmd>lua vim.diagnostic.setloclist()<cr>',               'quickfix'              }
+    , r = { '<cmd>lua vimlsp.buf.rename()<cr>',                       'rename'                }
+    , s = { '<cmd>Telescope lsp_document_symbols<cr>',                'document symbols'      }
+    , S = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>',       'workspace symbols'     }
     , w = { '<cmd>lua require "telescope.builtin".diagnostics()<cr>', 'workspace diagnostics' }
   },
 
@@ -156,8 +156,7 @@ local normal_mappings = {
     , f = { '<cmd>lua require "telescope.builtin".find_files()<cr>',                            'a file'              }
     , g = { '<cmd>lua require "telescope.builtin".live_grep()<cr>',                             'from live grep'      }
     , l = { '<cmd>lua require "telescope.builtin".current_buffer_fuzzy_find()<cr>',             'from current buffer' }
-    -- , v = { '<cmd>lua require "telescope.builtin".vim_options()<cr>',               'vim options'      }
-    , s = { '<cmd>lua require "telescope.builtin".grep_string()<cr>',               'with grep string' }
+    , s = { '<cmd>lua require "telescope.builtin".grep_string()<cr>',                           'with grep string'    }
     , p = {
       name = '+packer'
       , s = { '<cmd>PackerSync<cr>',                                          'sync'    }

@@ -2,23 +2,23 @@
 local nls = require 'null-ls'
 
 local sources = {
-  -- bash
+  ---  bash
   nls.builtins.diagnostics.shellcheck.with {
     diagnostics_format = '[#{c}] #{m}'
   }
   , nls.builtins.code_actions.shellcheck
   , nls.builtins.formatting.shfmt
   , nls.builtins.formatting.shellharden
-  -- terraform
+  ---  terraform
   , nls.builtins.formatting.terraform_fmt
-  -- c++
+  ---  c++
   , nls.builtins.formatting.cmake_format
   , nls.builtins.formatting.clang_format
-  -- python
+  ---  python
   , nls.builtins.formatting.black
-  -- docker
+  ---  docker
   , nls.builtins.diagnostics.hadolint
-  -- markdown
+  ---  markdown
   , nls.builtins.diagnostics.markdownlint
   -- , null_ls.builtins.formatting.eslint
   -- null_ls.builtins.formatting.stylua
@@ -30,6 +30,9 @@ local sources = {
   --     , 'markdown'
   --   }
   -- }
+  ---  pluguins
+  ---
+  , nls.builtins.code_actions.gitsigns
 }
 
 nls.setup {

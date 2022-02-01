@@ -1,9 +1,12 @@
--- local cmd = vim.cmd
+local M = {}
 
--- local syntax_stack = function()
---   vim.f
--- end
+M.packer_lazy_load = function(plugin, timer)
+  if plugin then
+    timer = timer or 0
+    vim.defer_fn(function()
+      require 'packer'.loader(plugin)
+    end, timer)
+  end
+end
 
--- return {
---   syntax_stack = syntax_stack
--- }
+return M

@@ -1,9 +1,20 @@
 local api    = vim.api
 local keymap = api.nvim_set_keymap
 
-require 'kommentary.config'.configure_language( "default", {
-  prefer_single_line_comments = true,
-})
+local languages =
+  { 'default'
+  , 'gradle'
+  , 'groovy'
+  , 'java'
+}
+
+for _, language in pairs( languages ) do
+  require 'kommentary.config'.configure_language( language, {
+    prefer_single_line_comments = true,
+    use_consistent_indentation = true,
+    ignore_whitespace = true
+  })
+end
 
 ---  Comments
 ---

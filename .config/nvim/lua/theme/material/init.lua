@@ -1,23 +1,39 @@
-vim.g.material_style = 'oceanic'
+-- vim.g.material_style = 'oceanic'
+-- vim.g.material_style = 'deep ocean'
+vim.g.material_style = 'darker'
 require 'material'.setup {
-  contrast = true           -- set dark for sidebars, floats, & popup menus
-  , borders = false         -- no borders between verical splits
-  , popup_menu = 'dark'     -- set popup menu style
+  contrast =
+    { sidebars = false          -- contrast for sidebars
+    , floating_windows = true   -- contrast for floating windows
+    , line_numbers = true
+    , sign_column = true
+    , cursor_line = true
+    , non_current_windows = false
+    , popup_menu = false
+  }
   , italics =
     { comments = true       -- set italic comments
-    , strings = false       -- no  italic strings
     , keywords = true       -- set italic keywords
     , functions = true      -- set italic functions
+    , strings = false       -- no  italic strings
     , variables = false     -- no  italic variables
   }
-  , contrast_windows =
+  , contrast_filetypes =
     { 'terminal'            -- dark terminal background
     , 'packer'              -- dark pckaer background
     , 'qf'                  -- dark quick fix background
   }
-  , disable =
-    { background = true     -- do not set background
-    , term_colors = false   -- do not set terminal colors
-    , eob_lines = false     -- do not hide eob lines
+  , high_visibility =
+    { lighter = true        -- high contrast text for lighter style
+    , darker = false        -- high contrast text for darker style
   }
+  , disable =
+    { borders = true        -- no boders between vertical splits
+    , background = false    -- set background
+    , term_colors = false   -- set terminal colors
+    , eob_lines = true      -- do not hide eob lines
+  }
+  -- , custom_highlights = {
+  --   NvimTreeOpenedFolderName = { fg = require 'material.colors'.green, style = 'italic' }
+  -- }
 }

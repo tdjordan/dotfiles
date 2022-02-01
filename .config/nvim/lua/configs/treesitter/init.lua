@@ -1,13 +1,5 @@
 local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
 
--- parser_config.norg = {
---   install_info =
---     { url    = 'https://github.com/vhyrro/tree-sitter-norg'
---     , files  = { 'src/parser.c', 'src/scanner.cc' }
---     , branch = 'main'
---   }
--- }
-
 parser_config.http = {
   install_info =
     { url = 'https://github.com/NTBBloodbath/tree-sitter-http'
@@ -20,7 +12,7 @@ require 'configs.treesitter.parsers.org'
 
 require 'nvim-treesitter.configs'.setup {
   ensure_installed = 'all',
-  ignore_install = { 'haskell' },
+  ignore_install = { 'haskell', 'norg' },
   highlight =
     { enable = true
     , additional_vim_regex_highlighting = false
@@ -140,16 +132,16 @@ require 'nvim-treesitter.configs'.setup {
   -- }
   autopairs = {
     enable = true
-  }
+  },
+  indent = {
+    enable = true
+  },
+
 }
 
 -- local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
 parser_config.java.used_by = 'Jenkinsfile'
 
-  -- indent = {
-  --   enable = true
-  -- },
+-- local keymap = vim.api.nvim_set_keymap
 
-local keymap = vim.api.nvim_set_keymap
-
-keymap( 'n', '<leader>T', '<cmd>TSHighlightCapturesUnderCursor<cr>', { noremap = true, silent = true } )
+-- keymap( 'n', '<leader>T', '<cmd>TSHighlightCapturesUnderCursor<cr>', { noremap = true, silent = true } )

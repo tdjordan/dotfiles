@@ -24,17 +24,20 @@ M.init_packer = function ()
     function(use)
       ---  Filetype Identification Replacement
       ---
-      use {
-        'nathom/filetype.nvim'
-        , config = function()
-          require 'configs.filetype'
-        end
-      }
+      -- use {
+      --   'nathom/filetype.nvim'
+      --   , config = function()
+      --     require 'configs.filetype'
+      --   end
+      -- }
 
       ---  lua performance
       ---
       use {
         'lewis6991/impatient.nvim'
+        , config = function()
+          require 'impatient'.enable_profile()
+        end
       }
 
       ---  Packer itself
@@ -42,12 +45,19 @@ M.init_packer = function ()
       use {
         'wbthomason/packer.nvim'
         , opt = true
-        -- , event = 'VimEnter'
-        -- , module_pattern = 'packer.*'
-        -- , setup = function()
-        --   vim.cmd [[ packeradd packer.nvim ]]
-        -- end
       }
+
+      ---  Browser Integration
+      ---
+      -- use {
+      --   'glacambre/firenvim'
+      --   , run = function()
+      --     vim.fn['firenvim#install'](0)
+      --   end
+      --   , config = function()
+      --     require 'configs.firenvim'
+      --   end
+      -- }
 
       ---  Notifications
       ---
@@ -70,12 +80,7 @@ M.init_packer = function ()
       ---
       use {
         'neovim/nvim-lspconfig'
-        -- , event = 'CursorHold'
-        , event = 'BufReadPost'
-        -- , after = 'nvim-treesitter'
-        -- , setup = function()
-        --   packer_lazy_load( 'nvim-lspconfig', 5 )
-        -- end
+        , event = 'CursorHold'
         , config = function()
           require 'lsp'
         end
@@ -109,17 +114,17 @@ M.init_packer = function ()
       --   end
       -- }
 
-      use {
-        'folke/trouble.nvim'
-        , event = 'CursorHold'
-        , cmd =
-          { 'Trouble'
-          , 'TroubleToggle'
-        }
-        , config = function()
-          require 'configs.trouble'
-        end
-      }
+      -- use {
+      --   'folke/trouble.nvim'
+      --   , event = 'CursorHold'
+      --   , cmd =
+      --     { 'Trouble'
+      --     , 'TroubleToggle'
+      --   }
+      --   , config = function()
+      --     require 'configs.trouble'
+      --   end
+      -- }
 
       use {
         'folke/todo-comments.nvim'
@@ -133,7 +138,7 @@ M.init_packer = function ()
 
       use {
         'simrat39/symbols-outline.nvim'
-        , event = 'BufReadPost'
+        , event = 'CursorHold'
         , config = function()
           require 'configs.symbols.outline'
         end
@@ -157,22 +162,8 @@ M.init_packer = function ()
 
       ---  Auto Completion
       ---
-      -- use {
-      --   'hrsh7th/nvim-compe'
-      --   , event = 'InsertEnter'
-      --   -- , after = {
-      --   --   'LuaSnip'
-      --   --   , 'snippets.nvim'
-      --   -- }
-      --   , module_pattern = 'compe.*'
-      --   , config = function()
-      --     require 'configs.completion.compe'
-      --   end
-      -- }
       use {
         'onsails/lspkind-nvim'
-        -- , event = 'CursorHold'
-        -- , after = 'nvim-cmp'
         , module_pattern = 'lspkind.*'
         , config = function()
           require 'configs.lsp.kind'
@@ -180,10 +171,12 @@ M.init_packer = function ()
       }
       use {
         'hrsh7th/nvim-cmp'
-        -- , event = 'InsertEnter'
-        -- , after = 'vim-vsnip'
         , after = 'LuaSnip'
         , module_pattern = 'cmp.*'
+        -- , opt = true
+        -- , setup = function()
+        --   packer_lazy_load 'nvim-cmp'
+        -- end
         , config = function()
           require 'configs.completion.cmp'
         end
@@ -215,6 +208,18 @@ M.init_packer = function ()
         , after = 'nvim-cmp'
         , wants = 'nvim-cmp'
         , module_pattern = 'cmp.*'
+      }
+      use {
+        'hrsh7th/cmp-cmdline'
+        , after = 'nvim-cmp'
+        , config = function()
+          require 'configs.completion.cmp.cmdline'
+        end
+      }
+      use {
+        'hrsh7th/cmp-calc'
+        , after = 'nvim-cmp'
+        -- , wants = 'nvim-cmp'
         -- , module_pattern = 'cmp.*'
       }
       -- use {
@@ -234,12 +239,6 @@ M.init_packer = function ()
         -- , wants = 'nvim-cmp'
         -- , module_pattern = 'cmp.*'
       }
-      use {
-        'hrsh7th/cmp-calc'
-        , after = 'nvim-cmp'
-        -- , wants = 'nvim-cmp'
-        -- , module_pattern = 'cmp.*'
-      }
       -- use {
       --   'hrsh7th/cmp-look'
       -- }
@@ -250,13 +249,6 @@ M.init_packer = function ()
       --   'hrsh7th/cmp-vsnip'
       --   , after = 'nvim-cmp'
       -- }
-      use {
-        'hrsh7th/cmp-cmdline'
-        , after = 'nvim-cmp'
-        , config = function()
-          require 'configs.completion.cmp.cmdline'
-        end
-      }
       -- use {
       --   'hrsh7th/cmp-nvim-lsp-document-symbol'
       --   , after = 'nvim-cmp'
@@ -339,13 +331,21 @@ M.init_packer = function ()
       }
 
       ---  TODO : Add keymapping
-      use {
-        'nvim-telescope/telescope-packer.nvim'
-        , after = 'telescope.nvim'
-      }
+      -- use {
+      --   'nvim-telescope/telescope-packer.nvim'
+      --   , opt = true
+      --   -- , event = 'CursorHold'
+      --   -- , after = 'telescope.nvim'
+      --   -- , module_pattern = 'telescope.*'
+      --   -- , config = function()
+      --     -- vim.schedule()
+      --     -- require 'configs.telescope.packer'
+      --   -- end
+      -- }
 
       use {
         'nvim-telescope/telescope-fzy-native.nvim'
+        -- , event = 'CursorHold'
         , after = 'telescope.nvim'
         , config = function()
           require 'telescope'.load_extension('fzy_native')
@@ -354,6 +354,7 @@ M.init_packer = function ()
 
       use {
         'nvim-telescope/telescope-project.nvim'
+        -- , event = 'CursorHold'
         , after = 'telescope.nvim'
         , config = function()
           require 'configs.telescope.project'
@@ -371,13 +372,13 @@ M.init_packer = function ()
       use {
         'camgraff/telescope-tmux.nvim'
         , cmd = 'Telescope tmux'
-        , after = 'telescope.nvim'
+        , event = 'CursorHold'
       }
 
       ---  TODO : Add keymapping
       use {
         'nvim-telescope/telescope-symbols.nvim'
-        , after = 'telescope.nvim'
+        , event = 'CursorHold'
       }
 
       ---  tree sitter
@@ -385,24 +386,9 @@ M.init_packer = function ()
       use {
         'nvim-treesitter/nvim-treesitter'
         , run = ':TSUpdate'
-        , event = 'CursorHold'
-        , cmd =
-          { 'TSBufEnable'
-          , 'TSBufDisable'
-          , 'TSBufToggle'
-          , 'TSEnableAll'
-          , 'TSDisableAll'
-          , 'TSToggleAll'
-          , 'TSEditQuery'
-          , 'TSEditQueryAfter'
-          , 'TSModuleInfo'
-          , 'TSInstallInfo'
-          , 'TSInstall'
-          , 'TSInstallSync'
-          , 'TSUpdate'
-          , 'TSUpdateSync'
-          , 'TSUninstall'
-        }
+        -- , event = 'BufReadPost'
+        -- , event = 'UIEnter'
+        -- , event = 'CursorHold'
         -- , module_pattern = 'treesitter.*'
         , config = function()
           require 'configs.treesitter'
@@ -419,15 +405,15 @@ M.init_packer = function ()
       -- use { 'nvim-treesitter/completion-treesitter' }
       use {
         'nvim-treesitter/nvim-treesitter-refactor'
-        , after = 'nvim-treesitter'
+        , event = 'CursorHold'
       }
       use {
         'nvim-treesitter/nvim-treesitter-textobjects'
-        , after = 'nvim-treesitter'
+        , event = 'CursorHold'
       }
       use {
         'David-Kunz/treesitter-unit'
-        , after = 'nvim-treesitter'
+        , event = 'CursorHold'
       }
       -- use { 'romgrk/nvim-treesitter-context' }
       -- use {
@@ -441,10 +427,12 @@ M.init_packer = function ()
 
       ---  quick fix
       ---
-      -- TODO
       use {
         'kevinhwang91/nvim-bqf'
-        , event = 'InsertEnter'
+        , ft = 'qf'
+        , config = function()
+          require 'configs.bqf'
+        end
       }
 
       ---  rest explorations
@@ -490,6 +478,9 @@ M.init_packer = function ()
       use {
         'mfussenegger/nvim-dap'
         , module_pattern = 'dap.*'
+        -- , setup = function()
+        --   require 'utility'.packer_lazy_load 'nvim-dap'
+        -- end
         , config = function()
           require 'configs.dap'
         end
@@ -608,10 +599,10 @@ M.init_packer = function ()
         -- end
       }
 
-      use {
-        'eddyekofo94/gruvbox-flat.nvim'
-        , event = 'CursorMoved'
-      }
+      -- use {
+      --   'eddyekofo94/gruvbox-flat.nvim'
+      --   , event = 'CursorMoved'
+      -- }
 
       -- use {
       --   'monsonjeremy/onedark.nvim'
@@ -650,10 +641,10 @@ M.init_packer = function ()
       ---
       ---  theme : Lush Colorschemes
       ---
-      use {
-        'rktjmp/lush.nvim'
-        , module_pattern = 'lush.*'
-      }
+      -- use {
+      --   'rktjmp/lush.nvim'
+      --   , module_pattern = 'lush.*'
+      -- }
 
       -- use {
       --   'savq/melange'
@@ -704,14 +695,6 @@ M.init_packer = function ()
           require 'theme.nightfox'
         end
       }
-      -- use {
-      --   'ful1e5/onedark.nvim'
-      --   -- , event = 'CursorMoved'
-      --   -- , event = 'CursorHold'
-      --   , config = function()
-      --     require 'theme.onedark'
-      --   end
-      -- }
 
       -- use {
       --   'vigoux/oak'
@@ -743,18 +726,16 @@ M.init_packer = function ()
 
       use {
         'LunarVim/onedarker.nvim'
-        -- , event = 'BufReadPost'
+        -- , event = 'UIEnter'
         , config = function()
-          -- local g = vim.g
-          -- g.colors_name = 'onedarker'
-          vim.cmd [[colorscheme onedarker]]
+          require 'theme.onedarker'
         end
       }
 
-      -- use {
-      --   'yong1le/darkplus.nvim'
-      --   , event = 'CursorMoved'
-      -- }
+      use {
+        'LunarVim/darkplus.nvim'
+        , event = 'CursorMoved'
+      }
 
       -- TODO
       use {
@@ -943,8 +924,7 @@ M.init_packer = function ()
       -- use { 'jiangmiao/auto-pairs' }
       use {
         'windwp/nvim-autopairs'
-        -- , after = 'nvim-cmp'
-        , event = 'InsertEnter'
+        , event = 'CursorHold'
         , config = function()
           require 'configs.autopairs'
         end
@@ -1020,6 +1000,13 @@ M.init_packer = function ()
         'junegunn/vim-easy-align'
         , cmd = 'EasyAlign'
       }
+      -- use {
+      --   'max397574/better-escape.nvim'
+      --   , event = 'InsertEnter'
+      --   , config = function()
+      --     require 'configs.tweaks.escape'
+      --   end
+      -- }
       --use { 'godlygeek/tabular' }
 
       ---  preview panels
