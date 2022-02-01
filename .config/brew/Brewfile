@@ -9,6 +9,8 @@ brew "curl"
 brew "wget"
 brew "lsd"
 brew "sl"
+brew "zinit"
+brew "zoxide"
 
 ###  version control systems
 ###
@@ -73,6 +75,10 @@ brew "tree-sitter"
 brew "neovim", args: ["HEAD"]
 brew "editorconfig"
 brew "markdownlint-cli"
+
+###  lua
+###
+brew "luvit"
 
 ###  terminals
 ###
@@ -216,8 +222,8 @@ tap    "jenkins-x/jx"
 
 ###  Jekins CLI
 ###
-tap    "jenkins-zh/jcli"
-  brew "jcli"
+# tap    "jenkins-zh/jcli"
+#   brew "jcli"
 
 ###  Other Things
 ###
@@ -247,6 +253,17 @@ brew "inkscape"
 ###
 tap    "shopify/shopify"
   brew "theme-check"
+
+###  Additional stuff
+###
+# brew "libffi"
+brew "watchman"
+brew "libimobiledevice"
+brew "ideviceinstaller"
+brew "imagemagick"
+brew "grunt-cli"
+brew "bower"
+brew "julia"
 
 ###  fonts
 ###
