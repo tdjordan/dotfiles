@@ -39,3 +39,7 @@ export CPPFLAGS="-I/usr/local/opt/ruby/include"
 
 export DOTNET_ROOT="/usr/local/opt/dotnet/libexec"
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+export PATH=$PATH:$HOME/.gem/ruby/3.0.0/bin
+
+source $HOME/.paths.local
