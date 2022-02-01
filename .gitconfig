@@ -112,6 +112,12 @@
 [interactive]
   diffFilter = delta --color-only
 
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
+
 [delta]
   features = default decorations side-by-side
   ; features = default collared-trogon
@@ -124,10 +130,11 @@
 [delta "default"]
   line-numbers = true
   zero-style = dim
+  ; syntax-theme = tangara-chilensis
   ; true-color = never
   ; file-style = bold yellow
   ; file-decoration-style = none
-  ; navigate = true
+  navigate = true
   ; commit-decoration-style = ol
   ; hunk-header-file-style = cyan
   ; hunk-header-line-number-style = cyan
@@ -150,7 +157,7 @@
 
 [delta "side-by-side"]
   side-by-side = true
-  line-numbers-left-format = "{np:>4} "
+  line-numbers-left-format = "{nm:>4} "
   line-numbers-right-format = "{np:>4} "
 
 [delta "decorations"]
@@ -158,5 +165,6 @@
   file-style = bold yellow ul
   file-decoration-style = none
   ; hunk-header-decoration-style = yellow box
-  hunk-header-decoration-style = yellow ol
-  hunk-header-style = omit
+  hunk-header-decoration-style = yellow
+  ; hunk-header-decoration-style = yellow ol
+  ; hunk-header-style = omit
