@@ -28,19 +28,19 @@ export DISABLE_AUTO_TITLE='true'
 #ZINIT[COMPINIT_OPTS]="-C"
 #ZINIT[OPTIMIZE_OUT_DISK_ACCESSES]=1
 ### Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-  print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-  command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-  command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+  print -P "%F{33}▓▒░ %F{220}Installing %F{33}ZDHARM-CONTINUUMA%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+  command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+  command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
     print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
     print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
 
-source "$HOME/.zinit/bin/zinit.zsh"
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh.zwc ]]; then
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh.zwc ]]; then
   zinit self-update
 fi
 
@@ -83,7 +83,7 @@ zinit wait"2" lucid nocd is-snippet for \
 #zinit wait"1" lucid nocd light-mode atload"zicompinit; zicdreplay" for \
 zinit wait"1" lucid nocd light-mode for \
   zsh-users/zsh-autosuggestions \
-  zdharma/fast-syntax-highlighting \
+  zdharma-continuum/fast-syntax-highlighting \
   hlissner/zsh-autopair
 
 # zinit wait"1" lucid nocd light-mode for \
@@ -103,6 +103,12 @@ fi
     #zsh-users/zsh-completions \
   #atload"!_zsh_autosuggest_start" \
     #zsh-users/zsh-autosuggestions \
+
+# zinit ice wait"2" as"command" from"gh-r" lucid \
+#   mv"zoxide*/zoxide -> zoxide" \
+#   atclone"./zoxide init zsh > init.zsh" \
+#   atpull"%atclone" src"init.zsh" nocompile'!'
+# zinit light ajeetdsouza/zoxide
 
 [ -f /usr/local/share/zsh/site-functions/key-bindings.zsh ] && \
   zinit wait"1" lucid nocd is-snippet for \
@@ -146,3 +152,5 @@ function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}
 export OPS_DIR="$HOME/.ops"
 export PATH="$HOME/.ops/bin:$PATH"
 # source "$HOME/.ops/scripts/bash_completion.sh"
+### End of Zinit's installer chunk
+# eval "$(zoxide init --cmd cd zsh)"
