@@ -21,11 +21,11 @@ local languages = {
 }
 
 require 'lspconfig'.efm.setup {
-  root_dir  = util.root_pattern( ".git", vim.fn.getcwd() ),
+  root_dir  = util.root_pattern( ".git", vim.loop.cwd() ),
 
   filetypes = vim.tbl_keys( languages ),
   settings  = {
-    rootMarkers = { '.git/', vim.fn.getcwd() },
+    rootMarkers = { '.git/', vim.loop.cwd() },
     languages   = languages
   },
 

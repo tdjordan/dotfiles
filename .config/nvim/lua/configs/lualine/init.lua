@@ -139,7 +139,7 @@ local components = {
 
 require 'lualine'.setup {
   options = {
-    theme = 'auto'
+    theme = 'material-stealth'
     , component_separators = { '', '' }
     , section_separators = { '', '' }
     -- , section_separators = {'', ''}

@@ -2,7 +2,14 @@ local cmp = require 'cmp'
 
 cmp.setup.cmdline(':', {
   sources = cmp.config.sources {
+    { name = 'path'    },
     { name = 'cmdline' },
+  },
+  formatting = {
+    format = function( _, vim_item )
+      vim_item.kind = ''
+      return vim_item
+    end
   },
   mapping = {
     ['<Tab>']   = cmp.mapping(cmp.mapping.select_next_item(), { 'c' }),
@@ -13,8 +20,13 @@ cmp.setup.cmdline(':', {
 
 cmp.setup.cmdline('/', {
   sources = cmp.config.sources {
-    { name = 'nvim_lsp_document_symbol' },
     { name = 'buffer' }
+  },
+  formatting = {
+    format = function( _, vim_item )
+      vim_item.kind = ''
+      return vim_item
+    end
   },
   mapping = {
     ['<Tab>']   = cmp.mapping(cmp.mapping.select_next_item(), { 'c' }),

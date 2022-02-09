@@ -33,7 +33,10 @@ require 'material'.setup {
     , term_colors = false   -- set terminal colors
     , eob_lines = true      -- do not hide eob lines
   }
+  -- , lualine_style = 'stealth'
+  -- , lualine_style = 'default'
   -- , custom_highlights = {
   --   NvimTreeOpenedFolderName = { fg = require 'material.colors'.green, style = 'italic' }
   -- }
 }
+vim.cmd [[colorscheme material]]

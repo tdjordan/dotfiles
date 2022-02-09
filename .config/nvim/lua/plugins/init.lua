@@ -173,10 +173,6 @@ M.init_packer = function ()
         'hrsh7th/nvim-cmp'
         , after = 'LuaSnip'
         , module_pattern = 'cmp.*'
-        -- , opt = true
-        -- , setup = function()
-        --   packer_lazy_load 'nvim-cmp'
-        -- end
         , config = function()
           require 'configs.completion.cmp'
         end
@@ -223,16 +219,24 @@ M.init_packer = function ()
         -- , module_pattern = 'cmp.*'
       }
       -- use {
+      --   'David-Kunz/cmp-npm'
+      --   , opt = true
+      --   , after = 'nvim-cmp'
+      --   , config = function()
+      --     require 'configs.completion.cmp.npm'
+      --   end
+      -- }
+      -- use {
       --   'andersevenrud/compe-tmux'
       --   , branch = 'cmp'
       --   , after = 'nvim-cmp'
       -- }
-      use {
-        'ray-x/cmp-treesitter'
-        , after = 'nvim-cmp'
-        , wants = 'nvim-cmp'
-        , module_pattern = 'cmp.*'
-      }
+      -- use {
+      --   'ray-x/cmp-treesitter'
+      --   , after = 'nvim-cmp'
+      --   , wants = 'nvim-cmp'
+      --   , module_pattern = 'cmp.*'
+      -- }
       use {
         'quangnguyen30192/cmp-nvim-tags'
         , after = 'nvim-cmp'
@@ -250,10 +254,6 @@ M.init_packer = function ()
       --   , after = 'nvim-cmp'
       -- }
       -- use {
-      --   'hrsh7th/cmp-nvim-lsp-document-symbol'
-      --   , after = 'nvim-cmp'
-      -- }
-      -- use {
       --   'petertriho/cmp-git'
       --   , after = 'nvim-cmp'
       --   , module_pattern = 'cmp_git.*'
@@ -261,12 +261,21 @@ M.init_packer = function ()
       --     require 'configs.completion.cmp.git'
       --   end
       -- }
+      use {
+        'Saecki/crates.nvim'
+        , event = 'BufRead Cargo.toml'
+        , wants = 'nvim-cmp'
+        , config = function()
+          require 'configs.completion.cmp.crates'
+        end
+      }
+
+      ---  diagnostics
+      ---
       -- use {
-      --   'Saecki/crates.nvim'
-      --   , ft = 'toml'
-      --   , after = 'nvim-cmp'
+      --   'onsails/diaglist.nvim'
       --   , config = function()
-      --     require 'configs.completion.cmp.crates'
+      --     require 'configs.lsp.diaglist'
       --   end
       -- }
 
@@ -444,7 +453,7 @@ M.init_packer = function ()
         --   , 'RestNvimPreview'
         --   , 'RestNvimLast'
         -- }
-        -- , ft = 'http'
+        , ft = 'http'
         , module_pattern = 'rest-nvim.*'
         , config = function()
           require 'configs.rest'
@@ -727,9 +736,10 @@ M.init_packer = function ()
       use {
         'LunarVim/onedarker.nvim'
         -- , event = 'UIEnter'
-        , config = function()
-          require 'theme.onedarker'
-        end
+        , event = 'CursorMoved'
+        -- , config = function()
+        --   require 'theme.onedarker'
+        -- end
       }
 
       use {
@@ -740,8 +750,8 @@ M.init_packer = function ()
       -- TODO
       use {
         'marko-cerovac/material.nvim'
-        , event = 'CursorMoved'
-        , module = 'material'
+        -- , event = 'CursorMoved'
+        -- , module = 'material'
         , config = function()
           require 'theme.material'
         end
@@ -934,20 +944,11 @@ M.init_packer = function ()
       ---
       use {
         'martinda/Jenkinsfile-vim-syntax'
-        , opt = true
-        -- , event = 'CursorHold'
-        -- , ft = {
-        --   'Jenkinsfile'
-        --   , 'groovy'
-        -- }
+        , event = 'BufRead Jenkinsfile'
       }
       use {
         'gisphm/vim-gradle'
-        , opt = true
-        -- , ft = {
-        --   'gradle'
-        --   , 'groovy'
-        -- }
+        , event = 'BufRead *.gradle'
       }
       -- use {
       --   'sheerun/vim-polyglot'
@@ -1033,6 +1034,7 @@ M.init_packer = function ()
       use {
         'kristijanhusak/orgmode.nvim'
         , opt = true
+        , ft = 'org'
         , config = function()
           require 'configs.orgmode'
         end
@@ -1053,13 +1055,14 @@ M.init_packer = function ()
           }
         end
       }
-      -- use {
-      --   'vhyrro/neorg'
-      --   , ft = 'norg'
-      --   , config = function()
-      --     require 'configs.neorg'
-      --   end
-      -- }
+      use {
+        'vhyrro/neorg'
+        , ft = 'norg'
+        , after = 'nvim-treesitter'
+        , config = function()
+          require 'configs.neorg'
+        end
+      }
     end
     , config = {
       compile_path = vim.fn.stdpath('config') .. '/lua/packer_compiled.lua',

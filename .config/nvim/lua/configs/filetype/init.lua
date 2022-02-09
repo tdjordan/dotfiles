@@ -1,6 +1,10 @@
 local packer = require 'packer'
 require 'filetype'.setup {
   overrides = {
+    extensions = {
+      flux = 'flux'
+      , sls = 'sls'
+    },
     function_extensions = {
       http = function()
         packer.loader('rest.nvim')

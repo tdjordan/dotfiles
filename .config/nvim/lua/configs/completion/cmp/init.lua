@@ -139,50 +139,77 @@ cmp.setup {
     , { name = 'orgmode'    }
     -- , { name = 'vsnip'    }
     -- , { name = 'look'     }
-    , { name = 'emjoi'    }
+    , { name = 'emjoi'      }
+    -- , { name = 'npm', keyword_length = 4 }
+    -- , { name = 'crates'     }
   }),
   formatting = {
-    format = function(entry, vim_item)
-      vim_item.kind = require 'lspkind'.presets.default[vim_item.kind] .. " " .. vim_item.kind
+    format = require 'lspkind'.cmp_format {
+      -- mode = 'symbol'
+      -- , maxwidth = 50
+      -- , before = function( entry, vim_item )
 
-      -- set a name for each source
-      vim_item.menu = ({
-        -- nvim_lua = '[Lua]',
-        -- nvim_lsp = '[LSP]',
-        -- luasnip = '[LuaSnip]',
-        -- buffer = '[Buffer]',
-        -- path = '[Path]',
-        -- treesitter = '[Treesitter]',
-        -- tags = '[Tags]',
-        -- calc = '[Calc]',
-        -- orgmode = '[Orgmode]'
-        -- latex_symbols = "[Latex]",
-        -- nvim_lua = '[lua]',
-        -- nvim_lsp = '[lsp]',
-        -- luasnip = '[snp]',
-        -- buffer = '[buf]',
-        -- path = '[pth]',
-        -- treesitter = '[tree]',
-        -- tags = '[tags]',
-        -- calc = '[calc]',
-        -- orgmode = '[org]'
-        -- latex_symbols = "[Latex]",
+      -- end
+      menu = {
         nvim_lua = '',
-        nvim_lsp = ' 曆',  --        曆
-        luasnip = '  ',      --  
+        nvim_lsp = '',     --        曆
+        luasnip = '',      --  
         buffer = '﬘',       --     
         path = '﬌',         --   ﬌  P ﱮ
-        treesitter = ' ', --         
+        -- tmux = '',
         tags = 'פּ',         -- פּ ﮒ          識 粒 ﰠ 識
+        treesitter = '',   --         
         calc = '珞',        --         匿 溺 駱     ﯰ  ﰂ  落
         orgmode = '',
+        -- vsnip = '',        --  
+        -- look = '',
+        emoji = '',
+        -- crates = '識',
         -- latex_symbols = "[Latex]",
         -- spell = '暈',
-      })[entry.source.name]
+      }
+    },
+    -- format = function( entry, vim_item )
+    --   vim_item.kind = require 'lspkind'.presets.default[vim_item.kind] .. " " .. vim_item.kind
 
-      -- vim_item.kind = require 'lspkind'.presets.default[vim_item.kind]
-      return vim_item
-    end
+    --   -- set a name for each source
+    --   vim_item.menu = ({
+    --     -- nvim_lua = '[Lua]',
+    --     -- nvim_lsp = '[LSP]',
+    --     -- luasnip = '[LuaSnip]',
+    --     -- buffer = '[Buffer]',
+    --     -- path = '[Path]',
+    --     -- treesitter = '[Treesitter]',
+    --     -- tags = '[Tags]',
+    --     -- calc = '[Calc]',
+    --     -- orgmode = '[Orgmode]'
+    --     -- latex_symbols = "[Latex]",
+    --     -- nvim_lua = '[lua]',
+    --     -- nvim_lsp = '[lsp]',
+    --     -- luasnip = '[snp]',
+    --     -- buffer = '[buf]',
+    --     -- path = '[pth]',
+    --     -- treesitter = '[tree]',
+    --     -- tags = '[ta]
+    --   -- calc = '[calc]',
+    --     -- orgmode = '[org]'
+    --     -- latex_symbols = "[Latex]",
+    --     nvim_lua = '',
+    --     nvim_lsp = ' 曆',  --        曆
+    --     luasnip = '  ',      --  
+    --     buffer = '﬘',       --     
+    --     path = '﬌',         --   ﬌  P ﱮ
+    --     treesitter = ' ', --         
+    --     tags = 'פּ',         -- פּ ﮒ          識 粒 ﰠ 識
+    --     calc = '珞',        --         匿 溺 駱     ﯰ  ﰂ  落
+    --     orgmode = '',
+    --     -- latex_symbols = "[Latex]",
+    --     -- spell = '暈',
+    --   })[entry.source.name]
+
+    --   -- vim_item.kind = require 'lspkind'.presets.default[vim_item.kind]
+    --   return vim_item
+    -- end
   }
   , experimental = {
     ghost_text = true
