@@ -79,6 +79,7 @@ brew "markdownlint-cli"
 ###  lua
 ###
 brew "luvit"
+brew "stylua"
 
 ###  terminals
 ###
@@ -186,9 +187,15 @@ brew "efm-langserver"
 brew "bear"
 brew "haskell-language-server"
 
-###  language code formaters
+###  Python Lanaguage
 ###
+brew "poetry"
 brew "black"
+
+###  saltstack
+###
+brew "salt"
+brew "salt-lint"
 
 ###  Comms
 ###
@@ -202,6 +209,7 @@ cask "lens"
 brew "helm"
 brew "linkerd"
 brew "cdk8s"
+brew "opa"
 
 ###  AWS Tools
 ###
@@ -264,6 +272,12 @@ brew "imagemagick"
 brew "grunt-cli"
 brew "bower"
 brew "julia"
+
+###  Metrics Databases
+###
+brew "flux"
+brew "influxdb"
+brew "influxdb-cli"
 
 ###  fonts
 ###
