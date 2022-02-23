@@ -14,7 +14,9 @@ require 'neorg'.setup {
     , ['core.norg.dirman'] = {
       config = {
         workspaces = {
-          my_workspace = '~/neorg'
+          -- my_workspace = '~/neorg',
+          work = "~/notes/work",
+          home = "~/notes/home"
         }
       }
     }

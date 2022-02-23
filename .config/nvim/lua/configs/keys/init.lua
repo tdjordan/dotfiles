@@ -341,6 +341,12 @@ cmd [[ autocmd TermClose                      term://* call nvim_input('<cr>')  
 ---
 wk.register({
   ['jk'] = { '<esc>', 'escape' },
+
+  ---  luasnip jumping
+  ---
+  ['<c-_>'] = { "<cmd>lua require 'functions.luasnip'.jump()<cr>", 'snippet jump forward' },
+  ["<c-y>"] = { "<cmd>lua require 'functions.luasnip'.jump_back()<cr>", 'snippet jump back' },
+
 }, {
   mode = 'i'
 })

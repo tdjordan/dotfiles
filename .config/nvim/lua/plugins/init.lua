@@ -253,20 +253,27 @@ M.init_packer = function ()
       --   'hrsh7th/cmp-vsnip'
       --   , after = 'nvim-cmp'
       -- }
-      -- use {
-      --   'petertriho/cmp-git'
-      --   , after = 'nvim-cmp'
-      --   , module_pattern = 'cmp_git.*'
-      --   , config = function()
-      --     require 'configs.completion.cmp.git'
-      --   end
-      -- }
+      use {
+        'petertriho/cmp-git'
+        , after = 'nvim-cmp'
+        -- , module_pattern = 'cmp_git.*'
+        , config = function()
+          require 'configs.completion.cmp.git'
+        end
+      }
       use {
         'Saecki/crates.nvim'
         , event = 'BufRead Cargo.toml'
         , wants = 'nvim-cmp'
         , config = function()
           require 'configs.completion.cmp.crates'
+        end
+      }
+      use {
+        'joshzcold/cmp-jenkinsfile'
+        , after = 'nvim-cmp'
+        , config = function()
+          require 'configs.completion.cmp.jenkinsfile'
         end
       }
 
@@ -293,7 +300,7 @@ M.init_packer = function ()
       -- }
       use {
         'rafamadriz/friendly-snippets'
-        , event = 'InsertEnter'
+        -- , event = 'InsertEnter'
       }
       -- use { 'Shougo/neosnippet' }
       -- use { 'Shougo/neosnippet-snippets' }
@@ -943,6 +950,10 @@ M.init_packer = function ()
       ---  language syntax
       ---
       use {
+        'ckipp01/nvim-jenkinsfile-linter'
+        , event = 'BufRead Jenkinsfile'
+      }
+      use {
         'martinda/Jenkinsfile-vim-syntax'
         , event = 'BufRead Jenkinsfile'
       }
@@ -1039,13 +1050,13 @@ M.init_packer = function ()
           require 'configs.orgmode'
         end
       }
-      use {
-        'milisims/tree-sitter-org'
-        , after = 'orgmode.nvim'
-        , config = function()
-          require 'configs.treesitter.parsers.org'
-        end
-      }
+      -- use {
+      --   'milisims/tree-sitter-org'
+      --   , after = 'orgmode.nvim'
+      --   , config = function()
+      --     require 'configs.treesitter.parsers.org'
+      --   end
+      -- }
       use {
         'akinsho/org-bullets.nvim'
         , after = 'orgmode.nvim'
@@ -1056,7 +1067,7 @@ M.init_packer = function ()
         end
       }
       use {
-        'vhyrro/neorg'
+        'nvim-neorg/neorg'
         , ft = 'norg'
         , after = 'nvim-treesitter'
         , config = function()

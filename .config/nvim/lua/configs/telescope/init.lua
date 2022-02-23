@@ -1,4 +1,4 @@
--- local actions = require 'telescope.actions'
+local actions = require 'telescope.actions'
 
 local telescope = require 'telescope'
 
@@ -34,22 +34,22 @@ telescope.setup {
     color_devicons = true,
     --use_less = true,
     --scroll_strategy = 'cycle'
-    -- mappings = {
-    --   i = {
+    mappings = {
+      i = {
     --     ["<c-j>"] = actions.move_selection_next,
     --     ["<c-k>"] = actions.move_selection_previous,
     --     ["<c-n>"] = actions.move_selection_next,
     --     ["<c-p>"] = actions.move_selection_previous,
-    --     ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+        ["<c-Q>"] = actions.smart_send_to_qflist + actions.open_qflist,
     --     ["<esc>"] = actions.close,
-    --   },
+      },
     --   n = {
     --     ["<c-j>"] = actions.move_selection_next,
     --     ["<c-k>"] = actions.move_selection_previous,
     --     ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
     --     ["<esc>"] = actions.close,
     --   }
-    -- }
+    }
   },
   pickers = {
     -- autocommands = {

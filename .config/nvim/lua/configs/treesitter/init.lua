@@ -8,14 +8,19 @@ parser_config.http = {
   }
 }
 
-require 'configs.treesitter.parsers.org'
+-- require 'configs.treesitter.parsers.org'
 
 require 'nvim-treesitter.configs'.setup {
   ensure_installed = 'all',
-  ignore_install = { 'haskell', 'norg' },
+  ignore_install = { 'haskell', 'vala' },
   highlight =
     { enable = true
-    , additional_vim_regex_highlighting = false
+    , disable = {
+      'org'
+    }
+    , additional_vim_regex_highlighting = {
+      'org'
+    }
   },
   refactor = {
     -- highlight_definitions = { enable = true },
@@ -72,9 +77,6 @@ require 'nvim-treesitter.configs'.setup {
       node_decremental  = 'grm'
     },
   },
-  -- indent = {
-  --   enable = true
-  -- },
   textobjects = {
     select = {
       enable  = true,
@@ -135,14 +137,14 @@ require 'nvim-treesitter.configs'.setup {
   },
   indent = {
     enable = true
-  },
-
+  }
 }
 
 -- local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
 -- parser_config.java.used_by = 'Jenkinsfile'
-local ft_to_parser = require 'nvim-treesitter.parsers'.filetype_to_parsername
-ft_to_parser.Jenkinsfile = 'java'
+-- local ft_to_parser = require 'nvim-treesitter.parsers'.filetype_to_parsername
+-- ft_to_parser.Jenkinsfile = 'groovy'
+-- ft_to_parser.Jenkinsfile = 'java'
 
 -- local keymap = vim.api.nvim_set_keymap
 

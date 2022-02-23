@@ -40,12 +40,9 @@ set.shiftround    = true                         -- nvim default : off
 
 -- When opening a new line and no filetype-specific indenting is enabled,
 -- keep the same indent as the line you are currently on.
--- opt.autoindent     = true                        -- nvim default : on
--- opt.autoindent     = true                        -- nvim default : on
+-- set.autoindent     = true                        -- nvim default : on
 set.cindent        = true
--- opt.smartindent    = true                        -- nvim default : off
- -- o.smartindent    = true                        -- nvim default : off
--- bo.smartindent    = true                        -- nvim default : off
+-- set.smartindent    = true                        -- nvim default : off
 
 -- Display the cursor position on the last line of the screen
 -- or in the status line of a window
@@ -100,7 +97,7 @@ set.cursorline     = true                        -- nvim default : off
 --      h = all previous modes when editing a help file
 --      a = all previous modes
 --      r = for hit-enter & more-propmt prompts
--- opt.mouse         = 'a'                          -- nvim defaults : 'a'
+-- set.mouse         = 'a'                          -- nvim defaults : 'a'
 set.mouse = 'n'
 
 -- o.guioptions = 'A'
@@ -118,12 +115,12 @@ set.termguicolors = true
 set.encoding       = 'utf-8'                     -- nvim defaults to 'utf-8'
 set.concealcursor  = 'nc'                        -- n:Normal v:Visual i:Insert c:Command ( Modes )
 set.conceallevel   = 2                           -- 'Conceal' hi group / text hidden unless has replacement ch
--- opt.conceallevel   = 0                           -- 'Conceal' hi group / text hidden unless has replacement ch
+-- set.conceallevel   = 0                           -- 'Conceal' hi group / text hidden unless has replacement ch
   -- TODO : to allow '' to be visible in markdown files, set conceallevel to 0
 -- o.langremap      = false                        -- nvim default ( langremap off )
 -- o.langnoremap    = true                         -- nvim default ( deprecated alias for nolangremap )
 -- o.laststatus     = true                         -- nvim defaults to 2 (statusline is alwasys shown)
--- opt.listchars      = 'tab:> ,trail:-,nbsp:+,eol:↴'      -- nvim default
+-- set.listchars      = 'tab:> ,trail:-,nbsp:+,eol:↴'      -- nvim default
 set.listchars =
   { tab   = '> '
   , trail = '-'
@@ -186,7 +183,7 @@ set.shell     = '/bin/zsh'                        -- nvim default : $SHELL or sh
 --   : force user to slect one from the menu
 --
 --  nvim default : 'menu,preview'
--- opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
+-- set.completeopt = { 'menuone', 'noinsert', 'noselect' }
 set.completeopt = { 'menuone', 'noselect' }
 
 -- Maximum width of text that is being inserted.
@@ -247,13 +244,13 @@ set.writebackup = false                          -- nvim default : (+writebackup
 
 -- List of directories for backup files
 --   nvim default : (unix) ? '.,~/tmp,~/' ; '.,$TEMP,c:\\tmp,c:\\temp'
--- opt.backupdir = '~/.local/share/nvim/tmp/backup/'   -- nvim default : see above
--- opt.backupdir = vim.fn.stdpath('data')..'/tmp/backup/'   -- nvim default : see above
+-- set.backupdir = '~/.local/share/nvim/tmp/backup/'   -- nvim default : see above
+-- set.backupdir = vim.fn.stdpath('data')..'/tmp/backup/'   -- nvim default : see above
 
 -- List of file patterns to skip creating a backup of
 --   nvim default : '/tmp/*,/$TMPDIR/*,$TMP/*,$TEMP/*'
  -- o.backupskip = '/tmp/*,/private/tmp/*'            -- nvim default : see above
--- opt.backupskip = '/tmp/*,/private/tmp/*'            -- nvim default : see above
+-- set.backupskip = '/tmp/*,/private/tmp/*'            -- nvim default : see above
 
 -- When writing a backup file, how should it be done?
 --   yes  : make a copy and overwrite the original
@@ -290,7 +287,7 @@ set.swapfile = false                             -- nvim default : on
 ------
 -- Allow Windows & Linux to share session files
 --   nvim default : blank,buffers, curdir, folds,help,tabpages,winsize
--- opt.sessionoptions:append { 'slash', 'unix' }   -- slash & unix are neovim deprecated
+-- set.sessionoptions:append { 'slash', 'unix' }   -- slash & unix are neovim deprecated
 
 ------  List mode
 ------

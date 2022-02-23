@@ -13,6 +13,14 @@ pnpm=(
   # @cucumber/language-server
   @microsoft/rush
   @stoplight/spectral-cli
+  jenni
+  editorconfig-checker
+  standard
+  textlint
+    textlint-rule-no-todo
+    textlint-rule-no-dead-link
+    textlint-rule-editorconfig
+    textlint-plugin-markdown
 )
 
 ###  pnpm retired
@@ -47,6 +55,7 @@ gem=(
   neovim
   cocoapods
   # sorbet
+  standardrb
 )
 
 brew=(
@@ -66,6 +75,12 @@ brew=(
   cocoapods
 )
 
+# luarocks=(
+#   lanes
+#   luacheck
+# )
+
+
 ###  pip retired
 
 time yarn global add ${yarn// / }
@@ -77,3 +92,5 @@ time pnpm up -g --loglevel error
 time pip3 install -U ${pip// / }
 
 time gem install --user-install ${gem// / }
+
+# time luarocks install ${luarocks// / }

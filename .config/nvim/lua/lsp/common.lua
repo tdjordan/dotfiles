@@ -12,18 +12,6 @@ local lsp = vim.lsp
 -- local prequire = require 'utility'.require
 -- local nvim_lsp = prequire 'lspconfig'
 
--- vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
---   vim.lsp.handlers.hover, {
---     border = 'single'
---   }
--- )
-
--- vim.lsp.handlers['textDocument.signatureHelp'] = vim.lsp.with(
---   vim.lsp.handlers.signature_help, {
---     border = 'single'
---   }
--- )
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(_, bufnr)

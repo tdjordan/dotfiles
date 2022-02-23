@@ -1,38 +1,104 @@
 -- local common = require 'lsp.common'
 local nls = require 'null-ls'
+local b = nls.builtins
 
 local sources = {
   ---  bash
-  nls.builtins.diagnostics.shellcheck.with {
+  ---
+  -- b.diagnostics.shellcheck
+  b.diagnostics.shellcheck.with {
     diagnostics_format = '[#{c}] #{m}'
   }
-  , nls.builtins.code_actions.shellcheck
-  , nls.builtins.formatting.shfmt
-  , nls.builtins.formatting.shellharden
+  , b.code_actions.shellcheck
+  , b.formatting.shfmt
+  , b.formatting.shellharden
+
   ---  zsh
-  , nls.builtins.diagnostics.zsh
+  ---
+  , b.diagnostics.zsh
+
   ---  terraform
-  , nls.builtins.formatting.terraform_fmt
+  ---
+  , b.formatting.terraform_fmt
+  -- , b.formatting.terrafmt        -- markdown terraform code block
+
   ---  c++
-  , nls.builtins.formatting.cmake_format
-  , nls.builtins.formatting.clang_format
+  ---
+  , b.formatting.cmake_format
+  , b.formatting.clang_format
+
   ---  makefiles
-  , nls.builtins.diagnostics.checkmake
+  ---
+  -- , b.diagnostics.checkmake
+
   ---  python
-  , nls.builtins.formatting.black
+  ---
+  , b.formatting.black
+  -- , b.diagnostics.pylint
+
+  ---  ruby
+  ---
+  , b.diagnostics.rubocop
+  , b.diagnostics.standardrb
+
+  ---  javascript
+  ---
+  , b.diagnostics.standardjs
+
   ---  docker
-  , nls.builtins.diagnostics.hadolint
+  ---
+  , b.diagnostics.hadolint
+
   ---  markdown
-  , nls.builtins.diagnostics.markdownlint
+  ---
+  , b.diagnostics.markdownlint
+  , b.diagnostics.proselint
+
   ---  nix
-  , nls.builtins.formatting.nixfmt
+  ---
+  -- , b.formatting.nixfmt
+  , b.diagnostics.statix
+  -- , b.diagnostics.deadnix
+  , b.code_actions.statix
+
   ---  xml
-  , nls.builtins.formatting.xmllint
+  ---
+  , b.formatting.xmllint
+
   ---  github actions
-  , nls.builtins.diagnostics.actionlint
-  -- , null_ls.builtins.formatting.eslint
-  -- null_ls.builtins.formatting.stylua
-  -- , null_ls.builtins.formatting.pretter.with {
+  ---
+  , b.diagnostics.actionlint.with {
+    runtime_condition = function()
+      local current_file = vim.api.nvim_buf_get_name(0)
+      local regex = vim.regex( ".github/workflows" )
+      return regex:match_str( current_file )
+    end
+  }
+
+  --- lua
+  ---
+  , b.formatting.stylua.with {
+    condition = function(utils)
+      return utils.root_has_file { 'stylua.toml', '.stylua.toml' }
+    end
+  }
+  -- , b.diagnostics.selene
+
+  ---  text files
+  ---
+  -- , b.diagnostics.textlint
+  , b.diagnostics.vale
+
+  ---  gitsigns
+  ---
+  , b.code_actions.gitsigns
+
+  ---  Protocol Buffers
+  ---
+  -- , b.formatting.protolint
+
+  -- , b.formatting.eslint
+  -- , b.formatting.prettier.with {
   --   filetypes = {
   --     'html'
   --     , 'json'
@@ -40,15 +106,39 @@ local sources = {
   --     , 'markdown'
   --   }
   -- }
-  ---  plugins
+
+  ---  editorconfig
   ---
-  , nls.builtins.code_actions.gitsigns
+  , b.diagnostics.editorconfig_checker.with {
+    condition = function (utils)
+      return utils.root_has_file { '.editorconfig' }
+    end
+  }
+
+  ---  git repositories
+  ---
+  , b.diagnostics.gitlint
+
+  ---  refactoring code actions
+  ---
+  -- , b.code_actions.refactoring
+
+  ---  dictionary
+  ---
+  , b.hover.dictionary
+
+  ---  trail space
+  ---
+  , b.diagnostics.trail_space.with {
+    disabled_filetypes =
+      { 'gitcommit'
+      , 'help'
+      , 'man'
+      , 'packer'
+    }
+  }
 }
 
 nls.setup {
   sources = sources
 }
-
--- require 'lspconfig'['null-ls'].setup {
---   on_attach = common.on_attach
--- }

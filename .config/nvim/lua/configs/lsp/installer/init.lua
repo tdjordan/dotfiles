@@ -28,6 +28,7 @@ local servers =
   , 'kotlin_language_server'
   , 'lemminx'
   -- , 'mint'
+  -- , 'omnisharp'
   -- , 'powershell_es'
   , 'pyright'
   , 'rnix'
@@ -42,7 +43,7 @@ local servers =
   , 'vimls'
   , 'yamlls'
   -- , 'zeta_note'
-  , 'zk'
+  -- , 'zk'
 }
 
 for _, name in pairs(servers) do

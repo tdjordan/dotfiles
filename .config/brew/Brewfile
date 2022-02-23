@@ -24,7 +24,9 @@ brew "gitui"
 brew "git-delta"
 brew "git-extras"
 brew "actionlint"
+brew "lefthook"
 brew "pre-commit"
+brew "gitlint"
 
 ###  base build tools
 brew "cmake"
@@ -41,6 +43,7 @@ brew "doxygen"
 brew "fd"
 brew "ripgrep"
 brew "tree"
+brew "pstree"
 brew "sk"
 brew "the_silver_searcher"
 brew "sd"
@@ -75,11 +78,16 @@ brew "tree-sitter"
 brew "neovim", args: ["HEAD"]
 brew "editorconfig"
 brew "markdownlint-cli"
+brew "proselint"
 
 ###  lua
 ###
 brew "luvit"
 brew "stylua"
+
+###  nix
+###
+brew "statix"
 
 ###  terminals
 ###
@@ -192,6 +200,10 @@ brew "haskell-language-server"
 brew "poetry"
 brew "black"
 
+###  Ruby Language
+###
+brew "selene"
+
 ###  saltstack
 ###
 brew "salt"
@@ -278,6 +290,14 @@ brew "julia"
 brew "flux"
 brew "influxdb"
 brew "influxdb-cli"
+
+###  Kotlin
+###
+brew "detekt"
+
+###  dotnet
+###
+brew "dotnet"
 
 ###  fonts
 ###

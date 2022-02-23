@@ -24,3 +24,13 @@ require 'cmp_git'.setup {
     }
   }
 }
+
+local cmp = require 'cmp'
+cmp.setup.filetype( 'gitcommit', {
+  sources = cmp.config.sources {
+    { name = 'cmp_git'  },
+    { name = 'buffer'   },
+    { name = 'luasnip'  },
+    { name = 'nvim_lsp' }
+  }
+})
