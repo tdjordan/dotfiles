@@ -817,7 +817,7 @@ schemes:
       background: '#282828'
       foreground: '#ebdbb2'
       # background: '0x000000'
-      # foreground: '0xeaeaea'
+      # foreground: '0x6c782e'
 
     # Bright and dim foreground colors
     #
@@ -1492,6 +1492,9 @@ key_bindings:
 
   - { key: N,        mods: Control | Shift, action: SpawnNewInstance         }
 
+  ###  Work around for <c-q> on macOS
+  ###    see: https://github.com/alacritty/alacritty/issues/1359
+  - { key: Q,        mods: Control, chars: "\x11"                            }
   # - { key: L,        mods: Control, chars: "\x0c"                            }
   - { key: Home,     mods: Alt,     chars: "\x1b[1;3H"                       }
   - { key: Home,                    chars: "\x1bOH",        mode: AppCursor  }
