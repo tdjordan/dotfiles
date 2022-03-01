@@ -213,6 +213,7 @@ brew "salt-lint"
 ###
 cask "slack"
 # cask "webex"
+cask "signal"
 
 ###  Kubernetes
 ###
