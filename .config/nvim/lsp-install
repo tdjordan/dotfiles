@@ -20,7 +20,7 @@ pnpm=(
     textlint-rule-no-todo
     textlint-rule-no-dead-link
     textlint-rule-editorconfig
-    textlint-plugin-markdown
+    # textlint-plugin-markdown
 )
 
 ###  pnpm retired
@@ -73,6 +73,7 @@ brew=(
   hadolint
   composer
   cocoapods
+  ktlint
 )
 
 # luarocks=(
