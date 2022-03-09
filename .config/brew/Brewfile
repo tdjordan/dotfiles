@@ -260,6 +260,7 @@ brew "m-cli"
 ###
 brew "mermaid-cli"
 brew "pandoc"
+brew "graphviz"
 
 ###  Project Tools
 ###
@@ -295,6 +296,7 @@ brew "influxdb-cli"
 ###  Kotlin
 ###
 brew "detekt"
+brew "ktlint"
 
 ###  dotnet
 ###
