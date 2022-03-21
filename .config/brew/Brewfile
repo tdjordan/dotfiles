@@ -65,6 +65,11 @@ brew "jfrog-cli"
 brew "yq"
 brew "yamllint"
 
+###  csv utils
+###
+brew "miller"
+brew "dsq"
+
 ###  nodejs
 ###
 brew "node"
@@ -79,6 +84,7 @@ brew "neovim", args: ["HEAD"]
 brew "editorconfig"
 brew "markdownlint-cli"
 brew "proselint"
+brew "codespell"
 
 ###  lua
 ###
@@ -195,7 +201,7 @@ brew "efm-langserver"
 brew "bear"
 brew "haskell-language-server"
 
-###  Python Lanaguage
+###  Python Language
 ###
 brew "poetry"
 brew "black"
@@ -223,6 +229,13 @@ brew "helm"
 brew "linkerd"
 brew "cdk8s"
 brew "opa"
+brew "kind"
+
+###  Templating
+###
+# brew "dhall"
+brew "dhall-json"
+# brew "dhall-yaml"
 
 ###  AWS Tools
 ###
