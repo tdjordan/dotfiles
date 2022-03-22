@@ -36,8 +36,8 @@ telescope.setup {
     --scroll_strategy = 'cycle'
     mappings = {
       i = {
-    --     ["<c-j>"] = actions.move_selection_next,
-    --     ["<c-k>"] = actions.move_selection_previous,
+        ["<c-j>"] = actions.move_selection_next,
+        ["<c-k>"] = actions.move_selection_previous,
     --     ["<c-n>"] = actions.move_selection_next,
     --     ["<c-p>"] = actions.move_selection_previous,
         ["<c-Q>"] = actions.smart_send_to_qflist + actions.open_qflist,

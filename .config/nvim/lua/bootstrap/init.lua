@@ -1,6 +1,10 @@
 local fn  = vim.fn
 local cmd = vim.cmd
 
+---  import options and things
+---
+-- require 'options'
+
 ---  bootstrap packer
 ---
 local bootstrap_packer = function()

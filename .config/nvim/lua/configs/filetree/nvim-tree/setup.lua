@@ -10,16 +10,6 @@ g.nvim_tree_group_empty = 1
 -- g.symlink_arrow = ' >> '
 -- g.nvim_tree_respect_buf_cwd = 0
 -- g.nvim_tree_create_inclosed_folder = 1
-g.nvim_tree_window_picker_exclude = {
-  filetype = {
-    'notify',
-    'packer',
-    'qf'
-  },
-  buftype = {
-    'terminal'
-  }
-}
 g.nvim_tree_special_files = {
   ['init.lua'] = true,
   ['Cargo.tom'] = true,

@@ -52,7 +52,7 @@ local normal_mappings = {
 
     , c = {
       name = 'change'
-      , ['"'] = { [[ciwxx""P]], 'to signle quotes' }
+      , ['"'] = { [[ciwxx""P]], 'to single quotes' }
       , ["'"] = { [[ciw''<esc>P]], 'surround word with single   quotes'   }
       , ['['] = { 'ciw[]<esc>P',   'surround word with square   brackets' }
       , [']'] = { 'ciw{}<esc>P',   'surround word with squiggly brackets' }
@@ -126,6 +126,7 @@ local normal_mappings = {
     , a = { '<cmd>lua require "telescope.builtin".lsp_code_actions()<cr>',        'code action'     }
     , d = { '<cmd>lua require "telescope.builtin".diagnostics({buffnr = 0})<cr>', 'document diagnostics' }
     , f = { '<cmd>lua vim.lsp.buf.formatting()<cr>',                              'format'          }
+    , h = { '<cmd>lua vim.lsp.buf.hover()<cr>',                              'hover'                }
     , i = { '<cmd>LspInfo<cr>',                                                   'info'            }
     , I = { '<cmd>LspInstallInfo<cr>',                                            'installer info'  }
     , j = { '<cmd>lua vim.diagnostic.goto_next()<cr>',                            'next diagnositc' }
@@ -133,12 +134,14 @@ local normal_mappings = {
     , l = { '<cmd>lua vim.lsp.codelens.run()<cr>',                                'codelens action' }
     , p = {
       name = '+peek'
-      , d = { '<cmd>lua require "lvim.lsp.peek".Peek("definition")<cr>',     'definition'      }
+      -- , d = { '<cmd>lua require "lvim.lsp.peek".Peek("definition")<cr>',     'definition'      }
+      , d = { '<cmd>lua vim.lsp.buf.definition()<cr>',                       'definition'      }
       , i = { '<cmd>lua require "lvim.lsp.peek".Peek("implementation")<cr>', 'implementation'  }
+      , r = { '<cmd>lua vim.lsp.buf.references()<cr>',                       'references'      }
       , t = { '<cmd>lua require "lvim.lsp.peek".Peek("typeDefinition")<cr>', 'type definition' }
     }
     , q = { '<cmd>lua vim.diagnostic.setloclist()<cr>',               'quickfix'              }
-    , r = { '<cmd>lua vimlsp.buf.rename()<cr>',                       'rename'                }
+    , r = { '<cmd>lua vim.lsp.buf.rename()<cr>',                       'rename'                }
     , s = { '<cmd>Telescope lsp_document_symbols<cr>',                'document symbols'      }
     , S = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>',       'workspace symbols'     }
     , w = { '<cmd>lua require "telescope.builtin".diagnostics()<cr>', 'workspace diagnostics' }
@@ -285,7 +288,7 @@ local normal_mappings = {
 
 wk.register(normal_mappings, normal_mode)
 
----  Fix wierd default mappings
+---  Fix weird default mappings
 ---
 wk.register({
   Y = { 'y$', 'yank to end of line instead of whole line' }

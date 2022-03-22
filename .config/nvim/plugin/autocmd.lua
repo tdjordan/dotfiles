@@ -12,7 +12,7 @@ local cmd = vim.cmd
 --   au User PackerCompileDone ++once lua print "PackerCompile done ..."
 -- ]]
 
----  When opening a file, return to last edit postion
+---  When opening a file, return to last edit position
 ---
 cmd [[
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line('$') | execute 'normal! g`"' | endif
@@ -20,7 +20,7 @@ cmd [[
 
 ---  Text Yank
 ---
-vim.cmd [[
+cmd [[
   autocmd TextYankPost * silent lua require'vim.highlight'.on_yank {timeout = 100}
 ]]
 
@@ -37,7 +37,7 @@ cmd [[
 ]]
 
 -- cmd [[
---   autocmd FileType NvimTree call glyph_palette#apply()
+--   autocmd FileType NvimTree_* call glyph_palette#apply()
 -- ]]
 
 -- cmd [[

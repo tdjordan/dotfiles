@@ -35,9 +35,9 @@ M.init_packer = function ()
       ---
       use {
         'lewis6991/impatient.nvim'
-        , config = function()
-          require 'impatient'.enable_profile()
-        end
+        -- , config = function()
+        --   require 'impatient'.enable_profile()
+        -- end
       }
 
       ---  Packer itself
@@ -578,7 +578,7 @@ M.init_packer = function ()
       --     g.gruvbox_material_better_performance          = 1         -- default: 0 ( off )
 
       --     g.gruvbox_material_background                  = 'hard'    -- default: 'medium'
-      --     -- g.gruvbox_material_transparent_background    = 1           -- defualt: 0 ( off )
+      --     -- g.gruvbox_material_transparent_background    = 1           -- default: 0 ( off )
       --     g.gruvbox_material_visual                      = 'reverse' -- default: 'grey background'
       --     g.gruvbox_material_sign_column_background      = 'none'    -- default: 'default'
       --     g.gruvbox_material_diagnostic_line_highlight   = 1         -- default: 0 ( off )
@@ -845,15 +845,15 @@ M.init_packer = function ()
       -- }
       use {
         'kyazdani42/nvim-tree.lua'
-        , cmd =
-          { 'NvimTreeClipboard'
-          , 'NvimTreeClose'
-          , 'NvimTreeFindFile'
-          , 'NvimTreeOpen'
-          , 'NvimTreeRefresh'
-          , 'NvimTreeToggle'
-        }
-        , module_pattern = 'nvim-tree.*'
+        -- , cmd =
+        --   { 'NvimTreeClipboard'
+        --   , 'NvimTreeClose'
+        --   , 'NvimTreeFindFile'
+        --   , 'NvimTreeOpen'
+        --   , 'NvimTreeRefresh'
+        --   , 'NvimTreeToggle'
+        -- }
+        -- , module_pattern = 'nvim-tree.*'
         , setup = function()
           require 'configs.filetree.nvim-tree.setup'
         end
@@ -875,20 +875,27 @@ M.init_packer = function ()
       ---
       -- use { 'editorconfig/editorconfig-vim' }
 
-      ---  convience
+      ---  convenience
       ---
       -- use { 'benekastah/neomake' }
       -- use { 'preservim/nerdcommenter' }
+      -- use {
+      --   'b3nj5m1n/kommentary'
+      --   , event = 'CursorHold'
+      --   , setup = function()
+      --     local g = vim.g
+      --     -- do not load the default komentary mappings
+      --     g.kommentary_create_default_mappings = false
+      --   end
+      --   , config = function()
+      --     require 'configs.kommentary'
+      --   end
+      -- }
       use {
-        'b3nj5m1n/kommentary'
+        'numToStr/Comment.nvim'
         , event = 'CursorHold'
-        , setup = function()
-          local g = vim.g
-          -- do not load the default komentary mappings
-          g.kommentary_create_default_mappings = false
-        end
         , config = function()
-          require 'configs.kommentary'
+          require 'configs.comment'
         end
       }
 
@@ -923,7 +930,7 @@ M.init_packer = function ()
         , cmd = 'IndentBlanklineToggle'
         , module_pattern = 'indent_blankline.*'
         , config = function()
-          require 'configs.indention.blankline'
+          require 'configs.indentation.blankline'
         end
       }
 

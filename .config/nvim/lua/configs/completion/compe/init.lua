@@ -1,7 +1,5 @@
 local api = vim.api
 
--- o.completeopt = 'menuone,noselect'
--- vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
 vim.opt.completeopt = { 'menuone', 'noselect' }
 
 require 'compe'.setup {

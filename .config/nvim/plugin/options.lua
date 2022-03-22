@@ -4,9 +4,6 @@
 ------
 ------------------------
 
--- local cmd = vim.cmd
--- local opt = vim.opt
---
 ---  got the idea of using set from
 ---    https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/
 ---
@@ -20,7 +17,7 @@ local set = vim.opt
 
 ------  Vim Settings
 ------
--- Indention settings for 2 spaces instead of tabs
+-- Indentation settings for 2 spaces instead of tabs
 --  o.smarttab      = true                         -- nvim default : on
 --  o.expandtab     = true                         -- nvim default : off
 -- bo.expandtab     = o.expandtab                  -- nvim default : off
@@ -82,7 +79,7 @@ else
   set.laststatus     = 2                           -- nvim default : 2
 end
 
--- Hightlight the screen line of the cursor with CursorLine
+-- Highlight the screen line of the cursor with CursorLine
 set.cursorline     = true                        -- nvim default : off
 
 -- When on, lines longer than width of window will wrap
@@ -119,7 +116,7 @@ set.conceallevel   = 2                           -- 'Conceal' hi group / text hi
   -- TODO : to allow '' to be visible in markdown files, set conceallevel to 0
 -- o.langremap      = false                        -- nvim default ( langremap off )
 -- o.langnoremap    = true                         -- nvim default ( deprecated alias for nolangremap )
--- o.laststatus     = true                         -- nvim defaults to 2 (statusline is alwasys shown)
+-- o.laststatus     = true                         -- nvim defaults to 2 (statusline is always shown)
 -- set.listchars      = 'tab:> ,trail:-,nbsp:+,eol:↴'      -- nvim default
 set.listchars =
   { tab   = '> '
@@ -162,7 +159,7 @@ set.backspace = 'indent,eol,start'                -- nvim default : 'ident,eol,s
 set.shell     = '/bin/zsh'                        -- nvim default : $SHELL or sh or cmd.exe
 
 -- Allow for old vim shell muscle memory
---cnoreabbrev sh te
+--cnoreabbrev sh terminal
 
 -- Insert mode completion options
 --   menu
@@ -180,7 +177,7 @@ set.shell     = '/bin/zsh'                        -- nvim default : $SHELL or sh
 --   : no effect if 'longest' is present
 --   noselect
 --   : do not select a match in the menu
---   : force user to slect one from the menu
+--   : force user to select one from the menu
 --
 --  nvim default : 'menu,preview'
 -- set.completeopt = { 'menuone', 'noinsert', 'noselect' }
@@ -211,7 +208,7 @@ set.showcmd   = true                             -- nvim default : (unix) ? off 
 
 --------------------
 ------
-------  backup/persistance settings
+------  backup/persistence settings
 ------
 --------------------
 
@@ -313,7 +310,7 @@ set.updatetime  = 100
 -- do not give |ins-completion-menu| messages.
 set.shortmess:append { c = true }
 
--- time to wait for a mpped sequence ot complete ( in milliseconds )
+-- time to wait for a mpped sequence to complete ( in milliseconds )
 set.timeoutlen = 10
 
 -- always show signcolumns

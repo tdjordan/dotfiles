@@ -17,7 +17,7 @@ local g   = vim.g
 g.gruvbox_material_better_performance          = 1         -- default: 0 ( off )
 
 g.gruvbox_material_background                  = 'hard'    -- default: 'medium'
--- g.gruvbox_material_transparent_background    = 1           -- defualt: 0 ( off )
+-- g.gruvbox_material_transparent_background    = 1           -- default: 0 ( off )
 g.gruvbox_material_visual                      = 'reverse' -- default: 'grey background'
 g.gruvbox_material_sign_column_background      = 'none'    -- default: 'default'
 g.gruvbox_material_diagnostic_line_highlight   = 1         -- default: 0 ( off )

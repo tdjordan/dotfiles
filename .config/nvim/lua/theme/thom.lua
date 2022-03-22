@@ -14,7 +14,7 @@ local base = {
   , hslea6962 = hsl(  3, 76, 65 )     -- hsl('#ea6962')
 }
 
-local pallette = {
+local palette = {
   dark = {
       black            = hsl(   0,  0,  0 ) -- hsl('#000000')
     , bg               = base.hsl282828     -- hsl('#282828')
@@ -54,7 +54,7 @@ local pallette = {
   }
 }
 
-local p = pallette.dark
+local p = palette.dark
 
 return lush( function()
   return {

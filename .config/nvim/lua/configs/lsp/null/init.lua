@@ -2,6 +2,8 @@
 local nls = require 'null-ls'
 local b = nls.builtins
 
+local command_resolver = require 'null-ls.helpers.command_resolver'
+
 local sources = {
   ---  bash
   ---
@@ -45,6 +47,16 @@ local sources = {
   ---
   , b.diagnostics.standardjs
 
+  ---  kotlin
+  ---
+  , b.diagnostics.ktlint.with {
+    -- enable the Android Kotlin Style Guide
+    extra_args = { '--android' }
+  }
+  , b.formatting.ktlint.with {
+    extra_args = { '--android' }
+  }
+
   ---  docker
   ---
   , b.diagnostics.hadolint
@@ -52,7 +64,9 @@ local sources = {
   ---  markdown
   ---
   , b.diagnostics.markdownlint
+  , b.formatting.markdownlint
   , b.diagnostics.proselint
+  , b.code_actions.proselint
 
   ---  nix
   ---
@@ -63,6 +77,7 @@ local sources = {
 
   ---  xml
   ---
+  , b.diagnostics.tidy
   , b.formatting.xmllint
 
   ---  github actions
@@ -98,14 +113,19 @@ local sources = {
   -- , b.formatting.protolint
 
   -- , b.formatting.eslint
-  -- , b.formatting.prettier.with {
-  --   filetypes = {
-  --     'html'
-  --     , 'json'
-  --     , 'yaml'
-  --     , 'markdown'
-  --   }
-  -- }
+  , b.formatting.prettier.with {
+    dynamic_command = function(params)
+      return command_resolver.from_node_modules( params )
+          or command_resolver.from_yarn_pnp( params )
+          or vim.fn.executable( params.command ) == 1 and params.command
+    end
+    , filetypes = {
+      'html'
+      , 'json'
+      , 'yaml'
+      , 'markdown'
+    }
+  }
 
   ---  editorconfig
   ---
@@ -113,6 +133,7 @@ local sources = {
     condition = function (utils)
       return utils.root_has_file { '.editorconfig' }
     end
+    , diagnostics_format = 'ed [#{c}] #{m}'
   }
 
   ---  git repositories
@@ -125,7 +146,9 @@ local sources = {
 
   ---  dictionary
   ---
-  , b.hover.dictionary
+  -- , b.hover.dictionary
+  , b.diagnostics.codespell
+  , b.formatting.codespell
 
   ---  trail space
   ---
@@ -137,6 +160,10 @@ local sources = {
       , 'packer'
     }
   }
+
+  ---  Completions
+  ---
+  , b.completion.luasnip
 }
 
 nls.setup {

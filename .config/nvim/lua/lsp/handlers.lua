@@ -21,7 +21,7 @@ local sign_column = function()
     virtual_text = {
       prefix = "",     --        
       spacing = 3,
-      source = 'always'
+      -- source = 'always'
     }
   }
 end

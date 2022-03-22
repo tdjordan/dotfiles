@@ -1,4 +1,5 @@
 local api = vim.api
+local nls = require 'null-ls'
 
 -- local theme_colors = require 'nightfox.colors'.load()
 
@@ -22,6 +23,51 @@ local colors = {
   scrollbar = '#008080',
 }
 
+local list_registered_providers_names = function( filetype )
+  local s = require 'null-ls.sources'
+  local available_sources = s.get_available( filetype )
+  local registered = {}
+  for _, source in ipairs( available_sources ) do
+    for method in pairs( source.methods ) do
+      registered[method] = registered[method] or {}
+      table.insert( registered[method], source.name )
+    end
+  end
+  return registered
+end
+
+local list_registered_formatters = function( filetype )
+  local method = nls.methods.FORMATTING
+  return list_registered_providers_names( filetype )[method] or {}
+end
+
+local list_registered_linters = function( filetype )
+  local method = nls.methods.DIAGNOSTICS
+  return list_registered_providers_names( filetype )[method] or {}
+end
+
+local unique_list = function( t )
+  -- make unique keys
+  local hash = {}
+  for _, v in ipairs( t ) do
+    if not ( v == "trail-space" ) then
+      hash[v] = true
+    end
+  end
+
+  -- transform keys back into values
+  local res = {}
+  for k,_ in pairs( hash ) do
+    res[#res+1] = k
+  end
+
+  print("res  : " .. vim.inspect(res))
+
+  return res
+end
+
+---  Build StatusLine Components
+---
 local components = {
   branch = {
     "b:gitsigns_head"
@@ -31,45 +77,56 @@ local components = {
   },
   lsp = {
     function(msg)
-      msg = msg or "LS Inactive"
+      msg = msg or ''
       local buf_clients = vim.lsp.buf_get_clients()
       if next(buf_clients) == nil then
         if type(msg) == "boolean" or #msg == 0 then
-          return "LS Inactive"
+          return ''
         end
         return msg
       end
-      -- local buf_ft = vim.bo.filetype
+      local buf_ft = vim.bo.filetype
       local buf_client_names = {}
 
       -- add client
       for _, client in pairs(buf_clients) do
-        if client.name ~= "null-ls" then
+        if client.name ~= 'null-ls' then
           table.insert(buf_client_names, client.name)
         end
         -- vim.notify(client.name)
-        return client.name
+        -- return client.name
       end
 
       -- add formatter
-      -- local formatters = require "lvim.lsp.null-ls.formatters"
-      -- local supported_formatters = formatters.list_registered_providers(buf_ft)
-      -- vim.list_extend(buf_client_names, supported_formatters)
+      local supported_formatters = list_registered_formatters( buf_ft )
+      -- print(vim.inspect(supported_formatters))
+      -- vim.list_extend( buf_client_names, supported_formatters )
 
       -- add linter
       -- local linters = require "lvim.lsp.null-ls.linters"
-      -- local supported_linters = linters.list_registered_providers(buf_ft)
+      local supported_linters = list_registered_linters( buf_ft )
+      -- print(vim.inspect(supported_linters))
       -- vim.list_extend(buf_client_names, supported_linters)
+      vim.list_extend(supported_linters, supported_formatters)
+
+      -- local x = vim.tbl_values(buf_client_names)
+      -- print(vim.inspect(x))
 
       -- return table.concat(buf_client_names, ", ")
-      return buf_client_names.name
+      local res = unique_list( supported_linters )
+      vim.list_extend( buf_client_names, res )
+      return table.concat(buf_client_names, ", ")
+      -- return table.concat(res, ", ")
+      -- return buf_client_names.name
+      -- return '[' .. table.concat(buf_client_names, ", ") .. ']'
+      -- return '[' .. table.concat(buf_client_names, ", ") .. ']'
     end,
-    icon = " ",
+    -- icon = ' ',
     -- color = { gui = "bold" },
     -- color = { fg = colors.yellow }
-    color = { fg = colors.cyan }
+    -- color = { fg = colors.cyan }
     -- cond = conditions.hide_in_width,
-    -- cond = function() return vim.fn.winwidth(0) > 80 end
+    cond = function() return vim.fn.winwidth(0) > 80 end
   },
   mixedindent = {
     function()
@@ -143,10 +200,11 @@ require 'lualine'.setup {
     , component_separators = { '', '' }
     , section_separators = { '', '' }
     -- , section_separators = {'', ''}
-    -- , extenstions = {
+    -- , extensions = {
     --   'nvim-tree'
     -- }
     -- , always_divide_middle = true
+    -- , globalstatus = false
     , disabled_filetypes = {
       'NvimTree'
       , 'dashboard'
@@ -322,7 +380,7 @@ require 'lualine'.setup {
 --     FileName = {
 --       provider = {space, 'FileName', 'FileSize'}
 --       , condition = buffer_not_empty
---       , hightlight = {
+--       , highlight = {
 --         _HEX_COLORS.text, _HEX_COLORS.bar.side, 'bold'
 --       }
 --     }

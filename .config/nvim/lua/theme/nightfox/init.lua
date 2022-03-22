@@ -9,7 +9,7 @@ nightfox.setup({
     { comments = 'italic'
     , keywords = 'italic'
     , functions = 'italic'
-    -- , srings = 'NONE'
+    -- , strings = 'NONE'
     -- , variables = 'italic'
   }
   , inverse =

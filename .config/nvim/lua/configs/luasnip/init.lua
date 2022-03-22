@@ -3,7 +3,7 @@ local ls = require 'luasnip'
 local types = require 'luasnip.util.types'
 
 ls.config.set_config {
-  --  THis tells LuaSnip to remember to keep around hte last snippet.
+  --  This tells LuaSnip to remember to keep around the last snippet.
   --  You can jump back into it even if you move outside of the selection.
   history = true,
 
@@ -193,4 +193,5 @@ ls.snippets = {
 }
 
 require 'luasnip.loaders.from_vscode'.lazy_load()
+-- require 'luasnip.loaders.from_snipmate'.lazy_load()
 -- require("luasnip/loaders/from_vscode").lazy_load({ paths = { "~/.local/share/nvim/site/pack/packer/opt/friendly-snippets" } })

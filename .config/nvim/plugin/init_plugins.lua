@@ -5,9 +5,18 @@ local packer_installed, _ = pcall(cmd, [[packadd packer.nvim]])
 local packer_compiled_fn  = fn.stdpath('config')..'/lua/packer_compiled.lua'
 local packer_compiled     = fn.filereadable(packer_compiled_fn) == 1
 
-if not packer_installed or not packer_compiled then
-  require 'bootstrap'
-end
+_ = (not packer_installed or not packer_compiled) and require 'bootstrap'
+-- if not packer_installed or not packer_compiled then
+--   require 'bootstrap'
+-- end
+
+require 'impatient'
+-- require 'impatient'.enable_profile()
+local packer_compiled_post_boot = fn.filereadable(packer_compiled_fn) == 1
+_ = packer_compiled_post_boot and require 'packer_compiled'
+-- if packer_compiled_post_boot then
+--   require 'packer_compiled'
+-- end
 
 cmd [[ silent! command PackerSync    lua require('plugins').init_packer() require('packer').sync()           ]]
 cmd [[ silent! command PackerCompile lua require('plugins').init_packer() require('packer').compile()        ]]
@@ -16,9 +25,3 @@ cmd [[ silent! command PackerCompile lua require('plugins').init_packer() requir
 cmd [[ silent! command PackerClean   lua require('plugins').init_packer() require('packer').clean()          ]]
 cmd [[ silent! command PackerProfile lua require('plugins').init_packer() require('packer').profile_output() ]]
 cmd [[ silent! command PackerStatus  lua require('plugins').init_packer() require('packer').status()         ]]
-
--- require 'impatient'
-local packer_compiled_post_boot = fn.filereadable(packer_compiled_fn) == 1
-if packer_installed and packer_compiled_post_boot then
-    require 'packer_compiled'
-end

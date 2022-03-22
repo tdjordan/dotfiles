@@ -39,9 +39,9 @@ local hsl = lush.hsl
 local sea_foam  = hsl(208, 80, 80)  -- Vim has a mapping, <n>C-a and <n>C-x to
 local sea_crest = hsl(208, 90, 30)  -- increment or decrement integers, or
 local sea_deep  = hsl(208, 90, 10)  -- you can just type them normally.
-local sea_gull  = hsl("#c6c6c6")    -- Or use hex form, preceeded with a #.
+local sea_gull  = hsl("#c6c6c6")    -- Or use hex form, preceded with a #.
 
--- Note: Some CursorLine highlighting will obscure any other highlighing on the
+-- Note: Some CursorLine highlighting will obscure any other highlighting on the
 --       current line until you move your cursor.
 --
 --       You can disable the cursor line temporarily with:
@@ -52,7 +52,7 @@ local sea_gull  = hsl("#c6c6c6")    -- Or use hex form, preceeded with a #.
 --
 --   Relative adjustment: rotate(), saturate(), desaturate(), lighten(), darken()
 --                        aliased to ro(), sa() de(), li(), da()
---   Overide:             hue(), saturation(), lightness()
+--   Override:             hue(), saturation(), lightness()
 --   Access:              .h, .s, .l
 --   Coercion:            tostring(), "Concatenation: " .. color
 
@@ -104,7 +104,7 @@ local theme = lush(function()
     -- linked group options (See h: hi-link). (`setlocal cursorcolumn`)
     -- CursorColumn { CursorLine },
 
-    -- We can make white space characters slighly visible
+    -- We can make white space characters slightly visible
     -- Whitespace { fg = Normal.bg.desaturate(25).lighten(25) },
 
     -- We can inherit properties if we want to tweak a group slightly
