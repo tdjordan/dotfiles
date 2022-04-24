@@ -41,5 +41,6 @@ export DOTNET_ROOT="/usr/local/opt/dotnet/libexec"
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 export PATH=$PATH:$HOME/.gem/ruby/3.0.0/bin
+export PATH=$PATH:$HOME/.linkerd2/bin
 
 source $HOME/.paths.local

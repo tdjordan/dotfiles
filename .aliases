@@ -30,6 +30,7 @@ alias ll='${_ls_command} -AlF ${color}'
 alias lla='${_ls_command} -AlFh ${color}'
 
 alias h='history'
+alias hsr='history | rg '
 
 alias fdi="fd -H --no-ignore -E '.git/*'"
 alias fdip="fd -H --no-ignore -E '.git/*' --full-path"
