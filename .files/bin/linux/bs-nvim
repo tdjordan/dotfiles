@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=2164
 
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
 sudo apt-get update
@@ -20,22 +21,22 @@ sudo apt-get install -y libyaml-doc
 sudo apt-get install -y libyaml-cpp-dev
 
 sudo pip3 install pyyaml >/dev/null
-#sudo pip2 install msgpack-python
-#sudo pip3 install msgpack-python
+# sudo pip2 install msgpack-python
+# sudo pip3 install msgpack-python
 
 # setup the alternatives
 sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
-#sudo update-alternatives --config vi
+# sudo update-alternatives --config vi
 sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
-#sudo update-alternatives --config vim
+# sudo update-alternatives --config vim
 sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
-#sudo update-alternatives --config editor
+# sudo update-alternatives --config editor
 sudo update-alternatives --install /usr/bin/vimdiff vimdiff /usr/bin/nvim 60
-#sudo update-alternatives --config vimdiff
+# sudo update-alternatives --config vimdiff
 sudo update-alternatives --install /usr/bin/view view /usr/bin/nvim 60
-#sudo update-alternatives --config view
+# sudo update-alternatives --config view
 sudo update-alternatives --install /usr/bin/ex ex /usr/bin/nvim 60
-#sudo update-alternatives --config ex
+# sudo update-alternatives --config ex
 
 # bring in powerline fonts
 sudo apt-get install -y fonts-powerline
@@ -57,21 +58,21 @@ mkdir -p ~/.original.config
 ( mv -n ~/.nvim   ~/.original.config/. ; rm ~/.nvim   ) 2>/dev/null
 
 ( mv -n ~/.config/nvim/init.vim ~/.original.config/. ; rm ~/.config/nvim/init.vim ) 2>/dev/null
+( mv -n ~/.config/nvim/init.lua ~/.original.config/. ; rm ~/.config/nvim/init.lua ) 2>/dev/null
 
 # link in new config
-mkdir -p ~/.config/nvim
-pushd ~/.config/nvim
-ln -s ../../.files/.config/nvim/init.vim
-pushd ~
-ln -s .config/nvim/init.vim .nvimrc
-ln -s .nvimrc .vimrc
-ln -s .local/share/nvim .nvim
-ln -s .nvim .vim
+# mkdir -p ~/.config/nvim
+# pushd ~/.config/nvim
+# ln -s ../../.files/.config/nvim/init.vim
+# pushd ~
+# ln -s .config/nvim/init.vim .nvimrc
+# ln -s .nvimrc .vimrc
+# ln -s .local/share/nvim .nvim
+# ln -s .nvim .vim
 
 # bootstrap some vim plugins
 vimplug-update 2>/dev/null
 molokai-update 2>/dev/null
 
-popd
-popd
-
+# popd
+# popd

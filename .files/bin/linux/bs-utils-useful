@@ -1,9 +1,11 @@
 #!/bin/bash
+# shellcheck disable=2164
 
 # install gnu parallel
 sudo apt-get install -y parallel
 mkdir -p ~/.parallel
 pushd ~/.parallel
+# shellcheck disable=2226
 ln -s ../.files/.parallel/config 2>/dev/null
 popd
 
@@ -24,4 +26,3 @@ popd
 
 #cleanup
 sudo apt-get autoremove -y
-

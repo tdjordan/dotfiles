@@ -31,4 +31,3 @@ sudo apt-get remove -y liblldb-$ver
 sudo apt-get remove -y liblldb-$ver-dbg
 
 sudo apt-get autoremove -y
-

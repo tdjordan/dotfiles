@@ -20,7 +20,7 @@ sudo apt-get install -y tomcat8-user
 #   : local tomcat examples
 #
 #   /etc/default/tomcat8
-#   : gloabl default runtime settings
+#   : global default runtime settings
 #
 #   /etc/tomcat8/tomcat-users.xml
 #   : web management interface settings
@@ -48,4 +48,3 @@ sudo service tomcat8 restart
 
 # cleanup
 sudo apt-get autoremove -y
-

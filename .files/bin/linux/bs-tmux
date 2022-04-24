@@ -8,4 +8,3 @@ sudo gem install tmuxinator
 
 # cleanup
 sudo apt-get autoremove -y
-

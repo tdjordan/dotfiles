@@ -48,5 +48,3 @@ sudo apt-get install -y exuberant-ctags
 
 # cleanup
 sudo apt-get autoremove -y
-
-
