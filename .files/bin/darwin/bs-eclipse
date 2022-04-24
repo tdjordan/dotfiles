@@ -31,4 +31,3 @@ mv -f /Applications/Eclipse.app /Applications/Eclipse-nodeclipse.app
 # cleanup
 brew cleanup
 brew cask cleanup
-

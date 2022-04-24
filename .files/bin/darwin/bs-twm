@@ -2,7 +2,7 @@
 set -x
 
 # update brew receipe list
-#brew update
+# brew update
 
 # yabai : https://github.com/koekeishiya/yabai
 brew tap koekeishiya/formulae
@@ -38,4 +38,3 @@ brew install skhd
 
 # cleanup
 brew cleanup
-

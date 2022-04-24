@@ -8,4 +8,3 @@ gem install test-kitchen
 
 # cleanup
 brew cleanup
-

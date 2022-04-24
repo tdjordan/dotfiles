@@ -13,4 +13,3 @@ brew install jp
 # cleanup
 brew cleanup
 brew cask cleanup
-

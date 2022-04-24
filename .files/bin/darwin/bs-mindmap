@@ -18,4 +18,3 @@ brew cask install xmind
 # cleanup
 brew cleanup
 brew cask cleanup
-

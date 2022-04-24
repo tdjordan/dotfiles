@@ -18,4 +18,3 @@ brew linkapps iterm2-beta
 # cleanup
 brew cleanup
 brew cask cleanup
-

@@ -27,4 +27,3 @@ sudo ln -s /usr/local/sbin/mount_ntfs /sbin/mount_ntfs
 # cleanup
 brew cleanup
 brew cask cleanup
-

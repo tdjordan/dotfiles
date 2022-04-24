@@ -15,4 +15,3 @@ mkdir -p ~/.ansible/roles
 
 # cleanup
 brew cleanup
-

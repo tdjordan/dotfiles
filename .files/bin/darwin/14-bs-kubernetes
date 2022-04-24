@@ -17,4 +17,3 @@ brew cask install minikube
 
 # cleanup
 brew cleanup
-

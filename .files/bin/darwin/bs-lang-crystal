@@ -8,4 +8,3 @@ brew install crystal-lang
 
 # cleanup
 brew cleanup
-

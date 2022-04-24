@@ -12,4 +12,3 @@ brew install swiftgen
 
 # cleanup
 brew cleanup
-

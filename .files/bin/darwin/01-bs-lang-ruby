@@ -16,4 +16,3 @@ ln -s /usr/local/opt/ruby/lib/libruby.2.4.1.dylib /usr/local/opt/ruby/lib/librub
 
 # cleanup
 brew cleanup
-

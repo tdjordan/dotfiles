@@ -23,8 +23,7 @@ brew install govendor
 brew install goenv
 
 # starscope
-#gem install starscope
+# gem install starscope
 
 # cleanup
 brew cleanup
-

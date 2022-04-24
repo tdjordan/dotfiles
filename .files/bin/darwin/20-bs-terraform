@@ -14,4 +14,3 @@ brew install tflint
 
 # cleanup
 brew cleanup
-

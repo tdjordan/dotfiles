@@ -11,4 +11,3 @@ brew tap caskroom/versions
 
 # Hack
 brew cask install caskroom/fonts/font-hack
-

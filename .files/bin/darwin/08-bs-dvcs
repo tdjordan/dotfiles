@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=2164
 set -x
 
 # update brew receipe list
@@ -89,7 +90,7 @@ brew install hg-flow
 # hg extensions
 mkdir -p ~/.hgext
 pushd ~/.hgext
-[ ! -d hgflow   ] && hg clone https://bitbucket.org/yujiewu/hgflow
+[ ! -d hgflow    ] && hg clone https://bitbucket.org/yujiewu/hgflow
 [ ! -d hg-prompt ] && hg clone https://bitbucket.org/sjl/hg-prompt
 popd
 
@@ -125,4 +126,3 @@ brew install tig
 
 # cleanup
 brew cleanup
-

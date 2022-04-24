@@ -8,4 +8,3 @@ brew install collectd
 
 # cleanup
 brew cleanup
-

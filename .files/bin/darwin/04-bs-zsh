@@ -55,4 +55,3 @@ chsh -s /usr/local/bin/zsh
 
 # cleanup
 brew cleanup
-

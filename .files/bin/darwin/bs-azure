@@ -11,4 +11,3 @@ brew install azure-cli
 
 # cleanup
 brew cleanup
-

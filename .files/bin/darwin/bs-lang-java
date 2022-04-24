@@ -7,10 +7,10 @@ brew update
 brew tap caskroom/cask
 
 # tap cask versions
-#brew tap caskroom/versions
+# brew tap caskroom/versions
 
 # to save apps in /Applications
-#export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+# export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # install latest java
 brew cask install java
@@ -41,4 +41,3 @@ brew install infer
 # cleanup
 brew cleanup
 brew cask cleanup
-

@@ -14,4 +14,3 @@ sudo cp /var/osquery/osquery.example.conf /var/osquery/osquery.conf
 
 # cleanup
 brew cleanup
-

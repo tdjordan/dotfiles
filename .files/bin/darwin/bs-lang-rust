@@ -11,4 +11,3 @@ brew install rustup-init
 
 # cleanup
 brew cleanup
-

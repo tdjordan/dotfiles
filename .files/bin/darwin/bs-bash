@@ -11,8 +11,7 @@ brew install bash
 sudo echo /usr/local/bin/bash | sudo tee -a /etc/shells
 
 # switch default shells
-#chsh -s /usr/local/bin/zsh
+# chsh -s /usr/local/bin/zsh
 
 # cleanup
 brew cleanup
-

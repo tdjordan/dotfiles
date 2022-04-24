@@ -8,4 +8,3 @@ brew cask install x2goclient
 
 # cleanup
 brew cleanup
-

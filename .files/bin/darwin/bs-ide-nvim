@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=2164
 set -x
 
 brew update
@@ -21,19 +22,19 @@ brew install gettext
 brew install neovim/neovim/neovim
 
 # python prerequisites
-#brew install python
+# brew install python
 
 # from :help nvim_python
 pip2 install --upgrade pip
 pip2 install neovim
-#sudo pip3 install neovim
+# sudo pip3 install neovim
 
 # bring in some makers/checkers for neomake
 pip2 install vim-vint
 
-#sudo pip3 install pyyaml >/dev/null
-##sudo pip2 install msgpack-python
-##sudo pip3 install msgpack-python
+# sudo pip3 install pyyaml >/dev/null
+# sudo pip2 install msgpack-python
+# sudo pip3 install msgpack-python
 
 # setup the alternatives
 pushd /usr/bin
@@ -84,6 +85,7 @@ mkdir -p ~/.original.config
 # link in new config
 mkdir -p ~/.config/nvim
 pushd ~/.config/nvim
+# shellcheck disable=2226
 ln -s ../../.files/.config/nvim/init.vim
 pushd ~
 ln -s .config/nvim/init.vim .nvimrc
@@ -122,4 +124,3 @@ brew install fzf
 # Use uninstall script to remove fzf.
 #
 # For more information, see: https://github.com/junegunn/fzf
-

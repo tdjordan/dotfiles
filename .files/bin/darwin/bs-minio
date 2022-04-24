@@ -9,4 +9,3 @@ brew install minio-mc
 
 # cleanup
 brew cleanup
-
