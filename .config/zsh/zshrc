@@ -60,7 +60,6 @@ zinit wait"0" lucid is-snippet for \
 zinit wait"2" lucid nocd is-snippet for \
   OMZ::lib/functions.zsh \
   OMZ::lib/misc.zsh \
-  OMZ::lib/history.zsh \
   OMZ::lib/directories.zsh \
   OMZ::lib/git.zsh \
   OMZ::plugins/git/git.plugin.zsh \
@@ -68,6 +67,7 @@ zinit wait"2" lucid nocd is-snippet for \
   $HOME/.bash_local \
   $HOME/.dockerfunc
   #https://github.com/sainnhe/dotfiles/raw/master/.zsh-theme-gruvbox-material-dark \
+  # OMZ::lib/history.zsh \
 
 #zinit load black7375/zsh-lazyenv
 
@@ -124,12 +124,23 @@ setopt auto_cd
 
 ###  history config
 ###
-setopt inc_append_history
-setopt share_history              # share hsitory across instances
+# setopt inc_append_history
+setopt share_history              # share history across instances
+setopt hist_expire_dups_first     # trim duplicate entries first before unique ones
+setopt hist_ignore_dups           # do not record if same as previous entry
 setopt hist_ignore_space          # ignore commands that start with space
+setopt hist_reduce_blanks         # remove extra blanks before recording entry
+setopt hist_verify                # perform history expansion when editing buffer
+setopt hist_find_no_dups          # find no duplicates even if not contiguous
+setopt hist_ignore_all_dups
 export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
-setopt extended_history
+setopt extended_history           # record start time & duration for entry in file
+
+###  vi mode prompt
+###
+autoload edit-command-line ; zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
 
 
 PS1="READY > "
