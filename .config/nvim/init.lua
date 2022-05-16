@@ -31,3 +31,12 @@ g.did_load_filetypes       = 0
 -- g.syntax_cmd               = 'off'
 
 -- vim.cmd [[inoremap jk <esc>]]
+
+-- pcall( require, 'impatient' )
+-- local ok, impatient = pcall( require, 'impatient' )
+-- if ok then
+--   impatient.enable_profile()
+-- end
+-- require 'impatient'.enable_profile()
+-- require 'autocmd'
+-- require 'init_plugins'
