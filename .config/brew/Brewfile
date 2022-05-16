@@ -11,6 +11,8 @@ brew "lsd"
 brew "sl"
 brew "zinit"
 brew "zoxide"
+brew "pueue"
+brew "choose-rust"
 
 ###  version control systems
 ###
@@ -27,6 +29,7 @@ brew "actionlint"
 brew "lefthook"
 brew "pre-commit"
 brew "gitlint"
+brew "codeql"
 
 ###  base build tools
 brew "cmake"
@@ -57,7 +60,9 @@ brew "hyperfine"
 ###
 brew "jq"
 brew "jql"
-brew "jsonnet"
+
+###  artifact repository
+###
 brew "jfrog-cli"
 
 ###  yaml utils
@@ -153,6 +158,8 @@ cask "docker"
 brew "whalebrew"
 brew "docker-slim"
 brew "hadolint"
+brew "podman"
+brew "dive"
 
 ###  virtual machines
 ###
@@ -172,6 +179,7 @@ brew "tfsec"
 ###  WebAssembly
 ###
 brew "wasmer"
+brew "wasmtime"
 brew "wasm3"
 brew "wapm"
 
@@ -200,6 +208,11 @@ brew "deno"
 brew "efm-langserver"
 brew "bear"
 brew "haskell-language-server"
+
+###  Rust Language
+###
+brew "rust"
+brew "rustup-init"
 
 ###  Python Language
 ###
@@ -231,11 +244,21 @@ brew "cdk8s"
 brew "opa"
 brew "kind"
 
+###  Generic Makefile Like
+###
+brew "just"
+
 ###  Templating
 ###
 # brew "dhall"
 brew "dhall-json"
 # brew "dhall-yaml"
+
+###  configuration templating
+###
+brew "jsonnet"
+brew "cue"
+
 
 ###  AWS Tools
 ###
@@ -293,6 +316,7 @@ tap    "shopify/shopify"
 ###
 # brew "libffi"
 brew "watchman"
+brew "entr"
 brew "libimobiledevice"
 brew "ideviceinstaller"
 brew "imagemagick"
@@ -314,6 +338,23 @@ brew "ktlint"
 ###  dotnet
 ###
 brew "dotnet"
+
+###  Formatters
+###
+brew "dlint"      # dprint.dev
+brew "prettier"
+
+###  Arbitrary Installer Utilities
+###
+brew 'bvm'
+
+###  Dagger
+###
+brew "dagger"
+
+###  Video
+###
+cask "vlc"
 
 ###  fonts
 ###
@@ -339,5 +380,7 @@ tap    "homebrew/cask-fonts"
   cask "font-stardos-stencil"
   cask "font-black-ops-one"
   cask "font-lato"
+  cask "font-ligature-symbols"
+  cask "font-port-lligat-sans"
 tap    "epk/epk"
   cask "font-sf-mono-nerd-font"
