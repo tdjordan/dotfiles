@@ -1,7 +1,6 @@
 vim.filetype.add {
   extension = {
-    http = 'http'
-    , sls = 'sls'
+    sls = 'sls'
     , flux = 'flux'
     , dhall = 'dhall'
     , norg = 'norg'
