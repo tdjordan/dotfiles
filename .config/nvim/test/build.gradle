@@ -1,12 +1,12 @@
 plugins {
-  id('com.android.application') version '4.2.2'
+  id('com.anroid.application') version '4.2.2'
 }
 
-repositories {
+repsitories {
   google()
   mavenCentral()
 }
 
-android {
+andoid {
 
 }
