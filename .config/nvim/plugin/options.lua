@@ -310,8 +310,9 @@ set.updatetime  = 100
 -- do not give |ins-completion-menu| messages.
 set.shortmess:append { c = true }
 
--- time to wait for a mpped sequence to complete ( in milliseconds )
-set.timeoutlen = 10
+-- time to wait for a mapped sequence to complete ( in milliseconds )
+-- set.timeoutlen = 10
+set.timeoutlen = 300
 
 -- always show signcolumns
 set.signcolumn = 'yes'
