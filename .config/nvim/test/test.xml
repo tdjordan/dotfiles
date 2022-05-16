@@ -2,7 +2,8 @@
 <projectDescription>
 	<name>org.eclipse.lsp4xml</name>
 	<comment></comment>
-	<projects>
+
+	      <projects>
 	</projects>
 	<buildSpec>
 		<buildCommand>
