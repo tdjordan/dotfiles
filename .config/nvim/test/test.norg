@@ -1,0 +1,42 @@
+* All the Breakages
+  Since neorg is still
+
+  And important thing to note
+
+ ** Icons
+    Icons have changd
+
+    @code lua
+      local var = 'a string'
+      local frank = function()
+        print( vim.inspect( var ) )
+      end
+    @end
+
+ ** Inline Comments
+    Carryover tags now utilize the `#` symbol we nned to change syntax for inline
+    comments to avoid ambiguity.
+  *** Old
+      @code norg
+        This is some text
+        #a comment inbetween#
+        and some text below.
+      @end
+
+  *** New
+      @code norg
+        This is some text
+        +a comment inbetween+
+        and some text below.
+      @end
+
+ ** some other stuff
+    @code cpp
+      #include <iostream>
+      using namespace std
+      int main(void) {
+        cout << "hello world" << endl;
+      }
+    @end
+
+    @code lua
