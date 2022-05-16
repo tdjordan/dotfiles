@@ -12,9 +12,9 @@ require 'filetype'.setup {
       , gradle = function()
         packer.loader('vim-gradle')
       end
-      , org = function()
-        packer.loader('orgmode.nvim')
-      end
+      -- , org = function()
+      --   packer.loader('orgmode.nvim')
+      -- end
       -- groovy = function()
       --   packer.loader('Jenkinsfile-vim-syntax')
       -- end

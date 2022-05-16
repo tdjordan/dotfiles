@@ -1,5 +1,5 @@
--- local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
---
+local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
+
 -- parser_config.http = {
 --   install_info =
 --     { url = 'https://github.com/NTBBloodbath/tree-sitter-http'
@@ -8,19 +8,49 @@
 --   }
 -- }
 
--- require 'configs.treesitter.parsers.org'
+-- parser_config.norg_meta = {
+--   install_info = {
+--     url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
+--     files = { "src/parser.c" },
+--     branch = "main"
+--   }
+-- }
+
+-- parser_config.norg_table = {
+--   install_info = {
+--     url = "https://github.com/nvim-neorg/tree-sitter-norg-table",
+--     files = { "src/parser.c" },
+--     branch = "main"
+--   }
+-- }
+
+parser_config.cue = {
+  install_info = {
+    url = "https://github.com/eonpatapon/tree-sitter-cue",
+    files = { "src/parser.c", "src/scanner.c" },
+    branch = "main"
+  }
+}
 
 require 'nvim-treesitter.configs'.setup {
   ensure_installed = 'all',
   ignore_install = { 'haskell', 'vala' },
   highlight =
     { enable = true
-    , disable = {
-      'org'
-    }
-    , additional_vim_regex_highlighting = {
-      'org'
-    }
+    -- , disable = {
+    --   'org'
+    -- }
+    -- , additional_vim_regex_highlighting = {
+    --   'org'
+    -- }
+    -- , custom_captures = {
+    --   ---  cue
+    --   ["operator.default"] = "Statement",
+    --   ["operator.regexp"] = "Statement",
+    --   ["operator.unify"] = "Statement",
+    --   ["operator.disjunct"] = "Label",
+    --   ["definition"] = "Bold"
+    -- }
   },
   refactor = {
     -- highlight_definitions = { enable = true },

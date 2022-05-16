@@ -63,10 +63,14 @@ local sources = {
 
   ---  markdown
   ---
-  , b.diagnostics.markdownlint
+  -- , b.diagnostics.markdownlint
   , b.formatting.markdownlint
-  , b.diagnostics.proselint
-  , b.code_actions.proselint
+  , b.diagnostics.proselint.with {
+    diagnostics_format = '(#{s}) #{m}'
+  }
+  , b.code_actions.proselint.with {
+    diagnostics_format = '(#{s}) #{m}'
+  }
 
   ---  nix
   ---
@@ -74,6 +78,8 @@ local sources = {
   , b.diagnostics.statix
   -- , b.diagnostics.deadnix
   , b.code_actions.statix
+  -- https://github.com/kamadorueda/alejandra
+  , b.formatting.alejandra
 
   ---  xml
   ---
@@ -102,11 +108,17 @@ local sources = {
   ---  text files
   ---
   -- , b.diagnostics.textlint
-  , b.diagnostics.vale
+  , b.diagnostics.vale.with {
+    diagnostics_format = '(#{s}) #{m}'
+  }
 
   ---  gitsigns
   ---
   , b.code_actions.gitsigns
+
+  ---  json files
+  ---
+  -- , b.formatting.jq
 
   ---  Protocol Buffers
   ---
@@ -147,7 +159,9 @@ local sources = {
   ---  dictionary
   ---
   -- , b.hover.dictionary
-  , b.diagnostics.codespell
+  , b.diagnostics.codespell.with {
+    diagnostics_format = '(#{s}) #{m}'
+  }
   , b.formatting.codespell
 
   ---  trail space
@@ -158,6 +172,7 @@ local sources = {
       , 'help'
       , 'man'
       , 'packer'
+      , 'NvimTree'
     }
   }
 

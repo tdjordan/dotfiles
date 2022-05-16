@@ -1,6 +1,6 @@
 local common = require 'lsp.common'
 
-local opts = {
+require 'lspconfig'.kotlin_language_server.setup {
   on_attach = common.on_attach
   , capabilities = common.capabilities
   , flags = common.flags
@@ -25,5 +25,3 @@ local opts = {
   --   }
   -- }
 }
-
-return opts

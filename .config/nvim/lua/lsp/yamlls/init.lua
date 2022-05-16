@@ -4,8 +4,7 @@ local common = require 'lsp.common'
 --
 --      yarn global add yaml-language-server
 --
--- require 'lspconfig'.yamlls.setup {
-local opts = {
+require 'lspconfig'.yamlls.setup {
   on_attach = common.on_attach
   , capabilities = common.capabilities
   , flags = common.flags
@@ -27,5 +26,3 @@ local opts = {
     }
   }
 }
-
-return opts

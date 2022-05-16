@@ -1,22 +1,62 @@
 require 'nvim-tree'.setup {
-  -- disable_netrw          = false,
-  -- hijack_netrw           = true,
-  -- open_on_setup          = false,   -- default : false
-  -- ignore_buffer_on_setup = false,
-  -- ignore_ft_on_setup     = {},
-  auto_close             = true,
   -- auto_reload_on_write   = true,
+  -- disable_netrw          = false,
+  -- hijack_cursor          = false,
+  -- hijack_netrw           = true,
+  -- hijack_unamed_buffer_when_opening = false,
+  -- ignore_buffer_on_setup = false,
+  -- open_on_setup          = false,   -- default : false
+  -- open_on_setup_file     = false,
   -- open_on_tab            = false,
   -- sort_by                = 'name', -- how files are sorted ( name | modification_time )
-  -- hijack_cursor          = false,
   -- update_cwd             = false,
-  -- hijack_unamed_buffer_when_opening = true
+  -- view = {
+  --   width = 30,
+  --   height = 30,
+  --   hide_root_folder = false,
+  --   side = 'left',
+  --   preserve_window_propportions = false,
+  --   hide_root_folder = false,
+  --   number = false,
+  --   relativenubmer = false,
+  --   signcolumn = 'yes',
+  --   mappings = {
+  --     custom_only = false,
+  --     list = {
+  --       -- user mappings go here
+  --     },
+  --   },
+  -- },
+  -- renderer = {
+  --   indent_markers = {
+  --     enable = false,
+  --     icons = {
+  --       corner = "└ ",
+  --       edge = "│ ",
+  --       none = "  ",
+  --     },
+  --   },
+  --   icons = {
+  --    webdev_colors = true
+  --   }
+  -- },
   -- hijack_directories     = {       -- hijacks new directory buffers ( :e dir )
   --   enable = true,
-  --   auto_open = true,
+  --   auto_open = true
+  -- },
+  update_focused_file = {       -- focus file in tree on BufEnter
+    enable      = true,
+    -- update_cwd  = false,
+    -- ignore_list = {}
+  },
+  -- ignore_ft_on_setup     = {},
+  -- system_open = {
+  --   cmd  = "",
+  --   args = {}
   -- },
   diagnostics         = {
     enable = true,
+    show_on_dirs = false,
     icons = {
       hint = "",
       info = "",
@@ -24,45 +64,22 @@ require 'nvim-tree'.setup {
       error = "",
     }
   },
-  update_focused_file = {       -- focus file in tree on BufEnter
-    enable      = true,
-    -- update_cwd  = false,
-    -- ignore_list = {}
-  },
-  -- system_open = {
-  --   cmd  = nil,
-  --   args = {}
-  -- },
   -- filters = {
   --   dotfiles = false,
-  --   args = {}
+  --   custom = {},
+  --   exclude = {}
   -- },
   -- git = {
   --   enable = true,
   --   ignore = true,
-  --   timeout =500,
-  -- },
-  -- view = {
-  --   width = 30,
-  --   height = 30,
-  --   hide_root_folder = false,
-  --   side = 'left',
-  --   mappings = {
-  --     custom_only = false,
-  --     list = {}
-  --   },
-  --   number = false,
-  --   relativenubmer = false,
-  --   signcolumn = 'yes'
-  -- },
-  -- trash = {
-  --   cmd = 'trash',
-  --   require_confirm = true
+  --   timeout = 400,
   -- },
   actions = {
+    -- use_system_clipboard = true,
     change_dir = {
       enable = false,
-      global = false
+      global = false,
+      -- restrict_above_cwd = false
     },
     -- open_file = {
     --   quit_on_open = false,
@@ -88,13 +105,20 @@ require 'nvim-tree'.setup {
     --   }
     -- }
   },
+  -- trash = {
+  --   cmd = 'trash',
+  --   require_confirm = true
+  -- },
   -- log = {
   --   enable = false,
   --   truncate = false,
   --   types = {
   --     all = false,
   --     config = false,
-  --     git = false
+  --     copy_paste = false,
+  --     diagnostics = false,
+  --     git = false,
+  --     profile = false
   --   }
   -- }
 }

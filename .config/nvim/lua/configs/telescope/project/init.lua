@@ -5,6 +5,8 @@ require 'telescope'.setup {
         { { '~/devRoot/_bf',    max_depth = 4 }
         , { '~/devRoot/neovim', max_depth = 4 }
       }
+      -- , hidden_files = false
+      , theme = 'ivy'
     }
   }
 }

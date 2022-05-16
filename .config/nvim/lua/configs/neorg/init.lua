@@ -9,9 +9,9 @@
 
 require 'neorg'.setup {
   load =
-    { ['core.defaults'] = {}
-    , ['core.norg.concealer'] = {}
-    , ['core.norg.dirman'] = {
+    { [ 'core.defaults'       ] = {}
+    , [ 'core.norg.concealer' ] = {}
+    , [ 'core.norg.dirman'    ] = {
       config = {
         workspaces = {
           -- my_workspace = '~/neorg',
@@ -20,6 +20,14 @@ require 'neorg'.setup {
         }
       }
     }
+    , [ 'core.norg.journal' ] = {}
+    , [ 'core.norg.completion' ] = {
+      config = {
+        engine = 'nvim-cmp' }
+    }
+    -- , [ 'core.norg.qol.toc' ] = {}
+    -- , [ 'core.integrations.nvim-cmp' ] = {}
+    -- , [ 'core.integrations.telescope' ] = {}
     -- , [ 'core.keybinds' ] = {
     --   config = {
     --     default_keybinds = true

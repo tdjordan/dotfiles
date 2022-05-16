@@ -28,6 +28,10 @@ cmp.setup {
       require 'luasnip'.lsp_expand(args.body)
     end
   },
+  -- window = {
+  --   completion = cmp.config.window.bordered(),
+  --   documentation = cmp.config.window.bordered(),
+  -- },
   preselect = cmp.PreselectMode.None,
   completion = {
     completeopt = 'menu,menuone,noselect'
@@ -77,20 +81,21 @@ cmp.setup {
     })
   },
   sources = cmp.config.sources(
-    { { name = 'nvim_lua'   }
-    , { name = 'nvim_lsp'   }
+    { { name = 'nvim_lua'    }
+    , { name = 'nvim_lsp'    }
     , { name = 'jenkinsfile' }
-    -- , { name = 'luasnip'    }
-    , { name = 'buffer'     }
-    , { name = 'path'       }
-    -- , { name = 'tmux'       }
-    , { name = 'tags'       }
-    -- , { name = 'treesitter' }
-    , { name = 'calc'       }
-    , { name = 'orgmode'    }
-    -- , { name = 'vsnip'    }
-    -- , { name = 'look'     }
-    , { name = 'emjoi'      }
+    , { name = 'neorg'       }
+    -- , { name = 'luasnip'     }
+    , { name = 'buffer'      }
+    , { name = 'path'        }
+    -- , { name = 'tmux'        }
+    , { name = 'tags'        }
+    -- , { name = 'treesitter'  }
+    , { name = 'calc'        }
+    -- , { name = 'orgmode'     }
+    -- , { name = 'vsnip'     }
+    -- , { name = 'look'      }
+    , { name = 'emjoi'       }
     -- , { name = 'npm', keyword_length = 4 }
     -- , { name = 'crates'     }
   }),

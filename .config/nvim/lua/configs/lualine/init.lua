@@ -61,7 +61,7 @@ local unique_list = function( t )
     res[#res+1] = k
   end
 
-  print("res  : " .. vim.inspect(res))
+  -- print("res  : " .. vim.inspect(res))
 
   return res
 end

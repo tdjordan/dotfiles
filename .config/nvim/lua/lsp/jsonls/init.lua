@@ -107,7 +107,7 @@ local common = require 'lsp.common'
 -- expand_mappings(mapping_git_files, url_gitcontents)
 -- expand_mappings(mapping_git_aws_files, url_gitcontents)
 
-local opts = {
+require 'lspconfig'.jsonls.setup {
   on_attach = common.on_attach
   , capabilities = common.capabilities
   , flags = common.flags
@@ -128,5 +128,3 @@ local opts = {
   --   }
   -- }
 }
-
-return opts

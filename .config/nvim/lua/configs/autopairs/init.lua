@@ -2,17 +2,18 @@
 local npairs  = require 'nvim-autopairs'
 local Rule    = require 'nvim-autopairs.rule'
 local cond    = require 'nvim-autopairs.conds'
--- local endwise = require('nvim-autopairs.ts-rule').endwise
+local endwise = require('nvim-autopairs.ts-rule').endwise
 
 local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
 local cmp = require 'cmp'
-cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done( { map_char = { text = '' } } ) )
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done( { map_char = { tex = '' } } ) )
 
 npairs.setup {
   disable_filetype = {
     'TelescopePrompt'
     , 'vim'
   }
+  -- , enable_bracket_in_quote = false
   , check_ts = true
   -- , ts_config = {
   --   lua = { 'string' }  -- do hot add a pair on string treesitter node
@@ -84,4 +85,7 @@ npairs.add_rules {
 -- npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
 }
 
+npairs.add_rules {
+  endwise('then$', 'end', 'cue', 'if_statement')
+}
 npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))

@@ -11,6 +11,22 @@ local newline = function(text)
   return t { "", text }
 end
 
+-- ls.add_snippets (
+--   'all', {
+--     s('baha', {
+--       t('wada wada')
+--     })
+--   }
+-- )
+--
+-- ls.add_snippets (
+--   'lua', {
+--     lf = {
+--       "local ", i(i), " = function(", i(2), ")", newline "  ", i(0), newline "end"
+--     }
+--   }
+-- )
+
 ls.snippets = {
   all = {
     s('baha', {

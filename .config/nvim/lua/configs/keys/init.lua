@@ -8,14 +8,90 @@ vim.g.mapleader = ' '
 
 local wk = require 'which-key'
 
+-- wk.setup {
+--   plugins = {
+--     marks = true
+--     , registers = true
+--   }
+--   -- , layout = {
+--   --   spacing = 5
+--   -- }
+-- }
 wk.setup {
   plugins = {
-    marks = true
-    , registers = true
-  }
-  -- , layout = {
-  --   spacing = 5
-  -- }
+    marks = true,          -- shows a list of your marks on ' and `
+    registers = true,      -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+    spelling = {
+      enabled = false,     -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+      suggestions = 20,    -- how many suggestions should be shown in the list?
+    },
+
+    -- the presets plugin, adds help for a bunch of default keybindings in Neovim
+    -- No actual key bindings are created
+    presets = {
+      operators = true,    -- adds help for operators like d, y, ... and registers them for motion / text object completion
+      motions = true,      -- adds help for motions
+      text_objects = true, -- help for text objects triggered after entering an operator
+      windows = true,      -- default bindings on <c-w>
+      nav = true,          -- misc bindings to work with windows
+      z = true,            -- bindings for folds, spelling and others prefixed with z
+      g = true,            -- bindings for prefixed with g
+    },
+  },
+
+  -- add operators that will trigger motion and text object completion
+  -- to enable all native operators, set the preset / operators plugin above
+  operators = { gc = "Comments" },
+  key_labels = {
+    -- override the label used to display some keys. It doesn't effect WK in any other way.
+    --   For example:
+    --     ["<space>"] = "SPC",
+    --     ["<cr>"] = "RET",
+    --     ["<tab>"] = "TAB",
+  },
+  icons = {
+    breadcrumb = "»",               -- symbol used in the command line area that shows your active key combo
+    separator = "➜",                -- symbol used between a key and it's label
+    group = "+",                    -- symbol prepended to a group
+  },
+  popup_mappings = {
+    scroll_down = '<c-d>',          -- binding to scroll down inside the popup
+    scroll_up = '<c-u>',            -- binding to scroll up inside the popup
+  },
+  window = {
+    border = "none",                -- none, single, double, shadow
+    position = "bottom",            -- bottom, top
+    margin = { 1, 0, 1, 0 },        -- extra window margin [top, right, bottom, left]
+    padding = { 2, 2, 2, 2 },       -- extra window padding [top, right, bottom, left]
+    winblend = 0
+  },
+  layout = {
+    height = { min = 4, max = 25 }, -- min and max height of the columns
+    width = { min = 20, max = 50 }, -- min and max width of the columns
+    spacing = 3,                    -- spacing between columns
+    align = "left",                 -- align columns left, center or right
+  },
+  ignore_missing = false,           -- enable this to hide mappings for which you didn't specify a label
+  hidden = {                        -- hide mapping boilerplate
+    "<silent>",
+    "<cmd>",
+    "<Cmd>",
+    "<CR>",
+    "call",
+    "lua",
+    "^:",
+    "^ "
+  },
+  show_help = true,                 -- show help message on the command line when the popup is visible
+  triggers = "auto",                -- automatically setup triggers
+                                    -- triggers = {"<leader>"} -- or specify a list manually
+  triggers_blacklist = {
+    -- list of mode / prefixes that should never be hooked by WhichKey
+    -- this is mostly relevant for key maps that start with a native binding
+    -- most people should not need to change this
+    i = { "j", "k" },
+    v = { "j", "k" },
+  },
 }
 
 local normal_mode = {
@@ -123,15 +199,16 @@ local normal_mappings = {
   ---
   l = {
     name = '+lsp'
-    , a = { '<cmd>lua require "telescope.builtin".lsp_code_actions()<cr>',        'code action'     }
+    , a = { '<cmd>lua vim.lsp.buf.code_action()',                                 'code action'       }
+    , c = { '<cmd>lua vim.lsp.buf.range_code_action()',                           'code action range' }
     , d = { '<cmd>lua require "telescope.builtin".diagnostics({buffnr = 0})<cr>', 'document diagnostics' }
-    , f = { '<cmd>lua vim.lsp.buf.formatting()<cr>',                              'format'          }
-    , h = { '<cmd>lua vim.lsp.buf.hover()<cr>',                              'hover'                }
-    , i = { '<cmd>LspInfo<cr>',                                                   'info'            }
-    , I = { '<cmd>LspInstallInfo<cr>',                                            'installer info'  }
-    , j = { '<cmd>lua vim.diagnostic.goto_next()<cr>',                            'next diagnositc' }
-    , k = { '<cmd>lua vim.diagnostic.goto_prev()<cr>',                            'prev diagnositc' }
-    , l = { '<cmd>lua vim.lsp.codelens.run()<cr>',                                'codelens action' }
+    , f = { '<cmd>lua vim.lsp.buf.formatting()<cr>',                              'format'            }
+    , h = { '<cmd>lua vim.lsp.buf.hover()<cr>',                                   'hover'             }
+    , i = { '<cmd>LspInfo<cr>',                                                   'info'              }
+    , I = { '<cmd>LspInstallInfo<cr>',                                            'installer info'    }
+    , j = { '<cmd>lua vim.diagnostic.goto_next()<cr>',                            'next diagnositc'   }
+    , k = { '<cmd>lua vim.diagnostic.goto_prev()<cr>',                            'prev diagnositc'   }
+    , l = { '<cmd>lua vim.lsp.codelens.run()<cr>',                                'codelens action'   }
     , p = {
       name = '+peek'
       -- , d = { '<cmd>lua require "lvim.lsp.peek".Peek("definition")<cr>',     'definition'      }
@@ -141,7 +218,7 @@ local normal_mappings = {
       , t = { '<cmd>lua require "lvim.lsp.peek".Peek("typeDefinition")<cr>', 'type definition' }
     }
     , q = { '<cmd>lua vim.diagnostic.setloclist()<cr>',               'quickfix'              }
-    , r = { '<cmd>lua vim.lsp.buf.rename()<cr>',                       'rename'                }
+    , r = { '<cmd>lua vim.lsp.buf.rename()<cr>',                      'rename'                }
     , s = { '<cmd>Telescope lsp_document_symbols<cr>',                'document symbols'      }
     , S = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>',       'workspace symbols'     }
     , w = { '<cmd>lua require "telescope.builtin".diagnostics()<cr>', 'workspace diagnostics' }
@@ -290,9 +367,9 @@ wk.register(normal_mappings, normal_mode)
 
 ---  Fix weird default mappings
 ---
-wk.register({
-  Y = { 'y$', 'yank to end of line instead of whole line' }
-})
+-- wk.register({
+--   Y = { 'y$', 'yank to end of line instead of whole line' }
+-- })
 
 -- wk.register({
 --   ["<leader>f"] = { name = "+file" }
@@ -328,7 +405,7 @@ wk.register({
 -- })
 local ku = require 'keymap.utility'
 local tnoremap = ku.tnoremap
-tnoremap( '<Esc>', [[<C-\><C-n>]] )
+tnoremap( '<esc>', [[<C-\><C-n>]] )
 tnoremap( '<C-h>', [[<C-\><C-n><C-w>h]] )
 tnoremap( '<C-j>', [[<C-\><C-n><C-w>j]] )
 tnoremap( '<C-k>', [[<C-\><C-n><C-w>k]] )
@@ -343,7 +420,9 @@ cmd [[ autocmd TermClose                      term://* call nvim_input('<cr>')  
 ---  Escape
 ---
 wk.register({
-  ['jk'] = { '<esc>', 'escape' },
+  -- ['jk'] = { '<esc>', 'escape' },
+  -- ['hl'] = { '<esc>', 'escape' },
+  -- ['iu'] = { '<esc>', 'escape' },
 
   ---  luasnip jumping
   ---
@@ -353,8 +432,12 @@ wk.register({
 }, {
   mode = 'i'
 })
-cmd [[ autocmd BufWinEnter,WinEnter TelescopePrompt :iunremap jk ]]
-cmd [[ autocmd BufWinLeave,WinLeave TelescopePrompt :inoremap jk <esc> ]]
+cmd [[ inoremap jk <esc> ]]
+-- cmd [[ autocmd BufWinEnter,WinEnter,BufEnter TelescopePrompt <cmd><lua>vim.opt.timeoutlen = 0<cr> ]]
+-- cmd [[ autocmd BufWinEnter,WinEnter,BufEnter TelescopePrompt :inoremap jk <nop>]]
+-- cmd [[ autocmd BufWinLeave,WinLeave TelescopePrompt :inoremap jk <esc> ]]
+-- cmd [[ autocmd BufWinEnter,WinEnter TelescopePrompt :inoremap hl ]]
+-- cmd [[ autocmd BufWinLeave,WinLeave TelescopePrompt :inoremap hl <esc> ]]
 
 -- wk.register({
 --   ['C-_'] = { '<plug>NERDCommenterToggle', 'comment visual block' },

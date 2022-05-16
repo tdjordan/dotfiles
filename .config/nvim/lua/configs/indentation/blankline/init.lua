@@ -26,6 +26,7 @@ require 'indent_blankline'.setup
   , filetype_exclude =
     { 'help'
     , 'packer'
+    , 'checkhealth'
     , 'man'
     , 'lspinfo'
     , 'diagnosticpopup'

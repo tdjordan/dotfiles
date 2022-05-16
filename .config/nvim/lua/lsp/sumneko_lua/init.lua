@@ -46,8 +46,8 @@ local join_paths = function(...)
   return result
 end
 
-local opts = {
--- require 'lspconfig'.sumneko_lua.setup {
+-- local opts = {
+require 'lspconfig'.sumneko_lua.setup {
   on_attach = common.on_attach
   , capabilities = common.capabilities
   , flags = common.flags
@@ -86,4 +86,4 @@ local opts = {
   },
 }
 
-return opts
+-- return opts

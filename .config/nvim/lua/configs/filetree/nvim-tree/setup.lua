@@ -1,15 +1,14 @@
 local g = vim.g
--- g.nvim_tree_indent_markers = 0
+
 g.nvim_tree_git_hl = 1
 g.nvim_tree_highlight_opened_files = 1
 -- g.nvim_tree_root_folder_modifier = ':~'
 -- g.nvim_tree_add_trailing = 0
 g.nvim_tree_group_empty = 1
--- g.disable_window_picker = 0
--- g.nvim__tree_icon_padding = ' '
--- g.symlink_arrow = ' >> '
+-- g.nvim_tree_icon_padding = ' '
+-- g.nvim_tree_symlink_arrow = ' >> '
 -- g.nvim_tree_respect_buf_cwd = 0
--- g.nvim_tree_create_inclosed_folder = 1
+-- g.nvim_tree_create_inclosed_folder = 0
 g.nvim_tree_special_files = {
   ['init.lua'] = true,
   ['Cargo.tom'] = true,

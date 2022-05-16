@@ -36,6 +36,7 @@ telescope.setup {
     --scroll_strategy = 'cycle'
     mappings = {
       i = {
+        ["jk"] = function() return 'jk' end,
         ["<c-j>"] = actions.move_selection_next,
         ["<c-k>"] = actions.move_selection_previous,
     --     ["<c-n>"] = actions.move_selection_next,
@@ -88,10 +89,6 @@ telescope.setup {
       }
     },
 
-    file_browser = {
-      theme = 'ivy'
-    },
-
     -- git_branches = {
     --   theme = 'dropdown'
       -- , layout_config = {
@@ -102,13 +99,6 @@ telescope.setup {
       -- }
       -- , layout_strategy = 'bottom_pane'
     -- }
-  },
-  extensions = {
-    project = {
-      -- base_dir = vim.env.HOME.."/devRoot/_bf"
-      base_dir = '~/devRoot/_bf'
-      , max_depth = 3
-    }
   }
 }
 

@@ -35,6 +35,7 @@ require 'material'.setup {
   }
   -- , lualine_style = 'stealth'
   -- , lualine_style = 'default'
+  -- , async_loading = true
   -- , custom_highlights = {
   --   NvimTreeOpenedFolderName = { fg = require 'material.colors'.green, style = 'italic' }
   -- }
