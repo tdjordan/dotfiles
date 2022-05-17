@@ -14,14 +14,18 @@ require 'indent_blankline'.setup
   , show_end_of_line = true
   , space_char_blankline = " "
   , show_trailing_blankline_indent = false
-  , show_first_indent_level = false
+  -- , show_first_indent_level = false
+  , show_first_indent_level = true
   , show_current_context = true
   , show_current_context_start = true
   , show_foldtext = false
   , strict_tabs = true
   , use_treesitter = true
+  -- , use_treesitter_scope = true
   , buftype_exclude = {
     'terminal'
+    , 'nofile'
+    , 'quickfix'
   }
   , filetype_exclude =
     { 'help'
@@ -34,15 +38,19 @@ require 'indent_blankline'.setup
     , 'vimwiki'
     , 'defx'
     , 'notify'
+    , ''
   }
   , context_patterns =
     { 'class'
     , 'return'
+    , '^func'
     , 'function'
     , 'method'
     , '^if'
     , '^while'
     , '^for'
+    , 'while'
+    , 'for'
     , 'func_literal'
     , 'block'
     , 'try'
@@ -54,13 +62,17 @@ require 'indent_blankline'.setup
     , 'dictionary'
     , 'element'
     , '^object'
+    , 'object'
     , '^table'
+    , 'table'
     , 'if_statement'
     , 'else_clause'
     , 'jsx_element'
     , 'jsx_self_closing_element'
     , 'import_statement'
     , 'operation_type'
+    , 'tuble'
+    , 'do_block'
   }
   -- , char_highlight_list =
   --   { "IndentBlanklineIndent1"
