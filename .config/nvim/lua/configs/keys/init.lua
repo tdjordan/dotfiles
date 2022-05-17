@@ -176,7 +176,6 @@ local normal_mappings = {
   f = {
     name = '+search'
     , b = { '<cmd>lua require "telescope.builtin".buffers()<cr>',                   'in open buffers' }
-    -- , d = { '<cmd>lua require "telescope.builtin".diagnostics()<cr>',               'lsp diagnostics' }
     , f = { '<cmd>lua require "telescope.builtin".find_files()<cr>',                'by file name'    }
     , g = { '<cmd>lua require "telescope.builtin".live_grep()<cr>',                 'with live grep'  }
     , h = { '<cmd>lua require "telescope.builtin".help_tags()<cr>',                 'help tags'       }
