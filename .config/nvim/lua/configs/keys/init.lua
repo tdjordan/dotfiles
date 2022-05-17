@@ -198,16 +198,16 @@ local normal_mappings = {
   ---
   l = {
     name = '+lsp'
-    , a = { '<cmd>lua vim.lsp.buf.code_action()',                                 'code action'       }
-    , c = { '<cmd>lua vim.lsp.buf.range_code_action()',                           'code action range' }
-    , d = { '<cmd>lua require "telescope.builtin".diagnostics({bufnr = 0})<cr>', 'document diagnostics' }
-    , f = { '<cmd>lua vim.lsp.buf.formatting()<cr>',                              'format'            }
-    , h = { '<cmd>lua vim.lsp.buf.hover()<cr>',                                   'hover'             }
-    , i = { '<cmd>LspInfo<cr>',                                                   'info'              }
-    , I = { '<cmd>LspInstallInfo<cr>',                                            'installer info'    }
-    , j = { '<cmd>lua vim.diagnostic.goto_next()<cr>',                            'next diagnositc'   }
-    , k = { '<cmd>lua vim.diagnostic.goto_prev()<cr>',                            'prev diagnositc'   }
-    , l = { '<cmd>lua vim.lsp.codelens.run()<cr>',                                'codelens action'   }
+    , a = { '<cmd>lua vim.lsp.buf.code_action()',                                 'code action'          }
+    , c = { '<cmd>lua vim.lsp.buf.range_code_action()',                           'code action range'    }
+    , d = { '<cmd>lua require "telescope.builtin".diagnostics({bufnr = 0})<cr>',  'document diagnostics' }
+    , f = { '<cmd>lua vim.lsp.buf.formatting()<cr>',                              'format'               }
+    , h = { '<cmd>lua vim.lsp.buf.hover()<cr>',                                   'hover'                }
+    , i = { '<cmd>LspInfo<cr>',                                                   'info'                 }
+    , I = { '<cmd>LspInstallInfo<cr>',                                            'installer info'       }
+    , j = { '<cmd>lua vim.diagnostic.goto_next()<cr>',                            'next diagnositc'      }
+    , k = { '<cmd>lua vim.diagnostic.goto_prev()<cr>',                            'prev diagnositc'      }
+    , l = { '<cmd>lua vim.lsp.codelens.run()<cr>',                                'codelens action'      }
     , p = {
       name = '+peek'
       -- , d = { '<cmd>lua require "lvim.lsp.peek".Peek("definition")<cr>',     'definition'      }
@@ -345,17 +345,17 @@ local normal_mappings = {
 
   ---  v* mapptings
   ---
-  x = {
-    name = '+trouble'
-    , l = { [[<cmd>Trouble loclist<cr>]],                   'window location list'  }
-    , d = { [[<cmd>Trouble lsp_document_diagnositcs<cr>]],  'document diagnositcs'  }
-    , D = { [[<cmd>Trouble lsp_definitions<cr>]],           'lsp definitions'       }
-    , q = { [[<cmd>Trouble quickfix<cr>]],                  'quickfix'              }
-    , r = { [[<cmd>Trouble lsp_references<cr>]],            'lsp references'        }
-    , t = { [[<cmd>Trouble lsp_type_definitions<cr>]],      'lsp type definitions'  }
-    , w = { [[<cmd>Trouble lsp_workspace_diagnostics<cr>]], 'workspace diagnostics' }
-    , x = { [[<cmd>TroubleToggle<cr>]],                     'trouble toggle'        }
-  },
+  -- x = {
+  --   name = '+trouble'
+  --   , l = { [[<cmd>Trouble loclist<cr>]],                   'window location list'  }
+  --   , d = { [[<cmd>Trouble lsp_document_diagnositcs<cr>]],  'document diagnositcs'  }
+  --   , D = { [[<cmd>Trouble lsp_definitions<cr>]],           'lsp definitions'       }
+  --   , q = { [[<cmd>Trouble quickfix<cr>]],                  'quickfix'              }
+  --   , r = { [[<cmd>Trouble lsp_references<cr>]],            'lsp references'        }
+  --   , t = { [[<cmd>Trouble lsp_type_definitions<cr>]],      'lsp type definitions'  }
+  --   , w = { [[<cmd>Trouble lsp_workspace_diagnostics<cr>]], 'workspace diagnostics' }
+  --   , x = { [[<cmd>TroubleToggle<cr>]],                     'trouble toggle'        }
+  -- },
 
   ---  Comment Handling
   ---
