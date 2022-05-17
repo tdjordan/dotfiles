@@ -176,7 +176,7 @@ local normal_mappings = {
   f = {
     name = '+search'
     , b = { '<cmd>lua require "telescope.builtin".buffers()<cr>',                   'in open buffers' }
-    , d = { '<cmd>lua require "telescope.builtin".diagnostics()<cr>',               'lsp diagnostics' }
+    -- , d = { '<cmd>lua require "telescope.builtin".diagnostics()<cr>',               'lsp diagnostics' }
     , f = { '<cmd>lua require "telescope.builtin".find_files()<cr>',                'by file name'    }
     , g = { '<cmd>lua require "telescope.builtin".live_grep()<cr>',                 'with live grep'  }
     , h = { '<cmd>lua require "telescope.builtin".help_tags()<cr>',                 'help tags'       }
@@ -201,7 +201,7 @@ local normal_mappings = {
     name = '+lsp'
     , a = { '<cmd>lua vim.lsp.buf.code_action()',                                 'code action'       }
     , c = { '<cmd>lua vim.lsp.buf.range_code_action()',                           'code action range' }
-    , d = { '<cmd>lua require "telescope.builtin".diagnostics({buffnr = 0})<cr>', 'document diagnostics' }
+    , d = { '<cmd>lua require "telescope.builtin".diagnostics({bufnr = 0})<cr>', 'document diagnostics' }
     , f = { '<cmd>lua vim.lsp.buf.formatting()<cr>',                              'format'            }
     , h = { '<cmd>lua vim.lsp.buf.hover()<cr>',                                   'hover'             }
     , i = { '<cmd>LspInfo<cr>',                                                   'info'              }
