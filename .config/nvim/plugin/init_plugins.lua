@@ -11,10 +11,11 @@ _ = (not packer_installed or not packer_compiled) and require 'bootstrap'
 --   require 'bootstrap'
 -- end
 
-local ok, _ = pcall( require, 'impatient' )
-if ok then
-  vim.notify "impatient loaded"
-end
+pcall( require, 'impatient' )
+-- local ok, _ = pcall( require, 'impatient' )
+-- if ok then
+--   vim.notify "impatient loaded"
+-- end
 -- require 'impatient'.enable_profile()
 local packer_compiled_post_boot = fn.filereadable(packer_compiled_fn) == 1
 _ = packer_compiled_post_boot and require 'packer_compiled'
