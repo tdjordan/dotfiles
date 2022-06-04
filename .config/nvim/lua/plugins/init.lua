@@ -37,7 +37,14 @@ M.init_packer = function ()
         'lewis6991/impatient.nvim'
         -- , config = function()
         --   require 'impatient'.enable_profile()
+        --   -- require 'impatient'
         -- end
+        , config = function()
+          vim.schedule( function()
+            require 'impatient'.enable_profile()
+          end)
+          -- require 'impatient'
+        end
       }
 
       ---  Packer itself
@@ -63,6 +70,7 @@ M.init_packer = function ()
       ---
       use {
         'rcarriga/nvim-notify'
+        , event = 'CursorHold'
         -- , event = 'BufReadPost'
         , config = function()
           require 'configs.notify'
@@ -79,14 +87,20 @@ M.init_packer = function ()
       ---  Language Protocol Server - LSP
       ---
       use {
-        'neovim/nvim-lspconfig'
+        'williamboman/nvim-lsp-installer'
         , event = 'CursorHold'
+        -- , after = 'nvim-lspconfig'
         , config = function()
-          require 'lsp'
+          require 'configs.lsp.installer'
         end
       }
       use {
+        'neovim/nvim-lspconfig'
+        , module_pattern = 'lspconfig'
+      }
+      use {
         'b0o/schemastore.nvim'
+        , module = 'schemastore'
       }
       use {
         'jose-elias-alvarez/null-ls.nvim'
@@ -94,13 +108,6 @@ M.init_packer = function ()
         , module_pattern = 'null-ls.*'
         , config = function()
           require 'configs.lsp.null'
-        end
-      }
-      use {
-        'williamboman/nvim-lsp-installer'
-        , after = 'nvim-lspconfig'
-        , config = function()
-          require 'configs.lsp.installer'
         end
       }
 
@@ -171,8 +178,9 @@ M.init_packer = function ()
       }
       use {
         'hrsh7th/nvim-cmp'
-        , after = 'LuaSnip'
-        , module_pattern = 'cmp.*'
+        , event = 'InsertEnter'
+        -- , after = 'LuaSnip'
+        , module_pattern = 'cmp'
         , config = function()
           require 'configs.completion.cmp'
         end
@@ -180,20 +188,21 @@ M.init_packer = function ()
       use {
         'hrsh7th/cmp-buffer'
         , after = 'nvim-cmp'
-        , wants = 'nvim-cmp'
+        -- , wants = 'nvim-cmp'
         , module_pattern = 'cmp.*'
       }
       use {
         'hrsh7th/cmp-nvim-lua'
-        , ft = 'lua'
-        , wants = 'nvim-cmp'
+        -- , ft = 'lua'
+        , after = 'nvim-cmp'
+        -- , wants = 'nvim-cmp'
         , module_pattern = 'cmp.*'
       }
       use {
         'hrsh7th/cmp-nvim-lsp'
         -- , event = 'InsertEnter'
         , after = 'nvim-cmp'
-        , wants = 'nvim-cmp'
+        -- , wants = 'nvim-cmp'
         , module_pattern = 'cmp.*'
         , config = function()
           require 'cmp_nvim_lsp'._on_insert_enter()
@@ -202,7 +211,7 @@ M.init_packer = function ()
       use {
         'hrsh7th/cmp-path'
         , after = 'nvim-cmp'
-        , wants = 'nvim-cmp'
+        -- , wants = 'nvim-cmp'
         , module_pattern = 'cmp.*'
       }
       use {
@@ -263,8 +272,12 @@ M.init_packer = function ()
       }
       use {
         'Saecki/crates.nvim'
-        , event = 'BufRead Cargo.toml'
-        , wants = 'nvim-cmp'
+        , opt = true
+        -- , ft = 'toml'
+        , event = { 'BufReadPost Cargo.toml' }
+        , requires = { { 'nvim-lua/plenary.nvim' } }
+        -- , wants = 'nvim-cmp'
+        -- , wants = 'plenary.nvim'
         , config = function()
           require 'configs.completion.cmp.crates'
         end
@@ -325,6 +338,13 @@ M.init_packer = function ()
           require 'configs.luasnip'
         end
       }
+      -- use {
+      --   'molleweide/LuaSnip-snippets.nvim'
+      --   , event = 'InsertEnter'
+      --   , config = function()
+      --     require 'configs.luasnip.snippets'
+      --   end
+      -- }
       use {
         'saadparwaiz1/cmp_luasnip'
         , after = 'nvim-cmp'
@@ -422,15 +442,17 @@ M.init_packer = function ()
         -- , event = 'CursorHold'
         -- , module_pattern = 'treesitter.*'
         , config = function()
-          require 'configs.treesitter'
+          vim.schedule( function()
+            require 'configs.treesitter'
+          end)
         end
       }
 
       use {
         'nvim-treesitter/playground'
         , cmd =
-          { "TSPlaygroundToggle"
-          , "TSHighlightCapturesUnderCursor"
+          { 'TSPlaygroundToggle'
+          , 'TSHighlightCapturesUnderCursor'
         }
       }
       -- use { 'nvim-treesitter/completion-treesitter' }
@@ -546,7 +568,9 @@ M.init_packer = function ()
         'folke/which-key.nvim'
         -- , event = 'CursorHold'
         , config = function()
+          vim.schedule( function()
             require 'configs.keys'
+          end)
         end
       }
 
@@ -619,14 +643,15 @@ M.init_packer = function ()
 
       use {
         'sainnhe/everforest'
-        , module_pattern = 'telescope.builtin'
+        -- , module_pattern = 'telescope.builtin'
+        -- , fn = 'require("telescope.builtin").colorscheme'
       }
 
       use {
         'eddyekofo94/gruvbox-material.nvim'
         , module_pattern = 'telescope.builtin'
         -- , config = function ()
-        --   require "theme.gruvbox.material"
+        --   require 'theme.gruvbox.material'
         -- end
       }
 
@@ -648,7 +673,8 @@ M.init_packer = function ()
       use {
         {
           'NTBBloodbath/doom-one.nvim'
-          , module_pattern = 'telescope.builtin'
+          , opt = true
+          -- , module_pattern = 'telescope.builtin'
           , config = function()
             require 'theme.doom-one'
           end
@@ -771,8 +797,13 @@ M.init_packer = function ()
       use {
         'marko-cerovac/material.nvim'
         , config = function()
-          require 'theme.material'
-        end
+            require 'theme.material'
+          end
+        -- , config = function()
+        --   vim.schedule( function()
+        --     require 'theme.material'
+        --   end)
+        -- end
       }
 
       -- use {
@@ -821,7 +852,9 @@ M.init_packer = function ()
         , event = 'BufReadPost'
         , module = 'lualine'
         , config = function()
-          require 'configs.lualine'
+          -- vim.schedule( function()
+            require 'configs.lualine'
+          -- end)
         end
       }
 
@@ -862,18 +895,8 @@ M.init_packer = function ()
       -- }
       use {
         'kyazdani42/nvim-tree.lua'
-        -- , cmd =
-        --   { 'NvimTreeClipboard'
-        --   , 'NvimTreeClose'
-        --   , 'NvimTreeFindFile'
-        --   , 'NvimTreeOpen'
-        --   , 'NvimTreeRefresh'
-        --   , 'NvimTreeToggle'
-        -- }
         -- , module_pattern = 'nvim-tree.*'
-        , setup = function()
-          require 'configs.filetree.nvim-tree.setup'
-        end
+        , module = 'functions.toggle'
         , config = function()
           require 'configs.filetree.nvim-tree'
         end
@@ -901,7 +924,7 @@ M.init_packer = function ()
       --   , event = 'CursorHold'
       --   , setup = function()
       --     local g = vim.g
-      --     -- do not load the default komentary mappings
+      --     -- do not load the default kommentary mappings
       --     g.kommentary_create_default_mappings = false
       --   end
       --   , config = function()
@@ -1020,7 +1043,7 @@ M.init_packer = function ()
         'ntpeters/vim-better-whitespace'
         , event = 'CursorHold'
         , after = 'which-key.nvim'
-        , setup = function()
+        , config = function()
           require 'configs.whitespace.setup'
         end
       }
@@ -1085,8 +1108,8 @@ M.init_packer = function ()
       --   'akinsho/org-bullets.nvim'
       --   , after = 'orgmode.nvim'
       --   , config = function()
-      --     require("org-bullets").setup {
-      --       symbols = { "◉", "○", "✸", "✿" }
+      --     require('org-bullets').setup {
+      --       symbols = { '◉', '○', '✸', '✿' }
       --     }
       --   end
       -- }
@@ -1109,7 +1132,7 @@ M.init_packer = function ()
       -- }
     end
     , config = {
-      compile_path = vim.fn.stdpath('config') .. '/lua/packer_compiled.lua',
+      compile_path = vim.fn.stdpath('config') .. '/plugin/packer_compiled.lua',
       max_jobs = 70,
       profile = {
         enable = true
