@@ -1,5 +1,3 @@
--- vim.g.material_style = 'oceanic'
--- vim.g.material_style = 'deep ocean'
 vim.g.material_style = 'darker'
 require 'material'.setup {
   contrast =
@@ -28,7 +26,8 @@ require 'material'.setup {
     , darker = false        -- high contrast text for darker style
   }
   , disable =
-    { borders = true        -- no boders between vertical splits
+    { colored_cursor = true -- no colored cursor
+    , borders = true        -- no boders between vertical splits
     , background = false    -- set background
     , term_colors = false   -- set terminal colors
     , eob_lines = true      -- do not hide eob lines
