@@ -3,7 +3,6 @@ vim.filetype.add {
     sls = 'sls'
     , flux = 'flux'
     , dhall = 'dhall'
-    , norg = 'norg'
     , jsonnet = 'jsonnet'
     , cue = function( _, _ )
       vim.bo.cindent = false
