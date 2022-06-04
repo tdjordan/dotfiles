@@ -21,7 +21,7 @@ require 'lsp.handlers'.setup()
 -- require 'lsp.sorbet'
 -- require 'lsp.ansible'
 -- require 'lsp.graphql'
-require 'lsp.cucumber'
+-- require 'lsp.cucumber'
 -- require 'lsp.fortran'
 -- require 'lsp.emmet_ls'
 -- require 'lsp.angularjs'
