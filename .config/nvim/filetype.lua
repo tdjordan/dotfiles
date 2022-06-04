@@ -6,9 +6,9 @@ vim.filetype.add {
     , norg = 'norg'
     , jsonnet = 'jsonnet'
     , cue = function( _, _ )
-      vim.bo.cindent = true
+      vim.bo.cindent = false
       vim.bo.autoindent = false
-      vim.bo.smartindent = false
+      vim.bo.smartindent = true
       return 'cue'
     end
     -- example function
