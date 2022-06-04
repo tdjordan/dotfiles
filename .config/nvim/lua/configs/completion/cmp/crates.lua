@@ -1,3 +1,4 @@
+require 'plenary.job'
 require 'crates'.setup()
 
 -- vim.cmd [[

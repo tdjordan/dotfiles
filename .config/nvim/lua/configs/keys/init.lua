@@ -117,7 +117,7 @@ local normal_mappings = {
   ---
   s = {
     name = '+surround / search'
-    , ['"'] = { [[msciw""<esc>P`sl]], 'word with double quotes'     }
+    , ['"'] = { [[msciw""<esc>P`sl]],           'word with double quotes'     }
     , ["'"] = { [[msciw'<c-r><c-o>"'<esc>`sl]], 'word with single quotes'     }
     -- , ["'"] = { [[msea'<esc>bi'<esc>`sl]], 'word with single quotes'     }
     -- , ["'"] = { [[ciw'<c-r><c-o>"'<esc>]], 'word with single quotes'     }
@@ -128,7 +128,7 @@ local normal_mappings = {
 
     , c = {
       name = 'change'
-      , ['"'] = { [[ciwxx""P]], 'to single quotes' }
+      , ['"'] = { [[ciwxx""P]],    'to single quotes'                     }
       , ["'"] = { [[ciw''<esc>P]], 'surround word with single   quotes'   }
       , ['['] = { 'ciw[]<esc>P',   'surround word with square   brackets' }
       , [']'] = { 'ciw{}<esc>P',   'surround word with squiggly brackets' }
@@ -139,13 +139,13 @@ local normal_mappings = {
 
     , p = { [[<cmd>split<cr>]], 'split top-bottom' }
     -- , t = { [[<cmd>lua require('theme').ThemeToggle()<cr>]], 'toggle dark/light' }
-    , t = { '<cmd>lua require "telescope.builtin".live_grep()<cr>', 'search text' }
+    , t = { function() require "telescope.builtin".live_grep() end , 'search text' }
   },
 
   ---
   ---  do we really want to do this?
   ---
-  ['<c-p>'] = { "<cmd>lua require 'telescope.builtin'.git_files()<cr>", 'search git files' },
+  ['<c-p>'] = { function() require 'telescope.builtin'.git_files() end , 'search git files' },
 
   -- Reload init.lua from standard config path
   -- note that the stdpath makes this portable
@@ -157,8 +157,10 @@ local normal_mappings = {
   ---
   -- b = {
   --   name = 'buffer / browse'
-  --   -- name = 'buffer / browse'
-  --   , ['.'] = { '<cmd>lua require "telescope.builtin".file_browser()<cr>', 'files' }
+  --   , ['.'] = { function()
+  --     require 'telescope'.extensions.file_browser.file_browser()
+  --   end, 'file browser'}
+  --   -- , ['.'] = { '<cmd>lua require "telescope.builtin".file_browser()<cr>', 'files' }
   --   -- , c = { '<cmd>BufferClose<cr>', 'close buffer' }
   -- },
 
@@ -175,22 +177,23 @@ local normal_mappings = {
   ---
   f = {
     name = '+search'
-    , b = { '<cmd>lua require "telescope.builtin".buffers()<cr>',                   'in open buffers' }
-    , f = { '<cmd>lua require "telescope.builtin".find_files()<cr>',                'by file name'    }
-    , g = { '<cmd>lua require "telescope.builtin".live_grep()<cr>',                 'with live grep'  }
-    , h = { '<cmd>lua require "telescope.builtin".help_tags()<cr>',                 'help tags'       }
-    , j = { '<cmd>lua require "telescope.builtin".jumplist()<cr>',                  'jumplist'        }
-    , i = { '<cmd>lua require "telescope.builtin".builtin()<cr>',                   'builtins'        }
-    , k = { '<cmd>lua require "telescope.builtin".keymaps()<cr>',                   'keymaps'         }
-    , l = { '<cmd>lua require "telescope.builtin".current_buffer_fuzzy_find()<cr>', 'current buffer'  }
-    , m = { '<cmd>lua require "telescope.builtin".man_pages()<cr>',                 'man pages'       }
-    , o = { '<cmd>lua require "telescope.builtin".oldfiles()<cr>',                  'recent files'    }
-    , q = { '<cmd>lua require "telescope.builtin".quickfix()<cr>',                  'quickfix'        }
-    , r = { '<cmd>lua require "telescope.builtin".reloader()<cr>',                  'reloader'        }
-    , s = { '<cmd>lua require "telescope.builtin".lsp_workspace_symbols()<cr>',     'lsp symbols'     }
-    , t = { '<cmd>lua require "telescope.builtin".filetypes()<cr>',                 'filetypes'       }
-    , [';'] = { '<cmd>lua require "telescope.builtin".command_history()<cr>',       'command history' }
-    , ['/'] = { '<cmd>lua require "telescope.builtin".search_history()<cr>',        'search history'  }
+    , b = { function() require 'telescope.builtin'.buffers()                          end , 'in open buffers' }
+    , f = { function() require 'telescope.builtin'.find_files()                       end , 'by file name'    }
+    , g = { function() require 'telescope.builtin'.live_grep()                        end , 'with live grep'  }
+    , h = { function() require 'telescope.builtin'.help_tags()                        end , 'help tags'       }
+    , j = { function() require 'telescope.builtin'.jumplist()                         end , 'jumplist'        }
+    , i = { function() require 'telescope.builtin'.builtin()                          end , 'builtins'        }
+    , k = { function() require 'telescope.builtin'.keymaps()                          end , 'keymaps'         }
+    , l = { function() require 'telescope.builtin'.current_buffer_fuzzy_find()        end , 'current buffer'  }
+    , m = { function() require 'telescope.builtin'.man_pages()                        end , 'man pages'       }
+    , o = { function() require 'telescope.builtin'.oldfiles()                         end , 'recent files'    }
+    , q = { function() require 'telescope.builtin'.quickfix()                         end , 'quickfix'        }
+    , r = { function() require 'telescope.builtin'.reloader()                         end , 'reloader'        }
+    , s = { function() require 'telescope.builtin'.lsp_workspace_symbols()            end , 'lsp symbols'     }
+    , t = { function() require 'telescope.builtin'.filetypes()                        end , 'filetypes'       }
+    , [';'] = { function() require 'telescope.builtin'.command_history()              end , 'command history' }
+    , ['/'] = { function() require 'telescope.builtin'.search_history()               end , 'search history'  }
+    , ['.'] = { function() require 'telescope'.extensions.file_browser.file_browser() end , 'file browser'    }
   },
 
   ---
@@ -198,60 +201,58 @@ local normal_mappings = {
   ---
   l = {
     name = '+lsp'
-    , a = { '<cmd>lua vim.lsp.buf.code_action()',                                 'code action'          }
-    , c = { '<cmd>lua vim.lsp.buf.range_code_action()',                           'code action range'    }
-    , d = { '<cmd>lua require "telescope.builtin".diagnostics({bufnr = 0})<cr>',  'document diagnostics' }
-    , f = { '<cmd>lua vim.lsp.buf.formatting()<cr>',                              'format'               }
-    , h = { '<cmd>lua vim.lsp.buf.hover()<cr>',                                   'hover'                }
+    , a = { function() vim.lsp.buf.code_action()                            end , 'code action'          }
+    , c = { function() vim.lsp.buf.range_code_action()                      end , 'code action range'    }
+    , d = { function() require 'telescope.builtin'.diagnostics({bufnr = 0}) end , 'document diagnostics' }
+    , f = { function() vim.lsp.buf.formatting()                             end , 'format'               }
+    , h = { function() vim.lsp.buf.hover()                                  end , 'hover'                }
     , i = { '<cmd>LspInfo<cr>',                                                   'info'                 }
-    , I = { '<cmd>LspInstallInfo<cr>',                                            'installer info'       }
-    , j = { '<cmd>lua vim.diagnostic.goto_next()<cr>',                            'next diagnositc'      }
-    , k = { '<cmd>lua vim.diagnostic.goto_prev()<cr>',                            'prev diagnositc'      }
-    , l = { '<cmd>lua vim.lsp.codelens.run()<cr>',                                'codelens action'      }
+    , I = { function() require 'nvim-lsp-installer'.info_window.open()      end , 'installer info'       }  -- LspInstallInfo
+    , j = { function() vim.diagnostic.goto_next()                           end , 'next diagnositc'      }
+    , k = { function() vim.diagnostic.goto_prev()                           end , 'prev diagnositc'      }
+    , l = { function() vim.lsp.codelens.run()                               end , 'codelens action'      }
     , p = {
       name = '+peek'
-      -- , d = { '<cmd>lua require "lvim.lsp.peek".Peek("definition")<cr>',     'definition'      }
-      , d = { '<cmd>lua vim.lsp.buf.definition()<cr>',                       'definition'      }
-      , i = { '<cmd>lua require "lvim.lsp.peek".Peek("implementation")<cr>', 'implementation'  }
-      , r = { '<cmd>lua vim.lsp.buf.references()<cr>',                       'references'      }
-      , t = { '<cmd>lua require "lvim.lsp.peek".Peek("typeDefinition")<cr>', 'type definition' }
+      , i = { function() require 'lvim.lsp.peek'.Peek('implementation') end , 'implementation'  }
+      , r = { function() vim.lsp.buf.references()                       end , 'references'      }
+      , t = { function() require 'lvim.lsp.peek'.Peek('typeDefinition') end , 'type definition' }
     }
-    , q = { '<cmd>lua vim.diagnostic.setloclist()<cr>',               'quickfix'              }
-    , r = { '<cmd>lua vim.lsp.buf.rename()<cr>',                      'rename'                }
-    , s = { '<cmd>Telescope lsp_document_symbols<cr>',                'document symbols'      }
-    , S = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>',       'workspace symbols'     }
-    , w = { '<cmd>lua require "telescope.builtin".diagnostics()<cr>', 'workspace diagnostics' }
-  },
+    , q = { function() vim.diagnostic.setloclist()                                 end , 'quickfix'              }
+    , r = { function() vim.lsp.buf.rename()                                        end , 'rename'                }
+    , s = { function() require 'telescope.builtin'.lsp_document_symbols()          end , 'document symbols'      }
+    , S = { function() require 'telescope.builtin'.lsp_dynamic_workspace_symbols() end , 'document symbols'      }
+    , w = { function() require 'telescope.builtin'.diagnostics()                   end , 'workspace diagnostics' }
+  }                                                                                                                            ,
 
   ---
   ---  p* mappings
   ---
   p = {
     name = '+pick'
-    , a = { '<cmd>lua require "telescope.builtin".autocommands()<cr>',                          'an autocommand'      }
-    , b = { '<cmd>lua require "telescope.builtin".buffers()<cr>',                               'from open buffers'   }
-    , c = { '<cmd>lua require "telescope.builtin".colorscheme()<cr>',                           'a colorscheme'       }
-    , e = { '<cmd>lua require "telescope.builtin".symbols{sources = {"emoji", "gitmoji"}}<cr>', '*moji'               }
-    , f = { '<cmd>lua require "telescope.builtin".find_files()<cr>',                            'a file'              }
-    , g = { '<cmd>lua require "telescope.builtin".live_grep()<cr>',                             'from live grep'      }
-    , l = { '<cmd>lua require "telescope.builtin".current_buffer_fuzzy_find()<cr>',             'from current buffer' }
-    , s = { '<cmd>lua require "telescope.builtin".grep_string()<cr>',                           'with grep string'    }
+    , a = { function() require 'telescope.builtin'.autocommands()                          end , 'an autocommand'      }
+    , b = { function() require 'telescope.builtin'.buffers()                               end , 'from open buffers'   }
+    , c = { function() require 'telescope.builtin'.colorscheme()                           end , 'a colorscheme'       }
+    , e = { function() require 'telescope.builtin'.symbols{sources = {'emoji', 'gitmoji'}} end , '*moji'               }
+    , f = { function() require 'telescope.builtin'.find_files()                            end , 'a file'              }
+    , g = { function() require 'telescope.builtin'.live_grep()                             end , 'from live grep'      }
+    , l = { function() require 'telescope.builtin'.current_buffer_fuzzy_find()             end , 'from current buffer' }
+    , s = { function() require 'telescope.builtin'.grep_string()                           end , 'with grep string'    }
     , p = {
       name = '+packer'
-      , s = { '<cmd>PackerSync<cr>',                                          'sync'    }
-      , c = { '<cmd>PackerCompile<cr>',                                       'compile' }
-      , l = { '<cmd>lua require "telescope".extensions.packer.plugins()<cr>', 'list'    }
-      , t = { '<cmd>PackerStatus<cr>',                                        'status'  }
-      , p = { '<cmd>PackerProfile<cr>',                                       'profile' }
-      , u = { '<cmd>PackerUpdate<cr>',                                        'update'  }
-      , w = { '<cmd>PackerClean<cr>',                                         'clean'   }
+      , s = { function() require 'plugins'.init_packer() require 'packer'.sync()           end , 'sync'    }
+      , c = { function() require 'plugins'.init_packer() require 'packer'.compile()        end , 'compile' }
+      , l = { function() require 'telescope'.extensions.packer.plugins()                   end , 'list'    }
+      , t = { function() require 'plugins'.init_packer() require 'packer'.status()         end , 'status'  }
+      , p = { function() require 'plugins'.init_packer() require 'packer'.profile_output() end , 'profile' }
+      , u = { function() require 'plugins'.init_packer() require 'packer'.update()         end , 'update'  }
+      , w = { function() require 'plugins'.init_packer() require 'packer'.clean()          end , 'clean'   }
     }
-    , w = { '<cmd>lua require "telescope".extensions.project.project{ display_type = "full" }<cr>', 'workspace' }
+    , w = { function() require 'telescope'.extensions.project.project{ display_type = 'full' } end , 'workspace' }
     , v = {
       name = '+vim'
-      , h = { '<cmd>lua require "telescope.builtin".highlights()<cr>',  'vim highlights' }
-      , o = { '<cmd>lua require "telescope.builtin".vim_options()<cr>', 'vim options'    }
-      , r = { '<cmd>lua require "telescope.builtin".registers()<cr>',   'vim registers'  }
+      , h = { function() require "telescope.builtin".highlights()  end , 'vim highlights' }
+      , o = { function() require "telescope.builtin".vim_options() end , 'vim options'    }
+      , r = { function() require "telescope.builtin".registers()   end , 'vim registers'  }
     }
   },
 
@@ -260,46 +261,46 @@ local normal_mappings = {
   ---
   c = {
     name = '+comments'
-    , ["<c-_>"] = { '<Plug>kommentary_line_default',   'comment line'   }
-    , l =         { '<Plug>kommentary_line_default',   'comment line'   }
-    , m =         { '<Plug>kommentary_motion_default', 'comment motion' }
+    , ["<c-_>"] = { function() require 'Comment.api'.toggle_current_linewise_op() end , 'comment line'   }
+    , l =         { function() require 'Comment.api'.toggle_current_linewise_op() end , 'comment line'   }
+    -- , m =         { function() require 'Comment.api'.toggle_linewise_count_op()   end , 'comment motion' }
   },
 
   ---
   ---  e* mappings
   ---
-  e = { [[<cmd>lua require 'functions.toggle'.nvim_tree()<cr>]], 'explorer'  },
+  e = { function() require 'functions.toggle'.nvim_tree() end , 'explorer' },
 
   ---
   ---  d* mappings
   ---
   d = {
     name = '+Debug'
-    , t = { '<cmd>lua require "dap".toggle_breakpoint()<cr>', 'Toggle Breakpoint' }
-    , b = { '<cmd>lua require "dap".step_back()<cr>',         'Step Back'         }
-    , c = { '<cmd>lua require "dap".continue()<cr>',          'Continue'          }
-    , C = { '<cmd>lua require "dap".run_to_cursor()<cr>',     'Run to Cursor'     }
-    , d = { '<cmd>lua require "dap".disconnect()<cr>',        'Disconnect'        }
-    , g = { '<cmd>lua require "dap".session()<cr>',           'Get Session'       }
-    , i = { '<cmd>lua require "dap".step_into()<cr>',         'Step Into'         }
-    , o = { '<cmd>lua require "dap".step_over()<cr>',         'Step Over'         }
-    , u = { '<cmd>lua require "dap".step_out()<cr>',          'Step Out'          }
-    , p = { '<cmd>lua require "dap".pause.toggle()<cr>',      'Pause'             }
-    , r = { '<cmd>lua require "dap".repl.toggle.()<cr>',      'Toggle Repl'       }
-    , s = { '<cmd>lua require "dap".continue()<cr>',          'Start'             }
-    , q = { '<cmd>lua require "dap".close()<cr>',             'Quit'              }
-  },
+    , t = { function() require "dap".toggle_breakpoint() end , 'Toggle Breakpoint' }
+    , b = { function() require "dap".step_back()         end , 'Step Back'         }
+    , c = { function() require "dap".continue()          end , 'Continue'          }
+    , C = { function() require "dap".run_to_cursor()     end , 'Run to Cursor'     }
+    , d = { function() require "dap".disconnect()        end , 'Disconnect'        }
+    , g = { function() require "dap".session()           end , 'Get Session'       }
+    , i = { function() require "dap".step_into()         end , 'Step Into'         }
+    , o = { function() require "dap".step_over()         end , 'Step Over'         }
+    , u = { function() require "dap".step_out()          end , 'Step Out'          }
+    , p = { function() require "dap".pause.toggle()      end , 'Pause'             }
+    , r = { function() require "dap".repl.toggle()       end , 'Toggle Repl'       }
+    , s = { function() require "dap".continue()          end , 'Start'             }
+    , q = { function() require "dap".close()             end , 'Quit'              }
+  } ,
 
   ---
   ---  g* mappings
   ---
   g = {
     name = '+git'
-    , b = { '<cmd>lua require "telescope.builtin".git_branches()<cr>', 'git branches' }
-    , c = { '<cmd>lua require "telescope.builtin".git_commits()<cr>',  'git commits'  }
-    , h = { '<cmd>lua require "telescope.builtin".git_stash()<cr>',    'git stash'    }
-    , l = { '<cmd>lua require "telescope.builtin".git_bcommits()<cr>', 'git buffer commits' }
-    , s = { '<cmd>lua require "telescope.builtin".git_status()<cr>',   'git status'   }
+    , b = { function() require "telescope.builtin".git_branches() end , 'git branches'       }
+    , c = { function() require "telescope.builtin".git_commits()  end , 'git commits'        }
+    , h = { function() require "telescope.builtin".git_stash()    end , 'git stash'          }
+    , l = { function() require "telescope.builtin".git_bcommits() end , 'git buffer commits' }
+    , s = { function() require "telescope.builtin".git_status()   end , 'git status'         }
   },
 
   ---
@@ -307,24 +308,18 @@ local normal_mappings = {
   ---
   ---  Indentation
   ---
-  i = { [[<cmd>lua require 'functions.toggle'.indent_blankline()<cr>]], 'toggle indentation guides' },
-
-  ---
-  ---  k* mappings
-  ---
-  ---  File Browser
-  ---
+  i = { function() require 'functions.toggle'.indent_blankline() end , 'toggle indentation guides' },
 
   ---
   ---  t* mappings
   ---
   t = {
     name = '+toggle'
-    , h = { '<cmd>TSHighlightCapturesUnderCursor<cr>',                      'highlight captures'        }
-    , i = { [[<cmd>lua require 'functions.toggle'.indent_blankline()<cr>]], 'toggle indentation guides' }
-    , k = { [[<cmd>lua require 'functions.toggle'.nvim_tree()<cr>]],        'toggle file tree sidebar'  }
-    , t = { '<cmd>split term://$SHELL<cr>',                                 'terminal'                  }
-    , s = { '<cmd>TSPlaygroundToggle<cr>',                                  'tree-sitter playgournd'    }
+    , h = { '<cmd>TSHighlightCapturesUnderCursor<cr>',                     'highlight captures'        }
+    , i = { function() require 'functions.toggle'.indent_blankline() end , 'toggle indentation guides' }
+    , k = { function() require 'functions.toggle'.nvim_tree() end ,        'toggle file tree sidebar'  }
+    , t = { '<cmd>split term://$SHELL<cr>',                                'terminal'                  }
+    , s = { '<cmd>TSPlaygroundToggle<cr>',                                 'tree-sitter playgournd'    }
   },
 
   ---
@@ -332,9 +327,9 @@ local normal_mappings = {
   ---
   r = {
     name = '+rest'
-    , l = { "<cmd>lua require 'rest-nvim'.last()<cr>",    'run last request'         }
-    , p = { "<cmd>lua require 'rest-nvim'.run(true)<cr>", 'preview the curl command' }
-    , r = { "<cmd>lua require 'rest-nvim'.run()<cr>",     'run request under cursor' }
+    , l = { function() require 'rest-nvim'.last()    end , 'run last request'         }
+    , p = { function() require 'rest-nvim'.run(true) end , 'preview the curl command' }
+    , r = { function() require 'rest-nvim'.run()     end , 'run request under cursor' }
   },
 
   ---  v* mapptings
@@ -356,10 +351,6 @@ local normal_mappings = {
   --   , w = { [[<cmd>Trouble lsp_workspace_diagnostics<cr>]], 'workspace diagnostics' }
   --   , x = { [[<cmd>TroubleToggle<cr>]],                     'trouble toggle'        }
   -- },
-
-  ---  Comment Handling
-  ---
-  ['<c-_>'] = { '<plug>NERDCommenterToggle', 'toggle comment'},
 }
 
 wk.register(normal_mappings, normal_mode)
@@ -410,11 +401,27 @@ tnoremap( '<C-j>', [[<C-\><C-n><C-w>j]] )
 tnoremap( '<C-k>', [[<C-\><C-n><C-w>k]] )
 tnoremap( '<C-l>', [[<C-\><C-n><C-w>l]] )
 
-local cmd = vim.cmd
-cmd [[ autocmd BufWinEnter,WinEnter,TermEnter term://* setlocal nonumber norelativenumber ]]
-cmd [[ autocmd BufWinEnter,WinEnter,TermEnter term://* startinsert                        ]]
-cmd [[ autocmd BufLeave                       term://* stopinsert                         ]]
-cmd [[ autocmd TermClose                      term://* call nvim_input('<cr>')            ]]
+local autocmd = vim.api.nvim_create_autocmd
+
+autocmd( { 'BufWinEnter', 'WinEnter', 'TermEnter' }, {
+  pattern = 'term://*'
+  , command = [[setlocal nonumber norelativenumber]]
+})
+
+autocmd( { 'BufWinEnter', 'WinEnter', 'TermEnter' }, {
+  pattern = 'term://*'
+  , command = [[startinsert]]
+})
+
+autocmd( 'BufLeave', {
+  pattern = 'term://*'
+  , command = [[stopinsert]]
+})
+
+autocmd( 'TermClose', {
+  pattern = 'term://*'
+  , command = [[call nvim_input('<cr>')]]
+})
 
 ---  Escape
 ---
@@ -425,13 +432,14 @@ wk.register({
 
   ---  luasnip jumping
   ---
-  ['<c-_>'] = { "<cmd>lua require 'functions.luasnip'.jump()<cr>", 'snippet jump forward' },
-  ["<c-y>"] = { "<cmd>lua require 'functions.luasnip'.jump_back()<cr>", 'snippet jump back' },
-
+  ['<c-_>'] = { function() require 'functions.luasnip'.jump()      end , 'snippet jump forward' },
+  ['<c-y>'] = { function() require 'functions.luasnip'.jump_back() end , 'snippet jump back'    },
 }, {
   mode = 'i'
 })
-cmd [[ inoremap jk <esc> ]]
+
+local cmd = vim.cmd
+cmd [[inoremap jk <esc>]]
 -- cmd [[ autocmd BufWinEnter,WinEnter,BufEnter TelescopePrompt <cmd><lua>vim.opt.timeoutlen = 0<cr> ]]
 -- cmd [[ autocmd BufWinEnter,WinEnter,BufEnter TelescopePrompt :inoremap jk <nop>]]
 -- cmd [[ autocmd BufWinLeave,WinLeave TelescopePrompt :inoremap jk <esc> ]]
@@ -452,18 +460,18 @@ cmd [[ inoremap jk <esc> ]]
 
 ---  Treesitter Unit
 ---
--- vim.api.nvim_set_keymap('x', 'iu', '<cmd>lua require "treesitter-unit".select()<cr>',     { noremap = true })
--- vim.api.nvim_set_keymap('x', 'au', '<cmd>lua require "treesitter-unit".select(true)<cr>', { noremap = true })
--- vim.api.nvim_set_keymap('o', 'iu', '<cmd>lua require "treesitter-unit".select()<cr>',     { noremap = true })
--- vim.api.nvim_set_keymap('o', 'au', '<cmd>lua require "treesitter-unit".select(true)<cr>', { noremap = true })
+-- vim.keymap.set('x', 'iu', '<cmd>lua require "treesitter-unit".select()<cr>',     { noremap = true })
+-- vim.keymap.set('x', 'au', '<cmd>lua require "treesitter-unit".select(true)<cr>', { noremap = true })
+-- vim.keymap.set('o', 'iu', '<cmd>lua require "treesitter-unit".select()<cr>',     { noremap = true })
+-- vim.keymap.set('o', 'au', '<cmd>lua require "treesitter-unit".select(true)<cr>', { noremap = true })
 wk.register({
   i =  {
     name = '+inner'
-    , u = { '<cmd>lua require "treesitter-unit".select()<cr>',     'unit select' },
+    , u = { function() require 'treesitter-unit'.select()     end , 'unit select' },
   }
   , a = {
     name = '+outer'
-    , u = { '<cmd>lua require "treesitter-unit".select(true)<cr>', 'unit select' },
+    , u = { function() require 'treesitter-unit'.select(true) end , 'unit select' },
   }
 }, {
   mode = 'x'
@@ -472,11 +480,11 @@ wk.register({
 wk.register({
   i =  {
     name = '+inner'
-    , u = { '<cmd>lua require "treesitter-unit".select()<cr>',     'inner unit' },
+    , u = { function() require "treesitter-unit".select()     end , 'inner unit'                },
   }
   , a = {
     name = '+outer'
-    , u = { '<cmd>lua require "treesitter-unit".select(true)<cr>', 'a unit (with white space)' },
+    , u = { function() require "treesitter-unit".select(true) end , 'a unit (with white space)' },
   }
 }, {
   mode = 'o'

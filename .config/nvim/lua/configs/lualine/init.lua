@@ -1,5 +1,5 @@
 local api = vim.api
-local nls = require 'null-ls'
+-- local nls = require 'null-ls'
 
 -- local theme_colors = require 'nightfox.colors'.load()
 
@@ -37,11 +37,13 @@ local list_registered_providers_names = function( filetype )
 end
 
 local list_registered_formatters = function( filetype )
+  local nls = require 'null-ls'
   local method = nls.methods.FORMATTING
   return list_registered_providers_names( filetype )[method] or {}
 end
 
 local list_registered_linters = function( filetype )
+  local nls = require 'null-ls'
   local method = nls.methods.DIAGNOSTICS
   return list_registered_providers_names( filetype )[method] or {}
 end

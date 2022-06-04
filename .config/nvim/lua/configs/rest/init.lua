@@ -1,5 +1,6 @@
 require 'rest-nvim'.setup(
   { result_split_horizontal = false   -- open results in horizontal split
+  , result_split_in_place = false     -- keep http file buffer above|left when split
   , skip_ssl_verification  = true     -- no SSL certificate verificaiton
   , highlight =
     { enabled = true

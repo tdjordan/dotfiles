@@ -176,6 +176,6 @@ require 'nvim-treesitter.configs'.setup {
 -- ft_to_parser.Jenkinsfile = 'groovy'
 -- ft_to_parser.Jenkinsfile = 'java'
 
--- local keymap = vim.api.nvim_set_keymap
+-- local keymap = vim.keymap.set
 
 -- keymap( 'n', '<leader>T', '<cmd>TSHighlightCapturesUnderCursor<cr>', { noremap = true, silent = true } )

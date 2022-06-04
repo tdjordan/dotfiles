@@ -1,6 +1,6 @@
+require 'lsp.handlers'.setup()
+
 local lsp_installer = require 'nvim-lsp-installer'
-local lspconfig = require 'lspconfig'
-local common = require 'lsp.common'
 
 local servers =
   { 'ansiblels'
@@ -64,7 +64,8 @@ local customized_servers = {
   ['yamlls'] = 'yaml',
   ['sumneko_lua'] = 'lua',
   ['jsonls'] = 'json',
-  ['kotlin_language_server'] = 'kotlin'
+  ['kotlin_language_server'] = 'kotlin',
+  ['cucumber_language_server'] = 'cucumber'
   -- ['rust_analyzer'] = 'rust_analyzer',
 }
 
@@ -104,10 +105,18 @@ local customized_servers = {
 -- end)
 
 lsp_installer.setup {
-  ensure_installed = servers,
-  automatic_installation = true
+  ensure_installed = servers,     -- ensure these servers are always installed
+
+  ---  automatic_installation
+  ---
+  ---    false: no automatic installation
+  ---    true: all servers setup via lspconfig are automatically installed
+  ---    { exclude: string[]  }: all servers except the ones listed are installed
+  automatic_installation = true   -- automatically detect which servers to install ( via lspconfig )
 }
 
+local lspconfig = require 'lspconfig'
+local common = require 'lsp.common'
 for _, server in pairs(servers) do
   if customized_servers[server] then
     require( 'lsp.' .. server )
