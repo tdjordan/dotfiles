@@ -2,7 +2,7 @@ local M = {}
 
 local function noremap(scope, lfs, rhs)
   local opt = { noremap = true, silent = true }
-  vim.api.nvim_set_keymap(scope, lfs, rhs, opt)
+  vim.keymap.set(scope, lfs, rhs, opt)
 end
 
 M.nnoremap = function(lfs, rhs) noremap('n', lfs, rhs) end
