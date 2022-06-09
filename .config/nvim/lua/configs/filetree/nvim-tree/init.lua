@@ -15,6 +15,7 @@ require 'nvim-tree'.setup {
   -- respect_buf_cwd        = false,
   -- view = {
   --   adaptive_size                = false,
+  --   centralize_selection         = false,
   --   width                        = 30,
   --   height                       = 30,
   --   hide_root_folder             = false,
@@ -34,6 +35,7 @@ require 'nvim-tree'.setup {
     -- add_trailing = false,
     group_empty = true,
     highlight_git = true,
+    -- full_name = false,
     ---  highlight_opened_files
     -- 0 --> "none"
     -- 1 --> "icon"
@@ -46,6 +48,7 @@ require 'nvim-tree'.setup {
       icons = {
         corner = "└ ",
         edge = "│ ",
+        item = "│ ",
         none = "  ",
       },
     },
@@ -137,6 +140,10 @@ require 'nvim-tree'.setup {
   --   custom = {},
   --   exclude = {}
   -- },
+  -- filesystem_waters = {
+  --   enable = false,
+  --   internal = 100
+  -- },
   -- git = {
   --   enable = true,
   --   ignore = true,
@@ -196,7 +203,8 @@ require 'nvim-tree'.setup {
   --     copy_paste = false,
   --     diagnostics = false,
   --     git = false,
-  --     profile = false
+  --     profile = false,
+  --     watcher = false
   --   }
   -- }
 }
