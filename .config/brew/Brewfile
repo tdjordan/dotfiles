@@ -37,6 +37,7 @@ brew "cmake-docs"
 brew "ninja"
 brew "conan"
 brew "llvm"
+brew "meson"
 
 ###  doucmentation generator
 brew "doxygen"
@@ -199,6 +200,10 @@ brew "go"
 tap    "mint-lang/mint-lang"
   brew "mint-lang"
 
+###  Erlang
+###
+brew "rebar3"
+
 ###  language server protocol ( lsp )
 ###
 brew "efm-langserver"
@@ -208,6 +213,7 @@ brew "deno"
 brew "efm-langserver"
 brew "bear"
 brew "haskell-language-server"
+brew "ghcup"
 
 ###  Rust Language
 ###
@@ -271,6 +277,8 @@ brew "eksctl"
 brew "clusterctl"
 brew "driftctl"
 brew "aws-cdk"
+brew "cfn-lint"
+# brew "cfn-flip"
 
 ###  Jenkins X
 ###
