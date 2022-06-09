@@ -4,6 +4,7 @@ local lsp_installer = require 'nvim-lsp-installer'
 
 local servers =
   { 'ansiblels'
+  , 'apex_ls'
   -- , 'awk_ls'
   , 'bashls'
   , 'clangd'
@@ -22,6 +23,7 @@ local servers =
   -- , 'fortls'
   , 'gopls'
   , 'graphql'
+  , 'gradle_ls'
   , 'groovyls'
   , 'html'
   , 'jdtls'
@@ -29,6 +31,7 @@ local servers =
   , 'jsonnet_ls'
   , 'kotlin_language_server'
   , 'lemminx'
+  , 'marksman'
   -- , 'mint'
   -- , 'omnisharp'
   -- , 'powershell_es'
@@ -44,6 +47,7 @@ local servers =
   -- , 'tflint'
   , 'tsserver'
   , 'vimls'
+  , 'visualforce_ls'
   , 'yamlls'
   -- , 'zk'
 }
@@ -61,11 +65,12 @@ local servers =
 -- end
 
 local customized_servers = {
+  ['gradle_ls'] = 'gradle',
   ['yamlls'] = 'yaml',
   ['sumneko_lua'] = 'lua',
   ['jsonls'] = 'json',
   ['kotlin_language_server'] = 'kotlin',
-  ['cucumber_language_server'] = 'cucumber'
+  -- ['cucumber_language_server'] = 'cucumber',
   -- ['rust_analyzer'] = 'rust_analyzer',
 }
 
@@ -120,6 +125,7 @@ local common = require 'lsp.common'
 for _, server in pairs(servers) do
   if customized_servers[server] then
     require( 'lsp.' .. server )
+    -- vim.pretty_print(server)
   else
     lspconfig[server].setup {
       on_attach = common.on_attach

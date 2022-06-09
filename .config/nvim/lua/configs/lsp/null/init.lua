@@ -179,6 +179,10 @@ local sources = {
   ---  Completions
   ---
   , b.completion.luasnip
+
+  ---  Cloud Formation
+  ---
+  -- , b.diagnostics.cfn_lint
 }
 
 nls.setup {
