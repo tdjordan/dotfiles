@@ -4,6 +4,8 @@ cmp.setup.filetype( 'Jenkinsfile', {
     { name = 'jenkinsfile' },
     { name = 'buffer'      },
     { name = 'luasnip'     },
-    { name = 'nvim_lsp'    }
+    { name = 'nvim_lsp'    },
+    { name = 'path'        },
+    { name = 'tags'        }
   }
 })
