@@ -33,13 +33,13 @@ require 'neorg'.setup {
     -- , [ 'core.norg.qol.toc' ] = {}
     -- , [ 'core.integrations.nvim-cmp' ] = {}
     , [ 'core.integrations.telescope' ] = {}
-    , [ 'external.context' ] = {}
+    -- , [ 'external.context' ] = {}
     , [ 'core.gtd.base' ] = { config = { workspace = 'test' } }
     , [ 'core.keybinds' ] = {
       config = {
         -- default_keybinds = true
         -- neorg_leader = "<leader>o"
-        neorg_leader = ';'
+        neorg_leader = '<leader>o'
         , hook = function( keybinds )
           keybinds.map_event_to_mode( "norg", {
             n = { -- Bind keys in normal mode
