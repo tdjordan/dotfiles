@@ -13,6 +13,7 @@ brew "zinit"
 brew "zoxide"
 brew "pueue"
 brew "choose-rust"
+brew "vivid"
 
 ###  version control systems
 ###
@@ -60,6 +61,7 @@ brew "hyperfine"
 ###  json utils
 ###
 brew "jq"
+brew "jaq"
 brew "jql"
 
 ###  artifact repository
@@ -112,6 +114,7 @@ cask "wezterm"
 ###
 # cask "adoptopenjdk"
 cask "temurin"
+cask "viaualvm"
 
 tap    "homebrew/cask-versions"
   cask "temurin8"
@@ -121,6 +124,9 @@ tap    "homebrew/cask-versions"
 brew "jenv"
 brew "maven"
 brew "gradle"
+
+brew "jmxterm"
+brew "gcviewer"
 
 ###  shell utilities
 ###
@@ -363,6 +369,12 @@ brew "dagger"
 ###  Video
 ###
 cask "vlc"
+
+###  Mulesoft Tools
+###
+cask "anypointstudio"
+cask "advancedrestclient"
+cask "postman"
 
 ###  fonts
 ###
