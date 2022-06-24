@@ -16,7 +16,7 @@ end
 local bootstrap_packer = function()
   local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
 
-  vim.pretty_print('Cloning packer ....', 'info')
+  vim.notify('Cloning packer ....', 'info')
   fn.delete(install_path, 'rf')
   fn.delete(packer_compiled_fn, 'rf')
   fn.system {

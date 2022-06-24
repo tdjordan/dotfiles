@@ -8,6 +8,14 @@ vim.g.mapleader = ' '
 
 local wk = require 'which-key'
 
+local with_neorg = function()
+  ---@diagnostic disable-next-line: undefined-field
+  if not _G.packer_plugins.neorg.loaded then
+    require 'packer'.loader( 'neorg' )
+    vim.cmd [[NeorgStart]]
+  end
+end
+
 -- wk.setup {
 --   plugins = {
 --     marks = true
@@ -206,6 +214,7 @@ local normal_mappings = {
     , d = { function() require 'telescope.builtin'.diagnostics({bufnr = 0}) end , 'document diagnostics' }
     , f = { function() vim.lsp.buf.formatting()                             end , 'format'               }
     , h = { function() vim.lsp.buf.hover()                                  end , 'hover'                }
+    , H = { function() vim.lsp.buf.signature_help()                         end , 'signature help'       }
     , i = { '<cmd>LspInfo<cr>',                                                   'info'                 }
     , I = { function() require 'nvim-lsp-installer'.info_window.open()      end , 'installer info'       }  -- LspInstallInfo
     , j = { function() vim.diagnostic.goto_next()                           end , 'next diagnositc'      }
@@ -220,9 +229,46 @@ local normal_mappings = {
     , q = { function() vim.diagnostic.setloclist()                                 end , 'quickfix'              }
     , r = { function() vim.lsp.buf.rename()                                        end , 'rename'                }
     , s = { function() require 'telescope.builtin'.lsp_document_symbols()          end , 'document symbols'      }
-    , S = { function() require 'telescope.builtin'.lsp_dynamic_workspace_symbols() end , 'document symbols'      }
+    , S = { function() require 'telescope.builtin'.lsp_dynamic_workspace_symbols() end , 'workspace symbols'     }
     , w = { function() require 'telescope.builtin'.diagnostics()                   end , 'workspace diagnostics' }
-  }                                                                                                                            ,
+  },
+
+  ---  o* mapptings
+  ---
+  o = {
+    name = '+org mode',
+    -- j = { [[<cmd>lua loaded() | Neorg journal today<cr>]], 'journal today' }
+    j = {
+      function()
+        with_neorg()
+        vim.cmd [[<cmd>Neorg journal today<cr>]]
+      end, 'journal today'
+    },
+    k = {
+      function()
+        with_neorg()
+        local module = require 'neorg.modules.core.neorgcmd.module'
+        module.public.function_callback(
+        )
+      end, 'neorg cmd'
+    },
+    o = {
+      function()
+        with_neorg()
+        require 'neorg.modules.core.neorgcmd.module'.public.function_callback()
+      end, 'neorg cmd'
+    }
+  },
+
+
+  ---
+  ---  o* mappings
+  ---
+  O = {
+    function()
+      with_neorg()
+    end, 'Start org mode'
+  },
 
   ---
   ---  p* mappings

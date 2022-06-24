@@ -31,8 +31,8 @@ end
 -- if not ok_cmp then return end
 local luasnip = require 'luasnip'
 local cmp = require 'cmp'
-local compare = require 'cmp.config.compare'
-local types = require 'cmp.types'
+-- local compare = require 'cmp.config.compare'
+-- local types = require 'cmp.types'
 
 cmp.setup {
   snippet = {
@@ -40,13 +40,22 @@ cmp.setup {
       require 'luasnip'.lsp_expand(args.body)
     end
   },
+  -- completion = {
+  --   autocomplete = {
+  --     types.cmp.TriggerEvent.TextChanged
+  --   },
+  --   completeopt = 'menu,menuone,noselect'
+  -- },
   -- window = {
   --   completion = cmp.config.window.bordered(),
   --   documentation = cmp.config.window.bordered(),
+  --   col_offset = 0,
+  --   side_padding = 1
   -- },
   preselect = cmp.PreselectMode.None,
-  -- completion = {
-  --   completeopt = 'menu,menuone,noselect'
+  -- performance = {
+  --   debounce = 80,
+  --   throtle = 40
   -- },
   mapping =
     { ['<Tab>']     = cmp.mapping(function(fallback)
@@ -171,18 +180,19 @@ cmp.setup {
   --     cmp.config.compare.order,
   --   },
   -- }
-  , experimental = {
-    ghost_text = true
-  }
+  -- , experimental = {
+  --   ghost_text = true
+  -- }
 }
 
 cmp.setup.filetype( 'lua', {
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'nvim_lua' },
-    { name = 'buffer'   },
-    { name = 'luasnip'  },
-    { name = 'path'     },
-    { name = 'tags'     }
+    { name = 'nvim_lsp'                },
+    { name = 'nvim_lua'                },
+    { name = 'nvim_lsp_signature_help' },
+    { name = 'buffer'                  },
+    { name = 'luasnip'                 },
+    { name = 'path'                    },
+    { name = 'tags'                    }
   }
 })

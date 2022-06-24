@@ -13,8 +13,8 @@ return {
   indent_blankline = function()
     toggle(
       'indent-blankline.nvim',
-      function() vim.schedule_wrap(function() vim.cmd[[IndentBlanklineToggle]] end) end,
-      function() vim.cmd[[IndentBlanklineToggle]] end
+      function() require 'indent_blankline'.init() end,
+      function() require 'indent_blankline.commands'.toggle(true) end
     )
   end,
 

@@ -6,7 +6,10 @@ local endwise = require('nvim-autopairs.ts-rule').endwise
 
 local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
 local cmp = require 'cmp'
-cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done( { map_char = { tex = '' } } ) )
+cmp.event:on(
+  'confirm_done'
+  , cmp_autopairs.on_confirm_done()
+)
 
 npairs.setup {
   disable_filetype = {
@@ -15,6 +18,7 @@ npairs.setup {
   }
   -- , enable_bracket_in_quote = false
   , check_ts = true
+  -- , break_undo = true
   -- , ts_config = {
   --   lua = { 'string' }  -- do hot add a pair on string treesitter node
   --   , javascript = { 'template_sring' }

@@ -9,7 +9,9 @@ require 'nvim-tree'.setup {
   -- open_on_setup          = false,   -- default : false
   -- open_on_setup_file     = false,
   -- open_on_tab            = false,
-  -- sort_by                = 'name', -- how files are sorted ( name | modification_time )
+  -- sort_by                = 'name', -- how files are sorted ( name | modification_time | case_sensitive )
+  -- root_dirs              = {},
+  -- prefer_start_root      = false,
   -- update_cwd             = false,
   -- reload_on_bufenter     = false,
   -- respect_buf_cwd        = false,
@@ -28,6 +30,7 @@ require 'nvim-tree'.setup {
   --     custom_only = false,
   --     list = {
   --       -- user mappings go here
+  --       { key = 'u', action = 'dir_up' },
   --     },
   --   },
   -- },
@@ -117,7 +120,8 @@ require 'nvim-tree'.setup {
   -- },
   update_focused_file = {       -- focus file in tree on BufEnter
     enable      = true,
-    -- update_cwd  = false,
+    -- update_cwd  = false,     -- deprecated
+    -- update_root = false,
     -- ignore_list = {}
   },
   -- ignore_ft_on_setup     = {},

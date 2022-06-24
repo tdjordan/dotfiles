@@ -1,8 +1,11 @@
+import org.microsoft.gradle.ClasspathType
+
 plugins {
+  id 'java'
   id('com.anroid.application') version '4.2.2'
 }
 
-repsitories {
+repositories {
   google()
   mavenCentral()
 }

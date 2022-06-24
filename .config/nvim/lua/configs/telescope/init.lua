@@ -18,7 +18,11 @@ telescope.setup {
     selection_strategy = 'reset',
     --sorting_strategy = 'ascending',                                             -- default: descending
     --layout_strategy = 'horizontal',
-    --layout_defaults = { },
+    layout_config = {
+      dropdown = {
+        width = 0.75
+      }
+    },
     --file_sorter = require 'telescope.sorters'.get_fuzzy_file,
     --file_ignore_patterns = {},
     --generic_sorter = require 'telescope.sorters'.get_generic_fuzzy_sorter,
@@ -61,11 +65,39 @@ telescope.setup {
     --   }
     -- },
 
+    -- find_files = {
+    --   theme = 'ivy'
+    --   -- , mirror = true
+    --   , layout_config = {
+    --     height = 0.75
+    --   }
+    -- },
+
     find_files = {
+      theme = 'cursor'
+    },
+
+    -- live_grep = {
+    --   theme = 'ivy'
+    --   -- , mirror = true
+    --   , layout_config = {
+    --     height = 0.75
+    --   }
+    -- },
+
+    lsp_document_symbols = {
       theme = 'ivy'
       -- , mirror = true
       , layout_config = {
         height = 0.75
+      }
+    },
+
+    man_pages = {
+      theme = 'ivy'
+      -- , mirror = true
+      , layout_config = {
+        height = 0.90
       }
     },
 
@@ -76,10 +108,11 @@ telescope.setup {
       , layout_strategy = 'bottom_pane'
     },
 
-    builtin = {
-      -- theme = 'ivy',
-      previewer = false
-    },
+    -- builtin = {
+    --   theme = 'ivy',
+    --   -- previewer = false
+    --   -- vertical = { width = 0.5 }
+    -- },
 
     current_buffer_fuzzy_find = {
       theme = 'ivy'

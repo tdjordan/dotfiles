@@ -17,7 +17,7 @@ local M = {}
 
 ---  Install all the plugins
 ---
-M.init_packer = function ()
+M.init_packer = function()
   local packer = require 'packer'
 
   packer.startup({
@@ -40,12 +40,16 @@ M.init_packer = function ()
         --   -- require 'impatient'
         -- end
         , config = function()
-          vim.schedule( function()
+          vim.schedule(function()
             require 'impatient'.enable_profile()
           end)
           -- require 'impatient'
         end
       }
+
+      -- use {
+      --   'antoinemadec/FixCursorHold.nvim'
+      -- }
 
       ---  Packer itself
       ---
@@ -70,7 +74,7 @@ M.init_packer = function ()
       ---
       use {
         'rcarriga/nvim-notify'
-        , event = 'CursorHold'
+        -- , event = 'CursorHold'
         -- , event = 'BufReadPost'
         , config = function()
           require 'configs.notify'
@@ -89,13 +93,13 @@ M.init_packer = function ()
       use {
         'williamboman/nvim-lsp-installer'
         , event = 'CursorHold'
-        -- , after = 'nvim-lspconfig'
         , config = function()
           require 'configs.lsp.installer'
         end
       }
       use {
         'neovim/nvim-lspconfig'
+        -- , after = 'nvim-lsp-installer'
         , module_pattern = 'lspconfig'
       }
       use {
@@ -178,41 +182,44 @@ M.init_packer = function ()
       }
       use {
         'hrsh7th/nvim-cmp'
-        , event = 'InsertEnter'
+        , event = 'CursorHold'
+        -- , after = 'cmp-nvim-lsp'
         -- , after = 'LuaSnip'
-        , module_pattern = 'cmp'
+        , module_pattern = 'cmp.*'
         , config = function()
+          -- vim.schedule(function()
           require 'configs.completion.cmp'
+          -- end)
         end
+      }
+      use {
+        'hrsh7th/cmp-nvim-lsp'
+        -- , event = 'InsertEnter'
+        -- , event = 'CursorHold'
+        , after = 'nvim-cmp'
+      }
+      use {
+        'hrsh7th/cmp-nvim-lsp-signature-help'
+        , after = 'nvim-cmp'
       }
       use {
         'hrsh7th/cmp-buffer'
         , after = 'nvim-cmp'
         -- , wants = 'nvim-cmp'
-        , module_pattern = 'cmp.*'
+        -- , module_pattern = 'cmp.*'
       }
       use {
         'hrsh7th/cmp-nvim-lua'
         -- , ft = 'lua'
+        -- , event = { 'BufReadPost *.lua' }
+        -- , event = { 'CursorHold *.lua' }
         , after = 'nvim-cmp'
         -- , wants = 'nvim-cmp'
-        , module_pattern = 'cmp.*'
-      }
-      use {
-        'hrsh7th/cmp-nvim-lsp'
-        -- , event = 'InsertEnter'
-        , after = 'nvim-cmp'
-        -- , wants = 'nvim-cmp'
-        , module_pattern = 'cmp.*'
-        , config = function()
-          require 'cmp_nvim_lsp'._on_insert_enter()
-        end
+        -- , module_pattern = 'cmp.*'
       }
       use {
         'hrsh7th/cmp-path'
         , after = 'nvim-cmp'
-        -- , wants = 'nvim-cmp'
-        , module_pattern = 'cmp.*'
       }
       use {
         'hrsh7th/cmp-cmdline'
@@ -265,7 +272,6 @@ M.init_packer = function ()
       use {
         'petertriho/cmp-git'
         , after = 'nvim-cmp'
-        -- , module_pattern = 'cmp_git.*'
         , config = function()
           require 'configs.completion.cmp.git'
         end
@@ -273,18 +279,16 @@ M.init_packer = function ()
       use {
         'Saecki/crates.nvim'
         , opt = true
-        -- , ft = 'toml'
         , event = { 'BufReadPost Cargo.toml' }
         , requires = { { 'nvim-lua/plenary.nvim' } }
-        -- , wants = 'nvim-cmp'
-        -- , wants = 'plenary.nvim'
         , config = function()
           require 'configs.completion.cmp.crates'
         end
       }
       use {
         'joshzcold/cmp-jenkinsfile'
-        , after = 'nvim-cmp'
+        , event = { 'BufReadPost Jenkinsfile' }
+        -- , after = 'nvim-cmp'
         , config = function()
           require 'configs.completion.cmp.jenkinsfile'
         end
@@ -329,8 +333,8 @@ M.init_packer = function ()
       }
       use {
         'L3MON4D3/LuaSnip'
-        , event = 'InsertEnter'
-        , module_pattern = 'luasnip.*'
+        -- , event = 'InsertEnter'
+        , module_pattern = 'luasnip'
         -- , config = function()
         --   require 'configs.snippets.luasnip'
         -- end
@@ -347,7 +351,7 @@ M.init_packer = function ()
       -- }
       use {
         'saadparwaiz1/cmp_luasnip'
-        , after = 'nvim-cmp'
+        , module_pattern = 'luasnip.*'
       }
 
       ---  Telescope
@@ -355,7 +359,7 @@ M.init_packer = function ()
       use {
         'nvim-lua/plenary.nvim'
         , opt = true
-        , module_pattern = 'plenary.*'
+        , module_pattern = 'plenary'
       }
       use {
         'nvim-telescope/telescope.nvim'
@@ -435,14 +439,11 @@ M.init_packer = function ()
       ---
       use {
         'nvim-treesitter/nvim-treesitter'
-        , run = ':TSUpdate'
-        -- , before = 'neorg'
-        -- , event = 'BufReadPost'
-        -- , event = 'UIEnter'
-        -- , event = 'CursorHold'
-        -- , module_pattern = 'treesitter.*'
+        , run = function()
+          require 'nvim-treesitter.install'.update()
+        end
         , config = function()
-          vim.schedule( function()
+          vim.schedule(function()
             require 'configs.treesitter'
           end)
         end
@@ -450,8 +451,7 @@ M.init_packer = function ()
 
       use {
         'nvim-treesitter/playground'
-        , cmd =
-          { 'TSPlaygroundToggle'
+        , cmd = { 'TSPlaygroundToggle'
           , 'TSHighlightCapturesUnderCursor'
         }
       }
@@ -464,11 +464,15 @@ M.init_packer = function ()
         'nvim-treesitter/nvim-treesitter-textobjects'
         , event = 'CursorHold'
       }
+      -- use {
+      --   'theHamsta/nvim-treesitter-pairs'
+      --   , event = 'CursorHold'
+      -- }
       use {
         'David-Kunz/treesitter-unit'
         , event = 'CursorHold'
       }
-      -- use { 'romgrk/nvim-treesitter-context' }
+      -- use { 'nvim-treesitter/nvim-treesitter-context' }
       -- use {
       --   'p00f/nvim-ts-rainbow'
       --   , disable = true
@@ -508,6 +512,15 @@ M.init_packer = function ()
       ---
       -- use { 'mbbill/undotree' }
 
+      use {
+        'sindrets/diffview.nvim'
+        , event = 'CursorHold'
+        -- , after = 'plenary.nvim'
+        , config = function()
+          require 'configs.diffview'
+        end
+      }
+
       ---  terminals
       ---
       -- use { 'voldikss/vim-floaterm' }
@@ -540,8 +553,7 @@ M.init_packer = function ()
       }
       use {
         'nvim-telescope/telescope-dap.nvim'
-        , after =
-          { 'telescope.nvim'
+        , after = { 'telescope.nvim'
           , 'nvim-dap'
         }
       }
@@ -568,7 +580,7 @@ M.init_packer = function ()
         'folke/which-key.nvim'
         -- , event = 'CursorHold'
         , config = function()
-          vim.schedule( function()
+          vim.schedule(function()
             require 'configs.keys'
           end)
         end
@@ -589,16 +601,16 @@ M.init_packer = function ()
       -- use { 'wsdjeg/FlyGrep.vim' }
       -- use {
       --   'vijaymarupudi/nvim-fzf'
-        -- , config = function()
-        --   local fzf = require('fzf')
+      -- , config = function()
+      --   local fzf = require('fzf')
 
-        --   coroutine.wrap(function()
-        --     local result = fzf.fzf({'choice 1', 'choice 2'})
-        --     if result then
-        --       print(result[1])
-        --     end
-        --   end)()
-        -- end
+      --   coroutine.wrap(function()
+      --     local result = fzf.fzf({'choice 1', 'choice 2'})
+      --     if result then
+      --       print(result[1])
+      --     end
+      --   end)()
+      -- end
       -- }
 
       ---  themes
@@ -671,7 +683,7 @@ M.init_packer = function ()
       -- }
 
       use {
-        {
+        -- {
           'NTBBloodbath/doom-one.nvim'
           , opt = true
           -- , module_pattern = 'telescope.builtin'
@@ -679,22 +691,23 @@ M.init_packer = function ()
             require 'theme.doom-one'
           end
           -- , disable = not vim.g.cfg.theme.doomone.active
-        },
-        {
-          'folke/tokyonight.nvim'
-          -- , event = 'CursorHold'
-          -- , module_pattern = 'telescope.builtin'
-          -- , fn = 'require "telescope.builtin".colorscheme'
-          , opt = true
-          , setup = function()
-            local g = vim.g
-            g.tokyonight_style = 'storm'
-            g.tokyonight_terminal_colors = true
-            g.tokyonight_italic_comments = true
-            g.tokyonight_italic_keywords = true
-            g.tokyonight_italic_functions = true
-          end
-        }
+        -- },
+        -- {
+        --   'folke/tokyonight.nvim'
+        --   -- , event = 'CursorHold'
+        --   -- , module_pattern = 'telescope.builtin'
+        --   -- , fn = 'require "telescope.builtin".colorscheme'
+        --   -- , opt = true
+        --   , module_pattern = 'telescope'
+        --   , setup = function()
+        --     local g = vim.g
+        --     g.tokyonight_style = 'storm'
+        --     g.tokyonight_terminal_colors = true
+        --     g.tokyonight_italic_comments = false
+        --     g.tokyonight_italic_keywords = true
+        --     g.tokyonight_italic_functions = true
+        --   end
+        -- }
       }
 
       ---
@@ -710,21 +723,6 @@ M.init_packer = function ()
       --   , module_pattern = 'telescope.builtin'
       -- }
 
-      -- TODO
-      -- use {
-      --   'metalelf0/jellybeans-nvim'
-      --   , module_pattern = 'telescope.builtin'
-      --   , requires = { 'rktjmp/lush.nvim' }
-      -- }
-
-      -- use {
-      --   'nanotech/jellybeans.vim'
-      --   , module_pattern = 'telescope.builtin'
-      --   , setup = function()
-      --     vim.g.jellybeans_use_term_italics = 1
-      --   end
-      -- }
-
       -- use {
       --   'kunzaatko/nord.nvim'
       --   , module_pattern = 'telescope.builtin'
@@ -734,16 +732,17 @@ M.init_packer = function ()
       --     g.nord_italic_comments = 1
       --   end
       -- }
-
-
+      ---
+      ---  end section
+      ---
 
       -- use {
       --   'lambdalisue/glyph-palette.vim'
-        -- end
+      -- end
       -- }
       use {
         'EdenEast/nightfox.nvim'
-        , module_pattern = 'telescope.builtin'
+        , module_pattern = 'telescope'
         , config = function()
           require 'theme.nightfox'
         end
@@ -770,15 +769,15 @@ M.init_packer = function ()
       --   end
       -- }
 
-      use {
-        'ayu-theme/ayu-vim'
-        , module_pattern = 'telescope.builtin'
-        , setup = function()
-          local g = vim.g
-          g.ayucolor = 'dark'
-          -- g.ayucolor = 'mirage'
-        end
-      }
+      -- use {
+      --   'ayu-theme/ayu-vim'
+      --   , module_pattern = 'telescope.builtin'
+      --   , setup = function()
+      --     local g = vim.g
+      --     g.ayucolor = 'dark'
+      --     -- g.ayucolor = 'mirage'
+      --   end
+      -- }
 
       use {
         'LunarVim/onedarker.nvim'
@@ -797,34 +796,9 @@ M.init_packer = function ()
       use {
         'marko-cerovac/material.nvim'
         , config = function()
-            require 'theme.material'
-          end
-        -- , config = function()
-        --   vim.schedule( function()
-        --     require 'theme.material'
-        --   end)
-        -- end
+          require 'theme.material'
+        end
       }
-
-      -- use {
-      --   'maaslalani/nordbuddy'
-      --   , module_pattern = 'telescope.builtin'
-      --   , requires = {
-      --     'tjdevries/colorbuddy.vim'
-      --   }
-      -- }
-
-      -- use {
-      --   'tjdevries/gruvbuddy.nvim'
-      --   , module_pattern = 'telescope.builtin'
-      --   , requires = {
-      --     'tjdevries/colorbuddy.vim'
-      --   }
-      -- }
-
-      -- use { 'vim-airline/vim-airline' }
-      -- use { 'vim-airline/vim-airline-themes' }
-      -- use { 'itchyny/lightline.vim' }
 
       ---
       ---  theme : status lines
@@ -853,7 +827,7 @@ M.init_packer = function ()
         , module = 'lualine'
         , config = function()
           -- vim.schedule( function()
-            require 'configs.lualine'
+          require 'configs.lualine'
           -- end)
         end
       }
@@ -866,13 +840,11 @@ M.init_packer = function ()
       -- }
 
       ---
-      --- theme : other
-      --- #ffff00
+      ---  theme : other
+      ---  #ffff00
       use {
         'norcalli/nvim-colorizer.lua'
         , event = 'CursorHold'
-        , setup = function()
-        end
         , config = function()
           require 'colorizer'.setup()
         end
@@ -940,6 +912,7 @@ M.init_packer = function ()
       }
 
       ---  file trees
+      ---
       -- use { 'justinmk/vim-dirvish' }
 
       ---  version control systems
@@ -967,7 +940,6 @@ M.init_packer = function ()
       ---
       use {
         'lukas-reineke/indent-blankline.nvim'
-        , cmd = 'IndentBlanklineToggle'
         , module_pattern = 'indent_blankline.*'
         , config = function()
           require 'configs.indentation.blankline'
@@ -988,7 +960,9 @@ M.init_packer = function ()
       -- use { 'jiangmiao/auto-pairs' }
       use {
         'windwp/nvim-autopairs'
-        , event = 'CursorHold'
+        -- , event = 'CursorHold'
+        -- , event = 'CursorHold'
+        , after = 'nvim-cmp'
         , config = function()
           require 'configs.autopairs'
         end
@@ -1114,30 +1088,27 @@ M.init_packer = function ()
       --   end
       -- }
       use {
+        'nvim-neorg/neorg-telescope'
+        , opt = true
+      }
+      use {
         'nvim-neorg/neorg'
-        -- , ft = 'norg'
-        , after = 'nvim-treesitter'
-        -- , module_pattern = 'neorg'
+        , ft = 'norg'
+        -- , after = 'nvim-treesitter'
         , config = function()
+          require 'packer'.loader('neorg-telescope')
           require 'configs.neorg'
         end
       }
-      -- use {
-      --   'nvim-neorg/neorg-telescope'
-      --   -- , ft = 'norg'
-      --   -- , before = 'neorg'
-      --   , config = function()
-      --     require 'configs.neorg.telescope'
-      --   end
-      -- }
     end
     , config = {
       compile_path = vim.fn.stdpath('config') .. '/plugin/packer_compiled.lua',
       max_jobs = 70,
+      disable_commands = true,
       profile = {
         enable = true
       },
-      -- autoremove = false      -- remove disabled or unused plugins w/o prompting user
+      autoremove = true, -- remove disabled or unused plugins w/o prompting user
       -- , display = {
       --   open_fn = function()
       --     return require 'packer.util'.float { border = 'single' }

@@ -14,13 +14,16 @@
 --   print('packer not loaded')
 -- end
 
-require 'telescope'.setup {
-  extensions = {
-    packer = {
-      theme = 'ivy'
-      -- , layout_config = {
-      --   height = .5
-      -- }
-    }
-  }
-}
+vim.cmd [[ packadd packer.nvim ]]
+require 'telescope'.load_extension 'packer'
+-- require 'packer'
+-- require 'telescope'.setup {
+--   extensions = {
+--     packer = {
+--       theme = 'ivy'
+--       -- , layout_config = {
+--       --   height = .5
+--       -- }
+--     }
+--   }
+-- }

@@ -318,3 +318,6 @@ set.timeoutlen = 300
 set.signcolumn = 'yes'
 
 vim.g.italic_keywords = 'italic'
+
+---  fix cursorhold performance
+-- vim.g.cursorhold_updatetime = 100

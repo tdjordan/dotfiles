@@ -34,7 +34,11 @@ require 'neorg'.setup {
     -- , [ 'core.integrations.nvim-cmp' ] = {}
     , [ 'core.integrations.telescope' ] = {}
     -- , [ 'external.context' ] = {}
-    , [ 'core.gtd.base' ] = { config = { workspace = 'test' } }
+    , [ 'core.gtd.base' ] = {
+        config = {
+          workspace = 'test'
+        }
+      }
     , [ 'core.keybinds' ] = {
       config = {
         -- default_keybinds = true
