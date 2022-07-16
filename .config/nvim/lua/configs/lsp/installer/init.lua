@@ -29,6 +29,7 @@ local servers =
   , 'jdtls'
   , 'jsonls'
   , 'jsonnet_ls'
+  , 'julials'
   , 'kotlin_language_server'
   , 'lemminx'
   , 'marksman'
