@@ -50,6 +50,7 @@ local servers =
   , 'vimls'
   , 'visualforce_ls'
   , 'yamlls'
+  , 'zls'
   -- , 'zk'
 }
 
