@@ -14,6 +14,8 @@ brew "zoxide"
 brew "pueue"
 brew "choose-rust"
 brew "vivid"
+brew "dog"
+brew "gum"
 
 ###  version control systems
 ###
@@ -31,6 +33,7 @@ brew "lefthook"
 brew "pre-commit"
 brew "gitlint"
 brew "codeql"
+brew "difftastic"
 
 ###  base build tools
 brew "cmake"
@@ -57,6 +60,7 @@ brew "bingrep"
 ###  cli testing
 ###
 brew "hyperfine"
+brew "wrk"
 
 ###  json utils
 ###
@@ -220,11 +224,20 @@ brew "efm-langserver"
 brew "bear"
 brew "haskell-language-server"
 brew "ghcup"
+brew "stylish-haskell"
 
 ###  Rust Language
 ###
 brew "rust"
 brew "rustup-init"
+brew "cargo-nextest"
+brew "cargo-outdated"
+brew "cargo-audit"
+
+###  File Triggers
+###
+brew "cargo-watch"
+brew 'watchexec'
 
 ###  Python Language
 ###
@@ -234,6 +247,19 @@ brew "black"
 ###  Ruby Language
 ###
 brew "selene"
+
+###  Zig Language
+###
+brew "zig"
+
+###  Odin Language
+###
+brew "odin"
+
+###  Please Build Language
+###
+tap    "though-machine/please"
+  brew "please"
 
 ###  saltstack
 ###
@@ -255,6 +281,12 @@ brew "linkerd"
 brew "cdk8s"
 brew "opa"
 brew "kind"
+brew "vcluster"
+brew "devspace"
+
+###  Argo
+###
+brew "argo"
 
 ###  Generic Makefile Like
 ###
