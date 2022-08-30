@@ -21,5 +21,11 @@ vim.filetype.add {
   filename = {
     Jenkinsfile = 'Jenkinsfile'
     , Brewfile = 'conf'
+    , justfile = 'just'
+    , ['.gitignore'] = 'gitignore'
+    , ['COMMIT_EDITMSG'] = function(_, _)
+      vim.bo.cindent = false
+      return 'gitcommit'
+    end
   }
 }
