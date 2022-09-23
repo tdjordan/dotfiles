@@ -58,27 +58,27 @@ zinit wait"0" lucid is-snippet for \
   $HOME/.aliases \
 
 zinit wait"2" lucid nocd is-snippet for \
-  OMZ::lib/functions.zsh \
-  OMZ::lib/misc.zsh \
-  OMZ::lib/directories.zsh \
-  OMZ::lib/git.zsh \
-  OMZ::plugins/git/git.plugin.zsh \
+  OMZL::functions.zsh \
+  OMZL::misc.zsh \
+  OMZL::directories.zsh \
+  OMZL::git.zsh \
+  OMZP::git/git.plugin.zsh \
   https://raw.githubusercontent.com/shihyuho/zsh-jenv-lazy/master/jenv-lazy.plugin.zsh \
   $HOME/.bash_local \
   $HOME/.dockerfunc
   #https://github.com/sainnhe/dotfiles/raw/master/.zsh-theme-gruvbox-material-dark \
-  # OMZ::lib/history.zsh \
+  # OMZL::history.zsh \
 
 #zinit load black7375/zsh-lazyenv
 
 #zinit wait"8" lucid nocd is-snippet for \
-  #OMZ::plugins/jenv/jenv.plugin.zsh
+  #OMZP::jenv/jenv.plugin.zsh
 #zinit wait"1" lucid nocd light-mode for \
   #shihyuho/zsh-jenv-lazy
 
 #zinit load zinit-zsh/z-a-bin-gem-node
 #zinit ice from"gh-r" sbin"jenv"
-#zinit load OMZ::plugins/jenv/jenv.plugin.zsh
+#zinit load OMZP::jenv/jenv.plugin.zsh
 
 #zinit wait"1" lucid nocd light-mode atload"zicompinit; zicdreplay" for \
 zinit wait"1" lucid nocd light-mode for \
@@ -115,6 +115,13 @@ fi
     /usr/local/share/zsh/site-functions/key-bindings.zsh
     # latoabout/skim/shell/key-bindings.zsh
     # $HOME/.skim/shell/key-bindings.zsh
+
+###  binaries
+###
+# zinit wait"1a" lucid from"gh-r" as"null" for \
+#   sbin"**/vivid" atload'export LS_COLORS="$(vivid generate snappy)"' \
+#     @sharkdp/vivid
+export LS_COLORS="$(vivid generate snazzy 2> /dev/null)"
 
 #zinit wait lucid nocd is-snippet for \
 
@@ -159,9 +166,18 @@ function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-# OPS config
-export OPS_DIR="$HOME/.ops"
-export PATH="$HOME/.ops/bin:$PATH"
 # source "$HOME/.ops/scripts/bash_completion.sh"
 ### End of Zinit's installer chunk
 eval "$(zoxide init --cmd cd zsh)"
+ulimit -n 4096
+
+# bun completions
+[ -s "/Users/tjordan/.bun/_bun" ] && source "/Users/tjordan/.bun/_bun"
+
+# bun
+# export BUN_INSTALL="/Users/tjordan/.bun"
+# export PATH="$BUN_INSTALL/bin:$PATH"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+# export PATH="/Users/tjordan/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

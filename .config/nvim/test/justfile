@@ -1,0 +1,6 @@
+alias b:=build
+
+host := `uname -a`
+
+build:
+  cc *.c -o main

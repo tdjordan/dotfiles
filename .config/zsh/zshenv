@@ -7,4 +7,5 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 export HOMEBREW_BUNDLE_FILE=~/.config/brew/Brewfile
 export EDITOR="nvim"
-source ~/.zshenv_local
+[ -e ~/.zshenv_local ] && source ~/.zshenv_local
+. "$HOME/.cargo/env"
