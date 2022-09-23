@@ -16,6 +16,8 @@ brew "choose-rust"
 brew "vivid"
 brew "dog"
 brew "gum"
+brew "has"
+brew "httpie"
 
 ###  version control systems
 ###
@@ -43,7 +45,7 @@ brew "conan"
 brew "llvm"
 brew "meson"
 
-###  doucmentation generator
+###  documentation generator
 brew "doxygen"
 
 ###  search tools
@@ -233,6 +235,7 @@ brew "rustup-init"
 brew "cargo-nextest"
 brew "cargo-outdated"
 brew "cargo-audit"
+brew "cargo-zigbuild"
 
 ###  File Triggers
 ###
@@ -279,14 +282,28 @@ cask "lens"
 brew "helm"
 brew "linkerd"
 brew "cdk8s"
-brew "opa"
 brew "kind"
 brew "vcluster"
 brew "devspace"
+brew "krew"
+brew "tfk8s"
+brew "datree"
+brew "yj"
+tap "little-angry-clouds/homebrew-my-brews"
+  brew "kbenv"
+brew "fluxcd/tap/flux"
+
+###  Open Policy Agent
+###
+brew "opa"
+brew "gator"
+brew "hof"
+
 
 ###  Argo
 ###
 brew "argo"
+brew "argocd"
 
 ###  Generic Makefile Like
 ###
@@ -323,7 +340,7 @@ brew "cfn-lint"
 tap    "jenkins-x/jx"
   brew "jx"
 
-###  Jekins CLI
+###  Jenkins CLI
 ###
 # tap    "jenkins-zh/jcli"
 #   brew "jcli"
@@ -407,6 +424,10 @@ cask "vlc"
 cask "anypointstudio"
 cask "advancedrestclient"
 cask "postman"
+
+###  vanity
+###
+brew "neofetch"
 
 ###  fonts
 ###
