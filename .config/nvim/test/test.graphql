@@ -1,0 +1,6 @@
+query {
+  organization(login: "facebook") {
+    name
+    url
+  }
+}
