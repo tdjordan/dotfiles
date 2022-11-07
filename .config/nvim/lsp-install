@@ -13,9 +13,14 @@ pnpm=(
   # @cucumber/language-server
   @microsoft/rush
   @stoplight/spectral-cli
+  @commitlint/{config-conventional,cli}
+  # @commitlint/cli
+  # @commitlint/config-conventional
+    commitlint-format-json
   jenni
   editorconfig-checker
   standard
+  npm-groovy-lint
   textlint
     textlint-rule-no-todo
     textlint-rule-no-dead-link
@@ -45,6 +50,8 @@ pnpm=(
 
 pip=(
   neovim
+  usort
+  ocdc
   # fortran-language-server
 )
 
