@@ -73,10 +73,10 @@ _G.s_tab_complete = function()
 end
 
 local keymap = vim.keymap.set
-keymap( "i", "<Tab>",   "v:lua.tab_complete()",   {expr = true} )
-keymap( "s", "<Tab>",   "v:lua.tab_complete()",   {expr = true} )
-keymap( "i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true} )
-keymap( "s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true} )
+keymap( "i", "<Tab>",   "v:lua.tab_complete()",   { expr = true } )
+keymap( "s", "<Tab>",   "v:lua.tab_complete()",   { expr = true } )
+keymap( "i", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true } )
+keymap( "s", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true } )
 
 ---  speed up compe
 ---

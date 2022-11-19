@@ -4,15 +4,15 @@ local lsp_installer = require 'nvim-lsp-installer'
 
 local servers =
   { 'ansiblels'
-  , 'apex_ls'
+  -- , 'apex_ls'
   -- , 'awk_ls'
-  , 'bashls'
+  -- , 'bashls'
   , 'clangd'
   , 'cmake'
   , 'cssls'
   -- , 'cucumber_language_server'
   -- , 'denols'
-  , 'dhall_lsp_server'
+  -- , 'dhall_lsp_server'
   , 'dockerls'
   , 'dotls'
   -- , 'efm'
@@ -23,7 +23,7 @@ local servers =
   -- , 'fortls'
   , 'gopls'
   , 'graphql'
-  , 'gradle_ls'
+  -- , 'gradle_ls'
   , 'groovyls'
   , 'html'
   , 'jdtls'
@@ -34,6 +34,7 @@ local servers =
   , 'lemminx'
   , 'marksman'
   -- , 'mint'
+  -- , 'nil_ls'
   -- , 'omnisharp'
   -- , 'powershell_es'
   , 'prosemd_lsp'
@@ -41,17 +42,16 @@ local servers =
   , 'rnix'
   , 'rust_analyzer'
   , 'salt_ls'
-  , 'sorbet'
+  -- , 'sorbet'
   -- , 'sourcery'
   , 'sumneko_lua'
   , 'terraformls'
-  -- , 'tflint'
+  , 'tflint'
   , 'tsserver'
   , 'vimls'
   , 'visualforce_ls'
   , 'yamlls'
-  , 'zls'
-  -- , 'zk'
+  -- , 'zls'
 }
 
 -- for _, name in pairs(servers) do
@@ -112,14 +112,14 @@ local customized_servers = {
 -- end)
 
 lsp_installer.setup {
-  ensure_installed = servers,     -- ensure these servers are always installed
+  -- ensure_installed = servers,     -- ensure these servers are always installed
 
   ---  automatic_installation
   ---
   ---    false: no automatic installation
   ---    true: all servers setup via lspconfig are automatically installed
   ---    { exclude: string[]  }: all servers except the ones listed are installed
-  automatic_installation = true   -- automatically detect which servers to install ( via lspconfig )
+  -- automatic_installation = true   -- automatically detect which servers to install ( via lspconfig )
 }
 
 local lspconfig = require 'lspconfig'
@@ -136,3 +136,38 @@ for _, server in pairs(servers) do
     }
   end
 end
+
+local api = vim.api
+local go = vim.go
+vim.keymap.set( 'n', 'gm', function()
+  local old_func = go.operatorfunc
+  _G.op_func_formatting = function()
+    local start  = api.nvim_buf_get_mark( 0, '[' )
+    local finish = api.nvim_buf_get_mark( 0, ']' )
+    vim.lsp.buf.range_formatting( {}, start, finish )
+    go.operatorfunc = old_func
+    _G.op_func_formatting = nil
+  end
+end, { noremap = true })
+
+local configs = require 'lspconfig.configs'
+local util    = require 'lspconfig.util'
+
+if not configs.dagger then
+  configs.dagger = {
+    default_config = {
+      cmd = { 'dagger', 'cuelsp' },
+      filetypes = { 'cue' },
+      root_dir = function(fname)
+        return util.root_pattern( 'cue.mod', '.git' )( fname )
+      end,
+      single_file_support = true,
+      settings = {}
+    },
+  }
+end
+lspconfig.dagger.setup {
+  on_attach = common.on_attach
+  , capabilities = common.capabilities
+  , flags = common.flags
+}
