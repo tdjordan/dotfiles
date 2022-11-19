@@ -51,6 +51,10 @@ M.init_packer = function()
       --   'antoinemadec/FixCursorHold.nvim'
       -- }
 
+      -- use {
+      --   'fgheng/winbar.nvim'
+      -- }
+
       ---  Packer itself
       ---
       use {
@@ -72,14 +76,35 @@ M.init_packer = function()
 
       ---  Notifications
       ---
+      -- use {
+      --   'rcarriga/nvim-notify'
+      --   -- , event = 'CursorHold'
+      --   -- , event = 'BufReadPost'
+      --   -- , module_pattern = '^notify.*'
+      --   , config = function()
+      --     require 'configs.notifications.notify'
+      --   end
+      -- }
       use {
-        'rcarriga/nvim-notify'
-        -- , event = 'CursorHold'
-        -- , event = 'BufReadPost'
+        'vigoux/notifier.nvim'
         , config = function()
-          require 'configs.notify'
+          require 'configs.notifications.notifier'
         end
       }
+      -- use {
+      --   'j-hui/fidget.nvim'
+      --   , config = function()
+      --     require 'configs.notifications.fidget'
+      --   end
+      -- }
+      -- use {
+      --   codespell:ignore
+      --   'folke/noice.nvim'
+      --   , event = 'CursorHold'
+      --   , config = function()
+      --     require 'configs.notifications.noice'
+      --   end
+      -- }
 
       ---  Lua Information
       ---
@@ -91,16 +116,34 @@ M.init_packer = function()
       ---  Language Protocol Server - LSP
       ---
       use {
-        'williamboman/nvim-lsp-installer'
-        , event = 'CursorHold'
+        'williamboman/mason.nvim'
+        -- , event = 'CursorHold'
         , config = function()
-          require 'configs.lsp.installer'
+          require 'configs.lsp.mason'
         end
       }
       use {
+        'williamboman/mason-lspconfig.nvim'
+        -- , module_pattern = '^mason-lspconfig'
+      }
+      -- use {
+      --   'williamboman/nvim-lsp-installer'
+      --   , event = 'CursorHold'
+      --   , config = function()
+      --     require 'configs.lsp.installer'
+      --   end
+      -- }
+      use {
         'neovim/nvim-lspconfig'
-        -- , after = 'nvim-lsp-installer'
-        , module_pattern = 'lspconfig'
+        , module_pattern = '^lspconfig$'
+      }
+      use {
+        'SmiteshP/nvim-navic'
+        -- , after = 'nvim-lspconfig'
+        -- , module_pattern = '^nvim-navic.*'
+        , config = function()
+          require 'configs.lsp.navic'
+        end
       }
       use {
         'b0o/schemastore.nvim'
@@ -108,8 +151,10 @@ M.init_packer = function()
       }
       use {
         'jose-elias-alvarez/null-ls.nvim'
-        , after = 'nvim-lspconfig'
-        , module_pattern = 'null-ls.*'
+        -- , after = 'nvim-lspconfig'
+        -- , after = 'mason-lspconfig.nvim'
+        , event = 'CursorHold'
+        , module_pattern = '^null-ls.*'
         , config = function()
           require 'configs.lsp.null'
         end
@@ -141,7 +186,7 @@ M.init_packer = function()
         'folke/todo-comments.nvim'
         -- , requires = 'nvim-lua/plenary.nvim'
         , event = 'CursorHold'
-        , module_pattern = 'todo-comments.*'
+        , module_pattern = '^todo-comments.*'
         , config = function()
           require 'configs.todo.comments'
         end
@@ -175,7 +220,7 @@ M.init_packer = function()
       ---
       use {
         'onsails/lspkind-nvim'
-        , module_pattern = 'lspkind.*'
+        , module_pattern = '^lspkind.*'
         , config = function()
           require 'configs.lsp.kind'
         end
@@ -185,7 +230,7 @@ M.init_packer = function()
         , event = 'CursorHold'
         -- , after = 'cmp-nvim-lsp'
         -- , after = 'LuaSnip'
-        , module_pattern = 'cmp.*'
+        , module_pattern = '^cmp'
         , config = function()
           -- vim.schedule(function()
           require 'configs.completion.cmp'
@@ -206,7 +251,7 @@ M.init_packer = function()
         'hrsh7th/cmp-buffer'
         , after = 'nvim-cmp'
         -- , wants = 'nvim-cmp'
-        -- , module_pattern = 'cmp.*'
+        -- , module_pattern = '^cmp.*'
       }
       use {
         'hrsh7th/cmp-nvim-lua'
@@ -215,7 +260,7 @@ M.init_packer = function()
         -- , event = { 'CursorHold *.lua' }
         , after = 'nvim-cmp'
         -- , wants = 'nvim-cmp'
-        -- , module_pattern = 'cmp.*'
+        -- , module_pattern = '^cmp.*'
       }
       use {
         'hrsh7th/cmp-path'
@@ -232,7 +277,7 @@ M.init_packer = function()
         'hrsh7th/cmp-calc'
         , after = 'nvim-cmp'
         -- , wants = 'nvim-cmp'
-        -- , module_pattern = 'cmp.*'
+        -- , module_pattern = '^cmp.*'
       }
       -- use {
       --   'David-Kunz/cmp-npm'
@@ -251,13 +296,13 @@ M.init_packer = function()
       --   'ray-x/cmp-treesitter'
       --   , after = 'nvim-cmp'
       --   , wants = 'nvim-cmp'
-      --   , module_pattern = 'cmp.*'
+      --   , module_pattern = '^cmp.*'
       -- }
       use {
         'quangnguyen30192/cmp-nvim-tags'
         , after = 'nvim-cmp'
         -- , wants = 'nvim-cmp'
-        -- , module_pattern = 'cmp.*'
+        -- , module_pattern = '^cmp.*'
       }
       -- use {
       --   'hrsh7th/cmp-look'
@@ -334,7 +379,7 @@ M.init_packer = function()
       use {
         'L3MON4D3/LuaSnip'
         -- , event = 'InsertEnter'
-        , module_pattern = 'luasnip'
+        , module_pattern = '^luasnip'
         -- , config = function()
         --   require 'configs.snippets.luasnip'
         -- end
@@ -351,7 +396,7 @@ M.init_packer = function()
       -- }
       use {
         'saadparwaiz1/cmp_luasnip'
-        , module_pattern = 'luasnip.*'
+        , module_pattern = '^luasnip.*'
       }
 
       ---  Telescope
@@ -359,14 +404,21 @@ M.init_packer = function()
       use {
         'nvim-lua/plenary.nvim'
         , opt = true
-        , module_pattern = 'plenary'
+        , module_pattern = '^plenary'
       }
       use {
         'nvim-telescope/telescope.nvim'
         , cmd = 'Telescope'
-        , module_pattern = 'telescope.*'
+        , module_pattern = '^telescope.*'
         , config = function()
           require 'configs.telescope'
+        end
+      }
+      use {
+        'lalitmee/browse.nvim'
+        , after = 'telescope.nvim'
+        , config = function()
+          require 'configs.telescope.browse'
         end
       }
       use {
@@ -376,14 +428,29 @@ M.init_packer = function()
           require 'configs.telescope.file.browser'
         end
       }
+      -- use {
+      --   'nvim-telescope/telescope-github.nvim'
+      --   , after = 'telescope.nvim'
+      --   , config = function()
+      --     require 'configs.telescope.github.gh'
+      --   end
+      -- }
+      use {
+        'pwntester/octo.nvim'
+        , after = 'telescope.nvim'
+        , config = function()
+          require 'configs.telescope.github.octo'
+        end
+      }
 
       ---  TODO : Add keymapping
+      ---
       -- use {
       --   'nvim-telescope/telescope-packer.nvim'
       --   , opt = true
       --   -- , event = 'CursorHold'
       --   -- , after = 'telescope.nvim'
-      --   -- , module_pattern = 'telescope.*'
+      --   -- , module_pattern = '^telescope.*'
       --   -- , config = function()
       --     -- vim.schedule()
       --     -- require 'configs.telescope.packer'
@@ -423,6 +490,7 @@ M.init_packer = function()
       -- }
 
       ---  TODO : Add keymapping
+      ---
       -- use {
       --   'camgraff/telescope-tmux.nvim'
       --   , cmd = 'Telescope tmux'
@@ -430,6 +498,7 @@ M.init_packer = function()
       -- }
 
       ---  TODO : Add keymapping
+      ---
       use {
         'nvim-telescope/telescope-symbols.nvim'
         , event = 'CursorHold'
@@ -442,6 +511,7 @@ M.init_packer = function()
         , run = function()
           require 'nvim-treesitter.install'.update()
         end
+        -- , event = 'CursorHold'
         , config = function()
           vim.schedule(function()
             require 'configs.treesitter'
@@ -502,7 +572,7 @@ M.init_packer = function()
         --   , 'RestNvimLast'
         -- }
         , ft = 'http'
-        , module_pattern = 'rest-nvim.*'
+        , module_pattern = '^rest-nvim.*'
         , config = function()
           require 'configs.rest'
         end
@@ -516,6 +586,7 @@ M.init_packer = function()
         'sindrets/diffview.nvim'
         , event = 'CursorHold'
         -- , after = 'plenary.nvim'
+        , requires = { { 'nvim-lua/plenary.nvim' } }
         , config = function()
           require 'configs.diffview'
         end
@@ -543,7 +614,7 @@ M.init_packer = function()
       -- use { 'critiqjo/lldb.nvim' }
       use {
         'mfussenegger/nvim-dap'
-        , module_pattern = 'dap.*'
+        , module_pattern = '^dap'
         -- , setup = function()
         --   require 'utility'.packer_lazy_load 'nvim-dap'
         -- end
@@ -579,6 +650,7 @@ M.init_packer = function()
       use {
         'folke/which-key.nvim'
         -- , event = 'CursorHold'
+        -- , module_pattern = '^which-key.*'
         , config = function()
           vim.schedule(function()
             require 'configs.keys'
@@ -619,8 +691,6 @@ M.init_packer = function()
       -- use { 'morhetz/gruvbox' }
       -- use { 'gruvbox-community/gruvbox' }
 
-      -- TODO
-
       -- use {
       --   'sainnhe/gruvbox-material'
       --   -- , event = 'ColorSchemePre'
@@ -655,77 +725,77 @@ M.init_packer = function()
 
       use {
         'sainnhe/everforest'
-        -- , module_pattern = 'telescope.builtin'
+        , module_pattern = '^telescope.builtin'
         -- , fn = 'require("telescope.builtin").colorscheme'
       }
 
-      use {
-        'eddyekofo94/gruvbox-material.nvim'
-        , module_pattern = 'telescope.builtin'
-        -- , config = function ()
-        --   require 'theme.gruvbox.material'
-        -- end
-      }
+      -- use {
+      --   'eddyekofo94/gruvbox-material.nvim'
+      --   , module_pattern = '^telescope.builtin'
+      --   -- , config = function ()
+      --   --   require 'theme.gruvbox.material'
+      --   -- end
+      -- }
 
       -- use {
       --   'eddyekofo94/gruvbox-flat.nvim'
-      --   , module_pattern = 'telescope.builtin'
+      --   , module_pattern = '^telescope.builtin'
       -- }
 
       -- use {
       --   'monsonjeremy/onedark.nvim'
-      --   , module_pattern = 'telescope.builtin'
+      --   , module_pattern = '^telescope.builtin'
       -- }
 
       -- use {
       --   'ii14/onedark.nvim'
-      --   , module_pattern = 'telescope.builtin'
+      --   , module_pattern = '^telescope.builtin'
       -- }
 
-      use {
-        -- {
-          'NTBBloodbath/doom-one.nvim'
-          , opt = true
-          -- , module_pattern = 'telescope.builtin'
-          , config = function()
-            require 'theme.doom-one'
-          end
-          -- , disable = not vim.g.cfg.theme.doomone.active
-        -- },
-        -- {
-        --   'folke/tokyonight.nvim'
-        --   -- , event = 'CursorHold'
-        --   -- , module_pattern = 'telescope.builtin'
-        --   -- , fn = 'require "telescope.builtin".colorscheme'
-        --   -- , opt = true
-        --   , module_pattern = 'telescope'
-        --   , setup = function()
-        --     local g = vim.g
-        --     g.tokyonight_style = 'storm'
-        --     g.tokyonight_terminal_colors = true
-        --     g.tokyonight_italic_comments = false
-        --     g.tokyonight_italic_keywords = true
-        --     g.tokyonight_italic_functions = true
-        --   end
-        -- }
-      }
+      -- use {
+      --   -- {
+      --     'NTBBloodbath/doom-one.nvim'
+      --     , opt = true
+      --     -- , module_pattern = '^telescope.builtin'
+      --     , config = function()
+      --       require 'theme.doom-one'
+      --     end
+      --     -- , disable = not vim.g.cfg.theme.doomone.active
+      --   -- },
+      --   -- {
+      --   --   'folke/tokyonight.nvim'
+      --   --   -- , event = 'CursorHold'
+      --   --   -- , module_pattern = '^telescope.builtin'
+      --   --   -- , fn = 'require "telescope.builtin".colorscheme'
+      --   --   -- , opt = true
+      --   --   , module_pattern = '^telescope.*'
+      --   --   , setup = function()
+      --   --     local g = vim.g
+      --   --     g.tokyonight_style = 'storm'
+      --   --     g.tokyonight_terminal_colors = true
+      --   --     g.tokyonight_italic_comments = false
+      --   --     g.tokyonight_italic_keywords = true
+      --   --     g.tokyonight_italic_functions = true
+      --   --   end
+      --   -- }
+      -- }
 
       ---
       ---  theme : Lush Colorschemes
       ---
       -- use {
       --   'rktjmp/lush.nvim'
-      --   , module_pattern = 'lush.*'
+      --   , module_pattern = '^lush.*'
       -- }
 
       -- use {
       --   'savq/melange'
-      --   , module_pattern = 'telescope.builtin'
+      --   , module_pattern = '^telescope.builtin'
       -- }
 
       -- use {
       --   'kunzaatko/nord.nvim'
-      --   , module_pattern = 'telescope.builtin'
+      --   , module_pattern = '^telescope.builtin'
       --   , setup = function()
       --     local g = vim.g
       --     g.italic = 1
@@ -742,7 +812,8 @@ M.init_packer = function()
       -- }
       use {
         'EdenEast/nightfox.nvim'
-        , module_pattern = 'telescope'
+        -- , run = 'NightFoxCompile'
+        , module_pattern = '^telescope.builtin'
         , config = function()
           require 'theme.nightfox'
         end
@@ -750,12 +821,12 @@ M.init_packer = function()
 
       -- use {
       --   'vigoux/oak'
-      --   , module_pattern = 'telescope.builtin'
+      --   , module_pattern = '^telescope.builtin'
       -- }
 
       -- use {
       --   'Shatur/neovim-ayu'
-      --   , module_pattern = 'telescope.builtin'
+      --   , module_pattern = '^telescope.builtin'
       --   , config = function()
       --     require 'theme.ayu'
       --   end
@@ -763,7 +834,7 @@ M.init_packer = function()
 
       -- use {
       --   'Luxed/ayu-vim'
-      --   , module_pattern = 'telescope.builtin'
+      --   , module_pattern = '^telescope.builtin'
       --   , config = function()
       --     require 'theme.ayu.setup'
       --   end
@@ -771,7 +842,7 @@ M.init_packer = function()
 
       -- use {
       --   'ayu-theme/ayu-vim'
-      --   , module_pattern = 'telescope.builtin'
+      --   , module_pattern = '^telescope.builtin'
       --   , setup = function()
       --     local g = vim.g
       --     g.ayucolor = 'dark'
@@ -781,7 +852,7 @@ M.init_packer = function()
 
       use {
         'LunarVim/onedarker.nvim'
-        , module_pattern = 'telescope.builtin'
+        , module_pattern = '^telescope.builtin'
         -- , config = function()
         --   require 'theme.onedarker'
         -- end
@@ -789,10 +860,9 @@ M.init_packer = function()
 
       -- use {
       --   'LunarVim/darkplus.nvim'
-      --   , module_pattern = 'telescope.builtin'
+      --   , module_pattern = '^telescope.builtin'
       -- }
 
-      -- TODO
       use {
         'marko-cerovac/material.nvim'
         , config = function()
@@ -854,7 +924,7 @@ M.init_packer = function()
       --- :h nvim_tree_hightlight
       ---
       use {
-        'kyazdani42/nvim-web-devicons'
+        'nvim-tree/nvim-web-devicons'
         , event = 'CursorHold'
       }
       -- use {
@@ -866,12 +936,25 @@ M.init_packer = function()
       --   , after = 'nvim-web-devicons'
       -- }
       use {
-        'kyazdani42/nvim-tree.lua'
-        -- , module_pattern = 'nvim-tree.*'
+        'nvim-tree/nvim-tree.lua'
+        -- , module_pattern = '^nvim-tree.*'
         , module = 'functions.toggle'
         , config = function()
           require 'configs.filetree.nvim-tree'
         end
+      }
+      use {
+        'nvim-neo-tree/neo-tree.nvim'
+        , requires = 'MunifTanjim/nui.nvim'
+        , cmd = 'Neotree'
+        -- , module = 'functions.toggle'
+        , config = function()
+          require 'configs.filetree.neo-tree'
+        end
+      }
+      use {
+        'mrbjarksen/neo-tree-diagnostics.nvim'
+        , module = 'neo-tree.sources.diagnostics'
       }
       -- use { 'hardcoreplayers/spaceline.vim' }
       -- use { 'glepnir/spaceline.vim' }
@@ -940,7 +1023,7 @@ M.init_packer = function()
       ---
       use {
         'lukas-reineke/indent-blankline.nvim'
-        , module_pattern = 'indent_blankline.*'
+        , module_pattern = '^indent_blankline.*'
         , config = function()
           require 'configs.indentation.blankline'
         end
@@ -1093,11 +1176,24 @@ M.init_packer = function()
       }
       use {
         'nvim-neorg/neorg'
+        -- , run = ":Neorg sync-parsers"
         , ft = 'norg'
         -- , after = 'nvim-treesitter'
         , config = function()
           require 'packer'.loader('neorg-telescope')
           require 'configs.neorg'
+        end
+      }
+
+      --- xcode work-alike
+      ---
+      use {
+        'xbase-lab/xbase'
+        , run = 'make install'
+        , opt = 'true'
+        -- , after = 'nvim-treesitter'
+        , config = function()
+          require 'configs.xbase'
         end
       }
     end
