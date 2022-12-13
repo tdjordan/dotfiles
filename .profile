@@ -3,4 +3,4 @@
 [ "$0"  = "dash" ] && . ~/.paths && return
 #echo final
 
-export PATH="$HOME/.cargo/bin:$PATH"
+. "$HOME/.cargo/env"
