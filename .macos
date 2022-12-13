@@ -74,6 +74,6 @@ osascript -e 'tell application "System Preferences" to quit'
 for app in 'Activity Monitor' \
   'Dock' \
   'Finder' ; do
-  killll "${app}" &> /dev/null
+  killall "${app}" &> /dev/null
 done
 
