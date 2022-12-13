@@ -98,7 +98,7 @@ M.init_packer = function()
       --   end
       -- }
       -- use {
-      --   codespell:ignore
+      --   ---@diagnostic disable-next-line: spell-check
       --   'folke/noice.nvim'
       --   , event = 'CursorHold'
       --   , config = function()
@@ -230,6 +230,7 @@ M.init_packer = function()
         , event = 'CursorHold'
         -- , after = 'cmp-nvim-lsp'
         -- , after = 'LuaSnip'
+        -- , module = 'cmp'
         , module_pattern = '^cmp'
         , config = function()
           -- vim.schedule(function()
@@ -245,11 +246,13 @@ M.init_packer = function()
       }
       use {
         'hrsh7th/cmp-nvim-lsp-signature-help'
-        , after = 'nvim-cmp'
+        , event = 'CursorHold'
+        -- , after = 'nvim-cmp'
       }
       use {
         'hrsh7th/cmp-buffer'
-        , after = 'nvim-cmp'
+        , event = 'CursorHold'
+        -- , after = 'nvim-cmp'
         -- , wants = 'nvim-cmp'
         -- , module_pattern = '^cmp.*'
       }
@@ -258,24 +261,28 @@ M.init_packer = function()
         -- , ft = 'lua'
         -- , event = { 'BufReadPost *.lua' }
         -- , event = { 'CursorHold *.lua' }
-        , after = 'nvim-cmp'
+        , event = 'CursorHold'
+        -- , after = 'nvim-cmp'
         -- , wants = 'nvim-cmp'
         -- , module_pattern = '^cmp.*'
       }
       use {
         'hrsh7th/cmp-path'
-        , after = 'nvim-cmp'
+        , event = 'CursorHold'
+        -- , after = 'nvim-cmp'
       }
       use {
         'hrsh7th/cmp-cmdline'
-        , after = 'nvim-cmp'
+        , event = 'CursorHold'
+        -- , after = 'nvim-cmp'
         , config = function()
           require 'configs.completion.cmp.cmdline'
         end
       }
       use {
         'hrsh7th/cmp-calc'
-        , after = 'nvim-cmp'
+        , event = 'CursorHold'
+        -- , after = 'nvim-cmp'
         -- , wants = 'nvim-cmp'
         -- , module_pattern = '^cmp.*'
       }
@@ -300,7 +307,8 @@ M.init_packer = function()
       -- }
       use {
         'quangnguyen30192/cmp-nvim-tags'
-        , after = 'nvim-cmp'
+        , event = 'CursorHold'
+        -- , after = 'nvim-cmp'
         -- , wants = 'nvim-cmp'
         -- , module_pattern = '^cmp.*'
       }
@@ -316,7 +324,8 @@ M.init_packer = function()
       -- }
       use {
         'petertriho/cmp-git'
-        , after = 'nvim-cmp'
+        , event = 'CursorHold'
+        -- , after = 'nvim-cmp'
         , config = function()
           require 'configs.completion.cmp.git'
         end
@@ -565,7 +574,7 @@ M.init_packer = function()
       ---  rest explorations
       ---
       use {
-        'NTBBloodbath/rest.nvim'
+        'rest-nvim/rest.nvim'
         -- , cmd = {
         --   'RestNvim'
         --   , 'RestNvimPreview'
@@ -1044,8 +1053,8 @@ M.init_packer = function()
       use {
         'windwp/nvim-autopairs'
         -- , event = 'CursorHold'
-        -- , event = 'CursorHold'
-        , after = 'nvim-cmp'
+        , event = 'CursorHold'
+        -- , after = 'nvim-cmp'
         , config = function()
           require 'configs.autopairs'
         end

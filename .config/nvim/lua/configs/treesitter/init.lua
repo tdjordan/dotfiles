@@ -1,13 +1,5 @@
 local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
 
--- parser_config.http = {
---   install_info =
---     { url = 'https://github.com/NTBBloodbath/tree-sitter-http'
---     , files = { 'src/parser.c' }
---     , branch = 'main'
---   }
--- }
-
 -- parser_config.norg_meta = {
 --   install_info = {
 --     url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
@@ -32,9 +24,18 @@ parser_config.cue = {
   }
 }
 
+-- parser_config.just = {
+--   install_info = {
+--     url = "https://github.com/IndianBoy42/tree-sitter-just",
+--     files = { "src/parser.c", "src/scanner.cc" },
+--     branch = "main",
+--   }
+-- }
+
 require 'nvim-treesitter.configs'.setup {
   ensure_installed = 'all',
   -- sync_install = false,     -- true if wanting synchronous installs
+  -- auto_install = true,      -- true to install missing parsers on BufEnter
   ignore_install = {
     'haskell',
     'vala'
@@ -122,16 +123,46 @@ require 'nvim-treesitter.configs'.setup {
         ['if'] = '@function.inner',
         ['aC'] = '@class.outer',
         ['iC'] = '@class.inner',
+        -- You can optionally set descriptions to the mappings (used in the desc parameter of
+        -- nvim_buf_set_keymap) which plugins like which-key display
+        -- ["iC"] = { query = "@class.inner", desc = "Select inner part of a class region" },
         -- ['ac'] = '@call.outer',
         -- ['ic'] = '@call.inner',
         -- ['ac'] = '@comment.outer',
         ['ac'] = '@conditional.outer',
-        ['ic'] = '@conditional.inner',
+        -- ['ic'] = '@conditional.inner',
+        -- You can optionally set descriptions to the mappings (used in the desc parameter of
+        -- nvim_buf_set_keymap) which plugins like which-key display
+        -- ["ic"] = { query = "@conditional.inner", desc = "Select inner part of a conditional region" },
+        -- ["ic"] = { query = "@conditional.inner", desc = "inner conditional" },
+        ["ic"] = { query = "@conditional.inner", desc = "@ conditional inner" },
         ['oc'] = '@conditional.outer',
         ['al'] = '@loop.outer',
         ['il'] = '@loop.inner',
         ['ol'] = '@loop.outer',
       },
+      -- You can choose the select mode (default is charwise 'v')
+      --
+      -- Can also be a function which gets passed a table with the keys
+      -- * query_string: eg '@function.inner'
+      -- * method: eg 'v' or 'o'
+      -- and should return the mode ('v', 'V', or '<c-v>') or a table
+      -- mapping query_strings to modes.
+      selection_modes = {
+        ['@parameter.outer'] = 'v', -- charwise
+        ['@function.outer'] = 'V',  -- linewise
+        ['@class.outer'] = '<c-v>', -- blockwise
+      },
+      -- If you set this to `true` (default is `false`) then any textobject is
+      -- extended to include preceding or succeeding whitespace. Succeeding
+      -- whitespace has priority in order to act similarly to eg the built-in
+      -- `ap`.
+      --
+      -- Can also be a function which gets passed a table with the keys
+      -- * query_string: eg '@function.inner'
+      -- * selection_mode: eg 'v'
+      -- and should return true or false
+      include_surrounding_whitespace = true,
     },
     -- swap = {
     --   enable = true,
@@ -144,10 +175,10 @@ require 'nvim-treesitter.configs'.setup {
     -- },
     move = {
       enable = true,
-      set_jumps = true,
+      set_jumps = true,   -- sets jumps in the jumplist
       goto_next_start = {
         [']m'] = '@function.outer',
-        -- [']]'] = '@class.outer'
+        -- [']]'] = { query = '@class.outer', desc = 'Next class start' }
       },
       goto_next_end = {
         [']M'] = '@function.outer',

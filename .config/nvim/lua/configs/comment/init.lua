@@ -5,8 +5,7 @@ require 'Comment'.setup()
 
 ---  Comments
 ---
-keymap( "n", "<c-_>", "<cmd>lua require 'Comment.api'.call('toggle_current_linewise_op')<cr>g@$",                { } )
-keymap( "v", "<c-_>", "<esc><cmd>lua require 'Comment.api'.toggle_current_linewise_op(vim.fn.visualmode())<cr>", { } )
--- keymap( "v", "<leader>c",  "<Plug>kommentary_visual_default<esc>", { } )
+keymap( "n", "<c-_>", "<cmd>lua require 'Comment.api'.call('toggle.linewise.current')<cr>g@$",                { } )
+keymap( "v", "<c-_>", "<esc><cmd>lua require 'Comment.api'.locked('toggle.linewise')(vim.fn.visualmode())<cr>", { } )
 
 ft.Jenkinsfile = { '//%s', '//%s' }

@@ -1,36 +1,29 @@
 local cmp = require 'cmp'
 
+local formatting = {
+  format = function( _, vim_item )
+    vim_item.kind = ''
+    return vim_item
+  end
+}
+
 cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources {
     { name = 'path'    },
-    { name = 'cmdline' },
+    { name = 'cmdline'
+      , option = {
+        ignore_cmds = { 'Man', '!' }
+      }
+    },
   },
-  formatting = {
-    format = function( _, vim_item )
-      vim_item.kind = ''
-      return vim_item
-    end
-  },
-  mapping = {
-    ['<Tab>']   = cmp.mapping(cmp.mapping.select_next_item(), { 'c' }),
-    ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'c' }),
-    -- ['<CR>']    = cmp.mapping(cmp.mapping.confirm({ select = false }), { 'c' })
-  }
+  formatting = formatting
 })
 
-cmp.setup.cmdline('/', {
+cmp.setup.cmdline({ '/', '?' }, {
+  mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources {
     { name = 'buffer' }
   },
-  formatting = {
-    format = function( _, vim_item )
-      vim_item.kind = ''
-      return vim_item
-    end
-  },
-  mapping = {
-    ['<Tab>']   = cmp.mapping(cmp.mapping.select_next_item(), { 'c' }),
-    ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'c' }),
-    -- ['<CR>']    = cmp.mapping(cmp.mapping.confirm({ select = false }), { 'c' })
-  }
+  formatting = formatting
 })

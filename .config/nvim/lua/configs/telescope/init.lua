@@ -18,11 +18,11 @@ telescope.setup {
     selection_strategy = 'reset',
     --sorting_strategy = 'ascending',                                             -- default: descending
     --layout_strategy = 'horizontal',
-    layout_config = {
-      dropdown = {
-        width = 0.75
-      }
-    },
+    -- layout_config = {
+    --   dropdown = {
+    --     width = 0.75
+    --   }
+    -- },
     --file_sorter = require 'telescope.sorters'.get_fuzzy_file,
     --file_ignore_patterns = {},
     --generic_sorter = require 'telescope.sorters'.get_generic_fuzzy_sorter,
@@ -65,17 +65,17 @@ telescope.setup {
     --   }
     -- },
 
-    -- find_files = {
-    --   theme = 'ivy'
-    --   -- , mirror = true
-    --   , layout_config = {
-    --     height = 0.75
-    --   }
-    -- },
-
     find_files = {
-      theme = 'cursor'
+      theme = 'ivy'
+      -- , mirror = true
+      , layout_config = {
+        height = 0.75
+      }
     },
+
+    -- find_files = {
+    --   theme = 'cursor'
+    -- },
 
     -- live_grep = {
     --   theme = 'ivy'
@@ -135,6 +135,7 @@ telescope.setup {
   }
 }
 
-require 'telescope'.load_extension('notify')
+-- local _ = require 'notify'
+-- require 'telescope'.load_extension('notify')
 -- vim.cmd [[packadd telescope-packer.nvim]]
 -- require 'telescope'.load_extension('packer')

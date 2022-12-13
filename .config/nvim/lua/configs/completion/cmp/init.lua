@@ -35,28 +35,24 @@ local cmp = require 'cmp'
 -- local types = require 'cmp.types'
 
 cmp.setup {
+  -- enabled = function()
+  --   local disabled = false
+  --   disabled = disabled or (vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt')
+  --   disabled = disabled or (vim.fn.reg_recording() ~= '')
+  --   disabled = disabled or (vim.fn.reg_executing() ~= '')
+  --   return not disabled
+  -- end,
+  -- performance = {
+  --   debounce = 60,
+  --   throtle = 30,
+  --   fetching_timeout = 500
+  -- },
+  preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args)
       require 'luasnip'.lsp_expand(args.body)
     end
   },
-  -- completion = {
-  --   autocomplete = {
-  --     types.cmp.TriggerEvent.TextChanged
-  --   },
-  --   completeopt = 'menu,menuone,noselect'
-  -- },
-  -- window = {
-  --   completion = cmp.config.window.bordered(),
-  --   documentation = cmp.config.window.bordered(),
-  --   col_offset = 0,
-  --   side_padding = 1
-  -- },
-  preselect = cmp.PreselectMode.None,
-  -- performance = {
-  --   debounce = 80,
-  --   throtle = 40
-  -- },
   mapping =
     { ['<Tab>']     = cmp.mapping(function(fallback)
       if cmp and cmp.visible() then
@@ -101,33 +97,21 @@ cmp.setup {
       select = false
     })
   },
-  sources = cmp.config.sources(
-    -- { { name = 'nvim_lua'    }
-    { { name = 'nvim_lsp'    }
-    -- , { name = 'jenkinsfile' }
-    , { name = 'neorg'       }
-    -- , { name = 'luasnip'     }
-    -- , { name = 'buffer'      }
-    , { name = 'path'        }
-    -- , { name = 'tmux'        }
-    , { name = 'tags'        }
-    -- , { name = 'treesitter'  }
-    , { name = 'calc'        }
-    -- , { name = 'orgmode'     }
-    -- , { name = 'vsnip'     }
-    -- , { name = 'look'      }
-    , { name = 'emjoi'       }
-    -- , { name = 'npm', keyword_length = 4 }
-    -- , { name = 'crates'     }
-  }),
+  -- completion = {
+  --   autocomplete = {
+  --     types.cmp.TriggerEvent.TextChanged
+  --   },
+  --   completeopt = 'menu,menuone,noselect',
+  --   keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]],
+  --   keyword_length = 1
+  -- },
   formatting = {
-    -- fields = { 'abbr', 'kind', 'menu' }
-    -- fields = { 'menu', 'abbr', 'kind' }
-    -- fields = { 'kind', 'menu', 'abbr' }
+    -- expandable_indicator = true,
     fields = { 'kind', 'abbr', 'menu' }
     , format = require 'lspkind'.cmp_format {
       mode = 'symbol'
       -- , maxwidth = 50
+      -- , elipsis_char = '...'
       , menu = {
         nvim_lua = '',
         nvim_lsp = '',     --        曆
@@ -146,43 +130,74 @@ cmp.setup {
         emoji = '',
         -- crates = '識',
         -- latex_symbols = "[Latex]",
-        -- spell = '暈',
+        spell = '暈',
       }
-    },
-  }
+    }
+  },
+  sources = cmp.config.sources {
+    -- { { name = 'nvim_lua'    }
+      { name = 'nvim_lsp'    }
+    -- , { name = 'jenkinsfile' }
+    , { name = 'neorg'       }
+    -- , { name = 'luasnip'     }
+    , { name = 'buffer'      }
+    , { name = 'path'        }
+    -- , { name = 'tmux'        }
+    , { name = 'tags'        }
+    -- , { name = 'treesitter'  }
+    , { name = 'calc'        }
+    -- , { name = 'orgmode'     }
+    -- , { name = 'vsnip'     }
+    -- , { name = 'look'      }
+    , { name = 'emoji'       }
+    -- , { name = 'npm', keyword_length = 4 }
+    -- , { name = 'crates'     }
+  },
+  -- matching = {
+  --   disallow_fuzzy_matching = false,
+  --   disallow_partial_matching = false,
+  --   disallow_prefix_matching = false
+  -- },
   -- , sorting = {
+  --   priority_weight = 2,
   --   comparators = {
-  --     cmp.config.compare.offset,
-  --     cmp.config.compare.exact,
-  --     cmp.config.compare.score,
-  --     function(entry1, entry2)
-  --       local kind1 = entry1:get_kind()
-  --       kind1 = kind1 == types.lsp.CompletionItemKind.Text and 100 or kind1
-  --       local kind2 = entry2:get_kind()
-  --       kind2 = kind2 == types.lsp.CompletionItemKind.Text and 100 or kind2
-  --       if kind1 ~= kind2 then
-  --         if kind1 == types.lsp.CompletionItemKind.Snippet then
-  --           return false
-  --         end
-  --         if kind2 == types.lsp.CompletionItemKind.Snippet then
-  --           return true
-  --         end
-  --         local diff = kind1 - kind2
-  --         if diff < 0 then
-  --           return true
-  --         elseif diff > 0 then
-  --           return false
-  --         end
-  --       end
-  --     end,
-  --     cmp.config.compare.sort_text,
-  --     cmp.config.compare.length,
-  --     cmp.config.compare.order,
-  --   },
-  -- }
-  -- , experimental = {
+  --     compare.offset,
+  --     compare.exact,
+  --     -- compare.scopes,
+  --     compare.score,
+  --     compare.recently_used,
+  --     compare.locality,
+  --     compare.kind,
+  --     compare.sort_text,
+  --     compare.length,
+  --     compare.order,
+  --   }
+  -- },
+  -- confirmation = {
+  --   default_behavior = types.cmp.ConfirmBehavior.Insert,
+  --   get_commit_characters = function( commit_characters )
+  --     return commit_characters
+  --   end
+  -- },
+  -- event = {}
+  -- experimental = {
   --   ghost_text = true
-  -- }
+  -- },
+  -- view = {
+  --   entries = {
+  --     name = 'custom',
+  --     selection_order = 'top_down'
+  --   }
+  -- },
+  -- window = {
+  --   completion = cmp.config.window.bordered(),
+  --   documentation = {
+  --     max_height = math.floor(--[[ WIDE_HEIGHT ]] 40 * (--[[ WIDE_HEIGHT ]] 40 / vim.o.lines)),
+  --     max_width = math.floor((--[[ WIDE_HEIGHT ]] 40 * 2) * (vim.o.columns / (--[[ WIDE_HEIGHT ]] 40 * 2 * 16 / 9))),
+  --     border = cmp.config.window.bordered().border,
+  --     winhighlight = 'FloatBorder:NormalFloat'
+  --   }
+  -- },
 }
 
 cmp.setup.filetype( 'lua', {

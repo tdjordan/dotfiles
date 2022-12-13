@@ -17,6 +17,7 @@ npairs.setup {
     , 'vim'
   }
   -- , enable_bracket_in_quote = false
+  -- , enable_abbr = true
   , check_ts = true
   -- , break_undo = true
   -- , ts_config = {

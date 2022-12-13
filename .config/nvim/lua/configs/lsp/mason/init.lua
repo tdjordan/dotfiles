@@ -8,6 +8,7 @@ local servers =
   , 'bashls'                   -- bash
   , 'clangd'                   -- C++
   , 'cmake'                    -- CMake
+  , 'neocmake'                 -- CMake
   , 'cucumber_language_server' -- Cucumber
   , 'dagger'                   -- Cue
   , 'dockerls'                 -- Docker
@@ -24,12 +25,15 @@ local servers =
   , 'kotlin_language_server'   -- Kotlin
   , 'lemminx'                  -- XML
   , 'marksman'                 -- Markdown
+  -- , 'nginx_language_server'    -- Nginx
   , 'pyright'                  -- Python
   , 'rnix'                     -- Nix
   , 'rust_analyzer'            -- Rust
   , 'salt_ls'                  -- Salt
   , 'sumneko_lua'              -- lua
+  , 'taplo'                    -- Toml
   , 'terraformls'              -- terraform
+  , 'tflint'                   -- terraform
   , 'tsserver'                 -- typescript
   , 'vimls'                    -- Vim
   -- , 'visualforce_ls'           -- sfdx

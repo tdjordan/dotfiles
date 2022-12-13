@@ -1,20 +1,22 @@
 require 'nvim-tree'.setup {
-  -- auto_reload_on_write   = true,
-  -- create_inclosed_folder = false,
-  -- disable_netrw          = false,
-  -- hijack_cursor          = false,
-  -- hijack_netrw           = true,
+  -- auto_reload_on_write              = true,
+  -- create_in_closed_folder           = false,
+  -- disable_netrw                     = false,
+  -- hijack_cursor                     = false,
+  -- hijack_netrw                      = true,
   -- hijack_unamed_buffer_when_opening = false,
-  -- ignore_buffer_on_setup = false,
-  -- open_on_setup          = false,   -- default : false
-  -- open_on_setup_file     = false,
-  -- open_on_tab            = false,
-  -- sort_by                = 'name', -- how files are sorted ( name | modification_time | case_sensitive )
-  -- root_dirs              = {},
-  -- prefer_start_root      = false,
-  -- update_cwd             = false,
-  -- reload_on_bufenter     = false,
-  -- respect_buf_cwd        = false,
+  -- ignore_buffer_on_setup            = false,
+  -- open_on_setup                     = false,      -- default : false
+  -- open_on_setup_file                = false,
+  -- sort_by                           = 'name',     -- how files are sorted ( name | modification_time | case_sensitive )
+  -- root_dirs                         = {},
+  -- prefer_startup_root               = false,
+  -- sync_root_with_cwd                = false,
+  -- reload_on_bufenter                = false,
+  -- respect_buf_cwd                   = false,
+  -- on_attach                         = 'disabled', -- function(bufnr). If nil, will use the deprecated mapping strategy
+  -- remove_keymaps                    = false,      -- boolean (disable totally or not) or list of key (lhs)
+  -- select_prompts                    = false,
   -- view = {
   --   adaptive_size                = false,
   --   centralize_selection         = false,
@@ -33,6 +35,18 @@ require 'nvim-tree'.setup {
   --       { key = 'u', action = 'dir_up' },
   --     },
   --   },
+  --   float = {
+  --     enable = false,
+  --     quit_on_focus_loss = true,
+  --     open_win_config = {
+  --       relative = 'editor',
+  --       border   = 'rounded',
+  --       width    = 30,
+  --       height   = 30,
+  --       row      = 1,
+  --       col      = 1
+  --     }
+  --   }
   -- },
   renderer = {
     -- add_trailing = false,
@@ -46,13 +60,16 @@ require 'nvim-tree'.setup {
     -- 3 --> "all"
     highlight_opened_files = "all",
     root_folder_modifier = ":~",
+    indent_width = 2,
     indent_markers = {
       enable = false,
+      inline_arrows = true,
       icons = {
         corner = "└ ",
-        edge = "│ ",
-        item = "│ ",
-        none = "  ",
+        edge   = "│ ",
+        item   = "│ ",
+        bottom = "─",
+        none   = "  ",
       },
     },
     icons = {
@@ -120,7 +137,6 @@ require 'nvim-tree'.setup {
   -- },
   update_focused_file = {       -- focus file in tree on BufEnter
     enable      = true,
-    -- update_cwd  = false,     -- deprecated
     -- update_root = false,
     -- ignore_list = {}
   },
@@ -132,6 +148,7 @@ require 'nvim-tree'.setup {
   diagnostics         = {
     enable = true,
     show_on_dirs = false,
+    -- debounce_delay = 50,
     icons = {
       hint = "",    -- hint = "",
       info = "",    -- info = "",
@@ -144,9 +161,10 @@ require 'nvim-tree'.setup {
   --   custom = {},
   --   exclude = {}
   -- },
-  -- filesystem_waters = {
+  -- filesystem_watchers = {
   --   enable = false,
-  --   internal = 100
+  --   debounce_delay = 50,
+  --   ignore_dirs = {}
   -- },
   -- git = {
   --   enable = true,
@@ -198,6 +216,13 @@ require 'nvim-tree'.setup {
   --   prefix = "[FILTER]: ",
   --   always_show_folders = true
   -- },
+  -- tab = {
+  --   sync = {
+  --     open = false,
+  --     close = false,
+  --     ignorfe = {}
+  --   }
+  -- },
   -- log = {
   --   enable = false,
   --   truncate = false,
@@ -205,6 +230,7 @@ require 'nvim-tree'.setup {
   --     all = false,
   --     config = false,
   --     copy_paste = false,
+  --     dev = false,
   --     diagnostics = false,
   --     git = false,
   --     profile = false,
@@ -217,6 +243,7 @@ require 'nvim-tree'.setup {
 ---
 local api = vim.api
 api.nvim_create_autocmd( 'BufEnter', {
+  group = api.nvim_create_augroup( 'CloseNvimTreeIfLastBuf', { clear = true } ),
   nested = true,
   callback = function()
     if #api.nvim_list_wins() == 1 and api.nvim_buf_get_name(0):match('NvimTree_') ~= nil then

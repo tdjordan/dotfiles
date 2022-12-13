@@ -3,6 +3,8 @@ local api = vim.api
 
 -- local theme_colors = require 'nightfox.colors'.load()
 
+local navic = require 'nvim-navic'
+
 local colors = {
   bg = '#202328',
   fg = '#bbc2cf',
@@ -118,9 +120,10 @@ local components = {
       local res = unique_list( supported_linters )
       vim.list_extend( buf_client_names, res )
       return table.concat(buf_client_names, ", ")
+      -- return table.concat( res ) .. '[' .. table.concat(buf_client_names, ", ") .. ']'
       -- return table.concat(res, ", ")
       -- return buf_client_names.name
-      -- return '[' .. table.concat(buf_client_names, ", ") .. ']'
+      -- return '[ ' .. table.concat(buf_client_names, ", ") .. ' ]'
       -- return '[' .. table.concat(buf_client_names, ", ") .. ']'
     end,
     -- icon = ' ',
@@ -193,25 +196,51 @@ local components = {
       return ''
     end
     , color = { fg = colors.green }
+  },
+  winbar_filename = {
+    function()
+      local bo = vim.bo
+      if bo.modified then
+        return '● %t'
+      end
+      if vim.fn.expand('%:t') == '' then
+        return ''
+      end
+      return '%t'
+    end
   }
 }
 
 require 'lualine'.setup {
   options = {
     theme = 'material-stealth'
-    , component_separators = { '', '' }
-    , section_separators = { '', '' }
-    -- , section_separators = {'', ''}
+    -- , component_separators = { left = '', right = ''}
+    , component_separators = { left = '', right = '' }
+    -- , section_separators = { left = '', right = ''}
+    -- , section_separators = { left = '', 'right = '}
+    , section_separators = { left = '', right = '' }
+    , disabled_filetypes = {            -- filetypes disabled      for lualine
+      statusline = {                    -- filetypes disabled only for statusline
+        'NvimTree'
+        , 'dashboard'
+        , 'Outline'
+      }
+      , winbar = {                      -- filetypes disabled only for winbar
+        'NvimTree'
+        , 'dashboard'
+        , 'Outline'
+      }
+    }
+    -- , always_divide_middle = true       -- when true { left sections constrained if right sections exist }
+    -- , globalstatus = true               -- when true { global statusline ( 0.7+ ) }
+    , refresh = {
+      statusline = 1000
+      , tabline = 1000
+      , winbar = 1000
+    }
     -- , extensions = {
     --   'nvim-tree'
     -- }
-    -- , always_divide_middle = true
-    -- , globalstatus = false
-    , disabled_filetypes = {
-      'NvimTree'
-      , 'dashboard'
-      , 'Outline'
-    }
   }
   , sections = {
     lualine_a = {
@@ -222,16 +251,22 @@ require 'lualine'.setup {
     lualine_c = {
       -- {
       --   'diagnostics'
-      --   , sources = { 'nvim_lsp' }
+      --   , sources = {
+      --     'nvim_lsp'
+      --     , 'nvim _diagnostic'
+      --     , 'nvim_workspace_diagnostic'
+      --   }
       -- } ,
       {
         'filename'
         , path = 1 -- relative path
         , shorting_target = 40
-      }
+      },
+      { navic.get_location, cond = navic.is_available },
     },
     lualine_x = {
       -- components.encoding,
+      -- { navic.get_location, cond = navic.is_available },
       components.lsp,
       components.treesitter,
       'filetype',
@@ -244,17 +279,89 @@ require 'lualine'.setup {
     }
   },
   inactive_sections = {
-    lualine_c = {
-      -- { 'diagnostics', source={'nvim_lsp'}},
-      'filename'
-    },
+  --   lualine_c = {
+  --     -- { 'diagnostics', source={'nvim_lsp'}},
+  --     'filename'
+  --   },
+  --   lualine_x = {
+  --     -- components.lsp,
+  --     -- components.treesitter,
+  --     { 'diagnostics', source={'nvim_lsp'}},
+  --     'filetype',
+  --   },
     lualine_x = {
-      -- components.lsp,
-      -- components.treesitter,
-      { 'diagnostics', source={'nvim_lsp'}},
-      'filetype',
     },
+    lualine_y = {
+    },
+    lualine_z = {
+      -- components.scrollbar,
+      -- components.mode
+    }
   }
+  -- , tabline = {}
+  -- , winbar = {}                     -- when window.active true  { winbar section configs } ( 0.8+ )
+  -- , winbar = {
+  --   -- lualine_a = {
+  --   --   components.mode
+  --   -- },
+  --   -- lualine_b = {
+  --   --   components.winbar_filename,
+  --   -- },
+    -- lualine_c = {
+  --     -- 'filename',
+  --     -- { 'diagnostics', source={'nvim_lsp'}},
+  --     -- components.winbar_filename,
+  --     -- {
+  --     --   'filename'
+  --     --   , path = 1 -- relative path
+  --     --   , shorting_target = 40
+  --     --   , file_status = false
+  --     --   , symbols = {
+  --     --     modified = '●',  -- Text to show when the file is modified
+  --     --     readonly = '#',  -- Text to show when the file is non-modifiable or readonly.
+  --     --     unnamed = '',    -- Text to show for unnamed buffers.
+  --     --     newfile = '',    -- Text to show for new created file before first writing
+  --     --   },
+  --     -- },
+  --     -- { 'buffers' },
+    --   { navic.get_location, cond = navic.is_available }
+    -- },
+  --   -- lualine_y = {
+  --   --   -- 'filename',
+  --   --   { 'diagnostics', source={'nvim_lsp'}},
+  --   -- }
+  --   lualine_x = {
+  --     components.winbar_filename,
+  --   },
+  --   -- lualine_z = {
+  --   -- --   components.winbar_filename,
+  --   --   components.mode
+  --   -- }
+  -- },
+  -- -- , inactive_winbar = {}            -- when window.active false { winbar section configs } ( 0.8+ )
+  -- inactive_winbar = {
+  --   -- lualine_a = {
+  --   --   components.mode
+  --   -- },
+  --   lualine_c = {
+  --     -- { 'buffers' },
+  --     -- {
+  --     --   'filename'
+  --     --   , path = 1 -- relative path
+  --     --   , shorting_target = 40
+  --     -- },
+  --     { navic.get_location, cond = navic.is_available }
+  --   },
+  --   lualine_y = {
+  --     components.winbar_filename,
+  --   --   {
+  --   --     'filename'
+  --   --     , path = 1 -- relative path
+  --   --     , shorting_target = 40
+  --   --   },
+  --   --   { 'diagnostics', source={'nvim_lsp'}},
+  --   }
+  -- }
 }
 
 -- require 'lualine'.setup {

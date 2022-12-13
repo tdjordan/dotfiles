@@ -33,9 +33,15 @@ local bootstrap_packer = function()
   require 'packer'.sync()
 end
 
+local init = function()
+  local packer_installed, _ = pcall(cmd, [[packadd packer.nvim]])
+  local _ = (packer_installed or bootstrap_packer()) and (fn.filereadable(packer_compiled_fn) == 1 or compile_packer())
+end
+
 -- cmd [[autocmd BufWritePost plugins.lua PackerCompile profile=true]]
 
 return {
   bootstrap_packer = bootstrap_packer
   , compile_packer = compile_packer
+  , init = init
 }

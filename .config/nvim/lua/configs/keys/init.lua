@@ -26,85 +26,92 @@ end
 --   -- }
 -- }
 wk.setup {
-  plugins = {
-    marks = true,          -- shows a list of your marks on ' and `
-    registers = true,      -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-    spelling = {
-      enabled = false,     -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-      suggestions = 20,    -- how many suggestions should be shown in the list?
-    },
-
-    -- the presets plugin, adds help for a bunch of default keybindings in Neovim
-    -- No actual key bindings are created
-    presets = {
-      operators = true,    -- adds help for operators like d, y, ... and registers them for motion / text object completion
-      motions = true,      -- adds help for motions
-      text_objects = true, -- help for text objects triggered after entering an operator
-      windows = true,      -- default bindings on <c-w>
-      nav = true,          -- misc bindings to work with windows
-      z = true,            -- bindings for folds, spelling and others prefixed with z
-      g = true,            -- bindings for prefixed with g
-    },
-  },
+  -- plugins = {
+  --   marks = true,          -- shows a list of your marks on ' and `
+  --   registers = true,      -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+  --   spelling = {
+  --     enabled = false,     -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+  --     suggestions = 20,    -- how many suggestions should be shown in the list?
+  --   },
+  --
+  --   -- the presets plugin, adds help for a bunch of default keybindings in Neovim
+  --   -- No actual key bindings are created
+  --   presets = {
+  --     operators = true,    -- adds help for operators like d, y, ... and registers them for motion / text object completion
+  --     motions = true,      -- adds help for motions
+  --     text_objects = true, -- help for text objects triggered after entering an operator
+  --     windows = true,      -- default bindings on <c-w>
+  --     nav = true,          -- misc bindings to work with windows
+  --     z = true,            -- bindings for folds, spelling and others prefixed with z
+  --     g = true,            -- bindings for prefixed with g
+  --   },
+  -- },
 
   -- add operators that will trigger motion and text object completion
   -- to enable all native operators, set the preset / operators plugin above
-  operators = { gc = "Comments" },
+  -- operators = { gc = 'Comments' },
   key_labels = {
     -- override the label used to display some keys. It doesn't effect WK in any other way.
     --   For example:
-    --     ["<space>"] = "SPC",
-    --     ["<cr>"] = "RET",
-    --     ["<tab>"] = "TAB",
+    ['<space>'] = 'SPC',
+    ['<CR>']    = 'RET',
+    ['<Tab>']   = 'TAB',
   },
   icons = {
-    breadcrumb = "»",               -- symbol used in the command line area that shows your active key combo
-    separator = "➜",                -- symbol used between a key and it's label
-    group = "+",                    -- symbol prepended to a group
+    -- breadcrumb = '»',               -- symbol used in the command line area that shows your active key combo
+    -- separator = '➜',                -- symbol used between a key and it's label
+    group = ' ',                    -- symbol prepended to a group
   },
-  popup_mappings = {
-    scroll_down = '<c-d>',          -- binding to scroll down inside the popup
-    scroll_up = '<c-u>',            -- binding to scroll up inside the popup
-  },
-  window = {
-    border = "none",                -- none, single, double, shadow
-    position = "bottom",            -- bottom, top
-    margin = { 1, 0, 1, 0 },        -- extra window margin [top, right, bottom, left]
-    padding = { 2, 2, 2, 2 },       -- extra window padding [top, right, bottom, left]
-    winblend = 0
-  },
-  layout = {
-    height = { min = 4, max = 25 }, -- min and max height of the columns
-    width = { min = 20, max = 50 }, -- min and max width of the columns
-    spacing = 3,                    -- spacing between columns
-    align = "left",                 -- align columns left, center or right
-  },
-  ignore_missing = false,           -- enable this to hide mappings for which you didn't specify a label
-  hidden = {                        -- hide mapping boilerplate
-    "<silent>",
-    "<cmd>",
-    "<Cmd>",
-    "<CR>",
-    "call",
-    "lua",
-    "^:",
-    "^ "
-  },
-  show_help = true,                 -- show help message on the command line when the popup is visible
-  triggers = "auto",                -- automatically setup triggers
-                                    -- triggers = {"<leader>"} -- or specify a list manually
-  triggers_blacklist = {
-    -- list of mode / prefixes that should never be hooked by WhichKey
-    -- this is mostly relevant for key maps that start with a native binding
-    -- most people should not need to change this
-    i = { "j", "k" },
-    v = { "j", "k" },
-  },
+  -- popup_mappings = {
+  --   scroll_down = '<c-d>',          -- binding to scroll down inside the popup
+  --   scroll_up = '<c-u>',            -- binding to scroll up inside the popup
+  -- },
+  -- window = {
+  --   border = 'none',                -- none, single, double, shadow
+  --   position = 'bottom',            -- bottom, top
+  --   margin = { 1, 0, 1, 0 },        -- extra window margin [top, right, bottom, left]
+  --   padding = { 2, 2, 2, 2 },       -- extra window padding [top, right, bottom, left]
+  --   winblend = 0
+  -- },
+  -- layout = {
+  --   height = { min = 4, max = 25 }, -- min and max height of the columns
+  --   width = { min = 20, max = 50 }, -- min and max width of the columns
+  --   spacing = 3,                    -- spacing between columns
+  --   align = 'left',                 -- align columns left, center or right
+  -- },
+  -- ignore_missing = false,           -- enable this to hide mappings for which you didn't specify a label
+  -- hidden = {                        -- hide mapping boilerplate
+  --   '<silent>',
+  --   '<cmd>',
+  --   '<Cmd>',
+  --   '<CR>',
+  --   'call',
+  --   'lua',
+  --   '^:',
+  --   '^ '
+  -- },
+  -- show_help = true,                 -- show help message on the command line when the popup is visible
+  -- show_keys = true,                 -- show the currently pressed key and its label as a message in the command line
+  -- triggers = 'auto',                -- automatically setup triggers
+  --                                   -- triggers = {'<leader>'} -- or specify a list manually
+  -- triggers_blacklist = {
+  --   -- list of mode / prefixes that should never be hooked by WhichKey
+  --   -- this is mostly relevant for key maps that start with a native binding
+  --   -- most people should not need to change this
+  --   i = { 'j', 'k' },
+  --   v = { 'j', 'k' },
+  -- },
+  -- -- disable the WhichKey popup for certain buf types and file types.
+  -- -- Disabled by default for Telescope
+  -- disable = {
+  --   buftypes = {},
+  --   filetypes = { "TelescopePrompt" },
+  -- },
 }
 
 local normal_mode = {
   mode = 'n'
-  , prefix = "<leader>"
+  , prefix = '<leader>'
   , buffer = nil
   , silent = true
   , noremap = true
@@ -124,7 +131,7 @@ local normal_mappings = {
   --- surround with *
   ---
   s = {
-    name = '+surround / search'
+    name = 'surround / search'
     , ['"'] = { [[msciw""<esc>P`sl]],           'word with double quotes'     }
     , ["'"] = { [[msciw'<c-r><c-o>"'<esc>`sl]], 'word with single quotes'     }
     -- , ["'"] = { [[msea'<esc>bi'<esc>`sl]], 'word with single quotes'     }
@@ -176,7 +183,7 @@ local normal_mappings = {
   ---  k* mappings
   ---
   -- k = {
-  --   name = '+nerd'
+  --   name = 'nerd'
   --   , t = { '<cmd>lua require "telescope.builtin".file_browser()<cr>',             'tree' }
   -- },
 
@@ -184,44 +191,51 @@ local normal_mappings = {
   ---  f* mappings
   ---
   f = {
-    name = '+search'
-    , b = { function() require 'telescope.builtin'.buffers()                          end , 'in open buffers' }
-    , f = { function() require 'telescope.builtin'.find_files()                       end , 'by file name'    }
-    , g = { function() require 'telescope.builtin'.live_grep()                        end , 'with live grep'  }
-    , h = { function() require 'telescope.builtin'.help_tags()                        end , 'help tags'       }
-    , j = { function() require 'telescope.builtin'.jumplist()                         end , 'jumplist'        }
-    , i = { function() require 'telescope.builtin'.builtin()                          end , 'builtins'        }
-    , k = { function() require 'telescope.builtin'.keymaps()                          end , 'keymaps'         }
-    , l = { function() require 'telescope.builtin'.current_buffer_fuzzy_find()        end , 'current buffer'  }
-    , m = { function() require 'telescope.builtin'.man_pages()                        end , 'man pages'       }
-    , o = { function() require 'telescope.builtin'.oldfiles()                         end , 'recent files'    }
-    , q = { function() require 'telescope.builtin'.quickfix()                         end , 'quickfix'        }
-    , r = { function() require 'telescope.builtin'.reloader()                         end , 'reloader'        }
-    , s = { function() require 'telescope.builtin'.lsp_workspace_symbols()            end , 'lsp symbols'     }
-    , t = { function() require 'telescope.builtin'.filetypes()                        end , 'filetypes'       }
-    , [';'] = { function() require 'telescope.builtin'.command_history()              end , 'command history' }
-    , ['/'] = { function() require 'telescope.builtin'.search_history()               end , 'search history'  }
-    , ['.'] = { function() require 'telescope'.extensions.file_browser.file_browser() end , 'file browser'    }
+    name = 'search'
+    , b = { function() require 'telescope.builtin'.buffers()                          end , 'in open buffers'   }
+    , f = { function() require 'telescope.builtin'.find_files()                       end , 'by file name'      }
+    , g = { function() require 'telescope.builtin'.live_grep()                        end , 'with live grep'    }
+    , h = { function() require 'telescope.builtin'.help_tags()                        end , 'help tags'         }
+    , j = { function() require 'telescope.builtin'.jumplist()                         end , 'jumplist'          }
+    , i = { function() require 'telescope.builtin'.builtin()                          end , 'builtins'          }
+    , k = { function() require 'telescope.builtin'.keymaps()                          end , 'keymaps'           }
+    , l = { function() require 'telescope.builtin'.current_buffer_fuzzy_find()        end , 'current buffer'    }
+    , m = { function() require 'telescope.builtin'.man_pages()                        end , 'man pages'         }
+    , o = { function() require 'telescope.builtin'.oldfiles()                         end , 'recent files'      }
+    , q = { function() require 'telescope.builtin'.quickfix()                         end , 'quickfix'          }
+    , r = { function() require 'telescope.builtin'.reloader()                         end , 'reloader'          }
+    , s = { function() require 'telescope.builtin'.lsp_workspace_symbols()            end , 'lsp symbols'       }
+    , t = { function() require 'telescope.builtin'.filetypes()                        end , 'filetypes'         }
+    , w = { function() require 'telescope.builtin'.grep_string()                      end , 'word under cursor' }
+    , [';'] = { function() require 'telescope.builtin'.command_history()              end , 'command history'   }
+    , ['/'] = { function() require 'telescope.builtin'.search_history()               end , 'search history'    }
+    , ['.'] = { function() require 'telescope'.extensions.file_browser.file_browser() end , 'file browser'      }
+    , [':'] = { function() require 'telescope.builtin'.commands()                     end , 'commands'          }
   },
 
   ---
   ---  l* mappings
   ---
   l = {
-    name = '+lsp'
+    name = 'lsp'
     , a = { function() vim.lsp.buf.code_action()                            end , 'code action'          }
-    , c = { function() vim.lsp.buf.range_code_action()                      end , 'code action range'    }
+    , A = { function() vim.lsp.buf.range_code_action()                      end , 'code action range'    }
+    , c = {
+      name = 'calls'
+      , i = { function() require "telescope.builtin".lsp_incoming_calls()     end , 'incoming calls'     }
+      , o = { function() require "telescope.builtin".lsp_outgoing_calls()     end , 'outgoing calls'     }
+    }
     , d = { function() require 'telescope.builtin'.diagnostics({bufnr = 0}) end , 'document diagnostics' }
     , f = { function() vim.lsp.buf.formatting()                             end , 'format'               }
     , h = { function() vim.lsp.buf.hover()                                  end , 'hover'                }
     , H = { function() vim.lsp.buf.signature_help()                         end , 'signature help'       }
     , i = { '<cmd>LspInfo<cr>',                                                   'info'                 }
-    , I = { function() require 'nvim-lsp-installer'.info_window.open()      end , 'installer info'       }  -- LspInstallInfo
+    , I = { function() require 'mason.ui'.open()                            end , 'installer info'       }  -- Mason
     , j = { function() vim.diagnostic.goto_next()                           end , 'next diagnositc'      }
     , k = { function() vim.diagnostic.goto_prev()                           end , 'prev diagnositc'      }
     , l = { function() vim.lsp.codelens.run()                               end , 'codelens action'      }
     , p = {
-      name = '+peek'
+      name = 'peek'
       , i = { function() require 'lvim.lsp.peek'.Peek('implementation') end , 'implementation'  }
       , r = { function() vim.lsp.buf.references()                       end , 'references'      }
       , t = { function() require 'lvim.lsp.peek'.Peek('typeDefinition') end , 'type definition' }
@@ -236,7 +250,7 @@ local normal_mappings = {
   ---  o* mapptings
   ---
   o = {
-    name = '+org mode',
+    name = 'org mode',
     -- j = { [[<cmd>lua loaded() | Neorg journal today<cr>]], 'journal today' }
     j = {
       function()
@@ -262,7 +276,7 @@ local normal_mappings = {
 
 
   ---
-  ---  o* mappings
+  ---  O* mappings
   ---
   O = {
     function()
@@ -274,7 +288,7 @@ local normal_mappings = {
   ---  p* mappings
   ---
   p = {
-    name = '+pick'
+    name = 'pick'
     , a = { function() require 'telescope.builtin'.autocommands()                          end , 'an autocommand'      }
     , b = { function() require 'telescope.builtin'.buffers()                               end , 'from open buffers'   }
     , c = { function() require 'telescope.builtin'.colorscheme()                           end , 'a colorscheme'       }
@@ -282,9 +296,11 @@ local normal_mappings = {
     , f = { function() require 'telescope.builtin'.find_files()                            end , 'a file'              }
     , g = { function() require 'telescope.builtin'.live_grep()                             end , 'from live grep'      }
     , l = { function() require 'telescope.builtin'.current_buffer_fuzzy_find()             end , 'from current buffer' }
+    -- , s = { function() require 'telescope.builtin'.grep_string()                           end , 'word under cursor'   }
     , s = { function() require 'telescope.builtin'.grep_string()                           end , 'with grep string'    }
+    , t = { function() require 'telescope'.extensions['todo-comments'].todo()              end , 'todos'               }
     , p = {
-      name = '+packer'
+      name = 'packer'
       , s = { function() require 'plugins'.init_packer() require 'packer'.sync()           end , 'sync'    }
       , c = { function() require 'plugins'.init_packer() require 'packer'.compile()        end , 'compile' }
       , l = { function() require 'telescope'.extensions.packer.plugins()                   end , 'list'    }
@@ -295,10 +311,10 @@ local normal_mappings = {
     }
     , w = { function() require 'telescope'.extensions.project.project{ display_type = 'full' } end , 'workspace' }
     , v = {
-      name = '+vim'
-      , h = { function() require "telescope.builtin".highlights()  end , 'vim highlights' }
-      , o = { function() require "telescope.builtin".vim_options() end , 'vim options'    }
-      , r = { function() require "telescope.builtin".registers()   end , 'vim registers'  }
+      name = 'vim'
+      , h = { function() require 'telescope.builtin'.highlights()  end , 'vim highlights' }
+      , o = { function() require 'telescope.builtin'.vim_options() end , 'vim options'    }
+      , r = { function() require 'telescope.builtin'.registers()   end , 'vim registers'  }
     }
   },
 
@@ -306,8 +322,8 @@ local normal_mappings = {
   ---  c* mappings
   ---
   c = {
-    name = '+comments'
-    , ["<c-_>"] = { function() require 'Comment.api'.toggle_current_linewise_op() end , 'comment line'   }
+    name = 'comments'
+    , ['<c-_>'] = { function() require 'Comment.api'.toggle_current_linewise_op() end , 'comment line'   }
     , l =         { function() require 'Comment.api'.toggle_current_linewise_op() end , 'comment line'   }
     -- , m =         { function() require 'Comment.api'.toggle_linewise_count_op()   end , 'comment motion' }
   },
@@ -321,32 +337,39 @@ local normal_mappings = {
   ---  d* mappings
   ---
   d = {
-    name = '+Debug'
-    , t = { function() require "dap".toggle_breakpoint() end , 'Toggle Breakpoint' }
-    , b = { function() require "dap".step_back()         end , 'Step Back'         }
-    , c = { function() require "dap".continue()          end , 'Continue'          }
-    , C = { function() require "dap".run_to_cursor()     end , 'Run to Cursor'     }
-    , d = { function() require "dap".disconnect()        end , 'Disconnect'        }
-    , g = { function() require "dap".session()           end , 'Get Session'       }
-    , i = { function() require "dap".step_into()         end , 'Step Into'         }
-    , o = { function() require "dap".step_over()         end , 'Step Over'         }
-    , u = { function() require "dap".step_out()          end , 'Step Out'          }
-    , p = { function() require "dap".pause.toggle()      end , 'Pause'             }
-    , r = { function() require "dap".repl.toggle()       end , 'Toggle Repl'       }
-    , s = { function() require "dap".continue()          end , 'Start'             }
-    , q = { function() require "dap".close()             end , 'Quit'              }
+    name = 'debug'
+    , t = { function() require 'dap'.toggle_breakpoint() end , 'Toggle Breakpoint' }
+    , b = { function() require 'dap'.step_back()         end , 'Step Back'         }
+    , c = { function() require 'dap'.continue()          end , 'Continue'          }
+    , C = { function() require 'dap'.run_to_cursor()     end , 'Run to Cursor'     }
+    , d = { function() require 'dap'.disconnect()        end , 'Disconnect'        }
+    , g = { function() require 'dap'.session()           end , 'Get Session'       }
+    , i = { function() require 'dap'.step_into()         end , 'Step Into'         }
+    , o = { function() require 'dap'.step_over()         end , 'Step Over'         }
+    , u = { function() require 'dap'.step_out()          end , 'Step Out'          }
+    , p = { function() require 'dap'.pause.toggle()      end , 'Pause'             }
+    , r = { function() require 'dap'.repl.toggle()       end , 'Toggle Repl'       }
+    , s = { function() require 'dap'.continue()          end , 'Start'             }
+    , q = { function() require 'dap'.close()             end , 'Quit'              }
   } ,
 
   ---
   ---  g* mappings
   ---
   g = {
-    name = '+git'
-    , b = { function() require "telescope.builtin".git_branches() end , 'git branches'       }
-    , c = { function() require "telescope.builtin".git_commits()  end , 'git commits'        }
-    , h = { function() require "telescope.builtin".git_stash()    end , 'git stash'          }
-    , l = { function() require "telescope.builtin".git_bcommits() end , 'git buffer commits' }
-    , s = { function() require "telescope.builtin".git_status()   end , 'git status'         }
+    name = 'git'
+    , b = { function() require 'telescope.builtin'.git_branches() end , 'git branches'       }
+    , c = { function() require 'telescope.builtin'.git_commits()  end , 'git commits'        }
+    , h = { function() require 'telescope.builtin'.git_stash()    end , 'git stash'          }
+    , l = { function() require 'telescope.builtin'.git_bcommits() end , 'git buffer commits' }
+    , s = { function() require 'telescope.builtin'.git_status()   end , 'git status'         }
+  },
+
+  ---
+  ---  h* mappings
+  ---
+  h = {
+    name = 'gitsigns'
   },
 
   ---
@@ -354,25 +377,25 @@ local normal_mappings = {
   ---
   ---  Indentation
   ---
-  i = { function() require 'functions.toggle'.indent_blankline() end , 'toggle indentation guides' },
+  -- i = { function() require 'functions.toggle'.indent_blankline() end , 'toggle indentation guides' },
 
   ---
   ---  t* mappings
   ---
   t = {
-    name = '+toggle'
-    , h = { '<cmd>TSHighlightCapturesUnderCursor<cr>',                     'highlight captures'        }
-    , i = { function() require 'functions.toggle'.indent_blankline() end , 'toggle indentation guides' }
-    , k = { function() require 'functions.toggle'.nvim_tree() end ,        'toggle file tree sidebar'  }
-    , t = { '<cmd>split term://$SHELL<cr>',                                'terminal'                  }
-    , s = { '<cmd>TSPlaygroundToggle<cr>',                                 'tree-sitter playgournd'    }
+    name = 'toggle'
+    , h = { '<cmd>TSHighlightCapturesUnderCursor<cr>',                     'highlight captures'     }
+    , i = { function() require 'functions.toggle'.indent_blankline() end , 'indentation guides'     }
+    , k = { function() require 'functions.toggle'.nvim_tree() end ,        'file tree sidebar'      }
+    , t = { '<cmd>split term://$SHELL<cr>',                                'terminal'               }
+    , s = { '<cmd>TSPlaygroundToggle<cr>',                                 'tree-sitter playgournd' }
   },
 
   ---
   ---  r* mappings
   ---
   r = {
-    name = '+rest'
+    name = 'rest'
     , l = { function() require 'rest-nvim'.last()    end , 'run last request'         }
     , p = { function() require 'rest-nvim'.run(true) end , 'preview the curl command' }
     , r = { function() require 'rest-nvim'.run()     end , 'run request under cursor' }
@@ -387,7 +410,7 @@ local normal_mappings = {
   ---  v* mapptings
   ---
   -- x = {
-  --   name = '+trouble'
+  --   name = 'trouble'
   --   , l = { [[<cmd>Trouble loclist<cr>]],                   'window location list'  }
   --   , d = { [[<cmd>Trouble lsp_document_diagnositcs<cr>]],  'document diagnositcs'  }
   --   , D = { [[<cmd>Trouble lsp_definitions<cr>]],           'lsp definitions'       }
@@ -512,11 +535,11 @@ cmd [[inoremap jk <esc>]]
 -- vim.keymap.set('o', 'au', '<cmd>lua require "treesitter-unit".select(true)<cr>', { noremap = true })
 wk.register({
   i =  {
-    name = '+inner'
+    name = 'inner'
     , u = { function() require 'treesitter-unit'.select()     end , 'unit select' },
   }
   , a = {
-    name = '+outer'
+    name = 'outer'
     , u = { function() require 'treesitter-unit'.select(true) end , 'unit select' },
   }
 }, {
@@ -525,12 +548,12 @@ wk.register({
 
 wk.register({
   i =  {
-    name = '+inner'
-    , u = { function() require "treesitter-unit".select()     end , 'inner unit'                },
+    name = 'inner'
+    , u = { function() require 'treesitter-unit'.select()     end , 'inner unit'                },
   }
   , a = {
-    name = '+outer'
-    , u = { function() require "treesitter-unit".select(true) end , 'a unit (with white space)' },
+    name = 'outer'
+    , u = { function() require 'treesitter-unit'.select(true) end , 'a unit (with white space)' },
   }
 }, {
   mode = 'o'

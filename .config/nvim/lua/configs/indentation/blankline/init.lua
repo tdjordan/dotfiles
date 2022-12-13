@@ -26,6 +26,7 @@ require 'indent_blankline'.setup
     'terminal'
     , 'nofile'
     , 'quickfix'
+    , 'prompt'
   }
   , filetype_exclude =
     { 'help'

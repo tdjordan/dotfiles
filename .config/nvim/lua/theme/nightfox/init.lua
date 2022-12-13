@@ -6,6 +6,7 @@ require 'nightfox'.setup {
     -- , transparent = false
     -- , terminal_colors = true
     -- , dim_inactive = false
+    -- , module_default = true
     , styles =
       { comments = 'italic'
       -- , conditionals = 'NONE'

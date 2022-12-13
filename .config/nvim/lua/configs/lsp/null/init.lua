@@ -9,11 +9,19 @@ local sources = {
   ---
   -- b.diagnostics.shellcheck
   b.diagnostics.shellcheck.with {
-    diagnostics_format = '[#{c}] #{m}'
+    diagnostics_format = '[#{c}] #{m}',
+    diagnostic_config = {
+      underline = true,
+      virtual_text = false,
+      signs = true,
+      update_in_insert = false,
+      severity_sort = true
+    }
   }
   , b.code_actions.shellcheck
   , b.formatting.shfmt
   , b.formatting.shellharden
+  , b.hover.printenv
 
   ---  zsh
   ---
@@ -24,10 +32,18 @@ local sources = {
   , b.formatting.terraform_fmt
   -- , b.formatting.terrafmt        -- markdown terraform code block
 
+  ---  packer ( hcl )
+  ---
+  , b.formatting.packer
+
   ---  c++
   ---
   , b.formatting.cmake_format
   , b.formatting.clang_format
+
+  ---  cue
+  ---
+  , b.formatting.cue_fmt
 
   ---  makefiles
   ---
@@ -35,6 +51,7 @@ local sources = {
 
   ---  python
   ---
+  , b.diagnostics.ruff
   , b.formatting.black
   -- , b.diagnostics.pylint
 
@@ -57,6 +74,10 @@ local sources = {
     extra_args = { '--android' }
   }
 
+  ---  groovy
+  ---
+  -- , b.formatting.npm_groovy_lint
+
   ---  docker
   ---
   , b.diagnostics.hadolint
@@ -71,6 +92,7 @@ local sources = {
   , b.code_actions.proselint.with {
     diagnostics_format = '(#{s}) #{m}'
   }
+  -- , b.formatting.markdown_toc
 
   ---  nix
   ---
@@ -79,7 +101,7 @@ local sources = {
   -- , b.diagnostics.deadnix
   , b.code_actions.statix
   -- https://github.com/kamadorueda/alejandra
-  , b.formatting.alejandra
+  -- , b.formatting.alejandra
 
   ---  xml
   ---
@@ -96,7 +118,7 @@ local sources = {
     end
   }
 
-  --- lua
+  ---  lua
   ---
   , b.formatting.stylua.with {
     condition = function(utils)
@@ -104,6 +126,10 @@ local sources = {
     end
   }
   -- , b.diagnostics.selene
+
+  ---  haskell
+  ---
+  , b.formatting.stylish_haskell
 
   ---  text files
   ---
@@ -139,6 +165,14 @@ local sources = {
     }
   }
 
+  ---  yaml files
+  ---
+  -- , b.formatting.yamlfmt
+
+  ---  generic formatting
+  ---
+  , b.formatting.dprint
+
   ---  editorconfig
   ---
   , b.diagnostics.editorconfig_checker.with {
@@ -158,7 +192,7 @@ local sources = {
 
   ---  dictionary
   ---
-  -- , b.hover.dictionary
+  , b.hover.dictionary
   , b.diagnostics.codespell.with {
     diagnostics_format = '(#{s}) #{m}'
   }
@@ -183,6 +217,27 @@ local sources = {
   ---  Cloud Formation
   ---
   -- , b.diagnostics.cfn_lint
+
+  ---  open policy agent
+  ---
+  , b.diagnostics.opacheck
+  , b.formatting.rego
+
+  ---  Changelog
+  ---
+  , b.formatting.ocdc
+
+  ---  justfile
+  ---
+  , b.formatting.just
+
+  ---  commit messages
+  ---
+  , b.diagnostics.commitlint
+
+  ---  .env files
+  ---
+  , b.diagnostics.dotenv_linter
 }
 
 nls.setup {

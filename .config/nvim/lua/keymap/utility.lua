@@ -1,13 +1,17 @@
 local M = {}
 
-local function noremap(scope, lfs, rhs)
-  local opt = { noremap = true, silent = true }
-  vim.keymap.set(scope, lfs, rhs, opt)
+local function noremap( mode, lhs, rhs, desc )
+  local opt = {
+    noremap  = true
+    , silent = true
+    , desc   = desc
+  }
+  vim.keymap.set( mode, lhs, rhs, opt )
 end
 
-M.nnoremap = function(lfs, rhs) noremap('n', lfs, rhs) end
-M.inoremap = function(lfs, rhs) noremap('i', lfs, rhs) end
-M.vnoremap = function(lfs, rhs) noremap('v', lfs, rhs) end
-M.tnoremap = function(lfs, rhs) noremap('t', lfs, rhs) end
+M.nnoremap = function(lhs, rhs, desc) noremap('n', lhs, rhs, desc) end
+M.inoremap = function(lhs, rhs, desc) noremap('i', lhs, rhs, desc) end
+M.vnoremap = function(lhs, rhs, desc) noremap('v', lhs, rhs, desc) end
+M.tnoremap = function(lhs, rhs, desc) noremap('t', lhs, rhs, desc) end
 
 return M
