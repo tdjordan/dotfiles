@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Using argument expansion to capture all files provided as arguments.
+
+IFS=':'
+read -ra tokens <<<"$PATH"
+
+# exists & executable on the path?
+for P in "${tokens[@]}"; do
+	for FILE in "${@}"; do
+		if [[ -x "$P/$FILE" ]]; then
+			echo "$P/$FILE is in path"
+
+			# status( $? ) == 0
+			exit 0
+		fi
+	done
+done
+
+# status( $? ) == 1
+exit 1
