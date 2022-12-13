@@ -6,12 +6,12 @@
 
 ### External Bar
 #
-#   Specifiy top and bottom padding for a potiential custom bar
+#   Specify top and bottom padding for a potiential custom bar
 #
 #     options: [ <main|all|off>:<top padding>:<bottom padding> ]
 #
 #       main : apply the given padding to only spaces located on the main display
-#       all  : apply the given padding to all  spaces regardles of their  display
+#       all  : apply the given padding to all  spaces regardless of their  display
 #       off  : do not apply any special padding
 yabai -m config external_bar                 off
 
@@ -63,7 +63,7 @@ yabai -m config auto_balance                 off
 #   a value of 0.2 means that the old window occupies 20% of the available space and the new window occupies 80% of the available space.
 #   New windows are inserted at the right or bottom side. The ratio needs to be between 0 and 1.
 #
-#     Floading oint value between 0 and 1 ( default: 0.5 )
+#     Floating oint value between 0 and 1 ( default: 0.5 )
 yabai -m config split_ratio                  0.50
 
 ### Mouse Support
@@ -92,7 +92,7 @@ yabai -m config mouse_action2                resize
 
 ### Layout
 #
-#   Layout defines wether windows are tiled ( managed / bsp ) or left alone ( float )
+#   Layout defines whether windows are tiled ( managed / bsp ) or left alone ( float )
 #   This setting can be defined on a per-space basis.
 #
 # bsp or float ( default: bsp )
