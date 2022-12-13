@@ -9,6 +9,7 @@ yarn=(
   # yaml-language-server
 
 pnpm=(
+  cspell-cli
   vscode-langservers-extracted
   # @cucumber/language-server
   @microsoft/rush
@@ -52,6 +53,7 @@ pip=(
   neovim
   usort
   ocdc
+  ruff
   # fortran-language-server
 )
 

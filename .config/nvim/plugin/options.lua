@@ -73,11 +73,15 @@ set.sidescrolloff  = 5
 --   0 : never
 --   1 : only if there are at least two windows
 --   2 : always
+--   3 : global status line instead of one per window
 if ( vim.g.started_by_firenvim ) then
   set.laststatus     = 0                           -- nvim default : 2
 else
   set.laststatus     = 2                           -- nvim default : 2
 end
+
+-- turn on winbar support
+-- set.winbar = "%{get(b:, 'gitsigns_status', '')}"
 
 -- Highlight the screen line of the cursor with CursorLine
 set.cursorline     = true                        -- nvim default : off
@@ -114,6 +118,7 @@ set.concealcursor  = 'nc'                        -- n:Normal v:Visual i:Insert c
 set.conceallevel   = 2                           -- 'Conceal' hi group / text hidden unless has replacement ch
 -- set.conceallevel   = 0                           -- 'Conceal' hi group / text hidden unless has replacement ch
   -- TODO : to allow '' to be visible in markdown files, set conceallevel to 0
+--
 -- o.langremap      = false                        -- nvim default ( langremap off )
 -- o.langnoremap    = true                         -- nvim default ( deprecated alias for nolangremap )
 -- o.laststatus     = true                         -- nvim defaults to 2 (statusline is always shown)
@@ -278,6 +283,7 @@ set.swapfile = false                             -- nvim default : on
 ------
 -- Use the shada to save marks also
 --   TODO: Not working
+--
 -- o.shada = o.shada .. 'f1'                       -- nvim default : !,'100,<50,s10,h
 
 ------  sessions
