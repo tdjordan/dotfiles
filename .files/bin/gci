@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+git commit -m "$(gum choose 'fix' 'feat')($(gum input --placeholder 'scope')) $(gum input --width 50 --placeholder 'Summary of Changes')" -m "$(gum write --width 80 --placeholder 'Details of changes')"
