@@ -33,3 +33,7 @@ jf() {
 # neuron() {
 #   docker run --rm -it -v ${PWD}:/notes sridca/neuron neuron $*
 # }
+
+terraform-compliance() {
+  docker run --rm -v $(pwd):/target -i -t eerkunt/terraform-compliance "$@"
+}
