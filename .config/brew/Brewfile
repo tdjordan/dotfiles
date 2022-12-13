@@ -18,6 +18,7 @@ brew "dog"
 brew "gum"
 brew "has"
 brew "httpie"
+brew "duti"
 
 ###  version control systems
 ###
@@ -27,6 +28,7 @@ brew "lazygit"
 brew "svn"
 cask "gitup"
 brew "gh"
+brew "glab"
 brew "gitui"
 brew "git-delta"
 brew "git-extras"
@@ -58,17 +60,22 @@ brew "sk"
 brew "the_silver_searcher"
 brew "sd"
 brew "bingrep"
+brew "navi"
 
 ###  cli testing
 ###
 brew "hyperfine"
 brew "wrk"
+brew "k6"
+brew "clitest"
 
 ###  json utils
 ###
 brew "jq"
 brew "jaq"
 brew "jql"
+tap    "jmespath/jmespath"
+  brew "jmespath/jmespath/jp"
 
 ###  artifact repository
 ###
@@ -78,6 +85,10 @@ brew "jfrog-cli"
 ###
 brew "yq"
 brew "yamllint"
+
+###  xml utils
+###
+brew "xq"
 
 ###  csv utils
 ###
@@ -99,15 +110,26 @@ brew "editorconfig"
 brew "markdownlint-cli"
 brew "proselint"
 brew "codespell"
+cask "neovide"
+brew "typos-cli"
+
+###  doc formats
+###
+brew "glow"
 
 ###  lua
 ###
 brew "luvit"
 brew "stylua"
+brew "busted"
 
 ###  nix
 ###
 brew "statix"
+
+###  hermit
+###
+brew "hermit"
 
 ###  terminals
 ###
@@ -115,12 +137,13 @@ cask "alacritty"
 cask "kitty"
 brew "tmux"
 cask "wezterm"
+# cask "warp"
 
 ###  java
 ###
 # cask "adoptopenjdk"
 cask "temurin"
-cask "viaualvm"
+cask "visualvm"
 
 tap    "homebrew/cask-versions"
   cask "temurin8"
@@ -150,6 +173,17 @@ cask "obsidian"
 ###
 cask "chromium"
 brew "chrome-cli"
+cask "qutebrowser"
+
+###  zathura build support
+###
+brew "gtk+3"
+brew "libmagic"
+brew "gtk-mac-integration"
+brew "sphinx-doc"
+brew "desktop-file-utils"
+brew "mupdf"
+brew "poppler"
 
 ###  ansible
 ###
@@ -164,6 +198,7 @@ brew "glances"
 brew "htop"
 brew "ctop"
 brew "iftop"
+brew "bottom"
 
 ###  Docker & K8s
 ###
@@ -227,6 +262,7 @@ brew "bear"
 brew "haskell-language-server"
 brew "ghcup"
 brew "stylish-haskell"
+brew "buf"
 
 ###  Rust Language
 ###
@@ -246,6 +282,7 @@ brew 'watchexec'
 ###
 brew "poetry"
 brew "black"
+brew "ruff"
 
 ###  Ruby Language
 ###
@@ -289,16 +326,22 @@ brew "krew"
 brew "tfk8s"
 brew "datree"
 brew "yj"
-tap "little-angry-clouds/homebrew-my-brews"
+tap    "little-angry-clouds/homebrew-my-brews"
   brew "kbenv"
-brew "fluxcd/tap/flux"
+cask "aptakube"  # not ready for prime time
+tap    "FairwindsOps/tap"
+  brew "pluto"
+tap    "fluxcd/tap"
+  brew "fluxcd/tap/flux"
+brew "kustomize"
+brew "kubevious"
+brew "kubectx"
 
 ###  Open Policy Agent
 ###
 brew "opa"
 brew "gator"
 brew "hof"
-
 
 ###  Argo
 ###
@@ -354,12 +397,16 @@ brew "dotenv-linter"
 ###  system utilities
 ###
 brew "m-cli"
+brew "totp-cli"
+# brew "unxip"
+brew "vhs"
 
 ###  Documentation Tools
 ###
 brew "mermaid-cli"
 brew "pandoc"
 brew "graphviz"
+brew "d2"
 
 ###  Project Tools
 ###
@@ -406,6 +453,7 @@ brew "dotnet"
 ###
 brew "dlint"      # dprint.dev
 brew "prettier"
+brew "clang-format"
 
 ###  Arbitrary Installer Utilities
 ###
@@ -414,6 +462,10 @@ brew 'bvm'
 ###  Dagger
 ###
 brew "dagger"
+
+###  Task Runners
+###
+brew "go-task"
 
 ###  Video
 ###
@@ -428,6 +480,16 @@ cask "postman"
 ###  vanity
 ###
 brew "neofetch"
+brew "fastfetch"
+
+###  Bill of Materials
+###
+brew "spdx-sbom-generator"
+tap    "anchore/syft"
+  brew "syft"
+tap    "anchore/grype"
+  brew "grype"
+brew "trivy"
 
 ###  fonts
 ###
