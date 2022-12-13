@@ -113,14 +113,17 @@ alias ca='config add '
 alias cci='config commit -v '
 alias ciu='config status -s -u '
 
+# shellcheck disable=1090
 [ -f ~/.aliases.local ] && . ~/.aliases.local
 
 # kubernetes
 alias kk='kubectl'
+alias kkc='kubectx'
+alias kkn='kubens'
 
 # python 3
-alias python=/usr/local/opt/python@3.9/bin/python3
-alias pip=/usr/local/opt/python@3.9/bin/pip3
+alias python=/usr/local/bin/python3.11
+alias pip=/usr/local/bin/pip3.11
 
 # vifm
 alias vf='vifm'
