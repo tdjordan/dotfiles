@@ -153,6 +153,8 @@ bindkey -M vicmd v edit-command-line
 PS1="READY > "
 zinit wait"!" lucid nocd atload"!source ~/.p10k.zsh; _p9k_precmd" for \
   romkatv/powerlevel10k
+# zinit wait"!" lucid nocd atload'!eval "$(starship init zsh)"' for \
+#   starship/starship
 
 # must be last
 #zinit ice wait"3" lucid nocd atinit"zpcompinit; zpcdreplay"
