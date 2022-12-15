@@ -126,6 +126,10 @@ M.init_packer = function()
         'williamboman/mason-lspconfig.nvim'
         -- , module_pattern = '^mason-lspconfig'
       }
+      use {
+        'jay-babu/mason-null-ls.nvim'
+        -- , require = 'null-ls.nvim'
+      }
       -- use {
       --   'williamboman/nvim-lsp-installer'
       --   , event = 'CursorHold'
@@ -154,7 +158,7 @@ M.init_packer = function()
         -- , after = 'nvim-lspconfig'
         -- , after = 'mason-lspconfig.nvim'
         , event = 'CursorHold'
-        , module_pattern = '^null-ls.*'
+        -- , module_pattern = '^null-ls.*'
         , config = function()
           require 'configs.lsp.null'
         end
@@ -1048,7 +1052,7 @@ M.init_packer = function()
 
       ---  braces
       ---
-      -- use { '9mm/vim-closer' }
+      -- use { 'rstacruz/vim-closer' }
       -- use { 'jiangmiao/auto-pairs' }
       use {
         'windwp/nvim-autopairs'

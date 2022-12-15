@@ -57,8 +57,8 @@ local sources = {
 
   ---  ruby
   ---
-  , b.diagnostics.rubocop
-  , b.diagnostics.standardrb
+  -- , b.diagnostics.rubocop
+  -- , b.diagnostics.standardrb
 
   ---  javascript
   ---
@@ -197,6 +197,7 @@ local sources = {
     diagnostics_format = '(#{s}) #{m}'
   }
   , b.formatting.codespell
+  , b.diagnostics.misspell
 
   ---  trail space
   ---
@@ -242,4 +243,18 @@ local sources = {
 
 nls.setup {
   sources = sources
+  , debug = true
+}
+
+
+---  null-ls utils
+---
+-- local null = {
+--   'misspell'
+-- }
+
+require 'mason-null-ls'.setup {
+  -- ensured_installed      = null,
+  automatic_installation = true,
+  automatic_setup        = false,
 }
