@@ -50,13 +50,22 @@ local list_registered_linters = function( filetype )
   return list_registered_providers_names( filetype )[method] or {}
 end
 
+local hidden_providers =
+  { 'codespell'
+  , 'trail-space'
+  , 'editorconfig_checker'
+}
+
 local unique_list = function( t )
   -- make unique keys
   local hash = {}
   for _, v in ipairs( t ) do
-    if not ( v == "trail-space" ) then
-      hash[v] = true
-    end
+    hash[v] = true
+  end
+
+  -- hide assumed providers
+  for _, p in ipairs( hidden_providers ) do
+    hash[p] = nil
   end
 
   -- transform keys back into values
