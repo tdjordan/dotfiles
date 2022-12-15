@@ -1,6 +1,5 @@
 require 'nvim-tree'.setup {
   -- auto_reload_on_write              = true,
-  -- create_in_closed_folder           = false,
   -- disable_netrw                     = false,
   -- hijack_cursor                     = false,
   -- hijack_netrw                      = true,
@@ -59,7 +58,7 @@ require 'nvim-tree'.setup {
     -- 2 --> "name"
     -- 3 --> "all"
     highlight_opened_files = "all",
-    root_folder_modifier = ":~",
+    root_folder_label = ":~:s?$?/..?",
     indent_width = 2,
     indent_markers = {
       enable = false,
@@ -148,6 +147,7 @@ require 'nvim-tree'.setup {
   diagnostics         = {
     enable = true,
     show_on_dirs = false,
+    show_on_open_dirs = true,
     -- debounce_delay = 50,
     icons = {
       hint = "",    -- hint = "",
@@ -158,6 +158,8 @@ require 'nvim-tree'.setup {
   },
   -- filters = {
   --   dotfiles = false,
+  --   git_clean = false,
+  --   no_buffer = false,
   --   custom = {},
   --   exclude = {}
   -- },
@@ -169,6 +171,8 @@ require 'nvim-tree'.setup {
   -- git = {
   --   enable = true,
   --   ignore = true,
+  --   show_on_dirs = true,
+  --   show_on_open_dirs = true,
   --   timeout = 400,
   -- },
   actions = {
