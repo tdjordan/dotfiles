@@ -19,6 +19,10 @@ brew "gum"
 brew "has"
 brew "httpie"
 brew "duti"
+brew "bash"
+brew "lemmeknow"
+brew "scriptisto"
+brew "rich-cli"
 
 ###  version control systems
 ###
@@ -62,6 +66,7 @@ brew "the_silver_searcher"
 brew "sd"
 brew "bingrep"
 brew "navi"
+brew "nap"
 
 ###  cli testing
 ###
@@ -166,6 +171,7 @@ cask "hammerspoon"
 tap    "koekeishiya/formulae"
   brew "yabai"
   brew "skhd"
+cask "raycast"
 
 ###  note takers
 ###
@@ -274,6 +280,7 @@ brew "cargo-nextest"
 brew "cargo-outdated"
 brew "cargo-audit"
 brew "cargo-zigbuild"
+brew "duckscript"
 
 ###  File Triggers
 ###
@@ -338,6 +345,10 @@ tap    "fluxcd/tap"
 brew "kustomize"
 brew "kubevious"
 brew "kubectx"
+brew "kubent"
+brew "cdebug"
+brew "kwok"
+brew "copa"
 
 ###  Open Policy Agent
 ###
@@ -379,6 +390,7 @@ brew "driftctl"
 brew "aws-cdk"
 brew "cfn-lint"
 # brew "cfn-flip"
+brew "steampipe"
 
 ###  oauth
 ###
@@ -497,6 +509,10 @@ tap    "anchore/syft"
 tap    "anchore/grype"
   brew "grype"
 brew "trivy"
+
+###  file servers
+###
+brew "dufs"
 
 ###  fonts
 ###
