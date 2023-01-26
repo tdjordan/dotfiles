@@ -14,10 +14,10 @@ pnpm=(
   # @cucumber/language-server
   @microsoft/rush
   @stoplight/spectral-cli
-  @commitlint/{config-conventional,cli}
+  # @commitlint/{config-conventional,cli}
   # @commitlint/cli
   # @commitlint/config-conventional
-    commitlint-format-json
+    # commitlint-format-json
   jenni
   editorconfig-checker
   standard
@@ -53,7 +53,7 @@ pip=(
   neovim
   usort
   ocdc
-  ruff
+  # ruff
   # fortran-language-server
 )
 
@@ -68,7 +68,7 @@ gem=(
 )
 
 brew=(
-  hashicorp/tap/terraform-ls
+  # hashicorp/tap/terraform-ls
   deno
   # gopls
   # rust-analyzer
@@ -78,11 +78,11 @@ brew=(
   mint-lang
   haskell-language-server
   # kotlin-language-server
-  black
-  hadolint
+  # black
+  # hadolint
   composer
   cocoapods
-  ktlint
+  # ktlint
 )
 
 # luarocks=(
