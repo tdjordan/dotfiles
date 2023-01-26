@@ -12,10 +12,11 @@ local sources = {
     diagnostics_format = '[#{c}] #{m}',
     diagnostic_config = {
       underline = true,
-      virtual_text = false,
       signs = true,
+      severity_sort = true,
       update_in_insert = false,
-      severity_sort = true
+      virtual_text = false,
+      -- virtual_line = false
     }
   }
   , b.code_actions.shellcheck
@@ -29,6 +30,7 @@ local sources = {
 
   ---  terraform
   ---
+  , b.diagnostics.tfsec
   , b.formatting.terraform_fmt
   -- , b.formatting.terrafmt        -- markdown terraform code block
 
@@ -43,7 +45,9 @@ local sources = {
 
   ---  cue
   ---
+  , b.diagnostics.cue_fmt
   , b.formatting.cue_fmt
+  , b.formatting.cueimports
 
   ---  makefiles
   ---
@@ -148,9 +152,20 @@ local sources = {
 
   ---  Protocol Buffers
   ---
-  -- , b.formatting.protolint
+  , b.diagnostics.protolint.with {
+    diagnostics_format = '(#{s}) #{m}'
+  }
+  , b.formatting.protolint
 
   -- , b.formatting.eslint
+  -- , b.formatting.prettierd.with {
+  --   filetypes = {
+  --     'html'
+  --     , 'json'
+  --     , 'yaml'
+  --     , 'markdown'
+  --   }
+  -- }
   , b.formatting.prettier.with {
     dynamic_command = function(params)
       return command_resolver.from_node_modules( params )

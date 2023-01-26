@@ -4,6 +4,10 @@ local telescope = require 'telescope'
 
 telescope.setup {
   defaults = {
+    cache_picker = {
+      num_pickers = 50
+      -- , limit_entries = 1000
+    },
     vimgrep_arguments = {
       'rg',
       '--color=never',

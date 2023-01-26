@@ -106,6 +106,20 @@ M.init_packer = function()
       --   end
       -- }
 
+      use {
+        'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+        , config = function()
+          require 'configs.lsp.lines'
+        end
+      }
+
+      -- use {
+      --   'lvimuser/lsp-inlayhints.nvim'
+      --   , config = function()
+      --     require 'configs.lsp.inlay'
+      --   end
+      -- }
+
       ---  Lua Information
       ---
       use {
@@ -129,6 +143,14 @@ M.init_packer = function()
       use {
         'jay-babu/mason-null-ls.nvim'
         -- , require = 'null-ls.nvim'
+      }
+      use {
+        'jay-babu/mason-nvim-dap.nvim'
+        , config = function()
+          vim.schedule(function()
+            require 'configs/dap/mason'
+          end)
+        end
       }
       -- use {
       --   'williamboman/nvim-lsp-installer'
@@ -289,6 +311,10 @@ M.init_packer = function()
         -- , after = 'nvim-cmp'
         -- , wants = 'nvim-cmp'
         -- , module_pattern = '^cmp.*'
+      }
+      use {
+        'uga-rosa/cmp-dictionary'
+        , envent = 'CursorHold'
       }
       -- use {
       --   'David-Kunz/cmp-npm'
@@ -521,9 +547,10 @@ M.init_packer = function()
       ---
       use {
         'nvim-treesitter/nvim-treesitter'
-        , run = function()
-          require 'nvim-treesitter.install'.update()
-        end
+        , run = ':TSUpdate'
+        -- , run = function()
+        --   require 'nvim-treesitter.install'.update()
+        -- end
         -- , event = 'CursorHold'
         , config = function()
           vim.schedule(function()
@@ -632,7 +659,23 @@ M.init_packer = function()
         --   require 'utility'.packer_lazy_load 'nvim-dap'
         -- end
         , config = function()
-          require 'configs.dap'
+          vim.schedule(function()
+            require 'configs.dap'
+          end)
+        end
+      }
+      use {
+        'rcarriga/nvim-dap-ui'
+        , after = 'nvim-dap'
+        , config = function()
+          require 'configs.dap.ui'
+        end
+      }
+      use {
+        'theHamsta/nvim-dap-virtual-text'
+        , after = 'nvim-dap'
+        , config = function()
+          require 'configs.dap.virtual'
         end
       }
       use {
@@ -737,14 +780,22 @@ M.init_packer = function()
       -- }
 
       use {
-        'sainnhe/everforest'
-        , module_pattern = '^telescope.builtin'
+       'sainnhe/everforest'
+        , module = 'telescope.builtin'
         -- , fn = 'require("telescope.builtin").colorscheme'
+      }
+
+      use {
+       'xfyuan/nightforest.nvim'
+        , after = 'telescope.nvim'
+        , config = function()
+          require 'theme.nightforest'
+        end
       }
 
       -- use {
       --   'eddyekofo94/gruvbox-material.nvim'
-      --   , module_pattern = '^telescope.builtin'
+      --   , after = 'telescope.nvim'
       --   -- , config = function ()
       --   --   require 'theme.gruvbox.material'
       --   -- end
@@ -752,46 +803,34 @@ M.init_packer = function()
 
       -- use {
       --   'eddyekofo94/gruvbox-flat.nvim'
-      --   , module_pattern = '^telescope.builtin'
+      --   , after = 'telescope.nvim'
       -- }
 
       -- use {
       --   'monsonjeremy/onedark.nvim'
-      --   , module_pattern = '^telescope.builtin'
+      --   , after = 'telescope.nvim'
       -- }
 
       -- use {
       --   'ii14/onedark.nvim'
-      --   , module_pattern = '^telescope.builtin'
+      --   , after = 'telescope.nvim'
       -- }
 
       -- use {
-      --   -- {
-      --     'NTBBloodbath/doom-one.nvim'
-      --     , opt = true
-      --     -- , module_pattern = '^telescope.builtin'
-      --     , config = function()
-      --       require 'theme.doom-one'
-      --     end
-      --     -- , disable = not vim.g.cfg.theme.doomone.active
-      --   -- },
-      --   -- {
-      --   --   'folke/tokyonight.nvim'
-      --   --   -- , event = 'CursorHold'
-      --   --   -- , module_pattern = '^telescope.builtin'
-      --   --   -- , fn = 'require "telescope.builtin".colorscheme'
-      --   --   -- , opt = true
-      --   --   , module_pattern = '^telescope.*'
-      --   --   , setup = function()
-      --   --     local g = vim.g
-      --   --     g.tokyonight_style = 'storm'
-      --   --     g.tokyonight_terminal_colors = true
-      --   --     g.tokyonight_italic_comments = false
-      --   --     g.tokyonight_italic_keywords = true
-      --   --     g.tokyonight_italic_functions = true
-      --   --   end
-      --   -- }
+      --   'NTBBloodbath/doom-one.nvim'
+      --   , after = 'telescope.nvim'
+      --   , config = function()
+      --     require 'theme.doom-one'
+      --   end
       -- }
+
+      use {
+        'folke/tokyonight.nvim'
+        , after = 'telescope.nvim'
+        , config = function()
+          require 'theme.tokyonight'
+        end
+      }
 
       ---
       ---  theme : Lush Colorschemes
@@ -803,12 +842,12 @@ M.init_packer = function()
 
       -- use {
       --   'savq/melange'
-      --   , module_pattern = '^telescope.builtin'
+      --   , after = 'telescope.nvim'
       -- }
 
       -- use {
       --   'kunzaatko/nord.nvim'
-      --   , module_pattern = '^telescope.builtin'
+      --   , after = 'telescope.nvim'
       --   , setup = function()
       --     local g = vim.g
       --     g.italic = 1
@@ -826,7 +865,7 @@ M.init_packer = function()
       use {
         'EdenEast/nightfox.nvim'
         -- , run = 'NightFoxCompile'
-        , module_pattern = '^telescope.builtin'
+        , after = 'telescope.nvim'
         , config = function()
           require 'theme.nightfox'
         end
@@ -834,12 +873,12 @@ M.init_packer = function()
 
       -- use {
       --   'vigoux/oak'
-      --   , module_pattern = '^telescope.builtin'
+      --   , after = 'telescope.nvim'
       -- }
 
       -- use {
       --   'Shatur/neovim-ayu'
-      --   , module_pattern = '^telescope.builtin'
+      --   , after = 'telescope.nvim'
       --   , config = function()
       --     require 'theme.ayu'
       --   end
@@ -847,7 +886,7 @@ M.init_packer = function()
 
       -- use {
       --   'Luxed/ayu-vim'
-      --   , module_pattern = '^telescope.builtin'
+      --   , after = 'telescope.nvim'
       --   , config = function()
       --     require 'theme.ayu.setup'
       --   end
@@ -855,7 +894,7 @@ M.init_packer = function()
 
       -- use {
       --   'ayu-theme/ayu-vim'
-      --   , module_pattern = '^telescope.builtin'
+      --   , after = 'telescope.nvim'
       --   , setup = function()
       --     local g = vim.g
       --     g.ayucolor = 'dark'
@@ -865,21 +904,39 @@ M.init_packer = function()
 
       use {
         'LunarVim/onedarker.nvim'
-        , module_pattern = '^telescope.builtin'
-        -- , config = function()
-        --   require 'theme.onedarker'
-        -- end
+        , after = 'telescope.nvim'
+        , config = function()
+          require 'theme.onedarker'
+        end
+      }
+
+      use {
+        'LunarVim/horizon.nvim'
+        , after = 'telescope.nvim'
       }
 
       -- use {
       --   'LunarVim/darkplus.nvim'
-      --   , module_pattern = '^telescope.builtin'
+      --   , after = 'telescope.nvim'
       -- }
 
       use {
         'marko-cerovac/material.nvim'
         , config = function()
           require 'theme.material'
+        end
+      }
+
+      use {
+        'rebelot/kanagawa.nvim'
+        , after = 'telescope.nvim'
+      }
+
+      use {
+        'rose-pine/neovim'
+        , after = 'telescope.nvim'
+        , config = function()
+          require 'theme.rose-pine'
         end
       }
 
@@ -926,7 +983,7 @@ M.init_packer = function()
       ---  theme : other
       ---  #ffff00
       use {
-        'norcalli/nvim-colorizer.lua'
+        'NvChad/nvim-colorizer.lua'
         , event = 'CursorHold'
         , config = function()
           require 'colorizer'.setup()

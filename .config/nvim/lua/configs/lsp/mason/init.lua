@@ -18,7 +18,9 @@ local servers =
   , 'graphql'                  -- GraphQL
   , 'gradle_ls'                -- gradle
   , 'groovyls'                 -- groovy
+  -- , 'hls'                      -- Haskell
   -- , 'jdtls'                    -- Java
+  -- , 'jq-lsp'                   -- jq
   , 'jsonls'                   -- json
   , 'jsonnet_ls'               -- jsonnet
   , 'julials'                  -- Julia
@@ -26,8 +28,11 @@ local servers =
   , 'lemminx'                  -- XML
   , 'marksman'                 -- Markdown
   -- , 'nginx_language_server'    -- Nginx
+  -- , 'nil_ls'                   -- Nix
   , 'pyright'                  -- Python
+  , 'raku_navigator'           -- Raku
   , 'rnix'                     -- Nix
+  , 'ruff_lsp'                 -- Python
   , 'rust_analyzer'            -- Rust
   , 'salt_ls'                  -- Salt
   , 'sumneko_lua'              -- lua
@@ -37,35 +42,21 @@ local servers =
   , 'tsserver'                 -- typescript
   , 'vimls'                    -- Vim
   -- , 'visualforce_ls'           -- sfdx
+  -- , 'vtsls'                    -- typescript
   , 'yamlls'                   -- yaml
   -- , 'zls'                      -- Zig
 }
 
-local customized_servers = {
-  ['sumneko_lua'] = 'lua'
-}
+local mason_lspconfig = require 'mason-lspconfig'
 
-require 'mason-lspconfig'.setup {
+mason_lspconfig.setup {
   ensure_installed       = servers,
   automatic_installation = true
 }
 
 local lspconfig = require 'lspconfig'
 local common    = require 'lsp.common'
--- for _, server in pairs(servers) do
---   if customized_servers[server] then
---     require( 'lsp.' .. server )
---     -- vim.pretty_print(server)
---   else
---     lspconfig[server].setup {
---       on_attach = common.on_attach
---       , capabilities = common.capabilities
---       , flags = common.flags
---     }
---   end
--- end
 
--- local server_settings = require 'lsp.servers'
 local server_options = require 'lsp.server.options'
 local common_options =
   { on_attach    = common.on_attach
@@ -73,13 +64,17 @@ local common_options =
   , flags        = common.flags
 }
 
-require 'mason-lspconfig'.setup_handlers {
+mason_lspconfig.setup_handlers {
   function( server_name )
     local opts = vim.tbl_deep_extend( "force",
       {},
       common_options,
       server_options[server_name] or {}
     )
+
+    -- if server_name == 'yamlls' then
+    --   vim.pretty_print(opts)
+    -- end
 
     lspconfig[server_name].setup(opts)
   end

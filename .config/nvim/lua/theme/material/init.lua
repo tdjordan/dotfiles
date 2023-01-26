@@ -66,7 +66,13 @@ material.setup {
     LineNr       = { fg = colors.editor.line_numbers, bg = colors.editor.contrast },
     CursorLineNr = { fg = colors.editor.accent,       bg = colors.editor.contrast },
     SignColumn   = { fg = colors.editor.fg,           bg = colors.editor.contrast },
-    Pmenu        = { fg = colors.editor.fg,           bg = colors.editor.contrast }
+    Pmenu        = { fg = colors.editor.fg,           bg = colors.editor.contrast },
+
+    -- Borderless Telescope
+    --
+    TelescopePromptBorder = { fg = colors.editor.contrast, bg = colors.editor.contrast },
+    TelescopePreviewTitle = { fg = colors.editor.contrast, bg = colors.editor.contrast },
+    TelescopeResultsTitle = { fg = colors.editor.contrast, bg = colors.editor.contrast },
   }
 }
 vim.cmd [[colorscheme material]]

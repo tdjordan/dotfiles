@@ -30,15 +30,18 @@ require("diffview").setup {
     default = {
       -- Config for changed files, and staged files in diff views.
       layout = "diff2_horizontal",
+      winbar_info = false,          -- See ':h diffview-config-view.x.winbar_info'
     },
     merge_tool = {
       -- Config for conflicted files in diff views during a merge or rebase.
       layout = "diff3_horizontal",
       disable_diagnostics = true,   -- Temporarily disable diagnostics for conflict buffers while in the view.
+      winbar_info = true,           -- See ':h diffview-config-view.x.winbar_info'
     },
     file_history = {
       -- Config for changed files in file history views.
       layout = "diff2_horizontal",
+      winbar_info = false,          -- See ':h diffview-config-view.x.winbar_info'
     },
   },
   file_panel = {
@@ -55,12 +58,18 @@ require("diffview").setup {
   },
   file_history_panel = {
     log_options = {   -- See ':h diffview-config-log_options'
-      single_file = {
-        diff_merges = 'combined'
+      git = {
+        single_file = {
+          diff_merges = 'combined'
+        },
+        multi_file = {
+          diff_merges = 'first-parent'
+        }
       },
-      multi_file = {
-        diff_merges = 'first-parent'
-      },
+      hg = {
+        single_file = {},
+        multi_file = {}
+      }
     },
     win_config = {    -- See ':h diffview-config-win_config'
       position = "bottom",

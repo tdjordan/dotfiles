@@ -17,7 +17,6 @@ require 'nvim-tree'.setup {
   -- remove_keymaps                    = false,      -- boolean (disable totally or not) or list of key (lhs)
   -- select_prompts                    = false,
   -- view = {
-  --   adaptive_size                = false,
   --   centralize_selection         = false,
   --   width                        = 30,
   --   height                       = 30,
@@ -136,6 +135,7 @@ require 'nvim-tree'.setup {
   -- },
   update_focused_file = {       -- focus file in tree on BufEnter
     enable      = true,
+    -- debounce_delay = 15,
     -- update_root = false,
     -- ignore_list = {}
   },
@@ -190,6 +190,7 @@ require 'nvim-tree'.setup {
     --   resize_window = true,
     --   window_picker = {
     --     enable = true,
+    --     picker = 'default'
     --     chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ12345678990',
     --     exclude = {
     --       filetype = {

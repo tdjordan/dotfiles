@@ -18,12 +18,14 @@ local sign_column = function()
     signs = true,
     severity_sort = true,
     update_in_insert = false,
-    virtual_text = {
-      prefix = "",     --        
-      spacing = 3,
-      -- source = 'always'
-      -- severity_limit = 'Warning'
-    }
+    virtual_text = false,        -- using virtual_lines instead
+    -- virtual_lines = true
+    -- virtual_text = {
+    --   prefix = "",     --        
+    --   spacing = 3,
+    --   -- source = 'always'
+    --   -- severity_limit = 'Warning'
+    -- }
   }
 end
 

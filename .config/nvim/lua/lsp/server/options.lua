@@ -70,8 +70,24 @@ local server_options = {
         }
         , schemas = {
           kubernetes = {
-            'daemon.{yml,yaml}'
-            ,'kubectl-edit*.yaml'
+            'daemon.{yml,yaml}',
+            "manager.{yml,yaml}",
+            "restapi.{yml,yaml}",
+            "role.{yml,yaml}",
+            "role_binding.{yml,yaml}",
+            "*onfigma*.{yml,yaml}",
+            "*ngres*.{yml,yaml}",
+            "*ecre*.{yml,yaml}",
+            "*eployment*.{yml,yaml}",
+            "*ervic*.{yml,yaml}",
+            'kubectl-edit*.{yml,yaml}',
+            'deployment.{yml,yaml}',
+            'configmap.{yml,yaml}',
+            'hpa.{yml,yaml}',
+            'ingress.{yml,yaml}',
+            'secrets.{yml,yaml}',
+            'service.{yml,yaml}',
+            'sserviceaccount.{yml,yaml}',
           }
         }
       }

@@ -275,3 +275,5 @@ ls.snippets = {
 require 'luasnip.loaders.from_vscode'.lazy_load()
 -- require 'luasnip.loaders.from_snipmate'.lazy_load()
 -- require("luasnip/loaders/from_vscode").lazy_load({ paths = { "~/.local/share/nvim/site/pack/packer/opt/friendly-snippets" } })
+
+-- require 'luasnip.loaders.from_lua'.load({ paths = "~/.config/nvim/snippets" })

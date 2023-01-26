@@ -152,9 +152,12 @@ local normal_mappings = {
     , d = { [[daw''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
     -- , d = { [[daW''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
 
+    , h = { function() require 'telescope.builtin'.pickers()                          end , 'picker history' }
+
     , p = { [[<cmd>split<cr>]], 'split top-bottom' }
+    , r = { function() require 'telescope.builtin'.resume()                           end , 'resume search'  }
     -- , t = { [[<cmd>lua require('theme').ThemeToggle()<cr>]], 'toggle dark/light' }
-    , t = { function() require "telescope.builtin".live_grep() end , 'search text' }
+    , t = { function() require "telescope.builtin".live_grep()                        end , 'search text'    }
   },
 
   ---
@@ -298,6 +301,7 @@ local normal_mappings = {
     , l = { function() require 'telescope.builtin'.current_buffer_fuzzy_find()             end , 'from current buffer' }
     -- , s = { function() require 'telescope.builtin'.grep_string()                           end , 'word under cursor'   }
     , s = { function() require 'telescope.builtin'.grep_string()                           end , 'with grep string'    }
+    , S = { function() require 'telescope.builtin'.treesitter()                            end , 'treesitter symbols'  }
     , t = { function() require 'telescope'.extensions['todo-comments'].todo()              end , 'todos'               }
     , p = {
       name = 'packer'
@@ -412,7 +416,7 @@ local normal_mappings = {
   -- x = {
   --   name = 'trouble'
   --   , l = { [[<cmd>Trouble loclist<cr>]],                   'window location list'  }
-  --   , d = { [[<cmd>Trouble lsp_document_diagnositcs<cr>]],  'document diagnositcs'  }
+  --   , d = { [[<cmd>Trouble lsp_document_diagnostics<cr>]],  'document diagnositcs'  }
   --   , D = { [[<cmd>Trouble lsp_definitions<cr>]],           'lsp definitions'       }
   --   , q = { [[<cmd>Trouble quickfix<cr>]],                  'quickfix'              }
   --   , r = { [[<cmd>Trouble lsp_references<cr>]],            'lsp references'        }
