@@ -8,8 +8,10 @@ export PATH=$PATH:/usr/local/opt/llvm/bin
 export PATH=$PATH:/usr/local/opt/ruby/bin
 export PATH=$PATH:~/.bun/bin
 export BUN_INSTALL=~/.bun
-export PATH=$PATH:~/.gem/ruby/3.1.0/bin
-export PATH=$PATH:/usr/local/lib/ruby/gems/3.1.0/bin
+export PATH=$PATH:~/.gem/ruby/3.2.0/bin
+export PATH=$PATH:/usr/local/lib/ruby/gems/3.2.0/bin
+# export PATH=$PATH:~/.gem/ruby/3.1.0/bin
+# export PATH=$PATH:/usr/local/lib/ruby/gems/3.1.0/bin
 # export PATH=$PATH:~/.gem/ruby/2.6.0/bin
 # export PATH=$PATH:/usr/local/lib/ruby/gems/2.6.0/bin
 export PATH=$PATH:/usr/local/bin
@@ -62,3 +64,7 @@ export PATH=~/.cargo/bin:$PATH
 export PATH=$PATH:$HOME/.krew/bin
 
 export PATH=$PATH:/usr/local/opt/sphinx-doc/bin
+
+###  binaries installed by nvim mason
+###
+export PATH=$PATH:~/.local/share/nvim/mason/bin
