@@ -309,6 +309,7 @@ set.swapfile = false                             -- nvim default : on
 ------  Spell
 --set spell
 --set spelllang=us_en
+set.spelllang = { 'en' }
 
 -- You will have bad experience for diagnostic messages when it's default 4000.
 set.updatetime  = 100
