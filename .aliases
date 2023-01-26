@@ -155,3 +155,13 @@ alias tn='t new -t'
 ###
 alias js='jen s'
 alias jc='jen co'
+
+###  ruby
+###
+alias ruby='/usr/local/opt/ruby/bin/ruby'
+alias gem='/usr/local/opt/ruby/bin/gem'
+
+###  terraform
+###
+alias tf='terraform'
+alias tfw='tf workspace'
