@@ -349,6 +349,7 @@ brew "kubent"
 brew "cdebug"
 brew "kwok"
 brew "copa"
+brew "kube-linter"
 
 ###  Open Policy Agent
 ###
@@ -419,6 +420,7 @@ brew "totp-cli"
 # brew "unxip"
 brew "vhs"
 brew "cpuid"
+whalebrew "gawk"
 
 ###  Documentation Tools
 ###

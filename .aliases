@@ -64,7 +64,8 @@ alias bl='brew list'
 alias blr='brew list | rg '
 
 # cat
-alias k='cat'
+# alias k='cat'
+alias k='rich'
 alias cg='cargo'
 
 # overload ag

@@ -29,6 +29,7 @@ local servers =
   , 'marksman'                 -- Markdown
   -- , 'nginx_language_server'    -- Nginx
   -- , 'nil_ls'                   -- Nix
+  -- , 'nomad_lsp'                -- Nomad
   , 'pyright'                  -- Python
   , 'raku_navigator'           -- Raku
   , 'rnix'                     -- Nix
