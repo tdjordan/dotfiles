@@ -1,7 +1,3 @@
--- if packer_plugins['doom-one.nvim'] and not packer_plugins['doom-one.nvim'].loaded then
---   require 'packer'.loader('doom-one.nvim')
--- end
-
 require 'doom-one'.setup {
   cursor_coloring = true,
   terminal_colors = true,

@@ -10,10 +10,11 @@ local wk = require 'which-key'
 
 local with_neorg = function()
   ---@diagnostic disable-next-line: undefined-field
-  if not _G.packer_plugins.neorg.loaded then
-    require 'packer'.loader( 'neorg' )
+  -- if not _G.packer_plugins.neorg.loaded then
+    -- require 'packer'.loader( 'neorg' )
+    require 'neorg'
     vim.cmd [[NeorgStart]]
-  end
+  -- end
 end
 
 -- wk.setup {
@@ -304,14 +305,18 @@ local normal_mappings = {
     , S = { function() require 'telescope.builtin'.treesitter()                            end , 'treesitter symbols'  }
     , t = { function() require 'telescope'.extensions['todo-comments'].todo()              end , 'todos'               }
     , p = {
-      name = 'packer'
-      , s = { function() require 'plugins'.init_packer() require 'packer'.sync()           end , 'sync'    }
-      , c = { function() require 'plugins'.init_packer() require 'packer'.compile()        end , 'compile' }
-      , l = { function() require 'telescope'.extensions.packer.plugins()                   end , 'list'    }
-      , t = { function() require 'plugins'.init_packer() require 'packer'.status()         end , 'status'  }
-      , p = { function() require 'plugins'.init_packer() require 'packer'.profile_output() end , 'profile' }
-      , u = { function() require 'plugins'.init_packer() require 'packer'.update()         end , 'update'  }
-      , w = { function() require 'plugins'.init_packer() require 'packer'.clean()          end , 'clean'   }
+      name = 'plugins'
+      , s = { function() require 'lazy.view.commands'.commands.sync()                    end , 'sync'    }
+      -- , c = { function() require 'plugins'.init_lazy() require 'packer'.compile()        end , 'compile' }
+      , c = { function() require 'lazy.view.commands'.commands.check()                   end , 'check'   }
+      , d = { function() require 'lazy.view.commands'.commands.debug()                   end , 'debug'   }
+      , h = { function() require 'lazy.view.commands'.commands.health()                  end , 'health'  }
+      -- , l = { function() require 'telescope'.extensions.packer.plugins()                 end , 'list'    }
+      , l = { function() require 'lazy.view.commands'.commands.log()                     end , 'log'     }
+      , t = { function() require 'lazy.view.commands'.commands.show()                    end , 'status'  }
+      , p = { function() require 'lazy.view.commands'.commands.profile()                 end , 'profile' }
+      , u = { function() require 'lazy.view.commands'.commands.update()                  end , 'update'  }
+      , w = { function() require 'lazy.view.commands'.commands.clean()                   end , 'clean'   }
     }
     , w = { function() require 'telescope'.extensions.project.project{ display_type = 'full' } end , 'workspace' }
     , v = {
@@ -335,7 +340,7 @@ local normal_mappings = {
   ---
   ---  e* mappings
   ---
-  e = { function() require 'functions.toggle'.nvim_tree() end , 'explorer' },
+  e = { function() require 'nvim-tree'.toggle() end , 'explorer' },
 
   ---
   ---  d* mappings
@@ -388,11 +393,11 @@ local normal_mappings = {
   ---
   t = {
     name = 'toggle'
-    , h = { '<cmd>TSHighlightCapturesUnderCursor<cr>',                     'highlight captures'     }
-    , i = { function() require 'functions.toggle'.indent_blankline() end , 'indentation guides'     }
-    , k = { function() require 'functions.toggle'.nvim_tree() end ,        'file tree sidebar'      }
-    , t = { '<cmd>split term://$SHELL<cr>',                                'terminal'               }
-    , s = { '<cmd>TSPlaygroundToggle<cr>',                                 'tree-sitter playgournd' }
+    , h = { '<cmd>TSHighlightCapturesUnderCursor<cr>',                        'highlight captures'     }
+    , i = { function() require 'indent_blankline.commands'.toggle(true) end , 'indentation guides'     }
+    , k = { function() require 'nvim-tree'.toggle() end ,                     'file tree sidebar'      }
+    , t = { '<cmd>split term://$SHELL<cr>',                                   'terminal'               }
+    , s = { '<cmd>TSPlaygroundToggle<cr>',                                    'tree-sitter playgournd' }
   },
 
   ---

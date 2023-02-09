@@ -1,3 +1,5 @@
+-- require 'plugins'
+
 ---  do not display intro message on startup
 ---
 vim.opt.shortmess:append { I = true }
@@ -27,3 +29,5 @@ g.loaded_remote_plugins    = 1
 -- vim.cmd "syntax off"
 -- g.syntax_on                = true
 -- g.syntax_cmd               = 'off'
+
+require 'configs.lazy'
