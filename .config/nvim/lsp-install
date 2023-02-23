@@ -22,6 +22,8 @@ pnpm=(
   editorconfig-checker
   standard
   npm-groovy-lint
+  @antora/cli
+  @antora/site-generator
   textlint
     textlint-rule-no-todo
     textlint-rule-no-dead-link

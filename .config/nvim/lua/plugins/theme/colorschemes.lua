@@ -3,7 +3,12 @@ return {
     "catppuccin/nvim"
     -- , keys = '<leader>pc'
     , keys = {
-      { "<leader>pc", function() require 'telescope.builtin'.colorscheme() end, desc = 'a colorscheme' }
+      {
+        '<leader>pc', function()
+          require 'telescope.builtin'.colorscheme()
+        end,
+        desc = 'a colorscheme'
+      }
     }
     , dependencies = {
       'folke/tokyonight.nvim'

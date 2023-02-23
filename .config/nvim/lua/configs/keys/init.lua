@@ -174,6 +174,7 @@ local normal_mappings = {
   ---
   ---  b* mappings
   ---
+  b = { name = 'buffer / browse' },
   -- b = {
   --   name = 'buffer / browse'
   --   , ['.'] = { function()

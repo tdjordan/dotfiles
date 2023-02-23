@@ -165,95 +165,95 @@ return {
         require 'configs.lsp.null'
       end
     }
-    , {
-      "b0o/incline.nvim",
-      event = "CursorHold",
-      enabled = false,
-      config = function()
-        -- local function get_diagnostic_label(props)
-        --   local icons = { error = '', warn = '', info = '', hint = '', }
-        --   local label = {}
-        --
-        --   for severity, icon in pairs(icons) do
-        --     local n = #vim.diagnostic.get(props.buf, { severity = vim.diagnostic.severity[string.upper(severity)] })
-        --     if n > 0 then
-        --       table.insert(label, { icon .. ' ' .. n .. ' ', group = 'DiagnosticSign' .. severity })
-        --     end
-        --   end
-        --   if #label > 0 then
-        --     table.insert(label, {'| '})
-        --   end
-        --   return label
-        -- end
-        --
-        -- -- local function get_git_diff(props)
-        -- --   local icons = { removed = "", changed = "", added = "" }
-        -- --   local labels = {}
-        -- --   vim.notify('hello')
-        -- --   vim.notify(vim.api.vim_bug_get_var(props.buf, "gitsigns"))
-        -- --   local signs = vim.api.nvim_buf_get_var(props.buf, "gitsigns_status_dict")
-        -- --   if #signs < 1 then
-        -- --     return {{''}}
-        -- --   end
-        -- --   -- local signs = vim.b.gitsigns_status_dict
-        -- --   for name, icon in pairs(icons) do
-        -- --     if tonumber(signs[name]) and signs[name] > 0 then
-        -- --       table.insert(labels, { icon .. " " .. signs[name] .. " ",
-        -- --         group = "Diff" .. name
-        -- --       })
-        -- --     end
-        -- --   end
-        -- --   if #labels > 0 then
-        -- --     table.insert(labels, { '| ' })
-        -- --   end
-        -- --   return labels
-        -- -- end
-        --
-        -- local colors = require("tokyonight.colors").setup()
-        -- require('incline').setup({
-        --   -- highlight = {
-        --   --   groups = {
-        --   --     InclineNormal = { guibg = "#FC56B1", guifg = colors.black },
-        --   --     InclineNormalNC = { guifg = "#FC56B1", guibg = colors.black },
-        --   --   },
-        --   -- },
-        --   window = { margin = { vertical = 0, horizontal = 1 } },
-        --   render = function(props)
-        --     local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ':.')
-        --     local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
-        --     local modified = vim.api.nvim_buf_get_option(props.buf, "modified") and "bold,italic" or "bold"
-        --
-        --     local buffer = {
-        --       { get_diagnostic_label(props) },
-        --       -- { get_git_diff(props) },
-        --       { ft_icon, guifg = ft_color }, { " " },
-        --       { filename, gui = modified },
-        --     }
-        --     return buffer
-        --   end
-        -- })
-        -- local colors = require("tokyonight.colors").setup()
-        -- local colors = require 'material.colors'
-        require("incline").setup({
-          -- highlight = {
-          --   groups = {
-          --     -- InclineNormal   = { guibg = "#FC56B1", guifg = colors.main.black },
-          --     -- InclineNormal   = { guibg = colors.main.darkpurple, guifg = colors.main.black },
-          --     -- InclineNormal   = { guifg = colors.main.darkpurple, guibg = colors.main.black },
-          --     InclineNormal   = { guifg = colors.main.darkpurple, guibg = colors.editor.contrast },
-          --     InclineNormalNC = { guifg = colors.main.darkpurple, guibg = colors.editor.bg },
-          --     -- InclineNormalNC = { guifg = "#FC56B1", guibg = colors.editor.bg },
-          --   },
-          -- },
-          window = { margin = { vertical = 0, horizontal = 1 } },
-          render = function(props)
-            local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":.")
-            local icon, color = require("nvim-web-devicons").get_icon_color(filename)
-            return { { icon, guifg = color }, { " " }, { filename } }
-          end,
-        })
-      end,
-    }
+    -- , {
+    --   "b0o/incline.nvim",
+    --   event = "CursorHold",
+    --   enabled = false,
+    --   config = function()
+    --     -- local function get_diagnostic_label(props)
+    --     --   local icons = { error = '', warn = '', info = '', hint = '', }
+    --     --   local label = {}
+    --     --
+    --     --   for severity, icon in pairs(icons) do
+    --     --     local n = #vim.diagnostic.get(props.buf, { severity = vim.diagnostic.severity[string.upper(severity)] })
+    --     --     if n > 0 then
+    --     --       table.insert(label, { icon .. ' ' .. n .. ' ', group = 'DiagnosticSign' .. severity })
+    --     --     end
+    --     --   end
+    --     --   if #label > 0 then
+    --     --     table.insert(label, {'| '})
+    --     --   end
+    --     --   return label
+    --     -- end
+    --     --
+    --     -- -- local function get_git_diff(props)
+    --     -- --   local icons = { removed = "", changed = "", added = "" }
+    --     -- --   local labels = {}
+    --     -- --   vim.notify('hello')
+    --     -- --   vim.notify(vim.api.vim_bug_get_var(props.buf, "gitsigns"))
+    --     -- --   local signs = vim.api.nvim_buf_get_var(props.buf, "gitsigns_status_dict")
+    --     -- --   if #signs < 1 then
+    --     -- --     return {{''}}
+    --     -- --   end
+    --     -- --   -- local signs = vim.b.gitsigns_status_dict
+    --     -- --   for name, icon in pairs(icons) do
+    --     -- --     if tonumber(signs[name]) and signs[name] > 0 then
+    --     -- --       table.insert(labels, { icon .. " " .. signs[name] .. " ",
+    --     -- --         group = "Diff" .. name
+    --     -- --       })
+    --     -- --     end
+    --     -- --   end
+    --     -- --   if #labels > 0 then
+    --     -- --     table.insert(labels, { '| ' })
+    --     -- --   end
+    --     -- --   return labels
+    --     -- -- end
+    --     --
+    --     -- local colors = require("tokyonight.colors").setup()
+    --     -- require('incline').setup({
+    --     --   -- highlight = {
+    --     --   --   groups = {
+    --     --   --     InclineNormal = { guibg = "#FC56B1", guifg = colors.black },
+    --     --   --     InclineNormalNC = { guifg = "#FC56B1", guibg = colors.black },
+    --     --   --   },
+    --     --   -- },
+    --     --   window = { margin = { vertical = 0, horizontal = 1 } },
+    --     --   render = function(props)
+    --     --     local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ':.')
+    --     --     local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
+    --     --     local modified = vim.api.nvim_buf_get_option(props.buf, "modified") and "bold,italic" or "bold"
+    --     --
+    --     --     local buffer = {
+    --     --       { get_diagnostic_label(props) },
+    --     --       -- { get_git_diff(props) },
+    --     --       { ft_icon, guifg = ft_color }, { " " },
+    --     --       { filename, gui = modified },
+    --     --     }
+    --     --     return buffer
+    --     --   end
+    --     -- })
+    --     -- local colors = require("tokyonight.colors").setup()
+    --     -- local colors = require 'material.colors'
+    --     require("incline").setup({
+    --       -- highlight = {
+    --       --   groups = {
+    --       --     -- InclineNormal   = { guibg = "#FC56B1", guifg = colors.main.black },
+    --       --     -- InclineNormal   = { guibg = colors.main.darkpurple, guifg = colors.main.black },
+    --       --     -- InclineNormal   = { guifg = colors.main.darkpurple, guibg = colors.main.black },
+    --       --     InclineNormal   = { guifg = colors.main.darkpurple, guibg = colors.editor.contrast },
+    --       --     InclineNormalNC = { guifg = colors.main.darkpurple, guibg = colors.editor.bg },
+    --       --     -- InclineNormalNC = { guifg = "#FC56B1", guibg = colors.editor.bg },
+    --       --   },
+    --       -- },
+    --       window = { margin = { vertical = 0, horizontal = 1 } },
+    --       render = function(props)
+    --         local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":.")
+    --         local icon, color = require("nvim-web-devicons").get_icon_color(filename)
+    --         return { { icon, guifg = color }, { " " }, { filename } }
+    --       end,
+    --     })
+    --   end,
+    -- }
 
     ---  LSP Extensions
     ---
@@ -482,16 +482,20 @@ return {
     }
     , {
       'lalitmee/browse.nvim'
+      , keys = {
+        { '<leader>b',  '<cmd>Browse<cr>', desc = 'browse bookmarks' },
+        -- { '<leader>bi', '<cmd>Browse<cr>', desc = 'browse input search' }
+      }
       , config = function()
         require 'configs.telescope.browse'
       end
     }
-    , {
-      'nvim-telescope/telescope-file-browser.nvim'
-      , config = function()
-        require 'configs.telescope.file.browser'
-      end
-    }
+    -- , {
+    --   'nvim-telescope/telescope-file-browser.nvim'
+    --   , config = function()
+    --     require 'configs.telescope.file.browser'
+    --   end
+    -- }
     -- , {
     --   'nvim-telescope/telescope-github.nvim'
     --   , config = function()
@@ -531,13 +535,13 @@ return {
       end
     }
 
-    , {
-      'nvim-telescope/telescope-project.nvim'
-      -- , event = 'CursorHold'
-      , config = function()
-        require 'configs.telescope.project'
-      end
-    }
+    -- , {
+    --   'nvim-telescope/telescope-project.nvim'
+    --   -- , event = 'CursorHold'
+    --   , config = function()
+    --     require 'configs.telescope.project'
+    --   end
+    -- }
 
     -- , {
     --   'ahmedkhalf/project.nvim'
@@ -654,30 +658,6 @@ return {
     ---  history
     ---
     -- , { 'mbbill/undotree' }
-
-    , {
-      'sindrets/diffview.nvim'
-      , cmd = {
-        'DiffviewClose',
-        'DiffviewFileHistory',
-        'DiffviewFocusFiles',
-        'DiffviewLog',
-        'DiffviewOpen',
-        'DiffviewRefresh',
-        'DiffviewToggleFiles',
-      }
-      , keys = {
-        { "<leader>gd.", "<cmd>DiffviewOpen<cr>",        desc = "git diff this file"    },
-        { "<leader>gdc", "<cmd>DiffviewClose<cr>",       desc = "git diff close"        },
-        { "<leader>gdh", "<cmd>DiffviewFileHistory<cr>", desc = "git diff file history" }
-      }
-      , dependencies = {
-        'nvim-lua/plenary.nvim'
-      }
-      , config = function()
-        require 'configs.diffview'
-      end
-    }
 
     ---  terminals
     ---
@@ -963,18 +943,6 @@ return {
     --   end
     -- }
 
-    ---
-    ---  theme : other
-    ---  #ffff00
-    , {
-      'NvChad/nvim-colorizer.lua'
-      , event = 'CursorHold'
-      , config = function()
-        require 'colorizer'.setup()
-      end
-    }
-    -- , { 'fatih/molokai' }
-
     --- :h nvim_tree_hightlight
     ---
     , {
@@ -1226,7 +1194,7 @@ return {
       -- , build = ":Neorg sync-parsers"
       , ft = 'norg'
       , config = function()
-        require 'packer'.loader('neorg-telescope')
+        -- require 'packer'.loader('neorg-telescope')
         require 'configs.neorg'
       end
     }
