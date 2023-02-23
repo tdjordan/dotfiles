@@ -77,7 +77,7 @@ set.sidescrolloff  = 5
 if ( vim.g.started_by_firenvim ) then
   set.laststatus     = 0                           -- nvim default : 2
 else
-  set.laststatus     = 2                           -- nvim default : 2
+  set.laststatus     = 3                           -- nvim default : 2
 end
 
 -- turn on winbar support

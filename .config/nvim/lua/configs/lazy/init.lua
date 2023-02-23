@@ -13,8 +13,6 @@ if not vim.loop.fs_stat(install_path) then
   fn.system {
     'git',
     'clone',
-    '--depth',
-    '1',
     '--filter=blob:none',
     'https://github.com/folke/lazy.nvim.git',
     '--branch=stable',
@@ -29,8 +27,9 @@ vim.opt.rtp:prepend(install_path)
 
 require 'lazy'.setup(
   {
-    { import = 'plugins' }
-    , { import = 'plugins.ui' }
+    {   import = 'plugins'       }
+    , { import = 'plugins.ui'    }
+    , { import = 'plugins.theme' }
   },
   {
     -- spec = {
@@ -47,11 +46,20 @@ require 'lazy'.setup(
         , 'habamax'
       }
     },
-    checker = {
-      enabled = true
-    },
+    -- ui = {
+    --   size = {
+    --     width  = 0.95,
+    --     height = 0.95
+    --   }
+    -- },
+    -- checker = {
+    --   enabled = true
+    -- },
     -- diff = {
     --   cmd = 'diffview.nvim'
+    -- },
+    -- diff = {
+    --   cmd = 'terminal_git'
     -- },
     performance = {
       disabled_plugins = {

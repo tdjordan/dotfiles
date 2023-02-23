@@ -112,7 +112,7 @@ return {
     ---
     , {
       'williamboman/mason.nvim'
-      -- , event = 'CursorHold'
+      , event = 'BufReadPre'
       , config = function()
         require 'configs.lsp.mason'
       end
@@ -142,26 +142,117 @@ return {
     , {
       'neovim/nvim-lspconfig'
       , dependencies = {
-        'simrat39/rust-tools.nvim'
-        , 'williamboman/mason-lspconfig.nvim'
+        'williamboman/mason-lspconfig.nvim'
         , 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
       }
     }
     , {
       'SmiteshP/nvim-navic'
+      , event = 'VeryLazy'
       , config = function()
         require 'configs.lsp.navic'
       end
     }
     , {
       'b0o/schemastore.nvim'
+      , event = 'VeryLazy'
     }
     , {
       'jose-elias-alvarez/null-ls.nvim'
-      , event = 'CursorHold'
+      -- , event = { 'BufReadPre', 'BufNewFile' }
+      , event = { 'CursorHold' }
       , config = function()
         require 'configs.lsp.null'
       end
+    }
+    , {
+      "b0o/incline.nvim",
+      event = "CursorHold",
+      enabled = false,
+      config = function()
+        -- local function get_diagnostic_label(props)
+        --   local icons = { error = '', warn = '', info = '', hint = '', }
+        --   local label = {}
+        --
+        --   for severity, icon in pairs(icons) do
+        --     local n = #vim.diagnostic.get(props.buf, { severity = vim.diagnostic.severity[string.upper(severity)] })
+        --     if n > 0 then
+        --       table.insert(label, { icon .. ' ' .. n .. ' ', group = 'DiagnosticSign' .. severity })
+        --     end
+        --   end
+        --   if #label > 0 then
+        --     table.insert(label, {'| '})
+        --   end
+        --   return label
+        -- end
+        --
+        -- -- local function get_git_diff(props)
+        -- --   local icons = { removed = "", changed = "", added = "" }
+        -- --   local labels = {}
+        -- --   vim.notify('hello')
+        -- --   vim.notify(vim.api.vim_bug_get_var(props.buf, "gitsigns"))
+        -- --   local signs = vim.api.nvim_buf_get_var(props.buf, "gitsigns_status_dict")
+        -- --   if #signs < 1 then
+        -- --     return {{''}}
+        -- --   end
+        -- --   -- local signs = vim.b.gitsigns_status_dict
+        -- --   for name, icon in pairs(icons) do
+        -- --     if tonumber(signs[name]) and signs[name] > 0 then
+        -- --       table.insert(labels, { icon .. " " .. signs[name] .. " ",
+        -- --         group = "Diff" .. name
+        -- --       })
+        -- --     end
+        -- --   end
+        -- --   if #labels > 0 then
+        -- --     table.insert(labels, { '| ' })
+        -- --   end
+        -- --   return labels
+        -- -- end
+        --
+        -- local colors = require("tokyonight.colors").setup()
+        -- require('incline').setup({
+        --   -- highlight = {
+        --   --   groups = {
+        --   --     InclineNormal = { guibg = "#FC56B1", guifg = colors.black },
+        --   --     InclineNormalNC = { guifg = "#FC56B1", guibg = colors.black },
+        --   --   },
+        --   -- },
+        --   window = { margin = { vertical = 0, horizontal = 1 } },
+        --   render = function(props)
+        --     local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ':.')
+        --     local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
+        --     local modified = vim.api.nvim_buf_get_option(props.buf, "modified") and "bold,italic" or "bold"
+        --
+        --     local buffer = {
+        --       { get_diagnostic_label(props) },
+        --       -- { get_git_diff(props) },
+        --       { ft_icon, guifg = ft_color }, { " " },
+        --       { filename, gui = modified },
+        --     }
+        --     return buffer
+        --   end
+        -- })
+        -- local colors = require("tokyonight.colors").setup()
+        -- local colors = require 'material.colors'
+        require("incline").setup({
+          -- highlight = {
+          --   groups = {
+          --     -- InclineNormal   = { guibg = "#FC56B1", guifg = colors.main.black },
+          --     -- InclineNormal   = { guibg = colors.main.darkpurple, guifg = colors.main.black },
+          --     -- InclineNormal   = { guifg = colors.main.darkpurple, guibg = colors.main.black },
+          --     InclineNormal   = { guifg = colors.main.darkpurple, guibg = colors.editor.contrast },
+          --     InclineNormalNC = { guifg = colors.main.darkpurple, guibg = colors.editor.bg },
+          --     -- InclineNormalNC = { guifg = "#FC56B1", guibg = colors.editor.bg },
+          --   },
+          -- },
+          window = { margin = { vertical = 0, horizontal = 1 } },
+          render = function(props)
+            local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":.")
+            local icon, color = require("nvim-web-devicons").get_icon_color(filename)
+            return { { icon, guifg = color }, { " " }, { filename } }
+          end,
+        })
+      end,
     }
 
     ---  LSP Extensions
@@ -203,6 +294,7 @@ return {
 
     , {
       'simrat39/rust-tools.nvim'
+      , ft = 'rs'
     }
 
     ---  Inlay Hints for rust-analyzer
@@ -229,6 +321,19 @@ return {
       , event = 'InsertEnter'
       , dependencies = {
         'hrsh7th/cmp-nvim-lsp'
+        , 'hrsh7th/cmp-buffer'
+        , 'hrsh7th/cmp-nvim-lsp-signature-help'
+        , 'hrsh7th/cmp-path'
+        , 'hrsh7th/cmp-calc'
+        , 'uga-rosa/cmp-dictionary'
+        , 'quangnguyen30192/cmp-nvim-tags'
+        , {
+          'petertriho/cmp-git'
+          , event = 'InsertEnter'
+          , config = function()
+            require 'configs.completion.cmp.git'
+          end
+        }
       }
       , config = function()
         -- vim.schedule(function()
@@ -237,46 +342,16 @@ return {
       end
     }
     , {
-      'hrsh7th/cmp-nvim-lsp'
-      , event = 'InsertEnter'
-      -- , event = 'CursorHold'
-    }
-    , {
-      'hrsh7th/cmp-nvim-lsp-signature-help'
-      -- , event = 'CursorHold'
-      , event = 'InsertEnter'
-    }
-    , {
-      'hrsh7th/cmp-buffer'
-      -- , event = 'CursorHold'
-      , event = 'InsertEnter'
-    }
-    , {
       'hrsh7th/cmp-nvim-lua'
       -- , ft = 'lua'
-      -- , event = { 'BufReadPost *.lua' }
-      -- , event = { 'CursorHold *.lua' }
-      , event = 'InsertEnter'
-    }
-    , {
-      'hrsh7th/cmp-path'
       , event = 'InsertEnter'
     }
     , {
       'hrsh7th/cmp-cmdline'
-      -- , event = 'CursorHold'
-      , event = 'InsertEnter'
+      , event = 'CmdlineEnter'
       , config = function()
         require 'configs.completion.cmp.cmdline'
       end
-    }
-    , {
-      'hrsh7th/cmp-calc'
-      , event = 'InsertEnter'
-    }
-    , {
-      'uga-rosa/cmp-dictionary'
-      , event = 'InsertEnter'
     }
     -- , {
     --   'David-Kunz/cmp-npm'
@@ -292,10 +367,6 @@ return {
     -- , {
     --   'ray-x/cmp-treesitter'
     -- }
-    , {
-      'quangnguyen30192/cmp-nvim-tags'
-      , event = 'InsertEnter'
-    }
     -- , {
     --   'hrsh7th/cmp-look'
     -- }
@@ -305,16 +376,15 @@ return {
     -- , {
     --   'hrsh7th/cmp-vsnip'
     -- }
-    , {
-      'petertriho/cmp-git'
-      , event = 'InsertEnter'
-      , config = function()
-        require 'configs.completion.cmp.git'
-      end
-    }
+    -- , {
+    --   'petertriho/cmp-git'
+    --   , event = 'InsertEnter'
+    --   , config = function()
+    --     require 'configs.completion.cmp.git'
+    --   end
+    -- }
     , {
       'Saecki/crates.nvim'
-      , lazy = true
       , event = { 'BufReadPost Cargo.toml' }
       , dependencies = {
         'nvim-lua/plenary.nvim'
@@ -405,13 +475,6 @@ return {
         , 'pwntester/octo.nvim'
         , 'nvim-telescope/telescope-fzy-native.nvim'
         , 'nvim-telescope/telescope-project.nvim'
-        , 'xfyuan/nightforest.nvim'
-        , 'folke/tokyonight.nvim'
-        , 'EdenEast/nightfox.nvim'
-        , 'LunarVim/onedarker.nvim'
-        , 'LunarVim/horizon.nvim'
-        , 'rebelot/kanagawa.nvim'
-        , 'rose-pine/neovim'
       }
       , config = function()
         require 'configs.telescope'
@@ -506,8 +569,9 @@ return {
       -- , build = function()
       --   require 'nvim-treesitter.install'.update()
       -- end
-      -- , event = 'CursorHold'
-      , event = { 'BufReadPost', 'BufNewFile' }
+      , event = 'CursorHold'
+      -- , event = 'VeryLazy'
+      -- , event = { 'BufReadPost', 'BufNewFile' }
       -- , dependencies = {
       --   -- 'p00f/nvim-ts-rainbow'
       --   -- 'yamatsum/nvim-nonicons'
@@ -515,6 +579,10 @@ return {
       --   -- 'nvim-neorg/neorg'
       --   -- 'xbase-lab/xbase'
       -- }
+      , dependencies = {
+        'nvim-treesitter/nvim-treesitter-refactor'
+        , 'nvim-treesitter/nvim-treesitter-textobjects'
+      }
       , config = function()
         vim.schedule(function()
           require 'configs.treesitter'
@@ -529,22 +597,26 @@ return {
       }
     }
     -- , { 'nvim-treesitter/completion-treesitter' }
-    , {
-      'nvim-treesitter/nvim-treesitter-refactor'
-      , event = 'CursorHold'
-    }
-    , {
-      'nvim-treesitter/nvim-treesitter-textobjects'
-      , event = 'CursorHold'
-    }
+    -- , {
+    --   'nvim-treesitter/nvim-treesitter-refactor'
+    --   -- , event = 'CursorHold'
+    --   -- , dependencies = {
+    --   , keys = 'grr'
+    --   --   'nvim-treesitter/nvim-treesitter'
+    --   -- }
+    -- }
+    -- , {
+    --   'nvim-treesitter/nvim-treesitter-textobjects'
+    --   -- , event = 'CursorHold'
+    -- }
     -- , {
     --   'theHamsta/nvim-treesitter-pairs'
     --   , event = 'CursorHold'
     -- }
-    , {
-      'David-Kunz/treesitter-unit'
-      , event = 'CursorHold'
-    }
+    -- , {
+    --   'David-Kunz/treesitter-unit'
+    --   -- , event = 'CursorHold'
+    -- }
     -- , { 'nvim-treesitter/nvim-treesitter-context' }
     -- , {
     --   'p00f/nvim-ts-rainbow'
@@ -585,7 +657,20 @@ return {
 
     , {
       'sindrets/diffview.nvim'
-      , event = 'CursorHold'
+      , cmd = {
+        'DiffviewClose',
+        'DiffviewFileHistory',
+        'DiffviewFocusFiles',
+        'DiffviewLog',
+        'DiffviewOpen',
+        'DiffviewRefresh',
+        'DiffviewToggleFiles',
+      }
+      , keys = {
+        { "<leader>gd.", "<cmd>DiffviewOpen<cr>",        desc = "git diff this file"    },
+        { "<leader>gdc", "<cmd>DiffviewClose<cr>",       desc = "git diff close"        },
+        { "<leader>gdh", "<cmd>DiffviewFileHistory<cr>", desc = "git diff file history" }
+      }
       , dependencies = {
         'nvim-lua/plenary.nvim'
       }
@@ -605,6 +690,7 @@ return {
     , {
       'aserowy/tmux.nvim'
       , event = 'CursorHold'
+      -- , event = 'VeryLazy'
       , config = function()
         require 'configs.tmux'
       end
@@ -747,13 +833,6 @@ return {
       -- , fn = 'require("telescope.builtin").colorscheme'
     }
 
-    , {
-      'xfyuan/nightforest.nvim'
-      , config = function()
-        require 'theme.nightforest'
-      end
-    }
-
     -- , {
     --   'eddyekofo94/gruvbox-material.nvim'
     --   -- , config = function ()
@@ -779,13 +858,6 @@ return {
     --     require 'theme.doom-one'
     --   end
     -- }
-
-    , {
-      'folke/tokyonight.nvim'
-      , config = function()
-        require 'theme.tokyonight'
-      end
-    }
 
     ---
     ---  theme : Lush Colorschemes
@@ -814,14 +886,6 @@ return {
     --   'lambdalisue/glyph-palette.vim'
     -- end
     -- }
-    , {
-      'EdenEast/nightfox.nvim'
-      -- , build = 'NightFoxCompile'
-      , config = function()
-        require 'theme.nightfox'
-      end
-    }
-
     -- , {
     --   'vigoux/oak'
     -- }
@@ -849,39 +913,17 @@ return {
     --   end
     -- }
 
-    , {
-      'LunarVim/onedarker.nvim'
-      , config = function()
-        require 'theme.onedarker'
-      end
-    }
-
-    , {
-      'LunarVim/horizon.nvim'
-    }
-
     -- , {
     --   'LunarVim/darkplus.nvim'
     -- }
 
-    , {
-    'marko-cerovac/material.nvim'
-      , lazy = false
-      , config = function()
-        require 'theme.material'
-      end
-    }
-
-    , {
-      'rebelot/kanagawa.nvim'
-    }
-
-    , {
-      'rose-pine/neovim'
-      , config = function()
-        require 'theme.rose-pine'
-      end
-    }
+    -- , {
+    -- 'marko-cerovac/material.nvim'
+    --   , lazy = false
+    --   , config = function()
+    --     require 'theme.material'
+    --   end
+    -- }
 
     ---
     ---  theme : status lines
@@ -937,7 +979,6 @@ return {
     ---
     , {
       'nvim-tree/nvim-web-devicons'
-      , event = 'CursorHold'
     }
     -- , {
     --   'lambdalisue/glyph-palette.vim'
@@ -1022,7 +1063,7 @@ return {
 
     , {
       'lewis6991/gitsigns.nvim'
-      , event = 'CursorHold'
+      , event = 'UIEnter'
       , config = function()
         require 'configs.git.signs'
       end

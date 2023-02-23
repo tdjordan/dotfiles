@@ -30,3 +30,39 @@ autocmd( 'ColorScheme' , {
   pattern = '*'
   , command = [[ silent highlight TSComment gui=italic ]]
 })
+
+---  Toggle relative line numbers for only active windows
+---
+local disabled_filetypes = {
+  'gitcommit'
+  , 'help'
+  , 'man'
+  , 'packer'
+  , 'NvimTree'
+  , 'Trouble'
+  , 'lazy'
+  , 'DiffviewFileHistory'
+  , 'DiffviewFiles'
+  , ''
+}
+autocmd( 'WinEnter', {
+  pattern = '*'
+  , callback = function()
+    -- vim.pretty_print(vim.bo.filetype)
+    if vim.tbl_contains(disabled_filetypes, vim.bo.filetype) then
+    -- if vim.bo.filetype == 'NvimTree' then
+      return
+    end
+    vim.cmd [[ set relativenumber ]]
+  end
+})
+autocmd( 'WinLeave', {
+  pattern = '*'
+  , callback = function()
+    if vim.tbl_contains(disabled_filetypes, vim.bo.filetype) then
+    -- if vim.bo.filetype == 'NvimTree' then
+      return
+    end
+    vim.cmd [[ set norelativenumber ]]
+  end
+})

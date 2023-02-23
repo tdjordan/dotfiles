@@ -1,5 +1,5 @@
-local lsp = vim.lsp
-local navic = require 'nvim-navic'
+-- local lsp = vim.lsp
+-- local navic = require 'nvim-navic'
 
 local kset = function( mode, l, r, desc )
   opts        = opts or { noremap = true, silent = true }
@@ -19,7 +19,7 @@ local on_attach = function( client, bufnr )
 
   -- Navic
   if client.server_capabilities.documentSymbolProvider then
-    navic.attach( client, bufnr )
+    require 'nvim-navic'.attach( client, bufnr )
   end
 
   -- Mappings.

@@ -223,6 +223,8 @@ local sources = {
       , 'man'
       , 'packer'
       , 'NvimTree'
+      , 'Trouble'
+      , 'lazy'
     }
   }
 
@@ -238,6 +240,10 @@ local sources = {
   ---
   , b.diagnostics.opacheck
   , b.formatting.rego
+
+  ---  OpenAPI
+  ---
+  -- , b.diagnostics.vacuum
 
   ---  Changelog
   ---

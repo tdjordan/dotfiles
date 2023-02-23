@@ -5,7 +5,7 @@ local api = vim.api
 
 local navic = require 'nvim-navic'
 
-local colors = {
+local local_colors = {
   bg = '#202328',
   fg = '#bbc2cf',
   yellow = '#ecbe7b',
@@ -24,6 +24,8 @@ local colors = {
   -- scrollbar = '#bbc2cf',
   scrollbar = '#008080',
 }
+
+local colors = require 'material.colors'
 
 local list_registered_providers_names = function( filetype )
   local s = require 'null-ls.sources'
@@ -77,6 +79,18 @@ local unique_list = function( t )
   -- print("res  : " .. vim.inspect(res))
 
   return res
+end
+
+local winbar_filename = function()
+  local bo = vim.bo
+  if bo.modified then
+    return '● '
+      .. vim.fn.expand('%:p:.')
+  end
+  if vim.fn.expand('%:t') == '' then
+    return ''
+  end
+  return vim.fn.expand('%:p:.')
 end
 
 ---  Build StatusLine Components
@@ -155,8 +169,8 @@ local components = {
     --   gui = 'bold'
     -- }
     , color = {
-      fg = colors.red,
-      bg = colors.bg,
+      fg = local_colors.red,
+      bg = local_colors.bg,
     }
   },
   mode = {
@@ -204,19 +218,24 @@ local components = {
       end
       return ''
     end
-    , color = { fg = colors.green }
+    , color = { fg = local_colors.green }
   },
   winbar_filename = {
     function()
-      local bo = vim.bo
-      if bo.modified then
-        return '● %t'
-      end
-      if vim.fn.expand('%:t') == '' then
-        return ''
-      end
-      return '%t'
+      return winbar_filename()
     end
+    -- , color = { fg = colors.main.darkpurple, bg = colors.main.black }
+    , color = { fg = colors.main.darkpurple, bg = colors.editor.contrast }
+    -- , color = { fg = colors.main.darkpurple, bg = colors.editor.bg }
+  },
+  winbar_filename_inactive = {
+    function()
+      return winbar_filename()
+    end
+    -- , color = { fg = colors.main.darkpurple, bg = colors.main.black }
+    -- , color = { fg = colors.main.darkpurple, bg = colors.editor.bg }
+    -- , color = { fg = colors.editor.line_numbers, bg = colors.editor.bg }
+    , color = { fg = colors.editor.line_numbers, bg = colors.editor.contrast }
   }
 }
 
@@ -266,11 +285,11 @@ require 'lualine'.setup {
       --     , 'nvim_workspace_diagnostic'
       --   }
       -- } ,
-      {
-        'filename'
-        , path = 1 -- relative path
-        , shorting_target = 40
-      },
+      -- {
+      --   'filename'
+      --   , path = 1 -- relative path
+      --   , shorting_target = 40
+      -- },
       { navic.get_location, cond = navic.is_available },
     },
     lualine_x = {
@@ -309,6 +328,17 @@ require 'lualine'.setup {
   }
   -- , tabline = {}
   -- , winbar = {}                     -- when window.active true  { winbar section configs } ( 0.8+ )
+  -- , winbar = { lualine_z = { 'filename' } }
+  , inactive_winbar = {
+    lualine_z = {
+      components.winbar_filename_inactive
+    }
+  }
+  , winbar = {
+    lualine_z = {
+      components.winbar_filename
+    }
+  }
   -- , winbar = {
   --   -- lualine_a = {
   --   --   components.mode

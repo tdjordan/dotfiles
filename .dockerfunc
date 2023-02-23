@@ -26,9 +26,9 @@ dockerimage_lint() {
   #docker run -it --rm hashicorp/packer:light $0
 #}
 
-jf() {
-  docker run -v ~/.jfrog:/root/.jfrog docker.bintray.io/jfrog/jfrog-cli-go:latest jfrog $0
-}
+# jf() {
+#   docker run -v ~/.jfrog:/root/.jfrog docker.bintray.io/jfrog/jfrog-cli-go:latest jfrog $0
+# }
 
 # neuron() {
 #   docker run --rm -it -v ${PWD}:/notes sridca/neuron neuron $*

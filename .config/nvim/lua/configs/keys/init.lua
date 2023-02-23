@@ -295,7 +295,7 @@ local normal_mappings = {
     name = 'pick'
     , a = { function() require 'telescope.builtin'.autocommands()                          end , 'an autocommand'      }
     , b = { function() require 'telescope.builtin'.buffers()                               end , 'from open buffers'   }
-    , c = { function() require 'telescope.builtin'.colorscheme()                           end , 'a colorscheme'       }
+    -- , c = { function() require 'telescope.builtin'.colorscheme()                           end , 'a colorscheme'       }
     , e = { function() require 'telescope.builtin'.symbols{sources = {'emoji', 'gitmoji'}} end , '*moji'               }
     , f = { function() require 'telescope.builtin'.find_files()                            end , 'a file'              }
     , g = { function() require 'telescope.builtin'.live_grep()                             end , 'from live grep'      }
@@ -369,6 +369,7 @@ local normal_mappings = {
     name = 'git'
     , b = { function() require 'telescope.builtin'.git_branches() end , 'git branches'       }
     , c = { function() require 'telescope.builtin'.git_commits()  end , 'git commits'        }
+    , d = { name = 'git diff'                                                                }
     , h = { function() require 'telescope.builtin'.git_stash()    end , 'git stash'          }
     , l = { function() require 'telescope.builtin'.git_bcommits() end , 'git buffer commits' }
     , s = { function() require 'telescope.builtin'.git_status()   end , 'git status'         }
