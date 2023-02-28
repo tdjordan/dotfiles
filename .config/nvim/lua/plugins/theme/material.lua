@@ -2,9 +2,9 @@ return {
   'marko-cerovac/material.nvim'
   , lazy = false
   , priority = 1000
-  , keys = {
-    { "<leader>pc", function() require 'telescope.builtin'.colorscheme() end, desc = 'a colorscheme' }
-  }
+  -- , keys = {
+  --   { "<leader>pc", function() require 'telescope.builtin'.colorscheme() end, desc = 'a colorscheme' }
+  -- }
   , config = function()
     vim.g.material_style = 'darker'
 

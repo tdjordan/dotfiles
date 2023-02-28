@@ -27,9 +27,11 @@ vim.opt.rtp:prepend(install_path)
 
 require 'lazy'.setup(
   {
-    {   import = 'plugins'       }
-    , { import = 'plugins.ui'    }
-    , { import = 'plugins.theme' }
+    {   import = 'plugins'            }
+    , { import = 'plugins.ui'         }
+    -- , { import = 'plugins.lsp'        }
+    , { import = 'plugins.theme'      }
+    , { import = 'plugins.whitespace' }
   },
   {
     -- spec = {
@@ -42,8 +44,8 @@ require 'lazy'.setup(
     install = {
       colorscheme = {
         'material'
-        , 'tokyonight'
-        , 'habamax'
+        -- , 'tokyonight'
+        -- , 'habamax'
       }
     },
     -- ui = {

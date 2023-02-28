@@ -1,6 +1,6 @@
 return {
   'ntpeters/vim-better-whitespace'
-  , event = 'CursorHold'
+  , event = 'BufReadPost'
   , config = function()
     local g = vim.g
     g.strip_whitespace_on_save              = true

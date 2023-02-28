@@ -57,9 +57,4 @@ return {
       require 'theme.rose-pine'
     end
   }
-
-
-
-
-
 }

@@ -84,16 +84,6 @@ return {
     --   end
     -- }
 
-    {
-      'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
-      -- , dependencies = {
-      --   'neovim/nvim-lspconfig'
-      -- }
-      , config = function()
-        require 'configs.lsp.lines'
-      end
-    }
-
     -- , {
     --   'lvimuser/lsp-inlayhints.nvim'
     --   , config = function()
@@ -103,27 +93,11 @@ return {
 
     ---  Lua Information
     ---
-    , {
+    {
       'nanotee/nvim-lua-guide'
       , lazy = true
     }
 
-    ---  Language Protocol Server - LSP
-    ---
-    , {
-      'williamboman/mason.nvim'
-      , event = 'BufReadPre'
-      , config = function()
-        require 'configs.lsp.mason'
-      end
-    }
-    , {
-      'williamboman/mason-lspconfig.nvim'
-    }
-    , {
-      'jay-babu/mason-null-ls.nvim'
-      -- , require = 'null-ls.nvim'
-    }
     , {
       'jay-babu/mason-nvim-dap.nvim'
       , config = function()
@@ -140,30 +114,8 @@ return {
     --   end
     -- }
     , {
-      'neovim/nvim-lspconfig'
-      , dependencies = {
-        'williamboman/mason-lspconfig.nvim'
-        , 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
-      }
-    }
-    , {
-      'SmiteshP/nvim-navic'
-      , event = 'VeryLazy'
-      , config = function()
-        require 'configs.lsp.navic'
-      end
-    }
-    , {
       'b0o/schemastore.nvim'
       , event = 'VeryLazy'
-    }
-    , {
-      'jose-elias-alvarez/null-ls.nvim'
-      -- , event = { 'BufReadPre', 'BufNewFile' }
-      , event = { 'CursorHold' }
-      , config = function()
-        require 'configs.lsp.null'
-      end
     }
     -- , {
     --   "b0o/incline.nvim",
@@ -277,16 +229,12 @@ return {
     -- }
 
     , {
-      'folke/todo-comments.nvim'
-      , event = 'CursorHold'
-      , config = function()
-        require 'configs.todo.comments'
-      end
-    }
-
-    , {
       'simrat39/symbols-outline.nvim'
-      , event = 'CursorHold'
+      , cmd = {
+        'SymbolsOutline'
+        , 'SymbolsOutlineOpen'
+      }
+      -- , event = 'CursorHold'
       , config = function()
         require 'configs.symbols.outline'
       end
@@ -733,9 +681,9 @@ return {
       'folke/which-key.nvim'
       -- , event = 'CursorHold'
       , event = 'VeryLazy'
-      , dependencies = {
-        'ntpeters/vim-better-whitespace'
-      }
+      -- , dependencies = {
+      --   'ntpeters/vim-better-whitespace'
+      -- }
       , config = function()
         vim.schedule(function()
           require 'configs.keys'
@@ -925,17 +873,6 @@ return {
     --   'nvim-lua/lsp-status.nvim'
     -- }
 
-    , {
-      'nvim-lualine/lualine.nvim'
-      , event = 'BufReadPost'
-      -- , event = 'VeryLazy'
-      , config = function()
-        -- vim.schedule( function()
-        require 'configs.lualine'
-        -- end)
-      end
-    }
-
     -- , {
     --   'famiu/feline.nvim'
     --   , config = function()
@@ -1006,7 +943,8 @@ return {
     -- }
     , {
       'numToStr/Comment.nvim'
-      , event = 'CursorHold'
+      -- , event = 'CursorHold'
+      , event = { 'BufReadPost', 'BufNewFile' }
       , config = function()
         require 'configs.comment'
       end
@@ -1028,14 +966,6 @@ return {
     -- , { 'gregsexton/gitv' }
     -- , { 'airblade/vim-gitgutter' }
     -- , { 'mhinz/vim-signify' }
-
-    , {
-      'lewis6991/gitsigns.nvim'
-      , event = 'UIEnter'
-      , config = function()
-        require 'configs.git.signs'
-      end
-    }
 
     ---  guides
     ---

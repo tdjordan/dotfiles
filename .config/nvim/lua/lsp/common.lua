@@ -2,7 +2,7 @@
 -- local navic = require 'nvim-navic'
 
 local kset = function( mode, l, r, desc )
-  opts        = opts or { noremap = true, silent = true }
+  local opts  = opts or { noremap = true, silent = true }
   opts.desc   = desc
   vim.keymap.set( mode, l, r, opts )
 end
@@ -24,7 +24,7 @@ local on_attach = function( client, bufnr )
 
   -- Mappings.
   local function set( mode, l, r, desc )
-    opts        = opts or { noremap = true, silent = true, buffer = bufnr }
+    local opts  = opts or { noremap = true, silent = true, buffer = bufnr }
     opts.desc   = desc
     vim.keymap.set( mode, l, r, opts )
   end
