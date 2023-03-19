@@ -1,10 +1,31 @@
 return {
   {
+    'pwntester/octo.nvim'
+    , cmd = 'Octo'
+    , dependencies = {
+      'nvim-lua/plenary.nvim'
+      , 'nvim-telescope/telescope.nvim'
+      , 'nvim-tree/nvim-web-devicons'
+    }
+    , config = function()
+      require 'configs.telescope.github.octo'
+    end
+  },
+  {
     'lewis6991/gitsigns.nvim'
-    -- , event = 'UIEnter'
-    -- , event = { 'BufReadPre', 'BufNewFile' }
-    , event = { 'BufReadPost', 'BufNewFile' }
-    -- , event = 'CursorHold'
+    , ft = 'gitcommit'
+    , init = function()
+      vim.api.nvim_create_autocmd( { 'BufRead' }, {
+        group = vim.api.nvim_create_augroup( 'GitSignsLazyLoad', { clear = true } )
+        , callback = function()
+          vim.fn.system('git -C ' .. vim.fn.expand '%:p:h' .. ' rev-parse')
+          if vim.v.shell_error == 0 then
+            vim.api.nvim_del_augroup_by_name 'GitSignsLazyLoad'
+            require 'lazy'.load { plugins = { 'gitsigns.nvim' } }
+          end
+        end
+      })
+    end
     , opts = {
         current_line_blame = true,
         current_line_blame_opts = {

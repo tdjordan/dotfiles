@@ -31,6 +31,23 @@ autocmd( 'ColorScheme' , {
   , command = [[ silent highlight TSComment gui=italic ]]
 })
 
+---  Toggle off side columns for certain sidebars
+---
+local sidebars = {
+  'qf'
+  , 'help'
+}
+autocmd( { 'BufWinEnter', 'WinEnter' }, {
+  pattern = '*'
+  , callback = function()
+    if vim.tbl_contains(sidebars, vim.bo.filetype) then
+      vim.opt.relativenumber = false
+      vim.opt.number = false
+      vim.opt.signcolumn = 'no'
+    end
+  end
+})
+
 ---  Toggle relative line numbers for only active windows
 ---
 local disabled_filetypes = {
@@ -43,6 +60,9 @@ local disabled_filetypes = {
   , 'lazy'
   , 'DiffviewFileHistory'
   , 'DiffviewFiles'
+  , 'neo-tree'
+  , 'qf'
+  , 'octo_panel'
   , ''
 }
 autocmd( 'WinEnter', {
@@ -53,7 +73,7 @@ autocmd( 'WinEnter', {
     -- if vim.bo.filetype == 'NvimTree' then
       return
     end
-    vim.cmd [[ set relativenumber ]]
+    vim.opt.relativenumber = true
   end
 })
 autocmd( 'WinLeave', {
@@ -63,6 +83,6 @@ autocmd( 'WinLeave', {
     -- if vim.bo.filetype == 'NvimTree' then
       return
     end
-    vim.cmd [[ set norelativenumber ]]
+    vim.opt.relativenumber = false
   end
 })

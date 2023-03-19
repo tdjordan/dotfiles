@@ -1,6 +1,6 @@
 local ls = require 'luasnip'
 
-local jump = function()
+local next = function()
   if ls.expand_or_locally_jumpable() then
     ls.expand_or_jump()
   end
@@ -13,6 +13,6 @@ local jump_back = function()
 end
 
 return {
-  jump = jump
+  next = next
   , jump_back = jump_back
 }

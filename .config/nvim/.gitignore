@@ -1,1 +1,4 @@
 lazy-lock.json
+.gradle
+.pnpm-debug.log
+out.me

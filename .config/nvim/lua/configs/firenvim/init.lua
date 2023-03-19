@@ -8,5 +8,5 @@ if ( g.started_by_firenvim ) then
   --   'globalSettings': {}
   -- }
 else
-  set.laststatus = 2
+  set.laststatus = 3
 end

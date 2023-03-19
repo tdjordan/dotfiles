@@ -1,4 +1,4 @@
-require("dapui").setup({
+require("dapui").setup {
   icons = { expanded = "", collapsed = "", current_frame = "" },
   mappings = {
     -- Use a table to apply multiple mappings
@@ -77,4 +77,4 @@ require("dapui").setup({
     max_type_length = nil, -- Can be integer or nil.
     max_value_lines = 100, -- Can be integer or nil.
   }
-})
+}

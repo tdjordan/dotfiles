@@ -1,10 +1,3 @@
-local api = vim.api
--- local nls = require 'null-ls'
-
--- local theme_colors = require 'nightfox.colors'.load()
-
-local navic = require 'nvim-navic'
-
 local local_colors = {
   bg = '#202328',
   fg = '#bbc2cf',
@@ -18,10 +11,7 @@ local local_colors = {
   purple = '#c678dd',
   blue = '#51afef',
   red = '#ec5f67',
-  -- statusline = theme_colors.bg_statusline,
-  -- scrollbar = theme_colors.normal
   statusline = '#202328',
-  -- scrollbar = '#bbc2cf',
   scrollbar = '#008080',
 }
 
@@ -120,40 +110,19 @@ local components = {
         if client.name ~= 'null-ls' then
           table.insert(buf_client_names, client.name)
         end
-        -- vim.notify(client.name)
-        -- return client.name
       end
 
       -- add formatter
       local supported_formatters = list_registered_formatters( buf_ft )
-      -- print(vim.inspect(supported_formatters))
-      -- vim.list_extend( buf_client_names, supported_formatters )
 
       -- add linter
-      -- local linters = require "lvim.lsp.null-ls.linters"
       local supported_linters = list_registered_linters( buf_ft )
-      -- print(vim.inspect(supported_linters))
-      -- vim.list_extend(buf_client_names, supported_linters)
       vim.list_extend(supported_linters, supported_formatters)
 
-      -- local x = vim.tbl_values(buf_client_names)
-      -- print(vim.inspect(x))
-
-      -- return table.concat(buf_client_names, ", ")
       local res = unique_list( supported_linters )
       vim.list_extend( buf_client_names, res )
       return table.concat(buf_client_names, ", ")
-      -- return table.concat( res ) .. '[' .. table.concat(buf_client_names, ", ") .. ']'
-      -- return table.concat(res, ", ")
-      -- return buf_client_names.name
-      -- return '[ ' .. table.concat(buf_client_names, ", ") .. ' ]'
-      -- return '[' .. table.concat(buf_client_names, ", ") .. ']'
     end,
-    -- icon = ' ',
-    -- color = { gui = "bold" },
-    -- color = { fg = colors.yellow }
-    -- color = { fg = colors.cyan }
-    -- cond = conditions.hide_in_width,
     cond = function() return vim.fn.winwidth(0) > 80 end
   },
   mixedindent = {
@@ -163,11 +132,6 @@ local components = {
       local mixed = (space_indent and tab_indent) or vim.fn.search([[\v^(\t+ | +\t)]], 'nw') > 0
       return mixed and 'Mixed Indent' or ''
     end
-    -- , color = {
-    --   fg = 'white',
-    --   bg = colors.red,
-    --   gui = 'bold'
-    -- }
     , color = {
       fg = local_colors.red,
       bg = local_colors.bg,
@@ -190,29 +154,11 @@ local components = {
       return chars[index]
     end
     , padding = { left = 0, right = 0 }
-    -- , color = { fg = colors.yellow, bg = colors.bg }
-    -- , color = { fg = colors.yellow, bg = "StatusLine" }
-    -- , color = {
-    --   fg = colors.yellow,
-    --   bg = function()
-    --     -- return require 'nightfox.colors'.load().bg_statusline
-    --     -- return require 'nightfox.colors'.load().blue
-    --   end
-    -- }
-    -- , color = {
-    --   fg = colors.scrollbar,
-    --   bg = colors.statusline
-    -- }
-    -- , color = { fg = colors.yellow }
-    -- , color = {
-      -- fg = 'Normal',
-      -- bg = 'String'
-    -- }
     , cond = nil
   },
   treesitter = {
     function()
-      local b = api.nvim_get_current_buf()
+      local b = vim.api.nvim_get_current_buf()
       if next(vim.treesitter.highlighter.active[b]) then
         return ''
       end
@@ -224,43 +170,38 @@ local components = {
     function()
       return winbar_filename()
     end
-    -- , color = { fg = colors.main.darkpurple, bg = colors.main.black }
     , color = { fg = colors.main.darkpurple, bg = colors.editor.contrast }
-    -- , color = { fg = colors.main.darkpurple, bg = colors.editor.bg }
   },
   winbar_filename_inactive = {
     function()
       return winbar_filename()
     end
-    -- , color = { fg = colors.main.darkpurple, bg = colors.main.black }
-    -- , color = { fg = colors.main.darkpurple, bg = colors.editor.bg }
-    -- , color = { fg = colors.editor.line_numbers, bg = colors.editor.bg }
     , color = { fg = colors.editor.line_numbers, bg = colors.editor.contrast }
   }
 }
 
 require 'lualine'.setup {
   options = {
-    theme = 'material-stealth'
-    -- , component_separators = { left = '', right = ''}
+    -- theme = 'material-stealth'
+    theme = 'kanagawa'
     , component_separators = { left = '', right = '' }
-    -- , section_separators = { left = '', right = ''}
-    -- , section_separators = { left = '', 'right = '}
     , section_separators = { left = '', right = '' }
     , disabled_filetypes = {            -- filetypes disabled      for lualine
       statusline = {                    -- filetypes disabled only for statusline
         'NvimTree'
+        , 'neo-tree'
         , 'dashboard'
         , 'Outline'
       }
       , winbar = {                      -- filetypes disabled only for winbar
         'NvimTree'
+        , 'neo-tree'
         , 'dashboard'
         , 'Outline'
       }
     }
     -- , always_divide_middle = true       -- when true { left sections constrained if right sections exist }
-    -- , globalstatus = true               -- when true { global statusline ( 0.7+ ) }
+    , globalstatus = true               -- when true { global statusline ( 0.7+ ) }
     , refresh = {
       statusline = 1000
       , tabline = 1000
@@ -277,24 +218,9 @@ require 'lualine'.setup {
     },
     -- lualine_b = {},
     lualine_c = {
-      -- {
-      --   'diagnostics'
-      --   , sources = {
-      --     'nvim_lsp'
-      --     , 'nvim _diagnostic'
-      --     , 'nvim_workspace_diagnostic'
-      --   }
-      -- } ,
-      -- {
-      --   'filename'
-      --   , path = 1 -- relative path
-      --   , shorting_target = 40
-      -- },
-      { navic.get_location, cond = navic.is_available },
+      { require 'nvim-navic'.get_location { highlight = true }, cond = require 'nvim-navic'.is_available },
     },
     lualine_x = {
-      -- components.encoding,
-      -- { navic.get_location, cond = navic.is_available },
       components.lsp,
       components.treesitter,
       'filetype',
@@ -302,235 +228,38 @@ require 'lualine'.setup {
     lualine_y = {
     },
     lualine_z = {
-      -- components.scrollbar,
       components.mode
     }
-  },
-  inactive_sections = {
-  --   lualine_c = {
-  --     -- { 'diagnostics', source={'nvim_lsp'}},
-  --     'filename'
-  --   },
+  }
+  -- , inactive_sections = {
+  -- --   lualine_c = {
+  -- --     -- { 'diagnostics', source={'nvim_lsp'}},
+  -- --     'filename'
+  -- --   },
+  -- --   lualine_x = {
+  -- --     -- components.lsp,
+  -- --     -- components.treesitter,
+  -- --     { 'diagnostics', source={'nvim_lsp'}},
+  -- --     'filetype',
+  -- --   },
   --   lualine_x = {
-  --     -- components.lsp,
-  --     -- components.treesitter,
-  --     { 'diagnostics', source={'nvim_lsp'}},
-  --     'filetype',
   --   },
-    lualine_x = {
-    },
-    lualine_y = {
-    },
-    lualine_z = {
-      -- components.scrollbar,
-      -- components.mode
-    }
-  }
+  --   lualine_y = {
+  --   },
+  --   lualine_z = {
+  --     -- components.scrollbar,
+  --     -- components.mode
+  --   }
+  -- }
   -- , tabline = {}
-  -- , winbar = {}                     -- when window.active true  { winbar section configs } ( 0.8+ )
-  -- , winbar = { lualine_z = { 'filename' } }
-  , inactive_winbar = {
-    lualine_z = {
-      components.winbar_filename_inactive
-    }
-  }
   , winbar = {
     lualine_z = {
       components.winbar_filename
     }
   }
-  -- , winbar = {
-  --   -- lualine_a = {
-  --   --   components.mode
-  --   -- },
-  --   -- lualine_b = {
-  --   --   components.winbar_filename,
-  --   -- },
-    -- lualine_c = {
-  --     -- 'filename',
-  --     -- { 'diagnostics', source={'nvim_lsp'}},
-  --     -- components.winbar_filename,
-  --     -- {
-  --     --   'filename'
-  --     --   , path = 1 -- relative path
-  --     --   , shorting_target = 40
-  --     --   , file_status = false
-  --     --   , symbols = {
-  --     --     modified = '●',  -- Text to show when the file is modified
-  --     --     readonly = '#',  -- Text to show when the file is non-modifiable or readonly.
-  --     --     unnamed = '',    -- Text to show for unnamed buffers.
-  --     --     newfile = '',    -- Text to show for new created file before first writing
-  --     --   },
-  --     -- },
-  --     -- { 'buffers' },
-    --   { navic.get_location, cond = navic.is_available }
-    -- },
-  --   -- lualine_y = {
-  --   --   -- 'filename',
-  --   --   { 'diagnostics', source={'nvim_lsp'}},
-  --   -- }
-  --   lualine_x = {
-  --     components.winbar_filename,
-  --   },
-  --   -- lualine_z = {
-  --   -- --   components.winbar_filename,
-  --   --   components.mode
-  --   -- }
-  -- },
-  -- -- , inactive_winbar = {}            -- when window.active false { winbar section configs } ( 0.8+ )
-  -- inactive_winbar = {
-  --   -- lualine_a = {
-  --   --   components.mode
-  --   -- },
-  --   lualine_c = {
-  --     -- { 'buffers' },
-  --     -- {
-  --     --   'filename'
-  --     --   , path = 1 -- relative path
-  --     --   , shorting_target = 40
-  --     -- },
-  --     { navic.get_location, cond = navic.is_available }
-  --   },
-  --   lualine_y = {
-  --     components.winbar_filename,
-  --   --   {
-  --   --     'filename'
-  --   --     , path = 1 -- relative path
-  --   --     , shorting_target = 40
-  --   --   },
-  --   --   { 'diagnostics', source={'nvim_lsp'}},
-  --   }
-  -- }
+  , inactive_winbar = {
+    lualine_z = {
+      components.winbar_filename_inactive
+    }
+  }
 }
-
--- require 'lualine'.setup {
---   options = {
---     -- theme = 'gruvbox_material'
---     theme = 'onedark'
---   }
--- }
-
-
--- local windline = require 'windline'
-
--- local basic = {}
-
-
--- basic.filename = {
---   text = function()
---     local name = vim.fn.expand('%:p:t')
---     if name == '' then name = '[No Name]' end
---     return name..' '
---   end
---   , hl_colors = { 'FilenameFg', 'FilenameBg' }
--- }
-
--- local default = {
---   filetype = { 'default' }
---   , active = {
---     basic.filename
---   }
---   , inactive = {
---     basic.filename
---   }
--- }
-
--- windline.setup({
---   colors_name = function(colors)
---     colors.FilenameFg = colors.white_light
---     colors.FilenameBg = colors.black_light
---     return colors
---   end
---   , statuslines = {
---     default
---   }
--- })
-
-
--- require('galaxyline').section.left[1]= {
---   FileSize = {
---     provider = 'FileSize',
---     condition = function()
---       if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
---         return true
---       end
---       return false
---       end,
---     icon = '   ',
---     -- highlight = {colors.green,colors.purple},
---     separator = '',
---     -- separator_highlight = {colors.purple,colors.darkblue},
---   }
--- }
-
--- local galaxyline = require 'galaxyline'
-
--- local function buffer_not_empty()
---   return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
--- end
-
--- local function printer(str)
---   return function() return str end
--- end
-
--- local space = printer( ' ' )
-
--- -- Defined in https://github.com/Iron-E/nvim-highlite
--- local _COLORS =
--- {
---  black = {'#202020', 0,   'black'},
---  gray  = {'#808080', 244, 'gray'},
---  gray_dark   = {'#353535', 236, 'darkgrey'},
---  gray_darker = {'#505050', 244, 'gray'},
---  gray_light  = {'#c0c0c0', 251, 'gray'},
---  white       = {'#ffffff', 15,  'white'},
-
---  tan = {'#f4c069', 180, 'darkyellow'},
-
---  red = {'#ee4a59', 196, 'red'},
---  red_dark  = {'#a80000', 124, 'darkred'},
---  red_light = {'#ff4090', 203, 'red'},
-
---  orange = {'#ff8900', 208, 'darkyellow'},
---  orange_light = {'#f0af00', 214, 'yellow'},
-
---  yellow = {'#f0df33', 220, 'yellow'},
-
---  green = {'#77ff00', 72, 'green'},
---  green_dark  = {'#35de60', 83, 'darkgreen'},
---  green_light = {'#a0ff70', 72, 'green'},
-
---  blue = {'#7090ff', 63, 'darkblue'},
---  cyan = {'#33efff', 87, 'cyan'},
---  ice  = {'#49a0f0', 63, 'cyan'},
---  teal = {'#00d0c0', 38, 'cyan'},
---  turqoise = {'#2bff99', 33, 'blue'},
-
---  magenta = {'#cc0099', 126, 'magenta'},
---  pink    = {'#ffa6ff', 162, 'magenta'},
---  purple  = {'#cf55f0', 129, 'magenta'},
-
---  magenta_dark = {'#bb0099', 126, 'darkmagenta'},
---  pink_light   = {'#ffb7b7', 38,  'white'},
---  purple_light = {'#af60af', 63,  'magenta'},
--- }
-
--- _COLORS.bar = {middle=_COLORS.gray_dark, side=_COLORS.black}
--- _COLORS.text = _COLORS.gray_light
-
--- local _HEX_COLORS = setmetatable(
---   {['bar'] = setmetatable({}, {['__index'] = function(_, key) return _COLORS.bar[key] and _COLORS.bar[key][1] or nil end })},
---   {['__index'] = function(_, key) local color = _COLORS[key] return color and color[1] or nil end}
--- )
-
--- galaxyline.left = {
---   {
---     FileName = {
---       provider = {space, 'FileName', 'FileSize'}
---       , condition = buffer_not_empty
---       , highlight = {
---         _HEX_COLORS.text, _HEX_COLORS.bar.side, 'bold'
---       }
---     }
---   }
--- }

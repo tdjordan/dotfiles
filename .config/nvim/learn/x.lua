@@ -1,4 +1,4 @@
-function fact (n)
+local function fact (n)
   if n == 0 then
     return 1
   else
@@ -7,5 +7,5 @@ function fact (n)
 end
 
 print( "enter a number:" )
-a = io.read( "*number" )
+local a = io.read( "*number" )
 print( fact(a) )

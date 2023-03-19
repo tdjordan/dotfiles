@@ -6,8 +6,8 @@ local kset = function( mode, l, r, desc )
   opts.desc   = desc
   vim.keymap.set( mode, l, r, opts )
 end
-kset( 'n', '[d',        vim.diagnostic.goto_prev,  'prev diagnostic'  )
-kset( 'n', ']d',        vim.diagnostic.goto_next,  'next diagnostic'  )
+kset( 'n', '[d',        vim.diagnostic.goto_prev,  'Previous diagnostic'  )
+kset( 'n', ']d',        vim.diagnostic.goto_next,  'Next diagnostic'  )
 kset( 'n', '<space>le', vim.diagnostic.open_float, 'open diagnositcs' )
 kset( 'n', '<space>q',  vim.diagnostic.setloclist, 'list diagnostics' )
 

@@ -3,7 +3,7 @@
 
   And important thing to note
 
- ** Icons
+** Icons
     Icons have changd
 
     @code lua
@@ -13,7 +13,7 @@
       end
     @end
 
- ** Inline Comments
+** Inline Comments
     Carryover tags now utilize the `#` symbol we nned to change syntax for inline
     comments to avoid ambiguity.
   *** Old

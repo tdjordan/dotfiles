@@ -35,8 +35,8 @@ g.gruvbox_material_enable_italic               = 1         -- default: 1 ( on )
 -- g.gruvbox_contrast_dark = 'hard'
 -- cmd [[ let g:gruvbox_colors = { 'dark0_hard': [ '#000000', ] } ]]
 -- o.background = 'dark'
--- cmd [[ colorscheme gruvbox ]]
--- cmd [[ colorscheme gruvbox-material ]]
+-- vim.cmd.colorscheme { 'gruvbox' }
+-- vim.cmd.colorscheme { 'gruvbox-material' }
 
 -- require 'colorbuddy'.colorscheme 'gruvbuddy'
 --

@@ -1,4 +1,4 @@
--- vim.cmd [[colorscheme onedarker]]
+-- vim.cmd.colorscheme { 'onedarker' }
 
 local colors = require 'material.colors'
 

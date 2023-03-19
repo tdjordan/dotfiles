@@ -8,15 +8,6 @@ vim.g.mapleader = ' '
 
 local wk = require 'which-key'
 
-local with_neorg = function()
-  ---@diagnostic disable-next-line: undefined-field
-  -- if not _G.packer_plugins.neorg.loaded then
-    -- require 'packer'.loader( 'neorg' )
-    require 'neorg'
-    vim.cmd [[NeorgStart]]
-  -- end
-end
-
 -- wk.setup {
 --   plugins = {
 --     marks = true
@@ -236,8 +227,8 @@ local normal_mappings = {
     , H = { function() vim.lsp.buf.signature_help()                         end , 'signature help'       }
     , i = { '<cmd>LspInfo<cr>',                                                   'info'                 }
     , I = { function() require 'mason.ui'.open()                            end , 'installer info'       }  -- Mason
-    , j = { function() vim.diagnostic.goto_next()                           end , 'next diagnositc'      }
-    , k = { function() vim.diagnostic.goto_prev()                           end , 'prev diagnositc'      }
+    , j = { function() vim.diagnostic.goto_next()                           end , 'Next diagnositc'      }
+    , k = { function() vim.diagnostic.goto_prev()                           end , 'Previous diagnositc'  }
     , l = { function() vim.lsp.codelens.run()                               end , 'codelens action'      }
     , p = {
       name = 'peek'
@@ -252,31 +243,14 @@ local normal_mappings = {
     , w = { function() require 'telescope.builtin'.diagnostics()                   end , 'workspace diagnostics' }
   },
 
+  ---
   ---  o* mapptings
   ---
   o = {
     name = 'org mode',
-    -- j = { [[<cmd>lua loaded() | Neorg journal today<cr>]], 'journal today' }
-    j = {
-      function()
-        with_neorg()
-        vim.cmd [[<cmd>Neorg journal today<cr>]]
-      end, 'journal today'
-    },
-    k = {
-      function()
-        with_neorg()
-        local module = require 'neorg.modules.core.neorgcmd.module'
-        module.public.function_callback(
-        )
-      end, 'neorg cmd'
-    },
-    o = {
-      function()
-        with_neorg()
-        require 'neorg.modules.core.neorgcmd.module'.public.function_callback()
-      end, 'neorg cmd'
-    }
+    -- m = { name = 'mode' },
+    -- n = { name = 'keybind' },
+    w = { name = 'workspace' },
   },
 
 
@@ -285,7 +259,7 @@ local normal_mappings = {
   ---
   O = {
     function()
-      with_neorg()
+      require 'neorg'
     end, 'Start org mode'
   },
 
@@ -296,15 +270,14 @@ local normal_mappings = {
     name = 'pick'
     , a = { function() require 'telescope.builtin'.autocommands()                          end , 'an autocommand'      }
     , b = { function() require 'telescope.builtin'.buffers()                               end , 'from open buffers'   }
-    -- , c = { function() require 'telescope.builtin'.colorscheme()                           end , 'a colorscheme'       }
     , e = { function() require 'telescope.builtin'.symbols{sources = {'emoji', 'gitmoji'}} end , '*moji'               }
     , f = { function() require 'telescope.builtin'.find_files()                            end , 'a file'              }
     , g = { function() require 'telescope.builtin'.live_grep()                             end , 'from live grep'      }
     , l = { function() require 'telescope.builtin'.current_buffer_fuzzy_find()             end , 'from current buffer' }
     -- , s = { function() require 'telescope.builtin'.grep_string()                           end , 'word under cursor'   }
-    , s = { function() require 'telescope.builtin'.grep_string()                           end , 'with grep string'    }
+    -- , s = { function() require 'telescope.builtin'.grep_string()                           end , 'with grep string'    }
+    , s = { function() require 'telescope.builtin'.spell_suggest()                         end , 'spelling suggestion' }
     , S = { function() require 'telescope.builtin'.treesitter()                            end , 'treesitter symbols'  }
-    , t = { function() require 'telescope'.extensions['todo-comments'].todo()              end , 'todos'               }
     , p = {
       name = 'plugins'
       , s = { function() require 'lazy.view.commands'.commands.sync()                    end , 'sync'    }
@@ -341,7 +314,7 @@ local normal_mappings = {
   ---
   ---  e* mappings
   ---
-  e = { function() require 'nvim-tree'.toggle() end , 'explorer' },
+  -- e = { function() require 'nvim-tree.api'.tree.toggle() end , 'explorer' },
 
   ---
   ---  d* mappings
@@ -397,7 +370,7 @@ local normal_mappings = {
     name = 'toggle'
     , h = { '<cmd>TSHighlightCapturesUnderCursor<cr>',                        'highlight captures'     }
     , i = { function() require 'indent_blankline.commands'.toggle(true) end , 'indentation guides'     }
-    , k = { function() require 'nvim-tree'.toggle() end ,                     'file tree sidebar'      }
+    , k = { function() require 'nvim-tree.api'.tree.toggle() end ,            'file tree sidebar'      }
     , t = { '<cmd>split term://$SHELL<cr>',                                   'terminal'               }
     , s = { '<cmd>TSPlaygroundToggle<cr>',                                    'tree-sitter playgournd' }
   },
@@ -420,17 +393,9 @@ local normal_mappings = {
 
   ---  v* mapptings
   ---
-  -- x = {
-  --   name = 'trouble'
-  --   , l = { [[<cmd>Trouble loclist<cr>]],                   'window location list'  }
-  --   , d = { [[<cmd>Trouble lsp_document_diagnostics<cr>]],  'document diagnositcs'  }
-  --   , D = { [[<cmd>Trouble lsp_definitions<cr>]],           'lsp definitions'       }
-  --   , q = { [[<cmd>Trouble quickfix<cr>]],                  'quickfix'              }
-  --   , r = { [[<cmd>Trouble lsp_references<cr>]],            'lsp references'        }
-  --   , t = { [[<cmd>Trouble lsp_type_definitions<cr>]],      'lsp type definitions'  }
-  --   , w = { [[<cmd>Trouble lsp_workspace_diagnostics<cr>]], 'workspace diagnostics' }
-  --   , x = { [[<cmd>TroubleToggle<cr>]],                     'trouble toggle'        }
-  -- },
+  x = {
+    name = 'trouble'
+  },
 }
 
 wk.register(normal_mappings, normal_mode)
@@ -485,7 +450,11 @@ local autocmd = vim.api.nvim_create_autocmd
 
 autocmd( { 'BufWinEnter', 'WinEnter', 'TermEnter' }, {
   pattern = 'term://*'
-  , command = [[setlocal nonumber norelativenumber]]
+  , callback = function()
+    vim.opt.relativenumber = false
+    vim.opt.number = false
+    vim.opt.signcolumn = 'no'
+  end
 })
 
 autocmd( { 'BufWinEnter', 'WinEnter', 'TermEnter' }, {
@@ -512,7 +481,7 @@ wk.register({
 
   ---  luasnip jumping
   ---
-  ['<c-_>'] = { function() require 'functions.luasnip'.jump()      end , 'snippet jump forward' },
+  ['<c-_>'] = { function() require 'functions.luasnip'.next()      end , 'snippet jump forward' },
   ['<c-y>'] = { function() require 'functions.luasnip'.jump_back() end , 'snippet jump back'    },
 }, {
   mode = 'i'
@@ -520,11 +489,6 @@ wk.register({
 
 local cmd = vim.cmd
 cmd [[inoremap jk <esc>]]
--- cmd [[ autocmd BufWinEnter,WinEnter,BufEnter TelescopePrompt <cmd><lua>vim.opt.timeoutlen = 0<cr> ]]
--- cmd [[ autocmd BufWinEnter,WinEnter,BufEnter TelescopePrompt :inoremap jk <nop>]]
--- cmd [[ autocmd BufWinLeave,WinLeave TelescopePrompt :inoremap jk <esc> ]]
--- cmd [[ autocmd BufWinEnter,WinEnter TelescopePrompt :inoremap hl ]]
--- cmd [[ autocmd BufWinLeave,WinLeave TelescopePrompt :inoremap hl <esc> ]]
 
 -- wk.register({
 --   ['C-_'] = { '<plug>NERDCommenterToggle', 'comment visual block' },

@@ -1,6 +1,6 @@
 require 'lsp.handlers'.setup()
 
-require 'mason'.setup()
+require 'mason'.setup {}
 
 local servers =
   { 'ansiblels'                       -- Ansible

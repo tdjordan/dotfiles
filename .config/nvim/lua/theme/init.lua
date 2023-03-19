@@ -1,9 +1,6 @@
 -- vim.o.background = 'dark'
 -- vim.o.background = 'light'
--- local cmd = vim.api.nvim_command
--- cmd [[
---   colorscheme jellybeans-nvim
--- ]]
+-- vim.cmd.colorscheme { 'jellybeans-nvim' }
 -- vim.g.colors_name = 'melange'
 -- vim.g.colors_name = 'jellybeans-nvim'
 -- vim.g.colors_name = 'oak'

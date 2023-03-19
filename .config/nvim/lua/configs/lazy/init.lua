@@ -4,6 +4,10 @@
 ---
 ----------
 
+---  do not display intro message on startup
+---
+vim.opt.shortmess:append { I = true }
+
 local fn  = vim.fn
 
 local install_path = fn.stdpath('data') .. '/lazy/lazy.nvim'
@@ -27,11 +31,13 @@ vim.opt.rtp:prepend(install_path)
 
 require 'lazy'.setup(
   {
-    {   import = 'plugins'            }
-    , { import = 'plugins.ui'         }
-    -- , { import = 'plugins.lsp'        }
-    , { import = 'plugins.theme'      }
-    , { import = 'plugins.whitespace' }
+    {   import = 'plugins'                    }
+    -- , { import = 'plugins.ui'                 }
+    -- , { import = 'plugins.ui.lualine'         }
+    -- , { import = 'plugins.lsp'                }
+    , { import = 'plugins.theme.colorschemes' }
+    -- , { import = 'plugins.theme.material'     }
+    -- , { import = 'plugins.whitespace'         }
   },
   {
     -- spec = {
@@ -43,7 +49,8 @@ require 'lazy'.setup(
     -- concurrency = 70,
     install = {
       colorscheme = {
-        'material'
+        'kanagawa'
+        -- 'material'
         -- , 'tokyonight'
         -- , 'habamax'
       }
@@ -54,9 +61,10 @@ require 'lazy'.setup(
     --     height = 0.95
     --   }
     -- },
-    -- checker = {
-    --   enabled = true
-    -- },
+    checker = {
+    --   enabled = true,
+      notify = false
+    },
     -- diff = {
     --   cmd = 'diffview.nvim'
     -- },
@@ -64,16 +72,18 @@ require 'lazy'.setup(
     --   cmd = 'terminal_git'
     -- },
     performance = {
-      disabled_plugins = {
-        'gzip',
-        'matchit',
-        -- 'matchparen',
-        'netrwPlugin',
-        'rplugin',
-        'tarPlugin',
-        'tohtml',
-        'tutor',
-        'zipPlugin',
+      rtp = {
+        disabled_plugins = {
+          'gzip',
+          'matchit',
+          -- 'matchparen',
+          'netrwPlugin',
+          'rplugin',
+          'tarPlugin',
+          'tohtml',
+          'tutor',
+          'zipPlugin',
+        }
       }
     }
   }
