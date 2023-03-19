@@ -1,2 +1,6 @@
 .gradle
 salt-server.log
+.project
+.settings
+.spectral.json
+.terraform
