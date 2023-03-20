@@ -129,7 +129,7 @@ local sources = {
       return utils.root_has_file { 'stylua.toml', '.stylua.toml' }
     end
   }
-  -- , b.diagnostics.selene
+  , b.diagnostics.selene
 
   ---  haskell
   ---

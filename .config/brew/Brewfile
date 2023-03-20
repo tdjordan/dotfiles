@@ -238,6 +238,9 @@ brew "cdktf"
 brew "tgenv"
 brew "tfsec"
 
+tap    "hashicorp/tap"
+  brew "hashicorp/tap/consul"
+
 ###  WebAssembly
 ###
 brew "wasmer"
@@ -356,6 +359,7 @@ brew "cdebug"
 brew "kwok"
 brew "copa"
 brew "kube-linter"
+brew "kompose"
 
 ###  Open Policy Agent
 ###
