@@ -150,9 +150,6 @@ return {
   , {
     'cpea2506/one_monokai.nvim'
   }
-  -- , {
-  --   ''
-  -- }
   , {
     'marko-cerovac/material.nvim'
     -- , lazy = false
