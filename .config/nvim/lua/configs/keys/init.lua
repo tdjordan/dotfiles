@@ -1,3 +1,5 @@
+-- stylua: ignore start
+
 -- New <leader> of the band
 -- vim.cmd [[
 --   nnoremap <silent> <space> <nop>
@@ -536,3 +538,5 @@ wk.register({
 
 ---  effect initial timeout
 vim.opt.timeoutlen = 300
+
+-- stylua: ignore end

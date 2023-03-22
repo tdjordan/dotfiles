@@ -8,7 +8,7 @@ vim.diagnostic.config {
 }
 
 local kset = function( mode, l, r, desc )
-  opts        = opts or { noremap = true, silent = true }
+  local opts  = {} or { noremap = true, silent = true }
   opts.desc   = desc
   vim.keymap.set( mode, l, r, opts )
 end

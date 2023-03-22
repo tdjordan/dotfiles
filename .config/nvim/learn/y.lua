@@ -1,4 +1,4 @@
-local shell = require ("shell")
+-- local shell = require ("shell")
 local json = require ("dkjson")
 
 local ls = os.execute("ls")

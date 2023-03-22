@@ -6,10 +6,10 @@ local api = vim.api
 --   -- return nil
 -- end
 
-local check_back_space = function()
-  local line, col = unpack( api.nvim_win_get_cursor(0) )
-  return col == 0 or api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') ~= nil
-end
+-- local check_back_space = function()
+--   local line, col = unpack( api.nvim_win_get_cursor(0) )
+--   return col == 0 or api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') ~= nil
+-- end
 
 local has_words_before = function()
   if api.nvim_buf_get_option( 0, 'buftype' ) == 'prompt' then
@@ -59,8 +59,6 @@ cmp.setup {
           cmp.select_next_item()
       elseif luasnip and luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
-      elseif check_back_space() then
-        fallback()
       elseif has_words_before() then
         cmp.complete()
       else

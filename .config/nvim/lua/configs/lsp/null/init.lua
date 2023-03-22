@@ -124,12 +124,13 @@ local sources = {
 
   ---  lua
   ---
-  , b.formatting.stylua.with {
-    condition = function(utils)
-      return utils.root_has_file { 'stylua.toml', '.stylua.toml' }
-    end
-  }
+  -- , b.formatting.stylua.with {
+  --   condition = function(utils)
+  --     return utils.root_has_file { 'stylua.toml', '.stylua.toml' }
+  --   end
+  -- }
   , b.diagnostics.selene
+  -- , b.formatting.lua_format
 
   ---  haskell
   ---

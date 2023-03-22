@@ -1,4 +1,4 @@
-local make_command = vim.api.nvim_create_user_command
+-- local make_command = vim.api.nvim_create_user_command
 
 -- make_command( 'PackerSync' , function()
 --     require 'plugins'.init_lazy()

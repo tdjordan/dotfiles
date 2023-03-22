@@ -3,11 +3,11 @@ return {
     'vigoux/notifier.nvim'
     , lazy = false
     , enabled = true
-    , opts = {
-      components = {
-        'lsp'
-      }
-    }
+    -- , opts = {
+    --   components = {
+    --     'lsp'
+    --   }
+    -- }
   },
   {
     'j-hui/fidget.nvim'

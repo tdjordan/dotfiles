@@ -74,7 +74,7 @@ set.sidescrolloff  = 5
 --   1 : only if there are at least two windows
 --   2 : always
 --   3 : global status line instead of one per window
-if ( vim.g.started_by_firenvim ) then
+if vim.g.started_by_firenvim then
   set.laststatus     = 0                           -- nvim default : 2
 else
   set.laststatus     = 3                           -- nvim default : 2
