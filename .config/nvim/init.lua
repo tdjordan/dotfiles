@@ -2,4 +2,4 @@
 -- ---
 vim.g.loaded = 1
 
-require("configs.lazy")
+require 'configs.lazy'
