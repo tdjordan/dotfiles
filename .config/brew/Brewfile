@@ -361,6 +361,11 @@ brew "copa"
 brew "kube-linter"
 brew "kompose"
 
+###  Sentry
+###
+tap    "getsentry/tools"
+  brew "sentry-cli"
+
 ###  Open Policy Agent
 ###
 brew "opa"
@@ -465,8 +470,8 @@ brew "grunt-cli"
 brew "bower"
 brew "julia"
 
-tap    "nickgerace/nickgerace"
-  brew "gfold"
+# tap    "nickgerace/nickgerace"
+#   brew "gfold"
 
 ###  Metrics Databases
 ###

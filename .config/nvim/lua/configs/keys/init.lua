@@ -1,4 +1,5 @@
 -- stylua: ignore start
+-- LuaFormatter off
 
 -- New <leader> of the band
 -- vim.cmd [[
@@ -539,4 +540,5 @@ wk.register({
 ---  effect initial timeout
 vim.opt.timeoutlen = 300
 
+-- LuaFormatter on
 -- stylua: ignore end

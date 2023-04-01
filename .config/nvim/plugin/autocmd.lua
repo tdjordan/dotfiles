@@ -86,3 +86,17 @@ autocmd( 'WinLeave', {
     vim.opt.relativenumber = false
   end
 })
+
+---  Enable spell checking for some filetypes
+---
+autocmd( { 'BufRead', 'BufNewFile' }, {
+  pattern = {
+    '*.txt',
+    '*.md',
+    '*.norg'
+  }
+  , callback = function()
+    vim.opt.spell = true
+    -- vim.opt.spelllang = 'en_us'
+  end
+})

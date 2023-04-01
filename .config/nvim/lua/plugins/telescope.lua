@@ -112,12 +112,17 @@ return {
           --   }
           -- },
 
+
           find_files = {
             theme = 'ivy'
             -- , mirror = true
             , layout_config = {
               height = 0.75
             }
+          },
+
+          colorscheme = {
+            enable_preview = true
           },
 
           -- find_files = {

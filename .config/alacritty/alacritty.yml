@@ -98,12 +98,24 @@ window:
     # General application class
     # general: Alacritty
 
-  # Decorations theme variant (Linux/BSD only)
+  # Decorations theme variant
   #
-  # Override the variant of the GTK theme/Wayland client side decorations.
-  # Commonly supported values are `dark` and `light`. Set this to `None` to use
-  # the default theme variant.
-  # decorations_theme_variant: None
+  # Override the variant of the System theme/GTK theme/Wayland client side
+  # decorations. Commonly supported values are `Dark`, `Light`, and `None` for
+  # auto pick-up. Set this to `None` to use the default theme variant.
+  #decorations_theme_variant: None
+
+  # Resize increments
+  #
+  # Prefer resizing window by discrete steps equal to cell dimensions.
+  # resize_increments: false
+
+  # Make `Option` key behave as `Alt` (macOS only):
+  #   - OnlyLeft
+  #   - OnlyRight
+  #   - Both
+  #   - None (default)
+  option_as_alt: Both
 
 # scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -1040,7 +1052,12 @@ cursor:
   # vi_mode_style: None
 
   # Cursor blinking interval in milliseconds.
-  # blink_interval: 750
+  #blink_interval: 750
+
+  # Time after which cursor stops blinking, in seconds.
+  #
+  # Specifying '0' will disable timeout for blinking.
+  # blink_timeout: 5
 
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
@@ -1072,9 +1089,6 @@ shell:
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
 working_directory: None
-
-# Send ESC (\x1b) before characters when alt is pressed.
-alt_send_esc: true
 
 # Offer IPC using `alacritty msg` (unix only)
 # ipc_socket: true
@@ -1191,7 +1205,7 @@ mouse_bindings:
 #    - Key0-Key9
 #
 #    A full list with available key codes can be found here:
-#    https://docs.rs/glutin/*/glutin/event/enum.VirtualKeyCode.html#variants
+#    https://docs.rs/winit/*/winit/event/enum.VirtualKeyCode.html#variants
 #
 #    Instead of using the name of the keys, the `key` field also supports using
 #    the scancode of the desired key. Scancodes have to be specified as a
@@ -1240,6 +1254,7 @@ mouse_bindings:
 #   - Quit
 #       Quit Alacritty.
 #   - ToggleFullscreen
+#   - ToggleMaximized
 #   - SpawnNewInstance
 #       Spawn a new instance of Alacritty.
 #   - CreateNewWindow
@@ -1623,5 +1638,14 @@ key_bindings:
   #   - Trace
   # log_level: Warn
 
+  # Renderer override.
+  #   - glsl3
+  #   - gles2
+  #   - gles2_pure
+  # renderer: None
+
   # Print all received window events.
   # print_events: false
+
+  # Highlight window damage information.
+  # highlight_damage: false

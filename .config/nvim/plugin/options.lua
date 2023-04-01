@@ -97,7 +97,7 @@ set.cursorline     = true                        -- nvim default : off
 --      c = Command-line mode
 --      h = all previous modes when editing a help file
 --      a = all previous modes
---      r = for hit-enter & more-propmt prompts
+--      r = for hit-enter & more-prompt prompts
 -- set.mouse         = 'a'                          -- nvim defaults : 'a'
 set.mouse = 'n'
 
@@ -112,7 +112,7 @@ set.termguicolors = true
 ------
 -- o.complete       = true                         -- nvim doesn't include 'i'
 -- o.display        = lastline                     -- nvim defaults to 'lastline'
- -- o.fileencoding   = 'utf-8'                     -- nvim defaults to ''
+-- o.fileencoding   = 'utf-8'                     -- nvim defaults to ''
 set.encoding       = 'utf-8'                     -- nvim defaults to 'utf-8'
 set.concealcursor  = 'nc'                        -- n:Normal v:Visual i:Insert c:Command ( Modes )
 set.conceallevel   = 2                           -- 'Conceal' hi group / text hidden unless has replacement ch
@@ -168,7 +168,7 @@ set.shell     = '/bin/zsh'                        -- nvim default : $SHELL or sh
 
 -- Insert mode completion options
 --   menu
---   : use a popup menu to show the possible completeions
+--   : use a popup menu to show the possible completions
 --   : does not show if there is only one match
 --   menuone
 --   : use a popup menu also when there is only one match
@@ -251,7 +251,7 @@ set.writebackup = false                          -- nvim default : (+writebackup
 
 -- List of file patterns to skip creating a backup of
 --   nvim default : '/tmp/*,/$TMPDIR/*,$TMP/*,$TEMP/*'
- -- o.backupskip = '/tmp/*,/private/tmp/*'            -- nvim default : see above
+-- o.backupskip = '/tmp/*,/private/tmp/*'            -- nvim default : see above
 -- set.backupskip = '/tmp/*,/private/tmp/*'            -- nvim default : see above
 
 -- When writing a backup file, how should it be done?
@@ -267,7 +267,7 @@ set.swapfile = false                             -- nvim default : on
 
 -- List of directories for swap files
 --   nvim default : (unix) ? '.,~/tmp,/var/tmp,/tmp' : '.,$TEMP,c:\\tmp,c:\\temp'
- -- o.directory = '~/.local/share/nvim/tmp/swap/'  -- nvim default : see above
+-- o.directory = '~/.local/share/nvim/tmp/swap/'  -- nvim default : see above
 
 -- How many to remember?
 --   of:
@@ -307,9 +307,8 @@ set.swapfile = false                             -- nvim default : on
 --noremap N Nzz
 
 ------  Spell
---set spell
---set spelllang=us_en
-set.spelllang = { 'en' }
+-- set.spell = true
+set.spelllang = { 'en_us' }
 
 -- You will have bad experience for diagnostic messages when it's default 4000.
 set.updatetime  = 100

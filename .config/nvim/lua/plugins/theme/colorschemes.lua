@@ -20,6 +20,43 @@ return {
       , 'AlexvZyl/nordic.nvim'
       , 'cpea2506/one_monokai.nvim'
     }
+    , opts = {
+      highlight_overrides = {
+        all = function(colors)
+          -- local prompt  = colors.overlay0
+          -- local prompt  = colors.surface1
+          local prompt  = colors.mantle
+          local results = colors.base
+          -- local results = colors.surface0
+          local preview = colors.crust
+
+          return {
+            ---  Borderless Telescope
+            ---
+            TelescopeTitle         = { fg = prompt,  bold = true  },
+            TelescopePromptNormal  = { bg = prompt                },
+            TelescopePromptBorder  = { fg = prompt,  bg = prompt  },
+            TelescopeResultsNormal = { bg = results               },
+            TelescopeResultsBorder = { fg = results, bg = results },
+            TelescopeResultsTitle  = { bg = results, fg = results },
+            TelescopePreviewNormal = { bg = preview               },
+            TelescopePreviewBorder = { bg = preview, fg = preview },
+            TelescopePreviewTitle  = { bg = preview, fg = preview },
+            TelescopeSelection     = { bg = colors.crust          },
+            -- TelescopeBorder = { fg = colors.none },
+            -- TelescopeSelectionCaret = { fg = colors.blue },
+          }
+        end
+      },
+      integrations = {
+        telescope = true
+        , cmp = true
+        , navic = {
+          enabled = true
+          , custom_bg = "NONE"
+        }
+      }
+    }
     , name = "catppuccin"
   }
   , {
@@ -97,34 +134,34 @@ return {
 
           ---  Navic Support
           ---
-          -- NavicIconsFile = { link = "Directory" },
-          -- NavicIconsModule = { link = "TSInclude" },
-          -- NavicIconsNamespace = { link = "TSInclude" },
-          -- NavicIconsPackage = { link = "TSInclude" },
-          -- NavicIconsClass = { link = "Structure" },
-          -- NavicIconsMethod = { link = "Function" },
-          -- NavicIconsProperty = { link = "TSProperty" },
-          -- NavicIconsField = { link = "TSField" },
-          -- NavicIconsConstructor = { link = "@constructor" },
-          -- NavicIconsEnum = { link = "Identifier" },
-          -- NavicIconsInterface = { link = "Type" },
-          -- NavicIconsFunction = { link = "Function" },
-          -- NavicIconsVariable = { link = "@variable" },
-          -- NavicIconsConstant = { link = "Constant" },
-          -- NavicIconsString = { link = "String" },
-          -- NavicIconsNumber = { link = "Number" },
-          -- NavicIconsBoolean = { link = "Boolean" },
-          -- NavicIconsArray = { link = "Type" },
-          -- NavicIconsObject = { link = "Type" },
-          -- NavicIconsKey = { link = "Keyword" },
-          -- NavicIconsNull = { link = "Type" },
-          -- NavicIconsEnumMember = { link = "TSField" },
-          -- NavicIconsStruct = { link = "Structure" },
-          -- NavicIconsEvent = { link = "Structure" },
-          -- NavicIconsOperator = { link = "Operator" },
-          -- NavicIconsTypeParameter = { link = "Identifier" },
-          -- NavicText = { fg = theme.ui.fg },
-          -- NavicSeparator = { fg = theme.ui.fg },
+          NavicIconsFile = { link = "Directory" },
+          NavicIconsModule = { link = "TSInclude" },
+          NavicIconsNamespace = { link = "TSInclude" },
+          NavicIconsPackage = { link = "TSInclude" },
+          NavicIconsClass = { link = "Structure" },
+          NavicIconsMethod = { link = "Function" },
+          NavicIconsProperty = { link = "TSProperty" },
+          NavicIconsField = { link = "TSField" },
+          NavicIconsConstructor = { link = "@constructor" },
+          NavicIconsEnum = { link = "Identifier" },
+          NavicIconsInterface = { link = "Type" },
+          NavicIconsFunction = { link = "Function" },
+          NavicIconsVariable = { link = "@variable" },
+          NavicIconsConstant = { link = "Constant" },
+          NavicIconsString = { link = "String" },
+          NavicIconsNumber = { link = "Number" },
+          NavicIconsBoolean = { link = "Boolean" },
+          NavicIconsArray = { link = "Type" },
+          NavicIconsObject = { link = "Type" },
+          NavicIconsKey = { link = "Keyword" },
+          NavicIconsNull = { link = "Type" },
+          NavicIconsEnumMember = { link = "TSField" },
+          NavicIconsStruct = { link = "Structure" },
+          NavicIconsEvent = { link = "Structure" },
+          NavicIconsOperator = { link = "Operator" },
+          NavicIconsTypeParameter = { link = "Identifier" },
+          NavicText = { fg = theme.ui.fg },
+          NavicSeparator = { fg = theme.ui.fg },
         }
       end,
       theme = "wave",              -- Load "wave" theme when 'background' option is not set
@@ -146,6 +183,9 @@ return {
   }
   , {
     'AlexvZyl/nordic.nvim'
+    -- , opts = {
+    --   theme = 'onedark',
+    -- }
   }
   , {
     'cpea2506/one_monokai.nvim'

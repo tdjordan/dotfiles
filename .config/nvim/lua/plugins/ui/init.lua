@@ -3,11 +3,11 @@ return {
     'vigoux/notifier.nvim'
     , lazy = false
     , enabled = true
-    -- , opts = {
-    --   components = {
-    --     'lsp'
-    --   }
-    -- }
+    , opts = {
+      -- components = {
+      --   'lsp'
+      -- }
+    }
   },
   {
     'j-hui/fidget.nvim'
@@ -36,7 +36,7 @@ return {
       -- g.better_whitespace_verbosity           = false
       g.better_whitespace_operator            = ''
       g.better_whitespace_filetypes_blacklist =
-      { 'diff'
+        { 'diff'
         , 'gitcommit'
         , 'unite'
         , 'qf'
@@ -48,6 +48,11 @@ return {
   },
   {
     'SmiteshP/nvim-navic'
+    , lazy = false
+    , priority = 1000000
+    , opts = {
+      highlight = true
+    }
   },
   {
     'nvim-lualine/lualine.nvim'
@@ -213,6 +218,12 @@ return {
           , padding = { left = 0, right = 0 }
           , cond = nil
         },
+        navic = {
+          function()
+            -- return require 'nvim-navic'.get_location( { highlight = true } )
+            return require 'nvim-navic'.get_location()
+          end
+        },
         scrollbar = {
           function()
             local current_line = vim.fn.line "."
@@ -249,12 +260,18 @@ return {
         }
       }
 
-      require 'kanagawa'
+      -- require 'kanagawa'
+      -- require 'nordic'
+      -- vim.cmd.colorscheme 'nordic'
+      -- vim.pretty_print(vim.g.colors_name)
       return {
         options = {
           -- theme = 'material-stealth'
           -- theme = 'kanagawa'
-          theme = 'thom-stealth'
+          -- theme = 'thom-stealth'
+          -- theme = 'nordic'
+          theme = 'thom-dynamic'
+          -- theme = vim.g.colors_name
           , component_separators = { left = '', right = '' }
           , section_separators = { left = '', right = '' }
           , disabled_filetypes = {            -- filetypes disabled      for lualine
@@ -289,7 +306,7 @@ return {
           },
           -- lualine_b = {},
           lualine_c = {
-            { require 'nvim-navic'.get_location, cond = require 'nvim-navic'.is_available },
+            components.navic
           },
           lualine_x = {
             components.lsp,
