@@ -23,6 +23,9 @@ brew "bash"
 brew "lemmeknow"
 brew "scriptisto"
 brew "rich-cli"
+brew "gat"
+brew "hck"
+brew "sad"
 
 ###  version control systems
 ###
@@ -360,6 +363,7 @@ brew "kwok"
 brew "copa"
 brew "kube-linter"
 brew "kompose"
+brew "skaffold"
 
 ###  Sentry
 ###
@@ -536,6 +540,7 @@ brew "dufs"
 
 ###  fonts
 ###
+brew "nerdfix"
 brew "cfonts"
 brew "fontforge"
 tap    "homebrew/cask-fonts"
