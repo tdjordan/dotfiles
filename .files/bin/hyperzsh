@@ -24,10 +24,10 @@ cmd=''
 
 for shell in "${shells[@]}" ; do
   # no option runs
-  cmd="$cmd '$shell -c \"exit\"'"
-  [ -x /bin/$shell ]             && cmd="$cmd '/bin/$shell -c \"exit\"'"
-  [ -x /usr/local/bin/$shell ]   && cmd="$cmd '/usr/local/bin/$shell -c \"exit\"'"
-  [ -x /usr/bin/env ]            && cmd="$cmd '/usr/bin/env $shell -c \"exit\"'"
+  # cmd="$cmd '$shell -c \"exit\"'"
+  # [ -x /bin/$shell ]             && cmd="$cmd '/bin/$shell -c \"exit\"'"
+  # [ -x /usr/local/bin/$shell ]   && cmd="$cmd '/usr/local/bin/$shell -c \"exit\"'"
+  # [ -x /usr/bin/env ]            && cmd="$cmd '/usr/bin/env $shell -c \"exit\"'"
 
   # common option runs
   for switch in "${switches[@]}" ; do
@@ -38,11 +38,11 @@ for shell in "${shells[@]}" ; do
   done
 done
 
-for shell in "${brokenLogin[@]}" ; do
-  cmd="$cmd '$shell    -c \"exit\"'"
-  cmd="$cmd '$shell -i -c \"exit\"'"
-  cmd="$cmd '$shell -f -c \"exit\"'"
-done
+# for shell in "${brokenLogin[@]}" ; do
+#   cmd="$cmd '$shell    -c \"exit\"'"
+#   cmd="$cmd '$shell -i -c \"exit\"'"
+#   cmd="$cmd '$shell -f -c \"exit\"'"
+# done
 
 echo "$cmd"
 
