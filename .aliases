@@ -32,8 +32,10 @@ alias lla='${_ls_command} -AlFh ${color}'
 alias h='history'
 alias hsr='history | rg '
 
-alias fdi="fd -H --no-ignore -E '.git/*'"
-alias fdip="fd -H --no-ignore -E '.git/*' --full-path"
+alias fdi="fd -I"
+alias fdip="fd -I --full-path"
+alias fdh="fd -HI -E '.git/*'"
+alias fdhp="fd -HI -E '.git/*' --full-path"
 alias fdp="fd --full-path"
 
 #alias grep='grep --color=auto 2>/dev/null'
@@ -65,7 +67,8 @@ alias blr='brew list | rg '
 
 # cat
 # alias k='cat'
-alias k='rich'
+# alias k='rich'
+alias k='gat'
 alias cg='cargo'
 
 # overload ag
@@ -122,6 +125,9 @@ alias kk='kubectl'
 alias kkc='kubectx'
 alias kkn='kubens'
 
+# kustomize
+alias kit='kustomize build --enable-helm '
+
 # python 3
 alias python=/usr/local/bin/python3.11
 alias pip=/usr/local/bin/pip3.11
@@ -166,3 +172,7 @@ alias gem='/usr/local/opt/ruby/bin/gem'
 ###
 alias tf='terraform'
 alias tfw='tf workspace'
+
+###  fun stuff
+###
+alias wo='which -a'
