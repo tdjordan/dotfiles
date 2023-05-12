@@ -3,13 +3,23 @@ return {
   ---
   {
     'williamboman/mason.nvim'
-    -- , event = 'BufReadPre'
+    , build = ':MasonUpdate'
     , dependencies = {
       'williamboman/mason-lspconfig.nvim',
+      'whoissethdaniel/mason-tool-installer.nvim',
     }
     , config = function()
       require 'configs.lsp.mason'
     end
+  },
+  {
+    'whoissethdaniel/mason-tool-installer.nvim'
+    , opts = {
+      ensure_installed = {
+        'erg'
+        -- , 'helm-ls'
+      }
+    }
   },
   {
     'https://git.sr.ht/~whynothugo/lsp_lines.nvim'

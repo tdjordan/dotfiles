@@ -55,7 +55,7 @@ local sources = {
 
   ---  python
   ---
-  , b.diagnostics.ruff
+  -- , b.diagnostics.ruff
   , b.formatting.black
   -- , b.diagnostics.pylint
 
@@ -191,12 +191,12 @@ local sources = {
 
   ---  editorconfig
   ---
-  , b.diagnostics.editorconfig_checker.with {
-    condition = function (utils)
-      return utils.root_has_file { '.editorconfig' }
-    end
-    , diagnostics_format = 'ed [#{c}] #{m}'
-  }
+  -- , b.diagnostics.editorconfig_checker.with {
+  --   condition = function (utils)
+  --     return utils.root_has_file { '.editorconfig' }
+  --   end
+  --   , diagnostics_format = 'ed [#{c}] #{m}'
+  -- }
 
   ---  git repositories
   ---

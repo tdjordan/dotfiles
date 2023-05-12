@@ -66,7 +66,8 @@ wk.setup {
   --   position = 'bottom',            -- bottom, top
   --   margin = { 1, 0, 1, 0 },        -- extra window margin [top, right, bottom, left]
   --   padding = { 2, 2, 2, 2 },       -- extra window padding [top, right, bottom, left]
-  --   winblend = 0
+  --   winblend = 0,                   -- value between 0-100 0 for fully opaque and 100 for fully transparent
+  --   zindex = 1000,                  -- positive value to position WHichKey above other floating windows
   -- },
   -- layout = {
   --   height = { min = 4, max = 25 }, -- min and max height of the columns
@@ -225,7 +226,7 @@ local normal_mappings = {
       , o = { function() require "telescope.builtin".lsp_outgoing_calls()     end , 'outgoing calls'     }
     }
     , d = { function() require 'telescope.builtin'.diagnostics({bufnr = 0}) end , 'document diagnostics' }
-    , f = { function() vim.lsp.buf.formatting()                             end , 'format'               }
+    , f = { function() vim.lsp.buf.format()                                 end , 'format'               }
     , h = { function() vim.lsp.buf.hover()                                  end , 'hover'                }
     , H = { function() vim.lsp.buf.signature_help()                         end , 'signature help'       }
     , i = { '<cmd>LspInfo<cr>',                                                   'info'                 }

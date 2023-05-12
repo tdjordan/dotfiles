@@ -2,7 +2,7 @@ return {
   {
     'vigoux/notifier.nvim'
     , lazy = false
-    , enabled = true
+    , enabled = false
     , opts = {
       -- components = {
       --   'lsp'

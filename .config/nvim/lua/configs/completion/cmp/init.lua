@@ -121,14 +121,15 @@ cmp.setup {
         tmux = '',
         tags = 'פּ',         -- פּ ﮒ          識 粒 ﰠ 識
         treesitter = '',   --         
-        calc = '珞',        --         匿 溺 駱     ﯰ  ﰂ  落
+        calc = '珞',        --         匿 溺 󰌉  󰍷  󰛲  󰜄  落
+        -- salc = '珞',        --         匿 溺 󰌉  󰍷  󰛲  󰜄  󰐙   🔭  ∭
         -- orgmode = '',
         -- vsnip = '',        --  
         -- look = '',
         emoji = '',
         -- crates = '識',
         -- latex_symbols = "[Latex]",
-        spell = '暈',
+        spell =  '󰓆',
       }
     }
   },

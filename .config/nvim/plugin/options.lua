@@ -47,6 +47,7 @@ set.ruler          = true                        -- nvim default : off
 
 -- Open splits to the right
 set.splitright     = true
+set.splitkeep      = 'screen'
 
 -- Allow window re-use to switch from an unsaved buffer without saving it first.
 -- Allows moltiple file undo history for the same window.

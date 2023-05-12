@@ -16,6 +16,8 @@ local servers =
   , 'docker_compose_language_service' -- Docker Compose
   , 'dotls'                           -- Dot
   , 'elmls'                           -- Elm
+  , 'erg_language_server'             -- Erg
+  -- , 'gleam'                           -- Gleam
   , 'gopls'                           -- go
   , 'graphql'                         -- GraphQL
   , 'gradle_ls'                       -- gradle
@@ -33,6 +35,7 @@ local servers =
   -- , 'nginx_language_server'        -- Nginx
   -- , 'nil_ls'                       -- Nix
   -- , 'nomad_lsp'                    -- Nomad
+  , 'pylyzer'                         -- Python
   , 'pyright'                         -- Python
   , 'raku_navigator'                  -- Raku
   , 'rnix'                            -- Nix
@@ -60,8 +63,7 @@ mason_lspconfig.setup {
 -- local lspconfig = require 'lspconfig'
 local common    = require 'lsp.common'
 
-mason_lspconfig.setup_handlers {
-  function( server_name )
+local lsp_bootstrap = function( server_name )
     local common_options =
       { on_attach    = common.on_attach
       , capabilities = common.capabilities
@@ -79,5 +81,19 @@ mason_lspconfig.setup_handlers {
     -- end
 
     require 'lspconfig'[server_name].setup(opts)
+end
+
+mason_lspconfig.setup_handlers {
+  function( server_name )
+    lsp_bootstrap( server_name )
   end
 }
+
+-- local mason_installer_servers = {
+--   -- 'gleam'                             -- Gleam
+--   -- , 'helm_ls'                         -- Helm
+-- }
+--
+-- for _, server_name in ipairs( mason_installer_servers ) do
+--   lsp_bootstrap( server_name )
+-- end

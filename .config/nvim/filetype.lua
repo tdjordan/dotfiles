@@ -5,6 +5,7 @@ vim.filetype.add {
     , dhall = 'dhall'
     , jsonnet = 'jsonnet'
     , tape = 'tape'
+    , er = 'erg'
     , cue = function( _, _ )
       vim.bo.cindent = false
       vim.bo.autoindent = false

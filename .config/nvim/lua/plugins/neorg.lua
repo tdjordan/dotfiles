@@ -36,12 +36,12 @@ return {
     , opts = {
       load =
         { [ 'core.defaults'       ] = {}
-        , [ 'core.norg.concealer' ] = {
+        , [ 'core.concealer' ] = {
           config = {
             folds = false
           }
         }
-        , [ 'core.norg.dirman'    ] = {
+        , [ 'core.dirman'    ] = {
           config = {
             workspaces = {
               -- my_workspace = '~/neorg',
@@ -51,12 +51,12 @@ return {
             }
           }
         }
-        , [ 'core.norg.journal' ] = {}
-        , [ 'core.norg.completion' ] = {
+        , [ 'core.journal' ] = {}
+        , [ 'core.completion' ] = {
           config = {
             engine = 'nvim-cmp' }
         }
-        -- , [ 'core.norg.qol.toc' ] = {}
+        -- , [ 'core.qol.toc' ] = {}
         -- , [ 'core.integrations.nvim-cmp' ] = {}
         , [ 'core.integrations.telescope' ] = {}
         , [ 'core.export' ] = {}

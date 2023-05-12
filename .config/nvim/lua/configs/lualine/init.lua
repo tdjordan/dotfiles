@@ -198,6 +198,7 @@ require 'lualine'.setup {
         , 'neo-tree'
         , 'dashboard'
         , 'Outline'
+        , 'query'
       }
     }
     -- , always_divide_middle = true       -- when true { left sections constrained if right sections exist }

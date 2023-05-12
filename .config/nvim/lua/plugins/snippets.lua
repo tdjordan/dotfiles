@@ -12,13 +12,13 @@ return {
   --   'hrsh7th/vim-vsnip-integ'
   --   , event = 'InsertEnter'
   -- },
-  {
-    'rafamadriz/friendly-snippets'
-    -- , dependencies = {
-    --   'hrsh7th/vim-vsnip'
-    -- }
-    -- , event = 'InsertEnter'
-  },
+  -- {
+  --   'rafamadriz/friendly-snippets'
+  --   , dependencies = {
+  --     'hrsh7th/vim-vsnip'
+  --   }
+  --   , event = 'InsertEnter'
+  -- },
   -- { 'Shougo/neosnippet' },
   -- { 'Shougo/neosnippet-snippets' },
   -- { 'honza/vim-snippets' },

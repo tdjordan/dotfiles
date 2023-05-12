@@ -57,18 +57,22 @@ return {
 
           ---  Actions
           ---
-          map( { 'n', 'v' }, '<leader>hs', '<cmd>Gitsigns stage_hunk<CR>', 'stage hunk' )
-          map( { 'n', 'v' }, '<leader>hr', '<cmd>Gitsigns reset_hunk<CR>', 'reset hunk' )
+          local line = vim.fn.line
 
-          map( 'n', '<leader>hS', gs.stage_buffer,                              'stage buffer'    )
-          map( 'n', '<leader>hu', gs.undo_stage_hunk,                           'undo hunk stage' )
-          map( 'n', '<leader>hR', gs.reset_buffer,                              'reset buffer'    )
-          map( 'n', '<leader>hp', gs.preview_hunk,                              'preview hunk'    )
-          map( 'n', '<leader>hb', function() gs.blame_line { full = true } end, 'blame line'      )
-          map( 'n', '<leader>tb', gs.toggle_current_line_blame,                 'blame line'      )
-          map( 'n', '<leader>hd', gs.diffthis,                                  'diff this'       )
-          map( 'n', '<leader>hD', function() gs.diffthis( '~' ) end,            'diff this ~'     )
-          map( 'n', '<leader>td', gs.toggle_deleted,                            'toggle deleted'  )
+          map( 'n', '<leader>hs', gs.stage_hunk,                                         'stage hunk'      )
+          map( 'n', '<leader>hr', gs.reset_hunk,                                         'reset hunk'      )
+          map( 'v', '<leader>hs', function() gs.stage_hunk { line("."), line("v") } end, 'stage hunk'      )
+          map( 'v', '<leader>hs', function() gs.reset_hunk { line("."), line("v") } end, 'reset hunk'      )
+          map( 'v', '<leader>hr', gs.reset_hunk,                                         'reset hunk'      )
+          map( 'n', '<leader>hS', gs.stage_buffer,                                       'stage buffer'    )
+          map( 'n', '<leader>hu', gs.undo_stage_hunk,                                    'undo hunk stage' )
+          map( 'n', '<leader>hR', gs.reset_buffer,                                       'reset buffer'    )
+          map( 'n', '<leader>hp', gs.preview_hunk,                                       'preview hunk'    )
+          map( 'n', '<leader>hb', function() gs.blame_line { full = true } end,          'blame line'      )
+          map( 'n', '<leader>tb', gs.toggle_current_line_blame,                          'blame line'      )
+          map( 'n', '<leader>hd', gs.diffthis,                                           'diff this'       )
+          map( 'n', '<leader>hD', function() gs.diffthis( '~' ) end,                     'diff this ~'     )
+          map( 'n', '<leader>td', gs.toggle_deleted,                                     'toggle deleted'  )
 
           ---  Text object
           ---

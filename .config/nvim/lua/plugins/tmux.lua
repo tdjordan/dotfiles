@@ -1,6 +1,16 @@
 ---  tmux
 ---
 return {
+  {
+    'willothy/flatten.nvim'
+    , lazy = false
+    , opts = {
+      nest_if_no_args = false
+      , window = {
+        open = "alternate"
+      }
+    }
+  },
   -- {
   --   'tmux-plugins/vim-tmux'
   -- },
