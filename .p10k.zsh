@@ -56,9 +56,9 @@
     nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
     nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
     # node_version          # node.js version
-    # go_version            # go version (https://golang.org)
+    go_version            # go version (https://golang.org)
     # hermit
-    rust_version          # rustc version (https://www.rust-lang.org)
+    rust_version            # rustc version (https://www.rust-lang.org)
     # dotnet_version        # .NET version (https://dotnet.microsoft.com)
     # php_version           # php version (https://www.php.net/)
     # laravel_version       # laravel php framework version (https://laravel.com/)
@@ -111,7 +111,14 @@
   )
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
-  typeset -g POWERLEVEL9K_MODE=powerline
+  # typeset -g POWERLEVEL9K_MODE=powerline
+  # typeset -g POWERLEVEL9K_MODE=nerdfont-complete
+  # typeset -g POWERLEVEL9K_MODE=awesome-fontconfig
+  typeset -g POWERLEVEL9K_MODE=nerdfont-v3
+  # typeset -g POWERLEVEL9K_MODE=awesome-mapped-fontconfig
+  # typeset -g POWERLEVEL9K_MODE=flat
+  # typeset -g POWERLEVEL9K_MODE=compatible
+  # typeset -g POWERLEVEL9K_MODE=ascii
   # When set to `moderate`, some icons will have an extra space after them. This is meant to avoid
   # icon overlap when using non-monospace fonts. When set to `none`, spaces are not added.
   typeset -g POWERLEVEL9K_ICON_PADDING=none
@@ -977,6 +984,7 @@
   typeset -g POWERLEVEL9K_RUST_VERSION_PROJECT_ONLY=true
   # Custom icon.
   # typeset -g POWERLEVEL9K_RUST_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # typeset -g POWERLEVEL9K_RUST_VERSION_VISUAL_IDENTIFIER_EXPANSION='/ue3ff'
 
   ###############[ dotnet_version: .NET version (https://dotnet.microsoft.com) ]################
   # .NET version color.
