@@ -46,6 +46,7 @@ brew "pre-commit"
 brew "codeql"
 brew "difftastic"
 brew "sapling"
+brew "convco"
 
 ###  base build tools
 brew "cmake"
