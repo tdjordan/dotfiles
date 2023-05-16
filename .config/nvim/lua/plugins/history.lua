@@ -15,9 +15,6 @@ return {
       { "<leader>gdc", "<cmd>DiffviewClose<cr>",       desc = "git diff close"        },
       { "<leader>gdh", "<cmd>DiffviewFileHistory<cr>", desc = "git diff file history" }
     }
-    , dependencies = {
-      'nvim-lua/plenary.nvim'
-    }
     , config = function()
       require 'configs.diffview'
     end
