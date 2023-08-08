@@ -37,3 +37,28 @@ dockerimage_lint() {
 terraform-compliance() {
   docker run --rm -v $(pwd):/target -i -t eerkunt/terraform-compliance "$@"
 }
+
+excalidraw-cli() {
+  docker run --rm -it -v "$PWD":/data excalidraw-cli "$@"
+}
+
+asciidoctor() {
+  docker run -it --rm -v .:/documents/ asciidoctor/docker-asciidoctor asciidoctor "$@"
+}
+
+asciidoctor-reducer() {
+  docker run -it --rm -v .:/documents/ asciidoctor/docker-asciidoctor asciidoctor-reducer "$@"
+}
+
+asciidoctor-pdf() {
+  docker run -it --rm -v .:/documents/ asciidoctor/docker-asciidoctor asciidoctor-pdf "$@"
+}
+
+asciidoctor-epub3() {
+  docker run -it --rm -v .:/documents/ asciidoctor/docker-asciidoctor asciidoctor-epub3 "$@"
+}
+
+asciidoctor-revealjs() {
+  docker run -it --rm -v .:/documents/ asciidoctor/docker-asciidoctor asciidoctor-revealjs "$@"
+}
+
