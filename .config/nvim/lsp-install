@@ -1,14 +1,15 @@
 #!/bin/zsh
 # set -x
 
-yarn=(
-  neovim
-)
+# yarn=(
+#   neovim
+# )
 
 ###  yarn retired
   # yaml-language-server
 
 pnpm=(
+  neovim
   cspell-cli
   vscode-langservers-extracted
   # @cucumber/language-server
@@ -95,8 +96,8 @@ brew=(
 
 ###  pip retired
 
-time yarn global add ${yarn// / }
-time yarn global upgrade --latest
+# time yarn global add ${yarn// / }
+# time yarn global upgrade --latest
 
 time pnpm i  -g --loglevel error ${pnpm// / }
 time pnpm up -g --loglevel error
