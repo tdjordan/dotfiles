@@ -26,6 +26,8 @@ brew "rich-cli"
 brew "gat"
 brew "hck"
 brew "sad"
+brew "notcursors"
+brew "mdcat"
 
 ###  version control systems
 ###
@@ -45,8 +47,10 @@ brew "pre-commit"
 # brew "gitlint"
 brew "codeql"
 brew "difftastic"
+brew "riff"
 brew "sapling"
 brew "convco"
+brew "legitify"
 
 ###  base build tools
 brew "cmake"
@@ -77,6 +81,10 @@ brew "nap"
 brew "dust"
 brew "procs"
 brew "grex"
+brew "dysk"
+brew "fw"
+brew "tzdiff"
+brew "killport"
 
 ###  cli testing
 ###
@@ -92,6 +100,7 @@ brew "jaq"
 brew "jql"
 tap    "jmespath/jmespath"
   brew "jmespath/jmespath/jp"
+brew "fastgron"
 
 ###  artifact repository
 ###
@@ -139,6 +148,7 @@ brew "glow"
 brew "luvit"
 # brew "stylua"
 brew "busted"
+brew "lune"
 
 ###  nix
 ###
@@ -365,6 +375,23 @@ brew "copa"
 brew "kube-linter"
 brew "kompose"
 brew "skaffold"
+# tap    "clowdhaus/taps"
+  brew "clowdhaus/taps/eksup"
+cask "devpod"
+brew "cilium-cli"
+tap    "stelligent/tap"
+  brew "config-lint"
+brew "cmctl"
+tap    "stefanprodan/tap"
+  brew "timoni"
+brew "slsa-verifier"
+brew "notation"
+brew "kor"
+brew "chaoskube"
+brew "karmadactl"
+brew "kubeseal"
+brew "diffoci"
+brew "xeol"
 
 ###  Sentry
 ###
@@ -376,6 +403,10 @@ tap    "getsentry/tools"
 brew "opa"
 brew "gator"
 brew "hof"
+
+###  API Discovery
+###
+cask "recipeui"
 
 ###  Argo
 ###
@@ -441,6 +472,7 @@ brew "totp-cli"
 brew "vhs"
 brew "cpuid"
 whalebrew "gawk"
+brew "unar"
 
 ###  Documentation Tools
 ###
@@ -539,6 +571,10 @@ brew "trivy"
 ###
 brew "dufs"
 
+###  Artificial Intellegence
+###
+brew "ollama"
+
 ###  fonts
 ###
 brew "nerdfix"
@@ -568,5 +604,8 @@ tap    "homebrew/cask-fonts"
   cask "font-ligature-symbols"
   cask "font-port-lligat-sans"
   cask "font-lilex-nerd-font"
+  cask "font-intel-one-mono"
+  cask "font-intone-mono-nerd-font"
+  cask "font-material-symbols"
 tap    "epk/epk"
   cask "font-sf-mono-nerd-font"
