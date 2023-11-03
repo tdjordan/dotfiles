@@ -3,7 +3,11 @@
 os=$(uname)
 
 env_osx() {
-  _ls_command="gls"
+  if command -v gls &> /dev/null; then
+    _ls_command="gls"
+  else
+    _ls_command="ls"
+  fi
   case "$_ls_command" in
     ls)  color='-G'           ;;
     gls) color="--color=auto" ;;
@@ -127,6 +131,62 @@ alias kkn='kubens'
 
 # kustomize
 alias kit='kustomize build --enable-helm '
+kb() {
+  kustomize build "$@"
+}
+kc() {
+  kustomize cfg "$@"
+}
+kcg() {
+  kc grep "$@"
+}
+kct() {
+  target="$1" ; shift
+  kustomize cfg tree "$target" "$@"
+}
+kcte() {
+  target=$1 ; shift
+  kct "environments/$target" "$@"
+}
+alias krp='kc grep'
+kbc() {
+  target=$1 ; shift
+  kb "$target" | kc grep "$@"
+}
+kbce() {
+  target=$1 ; shift
+  kbc "environments/$target" "$@"
+}
+kbte() {
+  target=$1 ; shift
+  kb "environments/$target" | kct - "$@"
+}
+kbet() {
+  target=$1 ; shift
+  project=$1 ; shift
+  kbe "$target" "$project" | kct - "$@"
+}
+kbeta() {
+  target=$1 ; shift
+  project=$1 ; shift
+  kbe "$target" "$project" | kct - --all
+}
+kbi() {
+  kbe "$1" "$2" | kcg kind=Ingress
+}
+kbil() {
+  kbc "$1" "kind=Ingress"
+}
+kbile() {
+  kbil "environments/$1"
+}
+kbe() {
+  kbce "$1" "metadata.name=$2"
+}
+kca() {
+  kbe "$1" "$2" | kct - --all
+}
+
 
 # python 3
 alias python=/usr/local/bin/python3.11
@@ -138,7 +198,7 @@ alias vf='vifm'
 ## yabai
 #  restat yabai quickly
 #  # ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
-alias reup='launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"'
+alias reup='launchctl kickstart -k "gui/${UID}/com.koekeishiya.yabai"'
 
 # clangd
 #alias clangd='/usr/local/Cellar/llvm/10.0.1_1/bin/clangd'
@@ -175,4 +235,7 @@ alias tfw='tf workspace'
 
 ###  fun stuff
 ###
-alias wo='which -a'
+alias wo='command -v'
+alias wow='which -a'
+alias woa='which -a'
+alias we='watchexec'
