@@ -29,3 +29,14 @@ If you omit the second range number, it matches until the last:
 	four:five:six
 
 cut is cool, isn't it?
+
+# First
+## Second
+### Third
+#### Fourth
+##### Fifth
+###### Sixth
+####### Seventh
+######## Eighth
+######### Ninth
+########## Tenth

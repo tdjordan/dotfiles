@@ -45,6 +45,8 @@ local sidebars = {
   'qf'
   , 'help'
   , 'query'
+  , 'tsplayground'
+  , ''
 }
 local no_side_column = autogrp( 'NoSideColumn', { clear = true } )
 autocmd( { 'BufWinEnter', 'WinEnter', 'WinLeave', 'BufNewFile', 'BufReadPost' }, {
@@ -81,20 +83,16 @@ local disabled_filetypes = {
   , 'octo_panel'
   , 'query'
   , 'tsplayground'
+  , 'git'
   , ''
 }
-autocmd( 'WinEnter', {
+autocmd( { 'WinEnter', 'BufWinEnter' }, {
   pattern = '*'
   , callback = function()
-    -- vim.pretty_print(vim.bo.filetype)
+    -- vim.print( vim.bo.filetype )
     if vim.tbl_contains(disabled_filetypes, vim.bo.filetype) then
-    -- if vim.bo.filetype == 'NvimTree' then
       return
     end
-    -- vim.print( "buffer: " .. vim.bo.buftype )
-    -- if not vim.tbl_contains(sidebars_buffers, vim.bo.buftype) then
-    --   return
-    -- end
     vim.opt.relativenumber = true
   end
   , group = no_side_column
@@ -103,7 +101,6 @@ autocmd( 'WinLeave', {
   pattern = '*'
   , callback = function()
     if vim.tbl_contains(disabled_filetypes, vim.bo.filetype) then
-    -- if vim.bo.filetype == 'NvimTree' then
       return
     end
     vim.opt.relativenumber = false

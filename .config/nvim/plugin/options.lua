@@ -319,7 +319,7 @@ set.shortmess:append { c = true }
 
 -- time to wait for a mapped sequence to complete ( in milliseconds )
 -- set.timeoutlen = 10
-set.timeoutlen = 300
+-- set.timeoutlen = 300
 
 -- always show signcolumns
 set.signcolumn = 'yes'

@@ -12,6 +12,8 @@ vim.filetype.add {
       vim.bo.smartindent = true
       return 'cue'
     end
+    , tf = 'terraform'
+    , env = 'jproperties'
     -- example function
     -- , h = function()
     --   if vim.fn.search( '\\C^#include <[^>.]\\+>$', 'nw' ) >= 1 then
@@ -30,5 +32,6 @@ vim.filetype.add {
       return 'gitcommit'
     end
     , ['.lua-format'] = 'yaml'
+    , ['docker-compose.yaml'] = 'docker-compose'
   }
 }
