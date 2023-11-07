@@ -114,13 +114,7 @@ local sources = {
 
   ---  github actions
   ---
-  , b.diagnostics.actionlint.with {
-    runtime_condition = function()
-      local current_file = vim.api.nvim_buf_get_name(0)
-      local regex = vim.regex( ".github/workflows" )
-      return regex:match_str( current_file )
-    end
-  }
+  , b.diagnostics.actionlint
 
   ---  lua
   ---
@@ -139,9 +133,9 @@ local sources = {
   ---  text files
   ---
   -- , b.diagnostics.textlint
-  , b.diagnostics.vale.with {
-    diagnostics_format = '(#{s}) #{m}'
-  }
+  -- , b.diagnostics.vale.with {
+  --   diagnostics_format = '(#{s}) #{m}'
+  -- }
 
   ---  gitsigns
   ---
@@ -260,7 +254,7 @@ local sources = {
 
   ---  .env files
   ---
-  , b.diagnostics.dotenv_linter
+  -- , b.diagnostics.dotenv_linter
 }
 
 nls.setup {

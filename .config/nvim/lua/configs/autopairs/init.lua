@@ -26,8 +26,16 @@ npairs.setup {
   --   , java = false      -- do not check treesitter on java
   -- }
   -- , fast_wrap = {
-  --   map = '<D-e>'
-  -- }
+  --   map             = '<M-e>',
+  --   chars           = { '{', '[', '(', '"', "'" },
+  --   pattern         = [=[[%'%"%>%]%)%}%,]]=],
+  --   end_key         = '$',
+  --   keys            = 'qwertyuiopzxcvbnmasdfghjkl',
+  --   check_comma     = true,
+  --   manual_position = true,
+  --   highlight       = 'Search',
+  --   highlight_grey  = 'Comment'
+  -- },
 }
 
 -- require 'nvim-treesitter.configs'.setup {

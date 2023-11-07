@@ -115,6 +115,9 @@ return {
 
           find_files = {
             theme = 'ivy'
+            , prompt_prefix = '    '
+            -- , prompt_prefix = '🔍  '
+            -- , prompt_prefix = '🔍'
             -- , mirror = true
             , layout_config = {
               height = 0.75

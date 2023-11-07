@@ -372,11 +372,27 @@ local normal_mappings = {
   ---
   t = {
     name = 'toggle'
-    , h = { '<cmd>TSHighlightCapturesUnderCursor<cr>',                        'highlight captures'     }
-    , i = { function() require 'indent_blankline.commands'.toggle(true) end , 'indentation guides'     }
-    , k = { function() require 'nvim-tree.api'.tree.toggle() end ,            'file tree sidebar'      }
-    , t = { '<cmd>split term://$SHELL<cr>',                                   'terminal'               }
-    , s = { '<cmd>TSPlaygroundToggle<cr>',                                    'tree-sitter playgournd' }
+    -- , h = { '<cmd>TSHighlightCapturesUnderCursor<cr>',             'highlight captures'     }
+    , h = { function() vim.show_pos() end,                         'highlight captures'     }
+    , H = { function() vim.print( vim.inspect_pos() ) end,         'all items at cursor'    }
+    , i = { function()
+      -- vim.cmd 'IBLToggle'
+      local ibl = require 'ibl'
+      local conf = require 'ibl.config'
+
+      if ibl.initialized then
+        vim.print('updated')
+        -- ibl.update {
+        --   enabled = not conf.get_config( -1 ).enabled
+        -- }
+      else
+        vim.print('hello')
+        -- require 'configs.indentation.blankline'
+      end
+    end ,   'indentation guides'     }
+    , k = { function() require 'nvim-tree.api'.tree.toggle() end , 'file tree sidebar'      }
+    , t = { '<cmd>split term://$SHELL<cr>',                        'terminal'               }
+    , s = { function() vim.treesitter.inspect_tree() end,          'tree-sitter playgournd' }
   },
 
   ---
@@ -539,7 +555,7 @@ wk.register({
 })
 
 ---  effect initial timeout
-vim.opt.timeoutlen = 300
+-- vim.opt.timeoutlen = 300
 
 -- LuaFormatter on
 -- stylua: ignore end

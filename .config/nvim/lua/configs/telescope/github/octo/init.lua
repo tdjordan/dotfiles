@@ -1,4 +1,6 @@
 require"octo".setup {
+  use_local_fs = false,                    -- use local files on right side of reviews
+  enable_builtin = false,                  -- shows a list of builtin actions when no action is provided
   default_remote = {"upstream", "origin"}; -- order to try remotes
   ssh_aliases = {},                        -- SSH aliases. e.g. `ssh_aliases = {["github.com-work"] = "github.com"}`
   reaction_viewer_hint_icon = "";         -- marker for user reactions
@@ -129,6 +131,7 @@ require"octo".setup {
       select_prev_entry = { lhs = "[q", desc = "move to next changed file" },
       close_review_tab = { lhs = "<C-c>", desc = "close review tab" },
       toggle_viewed = { lhs = "<leader><space>", desc = "toggle viewer viewed state" },
+      goto_file = { lhs = "gf", desc = "go to file" },
     },
     file_panel = {
       next_entry = { lhs = "j", desc = "move to next changed file" },

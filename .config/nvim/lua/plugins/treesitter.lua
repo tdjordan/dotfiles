@@ -1,19 +1,19 @@
----  tree sitter
----
 return {
   {
     'nvim-treesitter/playground'
     , cmd = {
-      'TSPlaygroundToggle',
       'TSHighlightCapturesUnderCursor'
     }
   },
   {
     'nvim-treesitter/nvim-treesitter'
+    -- , enabled = false
     -- , lazy = false
     , build = ':TSUpdate'
     -- , build = function()
-    --   require 'nvim-treesitter.install'.update()
+    --   local installer = require 'nvim-treesitter.install'
+    --   installer.compilers = { 'gcc-13' }
+    --   installer.update()
     -- end
     , event = { 'BufReadPost' }
     -- , event = 'VeryLazy'
@@ -31,15 +31,7 @@ return {
     }
     , config = function()
       vim.schedule(function()
-        local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
-
-        parser_config.cue = {
-          install_info = {
-            url = "https://github.com/eonpatapon/tree-sitter-cue",
-            files = { "src/parser.c", "src/scanner.c" },
-            branch = "main"
-          }
-        }
+        require 'nvim-treesitter.install'.compilers = { 'gcc-13' }
 
         require 'nvim-treesitter.configs'.setup {
           ensure_installed = 'all',

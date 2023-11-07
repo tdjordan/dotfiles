@@ -2,9 +2,9 @@
 ---
 local sign_column = function()
   local signs = {
-    Error = "",
+    Error = "󰅚",
     Warn = "",
-    Hint = "",
+    Hint = "󰌶",
     Info = ""
   }
 
@@ -30,6 +30,7 @@ local sign_column = function()
 end
 
 local setup = function()
+  vim.lsp.log_levels = 'OFF'
   sign_column()
 
   ---  diagnostics

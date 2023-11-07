@@ -1,7 +1,13 @@
 require 'plenary.job'
 
 local crates = require 'crates'
-crates.setup()
+crates.setup {
+  src = {
+    cmp = {
+      enabled = true
+    }
+  }
+}
 
 -- vim.cmd [[
 --   autocmd BufReadPost Cargo.toml lua require 'cmp'.setup.buffer {sources = {{ name = 'crates' } } }

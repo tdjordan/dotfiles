@@ -47,7 +47,7 @@ return {
         end, desc = 'todos'
       },
     }
-    , config = true
+    , opts = {}
   },
 
   ---  style windows with different colorschemes

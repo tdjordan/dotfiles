@@ -54,6 +54,7 @@ end
 
 local common_capabilities = function()
   local capabilities = require 'cmp_nvim_lsp'.default_capabilities()
+  -- local capabilities = {}
 
   -- capabilities.textDocument.completion.completionItem.documentFormating = {
   --   'markdown'

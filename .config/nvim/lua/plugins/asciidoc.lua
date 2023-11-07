@@ -1,0 +1,45 @@
+return {
+  -- {
+  --   'elianiva/asciidoclive.nvim'
+  --   -- , build = 'cd ./app & npm ci'
+  --   , build = 'cd ./app & npm install'
+  --   , ft = 'asciidoc'
+  --   , config = function()
+  --     require 'asciidoclive'.setup {
+  --       port = 3000,
+  --       host = '127.0.0.1',
+  --       css = ''
+  --     }
+  --   end
+  -- }
+  -- {
+  --   'tani/vim-glance'
+  --   , ft='asciidoc'
+  --   , dependencies = {
+  --     "vim-denops/denops.vim",
+  --   }
+  -- }
+  -- {
+  --   'marioortizmanero/adoc-pdf-live.nvim'
+  --   , ft='asciidoc'
+  --   -- , opts = {
+  --   --   style_regex = ''
+  --   -- }
+  --   , config = true
+  -- }
+  -- INFO: this one works
+  --       but does not follow scrolling
+  -- {
+  --   'tigion/nvim-asciidoc-preview'
+  --   , ft='asciidoc'
+  -- }
+  -- INFO: this one kind of works brokenly
+  --       but does not follow scrolling
+  -- {
+  --   "shuntaka9576/preview-asciidoc.vim"
+  --   , ft = 'asciidoc'
+  --   , dependencies = {
+  --     "vim-denops/denops.vim",
+  --   }
+  -- }
+}

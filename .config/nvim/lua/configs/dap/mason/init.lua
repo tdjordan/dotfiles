@@ -1,7 +1,7 @@
 local mason = require 'mason-nvim-dap'
 
-local dap_adapters =
-  { 'bash'
+local dap_adapters = {
+  'bash'
 }
 
 mason.setup {

@@ -1,7 +1,7 @@
 require 'nvim-tree'.setup {
   -- auto_reload_on_write              = true,
   -- disable_netrw                     = false,
-  -- hijack_cursor                     = false,
+  -- hijack_cursor                     = true,
   -- hijack_netrw                      = true,
   -- hijack_unamed_buffer_when_opening = false,
   -- ignore_buffer_on_setup            = false,
@@ -14,7 +14,6 @@ require 'nvim-tree'.setup {
   -- reload_on_bufenter                = false,
   -- respect_buf_cwd                   = false,
   -- on_attach                         = 'disabled', -- function(bufnr). If nil, will use the deprecated mapping strategy
-  -- remove_keymaps                    = false,      -- boolean (disable totally or not) or list of key (lhs)
   -- select_prompts                    = false,
   -- view = {
   --   centralize_selection         = false,
@@ -26,13 +25,6 @@ require 'nvim-tree'.setup {
   --   number                       = false,
   --   relativenubmer               = false,
   --   signcolumn                   = 'yes',
-  --   mappings = {
-  --     custom_only = false,
-  --     list = {
-  --       -- user mappings go here
-  --       { key = 'u', action = 'dir_up' },
-  --     },
-  --   },
   --   float = {
   --     enable = false,
   --     quit_on_focus_loss = true,
@@ -150,10 +142,10 @@ require 'nvim-tree'.setup {
     show_on_open_dirs = true,
     -- debounce_delay = 50,
     icons = {
-      hint = "",    -- hint = "",
+      hint = "󰌶",    -- hint = "",
       info = "",    -- info = "",
       warning = "", -- warning = "",
-      error = "",   -- error = "",
+      error = "󰅚",   -- error = "",
     }
   },
   -- filters = {

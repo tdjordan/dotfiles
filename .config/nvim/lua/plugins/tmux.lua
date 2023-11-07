@@ -4,6 +4,7 @@ return {
   {
     'willothy/flatten.nvim'
     , lazy = false
+    , priority = 1001
     , opts = {
       nest_if_no_args = false
       , window = {
@@ -54,7 +55,7 @@ return {
         -- system clipboard by tmux
         -- redirect_to_clipboard = false,
 
-        -- ofset controls where register sync starts
+        -- offset controls where register sync starts
         --   eg: offset 2 lets registers 0 & 1 untouchec
         -- register_offset = 0,
 

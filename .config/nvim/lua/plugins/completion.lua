@@ -25,30 +25,30 @@ return {
       --
       -- default: {}
       symbol_map = {
-        Text = "",
-        Method = "",
-        Function = "",
+        Text = "󰉿",
+        Method = "󰆧",
+        Function = "󰊕",
         Constructor = "",
-        Field = "ﰠ",
+        Field = "󰜢",
         Variable = "",
-        Class = "ﴯ",
+        Class = "󰠱",
         Interface = "",
         Module = "",
-        Property = "ﰠ",
-        Unit = "塞",
-        Value = "",
+        Property = "󰜢",
+        Unit = "󰑭",
+        Value = "󰎠",
         Enum = "",
-        Keyword = "",
+        Keyword = "󰌋",
         Snippet = "",
-        Color = "",
-        File = "",
-        Reference = "",
-        Folder = "",
+        Color = "󰏘",
+        File = "󰈙",
+        Reference = "󰈇",
+        Folder = "󰉋",
         EnumMember = "",
-        Constant = "",
-        Struct = "פּ",
+        Constant = "󰏿",
+        Struct = "󰙅",
         Event = "",
-        Operator = "",
+        Operator = "󰆕",
         TypeParameter = ""
       },
     }
@@ -61,13 +61,9 @@ return {
     -- , event = 'CursorHold'
     , event = 'InsertEnter'
     , dependencies = {
-      {
-        'hrsh7th/cmp-nvim-lsp'
-        , dependencies = {
-          'rafamadriz/friendly-snippets'
-          , 'L3MON4D3/LuaSnip'
-        }
-      }
+      'hrsh7th/cmp-nvim-lsp'
+      , 'rafamadriz/friendly-snippets'
+      , 'L3MON4D3/LuaSnip'
       , 'hrsh7th/cmp-buffer'
       , 'hrsh7th/cmp-nvim-lsp-signature-help'
       , 'hrsh7th/cmp-path'

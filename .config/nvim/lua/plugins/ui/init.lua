@@ -2,12 +2,13 @@ return {
   {
     'vigoux/notifier.nvim'
     , lazy = false
-    , enabled = false
+    , enabled = true
     , opts = {
       -- components = {
       --   'lsp'
       -- }
-    }
+      -- component_name_recall = true
+    },
   },
   {
     'j-hui/fidget.nvim'
@@ -305,8 +306,11 @@ return {
             components.mode
           },
           -- lualine_b = {},
+          -- lualine_c = {
+          --   components.navic
+          -- },
           lualine_c = {
-            components.navic
+            { 'navic', color_correction = 'dynamic' }
           },
           lualine_x = {
             components.lsp,
@@ -352,5 +356,29 @@ return {
         }
       }
     end
+  },
+  {
+    'folke/twilight.nvim'
+    , cmd = {
+      'Twilight',
+      'TwilightEnable'
+    }
+    , keys = {
+      {
+        '<leader>tl', function()
+          require 'twilight.view'.toggle()
+        end, desc = 'toggle twilight'
+      },
+    }
+    , opts = {}
+  },
+  {
+    'linguini1/pulse.nvim'
+    , version = '*'
+    , cmd = {
+      'PulseEnable',
+      'PulseList'
+    }
+    , config = true
   }
 }

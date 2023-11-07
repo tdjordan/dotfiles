@@ -46,6 +46,7 @@ local servers =
   , 'terraformls'                     -- terraform
   , 'tflint'                          -- terraform
   , 'tsserver'                        -- typescript
+  -- , 'vale_ls'                         -- vale
   , 'vimls'                           -- Vim
   -- , 'visualforce_ls'               -- sfdx
   -- , 'vtsls'                        -- typescript
@@ -57,6 +58,7 @@ local mason_lspconfig = require 'mason-lspconfig'
 
 mason_lspconfig.setup {
   ensure_installed       = servers,
+  -- ensure_installed       = {},
   automatic_installation = true
 }
 

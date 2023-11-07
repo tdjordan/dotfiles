@@ -16,7 +16,7 @@ return {
       , 'LunarVim/horizon.nvim'
       -- , 'rebelot/kanagawa.nvim'
       , 'sainnhe/everforest'
-      , 'rose-pine/neovim'
+      , { 'rose-pine/neovim', name = 'rose-pine' }
       , 'AlexvZyl/nordic.nvim'
       , 'cpea2506/one_monokai.nvim'
     }
@@ -45,19 +45,105 @@ return {
             TelescopeSelection     = { bg = colors.crust          },
             -- TelescopeBorder = { fg = colors.none },
             -- TelescopeSelectionCaret = { fg = colors.blue },
+
+            ---  SignColumn
+            ---
+            -- SignColumn = { bg = prompt },
           }
         end
       },
       integrations = {
-        telescope = true
-        , cmp = true
-        , navic = {
-          enabled = true
-          , custom_bg = "NONE"
-        }
+        -- aerial = false,
+        alpha = false,
+        -- barber = false,
+        -- barbecue = {
+        --   dim_dirname    = true, -- directory name is dimmed by default
+        --   bold_basename  = true,
+        --   dim_context    = false,
+        --   alt_background = false,
+        -- },
+        -- beacon   = false,
+        -- coc_nvim = false,
+        -- cmp       = true,
+        dashboard = false,
+        -- dap = {
+        --   enabled   = true,
+        --   enable_ui = true
+        -- },
+        -- dropbar = {
+        --   enabled    = false,
+        --   color_mode = false
+        -- },
+        -- fern       = false
+        -- fidget     = false
+        flash = false,
+        -- gitgutter  = false,
+        -- gitsigns   = true,
+        -- harpoon    = false,
+        -- hop        = false,
+        -- illuminate = {
+        --   enabled = true,
+        --   lsp     = false
+        -- },
+        -- indent_blankline = {
+        --   enabled               = true,
+        --   colored_indent_levels = false
+        -- },
+        -- leap        = false,
+        -- lightspeed  = false,
+        lsp_trouble = true,
+        -- lspsaga     = false,
+        -- markdown    = true,
+        mason       = true,
+        -- mini        = false,
+        -- native_lsp  = {
+        --   enabled = true,
+        --   virtual_text = {
+        --     errors      = { 'italic' },
+        --     hints       = { 'italic' },
+        --     warnings    = { 'italic' },
+        --     information = { 'italic' },
+        --   },
+        --   underlines = {
+        --     errors      = { 'underline' },
+        --     hints       = { 'underline' },
+        --     warnings    = { 'underline' },
+        --     information = { 'underline' },
+        --   },
+        --   inlay_hints = {
+        --     background = true,
+        --   },
+        -- },
+        navic = {
+          enabled   = true,
+          custom_bg = 'NONE'
+        },
+        neotree            = true,
+        -- neogit            = false,
+        -- neotest           = false,
+        notify             = true,
+        notifier           = true,
+        -- nvimtree          = true,
+        octo               = true,
+        -- oveseer           = false,
+        -- pounce            = false,
+        rainbow_delimiters = false,
+        -- sandwich          = false,
+        -- semantic_tokens   = true,
+        symbols_outline    = true,
+        -- telekasten        = false,
+        telescope = {
+          enabled = true,
+          style   = 'nvchad'
+        },
+        -- treesitter         = true,
+        treesitter_context = true,
+        -- vim_sneak          = false,
+        -- vimwiki            = false,
+        which_key          = true
       }
     }
-    , name = "catppuccin"
+    , name = 'catppuccin'
   }
   , {
     'folke/tokyonight.nvim'
@@ -128,6 +214,10 @@ return {
           PmenuSbar = { bg = theme.ui.bg_m1 },
           PmenuThumb = { bg = theme.ui.bg_p2 },
 
+          ---  SignColumn
+          ---
+          SignColumn = { bg = theme.ui.bg },
+
           ---  WinSeparator
           ---
           WinSeparator = { fg = theme.ui.bg },
@@ -177,6 +267,7 @@ return {
   }
   , {
     'rose-pine/neovim'
+    , name = 'rose-pine'
     , config = function()
       require 'theme.rose-pine'
     end
@@ -276,16 +367,16 @@ return {
         }
         , disable =
           { colored_cursor = true       -- no colored cursor
-            , borders        = true       -- no boders between vertical splits
-            , background     = false      -- set background
-            , term_colors    = false      -- set terminal colors
-            , eob_lines      = true       -- no eob lines
+            , borders      = true       -- no boders between vertical splits
+            , background   = false      -- set background
+            , term_colors  = false      -- set terminal colors
+            , eob_lines    = true       -- no eob lines
           }
         , high_visibility =
           { lighter = true              -- set high contrast text for lighter style
             , darker  = false             -- no  high contrast text for darker  style
           }
-        , lualine_style = 'stealth'     -- lualine style ( 'stealth' or 'default' )
+        -- , lualine_style = 'stealth'     -- lualine style ( 'stealth' or 'default' )
         , async_loading = true          -- faster startup ( on by default )
         , custom_colors = nil           -- override default colors
         , custom_highlights = {         -- override default highlights

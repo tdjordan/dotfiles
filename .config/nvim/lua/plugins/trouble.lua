@@ -13,33 +13,38 @@ return {
     keys = {
       {
         '<leader>xd', function()
-          vim.cmd.TroubleToggle { 'document_diagnostics' }
+          require 'trouble'.open()
         end, desc = 'document  diagnostics'
       },
       {
         '<leader>xx', function()
-          vim.cmd.TroubleToggle { 'document_diagnostics' }
+          require 'trouble'.open( 'document_diagnostics' )
         end, desc = 'document  diagnostics (trouble)'
       },
       {
         '<leader>xX', function()
-          vim.cmd.TroubleToggle { 'workspace_diagnostics' }
+          require 'trouble'.open( 'workspace_diagnostics' )
         end, desc = 'workspace diagnostics (trouble)'
       },
       {
         '<leader>xw', function()
-          vim.cmd.TroubleToggle { 'workspace_diagnostics' }
+          require 'trouble'.open( 'workspace_diagnostics' )
         end, desc = 'workspace diagnostics'
       },
       {
-        '<leader>xL', function()
-          vim.cmd.TroubleToggle { 'loclist' }
+        '<leader>xl', function()
+         require 'trouble'.open( 'loclist' )
         end, desc = 'location  list (trouble)'
       },
       {
         '<leader>xq', function()
-          vim.cmd.TroubleToggle { 'quickfix' }
+          require 'trouble'.open( 'quickfix' )
         end, desc = 'quickfix  list (trouble)'
+      },
+      {
+        'gR', function()
+          require 'trouble'.open( 'lsp_references' )
+        end, desc = 'lsp references'
       },
       -- {
       --   '<leader>xQ', function()

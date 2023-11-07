@@ -55,12 +55,13 @@ require 'lazy'.setup(
         -- , 'habamax'
       }
     },
-    -- ui = {
+    ui = {
     --   size = {
     --     width  = 0.95,
     --     height = 0.95
     --   }
-    -- },
+      pills = false
+    },
     checker = {
     --   enabled = true,
       notify = false

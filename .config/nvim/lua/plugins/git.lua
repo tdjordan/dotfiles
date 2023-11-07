@@ -1,5 +1,28 @@
 return {
   {
+    'theprimeagen/git-worktree.nvim'
+    , dependencies = {
+      'nvim-lua/plenary.nvim'
+      , 'nvim-telescope/telescope.nvim'
+    }
+    , keys = {
+      {
+        '<leader>gw', function()
+          require 'telescope'.extensions.git_worktree.git_worktrees()
+        end, desc = 'git worktree list'
+      },
+      {
+        '<leader>gW', function()
+          require 'telescope'.extensions.git_worktree.create_git_worktree()
+        end, desc = 'git worktree create'
+      }
+    }
+    , config = function()
+      require 'git-worktree'.setup {}
+      require 'telescope'.load_extension( 'git_worktree' )
+    end
+  },
+  {
     'pwntester/octo.nvim'
     , cmd = 'Octo'
     , dependencies = {
