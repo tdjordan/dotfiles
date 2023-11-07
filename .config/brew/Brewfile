@@ -566,6 +566,7 @@ tap    "anchore/syft"
 tap    "anchore/grype"
   brew "grype"
 brew "trivy"
+brew "bomber"
 
 ###  file servers
 ###
