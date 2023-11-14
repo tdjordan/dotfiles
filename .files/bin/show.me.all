@@ -8,7 +8,7 @@
 # Identify all remote branches
 git br -a                   \
 | sed 's;remotes/origin/;;' \
-| grep -v HEAD              \
+| rg -v "^\s*(HEAD|main|master)" \
 | grep -v main            \
 | sort | uniq | sort -r     \
 | sed 's;\*;;g'             \
@@ -22,7 +22,8 @@ array=$(cat /tmp/branch.list)
 # Checkout folders given
 while read -r v; do
   echo "*** Processing : $v"
-  git co $v
+  git co "$v"
 done <<< "$array"
 
-git co main
+# shellcheck disable=2046
+git checkout $( git branch | rg "( main| master)" | head -1 )
