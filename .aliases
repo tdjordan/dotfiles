@@ -125,6 +125,9 @@ alias ciu='config status -s -u '
 [ -f ~/.aliases.local ] && . ~/.aliases.local
 
 # kubernetes
+alias xp='crossplane'
+
+# kubernetes
 alias kk='kubectl'
 alias kkc='kubectx'
 alias kkn='kubens'
