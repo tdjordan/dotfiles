@@ -30,6 +30,7 @@
   up = pull --prune
   gr = !cd $(git rev-parse --show-toplevel)
   d  = difftool
+  dt = difftool
   deleted = log --diff-filter=D --summary
   di = diff
   dif = diff

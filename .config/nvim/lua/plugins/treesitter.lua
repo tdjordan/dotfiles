@@ -28,6 +28,7 @@ return {
     , dependencies = {
       'nvim-treesitter/nvim-treesitter-refactor'
       , 'nvim-treesitter/nvim-treesitter-textobjects'
+      , 'HiPhish/rainbow-delimiters.nvim'
     }
     , config = function()
       vim.schedule(function()

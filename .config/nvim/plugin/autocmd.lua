@@ -46,7 +46,7 @@ local sidebars = {
   , 'help'
   , 'query'
   , 'tsplayground'
-  , ''
+  -- , ''
 }
 local no_side_column = autogrp( 'NoSideColumn', { clear = true } )
 autocmd( { 'BufWinEnter', 'WinEnter', 'WinLeave', 'BufNewFile', 'BufReadPost' }, {
@@ -85,6 +85,7 @@ local disabled_filetypes = {
   , 'tsplayground'
   , 'git'
   , ''
+  , 'Outline'
 }
 autocmd( { 'WinEnter', 'BufWinEnter' }, {
   pattern = '*'

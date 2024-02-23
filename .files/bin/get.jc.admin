@@ -1,3 +1,4 @@
 #!/bin/zsh
 
-printf $(kubectl get secret --namespace tools ${1} -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo
+printf $(kubectl get secret --namespace tools ${1} -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode)
+echo

@@ -132,9 +132,13 @@ return {
     , dependencies = {
       'nvim-lua/plenary.nvim'
     }
-    , config = function()
-      require 'configs.completion.cmp.crates'
-    end
+    , opts = {
+      src = {
+        cmp = {
+          enabled = true
+        }
+      }
+    }
   },
   {
     'joshzcold/cmp-jenkinsfile'

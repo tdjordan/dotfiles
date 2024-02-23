@@ -5,7 +5,8 @@ require 'mason'.setup {}
 local servers =
   { 'ansiblels'                       -- Ansible
   -- , 'ansible-lint'                    -- TODO Linters
-  , 'awk_ls'                          -- AWK
+  , 'ast_grep'                        -- Linter & Formatter based on AST
+  -- , 'awk_ls'                          -- AWK
   , 'bashls'                          -- bash
   , 'clangd'                          -- C++
   , 'cmake'                           -- CMake

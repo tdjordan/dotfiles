@@ -28,6 +28,7 @@ brew "hck"
 brew "sad"
 brew "notcursors"
 brew "mdcat"
+brew "argc"
 
 ###  version control systems
 ###
@@ -140,6 +141,9 @@ brew "neovim", args: ["HEAD"]
 cask "neovide"
 brew "typos-cli"
 
+###  zed
+brew "zed"
+
 ###  doc formats
 ###
 brew "glow"
@@ -193,6 +197,7 @@ tap    "koekeishiya/formulae"
   brew "yabai"
   brew "skhd"
 cask "raycast"
+cask "kit"
 
 ###  note takers
 ###
@@ -311,12 +316,14 @@ brew "duckscript"
 ###
 brew "cargo-watch"
 brew 'watchexec'
+brew 'retry'
 
 ###  Python Language
 ###
 brew "poetry"
 # brew "black"
 # brew "ruff"
+# brew "uv"
 
 ###  Ruby Language
 ###
@@ -394,6 +401,19 @@ brew "karmadactl"
 brew "kubeseal"
 brew "diffoci"
 brew "xeol"
+brew "kuttl"
+brew "oslo"
+brew "sloth"
+brew "octant"
+brew "virtctl"
+brew "k8sgpt"
+brew "popeye"
+brew "glasskube"
+
+###  OCI Containers
+###
+brew "apko"
+brew "ko"
 
 ###  Sentry
 ###
@@ -465,6 +485,7 @@ tap    "jenkins-x/jx"
 cask "vscodium"
 brew "cowsay"
 brew "dotenv-linter"
+brew "dotter"
 
 ###  system utilities
 ###
@@ -572,7 +593,7 @@ brew "bomber"
 
 ###  file servers
 ###
-brew "dufs"
+# brew "dufs"
 
 ###  Artificial Intellegence
 ###
@@ -611,5 +632,8 @@ tap    "homebrew/cask-fonts"
   cask "font-intone-mono-nerd-font"
   cask "font-material-symbols"
   cask "font-monaspace"
+  cask "font-playwrite-co"
+  cask "font-zed-mono"
+  cask "font-zed-sans"
 tap    "epk/epk"
   cask "font-sf-mono-nerd-font"

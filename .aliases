@@ -120,17 +120,25 @@ alias c='config '
 alias ca='config add '
 alias cci='config commit -v '
 alias ciu='config status -s -u '
+alias c.d='config difftool '
 
 # shellcheck disable=1090
 [ -f ~/.aliases.local ] && . ~/.aliases.local
 
 # kubernetes
 alias xp='crossplane'
+alias fls='flux reconcile source git '
+alias flh='flux reconcile source helm '
+alias flk='flux reconcile kustomization '
 
 # kubernetes
 alias kk='kubectl'
 alias kkc='kubectx'
 alias kkn='kubens'
+alias kko='kubectl get -o name '
+kkf() {
+  kubectl get -o name "$@" | xargs -P 10 kubectl patch -p '{"metadata":{"finalizers": null}}' --type merge
+}
 
 # kustomize
 alias kit='kustomize build --enable-helm '

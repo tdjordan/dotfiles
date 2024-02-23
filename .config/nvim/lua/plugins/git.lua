@@ -53,6 +53,7 @@ return {
         current_line_blame = true,
         current_line_blame_opts = {
           delay = 350
+          -- , virt_text_pos = 'right_align'
         },
         on_attach = function( bufnr )
           local gs = package.loaded.gitsigns
@@ -85,8 +86,7 @@ return {
           map( 'n', '<leader>hs', gs.stage_hunk,                                         'stage hunk'      )
           map( 'n', '<leader>hr', gs.reset_hunk,                                         'reset hunk'      )
           map( 'v', '<leader>hs', function() gs.stage_hunk { line("."), line("v") } end, 'stage hunk'      )
-          map( 'v', '<leader>hs', function() gs.reset_hunk { line("."), line("v") } end, 'reset hunk'      )
-          map( 'v', '<leader>hr', gs.reset_hunk,                                         'reset hunk'      )
+          map( 'v', '<leader>hr', function() gs.reset_hunk { line("."), line("v") } end, 'reset hunk'      )
           map( 'n', '<leader>hS', gs.stage_buffer,                                       'stage buffer'    )
           map( 'n', '<leader>hu', gs.undo_stage_hunk,                                    'undo hunk stage' )
           map( 'n', '<leader>hR', gs.reset_buffer,                                       'reset buffer'    )

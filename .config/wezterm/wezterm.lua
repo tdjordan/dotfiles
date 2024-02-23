@@ -86,7 +86,8 @@ return {
     {
       intensity = 'Bold',
       font = wt.font(
-        'VictorMono Nerd Font',
+        -- 'Fira Code',
+        'Victor Mono',
         {
           italic = false,
           weight = 'Medium'
@@ -96,7 +97,7 @@ return {
     {
       italic = true,
       font = wt.font(
-        'VictorMono Nerd Font',
+        'Victor Mono',
         {
           -- italic = true,
           style = 'Italic'
@@ -108,7 +109,7 @@ return {
       intensity = 'Bold',
       italic = true,
       font = wt.font(
-        'VictorMono Nerd Font',
+        'Victor Mono',
         {
           italic = true,
           weight = 'Bold'

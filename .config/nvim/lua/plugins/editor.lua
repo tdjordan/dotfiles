@@ -65,16 +65,36 @@ return {
     }
     , opts = {
       enabled = true
+      , indent = {
+        char = ' '
+        , smart_indent_cap = true
+        , repeat_linebreak = true
+      }
       , scope = {
         enabled = true
         , char = '¦'
         , show_start = true
         , show_end = true
+        , show_exact_scope = true
         , injected_languages = true
-        , highlight = 'IblScope'
+        , highlight = {
+          -- 'IblScope'
+          'RainbowDelimiterRed',
+          'RainbowDelimiterYellow',
+          'RainbowDelimiterBlue',
+          'RainbowDelimiterOrange',
+          'RainbowDelimiterGreen',
+          'RainbowDelimiterViolet',
+          'RainbowDelimiterCyan',
+        }
         , priority = 1024
         , include = {
-          node_type = {}
+          node_type = {
+            lua = {
+              'return_statement',
+              'table_constructor'
+            }
+          }
         }
         , exclude = {
           language = {}
@@ -93,9 +113,19 @@ return {
         }
       }
     }
-    -- , config = function()
-    --   require 'ibl'.setup {}
-    -- --   require 'configs.indentation.blankline'
-    -- end
+    , config = function(_, _opts)
+      local hooks = require 'ibl.hooks'
+
+      hooks.register(
+        hooks.type.WHITESPACE,
+        hooks.builtin.hide_first_space_indent_level
+      )
+      hooks.register(
+        hooks.type.SCOPE_HIGHLIGHT,
+        hooks.builtin.scope_highlight_from_extmark
+      )
+
+      require 'ibl'.setup(_opts)
+    end
   }
 }
