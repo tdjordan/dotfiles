@@ -1,0 +1,4 @@
+###  shell utilities
+###
+tap    "koekeishiya/formulae"
+  brew "yabai"
