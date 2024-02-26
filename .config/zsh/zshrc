@@ -170,7 +170,7 @@ function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # source "$HOME/.ops/scripts/bash_completion.sh"
 ### End of Zinit's installer chunk
-eval "$(zoxide init --cmd cd zsh)"
+if command -v zoxide &>/dev/null ; then eval "$(zoxide init --cmd cd zsh)" ; fi
 ulimit -n 4096
 
 # bun completions
