@@ -8,8 +8,8 @@ export PATH=$PATH:/usr/local/opt/llvm/bin
 export PATH=$PATH:/usr/local/opt/ruby/bin
 export PATH=$PATH:~/.bun/bin
 export BUN_INSTALL=~/.bun
-export PATH=$PATH:~/.gem/ruby/3.2.0/bin
-export PATH=$PATH:/usr/local/lib/ruby/gems/3.2.0/bin
+export PATH=$PATH:~/.gem/ruby/3.3.0/bin
+export PATH=$PATH:/usr/local/lib/ruby/gems/3.3.0/bin
 # export PATH=$PATH:~/.gem/ruby/3.1.0/bin
 # export PATH=$PATH:/usr/local/lib/ruby/gems/3.1.0/bin
 # export PATH=$PATH:~/.gem/ruby/2.6.0/bin
@@ -27,8 +27,9 @@ export PATH=$PATH:~/.files/bin
 export PATH=$PATH:~/go/bin
 export PATH=$PATH:/usr/local/opt/icu4c/bin
 export PATH=$PATH:/usr/local/opt/icu4c/sbin
-export PATH=$PATH:/Library/TeX/texbin
-export PATH=$PATH:/opt/X11/bin
+[ -d /Library /TeX/texbin ] && export PATH=$PATH:/Library/TeX/texbin
+[ -d /opt/X11/bin ]         && export PATH=$PATH:/opt/X11/bin
+[ -d /opt/homebrew/brew ]   && export PATH=$PATH:/opt/homebrew/brew
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # pnpm
