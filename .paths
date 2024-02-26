@@ -29,7 +29,7 @@ export PATH=$PATH:/usr/local/opt/icu4c/bin
 export PATH=$PATH:/usr/local/opt/icu4c/sbin
 export PATH=$PATH:/Library/TeX/texbin
 export PATH=$PATH:/opt/X11/bin
-export PATH=$PATH:/opt/homebrew/brew
+export PATH=$PATH:/opt/homebrew/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # pnpm
