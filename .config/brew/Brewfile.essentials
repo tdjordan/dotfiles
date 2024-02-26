@@ -2,6 +2,13 @@
 brew "mas"
 tap "buo/cask-upgrade"
 
+###  terminals
+###
+cask "kitty"
+cask "wezterm"
+cask "alacritty"
+brew "tmux"
+
 ###  terminal enhancements
 ###
 brew "coreutils"
