@@ -513,7 +513,7 @@ brew "gimme-aws-creds"
 #
 ###  Project Tools
 ###
-mas "monday.com", id: 1298450641
+# mas "monday.com", id: 1298450641
 #
 # ###  Graphic Editors
 # ###
