@@ -308,10 +308,10 @@ brew "htop"
 # brew "stylish-haskell"
 # brew "buf"
 #
-# ###  Rust Language
-# ###
-# brew "rust"
-# brew "rustup-init"
+###  Rust Language
+###
+brew "rust"
+brew "rustup-init"
 # brew "cargo-nextest"
 # brew "cargo-outdated"
 # brew "cargo-audit"
@@ -324,9 +324,10 @@ brew "htop"
 # brew 'watchexec'
 # brew 'retry'
 #
-# ###  Python Language
-# ###
+###  Python Language
+###
 # brew "poetry"
+brew "pipx"
 # # brew "black"
 # # brew "ruff"
 # # brew "uv"
