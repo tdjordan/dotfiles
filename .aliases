@@ -200,8 +200,8 @@ kca() {
 
 
 # python 3
-alias python=/usr/local/bin/python3.11
-alias pip=/usr/local/bin/pip3.11
+alias python=/usr/local/bin/python3.12
+alias pip=/usr/local/bin/pip3.12
 
 # vifm
 alias vf='vifm'
