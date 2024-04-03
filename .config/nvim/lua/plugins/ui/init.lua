@@ -258,6 +258,16 @@ return {
         encoding = {
           "o:encoding"
         },
+        get_schema = {
+          function()
+            local schema = require 'yaml-companion'.get_buf_schema(0)
+            -- vim.print(schema.result)
+            if schema.result[1].name == 'none' then
+              return ''
+            end
+            return schema.result[1].name
+          end
+        },
         lsp = {
           function(msg)
             msg = msg or ''
@@ -406,6 +416,7 @@ return {
           lualine_x = {
             components.lsp,
             components.treesitter,
+            components.get_schema,
             'filetype',
           },
           lualine_y = {

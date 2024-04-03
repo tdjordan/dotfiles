@@ -2,6 +2,19 @@ return {
   ---  Language Protocol Server - LSP
   ---
   {
+    'someone-stole-my-name/yaml-companion.nvim'
+    , opts = {
+      builtin_matchers = {
+        kubernetes = { enabled = true }
+      }
+    }
+    , config = function(_, opts)
+      local cfg = require 'yaml-companion'.setup(opts)
+      require 'lspconfig'['yamlls'].setup(cfg)
+      require 'telescope'.load_extension('yaml_schema')
+    end
+  },
+  {
     'williamboman/mason.nvim'
     , build = ':MasonUpdate'
     , dependencies = {
@@ -12,7 +25,7 @@ return {
           {
             'b0o/schemastore.nvim'
             , version = false
-          }
+          },
         }
       },
       { 'whoissethdaniel/mason-tool-installer.nvim'
@@ -20,7 +33,6 @@ return {
           ensure_installed = {
             'erg'
             , 'vale-ls'
-            -- , 'helm-ls'
           }
         }
       }
@@ -40,7 +52,8 @@ return {
     'nvimtools/none-ls.nvim'
     , dependencies = {
       'williamboman/mason.nvim',
-      'jay-babu/mason-null-ls.nvim'
+      'jay-babu/mason-null-ls.nvim',
+      'gbprod/none-ls-shellcheck.nvim'
     }
     , event = { 'BufReadPost', 'BufNewFile' }
     , config = function()

@@ -63,6 +63,7 @@ brew "git"
 # brew "convco"
 # brew "legitify"
 # brew "biodiff"
+brew "gitu"
 #
 ###  base build tools
 brew "cmake"
@@ -108,6 +109,7 @@ brew "hyperfine"
 ###  json utils
 ###
 brew "jq"
+brew "jc"
 # brew "jaq"
 # brew "jql"
 # tap    "jmespath/jmespath"
@@ -642,5 +644,6 @@ tap    "homebrew/cask-fonts"
   cask "font-playwrite-co"
   cask "font-zed-mono"
   cask "font-zed-sans"
+  cask "font-briem-hand"
 tap    "epk/epk"
   cask "font-sf-mono-nerd-font"

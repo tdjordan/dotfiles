@@ -10,6 +10,13 @@ local server_options = {
   docker_compose_language_service = {
     filetypes = { '!yaml', 'docker-compose' }
   },
+  ['helm-ls'] = {
+    settings = {
+      yamls = {
+        path = 'yaml-language-server'
+      }
+    }
+  },
   jsonls = {
     settings = {
       json = {
@@ -64,7 +71,13 @@ local server_options = {
   yamlls = {
     settings = {
       yaml = {
-        hover = true
+        redhat = { telemetry = { enabled = false } }
+        , hover = true
+        , format = { enabled = true }
+        , style = {
+          flowSequence = 'forbid'
+        }
+        -- , editor = { formatOnType = false }
         , completion = true
         , validate = true
         , schemaStore = {

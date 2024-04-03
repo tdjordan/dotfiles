@@ -33,5 +33,16 @@ vim.filetype.add {
     end
     , ['.lua-format'] = 'yaml'
     , ['docker-compose.yaml'] = 'docker-compose'
+    , ['~/.kube/config'] = 'yaml'
+  },
+  pattern = {
+    ['.*/templates/.*%.yaml'] = 'helm'
+    , ['.*/templates/.*%.yml'] = 'helm'
+    , ['.*/templates/.*%.tpl'] = 'helm'
+    , ['.*%.gotmpl'] = 'helm'
+    , ['helmfile.*.yaml'] = 'helm'
+    , ['helmfile.*.yml'] = 'helm'
+    , ['.*/tasks/.*.yaml'] = 'yaml.ansible'
+    , ['.*/tasks/.*.yml'] = 'yaml.ansible'
   }
 }

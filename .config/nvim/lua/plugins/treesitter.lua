@@ -234,7 +234,8 @@ return {
             enable = true
           },
           indent = {
-            enable = true
+            enable = true,
+            disable = { 'yaml' }
           },
           -- pairs = {
           --   enable = true,

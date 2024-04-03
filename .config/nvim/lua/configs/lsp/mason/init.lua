@@ -5,7 +5,7 @@ require 'mason'.setup {}
 local servers =
   { 'ansiblels'                       -- Ansible
   -- , 'ansible-lint'                    -- TODO Linters
-  , 'ast_grep'                        -- Linter & Formatter based on AST
+  -- , 'ast_grep'                        -- Linter & Formatter based on AST
   -- , 'awk_ls'                          -- AWK
   , 'bashls'                          -- bash
   , 'clangd'                          -- C++
@@ -23,6 +23,7 @@ local servers =
   , 'graphql'                         -- GraphQL
   , 'gradle_ls'                       -- gradle
   , 'groovyls'                        -- groovy
+  , 'helm_ls'                         -- helm
   -- , 'hls'                          -- Haskell
   -- , 'jdtls'                        -- Java
   -- , 'jq-lsp'                       -- jq
@@ -67,23 +68,23 @@ mason_lspconfig.setup {
 local common    = require 'lsp.common'
 
 local lsp_bootstrap = function( server_name )
-    local common_options =
-      { on_attach    = common.on_attach
-      , capabilities = common.capabilities
-      , flags        = common.flags
-    }
+  local common_options =
+    { on_attach    = common.on_attach
+    , capabilities = common.capabilities
+    , flags        = common.flags
+  }
 
-    local opts = vim.tbl_deep_extend( "force",
-      {},
-      common_options,
-      require 'lsp.server.options'[server_name] or {}
-    )
+  local opts = vim.tbl_deep_extend( "force",
+    {},
+    common_options,
+    require 'lsp.server.options'[server_name] or {}
+  )
 
-    -- if server_name == 'yamlls' then
-    --   vim.pretty_print(opts)
-    -- end
+  -- if server_name == 'yamlls' then
+  --   vim.print(opts)
+  -- end
 
-    require 'lspconfig'[server_name].setup(opts)
+  require 'lspconfig'[server_name].setup(opts)
 end
 
 mason_lspconfig.setup_handlers {

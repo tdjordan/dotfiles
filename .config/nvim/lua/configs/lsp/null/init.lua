@@ -1,5 +1,8 @@
 -- local common = require 'lsp.common'
 local nls = require 'null-ls'
+nls.register(require('none-ls-shellcheck.diagnostics'))
+nls.register(require('none-ls-shellcheck.code_actions'))
+
 local b = nls.builtins
 
 local command_resolver = require 'null-ls.helpers.command_resolver'
@@ -7,20 +10,21 @@ local command_resolver = require 'null-ls.helpers.command_resolver'
 local sources = {
   ---  bash
   ---
+  -- TODO: find a replacement
   -- b.diagnostics.shellcheck
-  b.diagnostics.shellcheck.with {
-    diagnostics_format = '[#{c}] #{m}',
-    diagnostic_config = {
-      underline = true,
-      signs = true,
-      severity_sort = true,
-      update_in_insert = false,
-      virtual_text = false,
-      -- virtual_line = false
-    }
-  }
-  , b.code_actions.shellcheck
-  , b.formatting.shfmt
+  -- b.diagnostics.shellcheck.with {
+  --   diagnostics_format = '[#{c}] #{m}',
+  --   diagnostic_config = {
+  --     underline = true,
+  --     signs = true,
+  --     severity_sort = true,
+  --     update_in_insert = false,
+  --     virtual_text = false,
+  --     -- virtual_line = false
+  --   }
+  -- }
+  -- , b.code_actions.shellcheck
+  b.formatting.shfmt
   , b.formatting.shellharden
   , b.hover.printenv
 
@@ -66,7 +70,8 @@ local sources = {
 
   ---  javascript
   ---
-  , b.diagnostics.standardjs
+  -- TODO: find a replacement
+  -- , b.diagnostics.standardjs
 
   ---  kotlin
   ---
@@ -110,11 +115,12 @@ local sources = {
   ---  xml
   ---
   , b.diagnostics.tidy
-  , b.formatting.xmllint
+  -- TODO: find a replacement
+  -- , b.formatting.xmllint
 
   ---  github actions
   ---
-  , b.diagnostics.actionlint
+  -- , b.diagnostics.actionlint
 
   ---  lua
   ---
@@ -128,7 +134,8 @@ local sources = {
 
   ---  haskell
   ---
-  , b.formatting.stylish_haskell
+  -- TODO: find a replacement
+  -- , b.formatting.stylish_haskell
 
   ---  text files
   ---
@@ -170,7 +177,7 @@ local sources = {
     , filetypes = {
       'html'
       , 'json'
-      , 'yaml'
+      -- , 'yaml'
       , 'markdown'
     }
   }
@@ -181,7 +188,8 @@ local sources = {
 
   ---  generic formatting
   ---
-  , b.formatting.dprint
+  -- TODO: find a replacement
+  -- , b.formatting.dprint
 
   ---  editorconfig
   ---
@@ -207,7 +215,8 @@ local sources = {
     diagnostics_format = '(#{s}) #{m}'
   }
   , b.formatting.codespell
-  , b.diagnostics.misspell
+  -- TODO: find a replacement
+  -- , b.diagnostics.misspell
 
   ---  trail space
   ---

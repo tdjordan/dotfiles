@@ -232,7 +232,7 @@ alias tn='t new -t'
 ###  jenkins
 ###
 alias js='jen s'
-alias jc='jen co'
+# alias jc='jen co'
 
 ###  ruby
 ###
