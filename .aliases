@@ -59,6 +59,7 @@ alias e.='nautilus . 2>/dev/null'
 alias d='docker'
 alias dm='docker-machine'
 docker_select() {
+  # shellcheck disable=2046
   eval $(docker-machine env "$1")
 }
 alias dms='docker_select'
@@ -110,6 +111,7 @@ alias lo='_lo '
 
 # search dot files
 agdf_imp() {
+  # shellcheck disable=2048,2086,2046,2012
   ag $* $(ls -dFL .* | ag -v "(/)$" | ag -v "(\*)$" | ag -v history)
 }
 alias agdf='agdf_imp '
@@ -132,6 +134,8 @@ alias flh='flux reconcile source helm '
 alias flk='flux reconcile kustomization '
 
 # kubernetes
+# shellcheck disable=2046,2139
+alias kubectl=$( if command -v kubecolor ; then echo kubecolor ; else echo kubectl ; fi)
 alias kk='kubectl'
 alias kkc='kubectx'
 alias kkn='kubens'

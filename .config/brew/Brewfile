@@ -418,6 +418,7 @@ brew "cilium-cli"
 # brew "k8sgpt"
 # brew "popeye"
 # brew "glasskube"
+brew "kubecolor"
 #
 # ###  OCI Containers
 # ###
@@ -603,6 +604,10 @@ brew "gimme-aws-creds"
 # ###  file servers
 # ###
 # # brew "dufs"
+#
+# ###  encryption
+# ###
+brew "rage"
 #
 # ###  Artificial Intellegence
 # ###
