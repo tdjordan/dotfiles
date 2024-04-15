@@ -136,6 +136,7 @@ alias flk='flux reconcile kustomization '
 # kubernetes
 # shellcheck disable=2046,2139
 alias kubectl=$( if command -v kubecolor ; then echo kubecolor ; else echo kubectl ; fi)
+compdef kubecolor=kubectl
 alias kk='kubectl'
 alias kkc='kubectx'
 alias kkn='kubens'
