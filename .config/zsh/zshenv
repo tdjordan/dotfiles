@@ -11,4 +11,3 @@ export ZK_NOTEBOOK_DIR=~/.notes/notebook
 [ -e ~/.zshenv_local ] && source ~/.zshenv_local
 [ -f ~/.cargo/env    ] && source "$HOME/.cargo/env"
 [ -f ~/.local/share/nvim/mason/packages/erg ] && export ERG_PATH=~/.local/share/nvim/mason/packages/erg
-. "$HOME/.cargo/env"
