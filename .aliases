@@ -214,7 +214,8 @@ alias vf='vifm'
 ## yabai
 #  restat yabai quickly
 #  # ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
-alias reup='launchctl kickstart -k "gui/${UID}/com.koekeishiya.yabai"'
+# alias reup='launchctl kickstart -k "gui/${UID}/com.koekeishiya.yabai"'
+alias reup='yabai --restart-service'
 
 # clangd
 #alias clangd='/usr/local/Cellar/llvm/10.0.1_1/bin/clangd'
