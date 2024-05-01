@@ -24,6 +24,7 @@
   st = status -s
   stu = status -s --untracked-files all .
   co = checkout
+  sco = sparse-checkout
   ci = commit
   br = branch
   cp = cherry-pick
