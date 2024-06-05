@@ -112,7 +112,8 @@ alias lo='_lo '
 # search dot files
 agdf_imp() {
   # shellcheck disable=2048,2086,2046,2012
-  ag $* $(ls -dFL .* | ag -v "(/)$" | ag -v "(\*)$" | ag -v history)
+  # ag $* $(ls -dFL .* | ag -v "(/)$" | ag -v "(\*)$" | ag -v history)
+  rg $* $(ls -dFL .* | rg -v "(/)$" | rg -v "(\*)$" | rg -v history)
 }
 alias agdf='agdf_imp '
 
@@ -136,7 +137,7 @@ alias flk='flux reconcile kustomization '
 # kubernetes
 # shellcheck disable=2046,2139
 alias kubectl=$( if command -v kubecolor ; then echo kubecolor ; else echo kubectl ; fi)
-compdef kubecolor=kubectl
+# compdef kubecolor=kubectl
 alias kk='kubectl'
 alias kkc='kubectx'
 alias kkn='kubens'
@@ -205,8 +206,10 @@ kca() {
 
 
 # python 3
-alias python=/usr/local/bin/python3.12
-alias pip=/usr/local/bin/pip3.12
+if [ -z "$IN_NIX_SHELL" ] ; then
+  alias python=${HOMEBREW_PREFIX}/bin/python3.12
+  alias pip=${HOMEBREW_PREFIX}/bin/pip3.12
+fi
 
 # vifm
 alias vf='vifm'
@@ -242,8 +245,8 @@ alias js='jen s'
 
 ###  ruby
 ###
-alias ruby='/usr/local/opt/ruby/bin/ruby'
-alias gem='/usr/local/opt/ruby/bin/gem'
+# alias ruby='/usr/local/opt/ruby/bin/ruby'
+# alias gem='/usr/local/opt/ruby/bin/gem'
 
 ###  terraform
 ###
@@ -256,3 +259,8 @@ alias wo='command -v'
 alias wow='which -a'
 alias woa='which -a'
 alias we='watchexec'
+
+### zscaler
+###
+alias start-zscaler="open -a /Applications/Zscaler/Zscaler.app --hide; sudo find /Library/LaunchDaemons -name '*zscaler*' -exec launchctl load {} \;"
+alias kill-zscaler="find /Library/LaunchAgents -name '*zscaler*' -exec launchctl unload {} \;;sudo find /Library/LaunchDaemons -name '*zscaler*' -exec launchctl unload {} \;"
