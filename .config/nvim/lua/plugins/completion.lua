@@ -63,7 +63,11 @@ return {
     , dependencies = {
       'hrsh7th/cmp-nvim-lsp'
       , 'rafamadriz/friendly-snippets'
-      , 'L3MON4D3/LuaSnip'
+      , {
+        'L3MON4D3/LuaSnip',
+        version = 'v2.*',
+        bujild = 'make install_jsregexp'
+      }
       , 'hrsh7th/cmp-buffer'
       , 'hrsh7th/cmp-nvim-lsp-signature-help'
       , 'hrsh7th/cmp-path'

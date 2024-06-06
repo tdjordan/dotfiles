@@ -1,6 +1,30 @@
 return {
   {
-    "catppuccin/nvim"
+    'nvim-zh/colorful-winsep.nvim'
+    , event = { 'WinNew' }
+    -- ,opts = {
+      --   no_exec_files = {
+      --     'packer',
+      --     'TelescopePrompt',
+      --     'mason',
+      --     'CompetiTest',
+      --     'neo-tree',
+      --     'NvimTree'
+      --   },
+    --   anchor = {
+    --     right = { height = 1, x = -1, y = -1 },
+    --     left = { height = 1, x = -1, y = 0 },
+    --     bottom = { width = 0, x = -1, y = 0 },
+    --     up = { width = 0, x = 1, y = 0 },
+    --   }
+    -- }
+    , config = true
+    -- , config = function( _, opts )
+    --   require 'colorful-winsep'.setup( opts )
+    -- end
+  },
+  {
+    'catppuccin/nvim'
     , keys = {
       {
         '<leader>pc', function()

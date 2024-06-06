@@ -10,4 +10,4 @@ mason.setup {
   automatic_setup = true
 }
 
-mason.setup_handlers {}
+-- mason.setup_handlers {}

@@ -31,8 +31,8 @@ return {
       { 'whoissethdaniel/mason-tool-installer.nvim'
         , opts = {
           ensure_installed = {
-            'erg'
-            , 'vale-ls'
+            -- 'erg'
+            'vale-ls'
           }
         }
       }
@@ -53,7 +53,7 @@ return {
     , dependencies = {
       'williamboman/mason.nvim',
       'jay-babu/mason-null-ls.nvim',
-      'gbprod/none-ls-shellcheck.nvim'
+      -- 'gbprod/none-ls-shellcheck.nvim'
     }
     , event = { 'BufReadPost', 'BufNewFile' }
     , config = function()

@@ -40,7 +40,8 @@ return {
           -- auto_install = true,      -- true to install missing parsers on BufEnter
           ignore_install = {
             'haskell',
-            'vala'
+            'vala',
+            'norg'
           },
           highlight = {
             enable = true

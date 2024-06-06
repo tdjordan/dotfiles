@@ -1,7 +1,7 @@
 -- local common = require 'lsp.common'
 local nls = require 'null-ls'
-nls.register(require('none-ls-shellcheck.diagnostics'))
-nls.register(require('none-ls-shellcheck.code_actions'))
+-- nls.register(require('none-ls-shellcheck.diagnostics'))
+-- nls.register(require('none-ls-shellcheck.code_actions'))
 
 local b = nls.builtins
 
@@ -89,7 +89,7 @@ local sources = {
 
   ---  docker
   ---
-  , b.diagnostics.hadolint
+  -- , b.diagnostics.hadolint
 
   ---  markdown
   ---
@@ -251,7 +251,7 @@ local sources = {
 
   ---  Changelog
   ---
-  , b.formatting.ocdc
+  -- , b.formatting.ocdc
 
   ---  justfile
   ---

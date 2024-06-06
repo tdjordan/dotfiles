@@ -76,6 +76,7 @@ local disabled_filetypes = {
   , 'NvimTree'
   , 'Trouble'
   , 'lazy'
+  , 'lazy_backdrop'
   , 'DiffviewFileHistory'
   , 'DiffviewFiles'
   , 'neo-tree'

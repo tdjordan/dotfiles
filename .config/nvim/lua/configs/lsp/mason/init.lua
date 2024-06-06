@@ -17,7 +17,7 @@ local servers =
   , 'docker_compose_language_service' -- Docker Compose
   , 'dotls'                           -- Dot
   , 'elmls'                           -- Elm
-  , 'erg_language_server'             -- Erg
+  -- , 'erg_language_server'             -- Erg
   -- , 'gleam'                           -- Gleam
   , 'gopls'                           -- go
   , 'graphql'                         -- GraphQL
@@ -43,7 +43,7 @@ local servers =
   , 'rnix'                            -- Nix
   , 'ruff_lsp'                        -- Python
   , 'rust_analyzer'                   -- Rust
-  , 'salt_ls'                         -- Salt
+  -- , 'salt_ls'                         -- Salt
   , 'taplo'                           -- Toml
   , 'terraformls'                     -- terraform
   , 'tflint'                          -- terraform

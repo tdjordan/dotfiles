@@ -41,7 +41,7 @@ local servers =
   , 'pyright'
   , 'rnix'
   , 'rust_analyzer'
-  , 'salt_ls'
+  -- , 'salt_ls'
   -- , 'sorbet'
   -- , 'sourcery'
   , 'sumneko_lua'
