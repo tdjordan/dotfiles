@@ -90,6 +90,9 @@ zinit wait"1" lucid nocd light-mode for \
 zinit wait"3" lucid nocd light-mode atload"zicompinit; zicdreplay" for \
   zsh-users/zsh-completions
 
+# zinit wait"4" lucid nocd is-snippet for \
+#   $HOME/.compdef.init
+
 if [[ ! -f $HOME/Library/Caches/sfdx/autocomplete/zsh_setup ]]; then
   # zinit wait"1" lucid nocd light-mode atload"zicompinit; zicdreplay" for \
   zinit wait"2" lucid nocd light-mode for \
@@ -110,9 +113,9 @@ fi
 #   atpull"%atclone" src"init.zsh" nocompile'!'
 # zinit light ajeetdsouza/zoxide
 
-[ -f /usr/local/share/zsh/site-functions/key-bindings.zsh ] && \
+[ -f ${HOMEBREW_PREFIX}/share/zsh/site-functions/key-bindings.zsh ] && \
   zinit wait"1" lucid nocd is-snippet for \
-    /usr/local/share/zsh/site-functions/key-bindings.zsh
+    ${HOMEBREW_PREFIX}/share/zsh/site-functions/key-bindings.zsh
     # latoabout/skim/shell/key-bindings.zsh
     # $HOME/.skim/shell/key-bindings.zsh
 

@@ -1,7 +1,17 @@
 #echo .zshenv
 # Skip the not really helping Ubuntu global compinit
 skip_global_compinit=1
-[ -f ~/.paths ] && source ~/.paths
+# eval "$(/opt/homebrew/bin/brew shellenv)"
+# [ -f ~/.paths ] && source ~/.paths
+# if [ -x /opt/homebrew/bin/brew ] ; then
+#   eval "$(/opt/homebrew/bin/brew shellenv)"
+#   eval "export HOMEBREW_PREFIX_OPT=${HOMEBREW_PREFIX}/opt"
+#   eval "export HOMEBREW_PREFIX_LIB=${HOMEBREW_PREFIX}/lib"
+#
+#   eval "export PATH=${HOMEBREW_PREFIX_OPT}/ruby/bin:$PATH"
+#   eval "export PATH=${HOMEBREW_PREFIX_OPT}/curl/bin:$PATH"
+#   eval "export PATH=${HOMEBREW_PREFIX_OPT}/llvm/bin:$PATH"
+# fi
 export RIPGREP_CONFIG_PATH=~/.config/ripgrep/rc
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_INSTALL_CLEANUP=1

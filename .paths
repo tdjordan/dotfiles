@@ -1,22 +1,33 @@
 #echo .paths
 export PATH=/usr/local/opt/libressl/bin
-export PATH=$PATH:/usr/local/opt/ruby/bin
-export PATH=$PATH:/usr/local/opt/curl/bin
-export PATH=$PATH:/usr/local/opt/llvm/bin
+# eval "$(/opt/homebrew/bin/brew shellenv)"
+
+###  Homebrew
+###
+# export HOMEBREW_PREFIX=/usr/local           # macOS [ darwin ] intel
+# export HOMEBREW_PREFIX=/opt/homebrew          # macOS [ darwin ] apple silicon
+
+# export HOMEBREW_PREFIX_OPT=${HOMEBREW_PREFIX}/opt
+# export HOMEBREW_PREFIX_LIB=${HOMEBREW_PREFIX}/lib
+#
+# export PATH=${HOMEBREW_PREFIX_OPT}/ruby/bin:$PATH
+# export PATH=${HOMEBREW_PREFIX_OPT}/curl/bin:$PATH
+# export PATH=${HOMEBREW_PREFIX_OPT}/llvm/bin:$PATH
 #export PATH=$PATH:/usr/local/opt/curl-openssl/bin
 #export PATH=$PATH:/usr/local/opt/openssl@1.1/bin
-export PATH=$PATH:/usr/local/opt/ruby/bin
 export PATH=$PATH:~/.bun/bin
 export BUN_INSTALL=~/.bun
 export PATH=$PATH:~/.gem/ruby/3.3.0/bin
-export PATH=$PATH:/usr/local/lib/ruby/gems/3.3.0/bin
+export PATH=$PATH:${HOMEBREW_PREFIX_LIB}/ruby/gems/3.3.0/bin
 # export PATH=$PATH:~/.gem/ruby/3.1.0/bin
 # export PATH=$PATH:/usr/local/lib/ruby/gems/3.1.0/bin
 # export PATH=$PATH:~/.gem/ruby/2.6.0/bin
 # export PATH=$PATH:/usr/local/lib/ruby/gems/2.6.0/bin
+# export PATH=$PATH:${HOMEBREW_PREFIX}/bin
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/usr/bin
 export PATH=$PATH:/bin
+# export PATH=$PATH:${HOMEBREW_PREFIX}/sbin
 export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:/usr/sbin
 export PATH=$PATH:/sbin
@@ -25,11 +36,11 @@ export PATH=$PATH:~/.gopath/bin
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/.files/bin
 export PATH=$PATH:~/go/bin
-export PATH=$PATH:/usr/local/opt/icu4c/bin
-export PATH=$PATH:/usr/local/opt/icu4c/sbin
-export PATH=$PATH:/Library/TeX/texbin
-export PATH=$PATH:/opt/X11/bin
-export PATH=$PATH:/opt/homebrew/bin
+# export PATH=$PATH:/usr/local/opt/icu4c/bin
+# export PATH=$PATH:/usr/local/opt/icu4c/sbin
+# export PATH=$PATH:/Library/TeX/texbin
+# export PATH=$PATH:/opt/X11/bin
+# export PATH=$PATH:/opt/homebrew/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # pnpm
@@ -41,16 +52,16 @@ export PATH=$PATH:$PNPM_HOME
 #export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 #export PATH="/usr/local/opt/ruby/bin:$PATH"
 
-export LDFLAGS="-L/usr/local/opt/ruby/lib"
-export CPPFLAGS="-I/usr/local/opt/ruby/include"
+export LDFLAGS="-L${HOMEBREW_INSTALL_ROOT_OPT}/ruby/lib"
+export CPPFLAGS="-I${HOMEBREW_INSTALL_ROOT_OPT}/ruby/include"
 # export LDFLAGS="$LDFLAGS -L/usr/local/opt/icu4u/lib"
 # export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/icu4u/include"
 
-export DOTNET_ROOT="/usr/local/opt/dotnet/libexec"
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
+# export DOTNET_ROOT="/usr/local/opt/dotnet/libexec"
+# export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 export PATH=$PATH:$HOME/.gem/ruby/3.0.0/bin
-export PATH=$PATH:$HOME/.linkerd2/bin
+# export PATH=$PATH:$HOME/.linkerd2/bin
 
 # OPS config
 export OPS_DIR="$HOME/.ops"
@@ -64,7 +75,7 @@ source $HOME/.paths.local
 export PATH=~/.cargo/bin:$PATH
 export PATH=$PATH:$HOME/.krew/bin
 
-export PATH=$PATH:/usr/local/opt/sphinx-doc/bin
+# export PATH=$PATH:/usr/local/opt/sphinx-doc/bin
 
 ###  binaries installed by nvim mason
 ###
