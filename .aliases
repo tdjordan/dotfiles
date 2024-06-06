@@ -116,6 +116,11 @@ agdf_imp() {
   rg $* $(ls -dFL .* | rg -v "(/)$" | rg -v "(\*)$" | rg -v history)
 }
 alias agdf='agdf_imp '
+rgdf() {
+  # shellcheck disable=2048,2086,2046,2012
+  # ag $* $(ls -dFL .* | ag -v "(/)$" | ag -v "(\*)$" | ag -v history)
+  rg $* $(ls -dFL .* | rg -v "(/|\*|history)$")
+}
 
 # dotfile configuration
 alias config='git --git-dir=$HOME/.files.git --work-tree=$HOME --no-pager'
