@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-#set -v
-#set -x
+# set -v
+# set -x
+
+MAINLINE=${1:-main}
 
 # Ensure we know about all remote branches
 #git pull
@@ -9,7 +11,7 @@
 git br -a                   \
 | sed 's;remotes/origin/;;' \
 | grep -v HEAD              \
-| grep -v main            \
+| grep -v $MAINLINE         \
 | sort | uniq | sort -r     \
 | sed 's;\*;;g'             \
 | sed 's; ;;g'              \
@@ -25,4 +27,4 @@ while read -r v; do
   git co $v
 done <<< "$array"
 
-git co main
+git co $MAINLINE
