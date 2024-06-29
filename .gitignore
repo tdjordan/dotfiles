@@ -5,7 +5,7 @@ Session.vim
 .config/nvim/.netrwhist
 .config/filezilla
 .config/coc
-.config/direnv
+# .config/direnv
 .config/gopass
 .config/configstore
 .DS_Store

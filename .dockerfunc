@@ -42,6 +42,10 @@ excalidraw-cli() {
   docker run --rm -it -v "$PWD":/data excalidraw-cli "$@"
 }
 
+excalidraw-serve() {
+  docker run --rm -it --name excalidraw  -p 3000:80 excalidraw/excalidraw:latest
+}
+
 asciidoctor() {
   docker run -it --rm -v .:/documents/ asciidoctor/docker-asciidoctor asciidoctor "$@"
 }

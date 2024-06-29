@@ -152,6 +152,13 @@ setopt extended_history           # record start time & duration for entry in fi
 autoload edit-command-line ; zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
+# zinit as"program" make'!' atclone'./direnv hook zsh > zhook.zsh' \
+#   atpull'%atclone' pick"direnv" src"zkookzsh" for \
+#     direnv/direnv
+zinit from"gh-r" as"program" mv"direnv* -> direnv" \
+  atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
+  pick"direnv" src="zhook.zsh" for \
+    direnv/direnv
 
 PS1="READY > "
 zinit wait"!" lucid nocd atload"!source ~/.p10k.zsh; _p9k_precmd" for \
@@ -192,3 +199,6 @@ PERL5LIB="/Users/tjordan/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5
 PERL_LOCAL_LIB_ROOT="/Users/tjordan/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/Users/tjordan/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/tjordan/perl5"; export PERL_MM_OPT;
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
