@@ -214,6 +214,7 @@ tap    "koekeishiya/formulae"
 # cask "raycast"
 # cask "kit"
 brew "yazi"
+brew "cyme"
 #
 # ###  note takers
 # ###
