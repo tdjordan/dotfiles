@@ -17,6 +17,9 @@ local server_options = {
       }
     }
   },
+  groovyls = {
+    filetypes = { 'groovy', 'Jenkinsfile' }
+  },
   jsonls = {
     settings = {
       json = {

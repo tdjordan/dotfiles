@@ -140,6 +140,7 @@ cmp.setup {
     , { name = 'neorg'       }
     -- , { name = 'luasnip'     }
     , { name = 'buffer'      }
+    -- , { name = 'dictionary'  }
     , { name = 'path'        }
     -- , { name = 'tmux'        }
     , { name = 'tags'        }

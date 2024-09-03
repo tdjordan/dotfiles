@@ -2,21 +2,36 @@ local rose_pine = require 'rose-pine'
 local palette   = require 'rose-pine.palette'
 
 rose_pine.setup {
-  --- @usage 'auto'|'main'|'moon'|'dawn'
-  variant = 'auto',
-  --- @usage 'main'|'moon'|'dawn'
-  dark_variant             = 'main',
-  bold_vert_split          = false,
-  dim_nc_background        = false,
-  disable_background       = false,
-  disable_float_background = false,
-  disable_italics          = false,
+  variant                          = 'auto', --- @usage 'auto'|'main'|'moon'|'dawn'
+  dark_variant                     = 'main', --- @usage 'main'|'moon'|'dawn'
+  dim_inactive_windows             = true,
+  extend_background_behind_borders = true,
+
+  -- bold_vert_split                  = false,
+  -- dim_nc_background                = false,
+  -- disable_background               = false,
+  -- disable_float_background         = false,
+  -- disable_italics                  = false,
+
+  -- enable = {
+  --   terminal          = true,
+  --   legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+  --   migrations        = true, -- Handle deprecated options automatically
+  -- },
+  --
+  -- styles = {
+  --   bold         = true,
+  --   italic       = true,
+  --   transparency = false,
+  -- },
 
   --- @usage string hex value or named color from rosepinetheme.com/palette
   groups = {
     -- background  = 'base',
-    background    = 'overlay',
-    background_nc = '_experimental_nc',
+    -- background    = 'overlay',
+    -- background_nc = '_experimental_nc',
+    -- background_nc = 'overlay',
+    -- background    = '_experimental_nc',
     panel         = 'surface',
     panel_nc      = 'base',
     border        = 'highlight_med',
@@ -27,18 +42,16 @@ rose_pine.setup {
     error = 'love',
     hint  = 'iris',
     info  = 'foam',
+    note  = 'pine',
+    todo  = 'rose',
     warn  = 'gold',
 
-    headings = {
-      h1 = 'iris',
-      h2 = 'foam',
-      h3 = 'rose',
-      h4 = 'gold',
-      h5 = 'pine',
-      h6 = 'foam',
-    }
-    -- or set all headings at once
-    -- headings = 'subtle'
+    h1 = 'iris',
+    h2 = 'foam',
+    h3 = 'rose',
+    h4 = 'gold',
+    h5 = 'pine',
+    h6 = 'foam',
   },
 
   -- Change specific vim highlight groups
@@ -60,17 +73,29 @@ rose_pine.setup {
     --
     TelescopeResultsBorder = { fg = palette.overlay, bg = palette.overlay },
     TelescopeResultsNormal = { bg = palette.overlay },
-    TelescopeResultsTitle = { fg = palette.overlay, bg = palette.overlay },
+    TelescopeResultsTitle  = { fg = palette.overlay, bg = palette.overlay },
 
     TelescopePreviewBorder = { fg = palette.base, bg = palette.base },
     TelescopePreviewNormal = { bg = palette.base },
-    TelescopePreviewTitle = { fg = palette.base, bg = palette.base },
+    TelescopePreviewTitle  = { fg = palette.base, bg = palette.base },
 
     TelescopePromptBorder  = { fg = palette.pine, bg = palette.pine },
-    TelescopePromptNormal = { fg = palette.rose, bg = palette.pine, },
+    TelescopePromptNormal  = { fg = palette.rose, bg = palette.pine, },
 
-    TelescopeSelection = { fg = palette.base, bg = palette.text }
-  }
+    TelescopeSelection     = { fg = palette.base, bg = palette.text }
+  },
+
+  -- before_highlight = function(group, highlight, palette)
+  --   -- Disable all undercurls
+  --   -- if highlight.undercurl then
+  --   --     highlight.undercurl = false
+  --   -- end
+  --   --
+  --   -- Change palette colour
+  --   -- if highlight.fg == palette.pine then
+  --   --     highlight.fg = palette.foam
+  --   -- end
+  -- end,
 }
 
 -- set colorscheme after options

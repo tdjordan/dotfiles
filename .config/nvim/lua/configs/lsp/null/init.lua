@@ -106,9 +106,9 @@ local sources = {
   ---  nix
   ---
   -- , b.formatting.nixfmt
-  , b.diagnostics.statix
+  -- , b.diagnostics.statix
   -- , b.diagnostics.deadnix
-  , b.code_actions.statix
+  -- , b.code_actions.statix
   -- https://github.com/kamadorueda/alejandra
   -- , b.formatting.alejandra
 

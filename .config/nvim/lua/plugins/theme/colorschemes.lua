@@ -1,8 +1,8 @@
 return {
   {
     'nvim-zh/colorful-winsep.nvim'
-    , event = { 'WinNew' }
-    -- ,opts = {
+    , event = { 'WinLeave' }
+    ,opts = {
       --   no_exec_files = {
       --     'packer',
       --     'TelescopePrompt',
@@ -17,11 +17,11 @@ return {
     --     bottom = { width = 0, x = -1, y = 0 },
     --     up = { width = 0, x = 1, y = 0 },
     --   }
-    -- }
-    , config = true
-    -- , config = function( _, opts )
-    --   require 'colorful-winsep'.setup( opts )
-    -- end
+    }
+    -- , config = true
+    , config = function( _, opts )
+      require 'colorful-winsep'.setup( opts )
+    end
   },
   {
     'catppuccin/nvim'

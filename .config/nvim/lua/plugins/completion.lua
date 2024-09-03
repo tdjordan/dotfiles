@@ -52,9 +52,6 @@ return {
         TypeParameter = ""
       },
     }
-    , config = function(_, opts)
-      require 'lspkind'.init(opts)
-    end
   },
   {
     'hrsh7th/nvim-cmp'
@@ -79,6 +76,7 @@ return {
         , event = 'InsertEnter'
         , config = function()
           require 'configs.completion.cmp.git'
+          -- table.insert( require 'cmp'.get_config().source, { name = 'git' } )
         end
       }
     }

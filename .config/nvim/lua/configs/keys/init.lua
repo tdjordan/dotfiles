@@ -45,13 +45,13 @@ wk.setup {
   -- add operators that will trigger motion and text object completion
   -- to enable all native operators, set the preset / operators plugin above
   -- operators = { gc = 'Comments' },
-  key_labels = {
-    -- override the label used to display some keys. It doesn't effect WK in any other way.
-    --   For example:
-    ['<space>'] = 'SPC',
-    ['<CR>']    = 'RET',
-    ['<Tab>']   = 'TAB',
-  },
+  -- key_labels = {
+  --   -- override the label used to display some keys. It doesn't effect WK in any other way.
+  --   --   For example:
+  --   ['<space>'] = 'SPC',
+  --   ['<CR>']    = 'RET',
+  --   ['<Tab>']   = 'TAB',
+  -- },
   icons = {
     -- breadcrumb = '»',               -- symbol used in the command line area that shows your active key combo
     -- separator = '➜',                -- symbol used between a key and it's label
@@ -105,71 +105,76 @@ wk.setup {
   -- },
 }
 
-local normal_mode = {
-  mode = 'n'
-  , prefix = '<leader>'
-  , buffer = nil
-  , silent = true
-  , noremap = true
-  , nowait = false
-}
+-- local normal_mode = {
+--   mode = 'n'
+--   , prefix = '<leader>'
+--   , buffer = nil
+--   , silent = true
+--   , noremap = true
+--   , nowait = false
+-- }
 
-local normal_mappings = {
+wk.add({
   ---
   ---  window resize operations
   ---
-  ['-']     = { '<cmd>resize -5<cr>',          'decrease up-down'      },
-  ['=']     = { '<cmd>resize +5<cr>',          'increase up-down'      },
-  ['\\']    = { '<cmd>vertical resize -5<cr>', 'increase side-to-side' },
-  ['<tab>'] = { '<cmd>vertical resize +5<cr>', 'increase side-to-side' },
-
-  ---
-  --- surround with *
-  ---
-  s = {
-    name = 'surround / search'
-    , ['"'] = { [[msciw""<esc>P`sl]],           'word with double quotes'     }
-    , ["'"] = { [[msciw'<c-r><c-o>"'<esc>`sl]], 'word with single quotes'     }
-    -- , ["'"] = { [[msea'<esc>bi'<esc>`sl]], 'word with single quotes'     }
-    -- , ["'"] = { [[ciw'<c-r><c-o>"'<esc>]], 'word with single quotes'     }
-    -- , ["'"] = { [[ciw''<esc>P]], 'word with single quotes'     }
-    , ['['] = { 'ciw[]<esc>P',   'word with square brackets'   }
-    , ['9'] = { 'ciw()<esc>P',   'word with round  brackets'   }
-    , [']'] = { 'ciw{}<esc>P',   'word with squiggly brackets' }
-
-    , c = {
-      name = 'change'
-      , ['"'] = { [[ciwxx""P]],    'to single quotes'                     }
-      , ["'"] = { [[ciw''<esc>P]], 'surround word with single   quotes'   }
-      , ['['] = { 'ciw[]<esc>P',   'surround word with square   brackets' }
-      , [']'] = { 'ciw{}<esc>P',   'surround word with squiggly brackets' }
-      , ['9'] = { 'ciw()<esc>P',   'surround word with round    brackets' }
-    }
-    , d = { [[daw''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
-    -- , d = { [[daW''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
-
-    , h = { function() require 'telescope.builtin'.pickers()                          end , 'picker history' }
-
-    , p = { [[<cmd>split<cr>]], 'split top-bottom' }
-    , r = { function() require 'telescope.builtin'.resume()                           end , 'resume search'  }
-    -- , t = { [[<cmd>lua require('theme').ThemeToggle()<cr>]], 'toggle dark/light' }
-    , t = { function() require "telescope.builtin".live_grep()                        end , 'search text'    }
+  {
+    { '<leader>-'    , '<cmd>resize -5<cr>',          desc = 'decrease up-down'      },
+    { '<leader>='    , '<cmd>resize +5<cr>',          desc = 'increase up-down'      },
+    { '<leader>\\'   , '<cmd>vertical resize -5<cr>', desc = 'increase side-to-side' },
+    { '<leader><tab' , '<cmd>vertical resize +5<cr>', desc = 'increase side-to-side' },
   },
 
   ---
-  ---  do we really want to do this?
+  ---  surround with *
   ---
-  ['<c-p>'] = { function() require 'telescope.builtin'.git_files() end , 'search git files' },
+  {
+    ---  s
+    { '<leader>s' , group = 'surround / search' },
+      { '<leader>s"' , [[msciw""<esc>P`sl]],           desc = 'word with double quotes'     },
+      { "<leader>s'" , [[msciw'<c-r><c-o>"'<esc>`sl]], desc = 'word with single quotes'     },
+      { '<leader>s[' , 'ciw[]<esc>P',                  desc = 'word with square brackets'   },
+      { '<leader>s9' , 'ciw()<esc>P',                  desc = 'word with round  brackets'   },
+      { '<leader>s]' , 'ciw{}<esc>P',                  desc = 'word with squiggly brackets' },
 
-  -- Reload init.lua from standard config path
-  -- note that the stdpath makes this portable
-  --
-  ['<cr>']  = { '<cmd>luafile ~/.config/nvim/init.lua<cr>', 'reload config' },
+      ---  sc
+      { '<leader>sc' , group = 'change' },
+        { '<leader>sc"' , [[ciwxx""P]],    desc = 'to single quotes'                     },
+        { "<leader>sc'" , [[ciw''<esc>P]], desc = 'surround word with single   quotes'   },
+        { '<leader>sc[' , 'ciw[]<esc>P',   desc = 'surround word with square   brackets' },
+        { '<leader>sc]' , 'ciw{}<esc>P',   desc = 'surround word with squiggly brackets' },
+        { '<leader>sc9' , 'ciw()<esc>P',   desc = 'surround word with round    brackets' },
+
+    { '<leader>sd' , [[daw''=substitute(@@,"'\\\|\"","","g")<cr>P]], desc = 'delete quotes' },
+    -- , { '<leader>sd' , [[daW''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
+
+    { '<leader>sh' , function() require 'telescope.builtin'.pickers()   end , desc = 'picker history'    },
+
+    { '<leader>sp' , [[<cmd>split<cr>]]                                     , desc = 'split top-bottom'  },
+    { '<leader>sr' , function() require 'telescope.builtin'.resume()    end , desc = 'resume search'     },
+    { '<leader>st' , [[<cmd>lua require('theme').ThemeToggle()<cr>]]        , desc = 'toggle dark/light' },
+    { '<leader>st' , function() require "telescope.builtin".live_grep() end , desc = 'search text'       },
+  },
+
+  {
+    ---
+    ---  do we really want to do this?
+    ---
+    { '<leader><c-p>' ,  function() require 'telescope.builtin'.git_files() end , desc = 'search git files' },
+
+    ---
+    ---  Reload init.lua from standard config path
+    ---  note that the stdpath makes this portable
+    ---
+    { '<leader><cr>'  , '<cmd>luafile ~/.config/nvim/init.lua<cr>', desc = 'reload config' },
+  },
 
   ---
   ---  b* mappings
   ---
-  b = { name = 'buffer / browse' },
+  {
+    { '<leader>b', group = 'buffer / browse' },
+  },
   -- b = {
   --   name = 'buffer / browse'
   --   , ['.'] = { function()
@@ -190,129 +195,130 @@ local normal_mappings = {
   ---
   ---  f* mappings
   ---
-  f = {
-    name = 'search'
-    , b = { function() require 'telescope.builtin'.buffers()                          end , 'in open buffers'   }
-    , f = { function() require 'telescope.builtin'.find_files()                       end , 'by file name'      }
-    , g = { function() require 'telescope.builtin'.live_grep()                        end , 'with live grep'    }
-    , h = { function() require 'telescope.builtin'.help_tags()                        end , 'help tags'         }
-    , j = { function() require 'telescope.builtin'.jumplist()                         end , 'jumplist'          }
-    , i = { function() require 'telescope.builtin'.builtin()                          end , 'builtins'          }
-    , k = { function() require 'telescope.builtin'.keymaps()                          end , 'keymaps'           }
-    , l = { function() require 'telescope.builtin'.current_buffer_fuzzy_find()        end , 'current buffer'    }
-    , m = { function() require 'telescope.builtin'.man_pages()                        end , 'man pages'         }
-    , o = { function() require 'telescope.builtin'.oldfiles()                         end , 'recent files'      }
-    , q = { function() require 'telescope.builtin'.quickfix()                         end , 'quickfix'          }
-    , r = { function() require 'telescope.builtin'.reloader()                         end , 'reloader'          }
-    , s = { function() require 'telescope.builtin'.lsp_workspace_symbols()            end , 'lsp symbols'       }
-    , t = { function() require 'telescope.builtin'.filetypes()                        end , 'filetypes'         }
-    , w = { function() require 'telescope.builtin'.grep_string()                      end , 'word under cursor' }
-    , [';'] = { function() require 'telescope.builtin'.command_history()              end , 'command history'   }
-    , ['/'] = { function() require 'telescope.builtin'.search_history()               end , 'search history'    }
-    , ['.'] = { function() require 'telescope'.extensions.file_browser.file_browser() end , 'file browser'      }
-    , [':'] = { function() require 'telescope.builtin'.commands()                     end , 'commands'          }
+  {
+    { '<leader>f', group = 'search' },
+      { '<leader>fb'  , function() require 'telescope.builtin'.buffers()                      end , desc = 'in open buffers'   },
+      { '<leader>ff'  , function() require 'telescope.builtin'.find_files()                   end , desc = 'by file name'      },
+      { '<leader>fg'  , function() require 'telescope.builtin'.live_grep()                    end , desc = 'with live grep'    },
+      { '<leader>fh'  , function() require 'telescope.builtin'.help_tags()                    end , desc = 'help tags'         },
+      { '<leader>fj'  , function() require 'telescope.builtin'.jumplist()                     end , desc = 'jumplist'          },
+      { '<leader>fi'  , function() require 'telescope.builtin'.builtin()                      end , desc = 'builtins'          },
+      { '<leader>fk'  , function() require 'telescope.builtin'.keymaps()                      end , desc = 'keymaps'           },
+      { '<leader>fl'  , function() require 'telescope.builtin'.current_buffer_fuzzy_find()    end , desc = 'current buffer'    },
+      { '<leader>fm'  , function() require 'telescope.builtin'.man_pages()                    end , desc = 'man pages'         },
+      { '<leader>fo'  , function() require 'telescope.builtin'.oldfiles()                     end , desc = 'recent files'      },
+      { '<leader>fq'  , function() require 'telescope.builtin'.quickfix()                     end , desc = 'quickfix'          },
+      { '<leader>fr'  , function() require 'telescope.builtin'.reloader()                     end , desc = 'reloader'          },
+      { '<leader>fs'  , function() require 'telescope.builtin'.lsp_workspace_symbols()        end , desc = 'lsp symbols'       },
+      { '<leader>ft'  , function() require 'telescope.builtin'.filetypes()                    end , desc = 'filetypes'         },
+      { '<leader>fw'  , function() require 'telescope.builtin'.grep_string()                  end , desc = 'word under cursor' },
+      { '<leader>f;'  , function() require 'telescope.builtin'.command_history()              end , desc = 'command history'   },
+      { '<leader>f//' , function() require 'telescope.builtin'.search_history()               end , desc = 'search history'    },
+      { '<leader>f.'  , function() require 'telescope'.extensions.file_browser.file_browser() end , desc = 'file browser'      },
+      { '<leader>f:'  , function() require 'telescope.builtin'.commands()                     end , desc = 'commands'          },
   },
 
   ---
   ---  l* mappings
   ---
-  l = {
-    name = 'lsp'
-    , a = { function() vim.lsp.buf.code_action()                            end , 'code action'          }
-    , A = { function() vim.lsp.buf.range_code_action()                      end , 'code action range'    }
-    , c = {
-      name = 'calls'
-      , i = { function() require "telescope.builtin".lsp_incoming_calls()     end , 'incoming calls'     }
-      , o = { function() require "telescope.builtin".lsp_outgoing_calls()     end , 'outgoing calls'     }
-    }
-    , d = { function() require 'telescope.builtin'.diagnostics({bufnr = 0}) end , 'document diagnostics' }
-    , f = { function() vim.lsp.buf.format()                                 end , 'format'               }
-    , h = { function() vim.lsp.buf.hover()                                  end , 'hover'                }
-    , H = { function() vim.lsp.buf.signature_help()                         end , 'signature help'       }
-    , i = { '<cmd>LspInfo<cr>',                                                   'info'                 }
-    , I = { function() require 'mason.ui'.open()                            end , 'installer info'       }  -- Mason
-    , j = { function() vim.diagnostic.goto_next()                           end , 'Next diagnositc'      }
-    , k = { function() vim.diagnostic.goto_prev()                           end , 'Previous diagnositc'  }
-    , l = { function() vim.lsp.codelens.run()                               end , 'codelens action'      }
-    , p = {
-      name = 'peek'
-      , i = { function() require 'lvim.lsp.peek'.Peek('implementation') end , 'implementation'  }
-      , r = { function() vim.lsp.buf.references()                       end , 'references'      }
-      , t = { function() require 'lvim.lsp.peek'.Peek('typeDefinition') end , 'type definition' }
-    }
-    , q = { function() vim.diagnostic.setloclist()                                 end , 'quickfix'              }
-    , r = { function() vim.lsp.buf.rename()                                        end , 'rename'                }
-    , s = { function() require 'telescope.builtin'.lsp_document_symbols()          end , 'document symbols'      }
-    , S = { function() require 'telescope.builtin'.lsp_dynamic_workspace_symbols() end , 'workspace symbols'     }
-    , w = { function() require 'telescope.builtin'.diagnostics()                   end , 'workspace diagnostics' }
+  {
+    { '<leader>l' , group = 'lsp' },
+      { '<leader>la' , function() vim.lsp.buf.code_action()                                   end , desc = 'code action'           },
+      { '<leader>lA' , function() vim.lsp.buf.range_code_action()                             end , desc = 'code action range'     },
+
+      ---  lc
+      { '<leader>lc' , group = 'calls' },
+        { '<leader>lci' , function() require "telescope.builtin".lsp_incoming_calls()         end , desc = 'incoming calls'        },
+        { '<leader>lco' , function() require "telescope.builtin".lsp_outgoing_calls()         end , desc = 'outgoing calls'        },
+
+      { '<leader>ld' , function() require 'telescope.builtin'.diagnostics({bufnr = 0})        end , desc = 'document diagnostics'  },
+      { '<leader>lf' , function() vim.lsp.buf.format()                                        end , desc = 'format'                },
+      { '<leader>lh' , function() vim.lsp.buf.hover()                                         end , desc = 'hover'                 },
+      { '<leader>lH' , function() vim.lsp.buf.signature_help()                                end , desc = 'signature help'        },
+      { '<leader>li' , '<cmd>LspInfo<cr>'                                                         , desc = 'info'                  },
+      { '<leader>lI' , function() require 'mason.ui'.open()                                   end , desc = 'installer info'        },
+
+      { '<leader>lj' , function() vim.diagnostic.goto_next()                                  end , desc = 'Next diagnositc'       },
+      { '<leader>lk' , function() vim.diagnostic.goto_prev()                                  end , desc = 'Previous diagnositc'   },
+      { '<leader>ll' , function() vim.lsp.codelens.run()                                      end , desc = 'codelens action'       },
+
+      { '<leader>lp' , group = 'peek' },
+        { '<leader>lpi' , function() require 'lvim.lsp.peek'.Peek('implementation')           end , desc = 'implementation'        },
+        { '<leader>lpr' , function() vim.lsp.buf.references()                                 end , desc = 'references'            },
+        { '<leader>lpt' , function() require 'lvim.lsp.peek'.Peek('typeDefinition')           end , desc = 'type definition'       },
+
+      { '<leader>lq' , function() vim.diagnostic.setloclist()                                 end , desc = 'quickfix'              },
+      { '<leader>lr' , function() vim.lsp.buf.rename()                                        end , desc = 'rename'                },
+      { '<leader>ls' , function() require 'telescope.builtin'.lsp_document_symbols()          end , desc = 'document symbols'      },
+      { '<leader>lS' , function() require 'telescope.builtin'.lsp_dynamic_workspace_symbols() end , desc = 'workspace symbols'     },
+      { '<leader>lw' , function() require 'telescope.builtin'.diagnostics()                   end , desc = 'workspace diagnostics' },
   },
 
   ---
   ---  o* mapptings
   ---
-  o = {
-    name = 'org mode',
-    -- m = { name = 'mode' },
-    -- n = { name = 'keybind' },
-    w = { name = 'workspace' },
+  {
+    { '<leader>o', group = 'org mode' },
+      -- { '<leader>om', group = 'mode' },
+      -- { '<leader>on', group = 'keybind' },
+      { '<leader>ow', group = 'workspace' },
   },
 
 
   ---
   ---  O* mappings
   ---
-  O = {
+  {
+    '<leader>O',
     function()
       require 'neorg'
-    end, 'Start org mode'
+    end, desc = 'Start org mode'
   },
 
   ---
   ---  p* mappings
   ---
-  p = {
-    name = 'pick'
-    , a = { function() require 'telescope.builtin'.autocommands()                          end , 'an autocommand'      }
-    , b = { function() require 'telescope.builtin'.buffers()                               end , 'from open buffers'   }
-    , e = { function() require 'telescope.builtin'.symbols{sources = {'emoji', 'gitmoji'}} end , '*moji'               }
-    , f = { function() require 'telescope.builtin'.find_files()                            end , 'a file'              }
-    , g = { function() require 'telescope.builtin'.live_grep()                             end , 'from live grep'      }
-    , l = { function() require 'telescope.builtin'.current_buffer_fuzzy_find()             end , 'from current buffer' }
-    -- , s = { function() require 'telescope.builtin'.grep_string()                           end , 'word under cursor'   }
-    -- , s = { function() require 'telescope.builtin'.grep_string()                           end , 'with grep string'    }
-    , s = { function() require 'telescope.builtin'.spell_suggest()                         end , 'spelling suggestion' }
-    , S = { function() require 'telescope.builtin'.treesitter()                            end , 'treesitter symbols'  }
-    , p = {
-      name = 'plugins'
-      , s = { function() require 'lazy.view.commands'.commands.sync()                    end , 'sync'    }
-      -- , c = { function() require 'plugins'.init_lazy() require 'packer'.compile()        end , 'compile' }
-      , c = { function() require 'lazy.view.commands'.commands.check()                   end , 'check'   }
-      , d = { function() require 'lazy.view.commands'.commands.debug()                   end , 'debug'   }
-      , h = { function() require 'lazy.view.commands'.commands.health()                  end , 'health'  }
-      -- , l = { function() require 'telescope'.extensions.packer.plugins()                 end , 'list'    }
-      , l = { function() require 'lazy.view.commands'.commands.log()                     end , 'log'     }
-      , t = { function() require 'lazy.view.commands'.commands.show()                    end , 'status'  }
-      , p = { function() require 'lazy.view.commands'.commands.profile()                 end , 'profile' }
-      , u = { function() require 'lazy.view.commands'.commands.update()                  end , 'update'  }
-      , w = { function() require 'lazy.view.commands'.commands.clean()                   end , 'clean'   }
-    }
-    , w = { function() require 'telescope'.extensions.project.project{ display_type = 'full' } end , 'workspace' }
-    , v = {
-      name = 'vim'
-      , h = { function() require 'telescope.builtin'.highlights()  end , 'vim highlights' }
-      , o = { function() require 'telescope.builtin'.vim_options() end , 'vim options'    }
-      , r = { function() require 'telescope.builtin'.registers()   end , 'vim registers'  }
-    }
+  {
+    { '<leader>p', group = 'pick' },
+      { '<leader>pa' , function() require 'telescope.builtin'.autocommands()                              end, desc = 'an autocommand'      },
+      { '<leader>pb' , function() require 'telescope.builtin'.buffers()                                   end, desc = 'from open buffers'   },
+      { '<leader>pe' , function() require 'telescope.builtin'.symbols{sources = {'emoji', 'gitmoji'}}     end, desc = '*moji'               },
+      { '<leader>pf' , function() require 'telescope.builtin'.find_files()                                end, desc = 'a file'              },
+      { '<leader>pg' , function() require 'telescope.builtin'.live_grep()                                 end, desc = 'from live grep'      },
+      { '<leader>pl' , function() require 'telescope.builtin'.current_buffer_fuzzy_find()                 end, desc = 'from current buffer' },
+      -- { '<leader>ps' , function() require 'telescope.builtin'.grep_string()                               end, desc = 'word under cursor'   },
+      -- { '<leader>ps' , function() require 'telescope.builtin'.grep_string()                               end, desc = 'with grep string'    },
+      { '<leader>ps' , function() require 'telescope.builtin'.spell_suggest()                             end, desc = 'spelling suggestion' },
+      { '<leader>pS' , function() require 'telescope.builtin'.treesitter()                                end, desc = 'treesitter symbols'  },
+      { '<leader>pw' , function() require 'telescope'.extensions.project.project{ display_type = 'full' } end, desc = 'workspace' },
+
+      { '<leader>pp', group = 'plugins' },
+        { '<leader>pps' , function() require 'lazy.view.commands'.commands.sync()                         end, desc = 'sync'    },
+        -- { '<leader>ppc' , function() require 'plugins'.init_lazy() require 'packer'.compile()             end, desc = 'compile' },
+        { '<leader>ppc' , function() require 'lazy.view.commands'.commands.check()                        end, desc = 'check'   },
+        { '<leader>ppd' , function() require 'lazy.view.commands'.commands.debug()                        end, desc = 'debug'   },
+        { '<leader>pph' , function() require 'lazy.view.commands'.commands.health()                       end, desc = 'health'  },
+        -- { '<leader>ppl' , function() require 'telescope'.extensions.packer.plugins()                      end, desc = 'list'    },
+        { '<leader>ppl' , function() require 'lazy.view.commands'.commands.log()                          end, desc = 'log'     },
+        { '<leader>ppt' , function() require 'lazy.view.commands'.commands.show()                         end, desc = 'status'  },
+        { '<leader>ppp' , function() require 'lazy.view.commands'.commands.profile()                      end, desc = 'profile' },
+        { '<leader>ppu' , function() require 'lazy.view.commands'.commands.update()                       end, desc = 'update'  },
+        { '<leader>ppw' , function() require 'lazy.view.commands'.commands.clean()                        end, desc = 'clean'   },
+
+      { '<leader>pv', group = 'vim' },
+        { '<leader>pvh' , function() require 'telescope.builtin'.highlights()  end, desc = 'vim highlights' },
+        { '<leader>pvo' , function() require 'telescope.builtin'.vim_options() end, desc = 'vim options'    },
+        { '<leader>pvr' , function() require 'telescope.builtin'.registers()   end, desc = 'vim registers'  },
   },
 
   ---
   ---  c* mappings
   ---
-  c = {
-    name = 'comments'
-    , ['<c-_>'] = { function() require 'Comment.api'.toggle_current_linewise_op() end , 'comment line'   }
-    , l =         { function() require 'Comment.api'.toggle_current_linewise_op() end , 'comment line'   }
-    -- , m =         { function() require 'Comment.api'.toggle_linewise_count_op()   end , 'comment motion' }
+  {
+    { '<leader>c', group = 'comments' },
+      { '<leader>c<c_>' , function() require 'Comment.api'.toggle_current_linewise_op() end, desc = 'comment line'   },
+      { '<leader>cl'    , function() require 'Comment.api'.toggle_current_linewise_op() end, desc = 'comment line'   },
+      -- { '<leader>cm'    , function() require 'Comment.api'.toggle_linewise_count_op()   end, desc = 'comment motion' },
   },
 
   ---
@@ -323,41 +329,43 @@ local normal_mappings = {
   ---
   ---  d* mappings
   ---
-  d = {
-    name = 'debug'
-    , t = { function() require 'dap'.toggle_breakpoint() end , 'Toggle Breakpoint' }
-    , b = { function() require 'dap'.step_back()         end , 'Step Back'         }
-    , c = { function() require 'dap'.continue()          end , 'Continue'          }
-    , C = { function() require 'dap'.run_to_cursor()     end , 'Run to Cursor'     }
-    , d = { function() require 'dap'.disconnect()        end , 'Disconnect'        }
-    , g = { function() require 'dap'.session()           end , 'Get Session'       }
-    , i = { function() require 'dap'.step_into()         end , 'Step Into'         }
-    , o = { function() require 'dap'.step_over()         end , 'Step Over'         }
-    , u = { function() require 'dap'.step_out()          end , 'Step Out'          }
-    , p = { function() require 'dap'.pause.toggle()      end , 'Pause'             }
-    , r = { function() require 'dap'.repl.toggle()       end , 'Toggle Repl'       }
-    , s = { function() require 'dap'.continue()          end , 'Start'             }
-    , q = { function() require 'dap'.close()             end , 'Quit'              }
-  } ,
+  {
+    { '<leader>d', group = 'debug' },
+      { '<leader>db' , function() require 'dap'.step_back()         end, desc = 'Step Back'         },
+      { '<leader>dc' , function() require 'dap'.continue()          end, desc = 'Continue'          },
+      { '<leader>dC' , function() require 'dap'.run_to_cursor()     end, desc = 'Run to Cursor'     },
+      { '<leader>dd' , function() require 'dap'.disconnect()        end, desc = 'Disconnect'        },
+      { '<leader>dg' , function() require 'dap'.session()           end, desc = 'Get Session'       },
+      { '<leader>di' , function() require 'dap'.step_into()         end, desc = 'Step Into'         },
+      { '<leader>do' , function() require 'dap'.step_over()         end, desc = 'Step Over'         },
+      { '<leader>dp' , function() require 'dap'.pause.toggle()      end, desc = 'Pause'             },
+      { '<leader>dq' , function() require 'dap'.close()             end, desc = 'Quit'              },
+      { '<leader>dr' , function() require 'dap'.repl.toggle()       end, desc = 'Toggle Repl'       },
+      { '<leader>ds' , function() require 'dap'.continue()          end, desc = 'Start'             },
+      { '<leader>dt' , function() require 'dap'.toggle_breakpoint() end, desc = 'Toggle Breakpoint' },
+      { '<leader>du' , function() require 'dap'.step_out()          end, desc = 'Step Out'          },
+  },
 
   ---
   ---  g* mappings
   ---
-  g = {
-    name = 'git'
-    , b = { function() require 'telescope.builtin'.git_branches() end , 'git branches'       }
-    , c = { function() require 'telescope.builtin'.git_commits()  end , 'git commits'        }
-    , d = { name = 'git diff'                                                                }
-    , h = { function() require 'telescope.builtin'.git_stash()    end , 'git stash'          }
-    , l = { function() require 'telescope.builtin'.git_bcommits() end , 'git buffer commits' }
-    , s = { function() require 'telescope.builtin'.git_status()   end , 'git status'         }
+  {
+    { '<leader>g', group = 'git' },
+      { '<leader>gb' , function() require 'telescope.builtin'.git_branches() end, desc = 'git branches'       },
+      { '<leader>gc' , function() require 'telescope.builtin'.git_commits()  end, desc = 'git commits'        },
+
+      { '<leader>gd', name = 'git diff' }, -- diffview
+
+      { '<leader>gh' , function() require 'telescope.builtin'.git_stash()    end, desc = 'git stash'          },
+      { '<leader>gl' , function() require 'telescope.builtin'.git_bcommits() end, desc = 'git buffer commits' },
+      { '<leader>gs' , function() require 'telescope.builtin'.git_status()   end, desc = 'git status'         },
   },
 
   ---
   ---  h* mappings
   ---
-  h = {
-    name = 'gitsigns'
+  {
+    { '<leader>h', group = 'gitsigns' },
   },
 
   ---
@@ -370,55 +378,56 @@ local normal_mappings = {
   ---
   ---  t* mappings
   ---
-  t = {
-    name = 'toggle'
-    -- , h = { '<cmd>TSHighlightCapturesUnderCursor<cr>',             'highlight captures'     }
-    , h = { function() vim.show_pos() end,                         'highlight captures'     }
-    , H = { function() vim.print( vim.inspect_pos() ) end,         'all items at cursor'    }
-    , i = { function()
-      -- vim.cmd 'IBLToggle'
-      local ibl = require 'ibl'
-      local conf = require 'ibl.config'
+  {
+    { '<leader>t', group = 'toggle' },
+      -- { '<leader>th' , '<cmd>TSHighlightCapturesUnderCursor<cr>',             desc = 'highlight captures'     },
+      { '<leader>th' , function() vim.show_pos() end,                         desc = 'highlight captures'     },
+      { '<leader>tH' , function() vim.print( vim.inspect_pos() ) end,         desc = 'all items at cursor'    },
+      { '<leader>ti' , function()
+        -- vim.cmd 'IBLToggle'
+        local ibl = require 'ibl'
+        -- local conf = require 'ibl.config'
 
-      if ibl.initialized then
-        vim.print('updated')
-        -- ibl.update {
-        --   enabled = not conf.get_config( -1 ).enabled
-        -- }
-      else
-        vim.print('hello')
-        -- require 'configs.indentation.blankline'
-      end
-    end ,   'indentation guides'     }
-    , k = { function() require 'nvim-tree.api'.tree.toggle() end , 'file tree sidebar'      }
-    , t = { '<cmd>split term://$SHELL<cr>',                        'terminal'               }
-    , s = { function() vim.treesitter.inspect_tree() end,          'tree-sitter playgournd' }
+        if ibl.initialized then
+          vim.print('updated')
+          -- ibl.update {
+          --   enabled = not conf.get_config( -1 ).enabled
+          -- }
+        else
+          vim.print('hello')
+          -- require 'configs.indentation.blankline'
+        end
+      end ,   desc = 'indentation guides'     },
+      { '<leader>tk' , function() require 'nvim-tree.api'.tree.toggle() end , desc = 'file tree sidebar'      },
+      { '<leader>tt' , '<cmd>split term://$SHELL<cr>',                        desc = 'terminal'               },
+      { '<leader>ts' , function() vim.treesitter.inspect_tree() end,          desc = 'tree-sitter playgournd' },
   },
 
   ---
   ---  r* mappings
   ---
-  r = {
-    name = 'rest'
-    , l = { function() require 'rest-nvim'.last()    end , 'run last request'         }
-    , p = { function() require 'rest-nvim'.run(true) end , 'preview the curl command' }
-    , r = { function() require 'rest-nvim'.run()     end , 'run request under cursor' }
+  {
+    { '<leader>r', group = 'rest' },
+      { '<leader>rl' , function() require 'rest-nvim'.last()    end, desc = 'run last request'         },
+      { '<leader>rp' , function() require 'rest-nvim'.run(true) end, desc = 'preview the curl command' },
+      { '<leader>rr' , function() require 'rest-nvim'.run()     end, desc = 'run request under cursor' },
   },
 
   ---  v* mapptings
   ---
-  v = {
-    p = { [[<cmd>vsplit<cr>]], 'split side-to-side' }
+  {
+    { '<leader>v', group = 'vertical' },
+      { '<leader>vp' , [[<cmd>vsplit<cr>]], desc = 'split side-to-side' },
   },
 
   ---  v* mapptings
   ---
-  x = {
-    name = 'trouble'
-  },
-}
+  {
+    { '<leader>x', group = 'trouble' },
+  }
+})
 
-wk.register(normal_mappings, normal_mode)
+-- wk.register(normal_mappings, normal_mode)
 
 ---  Fix weird default mappings
 ---
@@ -494,17 +503,17 @@ autocmd( 'TermClose', {
 
 ---  Escape
 ---
-wk.register({
+wk.add({
   -- ['jk'] = { '<esc>', 'escape' },
   -- ['hl'] = { '<esc>', 'escape' },
   -- ['iu'] = { '<esc>', 'escape' },
 
   ---  luasnip jumping
   ---
-  ['<c-_>'] = { function() require 'functions.luasnip'.next()      end , 'snippet jump forward' },
-  ['<c-y>'] = { function() require 'functions.luasnip'.jump_back() end , 'snippet jump back'    },
-}, {
-  mode = 'i'
+  mode = 'i',
+
+  { '<c-_>', function() require 'functions.luasnip'.next()      end , desc = 'snippet jump forward' },
+  { '<c-y>', function() require 'functions.luasnip'.jump_back() end , desc = 'snippet jump back'    },
 })
 
 local cmd = vim.cmd
@@ -528,31 +537,27 @@ cmd [[inoremap jk <esc>]]
 -- vim.keymap.set('x', 'au', '<cmd>lua require "treesitter-unit".select(true)<cr>', { noremap = true })
 -- vim.keymap.set('o', 'iu', '<cmd>lua require "treesitter-unit".select()<cr>',     { noremap = true })
 -- vim.keymap.set('o', 'au', '<cmd>lua require "treesitter-unit".select(true)<cr>', { noremap = true })
-wk.register({
-  i =  {
-    name = 'inner'
-    , u = { function() require 'treesitter-unit'.select()     end , 'unit select' },
-  }
-  , a = {
-    name = 'outer'
-    , u = { function() require 'treesitter-unit'.select(true) end , 'unit select' },
-  }
-}, {
-  mode = 'x'
-})
+wk.add(
+  {
+    mode = 'x',
 
-wk.register({
-  i =  {
-    name = 'inner'
-    , u = { function() require 'treesitter-unit'.select()     end , 'inner unit'                },
+    { 'i',  group = 'inner' },
+    { 'iu', function() require 'treesitter-unit'.select()     end , desc = 'unit select' },
+
+    { 'a',  group = 'outer' },
+    { 'au', function() require 'treesitter-unit'.select(true) end , desc = 'unit select' },
+
+  }, {
+
+    mode = 'o',
+
+    { 'i',  group = 'inner' },
+    { 'iu', function() require 'treesitter-unit'.select()     end , desc = 'inner unit' },
+
+    { 'a',  group = 'outer' },
+    { 'au', function() require 'treesitter-unit'.select(true) end , desc = 'a unit (with white space)' },
   }
-  , a = {
-    name = 'outer'
-    , u = { function() require 'treesitter-unit'.select(true) end , 'a unit (with white space)' },
-  }
-}, {
-  mode = 'o'
-})
+)
 
 ---  effect initial timeout
 -- vim.opt.timeoutlen = 300

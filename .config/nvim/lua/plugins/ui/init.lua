@@ -4,6 +4,9 @@ return {
     , lazy = false
     , enabled = true
     , opts = {
+      ignore_messages = {
+        'null_ls'
+      }
       -- components = {
       --   'lsp'
       -- }

@@ -4,6 +4,23 @@ return {
   {
     'folke/which-key.nvim'
     , lazy = false
+    , dependencies = {
+      'echasnovski/mini.icons'
+    }
+    , keys = {
+      {
+        '<leader>?', function()
+          require 'which-key'.show { global = false }
+        end,
+        desc = 'buffer keymaps (which-key)'
+      },
+      -- {
+      --   '<c-w><space>', function()
+      --     require 'which-key'.show { keys = '<c-w>', loop = true }
+      --   end,
+      --   desc = 'window hydra mode (which-key)'
+      -- }
+    }
     , init = function()
       vim.opt.timeout = true
       vim.opt.timeoutlen = 300
@@ -56,7 +73,8 @@ return {
   ---
   {
     'lukas-reineke/indent-blankline.nvim'
-    , name = 'ibl'
+    -- , name = 'ibl'
+    , main = 'ibl'
     , cmd = {
       'IBLToggle',
       'IBLEnable',

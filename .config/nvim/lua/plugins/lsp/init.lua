@@ -2,6 +2,33 @@ return {
   ---  Language Protocol Server - LSP
   ---
   {
+    'stevearc/conform.nvim'
+    , event = { 'BufWritePre' }
+    , cmd = {
+      'ConformInfo'
+    }
+    , keys = {
+      {
+        '<leader>ln', function()
+          require 'conform'.format({ async = true })
+        end,
+        mode = '',
+        desc = 'format buffer'
+      }
+    }
+    -- This will provide type hinting with LuaLS
+    ---@module "conform"
+    ---@type conform.setupOpts
+    , opts =  {
+      formatters_by_ft = {
+        nix = { 'nixpkgs-fmt' },
+      },
+      default_format_opts = {
+        lsp_format = 'fallback'
+      }
+    }
+  },
+  {
     'someone-stole-my-name/yaml-companion.nvim'
     , opts = {
       builtin_matchers = {

@@ -37,6 +37,7 @@ local servers =
   -- , 'nginx_language_server'        -- Nginx
   -- , 'nil_ls'                       -- Nix
   -- , 'nomad_lsp'                    -- Nomad
+  , 'pbls'                            -- Protocol Buffers
   , 'pylyzer'                         -- Python
   , 'pyright'                         -- Python
   , 'raku_navigator'                  -- Raku
@@ -46,6 +47,7 @@ local servers =
   -- , 'salt_ls'                         -- Salt
   , 'taplo'                           -- Toml
   , 'terraformls'                     -- terraform
+  , 'textlsp'                         -- textLSP
   , 'tflint'                          -- terraform
   , 'tsserver'                        -- typescript
   -- , 'vale_ls'                         -- vale
