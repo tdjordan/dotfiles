@@ -15,6 +15,7 @@ export PATH=/usr/local/opt/libressl/bin
 # export PATH=${HOMEBREW_PREFIX_OPT}/llvm/bin:$PATH
 #export PATH=$PATH:/usr/local/opt/curl-openssl/bin
 #export PATH=$PATH:/usr/local/opt/openssl@1.1/bin
+export PATH=$PATH:${HOMEBREW_PREFIX_OPT}/rustup/bin
 export PATH=$PATH:~/.bun/bin
 export BUN_INSTALL=~/.bun
 export PATH=$PATH:~/.gem/ruby/3.3.0/bin
