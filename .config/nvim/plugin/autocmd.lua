@@ -46,6 +46,8 @@ local sidebars = {
   , 'help'
   , 'query'
   , 'tsplayground'
+  , 'lazy'
+  , 'lazy_backdrop'
   -- , ''
 }
 local no_side_column = autogrp( 'NoSideColumn', { clear = true } )
@@ -75,6 +77,7 @@ local disabled_filetypes = {
   , 'packer'
   , 'NvimTree'
   , 'Trouble'
+  , 'trouble'
   , 'lazy'
   , 'lazy_backdrop'
   , 'DiffviewFileHistory'
@@ -87,12 +90,17 @@ local disabled_filetypes = {
   , 'git'
   , ''
   , 'Outline'
+  , 'checkhealth'
 }
 autocmd( { 'WinEnter', 'BufWinEnter' }, {
   pattern = '*'
   , callback = function()
     -- vim.print( vim.bo.filetype )
     if vim.tbl_contains(disabled_filetypes, vim.bo.filetype) then
+      -- vim.print( vim.bo.filetype )
+      -- vim.diagnostic.config( { virtual_lines = false } )
+      -- require 'lsp_lines'.toggle()
+      -- vim.print( vim.inspect(vim.diagnostic.config()) )
       return
     end
     vim.opt.relativenumber = true
@@ -103,6 +111,15 @@ autocmd( 'WinLeave', {
   pattern = '*'
   , callback = function()
     if vim.tbl_contains(disabled_filetypes, vim.bo.filetype) then
+      -- vim.print( vim.bo.filetype )
+      -- vim.print( vim.inspect(vim.diagnostic.config()) )
+      -- vim.diagnostic.config( {
+      --   virtual_lines = {
+      --     only_current_line = true
+      --   }
+      -- } )
+      -- vim.print( vim.inspect(vim.diagnostic.config()) )
+      -- require 'lsp_lines'.toggle()
       return
     end
     vim.opt.relativenumber = false

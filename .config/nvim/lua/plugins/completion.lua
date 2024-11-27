@@ -144,7 +144,11 @@ return {
   },
   {
     'joshzcold/cmp-jenkinsfile'
+    , ft = 'Jenkinsfile'
     , event = { 'BufReadPost Jenkinsfile' }
+    , dependencies = {
+      'hrsh7th/nvim-cmp'
+    }
     , config = function()
       require 'configs.completion.cmp.jenkinsfile'
     end

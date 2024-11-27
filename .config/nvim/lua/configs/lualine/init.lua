@@ -94,6 +94,7 @@ local components = {
   },
   get_schema = {
     function()
+      if vim.bo.filetype == '' then return '' end
       local schema = require 'yaml-companion'.get_buf_schema(0)
       vim.print(schema)
       if schema.result[1].name == 'none' then
@@ -105,7 +106,7 @@ local components = {
   lsp = {
     function(msg)
       msg = msg or ''
-      local buf_clients = vim.lsp.buf_get_clients()
+      local buf_clients = vim.lsp.get_clients({ buffer = 0 })
       if next(buf_clients) == nil then
         if type(msg) == "boolean" or #msg == 0 then
           return ''

@@ -1,6 +1,26 @@
 return {
   ---  Language Protocol Server - LSP
   ---
+  -- {
+  --   'ray-x/lsp_signature.nvim'
+  --   , enabled = false
+  --   , event = 'InsertEnter'
+  --   , keys = {
+  --     {
+  --       '\\k', function()
+  --         require 'lsp_signature'.toggle_float_win()
+  --       end,
+  --       desc = 'toggle signature'
+  --     }
+  --   }
+  --   , opts = {
+  --     bind = true,
+  --     handler_opts = {
+  --       border = 'rounded',
+  --       hint_inline = 'right_aligned'
+  --     }
+  --   }
+  -- },
   {
     'stevearc/conform.nvim'
     , event = { 'BufWritePre' }
@@ -22,24 +42,101 @@ return {
     , opts =  {
       formatters_by_ft = {
         nix = { 'nixpkgs-fmt' },
+        lua = { 'stylua' },
+        terraform = { 'terraform_fmt' },
+        -- sh = { 'shf,mt' },
+        ['*'] = { 'codespell' },
+        -- ['_'] = { 'trim_whitespace' },
       },
       default_format_opts = {
         lsp_format = 'fallback'
       }
     }
   },
+  -- {
+  --   'cenk1cenk2/schema-companion.nvim'
+  --   , enabled = false
+  --   , ft = { 'yaml' }
+  --   -- , opts = {
+  --   --   enable_telescope = true,
+  --   --   matchers = {
+  --   --     require 'schema-companion.matchers.kubernetes'.setup { version = 'master' }
+  --   --   }
+  --   -- }
+  --   , config = function()
+  --     require 'schema-companion'.setup {
+  --       enable_telescope = true,
+  --       matchers = {
+  --         require 'schema-companion.matchers.kubernetes'.setup { version = 'master' }
+  --       },
+  --       -- schemas = {
+  --       --   {
+  --       --     name = "Kubernetes master",
+  --       --     uri = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/all.json",
+  --       --   },
+  --       -- }
+  --     }
+  --   end
+  -- },
   {
     'someone-stole-my-name/yaml-companion.nvim'
+    , enabled = true
+    , ft = {
+      'yaml',
+      'json'
+    }
     , opts = {
       builtin_matchers = {
         kubernetes = { enabled = true }
-      }
+      },
+      -- schemas = {
+      --   {
+      --     name = "Flux GitRepository",
+      --     uri = "https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/gitrepository-source-v1.json",
+      --   }
+      -- }
     }
     , config = function(_, opts)
       local cfg = require 'yaml-companion'.setup(opts)
       require 'lspconfig'['yamlls'].setup(cfg)
       require 'telescope'.load_extension('yaml_schema')
     end
+  },
+  -- {
+  --   'msvechla/yaml-companion.nvim'
+  --   , enabled = true
+  --   , branch = "kubernetes_crd_detection"
+  --   -- , ft = {
+  --   --   'yaml',
+  --   --   'json'
+  --   -- }
+  --   , opts = {
+  --     builtin_matchers = {
+  --       kubernetes = { enabled = true },
+  --       cloud_init = { enabled = true },
+  --       -- kubernetes_crd = { enabled = true }
+  --     },
+  --     -- schemas = {
+  --     --   {
+  --     --     name = "Flux GitRepository",
+  --     --     uri = "https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/gitrepository-source-v1.json",
+  --     --   }
+  --     -- }
+  --   }
+  --   , config = function(_, opts)
+  --     local cfg = require 'yaml-companion'.setup(opts)
+  --     require 'lspconfig'['yamlls'].setup(cfg)
+  --     require 'telescope'.load_extension('yaml_schema')
+  --   end
+  -- },
+  {
+    'whoissethdaniel/mason-tool-installer.nvim'
+    , opts = {
+      ensure_installed = {
+        -- 'erg'
+        'vale-ls'
+      }
+    }
   },
   {
     'williamboman/mason.nvim'
@@ -54,15 +151,10 @@ return {
             , version = false
           },
         }
+        -- , opts = {
+        --
+        -- }
       },
-      { 'whoissethdaniel/mason-tool-installer.nvim'
-        , opts = {
-          ensure_installed = {
-            -- 'erg'
-            'vale-ls'
-          }
-        }
-      }
     }
     , config = function()
       require 'configs.lsp.mason'
@@ -70,9 +162,85 @@ return {
   },
   {
     'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
-    , event = 'CursorHold'
+    , event = 'LspAttach'
+    , keys = {
+      { '<leader>tdi',
+        function()
+          if vim.b.lsp_lines_temp_disabled then
+            vim.diagnostic.config({
+              virtual_lines = vim.b.lsp_lines_temp_old_value
+            })
+          else
+            ---@diagnostic disable-next-line: undefined-field
+            vim.b.lsp_lines_temp_old_value = vim.diagnostic.config().virtual_lines
+            ---@diagnostic disable-next-line: undefined-field
+            require 'lsp_lines'.toggle()
+          end
+          vim.b.lsp_lines_temp_disabled = not vim.b.lsp_lines_temp_disabled
+        end
+      }
+    }
+    -- , keys = {
+    --   { '<leader>tdi',
+    --     function()
+    --       ---@diagnostic disable-next-line: undefined-field
+    --       local next = not vim.diagnostic.config().virtual_lines
+    --       vim.diagnostic.config {
+    --         virtual_text = not next,
+    --         virtual_lines = next
+    --       }
+    --     end, desc = 'toggle lsp_lines'
+    --   },
+    --   { '<leader>tdo',
+    --     function()
+    --       vim.diagnostic.config {
+    --         virtual_text = false,
+    --         virtual_lines = false
+    --       }
+    --     end, desc = 'virtual diagnostics off'
+    --   },
+    -- }
     , config = function()
-      require 'configs.lsp.lines'
+      vim.diagnostic.config {
+        virtual_lines = {
+          only_current_line = true
+        }
+      }
+      require 'lsp_lines'.setup()
+
+      local autocmd = vim.api.nvim_create_autocmd
+      local augroup = vim.api.nvim_create_augroup(
+        'lazy-buf-lsp-line-handlers',
+        { clear = true }
+      )
+
+      autocmd( 'FileType', {
+        pattern = 'lazy'
+        , desc = 'disable plugin when opening `lazy` UI'
+        , callback = function()
+          ---@diagnostic disable-next-line: undefined-field
+          if not vim.diagnostic.config().virtual_lines then return end
+          ---@diagnostic disable-next-line: undefined-field
+          vim.b.lsp_lines_temp_disabled_for_lazy_ft_value = vim.diagnostic.config().virtual_lines
+          require 'lsp_lines'.toggle()
+          vim.b.lsp_lines_temp_disabled_for_lazy_ft = true
+        end
+        , group = augroup
+      })
+
+      autocmd( 'BufLeave', {
+        -- pattern = '*'
+        desc = 'enable plugin when closing `lazy` UI'
+        , callback = function()
+          if vim.bo.filetype == 'lazy' and vim.b.lsp_lines_temp_disabled_for_lazy_ft then
+            require 'lsp_lines'.toggle()
+            vim.diagnostic.config {
+              virtual_lines = vim.b.lsp_lines_temp_disabled_for_lazy_ft_value
+            }
+          end
+        end
+        , group = augroup
+      })
     end
   },
   {
@@ -105,7 +273,7 @@ return {
       'OutlineOpen'
     }
     , keys = {
-      { '<leader>to', '<cmd>Outline<cr>', desc = 'Toggle outline' },
+      { '<leader>to', '<cmd>Outline<cr>', desc = 'toggle outline' },
     }
     , dependencies = {
       'msr1k/outline-asciidoc-provider.nvim'

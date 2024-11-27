@@ -30,26 +30,28 @@ local servers =
   , 'jsonls'                          -- json
   , 'jsonnet_ls'                      -- jsonnet
   , 'julials'                         -- Julia
+  -- , 'kcl'                             -- KCL
   , 'kotlin_language_server'          -- Kotlin
   , 'lemminx'                         -- XML
   , 'lua_ls'                          -- lua
   , 'marksman'                        -- Markdown
   -- , 'nginx_language_server'        -- Nginx
-  -- , 'nil_ls'                       -- Nix
+  , 'nil_ls'                       -- Nix
   -- , 'nomad_lsp'                    -- Nomad
   , 'pbls'                            -- Protocol Buffers
   , 'pylyzer'                         -- Python
   , 'pyright'                         -- Python
   , 'raku_navigator'                  -- Raku
   , 'rnix'                            -- Nix
-  , 'ruff_lsp'                        -- Python
+  , 'ruff'                            -- Python
+  -- , 'ruff_lsp'                        -- Python
   , 'rust_analyzer'                   -- Rust
   -- , 'salt_ls'                         -- Salt
   , 'taplo'                           -- Toml
   , 'terraformls'                     -- terraform
   , 'textlsp'                         -- textLSP
   , 'tflint'                          -- terraform
-  , 'tsserver'                        -- typescript
+  , 'ts_ls'                           -- typescript
   -- , 'vale_ls'                         -- vale
   , 'vimls'                           -- Vim
   -- , 'visualforce_ls'               -- sfdx
@@ -76,11 +78,17 @@ local lsp_bootstrap = function( server_name )
     , flags        = common.flags
   }
 
+  -- if 'lua_ls' == server_name then
+  --   vim.print( common_options )
+  -- end
   local opts = vim.tbl_deep_extend( "force",
     {},
     common_options,
     require 'lsp.server.options'[server_name] or {}
   )
+  -- if 'lua_ls' == server_name then
+  --   vim.print( opts )
+  -- end
 
   -- if server_name == 'yamlls' then
   --   vim.print(opts)

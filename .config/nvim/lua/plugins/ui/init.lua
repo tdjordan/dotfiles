@@ -205,6 +205,10 @@ return {
         return list_registered_providers_names( filetype )[method] or {}
       end
 
+      local list_buffer_conform_formatters = function()
+        return require 'conform'.list_formatters_for_buffer(0)
+      end
+
       local list_registered_linters = function( filetype )
         local nls = require 'null-ls'
         local method = nls.methods.DIAGNOSTICS
@@ -264,17 +268,32 @@ return {
         get_schema = {
           function()
             local schema = require 'yaml-companion'.get_buf_schema(0)
-            -- vim.print(schema.result)
+            -- local schema = require 'schema-companion.context'.get_buffer_schema(0)
             if schema.result[1].name == 'none' then
               return ''
             end
-            return schema.result[1].name
+            return ("%s").format(schema.result[1].name)
+            -- return ("%s"):format(require 'yaml-companion'.get_buf_schema(0).result[1].name)
+            -- vim.print( schema )
+            -- return schema.name
+          end,
+          -- cond = function()
+          --   return package.loaded["yaml-companion"]
+          -- end,
+          -- cond = function()
+          --   return vim.bo.filetype == 'yaml'
+          -- end,
+          cond = function()
+            return
+              vim.bo.filetype == 'yaml'
+              or vim.bo.filetype == 'json'
+              or vim.bo.filetype == 'helm'
           end
         },
         lsp = {
           function(msg)
             msg = msg or ''
-            local buf_clients = vim.lsp.buf_get_clients()
+            local buf_clients = vim.lsp.get_clients({ buffer = 0 })
             if next(buf_clients) == nil then
               if type(msg) == "boolean" or #msg == 0 then
                 return ''
@@ -293,6 +312,7 @@ return {
 
             -- add formatter
             local supported_formatters = list_registered_formatters( buf_ft )
+            vim.list_extend( supported_formatters, list_buffer_conform_formatters() )
 
             -- add linter
             local supported_linters = list_registered_linters( buf_ft )
@@ -417,7 +437,7 @@ return {
             { 'navic', color_correction = 'dynamic' }
           },
           lualine_x = {
-            components.lsp,
+           components.lsp,
             components.treesitter,
             components.get_schema,
             'filetype',

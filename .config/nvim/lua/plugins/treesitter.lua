@@ -261,6 +261,7 @@ return {
           --     require 'configs.treesitter'
           --   end)
         }
+        vim.treesitter.language.register('groovy', 'Jenkinsfile')
       end)
     end
   }

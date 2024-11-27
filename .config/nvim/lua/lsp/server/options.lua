@@ -1,6 +1,7 @@
 local fn = vim.fn
 
-local path_sep = vim.loop.os_uname().version:match "Windows" and "\\" or "/"
+---@diagnostic disable-next-line: undefined-field
+local path_sep = vim.uv.os_uname().version:match "Windows" and "\\" or "/"
 
 local join_paths = function( ... )
   return table.concat( { ... }, path_sep )
@@ -39,7 +40,7 @@ local server_options = {
   --     }
   --   }
   -- },
-  sumneko_lua = {
+  lua_ls = {
     settings = {
       Lua = {
         -- runtime = {
@@ -61,12 +62,31 @@ local server_options = {
           }
         },
         workspace = {
+          checkThirdParty = false,
           -- Make the server aware of Neovim runtime files
           library = {
+            -- vim.env.VIMRUNTIME,
             [join_paths( fn.stdpath('data'), 'nvim', 'lua' )] = true,
             [fn.expand( '$VIMRUNTIME/lua' )]                  = true,
             [fn.expand( '$VIMRUNTIME/lua/vim/lsp' )]          = true
           }
+        },
+        codeLens = {
+          enable = true
+        },
+        completion = {
+          callSnipet = "Replace"
+        },
+        doc = {
+          privateName = { "^_" }
+        },
+        hint = {
+          enable = true,
+          setType = false,
+          paramType = true,
+          paramName = 'Disable',
+          semicolon = 'Disable',
+          arrayIndex = 'Disable'
         }
       }
     }

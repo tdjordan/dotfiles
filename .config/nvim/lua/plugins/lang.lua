@@ -9,6 +9,7 @@ return {
   },
   {
     'martinda/Jenkinsfile-vim-syntax'
+    , ft = 'Jenkinsfile'
     , event = 'BufRead Jenkinsfile'
   },
   {
@@ -36,4 +37,37 @@ return {
   -- {
   --   'nvim-lua/lsp_extensions.nvim'
   -- },
+  {
+    'MeanderingProgrammer/render-markdown.nvim'
+    , ft = {
+      'markdown'
+    }
+    , dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'echasnovski/mini.icons'
+    }
+    , opts = {
+      render_modes = { 'n', 'v', 'i', 'c' }
+      , heading = {
+        sign = false
+      }
+      , quote = {
+        repeat_linebreak = true
+      }
+      , win_options = {
+        showbreak = {
+          default  = '',
+          rendered = ''
+        }
+        , breakindent = {
+          default = false,
+          rendered = true
+        }
+        , breakindentopt = {
+          default = '',
+          rendered = ''
+        }
+      }
+    }
+  }
 }

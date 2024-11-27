@@ -35,7 +35,7 @@ local sources = {
   ---  terraform
   ---
   , b.diagnostics.tfsec
-  , b.formatting.terraform_fmt
+  -- , b.formatting.terraform_fmt
   -- , b.formatting.terrafmt        -- markdown terraform code block
 
   ---  packer ( hcl )
@@ -105,7 +105,7 @@ local sources = {
 
   ---  nix
   ---
-  -- , b.formatting.nixfmt
+  , b.formatting.nixfmt
   -- , b.diagnostics.statix
   -- , b.diagnostics.deadnix
   -- , b.code_actions.statix
@@ -211,9 +211,10 @@ local sources = {
   ---  dictionary
   ---
   , b.hover.dictionary
-  , b.diagnostics.codespell.with {
-    diagnostics_format = '(#{s}) #{m}'
-  }
+  -- , b.diagnostics.codespell.with {
+  --   diagnostics_format = '(#{s}) #{m}'
+  -- }
+  , b.diagnostics.codespell
   , b.formatting.codespell
   -- TODO: find a replacement
   -- , b.diagnostics.misspell
@@ -228,6 +229,7 @@ local sources = {
       , 'packer'
       , 'NvimTree'
       , 'Trouble'
+      , 'trouble'
       , 'lazy'
     }
   }

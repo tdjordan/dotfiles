@@ -18,6 +18,7 @@ require"octo".setup {
   outdated_icon = "󰅒 ",                    -- outdated indicator
   resolved_icon = " ",                    -- resolved indicator
   reaction_viewer_hint_icon = " ";        -- marker for user reactions
+  users = "search",                        -- Users for assignees or reviewers. Values: "search" | "mentionable" | "assignable"
   user_icon = " ";                        -- user icon
   timeline_marker = " ";                  -- timeline marker
   timeline_indent = "2";                   -- timeline indentation
@@ -37,6 +38,9 @@ require"octo".setup {
       field = "CREATED_AT",                -- either COMMENTS, CREATED_AT or UPDATED_AT (https://docs.github.com/en/graphql/reference/enums#issueorderfield)
       direction = "DESC"                   -- either DESC or ASC (https://docs.github.com/en/graphql/reference/enums#orderdirection)
     }
+  },
+  reviews = {
+    auto_show_threads = true,              -- automatically show comment threads on cursor move
   },
   pull_requests = {
     order_by = {                           -- criteria to sort the results of `Octo pr list`

@@ -3,6 +3,9 @@
 return {
   {
     'jay-babu/mason-nvim-dap.nvim'
+    , keys = {
+      { '<leader>d' }
+    }
     , config = function()
       vim.schedule(function()
         require 'configs.dap.mason'
@@ -11,15 +14,15 @@ return {
   }
   , {
     'mfussenegger/nvim-dap'
+    -- , keys = {
+    --   { '<leader>d' }
+    -- }
     , dependencies = {
       'rcarriga/nvim-dap-ui',
       'theHamsta/nvim-dap-virtual-text',
       'nvim-telescope/telescope-dap.nvim',
       'jbyuki/one-small-step-for-vimkind',
     }
-    -- , init = function()
-    --   require 'utility'.packer_lazy_load 'nvim-dap'
-    -- end
     , config = function()
       vim.schedule(function()
         require 'configs.dap'

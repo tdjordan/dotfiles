@@ -12,9 +12,10 @@ local fn  = vim.fn
 
 local install_path = fn.stdpath('data') .. '/lazy/lazy.nvim'
 
-if not vim.loop.fs_stat(install_path) then
-  vim.notify('Cloning lazy.nvim ....', 'info')
-  fn.system {
+---@diagnostic disable-next-line: undefined-field
+if not (vim.uv or vim.loop).fs_stat(install_path) then
+  vim.notify('Cloning lazy.nvim ....', vim.log.levels.INFO)
+  local out = fn.system {
     'git',
     'clone',
     '--filter=blob:none',
@@ -22,6 +23,13 @@ if not vim.loop.fs_stat(install_path) then
     '--branch=stable',
     install_path
   }
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", 'ErrorMsg' },
+      { out, 'WarningMsg' },
+      { "\nPress any key to exit..." }
+    }, true, {})
+  end
 end
 
 vim.g.mapleader = ' '

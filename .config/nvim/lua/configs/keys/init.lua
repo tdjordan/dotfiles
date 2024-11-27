@@ -1,31 +1,47 @@
 -- stylua: ignore start
 -- LuaFormatter off
 
--- New <leader> of the band
--- vim.cmd [[
---   nnoremap <silent> <space> <nop>
---   vnoremap <silent> <space> <nop>
--- ]]
-
 vim.g.mapleader = ' '
 
 local wk = require 'which-key'
 
--- wk.setup {
---   plugins = {
---     marks = true
---     , registers = true
---   }
---   -- , layout = {
---   --   spacing = 5
---   -- }
--- }
 wk.setup {
+  -- ---@type false | "classic" | "modern" | "helix"
+  -- preset = "classic",
+  -- -- Delay before showing the popup. Can be a number or a function that returns a number.
+  -- ---@type number | fun(ctx: { keys: string, mode: string, plugin?: string }):number
+  -- delay = function(ctx)
+  --   return ctx.plugin and 0 or 200
+  -- end,
+  -- ---@param mapping wk.Mapping
+  -- filter = function(mapping)
+  --   -- example to exclude mappings without a description
+  --   -- return mapping.desc and mapping.desc ~= ""
+  --   return true
+  -- end,
+  -- --- You can add any mappings here, or use `require('which-key').add()` later
+  -- ---@type wk.Spec
+  -- spec = {},
+  -- -- show a warning when issues were detected with your mappings
+  -- notify = true,
+  -- -- Which-key automatically sets up triggers for your mappings.
+  -- -- But you can disable this and setup the triggers manually.
+  -- -- Check the docs for more info.
+  -- ---@type wk.Spec
+  -- triggers = {
+  --   { "<auto>", mode = "nxso" },
+  -- },
+  -- -- Start hidden and wait for a key to be pressed before showing the popup
+  -- -- Only used by enabled xo mapping modes.
+  -- ---@param ctx { mode: string, operator: string }
+  -- defer = function(ctx)
+  --   return ctx.mode == "V" or ctx.mode == "<C-V>"
+  -- end,
   -- plugins = {
   --   marks = true,          -- shows a list of your marks on ' and `
   --   registers = true,      -- shows your registers on " in NORMAL or <C-r> in INSERT mode
   --   spelling = {
-  --     enabled = false,     -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+  --     enabled = true,      -- enabling this will show WhichKey when pressing z= to select spelling suggestions
   --     suggestions = 20,    -- how many suggestions should be shown in the list?
   --   },
   --
@@ -52,57 +68,125 @@ wk.setup {
   --   ['<CR>']    = 'RET',
   --   ['<Tab>']   = 'TAB',
   -- },
-  icons = {
-    -- breadcrumb = '»',               -- symbol used in the command line area that shows your active key combo
-    -- separator = '➜',                -- symbol used between a key and it's label
-    group = ' ',                    -- symbol prepended to a group
-  },
-  -- popup_mappings = {
-  --   scroll_down = '<c-d>',          -- binding to scroll down inside the popup
-  --   scroll_up = '<c-u>',            -- binding to scroll up inside the popup
-  -- },
-  -- window = {
-  --   border = 'none',                -- none, single, double, shadow
-  --   position = 'bottom',            -- bottom, top
-  --   margin = { 1, 0, 1, 0 },        -- extra window margin [top, right, bottom, left]
-  --   padding = { 2, 2, 2, 2 },       -- extra window padding [top, right, bottom, left]
-  --   winblend = 0,                   -- value between 0-100 0 for fully opaque and 100 for fully transparent
-  --   zindex = 1000,                  -- positive value to position WHichKey above other floating windows
+  -- ---@type wk.Win.opts
+  -- win = {
+  --   -- don't allow the popup to overlap with the cursor
+  --   no_overlap = true,
+  --   -- width = 1,
+  --   -- height = { min = 4, max = 25 },
+  --   -- col = 0,
+  --   -- row = math.huge,
+  --   -- border = "none",
+  --   padding = { 1, 2 }, -- extra window padding [top/bottom, right/left]
+  --   title = true,
+  --   title_pos = "center",
+  --   zindex = 1000,
+  --   -- Additional vim.wo and vim.bo options
+  --   bo = {},
+  --   wo = {
+  --     -- winblend = 10, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+  --   },
   -- },
   -- layout = {
-  --   height = { min = 4, max = 25 }, -- min and max height of the columns
-  --   width = { min = 20, max = 50 }, -- min and max width of the columns
-  --   spacing = 3,                    -- spacing between columns
-  --   align = 'left',                 -- align columns left, center or right
+  --   width = { min = 20 }, -- min and max width of the columns
+  --   spacing = 3, -- spacing between columns
   -- },
-  -- ignore_missing = false,           -- enable this to hide mappings for which you didn't specify a label
-  -- hidden = {                        -- hide mapping boilerplate
-  --   '<silent>',
-  --   '<cmd>',
-  --   '<Cmd>',
-  --   '<CR>',
-  --   'call',
-  --   'lua',
-  --   '^:',
-  --   '^ '
+  -- keys = {
+  --   scroll_down = "<c-d>", -- binding to scroll down inside the popup
+  --   scroll_up = "<c-u>", -- binding to scroll up inside the popup
   -- },
+  -- ---@type (string|wk.Sorter)[]
+  -- --- Mappings are sorted using configured sorters and natural sort of the keys
+  -- --- Available sorters:
+  -- --- * local: buffer-local mappings first
+  -- --- * order: order of the items (Used by plugins like marks / registers)
+  -- --- * group: groups last
+  -- --- * alphanum: alpha-numerical first
+  -- --- * mod: special modifier keys last
+  -- --- * manual: the order the mappings were added
+  -- --- * case: lower-case first
+  -- sort = { "local", "order", "group", "alphanum", "mod" },
+  -- ---@type number|fun(node: wk.Node):boolean?
+  -- expand = 0, -- expand groups when <= n mappings
+  -- -- expand = function(node)
+  -- --   return not node.desc -- expand all nodes without a description
+  -- -- end,
+  -- -- Functions/Lua Patterns for formatting the labels
+  -- ---@type table<string, ({[1]:string, [2]:string}|fun(str:string):string)[]>
+  -- replace = {
+  --   key = {
+  --     function(key)
+  --       return require("which-key.view").format(key)
+  --     end,
+  --     -- { "<Space>", "SPC" },
+  --   },
+  --   desc = {
+  --     { "<Plug>%(?(.*)%)?", "%1" },
+  --     { "^%+", "" },
+  --     { "<[cC]md>", "" },
+  --     { "<[cC][rR]>", "" },
+  --     { "<[sS]ilent>", "" },
+  --     { "^lua%s+", "" },
+  --     { "^call%s+", "" },
+  --     { "^:%s*", "" },
+  --   },
+  -- },
+  icons = {
+  --   breadcrumb = '»',               -- symbol used in the command line area that shows your active key combo
+  --   separator = '➜',                -- symbol used between a key and it's label
+    group = ' ',                    -- symbol prepended to a group
+  --   ellipsis = "…",
+  --   -- set to false to disable all mapping icons,
+  --   -- both those explicitly added in a mapping
+  --   -- and those from rules
+  --   mappings = true,
+  --   --- See `lua/which-key/icons.lua` for more details
+  --   --- Set to `false` to disable keymap icons from rules
+  --   ---@type wk.IconRule[]|false
+  --   rules = {},
+  --   -- use the highlights from mini.icons
+  --   -- When `false`, it will use `WhichKeyIcon` instead
+  --   colors = true,
+  --   -- used by key format
+  --   keys = {
+  --     Up = " ",
+  --     Down = " ",
+  --     Left = " ",
+  --     Right = " ",
+  --     C = "󰘴 ",
+  --     M = "󰘵 ",
+  --     D = "󰘳 ",
+  --     S = "󰘶 ",
+  --     CR = "󰌑 ",
+  --     Esc = "󱊷 ",
+  --     ScrollWheelDown = "󱕐 ",
+  --     ScrollWheelUp = "󱕑 ",
+  --     NL = "󰌑 ",
+  --     BS = "󰁮",
+  --     Space = "󱁐 ",
+  --     Tab = "󰌒 ",
+  --     F1 = "󱊫",
+  --     F2 = "󱊬",
+  --     F3 = "󱊭",
+  --     F4 = "󱊮",
+  --     F5 = "󱊯",
+  --     F6 = "󱊰",
+  --     F7 = "󱊱",
+  --     F8 = "󱊲",
+  --     F9 = "󱊳",
+  --     F10 = "󱊴",
+  --     F11 = "󱊵",
+  --     F12 = "󱊶",
+  --   },
+  },
   -- show_help = true,                 -- show help message on the command line when the popup is visible
   -- show_keys = true,                 -- show the currently pressed key and its label as a message in the command line
-  -- triggers = 'auto',                -- automatically setup triggers
-  --                                   -- triggers = {'<leader>'} -- or specify a list manually
-  -- triggers_blacklist = {
-  --   -- list of mode / prefixes that should never be hooked by WhichKey
-  --   -- this is mostly relevant for key maps that start with a native binding
-  --   -- most people should not need to change this
-  --   i = { 'j', 'k' },
-  --   v = { 'j', 'k' },
-  -- },
   -- -- disable the WhichKey popup for certain buf types and file types.
-  -- -- Disabled by default for Telescope
   -- disable = {
-  --   buftypes = {},
-  --   filetypes = { "TelescopePrompt" },
+  --   ft = {},
+  --   bt = {},
   -- },
+  -- debug = false, -- enable wk.log in the current directory
 }
 
 -- local normal_mode = {
@@ -219,6 +303,18 @@ wk.add({
   },
 
   ---
+  ---  \\* mappings
+  ---
+  {
+    { '\\' , group = 'fast action' },
+      { '\\a'        , function() vim.lsp.buf.code_action()                                   end , desc = 'code action'           },
+      -- { '\\f'        , function() vim.lsp.format()                                            end , desc = 'format'                },
+      { '\\f'        , function() require 'conform'.format({ async = true })                  end , desc = 'format buffer'         },
+      { '\\r'        , function() vim.lsp.buf.rename()                                        end , desc = 'rename'                },
+      { '\\s'        , function() vim.lsp.buf.signature_help()                                end , desc = 'signature help'        },
+  },
+
+  ---
   ---  l* mappings
   ---
   {
@@ -285,6 +381,7 @@ wk.add({
       { '<leader>pe' , function() require 'telescope.builtin'.symbols{sources = {'emoji', 'gitmoji'}}     end, desc = '*moji'               },
       { '<leader>pf' , function() require 'telescope.builtin'.find_files()                                end, desc = 'a file'              },
       { '<leader>pg' , function() require 'telescope.builtin'.live_grep()                                 end, desc = 'from live grep'      },
+      { '<leader>ph' , function() require 'telescope.builtin'.help_tags()                                 end, desc = 'help tags'           },
       { '<leader>pl' , function() require 'telescope.builtin'.current_buffer_fuzzy_find()                 end, desc = 'from current buffer' },
       -- { '<leader>ps' , function() require 'telescope.builtin'.grep_string()                               end, desc = 'word under cursor'   },
       -- { '<leader>ps' , function() require 'telescope.builtin'.grep_string()                               end, desc = 'with grep string'    },
@@ -380,6 +477,7 @@ wk.add({
   ---
   {
     { '<leader>t', group = 'toggle' },
+      { '<leader>td', group = 'toggle diagnostics' },
       -- { '<leader>th' , '<cmd>TSHighlightCapturesUnderCursor<cr>',             desc = 'highlight captures'     },
       { '<leader>th' , function() vim.show_pos() end,                         desc = 'highlight captures'     },
       { '<leader>tH' , function() vim.print( vim.inspect_pos() ) end,         desc = 'all items at cursor'    },

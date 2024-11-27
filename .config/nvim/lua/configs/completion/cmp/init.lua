@@ -15,6 +15,7 @@ local has_words_before = function()
   if api.nvim_buf_get_option( 0, 'buftype' ) == 'prompt' then
     return false
   end
+---@diagnostic disable-next-line: deprecated
   local line, col = unpack( api.nvim_win_get_cursor(0) )
   return col == 0 and api.nvim_buf_get_lines( 0, line - 1, line, true )[1]:sub(col, col):match("%s") == nil
 end
@@ -133,26 +134,26 @@ cmp.setup {
       }
     }
   },
-  sources = cmp.config.sources {
-    -- { { name = 'nvim_lua'    }
-      { name = 'nvim_lsp'    }
-    -- , { name = 'jenkinsfile' }
-    , { name = 'neorg'       }
-    -- , { name = 'luasnip'     }
-    , { name = 'buffer'      }
-    -- , { name = 'dictionary'  }
-    , { name = 'path'        }
-    -- , { name = 'tmux'        }
-    , { name = 'tags'        }
-    -- , { name = 'treesitter'  }
-    , { name = 'calc'        }
-    -- , { name = 'orgmode'     }
-    -- , { name = 'vsnip'     }
-    -- , { name = 'look'      }
-    , { name = 'emoji'       }
-    -- , { name = 'npm', keyword_length = 4 }
-    -- , { name = 'crates'     }
-  },
+  -- sources = cmp.config.sources {
+  --   -- { { name = 'nvim_lua'    }
+  --     { name = 'nvim_lsp'    }
+  --   -- , { name = 'jenkinsfile' }
+  --   , { name = 'neorg'       }
+  --   -- , { name = 'luasnip'     }
+  --   , { name = 'buffer'      }
+  --   -- , { name = 'dictionary'  }
+  --   , { name = 'path'        }
+  --   -- , { name = 'tmux'        }
+  --   , { name = 'tags'        }
+  --   -- , { name = 'treesitter'  }
+  --   , { name = 'calc'        }
+  --   -- , { name = 'orgmode'     }
+  --   -- , { name = 'vsnip'     }
+  --   -- , { name = 'look'      }
+  --   , { name = 'emoji'       }
+  --   -- , { name = 'npm', keyword_length = 4 }
+  --   -- , { name = 'crates'     }
+  -- },
   -- matching = {
   --   disallow_fuzzy_matching = false,
   --   disallow_partial_fuzzy_matching = true,

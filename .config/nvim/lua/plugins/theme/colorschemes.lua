@@ -18,10 +18,6 @@ return {
     --     up = { width = 0, x = 1, y = 0 },
     --   }
     }
-    -- , config = true
-    , config = function( _, opts )
-      require 'colorful-winsep'.setup( opts )
-    end
   },
   {
     'catppuccin/nvim'

@@ -19,6 +19,7 @@ local sign_column = function()
     severity_sort = true,
     update_in_insert = false,
     virtual_text = false,        -- using virtual_lines instead
+    -- virtual_text = true,        -- using virtual_lines instead
     -- virtual_lines = true
     -- virtual_text = {
     --   prefix = "",     --        
@@ -54,7 +55,7 @@ local setup = function()
 
   ---  signature help
   ---
-  vim.lsp.handlers['textDocument.signatureHelp'] = vim.lsp.with(
+  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
     vim.lsp.handlers.signature_help, {
       border = 'single'
     }

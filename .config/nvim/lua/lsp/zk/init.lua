@@ -12,7 +12,7 @@ configs.zk = {
     cmd = { 'zk', 'lsp' }
     , filetypes = { 'markdown', 'md', 'markdown.pandoc' }
     -- , get_language_id = function() return 'markdown' end
-    , root_dir = function() return vim.loop.cwd() end
+    , root_dir = function() return vim.uv.cwd() end
     , settings = {}
   }
 }
