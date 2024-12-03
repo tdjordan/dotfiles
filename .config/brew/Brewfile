@@ -37,6 +37,7 @@ brew "sad"
 brew "mdcat"
 # brew "argc"
 brew "direnv"
+brew "starship"
 
 ###  neovim
 brew "neovim"
@@ -47,13 +48,14 @@ brew "git"
 # brew "git-filter-repo"
 # brew "lazygit"
 # brew "svn"
-# cask "gitup"
+cask "gitup"
 brew "gh"
 # brew "glab"
-# brew "gitui"
+brew "gitui"
 # brew "git-delta"
 # brew "git-extras"
 # # brew "actionlint"
+brew "zizmor"
 # brew "lefthook"
 # brew "pre-commit"
 # # brew "gitlint"
@@ -69,9 +71,11 @@ brew "gitu"
 ###  base build tools
 brew "cmake"
 brew "cmake-docs"
+brew "action-docs"
 brew "ninja"
 brew "conan"
 brew "llvm"
+brew "lld"
 brew "gcc"
 brew "gcc@13"
 # brew "llvm@13"
@@ -115,11 +119,13 @@ brew "hyperfine"
 ###
 brew "jq"
 brew "jc"
+brew
 # brew "jaq"
 # brew "jql"
 # tap    "jmespath/jmespath"
 #   brew "jmespath/jmespath/jp"
 # brew "fastgron"
+brew "otree"
 #
 ###  artifact repository
 ###
@@ -134,10 +140,15 @@ brew "yq"
 ###
 brew "xq"
 #
+###  sql utils
+###
+brew "sq"
+#
 # ###  csv utils
 # ###
 # brew "miller"
 # brew "dsq"
+brew "tabiew"
 #
 ###  nodejs
 ###
@@ -210,6 +221,10 @@ brew "jenv"
 # cask "hammerspoon"
 tap    "koekeishiya/formulae"
   brew "yabai"
+tap    "nikitabobko/tap"
+  cask "aerospace"
+tap    "FelixKratz/formulae"
+  brew "borders"
 #   brew "skhd"
 # cask "raycast"
 # cask "kit"
@@ -218,6 +233,7 @@ brew "cyme"
 #
 # ###  note takers
 # ###
+brew "nb"
 # cask "obsidian"
 #
 ###  browsers
@@ -287,6 +303,7 @@ brew "tgenv"
 # brew "wasmtime"
 # brew "wasm3"
 # brew "wapm"
+brew "wasi-runtimes"
 #
 # ###  Shell SCA Tools
 # # brew "shellcheck"
@@ -334,7 +351,7 @@ brew "rustup-init"
 # ###  File Triggers
 # ###
 # brew "cargo-watch"
-# brew 'watchexec'
+brew 'watchexec'
 # brew 'retry'
 #
 ###  Python Language
@@ -373,6 +390,14 @@ brew "ruby"
 # cask "slack"
 # # cask "webex"
 cask "signal"
+#
+###  Kafka
+###
+brew "kaskade"
+#
+###  Network Utilities
+###
+brew "dug"
 #
 ###  Kubernetes
 ###
@@ -432,6 +457,7 @@ brew "cilium-cli"
 # brew "popeye"
 # brew "glasskube"
 brew "kubecolor"
+brew "crossplane"
 #
 # ###  OCI Containers
 # ###
@@ -452,6 +478,9 @@ brew "opa"
 # ###  API Discovery
 # ###
 # cask "recipeui"
+brew "openapi-generator"
+brew "tcptraceroute"
+# brew "usage"
 #
 # ###  Argo
 # ###
@@ -473,6 +502,9 @@ brew "just"
 # brew "jsonnet"
 brew "cue"
 #
+###  Secret Tools
+###
+brew "teller"
 #
 ###  AWS Tools
 ###
@@ -503,8 +535,8 @@ tap    "dashlane/tap"
 #
 # ###  Jenkins CLI
 # ###
-# # tap    "jenkins-zh/jcli"
-# #   brew "jcli"
+tap    "jenkins-zh/jcli"
+  brew "jcli"
 #
 # ###  Other Things
 # ###
@@ -537,6 +569,7 @@ tap    "dashlane/tap"
 # ###  Graphic Editors
 # ###
 brew "gimp"
+cask "excalidrawz"
 # brew "inkscape"
 #
 # ###  Specialized Linters
@@ -600,7 +633,9 @@ brew "julia"
 # ###
 # cask "anypointstudio"
 # cask "advancedrestclient"
-# cask "postman"
+cask "postman"
+# cask "postman-cli"
+# cask "postman-agent"
 #
 # ###  vanity
 # ###
@@ -667,5 +702,6 @@ cask "font-lato"
 cask "font-ligature-symbols"
 cask "font-input"
 cask "font-intel-one-mono"
+cask "font-maple-mono-nf"
 tap    "epk/epk"
   cask "font-sf-mono-nerd-font"
