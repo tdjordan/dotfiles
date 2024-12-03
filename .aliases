@@ -209,6 +209,10 @@ kca() {
   kbe "$1" "$2" | kct - --all
 }
 
+###  nix
+###
+alias nf='nix flake '
+alias ns='nix-search '
 
 # python 3
 if [ -z "$IN_NIX_SHELL" ] ; then
@@ -224,6 +228,10 @@ alias vf='vifm'
 #  # ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 # alias reup='launchctl kickstart -k "gui/${UID}/com.koekeishiya.yabai"'
 alias reup='yabai --restart-service'
+
+## aerospace
+alias as='aerospace '
+alias a='aerospace '
 
 # clangd
 #alias clangd='/usr/local/Cellar/llvm/10.0.1_1/bin/clangd'
