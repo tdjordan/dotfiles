@@ -23,9 +23,10 @@ vim.filetype.add {
     -- end
   },
   filename = {
-    Jenkinsfile = 'Jenkinsfile'
-    , Brewfile = 'conf'
+    -- Jenkinsfile = 'Jenkinsfile'
+    Brewfile = 'conf'
     , justfile = 'just'
+    , Justfile = 'just'
     , ['.gitignore'] = 'gitignore'
     , ['COMMIT_EDITMSG'] = function( _, _ )
       vim.bo.cindent = false
@@ -44,5 +45,6 @@ vim.filetype.add {
     , ['helmfile.*.yml'] = 'helm'
     , ['.*/tasks/.*.yaml'] = 'yaml.ansible'
     , ['.*/tasks/.*.yml'] = 'yaml.ansible'
+    , ['Jenkinsfile.*'] = 'Jenkinsfile'
   }
 }

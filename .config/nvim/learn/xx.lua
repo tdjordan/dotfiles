@@ -6,7 +6,7 @@
 -- 		vim.notify("Attempting recovery.", vim.lsp.log_levels.WARN, {
 -- 			title = plugin,
 -- 		})
--- 		local timer = vim.loop.new_timer()
+-- 		local timer = vim.uv.new_timer()
 -- 		timer:start(2000, 0, function()
 -- 			vim.notify({ "Fixing problem.", "Please wait..." }, "info", {
 -- 				title = plugin,
