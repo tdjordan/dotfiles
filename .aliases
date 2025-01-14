@@ -69,11 +69,23 @@ alias bi='brew info'
 alias bs='brew search'
 alias bl='brew list'
 alias blr='brew list | rg '
+# alias bud='brew update && brew upgrade'
+alias bud='brew update'
+alias bup='brew upgrade'
 
 # cat
 # alias k='cat'
 # alias k='rich'
-alias k='gat'
+
+# _cat_imp() {
+#   if command -v bat &> /dev/null; then
+#     bat -p $*
+#   else
+#     gat $*
+#   fi
+# }
+# alias k='_cat_imp '
+alias k='bat '
 alias cg='cargo'
 
 # overload ag
@@ -213,6 +225,12 @@ kca() {
 ###
 alias nf='nix flake '
 alias ns='nix-search '
+alias np='nix profile '
+alias nph='nix profile history '
+alias npi='nix profile install '
+alias npl='nix profile list'
+alias npr='nix profile remove '
+alias npu='nix profile upgrade '
 
 # python 3
 if [ -z "$IN_NIX_SHELL" ] ; then
