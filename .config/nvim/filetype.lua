@@ -46,5 +46,6 @@ vim.filetype.add {
     , ['.*/tasks/.*.yaml'] = 'yaml.ansible'
     , ['.*/tasks/.*.yml'] = 'yaml.ansible'
     , ['Jenkinsfile.*'] = 'Jenkinsfile'
+    , ['.*/ghostty/config'] = 'conf'
   }
 }

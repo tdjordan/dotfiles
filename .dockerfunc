@@ -66,3 +66,6 @@ asciidoctor-revealjs() {
   docker run -it --rm -v .:/documents/ asciidoctor/docker-asciidoctor asciidoctor-revealjs "$@"
 }
 
+megalinter() {
+  docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:rw -v $(pwd):/tmp/lint:rw oxsecurity/megalinter:v8 "$@"
+}

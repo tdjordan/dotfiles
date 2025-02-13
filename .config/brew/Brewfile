@@ -4,6 +4,7 @@ tap "buo/cask-upgrade"
 
 ###  terminals
 ###
+cask "ghostty"
 cask "kitty"
 cask "wezterm"
 cask "alacritty"
@@ -41,6 +42,7 @@ brew "starship"
 
 ###  neovim
 brew "neovim"
+brew "hevi" # hex viewer
 
 ###  version control systems
 ###
@@ -67,6 +69,7 @@ brew "difftastic"
 # brew "legitify"
 # brew "biodiff"
 brew "gitu"
+brew "serie"
 #
 ###  base build tools
 brew "cmake"
@@ -221,11 +224,12 @@ brew "jenv"
 # cask "hammerspoon"
 tap    "koekeishiya/formulae"
   brew "yabai"
+  brew "skhd"
 tap    "nikitabobko/tap"
   cask "aerospace"
 tap    "FelixKratz/formulae"
   brew "borders"
-#   brew "skhd"
+  cask "font-sketchybar-app-font"
 # cask "raycast"
 # cask "kit"
 brew "yazi"
@@ -458,12 +462,16 @@ brew "cilium-cli"
 # brew "glasskube"
 brew "kubecolor"
 brew "crossplane"
+tap    "mike-engel/jwt-cli"
+  brew "jwt-cli"
+brew "steampipe"
+
 #
 # ###  OCI Containers
 # ###
 # brew "apko"
 # brew "ko"
-#
+
 # ###  Sentry
 # ###
 # tap    "getsentry/tools"
@@ -479,6 +487,7 @@ brew "opa"
 # ###
 # cask "recipeui"
 brew "openapi-generator"
+brew "openapi-tui"
 brew "tcptraceroute"
 # brew "usage"
 #
@@ -490,6 +499,7 @@ brew "tcptraceroute"
 # ###  Generic Makefile Like
 # ###
 brew "just"
+brew "pipelight"
 #
 # ###  Templating
 # ###
@@ -624,6 +634,7 @@ brew "julia"
 # ###  Task Runners
 # ###
 # brew "go-task"
+brew "xc"
 #
 # ###  Video
 # ###

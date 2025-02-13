@@ -33,8 +33,10 @@ alias ll.='${_ls_command} -dl .*[^.$] ${color} 2>/dev/null'
 alias ll='${_ls_command} -AlF ${color}'
 alias lla='${_ls_command} -AlFh ${color}'
 
-alias h='history'
-alias hsr='history | rg '
+# alias h='history'
+# alias hsr='history | rg '
+alias h='fc -El 0 '
+alias hsr='fc -El 0 | rg '
 
 alias fdi="fd -I"
 alias fdip="fd -I --full-path"
@@ -70,8 +72,8 @@ alias bs='brew search'
 alias bl='brew list'
 alias blr='brew list | rg '
 # alias bud='brew update && brew upgrade'
-alias bud='brew update'
-alias bup='brew upgrade'
+alias bup='brew update'
+alias bupg='brew upgrade'
 
 # cat
 # alias k='cat'
@@ -225,12 +227,14 @@ kca() {
 ###
 alias nf='nix flake '
 alias ns='nix-search '
+alias nsd='nix-search -dm 3 '
 alias np='nix profile '
 alias nph='nix profile history '
 alias npi='nix profile install '
 alias npl='nix profile list'
 alias npr='nix profile remove '
 alias npu='nix profile upgrade '
+alias npua='nix profile upgrade --all '
 
 # python 3
 if [ -z "$IN_NIX_SHELL" ] ; then

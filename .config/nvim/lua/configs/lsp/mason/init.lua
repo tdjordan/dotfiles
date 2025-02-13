@@ -12,6 +12,7 @@ local servers =
   , 'cmake'                           -- CMake
   , 'neocmake'                        -- CMake
   , 'cucumber_language_server'        -- Cucumber
+  -- , 'cue'                             -- Cue
   , 'dagger'                          -- Cue
   , 'dockerls'                        -- Docker
   , 'docker_compose_language_service' -- Docker Compose

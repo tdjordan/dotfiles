@@ -1,6 +1,13 @@
 ---  Language Specific Plugins
 ---
 return {
+  ---  repl consoles
+  ---
+  {
+    'yarospace/lua-console.nvim'
+    -- , keys = "`"
+    , opts = {}
+  },
   ---  language syntax
   ---
   {

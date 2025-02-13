@@ -1,4 +1,4 @@
----@diagnostic disable: mixed_table, mixed_table
+---@diagnostic disable: mixed_table
 -- stylua: ignore start
 -- LuaFormatter off
 
@@ -380,7 +380,7 @@ local normal_mappings = {
     , i = { function()
       -- vim.cmd 'IBLToggle'
       local ibl = require 'ibl'
-      local conf = require 'ibl.config'
+      -- local conf = require 'ibl.config'
 
       if ibl.initialized then
         vim.print('updated')

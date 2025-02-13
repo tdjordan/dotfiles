@@ -12,6 +12,7 @@ skip_global_compinit=1
 #   eval "export PATH=${HOMEBREW_PREFIX_OPT}/curl/bin:$PATH"
 #   eval "export PATH=${HOMEBREW_PREFIX_OPT}/llvm/bin:$PATH"
 # fi
+export XDG_CONFIG_HOME=~/.config
 export RIPGREP_CONFIG_PATH=~/.config/ripgrep/rc
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_INSTALL_CLEANUP=1

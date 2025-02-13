@@ -19,10 +19,35 @@ return {
       modes = {
         diagnostics = {
           auto_close = true,
-          auto_open = true,
+          auto_open = false,
           filter = {
-            buf = 0
+            buf = 0,
+            -- ['not'] = {
+            --   buf = 0,
+            --   any = {
+            --     { source = 'trail-space' }
+            --   }
+            -- },
+            -- any = {
+            --   buf = 0,
+            --   source = 'trail-space'
+            --   -- {
+            --   --   function(items)
+            --   --     local severity = vim.iter( items ):fold(
+            --   --       vim.diagnostic.severity.HINT,
+            --   --       function( r, v ) return math.min( r, v.severity ) end
+            --   --     )
+            --   --     return vim.tbl_filter(
+            --   --       function(item) return item.severity == severity end,
+            --   --       items
+            --   --     )
+            --   --   end,
+            --   -- }
+            -- }
           }
+          -- filter = {
+          --   buf = 0
+          -- }
         },
         -- cascade = {
         --   mode = "diagnostics",

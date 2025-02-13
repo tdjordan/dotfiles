@@ -214,7 +214,12 @@ local sources = {
   -- , b.diagnostics.codespell.with {
   --   diagnostics_format = '(#{s}) #{m}'
   -- }
-  , b.diagnostics.codespell
+  -- , b.diagnostics.codespell.with {
+  --   filetypes = {
+  --     '!Brewfile'
+  --   }
+  -- }
+  -- , b.diagnostics.codespell
   , b.formatting.codespell
   -- TODO: find a replacement
   -- , b.diagnostics.misspell
