@@ -24,6 +24,8 @@ case "$os" in
   Linux)  env_linux ;;
 esac
 
+alias ai="tgpt "
+
 alias l='${_ls_command} -CF ${color}'
 alias l.='${_ls_command} -d .*[^.$] ${color} 2>/dev/null'
 alias la='${_ls_command} -A ${color}'
