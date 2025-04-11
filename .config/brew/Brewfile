@@ -355,8 +355,8 @@ brew "rustup-init"
 # ###  File Triggers
 # ###
 # brew "cargo-watch"
-brew 'watchexec'
-# brew 'retry'
+brew "watchexec"
+# brew "retry"
 #
 ###  Python Language
 ###
@@ -625,7 +625,7 @@ brew "julia"
 #
 # ###  Arbitrary Installer Utilities
 # ###
-# brew 'bvm'
+# brew "bvm"
 #
 # ###  Dagger
 # ###
