@@ -1,0 +1,56 @@
+font-size = 24
+# font-family = FiraCode Nerd Font Mono
+# font-family = VictorMono Nerd Font
+# font-family = Zed Mono
+# font-family = JetBrainsMono
+# font-family = JetBrainsMono Nerd Font Mono
+font-family = MesloLGS Nerd Font Mono
+# font-family = CommitMono
+
+# theme = kanagawabones
+# theme = UltraDark
+# theme = Argonaut
+# theme = Afterglow
+# theme = Apple Classic
+# theme = Argonaut
+# theme = Builtin Tango Dark
+# theme = Dark Pastel
+# theme = Dark+
+# theme = deep
+# theme = Desert
+# theme = gruvbox-material
+# theme = PaulMillr
+# theme = rose-pine
+# theme = SeaShells
+# theme = Spacedust
+# theme = Square
+# theme = Thayer Bright
+# theme = Twilight
+theme = Wez
+# theme = Wombat
+# theme = zenwritten_dark
+# theme = zenbones_dark
+# background = black
+# background = grey11
+unfocused-split-fill = grey11
+# unfocused-split-opacity = 0.7
+# background-opacity = 0.7
+cursor-style = block
+
+# copy-on-select = true  # defaults to true [>= 1.1.0]
+
+# command = clear
+# quick-terminal-screen = macos-menu-bar
+quick-terminal-space-behavior = remain
+
+macos-titlebar-style = hidden
+# macos-non-native-fullscreen = true
+# macos-titlebar-style = tabs
+
+# Custom Keybinds & Config ( super represents cmd key on mac )
+# for simple keybinds
+keybind = super+i=inspector:toggle
+
+# keybind = super+b>c=new_tab
+
+keybind = global:cmd+/=toggle_quick_terminal
