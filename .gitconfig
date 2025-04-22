@@ -9,6 +9,9 @@
 [init]
   defaultBranch = main
 
+[help]
+  autocorrect = prompt
+
 [pretty]
   compact=%h %ad, %s
   f-lg1=%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)
@@ -81,8 +84,19 @@
   excludesfile = ~/.gitignore_global
   commentchar = :
 
+[branch]
+  sort = -committerdate
+
 [push]
   default = simple
+  autoSetupRemote = true
+  ; followTags = true
+
+[commit]
+  verbose = true
+
+[tag]
+  sort = version:refname
 
 [fetch]
   prune = true
@@ -126,11 +140,15 @@
   diffFilter = delta --color-only
 
 [merge]
-  conflictstyle = diff3
+  conflictstyle = zdiff3
 
 [diff]
   tool = difftastic
   colorMoved = default
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
 
 [delta]
   features = default decorations side-by-side
