@@ -1,0 +1,9 @@
+brew "jc"
+brew "yq"
+brew "xq"
+brew "sq"
+brew "cyme"
+brew "yazi"
+brew "htop"
+brew "nvtop"
+

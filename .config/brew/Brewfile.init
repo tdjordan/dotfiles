@@ -1,0 +1,7 @@
+brew "mas"
+cask "kitty"
+cask "wezterm"
+cask "alacritty"
+cask "ghostty"
+brew "tmux"
+
