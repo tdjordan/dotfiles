@@ -1,5 +1,39 @@
 #!/usr/bin/env sh
 
+# export WINDOW_COLOR_STACKED="0xc00000ff"    # green
+# export WINDOW_COLOR_STACKED="0xc0ff00ff"    # violet
+# export WINDOW_COLOR_STACKED="0xc000ffff"    # cyan
+# export WINDOW_COLOR_STACKED="0xc0ffff00"    # yellow
+export WINDOW_COLOR_STACKED="0x80ffff00"    # yellow lighter
+export WINDOW_COLOR_NORMALS="0xc0e2e2e3"
+
+###
+###  Scripting Addition Configuration
+###
+# create a new file for writing - visudo uses the vim editor by default.
+# go read about this if you have no idea what is going on.
+
+# sudo visudo -f /private/etc/sudoers.d/yabai
+
+# input the line below into the file you are editing.
+#  replace <yabai> with the path to the yabai binary (output of: which yabai).
+#  replace <user> with your username (output of: whoami).
+#  replace <hash> with the sha256 hash of the yabai binary (output of: shasum -a 256 $(which yabai)).
+#   this hash must be updated manually after upgrading yabai.
+
+# <user> ALL=(root) NOPASSWD: sha256:<hash> <yabai> --load-sa
+
+# If you know hwat you are doing, the follwing one-liner can be used to update the sodoers file correctly:
+# echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa" | sudo tee /private/etc/sudoers.d/yabai
+
+# After the above edit has been made, add the following to the top of the yabairc config file.
+# for this to work you must configure sudo such that
+# it will be able to run the command without password
+
+# yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+# sudo yabai --load-sa
+# yabai -m signal --add event=space_changed action="hs -A -c 'stackline.manager:update({ forceRedraw = true })'"
+
 ###
 ###   bar settings
 ###
@@ -13,7 +47,9 @@
 #       main : apply the given padding to only spaces located on the main display
 #       all  : apply the given padding to all  spaces regardless of their  display
 #       off  : do not apply any special padding
-yabai -m config external_bar                 off
+# yabai -m config external_bar                 off
+# yabai -m config external_bar                 main:0:28
+# yabai -m config external_bar                 all:0:28
 
 ###
 ###   global settings
@@ -30,7 +66,7 @@ yabai -m config window_topmost               off
 #
 #       example: show shadows only for floating windows
 #                yabai -m config window_shadow float
-yabai -m config window_shadow                on
+yabai -m config window_shadow                off
 #
 #     window opacity ( default: off )
 #
@@ -43,12 +79,6 @@ yabai -m config window_opacity_duration      0.0
 yabai -m config active_window_opacity        1.0
 yabai -m config normal_window_opacity        0.90
 yabai -m config insert_feedback_color        0xaad75f5f
-
-yabai -m config window_border                off
-#yabai -m config window_border_width          4
-#yabai -m config active_window_border_color   0xff775759
-#yabai -m config normal_window_border_color   0xff505050
-#yabai -m config insert_window_border_color   0xffd75f5f
 
 ### Split Ratios
 #
@@ -70,6 +100,8 @@ yabai -m config split_ratio                  0.50
 #
 #   When you drag a tiled window onto another, yabai swaps their positions in the window tree.
 #   If you resize a tiled window, yabai will adjust splits to fit automatically.
+#
+yabai -m config mouse_drop_action stack
 #
 #   Additionally, yabai can enable you to move and resize windows by clicking anywhere on them while holding a modifier key.
 #
@@ -108,15 +140,17 @@ yabai -m config window_placement             second_child
 #
 #   When tiling windows, yabai can maintain gaps between windows and padding towards menu bar, dock and screen edges.
 #   This setting can be defined on a per-space basis.
-yabai -m config top_padding                  5
-yabai -m config bottom_padding               5
-yabai -m config left_padding                 5
-yabai -m config right_padding                5
-yabai -m config window_gap                   5
+yabai -m config      \
+  top_padding     5  \
+  bottom_padding  5  \
+  left_padding    5  \
+  right_padding   5  \
+  window_gap      10
 
 ###
 ###   window management rules
 ###
+yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^zoom.us$" manage=off
@@ -128,6 +162,22 @@ yabai -m rule --add app="^Raycast$" manage=off
 #yabai -m signal --add event=window_created title="^Intellectual Property Risk!$" \
   #action="yabai -m window ${YABAI_WINDOW_ID} --close"
 
+yabai -m signal --add event=window_resized \
+  action="[ \$(yabai -m query --windows --window | jq '.\"stack-index\"') != 0 ] && borders active_color=$WINDOW_COLOR_STACKED || borders active_color=$WINDOW_COLOR_NORMALS"
+
+yabai -m signal --add event=window_focused \
+  action="[ \$(yabai -m query --windows --window | jq '.\"stack-index\"') != 0 ] && borders active_color=$WINDOW_COLOR_STACKED || borders active_color=$WINDOW_COLOR_NORMALS"
+
+# yabai -m signal --add event=window_resized \
+#   action="[ \$(yabai -m query --windows --window | jq '.\"stack-index\"') != 0 ] && borders active_color=$WINDOW_COLOR_STACKED || toggle_border stacked"
+#
+# yabai -m signal --add event=window_focused \
+#   action="[ \$(yabai -m query --windows --window | jq '.\"stack-index\"') != 0 ] && borders active_color=$WINDOW_COLOR_STACKED || toggle_border normal"
+
+yabai -m config window_opacity on
+yabai -m signal --add event=window_focused \
+  action="yabai -m config active_window_opacity 1.0"
+
 echo "yabai configuration loaded.."
 
-borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0 &
+borders
