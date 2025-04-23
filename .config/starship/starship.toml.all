@@ -1,0 +1,3 @@
+# Move the directory to the second line
+format = '$all$directory$character'
+right_format = '$aws'
