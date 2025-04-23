@@ -1,0 +1,19 @@
+# from https://github.com/Wilfred/difftastic/blob/master/src/options.rs
+
+DFT_CONTEXT           : context
+DFT_WIDTH             : width
+DFT_TAB_WIDTH         : tab-width
+DFT_DISPLAY           : display
+DFT_COLOR             : color
+DFT_BACKGROUHD        : background
+DFT_SYNTAX_HIGHLIGHT  : syntax-highlight
+DFT_EXIT_CODE         : exit-code
+DFT_STRIP_CR          : strip-cr
+DFT_CHECK_ONLY        : check-only
+DFT_IGNORE_COMMENTS   : ignore-comments
+DFT_SKIP_UNCHANGED    : skip-unchanged
+DFT_OVERRIDE          : override
+DFT_BYTE_LIMIT        : byte-limit
+DFT_GRAPH_LIMIT       : graph-limit
+DFT_PARSE_ERROR_LIMIT : parse-error-limit
+DFT_SORT_PATHS        : sort-paths
