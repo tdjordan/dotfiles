@@ -107,6 +107,7 @@
 [pager]
   tag = off
   branch = off
+  difftool = true
   # diff = delta
   ; show = delta
   ; log = nvim
