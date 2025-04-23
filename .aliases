@@ -240,8 +240,8 @@ alias npua='nix profile upgrade --all '
 
 # python 3
 if [ -z "$IN_NIX_SHELL" ] ; then
-  alias python=${HOMEBREW_PREFIX}/bin/python3.12
-  alias pip=${HOMEBREW_PREFIX}/bin/pip3.12
+  alias python=${HOMEBREW_PREFIX}/bin/python3
+  alias pip=${HOMEBREW_PREFIX}/bin/pip3
 fi
 
 # vifm
