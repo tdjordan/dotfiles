@@ -1,0 +1,258 @@
+#  NOTE(koekeishiya): A list of all built-in modifier and literal keywords can
+#                     be found at https://github.com/koekeishiya/skhd/issues/1
+#
+#                     A hotkey is written according to the following rules:
+#
+#                       hotkey       = <mode> '<' <action> | <action>
+#
+#                       mode         = 'name of mode' | <mode> ',' <mode>
+#
+#                       action       = <keysym> '[' <proc_map_lst> ']' | <keysym> '->' '[' <proc_map_lst> ']'
+#                                      <keysym> ':' <command>          | <keysym> '->' ':' <command>
+#                                      <keysym> ';' <mode>             | <keysym> '->' ';' <mode>
+#
+#                       keysym       = <mod> '-' <key> | <key>
+#
+#                       mod          = 'modifier keyword' | <mod> '+' <mod>
+#
+#                       key          = <literal> | <keycode>
+#
+#                       literal      = 'single letter or built-in keyword'
+#
+#                       keycode      = 'apple keyboard kVK_<Key> values (0x3C)'
+#
+#                       proc_map_lst = * <proc_map>
+#
+#                       proc_map     = <string> ':' <command> | <string>     '~' |
+#                                      '*'      ':' <command> | '*'          '~'
+#
+#                       string       = '"' 'sequence of characters' '"'
+#
+#                       command      = command is executed through '$SHELL -c' and
+#                                      follows valid shell syntax. if the $SHELL environment
+#                                      variable is not set, it will default to '/bin/bash'.
+#                                      when bash is used, the ';' delimeter can be specified
+#                                      to chain commands.
+#
+#                                      to allow a command to extend into multiple lines,
+#                                      prepend '\' at the end of the previous line.
+#
+#                                      an EOL character signifies the end of the bind.
+#
+#                       ->           = keypress is not consumed by skhd
+#
+#                       *            = matches every application not specified in <proc_map_lst>
+#
+#                       ~            = application is unbound and keypress is forwarded per usual, when specified in a <proc_map>
+#
+#  NOTE(koekeishiya): A mode is declared according to the following rules:
+#
+#                       mode_decl = '::' <name> '@' ':' <command> | '::' <name> ':' <command> |
+#                                   '::' <name> '@'               | '::' <name>
+#
+#                       name      = desired name for this mode,
+#
+#                       @         = capture keypresses regardless of being bound to an action
+#
+#                       command   = command is executed through '$SHELL -c' and
+#                                   follows valid shell syntax. if the $SHELL environment
+#                                   variable is not set, it will default to '/bin/bash'.
+#                                   when bash is used, the ';' delimeter can be specified
+#                                   to chain commands.
+#
+#                                   to allow a command to extend into multiple lines,
+#                                   prepend '\' at the end of the previous line.
+#
+#                                   an EOL character signifies the end of the bind.
+
+###  Known keycodes
+###
+# 0x2F : period
+# 0x2B : comma
+# 0x35 : esc
+# 0x2A : backslash
+
+###
+###  OperationalLevels
+###
+# ctrl : application operations [ tmux focus ]
+# ctrl+shift : focus operations
+# ctrl+super : movement operations
+# ctrl+shift+super :
+# shift+super :
+# super:
+#
+###
+###
+###
+#
+
+:: default  : borders active_color=0xc0e2e2e3
+:: launch @ : borders active_color=0x8010ff10
+:: focus @  : borders active_color=0x8010ff10
+:: zoom @   : borders active_color=0x80108010
+:: move @   : borders active_color=0xffffff00
+
+
+default < fn - space ; move
+default < ctrl - y   ; move
+default < ctrl - i   ; focus
+default < ctrl - u   ; zoom
+
+move    < fn - space ; default
+move    < ctrl - y   ; default
+move    < ctrl - i   ; focus
+move    < 0x35       ; default
+
+focus   < ctrl - y   ; move
+focus   < ctrl - i   ; default
+focus   < 0x35       ; default
+
+zoom    < ctrl - u   ; default
+zoom    < 0x35       ; default
+
+# swap managed window
+shift + alt - h : yabai -m window --swap east || yabai -m window --swap west
+
+###  Focus Monitor
+###
+shift + ctrl - n : yabai -m display --focus next || yabai -m display --focus first
+shift + ctrl - p : yabai -m display --focus prev || yabai -m display --focus last
+move < n       : yabai -m display --focus next || yabai -m display --focus first
+move < p       : yabai -m display --focus prev || yabai -m display --focus last
+focus  < n       : yabai -m display --focus next || yabai -m display --focus first
+focus  < p       : yabai -m display --focus prev || yabai -m display --focus last
+
+###  Focus on next space
+###
+# alt - tab : yabai -m space --focus next
+
+###  Move managed window
+###
+#
+#    Within same focused space
+#
+shift + ctrl - h : yabai -m window --focus west  || yabai -m window --focus east
+shift + ctrl - j : yabai -m window --focus south || yabai -m window --focus north
+shift + ctrl - k : yabai -m window --focus north || yabai -m window --focus south
+shift + ctrl - l : yabai -m window --focus east  || yabai -m window --focus west
+move < h       : yabai -m window --warp west   || yabai -m window --warp east
+move < j       : yabai -m window --warp south  || yabai -m window --warp north
+move < k       : yabai -m window --warp north  || yabai -m window --warp south
+move < l       : yabai -m window --warp east   || yabai -m window --warp west
+# move < L : yabai -m window --warp east  || yabai -m window --warp west
+#
+#    To next space on same focused monitor
+#
+# shift + ctrl - m : yabai -m window --display next --focus || yabai -m window --display first --focus
+#
+#    To next monitor/display
+#
+# shift + ctrl - m : yabai -m space --focus next || yabai -m space --focus first
+shift + ctrl - m : yabai -m window --display next --focus || yabai -m window --display first --focus
+shift + ctrl - o : yabai -m window --display prev --focus || yabai -m window --display last  --focus
+move < m : yabai -m window --display next --focus || yabai -m window --display first --focus
+move < o : yabai -m window --display prev --focus || yabai -m window --display last  --focus
+
+###  Blance windows in focused space
+shift + ctrl - 0 : yabai -m space --balance
+
+###  Focus Window in same space
+###
+ctrl + cmd - h : yabai -m window --warp west        || yabai -m window --warp recent
+ctrl + cmd - j : yabai -m window --warp south       || yabai -m window --warp recent
+ctrl + cmd - k : yabai -m window --warp north       || yabai -m window --warp recent
+ctrl + cmd - l : yabai -m window --warp east        || yabai -m window --warp recent
+focus < h      : yabai -m window --focus west       || yabai -m window --focus recent
+focus < j      : yabai -m window --focus south      || yabai -m window --focus recent
+focus < k      : yabai -m window --focus north      || yabai -m window --focus recent
+focus < l      : yabai -m window --focus east       || yabai -m window --focus recent
+focus < i      : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+focus < 0x2B   : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+focus < z      : yabai -m window --toggle windowed-fullscreen ; default
+# ctrl + cmd - n : yabai -m window --focus next  || yabai -m window --focus stack.next || yabai -m window --focus stack.first || yabai -m window --focus first
+ctrl + cmd - n : yabai -m window --focus next  || yabai -m window --focus first
+ctrl + cmd - p : yabai -m window --focus prev  || yabai -m window --focus last
+# alt - k : yabai -m query --spaces --space \
+#   | jq -re ".index" \
+#   | xargs -I{} yabai -m query --windows --space {} \
+#   | jq -sre 'add | map(select(."is-minimized"==false)) | sort_by(.display, .frame.y, .frame.x, .id) | . as $array | length as $array_length | index(map(select(."has-focus"==true))) as $has_index | if $has_index > 0 then nth($has_index - 1).id else nth($array_length - 1).id end' \
+#   | xargs -I{} yabai -m window --focus {}
+#
+# alt - j : yabai -m query --spaces --space \
+#   | jq -re ".index" \
+#   | xargs -I{} yabai -m query --windows --space {} \
+#   | jq -sre 'add | map(select(."is-minimized"==false)) | sort_by(.display, .frame.y, .frame.x, .id) | . as $array | length as $array_length | index(map(select(."has-focus"==true))) as $has_index | if $array_length - 1 > $has_index then nth($has_index + 1).id else nth(0).id end' \
+#   | xargs -I{} yabai -m window --focus {}
+
+###  Zoom Window
+###
+focus < z      : yabai -m window --toggle windowed-fullscreen ; default
+zoom  < w      : yabai -m window --toggle windowed-fullscreen
+zoom  < p      : yabai -m window --toggle zoom-parent
+zoom  < f      : yabai -m window --toggle zoom-fullscreen
+
+###  Stack Operations
+###
+shift + ctrl - 0x2F : yabai -m space --layout \
+        $(yabai -m query --spaces --space | jq -r 'if .type == "stack" then "bsp" else "stack" end' )
+# shift + ctrl - 0x2A : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "stack" then "bsp" else "stack" end' )
+shift + ctrl - 0x2F : yabai -m space --layout stack
+# shift + ctrl - 0x2A : yabai -m space --layout bsp
+# shift + ctrl - 0x2A : yabai -m space --layout --toggle
+ctrl + cmd - s      : yabai -m window --stack west || yabai -m window --stack east
+ctrl + cmd - w      : yabai -m window --stack east
+ctrl + cmd - i      : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+# ctrl + cmd - u      : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+ctrl + cmd - 0x2B   : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+ctrl + shift - i    : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+ctrl + shift - 0x2B : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+
+# add an on_enter command to the default mode
+# :: default : yabai -m config active_window_border_color 0xff775759
+
+# defines a new mode 'test' with an on_enter command, that captures keypresses
+# :: test @ : yabai -m config active_window_border_color 0xff24ccaa
+#
+# from 'default' mode, activate mode 'test'
+# cmd - x ; test
+#
+# from 'test' mode, activate mode 'default'
+# test < cmd - x ; default
+#
+# launch a new terminal instance when in either 'default' or 'test' mode
+# default, test < cmd - return : open -na /Applications/Terminal.app
+
+# application specific bindings
+#
+# cmd - n [
+#     "kitty"       : echo "hello kitty"
+#     *             : echo "hello everyone"
+#     "qutebrowser" : echo "hello qutebrowser"
+#     "terminal"    ~
+#     "finder"      : false
+# ]
+
+# specify a file that should be included as an additional config-file.
+# treated as an absolutepath if the filename begins with '/' otherwise
+# the file is relative to the path of the config-file it was loaded from.
+#
+# .load "/Users/Koe/.config/partial_skhdrc"
+# .load "partial_skhdrc"
+
+# prevent skhd from monitoring events for specific applications.
+#
+# .blacklist [
+#    "kitty"
+#    "terminal"
+#    "qutebrowser"
+# ]
+
+# open terminal, blazingly fast compared to iTerm/Hyper
+# cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+
+# open qutebrowser
+# cmd + shift - return : ~/Scripts/qtb.sh
+
+# open mpv
+# cmd - m : open -na /Applications/mpv.app $(pbpaste)
