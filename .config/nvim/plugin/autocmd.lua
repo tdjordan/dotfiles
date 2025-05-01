@@ -15,7 +15,7 @@ autocmd( 'BufReadPost' , {
 autocmd( 'TextYankPost' , {
   pattern = '*'
   , callback = function()
-    require 'vim.highlight'.on_yank { timeout = 100 }
+    vim.hl.on_yank { timeout = 100 }
   end
   , group = autogrp( 'TextYank', { clear = true } )
 })
