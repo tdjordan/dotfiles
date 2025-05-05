@@ -26,6 +26,7 @@
   visual = !gitk
   st = status -s
   stu = status -s --untracked-files all
+  stuc = status -s --untracked-files all .
   stud = status -s --untracked-files all .*[^.$]
   co = checkout
   sco = sparse-checkout
