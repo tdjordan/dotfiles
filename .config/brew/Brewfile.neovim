@@ -2,6 +2,7 @@
 brew "jenv"
 brew "neovim"
 brew "composer"
+cask "temurin@21"
 cask "temurin@8"
 cask "temurin"
 brew "pnpm"
