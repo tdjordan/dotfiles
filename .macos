@@ -13,7 +13,12 @@ osascript -e 'tell application "System Preferences" to quit'
 
 # Save screenshots to the folder under the Desktop
 mkdir -p "${HOME}/Desktop/Screen Shots"
-defaults write com.apple.screencapture location -string "${HOME}/Desktop/Screen Shots"
+defaults write com.apple.screencapture location -string "${HOME}/Desktop/Screenshots"
+defaults write com.apple.screencapture show-thumbnail -bool false
+defaults write -g com.apple.sound.uiaudio.enabled -int 0
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+defaults write com.apple.WindowManager HideDesktop -bool true
+
 
 # speed up the keyboard
 defaults write -g InitialKeyRepeat -int 15
