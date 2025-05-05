@@ -206,8 +206,8 @@ cask "neovide"
 cask "temurin"
 # cask "visualvm"
 #
-tap    "homebrew/cask-versions"
-  cask "temurin@8"
+cask "temurin@8"
+cask "temurin@21"
 # # tap    "adoptopenjdk/openjdk"
 # #   cask "adoptopenjdk8"
 #

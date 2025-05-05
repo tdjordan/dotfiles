@@ -177,8 +177,7 @@ cask "wezterm"
 cask "temurin"
 cask "visualvm"
 
-tap    "homebrew/cask-versions"
-  cask "temurin8"
+cask "temurin8"
 # tap    "adoptopenjdk/openjdk"
 #   cask "adoptopenjdk8"
 
