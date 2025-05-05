@@ -32,7 +32,7 @@ return {
     }
     , config = function()
       vim.schedule(function()
-        require 'nvim-treesitter.install'.compilers = { 'gcc-13' }
+        -- require 'nvim-treesitter.install'.compilers = { 'gcc-13' }
 
         require 'nvim-treesitter.configs'.setup {
           ensure_installed = 'all',
