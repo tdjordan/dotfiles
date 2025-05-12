@@ -201,7 +201,7 @@ done
 #set -o vi
 
 # source /Users/thomasjordan/.config/broot/launcher/bash/br
-. "$HOME/.cargo/env"
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/tjordan/.rd/bin:$PATH"
