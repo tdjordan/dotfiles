@@ -1,0 +1,23 @@
+#!/usr/bin/env zsh
+
+set -o pipefail
+
+_np_add() {
+  if command -v $1 &> /dev/null ; then
+    echo $1 already installed
+  else
+    nix profile add $2
+  fi
+}
+
+pkgs=(
+  aws               nixpkgs#aws
+  gimme-aws-creds   nixpkgs#gimme-aws-creds
+  saml2aws          nixpkgs#saml2aws
+  devenv            nixpkgs#devenv
+  nix-search        github:peterldowns/nix-search-cli
+  )
+
+  for k v in ${(kv)pkgs} ; do
+    _np_add $k $v
+  done
