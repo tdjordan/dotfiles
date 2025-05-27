@@ -15,7 +15,14 @@ local sign_column = function()
 
   vim.diagnostic.config {
     underline = true,
-    signs = true,
+    signs = {
+      text = {
+        [ vim.diagnostic.severity.ERROR ] = signs[ 'Error' ],
+        [ vim.diagnostic.severity.WARN  ] = signs[ 'Warn'  ],
+        [ vim.diagnostic.severity.HINT  ] = signs[ 'Hint'  ],
+        [ vim.diagnostic.severity.INFO  ] = signs[ 'Info'  ],
+      }
+    },
     severity_sort = true,
     update_in_insert = false,
     virtual_text = false,        -- using virtual_lines instead
