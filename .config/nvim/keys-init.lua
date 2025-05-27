@@ -1,4 +1,3 @@
----@diagnostic disable: mixed_table
 -- stylua: ignore start
 -- LuaFormatter off
 
