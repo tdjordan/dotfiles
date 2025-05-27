@@ -54,9 +54,11 @@ local server_options = {
             , 'spoon'
             , 'packer_plugins'
             , 'lvim'
+            , 'Snacks'
           },
           disable =
             { 'lowercase-global'
+            , 'different-requires'
             -- , 'missing-parameter'
             -- , 'trailing-space'
           }
