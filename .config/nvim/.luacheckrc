@@ -3,6 +3,7 @@ stds.nvim = {
     'jit',
     'os',
     'vim',
-    'spoon'
+    'spoon',
+    'Snacks'
   }
 }

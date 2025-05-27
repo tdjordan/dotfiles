@@ -7,10 +7,12 @@
         "packer_plugins",
         "lvim",
         "s",
-        "t"
+        "t",
+        "Snacks"
     ],
     "diagnostics.disable": [
         "undefined-doc-param",
-        "undefined-doc-name"
+        "undefined-doc-name",
+        "different-requires"
     ]
 }
