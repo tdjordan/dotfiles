@@ -38,7 +38,7 @@ return {
     'nvim-tree/nvim-tree.lua'
     , keys = {
       {
-        '<leader>e', function()
+        '<leader>E', function()
           require 'nvim-tree.api'.tree.toggle()
         end, desc = 'explorer'
       }
