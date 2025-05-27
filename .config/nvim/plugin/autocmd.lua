@@ -48,6 +48,7 @@ local sidebars = {
   , 'tsplayground'
   , 'lazy'
   , 'lazy_backdrop'
+  , 'snacks_picker_list'
   -- , ''
 }
 local no_side_column = autogrp( 'NoSideColumn', { clear = true } )
@@ -91,6 +92,7 @@ local disabled_filetypes = {
   , ''
   , 'Outline'
   , 'checkhealth'
+  , 'snacks_picker_list'
 }
 autocmd( { 'WinEnter', 'BufWinEnter' }, {
   pattern = '*'
