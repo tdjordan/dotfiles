@@ -96,16 +96,16 @@
 
 default < fn - space ; move
 default < ctrl - y   ; move
-default < ctrl - i   ; focus
+default < ctrl - p   ; focus
 default < ctrl - u   ; zoom
 
 move    < fn - space ; default
 move    < ctrl - y   ; default
-move    < ctrl - i   ; focus
+move    < ctrl - p   ; focus
 move    < 0x35       ; default
 
 focus   < ctrl - y   ; move
-focus   < ctrl - i   ; default
+focus   < ctrl - p   ; default
 focus   < 0x35       ; default
 
 zoom    < ctrl - u   ; default
