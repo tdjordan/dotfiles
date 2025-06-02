@@ -37,6 +37,11 @@ return {
         end, desc = 'todo (trouble)'
       },
       {
+        '<leader>ct', function()
+          Snacks.picker.todo_comments()
+        end, desc = 'todo (snacks)'
+      },
+      {
         '<leader>xT', function()
           vim.cmd.TodoTrouble { 'keywords=TODO,FIX,FIXME' }
         end, desc = 'todo/fix/fixme (trouble)'

@@ -9,6 +9,7 @@ return {
     'nvim-treesitter/nvim-treesitter'
     -- , enabled = false
     -- , lazy = false
+    , branch = 'master'
     , build = ':TSUpdate'
     -- , build = function()
     --   local installer = require 'nvim-treesitter.install'

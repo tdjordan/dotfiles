@@ -28,11 +28,11 @@ return {
   ---
   ---  Swift
   ---
-  {
-    'xbase-lab/xbase'
-    , build = 'make install'
-    , config = true
-  },
+  -- {
+  --   'xbase-lab/xbase'
+  --   , build = 'make install'
+  --   , config = true
+  -- },
   ---  Rust
   ---
   {
