@@ -11,13 +11,14 @@ _np_add() {
 }
 
 pkgs=(
-  aws               nixpkgs#aws
+  aws               nixpkgs#awscli
   gimme-aws-creds   nixpkgs#gimme-aws-creds
   saml2aws          nixpkgs#saml2aws
   devenv            nixpkgs#devenv
   nix-search        github:peterldowns/nix-search-cli
+  kubectl           nixpkgs#kubectl
   )
 
-  for k v in ${(kv)pkgs} ; do
-    _np_add $k $v
-  done
+for k v in ${(kv)pkgs} ; do
+  _np_add $k $v
+done
