@@ -6,4 +6,4 @@ brew "cyme"
 brew "yazi"
 brew "htop"
 brew "nvtop"
-
+brew "watchexec"
