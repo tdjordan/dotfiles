@@ -124,7 +124,7 @@ fi
 # zinit wait"1a" lucid from"gh-r" as"null" for \
 #   sbin"**/vivid" atload'export LS_COLORS="$(vivid generate snappy)"' \
 #     @sharkdp/vivid
-export LS_COLORS="$(vivid generate snazzy 2> /dev/null)"
+# export LS_COLORS="$(vivid generate snazzy 2> /dev/null)"
 
 #zinit wait lucid nocd is-snippet for \
 
@@ -210,3 +210,10 @@ PERL_MM_OPT="INSTALL_BASE=/Users/tjordan/perl5"; export PERL_MM_OPT;
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  unset __ETC_PROFILE_NIX_SOURCED
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nix
