@@ -73,6 +73,7 @@ alias bi='brew info'
 alias bs='brew search'
 alias bl='brew list'
 alias blr='brew list | rg '
+alias blv='brew leaves '
 # alias bud='brew update && brew upgrade'
 alias bup='brew update'
 alias bupg='brew upgrade'
@@ -121,6 +122,7 @@ alias viu='vi -u NONE'
 # neovim config
 alias vic='nvim ~/.config/nvim/init.lua'
 alias luamake=~/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/3rd/luamake/luamake
+alias ntmp="nix run 'github:BirdeeHub/nixCats-nvim?dir=templates/example' "
 
 # loop
 alias lo='_lo '
@@ -129,7 +131,7 @@ alias lo='_lo '
 agdf_imp() {
   # shellcheck disable=2048,2086,2046,2012
   # ag $* $(ls -dFL .* | ag -v "(/)$" | ag -v "(\*)$" | ag -v history)
-  rg $* $(ls -dFL .* | rg -v "(/)$" | rg -v "(\*)$" | rg -v history)
+  rg "$*" $(ls -dFL .* | rg -v "(/)$" | rg -v "(\*)$" | rg -v history)
 }
 alias agdf='agdf_imp '
 rgdf() {
