@@ -232,6 +232,7 @@ kca() {
 alias nf='nix flake '
 alias ns='nix-search '
 alias nsd='nix-search -dm 3 '
+alias nsp='nix-search -p '
 alias np='nix profile '
 alias nph='nix profile history '
 alias npi='nix profile install '
