@@ -293,7 +293,7 @@ cask "orbstack"
 brew "packer"
 # brew "terrascan"
 # brew "terraform", link: false
-brew "tfenv", conflicts_with: ["terraform"]
+brew "tenv", conflicts_with: ["tfenv", "tgenv", "terraform"]
 # brew "cdktf"
 brew "tgenv"
 # brew "tfsec"

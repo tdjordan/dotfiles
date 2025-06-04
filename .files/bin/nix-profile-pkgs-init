@@ -17,6 +17,11 @@ pkgs=(
   devenv            nixpkgs#devenv
   nix-search        github:peterldowns/nix-search-cli
   kubectl           nixpkgs#kubectl
+  kubectx           nixpkgs#kubectx
+  kubecolor         nixpkgs#kubecolor
+  kustomize         nixpkgs#kustomize
+  tsh               nixpkgs#teleport
+  tenv              nixpkgs#tenv
   )
 
 for k v in ${(kv)pkgs} ; do

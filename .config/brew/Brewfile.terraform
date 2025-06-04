@@ -1,0 +1,1 @@
+brew "tenv", conflicts_with: ["tfenv", "tgenv", terraform"]
