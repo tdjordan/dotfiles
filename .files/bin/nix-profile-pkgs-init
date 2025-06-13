@@ -22,6 +22,12 @@ pkgs=(
   kustomize         nixpkgs#kustomize
   tsh               nixpkgs#teleport
   tenv              nixpkgs#tenv
+  kind              nixpkgs#kind
+  minikube          nixpkgs#minikube
+  vcluster          nixpkgs#vcluster
+  jj                nixpkgs#jujutsu
+  jjui              nixpkgs#jjui
+  lazyjj            nixpkgs#lazyjj
   )
 
 for k v in ${(kv)pkgs} ; do
