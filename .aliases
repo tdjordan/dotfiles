@@ -140,6 +140,9 @@ rgdf() {
   rg $* $(ls -dFL .* | rg -v "(/|\*|history)$")
 }
 
+# search fiels
+alias rgl='rg -l '
+
 # dotfile configuration
 alias config='git --git-dir=$HOME/.files.git --work-tree=$HOME --no-pager'
 alias c='config '
@@ -232,6 +235,7 @@ kca() {
 alias nf='nix flake '
 alias ns='nix-search '
 alias nsd='nix-search -dm 3 '
+alias nsdp='nix-search -dm 3 -p '
 alias nsp='nix-search -p '
 alias np='nix profile '
 alias nph='nix profile history '
@@ -241,6 +245,9 @@ alias npl='nix profile list'
 alias npr='nix profile remove '
 alias npu='nix profile upgrade '
 alias npua='nix profile upgrade --all '
+
+# vcluster
+alias vc='vcluster '
 
 # python 3
 if [ -z "$IN_NIX_SHELL" ] ; then
