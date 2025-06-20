@@ -74,7 +74,7 @@
   out = !git outgoing
   out-diff = !git diff origin/$(git current-br)..$(git current-br)
 
-  # make remote braches local
+  # make remote branches local
   remote-local = $(!git br -a | sed "s;remotes/origin/;;" | grep -v master | xargs -Isnip git co snip)
 
   tags = for-each-ref --sort=taggerdate --format=\"%(color:green)%(subject)%(color:reset), tagged: %(refname:short)\n%(taggerdate)\n%(taggername) %(taggeremail)\n\n%(contents:body)\n\" refs/tags
@@ -160,7 +160,7 @@
   ; features = default tangara-chilensis
   ; features = default villsau
   ; features = default wooly-mammoth
-  ; whitespace-error-sytle = 22 reverse
+  ; whitespace-error-style = 22 reverse
 
 [delta "default"]
   line-numbers = true
