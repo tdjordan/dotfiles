@@ -94,7 +94,7 @@ brew install rtags
 #     LDFLAGS:  -L/usr/local/opt/llvm/lib
 #     CPPFLAGS: -I/usr/local/opt/llvm/include
 
-#- brew isntall rtags
+#- brew install rtags
 # To have launchd start rtags now and restart at login:
 #   brew services start rtags
 # Or, if you don't want/need a background service you can just run:

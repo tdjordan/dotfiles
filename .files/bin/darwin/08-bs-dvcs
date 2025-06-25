@@ -2,7 +2,7 @@
 # shellcheck disable=2164
 set -x
 
-# update brew receipe list
+# update brew recipe list
 brew update
 
 # tap the cask
