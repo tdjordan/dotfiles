@@ -6,7 +6,7 @@ curl -s http://get.sdkman.io | bash
 # source in sdk
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# what is the verison
+# what is the version
 sdk version
 
 # install groovy

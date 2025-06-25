@@ -9,7 +9,7 @@ haveJQ=$(which jq)
 if [ -z "$haveJQ" ]; then
   apt-cache show jq
   echo
-  echo "Pleae install ./jq first."
+  echo "Please install ./jq first."
   echo "  see: https://stedolan.github.io/jq"
   exit 1
 fi

@@ -25,10 +25,34 @@ pkgs=(
   kind              nixpkgs#kind
   minikube          nixpkgs#minikube
   vcluster          nixpkgs#vcluster
+  k3d               nixpkgs#k3d
+  localstack        nixpkgs#localstack
+  crossplane        nixpkgs#crossplane-cli
+  cilium            nixpkgs#cilium-cli
+  cliam             nixpkgs#cliam
+  jf                nixpkgs#jfrog-cli
   jj                nixpkgs#jujutsu
   jjui              nixpkgs#jjui
   lazyjj            nixpkgs#lazyjj
+  watch             nixpkgs#unixtools.watch
+  sentry-cli        nixpkgs#sentry-cli
+  snyk              nixpkgs#snyk
+  tkn               nixpkgs#tektoncd-cli
+  typos             nixpkgs#typos
+  ripsecrets        nixpkgs#ripsecrets
+  ansible           nixpkgs#ansible
+  ansible-lint      nixpkgs#ansible-lint
+  helm              nixpkgs#kubernetes-helm
+  kubeseal          nixpkgs#kubeseal
+  eksctl            nixpkgs#eksctl
+  # btop              nixpkgs#btop
+  # localsend         nixpkgs#localsend
+  # argo              nixpkgs#argo-workflows
+  # argocd            nixpkgs#argocd
+  # otel-cli          nixpkgs#otel-cli
   )
+  # bw                nixpkgs#bitwarden-cli
+  # localsend         nixpkgs#localsend
 
 for k v in ${(kv)pkgs} ; do
   _np_add $k $v

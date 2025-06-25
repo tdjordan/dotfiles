@@ -1,0 +1,9 @@
+[type.nix-profile-pkgs-init]
+extend-glob = [ "nix-profile-pkgs-init" ]
+
+[type.nix-profile-pkgs-init.extend-identifiers]
+cliam = 'cliam'
+
+[default.extend-words]
+iterm = 'iterm'
+Stubbs = 'Stubbs'
