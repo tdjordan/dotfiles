@@ -9,7 +9,7 @@
 #
 # Tip: Looking for a nice color? Here's a one-liner to print colormap.
 #
-#   for i in {0..255}; do print -Pn "%${i}F${(l:3::0:)i}%f " ${${(M)$((i%8)):#7}:+$'\n'}; done
+#   for i in {0..255}; do print -P -n "%${i}F${(l:3::0:)i}%f " ${${(M)$((i%8)):#7}:+$'\n'}; done
 
 if [[ -o 'aliases' ]]; then
   # Temporarily disable aliases.
@@ -27,7 +27,7 @@ fi
     local LC_ALL=${${(@M)$(locale -a):#*.(utf|UTF)(-|)8}[1]:-en_US.UTF-8}
   fi
 
-  # Unset all configuration options. This allows you to apply configiguration changes without
+  # Unset all configuration options. This allows you to apply configuration changes without
   # restarting zsh. Edit ~/.p10k.zsh and type `source ~/.p10k.zsh`.
   unset -m 'POWERLEVEL9K_*'
 
@@ -359,7 +359,7 @@ fi
   typeset -g POWERLEVEL9K_VCS_BACKENDS=(git)
 
   typeset -g POWERLEVEL9K_VCS_LOADING_FOREGROUND=244
-  # These settings are used for respositories other than Git or when gitstatusd fails and
+  # These settings are used for repositories other than Git or when gitstatusd fails and
   # Powerlevel10k has to fall back to using vcs_info.
   typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND=76
   typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND=76
