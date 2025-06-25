@@ -31,7 +31,7 @@
 #                       command      = command is executed through '$SHELL -c' and
 #                                      follows valid shell syntax. if the $SHELL environment
 #                                      variable is not set, it will default to '/bin/bash'.
-#                                      when bash is used, the ';' delimeter can be specified
+#                                      when bash is used, the ';' delimiter can be specified
 #                                      to chain commands.
 #
 #                                      to allow a command to extend into multiple lines,
@@ -57,7 +57,7 @@
 #                       command   = command is executed through '$SHELL -c' and
 #                                   follows valid shell syntax. if the $SHELL environment
 #                                   variable is not set, it will default to '/bin/bash'.
-#                                   when bash is used, the ';' delimeter can be specified
+#                                   when bash is used, the ';' delimiter can be specified
 #                                   to chain commands.
 #
 #                                   to allow a command to extend into multiple lines,
@@ -154,7 +154,7 @@ shift + ctrl - o : yabai -m window --display prev --focus || yabai -m window --d
 move < m : yabai -m window --display next --focus || yabai -m window --display first --focus
 move < o : yabai -m window --display prev --focus || yabai -m window --display last  --focus
 
-###  Blance windows in focused space
+###  Balance windows in focused space
 shift + ctrl - 0 : yabai -m space --balance
 
 ###  Focus Window in same space
@@ -196,8 +196,9 @@ zoom  < f      : yabai -m window --toggle zoom-fullscreen
 ###
 shift + ctrl - 0x2F : yabai -m space --layout \
         $(yabai -m query --spaces --space | jq -r 'if .type == "stack" then "bsp" else "stack" end' )
+shift + ctrl - 0x2A : yabai -m window --toggle split
 # shift + ctrl - 0x2A : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "stack" then "bsp" else "stack" end' )
-shift + ctrl - 0x2F : yabai -m space --layout stack
+# shift + ctrl - 0x2F : yabai -m space --layout stack
 # shift + ctrl - 0x2A : yabai -m space --layout bsp
 # shift + ctrl - 0x2A : yabai -m space --layout --toggle
 ctrl + cmd - s      : yabai -m window --stack west || yabai -m window --stack east
