@@ -60,31 +60,31 @@ return {
             '--column',
             '--smart-case'
           },
-          --prompt_position = 'top',                                                    -- default: bottom
-          --prompt_prefix = '>',
+          -- prompt_position = 'top',                                                    -- default: bottom
+          -- prompt_prefix = '>',
           selection_strategy = 'reset',
-          --sorting_strategy = 'ascending',                                             -- default: descending
-          --layout_strategy = 'horizontal',
+          -- sorting_strategy = 'ascending',                                             -- default: descending
+          -- layout_strategy = 'horizontal',
           -- layout_config = {
           --   dropdown = {
           --     width = 0.75
           --   }
           -- },
-          --file_sorter = require 'telescope.sorters'.get_fuzzy_file,
-          --file_ignore_patterns = {},
-          --generic_sorter = require 'telescope.sorters'.get_generic_fuzzy_sorter,
+          -- file_sorter = require 'telescope.sorters'.get_fuzzy_file,
+          -- file_ignore_patterns = {},
+          -- generic_sorter = require 'telescope.sorters'.get_generic_fuzzy_sorter,
           -- path_display = 'smart',
-          --shorten_path = true,
-          --winblend = 0,
-          --width = 0.75,
-          --preview_cutoff = 120,
-          --results_height = 1,
-          --resutls_width = 0.8,
-          --border = {},
-          --borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+          -- shorten_path = true,
+          -- winblend = 0,
+          -- width = 0.75,
+          -- preview_cutoff = 120,
+          -- results_height = 1,
+          -- results_width = 0.8,
+          -- border = {},
+          -- borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
           color_devicons = true,
-          --use_less = true,
-          --scroll_strategy = 'cycle'
+          -- use_less = true,
+          -- scroll_strategy = 'cycle'
           mappings = {
             i = {
               ["jk"] = function() return 'jk' end,
@@ -95,12 +95,12 @@ return {
               ["<c-Q>"] = require 'telescope.actions'.smart_send_to_qflist + require 'telescope.actions'.open_qflist,
               --     ["<esc>"] = actions.close,
             },
-            --   n = {
-            --     ["<c-j>"] = actions.move_selection_next,
-            --     ["<c-k>"] = actions.move_selection_previous,
-            --     ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-            --     ["<esc>"] = actions.close,
-            --   }
+            -- n = {
+            --   ["<c-j>"] = actions.move_selection_next,
+            --   ["<c-k>"] = actions.move_selection_previous,
+            --   ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+            --   ["<esc>"] = actions.close,
+            -- }
           }
         },
         pickers = {
@@ -180,10 +180,10 @@ return {
           -- git_branches = {
           --   theme = 'dropdown'
           -- , layout_config = {
-          --   height = 200
-          -- , vertical = {
-          --   mirror = true
-          -- }
+          --     height = 200
+          --   , vertical = {
+          --     mirror = true
+          --   }
           -- }
           -- , layout_strategy = 'bottom_pane'
           -- }
@@ -217,6 +217,7 @@ return {
       -- require 'telescope'.load_extension('packer')
       -- , config = function()
       --   require 'configs.telescope'
+      -- end
     end
   },
   {

@@ -139,26 +139,105 @@ return {
     }
   },
   {
-    'williamboman/mason.nvim'
-    , build = ':MasonUpdate'
+    'neovim/nvim-lspconfig'
+    , event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' }
     , dependencies = {
       {
-        'neovim/nvim-lspconfig'
-        , dependencies = {
-          'williamboman/mason-lspconfig.nvim',
-          {
-            'b0o/schemastore.nvim'
-            , version = false
-          },
-        }
-        -- , opts = {
-        --
-        -- }
+        'mason-org/mason.nvim'
+        , build = ':MasonUpdate'
+        , opts = {}
+        -- , config = true
+        -- , config = function()
+        --   -- require 'mason'.setup()
+        --   require 'configs.lsp.mason'
+        -- end
       },
+      {
+        'mason-org/mason-lspconfig.nvim'
+        -- , enabled = false
+        , opts = {
+          ensure_installed = {
+            'ansiblels'                         -- Ansible
+            -- , 'ansible-lint'                    -- TODO Linters
+            -- , 'ast_grep'                        -- Linter & Formatter based on AST
+            -- , 'awk_ls'                          -- AWK
+            , 'bashls'                          -- bash
+            , 'clangd'                          -- C++
+            , 'cmake'                           -- CMake
+            , 'neocmake'                        -- CMake
+            , 'cucumber_language_server'        -- Cucumber
+            -- , 'cue'                             -- Cue
+            , 'dagger'                          -- Cue
+            , 'dockerls'                        -- Docker
+            , 'docker_compose_language_service' -- Docker Compose
+            , 'dotls'                           -- Dot
+            , 'elmls'                           -- Elm
+            -- , 'erg_language_server'             -- Erg
+            -- , 'gleam'                           -- Gleam
+            , 'gopls'                           -- go
+            , 'graphql'                         -- GraphQL
+            , 'gradle_ls'                       -- gradle
+            , 'groovyls'                        -- groovy
+            , 'helm_ls'                         -- helm
+            -- , 'hls'                          -- Haskell
+            -- , 'jdtls'                        -- Java
+            -- , 'jq-lsp'                       -- jq
+            , 'jsonls'                          -- json
+            , 'jsonnet_ls'                      -- jsonnet
+            , 'julials'                         -- Julia
+            -- , 'kcl'                             -- KCL
+            , 'kotlin_language_server'          -- Kotlin
+            , 'lemminx'                         -- XML
+            , 'lua_ls'                          -- lua
+            , 'marksman'                        -- Markdown
+            -- , 'nginx_language_server'        -- Nginx
+            , 'nil_ls'                       -- Nix
+            -- , 'nomad_lsp'                    -- Nomad
+            , 'pbls'                            -- Protocol Buffers
+            , 'pylyzer'                         -- Python
+            , 'pyright'                         -- Python
+            , 'raku_navigator'                  -- Raku
+            , 'rnix'                            -- Nix
+            , 'ruff'                            -- Python
+            -- , 'ruff_lsp'                        -- Python
+            , 'rust_analyzer'                   -- Rust
+            -- , 'salt_ls'                         -- Salt
+            , 'taplo'                           -- Toml
+            , 'terraformls'                     -- terraform
+            , 'textlsp'                         -- textLSP
+            , 'tflint'                          -- terraform
+            , 'ts_ls'                           -- typescript
+            , 'typos_lsp'                       -- typos
+            -- , 'vale_ls'                         -- vale
+            , 'vimls'                           -- Vim
+            -- , 'visualforce_ls'               -- sfdx
+            -- , 'vtsls'                        -- typescript
+            , 'yamlls'                          -- yaml
+            -- , 'zls'                          -- Zig
+          }
+          , automatic_enable = true
+        }
+        -- , config = true
+        -- , config = function()
+        --   require 'lsp.handlers'.setup()
+        -- end
+      },
+      {
+        'b0o/schemastore.nvim'
+        , version = false
+      },
+      {
+        'jay-babu/mason-null-ls.nvim'
+      },
+      {
+        'nvimtools/none-ls.nvim'
+        , config = function()
+          require 'configs.lsp.null'
+          require 'lsp.handlers'.setup()
+        end
+      }
+
     }
-    , config = function()
-      require 'configs.lsp.mason'
-    end
   },
   {
     'dgagn/diagflow.nvim'
@@ -251,29 +330,6 @@ return {
       })
     end
   },
-  {
-    'nvimtools/none-ls.nvim'
-    , dependencies = {
-      'williamboman/mason.nvim',
-      'jay-babu/mason-null-ls.nvim',
-      -- 'gbprod/none-ls-shellcheck.nvim'
-    }
-    , event = { 'BufReadPost', 'BufNewFile' }
-    , config = function()
-      require 'configs.lsp.null'
-    end
-  },
-
-  -- {
-  --   'neovim/nvim-lspconfig'
-  --   , dependencies = {
-  --     'williamboman/mason-lspconfig.nvim',
-  --     {
-  --       'b0o/schemastore.nvim'
-  --       , version = false
-  --     }
-  --   }
-  -- },
   {
     'hedyhli/outline.nvim'
     , cmd = {

@@ -3,22 +3,22 @@
 local colors = require 'material.colors'
 
 local cmp_highlights = {
-  CmpItemAbbrMatch      = { fg = colors.paleblue, style = 'bold' } ,
-  CmpItemKindText       = { fg = colors.red                      } ,
-  CmpItemKindMethod     = { fg = colors.blue                     } ,
-  CmpItemKindFunction   = { fg = colors.blue                     } ,
-  CmpItemKindContructor = { fg = colors.purple                   } ,
-  CmpItemKindField      = { fg = colors.cyan                     } ,
-  CmpItemKindVariable   = { fg = colors.yellow                   } ,
-  CmpItemKindClass      = { fg = colors.yellow                   } ,
-  CmpItemKindInterface  = { fg = colors.yellow                   } ,
-  CmpItemKindConstant   = { fg = colors.yellow                   } ,
-  CmpItemKindModule     = { fg = colors.red                      } ,
-  CmpItemKindProperty   = { fg = colors.purple                   } ,
-  CmpItemKindKeyword    = { fg = colors.cyan                     } ,
-  CmpItemKindFile       = { fg = colors.title                    } ,
-  CmpItemKindFolder     = { fg = colors.title                    } ,
-  CmpItemKindSnippet    = { fg = colors.green                    } ,
+  CmpItemAbbrMatch       = { fg = colors.paleblue, style = 'bold' } ,
+  CmpItemKindText        = { fg = colors.red                      } ,
+  CmpItemKindMethod      = { fg = colors.blue                     } ,
+  CmpItemKindFunction    = { fg = colors.blue                     } ,
+  CmpItemKindConstructor = { fg = colors.purple                   } ,
+  CmpItemKindField       = { fg = colors.cyan                     } ,
+  CmpItemKindVariable    = { fg = colors.yellow                   } ,
+  CmpItemKindClass       = { fg = colors.yellow                   } ,
+  CmpItemKindInterface   = { fg = colors.yellow                   } ,
+  CmpItemKindConstant    = { fg = colors.yellow                   } ,
+  CmpItemKindModule      = { fg = colors.red                      } ,
+  CmpItemKindProperty    = { fg = colors.purple                   } ,
+  CmpItemKindKeyword     = { fg = colors.cyan                     } ,
+  CmpItemKindFile        = { fg = colors.title                    } ,
+  CmpItemKindFolder      = { fg = colors.title                    } ,
+  CmpItemKindSnippet     = { fg = colors.green                    } ,
 }
 
 local highlight = function( group, color )

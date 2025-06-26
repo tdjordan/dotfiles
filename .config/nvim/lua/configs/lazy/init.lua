@@ -13,7 +13,7 @@ local fn  = vim.fn
 local install_path = fn.stdpath('data') .. '/lazy/lazy.nvim'
 
 ---@diagnostic disable-next-line: undefined-field
-if not (vim.uv or vim.loop).fs_stat(install_path) then
+if not vim.uv.fs_stat(install_path) then
   vim.notify('Cloning lazy.nvim ....', vim.log.levels.INFO)
   local out = fn.system {
     'git',

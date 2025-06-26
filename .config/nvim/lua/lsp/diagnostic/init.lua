@@ -23,7 +23,7 @@ require 'lspconfig'.diagnosticls.setup {
           '-'
         },
         offsetLine    = 0,
-        offstColumn   = 0,
+        offsetColumn  = 0,
         sourceName    = 'shellcheck',
         formatLines   = 1,
         --formatPattern = {
@@ -42,7 +42,7 @@ require 'lspconfig'.diagnosticls.setup {
             --message  = 4
           --}
         --},
-        paseJson = {
+        parseJson = {
           errorsRoot       = '[0].messages',
           sourceName       = 'file',
           sourceNameFilter = true,

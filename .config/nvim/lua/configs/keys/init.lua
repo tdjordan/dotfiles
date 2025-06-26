@@ -203,10 +203,11 @@ wk.add({
   ---  window resize operations
   ---
   {
-    { '<leader>-'    , '<cmd>resize -5<cr>',          desc = 'decrease up-down'      },
-    { '<leader>='    , '<cmd>resize +5<cr>',          desc = 'increase up-down'      },
-    { '<leader>\\'   , '<cmd>vertical resize -5<cr>', desc = 'increase side-to-side' },
-    { '<leader><tab' , '<cmd>vertical resize +5<cr>', desc = 'increase side-to-side' },
+    { '<leader>-'     , '<cmd>resize -5<cr>',          desc = 'decrease up-down'      },
+    { '<leader>='     , '<cmd>resize +5<cr>',          desc = 'increase up-down'      },
+    { '<leader>\\'    , '<cmd>vertical resize -5<cr>', desc = 'increase side-to-side' },
+    { '<leader><tab>' , '<cmd>vertical resize +5<cr>', desc = 'increase side-to-side' },
+    { '<leader>0'     , '<c-w>=',                      desc = 'normalize / equalize'  },
   },
 
   ---
@@ -308,6 +309,7 @@ wk.add({
   {
     { '\\' , group = 'fast action' },
       { '\\a'        , function() vim.lsp.buf.code_action()                                   end , desc = 'code action'           },
+      { '\\d'        , function() vim.diagnostic.jump { count =  1, float = true }            end , desc = 'Next diagnostic'       },
       -- { '\\f'        , function() vim.lsp.format()                                            end , desc = 'format'                },
       { '\\f'        , function() require 'conform'.format({ async = true })                  end , desc = 'format buffer'         },
       { '\\r'        , function() vim.lsp.buf.rename()                                        end , desc = 'rename'                },
@@ -320,7 +322,7 @@ wk.add({
   {
     { '<leader>l' , group = 'lsp' },
       { '<leader>la' , function() vim.lsp.buf.code_action()                                   end , desc = 'code action'           },
-      { '<leader>lA' , function() vim.lsp.buf.range_code_action()                             end , desc = 'code action range'     },
+      -- { '<leader>lA' , function() vim.lsp.buf.code_action { range = {                         end , desc = 'code action range'     },
 
       ---  lc
       { '<leader>lc' , group = 'calls' },
@@ -334,8 +336,8 @@ wk.add({
       { '<leader>li' , '<cmd>LspInfo<cr>'                                                         , desc = 'info'                  },
       { '<leader>lI' , function() require 'mason.ui'.open()                                   end , desc = 'installer info'        },
 
-      { '<leader>lj' , function() vim.diagnostic.goto_next()                                  end , desc = 'Next diagnositc'       },
-      { '<leader>lk' , function() vim.diagnostic.goto_prev()                                  end , desc = 'Previous diagnositc'   },
+      { '<leader>lj' , function() vim.diagnostic.jump { count =  1, float = true }            end , desc = 'Next diagnostic'       },
+      { '<leader>lk' , function() vim.diagnostic.jump { count = -1, float = true }            end , desc = 'Previous diagnostic'   },
       { '<leader>ll' , function() vim.lsp.codelens.run()                                      end , desc = 'codelens action'       },
 
       { '<leader>lp' , group = 'peek' },

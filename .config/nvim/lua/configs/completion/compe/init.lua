@@ -67,7 +67,7 @@ _G.s_tab_complete = function()
   -- elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
     -- return t "<Plug>(vsnip-jump-prev)"
   else
-    -- if <S-Tab> is not working in your teminal, change it to <C-h>
+    -- if <S-Tab> is not working in your terminal, change it to <C-h>
     return t "<S-Tab>"
   end
 end

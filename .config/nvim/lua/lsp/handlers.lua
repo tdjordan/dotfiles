@@ -3,7 +3,8 @@
 local sign_column = function()
   local signs = {
     Error = "󰅚",
-    Warn = "",
+    Warn = "",
+    -- Warn = "",
     Hint = "󰌶",
     Info = ""
   }
@@ -55,7 +56,7 @@ local setup = function()
   ---  hover
   ---
   vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-    vim.lsp.handlers.hover, {
+    vim.lsp.buf.hover {
       border = 'single'
     }
   )
@@ -63,7 +64,7 @@ local setup = function()
   ---  signature help
   ---
   vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-    vim.lsp.handlers.signature_help, {
+    vim.lsp.buf.signature_help  {
       border = 'single'
     }
   )

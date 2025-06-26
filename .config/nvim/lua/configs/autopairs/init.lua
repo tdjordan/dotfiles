@@ -22,7 +22,7 @@ npairs.setup {
   -- , break_undo = true
   -- , ts_config = {
   --   lua = { 'string' }  -- do hot add a pair on string treesitter node
-  --   , javascript = { 'template_sring' }
+  --   , javascript = { 'template_string' }
   --   , java = false      -- do not check treesitter on java
   -- }
   -- , fast_wrap = {

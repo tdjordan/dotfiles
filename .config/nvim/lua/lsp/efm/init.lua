@@ -31,7 +31,7 @@ require 'lspconfig'.efm.setup {
 
   init_options = {
     --documentLinting   = true,
-    documentFormating = true,
-    codeAction        = true
+    documentFormatting = true,
+    codeAction         = true
   },
 }

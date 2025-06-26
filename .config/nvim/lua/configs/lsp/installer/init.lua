@@ -58,7 +58,7 @@ local servers =
 --   local ok, server = lsp_installer.get_server(name)
 --   if ok then
 --     if not server:is_installed() then
---       print('Intalling ' .. name)
+--       print('Installing ' .. name)
 --       server:install()
 --     end
 --   else
@@ -127,7 +127,7 @@ local common = require 'lsp.common'
 for _, server in pairs(servers) do
   if customized_servers[server] then
     require( 'lsp.' .. server )
-    -- vim.pretty_print(server)
+    -- vim.print(server)
   else
     lspconfig[server].setup {
       on_attach = common.on_attach
@@ -144,7 +144,7 @@ vim.keymap.set( 'n', 'gm', function()
   _G.op_func_formatting = function()
     local start  = api.nvim_buf_get_mark( 0, '[' )
     local finish = api.nvim_buf_get_mark( 0, ']' )
-    vim.lsp.buf.range_formatting( {}, start, finish )
+    vim.lsp.buf.format({ range = { start, finish } })
     go.operatorfunc = old_func
     _G.op_func_formatting = nil
   end

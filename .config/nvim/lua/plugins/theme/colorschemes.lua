@@ -414,7 +414,7 @@ return {
           CursorLineNr = { fg = colors.editor.accent,       bg = colors.editor.contrast },
           SignColumn   = { fg = colors.editor.fg,           bg = colors.editor.contrast },
           Pmenu        = { fg = colors.editor.fg,           bg = colors.editor.contrast },
-          -- WinSeperator = { fg = '#0d0c0c' },
+          -- WinSeparator = { fg = '#0d0c0c' },
 
           -- --  Borderless Telescope
           -- --

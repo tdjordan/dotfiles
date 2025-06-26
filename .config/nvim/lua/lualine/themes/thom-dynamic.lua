@@ -37,6 +37,6 @@ else
   theme = require ('lualine/themes/' .. vim.g.colors_name)
 end
 
--- vim.pretty_print(theme)
+-- vim.print(theme)
 
 return theme

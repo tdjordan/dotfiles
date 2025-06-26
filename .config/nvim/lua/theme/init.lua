@@ -21,10 +21,10 @@
 local M = {}
 
 M.ThemeToggle = function()
-  if vim.api.nvim_get_option('background') == 'dark' then
-    vim.api.nvim_set_option('background', 'light')
+  if vim.api.nvim_get_option_value('background', {}) == 'dark' then
+    vim.api.nvim_set_option_value('background', 'light', {})
   else
-    vim.api.nvim_set_option('background', 'dark')
+    vim.api.nvim_set_option_value('background', 'dark', {})
   end
 end
 -- local nnoremap = require 'keymap.utility'.nnoremap

@@ -59,7 +59,7 @@ return {
         --         function(item)
         --           return item.filename:find(
         --             ---@diagnostic disable-next-line: undefined-field
-        --             (vim.uv or vim.loop).cwd(), 1, true
+        --             vim.uv.cwd(), 1, true
         --           )
         --         end
         --       }
@@ -115,7 +115,7 @@ return {
                   function(item)
                     return item.filename:find(
                       ---@diagnostic disable-next-line: undefined-field
-                      (vim.uv or vim.loop).cwd(), 1, true
+                      vim.uv.cwd(), 1, true
                     )
                   end
                 }

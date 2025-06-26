@@ -58,7 +58,7 @@ require 'ibl'.setup {}
 --     , 'try'
 --     , 'try_statement'
 --     , 'catch_clause'
---     , 'execpt'
+--     , 'except'
 --     , 'arguments'
 --     , 'argument_list'
 --     , 'dictionary'

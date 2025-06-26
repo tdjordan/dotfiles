@@ -12,7 +12,7 @@ local api = vim.api
 -- end
 
 local has_words_before = function()
-  if api.nvim_buf_get_option( 0, 'buftype' ) == 'prompt' then
+  if api.nvim_get_option_value( 'buftype', {} ) == 'prompt' then
     return false
   end
 ---@diagnostic disable-next-line: deprecated
@@ -38,7 +38,7 @@ local cmp = require 'cmp'
 cmp.setup {
   -- enabled = function()
   --   local disabled = false
-  --   disabled = disabled or (vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt')
+  --   disabled = disabled or (vim.api.nvim_get_option_value('buftype', {}) == 'prompt')
   --   disabled = disabled or (vim.fn.reg_recording() ~= '')
   --   disabled = disabled or (vim.fn.reg_executing() ~= '')
   --   return not disabled
@@ -110,7 +110,7 @@ cmp.setup {
     , format = require 'lspkind'.cmp_format {
       mode = 'symbol'
       -- , maxwidth = 50
-      -- , elipsis_char = '...'
+      -- , ellipsis_char = '...'
       , menu = {
         nvim_lua = '',
         nvim_lsp = '',     --        󰒌

@@ -77,7 +77,7 @@ local server_options = {
           enable = true
         },
         completion = {
-          callSnipet = "Replace"
+          callSnippet = "Replace"
         },
         doc = {
           privateName = { "^_" }

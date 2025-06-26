@@ -388,7 +388,7 @@ return {
       -- require 'kanagawa'
       -- require 'nordic'
       -- vim.cmd.colorscheme 'nordic'
-      -- vim.pretty_print(vim.g.colors_name)
+      -- vim.print(vim.g.colors_name)
       return {
         options = {
           -- theme = 'material-stealth'
