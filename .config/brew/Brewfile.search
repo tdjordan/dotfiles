@@ -1,5 +1,3 @@
-# vim: set ft="conf"
-
 brew "fd"
 brew "ripgrep"
 brew "sk"

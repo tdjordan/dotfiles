@@ -1,5 +1,3 @@
-# vim: set ft="conf"
-
 ###  fonts
 ###
 brew "nerdfix"

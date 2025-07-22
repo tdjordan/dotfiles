@@ -1,4 +1,2 @@
-# vim: set ft="conf"
-
 cask "zed"
 brew "neovide"

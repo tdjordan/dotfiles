@@ -1,5 +1,3 @@
-# vim: set ft="conf"
-
 brew "mas"
 brew "whalebrew"
 brew "coreutils"

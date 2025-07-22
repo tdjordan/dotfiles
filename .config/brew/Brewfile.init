@@ -1,5 +1,3 @@
-# vim: set ft="conf"
-
 brew "mas"
 cask "kitty"
 cask "wezterm"

@@ -1,5 +1,3 @@
-# vim: set ft="conf"
-
 brew "mas"
 brew "curl"
 brew "editorconfig"

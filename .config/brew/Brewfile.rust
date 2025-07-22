@@ -1,4 +1,2 @@
-# vim: set ft="conf"
-
 brew "rust"
 brew "rustup-init"

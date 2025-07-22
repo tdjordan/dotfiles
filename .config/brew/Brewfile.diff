@@ -1,5 +1,2 @@
-# vim: set ft="conf"
-
 brew "delta"
 brew "difftastic"
-

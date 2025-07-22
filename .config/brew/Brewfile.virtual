@@ -1,4 +1,2 @@
-# vim: set ft="conf"
-
 tap "hashicorp/tap"
   brew "hashicorp/tap/packer"

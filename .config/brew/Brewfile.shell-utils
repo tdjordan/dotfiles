@@ -1,5 +1,3 @@
-# vim: set ft="conf"
-
 ###  shell utilities
 ###
 tap    "koekeishiya/formulae"

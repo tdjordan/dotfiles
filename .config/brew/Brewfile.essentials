@@ -1,5 +1,3 @@
-# vim: set ft="conf"
-
 ###  Essentials ( Minimal )
 brew "mas"
 tap "buo/cask-upgrade"
