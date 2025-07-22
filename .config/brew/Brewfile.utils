@@ -1,3 +1,5 @@
+# vim: set ft="conf"
+
 brew "jc"
 brew "yq"
 brew "xq"

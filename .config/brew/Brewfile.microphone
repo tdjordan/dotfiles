@@ -1,2 +1,3 @@
-brew "elgato-wave-link"
+# vim: set ft="conf"
 
+brew "elgato-wave-link"

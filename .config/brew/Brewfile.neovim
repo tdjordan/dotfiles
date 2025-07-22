@@ -1,3 +1,5 @@
+# vim: set ft="conf"
+
 #!/bin/bash
 brew "jenv"
 brew "neovim"

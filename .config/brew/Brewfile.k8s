@@ -1,3 +1,5 @@
+# vim: set ft="conf"
+
 tap "fluxcd/tap"
   brew "fluxcd/tap/flux"
 brew "kustomize"
