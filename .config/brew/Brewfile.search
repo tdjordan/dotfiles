@@ -1,0 +1,5 @@
+brew "fd"
+brew "ripgrep"
+brew "sk"
+brew "fzf"
+brew "sd"

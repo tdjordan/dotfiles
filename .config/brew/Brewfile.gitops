@@ -1,0 +1,5 @@
+brew "argo"
+brew "argocd"
+
+tap    "fluxcd/tap"
+  brew "fluxcd/tap/flux"

@@ -1,0 +1,7 @@
+tap "fluxcd/tap"
+  brew "fluxcd/tap/flux"
+brew "kustomize"
+brew "kubectl"
+brew "kubectx"
+cask "freelens"
+brew "crossplane"
