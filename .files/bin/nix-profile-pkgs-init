@@ -20,6 +20,8 @@ pkgs=(
   kubectx           nixpkgs#kubectx
   kubecolor         nixpkgs#kubecolor
   kustomize         nixpkgs#kustomize
+  k9s               nixpkgs#k9s
+  stern             nixpkgs#stern
   tsh               nixpkgs#teleport
   tenv              nixpkgs#tenv
   kind              nixpkgs#kind
@@ -34,6 +36,8 @@ pkgs=(
   jj                nixpkgs#jujutsu
   jjui              nixpkgs#jjui
   lazyjj            nixpkgs#lazyjj
+  just              nixpkgs#just
+  task              nixpkgs#go-task
   watch             nixpkgs#unixtools.watch
   sentry-cli        nixpkgs#sentry-cli
   snyk              nixpkgs#snyk
@@ -45,6 +49,15 @@ pkgs=(
   helm              nixpkgs#kubernetes-helm
   kubeseal          nixpkgs#kubeseal
   eksctl            nixpkgs#eksctl
+  git-who           nixpkgs#git-who
+  pstree            nixpkgs#pstree
+  cue               nixpkgs#cue
+  mmdc              nixpkgs#mermaid-cli
+  magick            nixpkgs#imagemagick_light
+  gs                nixpkgs#ghostscript_headless
+  # make              nixpkgs#gnumake
+  # packer            nixpkgs#packer
+  # opa               nixpkgs#open-policy-agent
   # btop              nixpkgs#btop
   # localsend         nixpkgs#localsend
   # argo              nixpkgs#argo-workflows
