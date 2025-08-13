@@ -11,6 +11,7 @@ _np_add() {
 }
 
 pkgs=(
+  tree-sitter       nixpkgs#tree-sitter
   aws               nixpkgs#awscli
   gimme-aws-creds   nixpkgs#gimme-aws-creds
   saml2aws          nixpkgs#saml2aws
@@ -55,6 +56,29 @@ pkgs=(
   mmdc              nixpkgs#mermaid-cli
   magick            nixpkgs#imagemagick_light
   gs                nixpkgs#ghostscript_headless
+  brush             nixpkgs#brush
+  starship          nixpkgs#starship
+  hyperfine         nixpkgs#hyperfine
+  uv                nixpkgs#uv
+  sk                nixpkgs#skim
+  jnv               nixpkgs#jnv
+  jq                nixpkgs#jq
+  jqp               nixpkgs#jqp
+  grex              nixpkgs#grex
+  bandwhich         nixpkgs#bandwhich
+  fzf-make          nixpkgs#fzf-make
+  python            nixpkgs#python3Full
+  pipx              nixpkgs#pipx
+  az                nixpkgs#azure-cli
+  aiac              nixpkgs#aiac
+  tectonic          nixpkgs#tectonic
+  alejandra         nixpkgs#alejandra
+  stylua            nixpkgs#stylua
+  nixfmt            nixpkgs#nixfmt
+  lefthook          nixpkgs#lefthook
+  # julia             nixpkgs#julia
+  # bacon             nixpkgs#bacon
+  # lstr              nixpkgs#lstr
   # make              nixpkgs#gnumake
   # packer            nixpkgs#packer
   # opa               nixpkgs#open-policy-agent
