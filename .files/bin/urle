@@ -1,0 +1,31 @@
+#!/bin/bash
+
+urlencode() {
+    local string="$1"
+    local length="${#string}"
+    local url_encoded=""
+    for (( i = 0; i < length; i++ )); do
+        local c="${string:i:1}"
+        case $c in
+            [a-zA-Z0-9.~_-]) # Allowed characters in URLs
+                url_encoded+="$c"
+                ;;
+            " ") # Space (encoded as %20 or + in some contexts, but %20 is generally safer)
+                url_encoded+="%20"
+                ;;
+            *) # Other characters (encode as %HH)
+                printf -v hex_char '%%%02X' "'$c"
+                url_encoded+="$hex_char"
+                ;;
+        esac
+    done
+    echo "$url_encoded"
+}
+
+# Example usage:
+# my_string="This is a test string with / slashes and & ampersands and spaces"
+# encoded_string=$(urlencode "$my_string")
+# echo "Original string: $my_string"
+# echo "Encoded string: $encoded_string"
+
+urlencode $*
