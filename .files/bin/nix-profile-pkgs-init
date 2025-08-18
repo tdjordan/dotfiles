@@ -6,13 +6,14 @@ _np_add() {
   if command -v $1 &> /dev/null ; then
     echo $1 already installed
   else
+    echo .. installing $1 : $2
     nix profile add $2
   fi
 }
 
 pkgs=(
   tree-sitter       nixpkgs#tree-sitter
-  aws               nixpkgs#awscli
+  aws               nixpkgs#awscli2
   gimme-aws-creds   nixpkgs#gimme-aws-creds
   saml2aws          nixpkgs#saml2aws
   devenv            nixpkgs#devenv
@@ -46,7 +47,7 @@ pkgs=(
   typos             nixpkgs#typos
   ripsecrets        nixpkgs#ripsecrets
   ansible           nixpkgs#ansible
-  ansible-lint      nixpkgs#ansible-lint
+  # ansible-lint      nixpkgs#ansible-lint
   helm              nixpkgs#kubernetes-helm
   kubeseal          nixpkgs#kubeseal
   eksctl            nixpkgs#eksctl
@@ -76,6 +77,8 @@ pkgs=(
   stylua            nixpkgs#stylua
   nixfmt            nixpkgs#nixfmt
   lefthook          nixpkgs#lefthook
+  popeye            nixpkgs#popeye
+  # vault             nixpkgs#vault
   # julia             nixpkgs#julia
   # bacon             nixpkgs#bacon
   # lstr              nixpkgs#lstr
