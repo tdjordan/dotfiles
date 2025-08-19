@@ -2,9 +2,11 @@
 ###
 tap    "koekeishiya/formulae"
   brew "yabai"
-  brew "skhd"
+  # brew "skhd"
 tap    "nikitabobko/tap"
   brew "aerospace"
 tap    "FelixKratz/formulae"
   brew "borders"
 cask "font-sketchybar-app-font"
+tap    "jackielii/tap"
+  brew "jackielii/tap/skhd-zig"
