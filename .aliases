@@ -35,6 +35,31 @@ alias ll.='${_ls_command} -dl .*[^.$] ${color} 2>/dev/null'
 alias ll='${_ls_command} -AlF ${color}'
 alias lla='${_ls_command} -AlFh ${color}'
 
+__lsna_core() {
+  alias | sed 's/=.*$//g'
+}
+_lsna() {
+  if [[ -v 1 ]]; then
+    __lsna_core | rg $1 | column
+  else
+    __lsna_core | column
+  fi
+}
+__lsna_start_of_line() {
+  _lsna ^$*
+}
+__lsna_switch() {
+  if [ "$#" -eq 0 ]; then
+    __lsna_core | sk
+  else
+    if [ "$#" -eq 1 ]; then
+      __lsna_core | rg $1 | column
+    fi
+  fi
+}
+alias lsn='__lsna_switch $*'
+alias lsna='__lsna_start_of_line $*'
+
 # alias h='history'
 # alias hsr='history | rg '
 alias h='fc -El 0 '
@@ -46,13 +71,15 @@ alias fdh="fd -HI -E '.git/*'"
 alias fdhp="fd -HI -E '.git/*' --full-path"
 alias fdp="fd --full-path"
 
+alias fm='fzf-make '
+
 #alias grep='grep --color=auto 2>/dev/null'
 #alias grep='ag $*' 2>/dev/null
 alias tree='tree -a -I .git'
 alias dtree='tree -ad -I .git'
 
 # open file manager cwd
-alias e.='nautilus . 2>/dev/null'
+alias e.='yazi .'
 
 #export TERM=xterm-256colors
 #export TERM=screen-256colors
@@ -137,19 +164,29 @@ alias agdf='agdf_imp '
 rgdf() {
   # shellcheck disable=2048,2086,2046,2012
   # ag $* $(ls -dFL .* | ag -v "(/)$" | ag -v "(\*)$" | ag -v history)
-  rg $* $(ls -dFL .* | rg -v "(/|\*|history)$")
+  rg $* $(ls -dFL .* | rg -v bitwarden | rg -v "(/|\*|history)$")
 }
+_typos_in_dot_files() {
+  fd -t f -d 1 -H --regex '^\.' -E .zsh_history -E .zcompdump -E .lesshst | typos --exclude '.zsh_history' --file-list -
+}
+alias t.='_typos_in_dot_files '
 
-# search fiels
+# search files
 alias rgl='rg -l '
 
 # dotfile configuration
-alias config='git --git-dir=$HOME/.files.git --work-tree=$HOME --no-pager'
-alias c='config '
-alias ca='config add '
-alias cci='config commit -v '
-alias ciu='config status -s -u '
-alias c.d='config difftool '
+_dot_config() {
+  git --git-dir=$HOME/.files.git --work-tree=$HOME --no-pager $*
+}
+alias config='_dot_config $* '
+alias c='_dot_config '
+alias ca='_dot_config add '
+alias cci='_dot_config $* commit -v '
+alias ciu='_dot_config $* status -s -u '
+alias c.d='_dot_config $* difftool '
+
+# bash help
+alias help='bbh '
 
 # shellcheck disable=1090
 [ -f ~/.aliases.local ] && . ~/.aliases.local
@@ -236,6 +273,7 @@ alias nf='nix flake '
 alias ns='nix-search '
 alias nsd='nix-search -dm 3 '
 alias nsdp='nix-search -dm 3 -p '
+alias nspd='nix-search -dm 3 -p '
 alias nsp='nix-search -p '
 alias np='nix profile '
 alias nph='nix profile history '
@@ -248,18 +286,19 @@ alias npua='nix profile upgrade --all '
 
 # vcluster
 alias vc='vcluster '
+alias vcp='vcluster platform '
 
 # python 3
-if [ -z "$IN_NIX_SHELL" ] ; then
-  alias python=${HOMEBREW_PREFIX}/bin/python3
-  alias pip=${HOMEBREW_PREFIX}/bin/pip3
-fi
+# if [ -z "$IN_NIX_SHELL" ] ; then
+#   alias python=${HOMEBREW_PREFIX}/bin/python3
+#   alias pip=${HOMEBREW_PREFIX}/bin/pip3
+# fi
 
 # vifm
 alias vf='vifm'
 
 ## yabai
-#  restat yabai quickly
+#  restart yabai quickly
 #  # ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 # alias reup='launchctl kickstart -k "gui/${UID}/com.koekeishiya.yabai"'
 alias reup='yabai --restart-service'
@@ -283,8 +322,11 @@ alias ssh='TERM=xterm-256color ssh '
 ###
 alias t='tmux'
 alias ta='t a -t'
+alias tlk='t lsk '
+alias tlkt='t lsk -T$* '
 alias tls='t ls'
 alias tn='t new -t'
+alias tkt="tlk | cut -d' ' -f6 | sort | uniq | rg -v '^$'"
 
 ###  jenkins
 ###
@@ -308,7 +350,106 @@ alias wow='which -a'
 alias woa='which -a'
 alias we='watchexec'
 
+###  yabai focus fuzzy window
+###
+__yabai_select() {
+  yabai -m query --windows $1 | jq '.[] | "\(.id) : \(.["stack-index"]) : \(.space) : \(.title)"'
+}
+__yabai_select_in_space() {
+  yabai -m query --windows --space | jq '.[] | "\(.id) : \(.["stack-index"]) : \(.space) : \(.title)"'
+}
+
+__yabai_select_fuzzy() {
+  __yabai_select | sk
+}
+__yabai_select_fuzzy_in_space() {
+  __yabai_select_in_space | sk
+}
+
+__yabai_select_fuzzy_id() {
+  __yabai_select_fuzzy | cut -d' ' -f 1 | sed 's/"//g'
+}
+__yabai_select_fuzzy_id_in_space() {
+  __yabai_select_fuzzy_in_space | cut -d' ' -f 1 | sed 's/"//g'
+}
+
+__yabai_focus_window() {
+  yabai -m window --focus $(__yabai_select_fuzzy_id)
+}
+__yabai_focus_window_in_space() {
+  yabai -m window --focus $(__yabai_select_fuzzy_id_in_space)
+}
+
+alias yls='__yabai_select'
+alias yls.='__yabai_select_fuzzy_in_space'
+alias yls..='__yabai_select_fuzzy_id'
+
+alias fw='__yabai_focus_window'
+alias fwl='__yabai_focus_window_in_space'
+
+###  dotbare
+###
+alias .f='dotbare '
+alias .ff='dotbare fgrep '
+
 ### zscaler
 ###
 alias start-zscaler="open -a /Applications/Zscaler/Zscaler.app --hide; sudo find /Library/LaunchDaemons -name '*zscaler*' -exec launchctl load {} \;"
 alias kill-zscaler="find /Library/LaunchAgents -name '*zscaler*' -exec launchctl unload {} \;;sudo find /Library/LaunchDaemons -name '*zscaler*' -exec launchctl unload {} \;"
+
+### dns cache flusher
+alias flushdns='sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
+
+### fzf hooks
+###
+# Redefine this function to change the options
+_fzf_git_fzf() {
+  fzf --height 50% --tmux 90%,70% \
+    --layout reverse --multi --min-height 20+ --border \
+    --no-separator --header-border horizontal \
+    --border-label-pos 2 \
+    --color 'label:blue' \
+    --preview-window 'right,50%' --preview-border line \
+    --bind 'ctrl-/:change-preview-window(down,50%|hidden|)' "$@"
+}
+
+unalias gco &> /dev/null
+gco() {
+  _fzf_git_fzf --no-multi | xargs git checkout
+}
+# gswt() {
+#   cd "$(_fzf_git_worktrees --no-multi)"
+# }
+
+# fshow - git commit browser
+fshow() {
+  git log --graph --color=always \
+      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+      --bind "ctrl-m:execute:
+                (grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+                {}
+FZF-EOF"
+}
+
+# ch - browse chrome history
+ch() {
+  local cols sep google_history open
+  cols=$(( COLUMNS / 3 ))
+  sep='{::}'
+
+  if [ "$(uname)" = "Darwin" ]; then
+    google_history="$HOME/Library/Application Support/Google/Chrome/Default/History"
+    open=open
+  else
+    google_history="$HOME/.config/google-chrome/Default/History"
+    open=xdg-open
+  fi
+  cp -f "$google_history" /tmp/h
+  sqlite3 -separator $sep /tmp/h \
+    "select substr(title, 1, $cols), url
+     from urls order by last_visit_time desc" |
+  awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
+  sk --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
+}
