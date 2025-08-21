@@ -187,6 +187,7 @@ alias c.d='_dot_config $* difftool '
 
 # bash help
 alias help='bbh '
+function anybar() { echo -n $1 | nc -4u -w0 localhost ${2:-1738}; }
 
 # shellcheck disable=1090
 [ -f ~/.aliases.local ] && . ~/.aliases.local
