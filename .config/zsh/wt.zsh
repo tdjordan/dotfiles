@@ -11,7 +11,8 @@ function wt() {
     return 1
   fi
 
-  eval WT_TREE_ROOT=${WT_TREE_ROOT:-.worktrees}
+  # eval WT_TREE_ROOT=${WT_TREE_ROOT:-.worktrees}
+  eval WT_TREE_ROOT=${WT_TREE_ROOT:-.wt}
 
   case "$1" in
     ls|list)
@@ -44,7 +45,7 @@ function wt() {
 
 __wt_inGit() {
   if ! git rev-parse --git-dir &>/dev/null; then
-    echo "Error: Not in a git reposiroty"
+    echo "Not in a git repository"
     return 1
   fi
 }
