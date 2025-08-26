@@ -1,0 +1,3 @@
+#!/bin/bash
+
+nix profile list --json | jq -r '.elements | to_entries[] | .value.storePaths[0]' | sed 's;/nix/store/;;g'
