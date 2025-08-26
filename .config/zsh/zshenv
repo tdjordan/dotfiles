@@ -21,6 +21,16 @@ export EDITOR="nvim"
 export ZK_NOTEBOOK_DIR=~/.notes/notebook
 export NIX_CONF_DIR=~/.config/nix
 export DFT_SKIP_UNCHANGED=true
+export DOTBARE_DIR=~/.files.git
+export DOTBARE_TREE=~
+export TENV_AUTO_INSTALL=true
 [ -e ~/.zshenv_local ] && source ~/.zshenv_local
 [ -f ~/.cargo/env    ] && source "$HOME/.cargo/env"
 [ -f ~/.local/share/nvim/mason/packages/erg ] && export ERG_PATH=~/.local/share/nvim/mason/packages/erg
+
+#AWSume alias to source the AWSume script
+# alias awsume="source awsume"
+
+#Auto-Complete function for AWSume
+#Auto-Complete function for AWSume
+# fpath=(~/.awsume/zsh-autocomplete/ $fpath)

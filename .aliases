@@ -65,6 +65,7 @@ alias lsna='__lsna_start_of_line $*'
 alias h='fc -El 0 '
 alias hsr='fc -El 0 | rg '
 
+alias fd.="fd -H "
 alias fdi="fd -I"
 alias fdip="fd -I --full-path"
 alias fdh="fd -HI -E '.git/*'"
@@ -179,7 +180,8 @@ _dot_config() {
   git --git-dir=$HOME/.files.git --work-tree=$HOME --no-pager $*
 }
 alias config='_dot_config $* '
-alias c='_dot_config '
+alias c='_dot_config $* '
+alias conf='_dot_config $* '
 alias ca='_dot_config add '
 alias cci='_dot_config $* commit -v '
 alias ciu='_dot_config $* status -s -u '
@@ -454,3 +456,5 @@ ch() {
   awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
   sk --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
 }
+
+source ~/.config/zsh/wt.zsh

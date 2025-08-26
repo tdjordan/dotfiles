@@ -167,6 +167,7 @@ zinit ice as"command" from"gh-r" bpick"atuin-*.tar.gz" mv"atuin*/atuin -> atuin"
     atclone"./atuin init zsh --disable-up-arrow > init.zsh; ./atuin gen-completions --shell zsh > _atuin" \
     atpull"%atclone" src"init.zsh"
 zinit light atuinsh/atuin
+zinit light kazhala/dotbare
 
 PS1="READY > "
 zinit wait"!" lucid nocd atload"!source ~/.p10k.zsh; _p9k_precmd" for \
@@ -190,6 +191,7 @@ function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}
 ### End of Zinit's installer chunk
 if command -v zoxide &>/dev/null ; then eval "$(zoxide init --cmd cd zsh)" ; fi
 ulimit -n 4096
+# if command -v wtp &>/dev/null ; then eval "$(wtp completion zsh)" ; fi
 
 # bun completions
 [ -s "/Users/tjordan/.bun/_bun" ] && source "/Users/tjordan/.bun/_bun"
