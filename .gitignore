@@ -30,6 +30,9 @@ Session.vim
 .terminfo
 .vim
 .viminfo
+.worktrees
+.wt
+.wtp.yml
 .zcompcache
 .zcompdump
 .zsh_history
