@@ -2,9 +2,11 @@
 
 set -o pipefail
 
+declare installed=()
+
 _np_add() {
-  if command -v $1 &> /dev/null ; then
-    echo $1 already installed
+  if command -v $1 &>/dev/null; then
+    installed+=($1)
   else
     echo .. installing $1 : $2
     nix profile add $2
@@ -30,7 +32,6 @@ pkgs=(
   minikube          nixpkgs#minikube
   vcluster          nixpkgs#vcluster
   k3d               nixpkgs#k3d
-  localstack        nixpkgs#localstack
   crossplane        nixpkgs#crossplane-cli
   cilium            nixpkgs#cilium-cli
   cliam             nixpkgs#cliam
@@ -70,14 +71,22 @@ pkgs=(
   fzf-make          nixpkgs#fzf-make
   python            nixpkgs#python3Full
   pipx              nixpkgs#pipx
-  az                nixpkgs#azure-cli
+  gita              nixpkgs#gita
+                    # python313Packages.pyjwt
+  # localstack        nixpkgs#localstack
+  # az                nixpkgs#azure-cli
+  # wt                nixpkgs#git-worktree-switcher
+  git-cliff         nixpkgs#git-cliff
+  eza               nixpkgs#eza
   aiac              nixpkgs#aiac
-  tectonic          nixpkgs#tectonic
+  # tectonic          nixpkgs#tectonic
   alejandra         nixpkgs#alejandra
   stylua            nixpkgs#stylua
   nixfmt            nixpkgs#nixfmt
   lefthook          nixpkgs#lefthook
   popeye            nixpkgs#popeye
+  ipinfo            nixpkgs#ipinfo
+  nvimpager         nixpkgs#nvimpager
   # vault             nixpkgs#vault
   # julia             nixpkgs#julia
   # bacon             nixpkgs#bacon
@@ -90,6 +99,8 @@ pkgs=(
   # argo              nixpkgs#argo-workflows
   # argocd            nixpkgs#argocd
   # otel-cli          nixpkgs#otel-cli
+  sesh                nixpkgs#sesh
+  gum                 nixpkgs#gum
   )
   # bw                nixpkgs#bitwarden-cli
   # localsend         nixpkgs#localsend
@@ -97,3 +108,8 @@ pkgs=(
 for k v in ${(kv)pkgs} ; do
   _np_add $k $v
 done
+
+echo ":: Already Installed :: "
+for k in $installed ; do
+  echo $k
+done | sort | column -x
