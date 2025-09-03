@@ -4,8 +4,11 @@
 # export WINDOW_COLOR_STACKED="0xc0ff00ff"    # violet
 # export WINDOW_COLOR_STACKED="0xc000ffff"    # cyan
 # export WINDOW_COLOR_STACKED="0xc0ffff00"    # yellow
-export WINDOW_COLOR_STACKED="0x80ffff00"    # yellow lighter
-export WINDOW_COLOR_NORMALS="0xc0e2e2e3"
+# export WINDOW_COLOR_STACKED="0xffffff00"    # yellow lighter
+# export WINDOW_COLOR_NORMALS="0xc0e2e2e3"
+# export WINDOW_COLOR_FOCUSED="0x88ff00ff"    # purple ( 0xFF00FF )
+# export WINDOW_COLOR_RESIZED="0xff0000ff"
+# export WINDOW_COLOR_ZOOMEDP="0x880000ff"
 
 ###
 ###  Scripting Addition Configuration
@@ -23,7 +26,7 @@ export WINDOW_COLOR_NORMALS="0xc0e2e2e3"
 
 # <user> ALL=(root) NOPASSWD: sha256:<hash> <yabai> --load-sa
 
-# If you know hwat you are doing, the follwing one-liner can be used to update the sodoers file correctly:
+# If you know what you are doing, the following one-liner can be used to update the sodoers file correctly:
 # echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa" | sudo tee /private/etc/sudoers.d/yabai
 
 # After the above edit has been made, add the following to the top of the yabairc config file.
@@ -40,7 +43,7 @@ export WINDOW_COLOR_NORMALS="0xc0e2e2e3"
 
 ### External Bar
 #
-#   Specify top and bottom padding for a potiential custom bar
+#   Specify top and bottom padding for a potential custom bar
 #
 #     options: [ <main|all|off>:<top padding>:<bottom padding> ]
 #
@@ -60,7 +63,7 @@ export WINDOW_COLOR_NORMALS="0xc0e2e2e3"
 #   yabai allows modifying the way macOS presents windows.
 #
 #     floating windows are always on top ( default: off )
-yabai -m config window_topmost               off
+# yabai -m config window_topmost               off
 #
 #     modify window shadows ( default: on, options: [ on, off, float ]
 #
@@ -162,22 +165,19 @@ yabai -m rule --add app="^Raycast$" manage=off
 #yabai -m signal --add event=window_created title="^Intellectual Property Risk!$" \
   #action="yabai -m window ${YABAI_WINDOW_ID} --close"
 
+yabai -m signal --add event=window_moved \
+  action="set-border-color"
+
 yabai -m signal --add event=window_resized \
-  action="[ \$(yabai -m query --windows --window | jq '.\"stack-index\"') != 0 ] && borders active_color=$WINDOW_COLOR_STACKED || borders active_color=$WINDOW_COLOR_NORMALS"
+  action="set-border-color"
 
 yabai -m signal --add event=window_focused \
-  action="[ \$(yabai -m query --windows --window | jq '.\"stack-index\"') != 0 ] && borders active_color=$WINDOW_COLOR_STACKED || borders active_color=$WINDOW_COLOR_NORMALS"
-
-# yabai -m signal --add event=window_resized \
-#   action="[ \$(yabai -m query --windows --window | jq '.\"stack-index\"') != 0 ] && borders active_color=$WINDOW_COLOR_STACKED || toggle_border stacked"
-#
-# yabai -m signal --add event=window_focused \
-#   action="[ \$(yabai -m query --windows --window | jq '.\"stack-index\"') != 0 ] && borders active_color=$WINDOW_COLOR_STACKED || toggle_border normal"
+  action="set-border-color"
 
 yabai -m config window_opacity on
 yabai -m signal --add event=window_focused \
   action="yabai -m config active_window_opacity 1.0"
 
-echo "yabai configuration loaded.."
+# echo "yabai configuration loaded.."
 
 borders

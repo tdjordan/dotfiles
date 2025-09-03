@@ -1,0 +1,47 @@
+#!/usr/bin/env zsh
+
+event_type=${1:-focused}
+win=$(yabai -m query --windows id,stack-index,has-parent-zoom,has-fullscreen-zoom,is-visible --window)
+
+apply_to="apply-to=$(echo $win | jq .id)"
+
+# echo $win
+if [[ $(echo $win | jq '."has-parent-zoom"') == true ]]; then
+  event_type=zoomed
+elif [[ $(echo $win | jq '."stack-index"') != 0 ]]; then
+  event_type=stacked
+fi
+
+case $event_type in
+  "stacked")
+    focus=0xffffcc00
+    idled=0x80ffff00
+    ;;
+  "focused")
+    focus=0xffe2e2e3
+    idled=0x00000000
+    ;;
+  "zoomed")
+    focus=0xff0000ff
+    idled=0x800000ff
+    ;;
+  "normal")
+    focus=0xc9e2e2e3
+    idled=0xffe2e2e3
+    ;;
+  "resized")
+    focus=0x800000ff
+    idled=0xff0000ff
+    ;;
+esac
+# *)                focus=0x00000000 ;;
+# "focused")        focus=0xff8800ff ;;
+# idled=0xffff00ff
+# focus=0x88ff00ff
+# focus=0x80ffff00
+# # idled=0xffffff00
+# idled=0xffffcc00
+
+# echo $event_type
+borders active_color=$focus inactive_color=$idled $apply_to
+
