@@ -34,6 +34,12 @@ export HISTTIMEFORMAT="%F %T "
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# Fix simple spelling mistakes
+shopt -s cdspell
+
+# Interactively, navigate without having to use cd
+shopt -s autocd
+
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
