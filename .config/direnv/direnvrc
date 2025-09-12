@@ -18,8 +18,7 @@ layout_uv() {
         VIRTUAL_ENV="$(pwd)/.venv"
     fi
 
-    PATH_add "$VIRTUAL_ENV/bin"
     export UV_ACTIVE=1  # or VENV_ACTIVE=1
-    export VIRTUAL_ENV
+    source $VIRTUAL_ENV/bin/activate
     [ -f requirements.txt ] && uv pip install -r requirements.txt
 }
