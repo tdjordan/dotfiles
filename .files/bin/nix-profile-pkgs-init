@@ -38,11 +38,11 @@ pkgs=(
   jf                nixpkgs#jfrog-cli
   jj                nixpkgs#jujutsu
   jjui              nixpkgs#jjui
-  lazyjj            nixpkgs#lazyjj
+  # lazyjj            nixpkgs#lazyjj
   just              nixpkgs#just
   task              nixpkgs#go-task
   watch             nixpkgs#unixtools.watch
-  sentry-cli        nixpkgs#sentry-cli
+  # sentry-cli        nixpkgs#sentry-cli
   snyk              nixpkgs#snyk
   tkn               nixpkgs#tektoncd-cli
   typos             nixpkgs#typos
@@ -77,6 +77,7 @@ pkgs=(
   # az                nixpkgs#azure-cli
   # wt                nixpkgs#git-worktree-switcher
   git-cliff         nixpkgs#git-cliff
+  lazygit           nixpkgs#lazygit
   eza               nixpkgs#eza
   aiac              nixpkgs#aiac
   # tectonic          nixpkgs#tectonic
@@ -87,6 +88,7 @@ pkgs=(
   popeye            nixpkgs#popeye
   ipinfo            nixpkgs#ipinfo
   nvimpager         nixpkgs#nvimpager
+  step              nixpkgs#step-cli
   # vault             nixpkgs#vault
   # julia             nixpkgs#julia
   # bacon             nixpkgs#bacon
@@ -101,6 +103,9 @@ pkgs=(
   # otel-cli          nixpkgs#otel-cli
   sesh                nixpkgs#sesh
   gum                 nixpkgs#gum
+  xh                  nixpkgs#xh
+  curlie              nixpkgs#curlie
+  posting             nixpkgs#posting
   )
   # bw                nixpkgs#bitwarden-cli
   # localsend         nixpkgs#localsend
