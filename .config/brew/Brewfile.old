@@ -90,7 +90,7 @@ brew "killport"
 
 ###  cli testing
 ###
-brew "hyperfine"
+# brew "hyperfine"
 brew "wrk"
 brew "k6"
 brew "clitest"

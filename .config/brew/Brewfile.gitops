@@ -3,3 +3,6 @@ brew "argocd"
 
 tap    "fluxcd/tap"
   brew "fluxcd/tap/flux"
+
+tap    "darksworm/homebrew-tap"
+  brew "darksworm/tap/argonaut"

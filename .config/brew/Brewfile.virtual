@@ -1,2 +1,3 @@
 tap "hashicorp/tap"
   brew "hashicorp/tap/packer"
+  brew "hashicorp/tap/vault"

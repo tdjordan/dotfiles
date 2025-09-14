@@ -1,0 +1,5 @@
+###  HOMEBREW_ACCEPT_EULA=Y brew install msodbcsql18 mssql-tools18
+###
+tap "microsoft/homebrew-mssql-release"
+  brew "msodbcsql18"
+  brew "mssql-tools18"

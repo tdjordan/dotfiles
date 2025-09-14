@@ -15,7 +15,7 @@ brew "tree"
 
 ###  cli testing
 ###
-brew "hyperfine"
+# brew "hyperfine"
 
 ###  json utils
 ###
