@@ -38,3 +38,7 @@ THOM
 configs
 Route53
 wrt
+FluxCD
+ArgoCD
+vCluster
+vClusters
