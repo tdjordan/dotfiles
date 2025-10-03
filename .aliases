@@ -203,7 +203,7 @@ alias rgl='rg -l '
 _dot_config() {
   git --git-dir=$HOME/.files.git --work-tree=$HOME --no-pager $*
 }
-alias config='_dot_config $* '
+# alias config='_dot_config $*'
 alias c='_dot_config $* '
 alias conf='_dot_config $* '
 alias ca='_dot_config add '
