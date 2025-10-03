@@ -1,4 +1,5 @@
-font-size = 24
+# font-size = 24
+font-size = 18
 # font-family = FiraCode Nerd Font Mono
 # font-family = VictorMono Nerd Font
 # font-family = Zed Mono
@@ -42,6 +43,7 @@ cursor-style = block
 # command = clear
 # quick-terminal-screen = macos-menu-bar
 quick-terminal-space-behavior = remain
+# quick-terminal-position = center
 
 macos-titlebar-style = hidden
 # macos-non-native-fullscreen = true
