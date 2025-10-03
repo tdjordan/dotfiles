@@ -67,7 +67,7 @@ set.number         = true                        -- nvim default : off
 set.relativenumber = true                        -- nvim default : off
 
 -- display space above/below left/right of cursor
-set.scrolloff      = 1
+set.scrolloff      = 5
 set.sidescrolloff  = 5
 
 -- When will the last window have a status line?

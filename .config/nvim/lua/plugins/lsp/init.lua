@@ -41,8 +41,8 @@ return {
     ---@type conform.setupOpts
     , opts =  {
       formatters_by_ft = {
-        nix = { 'nixpkgs-fmt' },
-        lua = { 'stylua' },
+        nix = { 'alejandra' },
+        -- lua = { 'stylua' },
         terraform = { 'terraform_fmt' },
         -- sh = { 'shf,mt' },
         ['*'] = { 'codespell' },
@@ -134,13 +134,15 @@ return {
     , opts = {
       ensure_installed = {
         -- 'erg'
-        'vale-ls'
+        'golangci-lint-langserver',
+        'vale-ls',
+        -- 'bacon',
       }
     }
   },
   {
     'neovim/nvim-lspconfig'
-    , event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' }
+    , event = { 'BufReadPre', 'BufWritePost', 'BufNewFile' }
     , dependencies = {
       {
         'mason-org/mason.nvim'
@@ -161,6 +163,7 @@ return {
             -- , 'ansible-lint'                    -- TODO Linters
             -- , 'ast_grep'                        -- Linter & Formatter based on AST
             -- , 'awk_ls'                          -- AWK
+            -- , 'bacon_ls'                        -- Rust
             , 'bashls'                          -- bash
             , 'clangd'                          -- C++
             , 'cmake'                           -- CMake
@@ -173,15 +176,18 @@ return {
             , 'dotls'                           -- Dot
             , 'elmls'                           -- Elm
             -- , 'erg_language_server'             -- Erg
+            , 'gh_actions_ls'                   -- yaml ( github actions )
+            , 'gitlab_ci_ls'                    -- yaml.gitlab
             -- , 'gleam'                           -- Gleam
             , 'gopls'                           -- go
+            -- , 'golangci_lint_langserver'        -- go
             , 'graphql'                         -- GraphQL
             , 'gradle_ls'                       -- gradle
             , 'groovyls'                        -- groovy
             , 'helm_ls'                         -- helm
             -- , 'hls'                          -- Haskell
             -- , 'jdtls'                        -- Java
-            -- , 'jq-lsp'                       -- jq
+            , 'jqls'                            -- jq-lsp
             , 'jsonls'                          -- json
             , 'jsonnet_ls'                      -- jsonnet
             , 'julials'                         -- Julia
@@ -191,7 +197,7 @@ return {
             , 'lua_ls'                          -- lua
             , 'marksman'                        -- Markdown
             -- , 'nginx_language_server'        -- Nginx
-            , 'nil_ls'                       -- Nix
+            -- , 'nil_ls'                       -- Nix
             -- , 'nomad_lsp'                    -- Nomad
             , 'pbls'                            -- Protocol Buffers
             , 'pylyzer'                         -- Python

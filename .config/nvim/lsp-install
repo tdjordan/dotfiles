@@ -30,6 +30,7 @@ pnpm=(
     textlint-rule-no-dead-link
     textlint-rule-editorconfig
     # textlint-plugin-markdown
+  @continuedev/cli
 )
 
 ###  pnpm retired
@@ -102,8 +103,10 @@ brew=(
 time pnpm i  -g --loglevel error ${pnpm// / }
 time pnpm up -g --loglevel error
 
-time pipx upgrade-all
-time pipx install ${pip// / }
+# time pipx upgrade-all
+# time pipx install ${pip// / }
+# time pipx upgrade-all
+time uv pip install ${pip// / }
 
 time gem install --user-install ${gem// / }
 

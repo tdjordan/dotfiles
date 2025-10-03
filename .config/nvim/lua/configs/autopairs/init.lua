@@ -2,14 +2,14 @@
 local npairs  = require 'nvim-autopairs'
 local Rule    = require 'nvim-autopairs.rule'
 local cond    = require 'nvim-autopairs.conds'
-local endwise = require('nvim-autopairs.ts-rule').endwise
+local endwise = require 'nvim-autopairs.ts-rule'.endwise
 
-local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-local cmp = require 'cmp'
-cmp.event:on(
-  'confirm_done'
-  , cmp_autopairs.on_confirm_done()
-)
+-- local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+-- local cmp = require 'cmp'
+-- cmp.event:on(
+--   'confirm_done'
+--   , cmp_autopairs.on_confirm_done()
+-- )
 
 npairs.setup {
   disable_filetype = {

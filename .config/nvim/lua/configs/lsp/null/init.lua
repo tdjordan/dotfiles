@@ -266,7 +266,7 @@ local sources = {
 
   ---  commit messages
   ---
-  , b.diagnostics.commitlint
+  -- , b.diagnostics.commitlint
 
   ---  .env files
   ---
@@ -286,7 +286,7 @@ nls.setup {
 -- }
 
 require 'mason-null-ls'.setup {
-  -- ensured_installed      = null,
+  ensure_installed       = {},
   automatic_installation = true,
   automatic_setup        = false,
 }

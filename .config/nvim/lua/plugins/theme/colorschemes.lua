@@ -3,20 +3,9 @@ return {
     'nvim-zh/colorful-winsep.nvim'
     , event = { 'WinLeave' }
     ,opts = {
-      --   no_exec_files = {
-      --     'packer',
-      --     'TelescopePrompt',
-      --     'mason',
-      --     'CompetiTest',
-      --     'neo-tree',
-      --     'NvimTree'
-      --   },
-    --   anchor = {
-    --     right = { height = 1, x = -1, y = -1 },
-    --     left = { height = 1, x = -1, y = 0 },
-    --     bottom = { width = 0, x = -1, y = 0 },
-    --     up = { width = 0, x = 1, y = 0 },
-    --   }
+      indicator_for_2wins = {
+        position = 'center'
+      }
     }
   },
   {
@@ -148,8 +137,13 @@ return {
         -- oveseer           = false,
         -- pounce            = false,
         rainbow_delimiters = false,
+        render_markdown    = true,
         -- sandwich          = false,
         -- semantic_tokens   = true,
+        snacks = {
+          enabled = true,
+          ident_scope_color = ''
+        },
         symbols_outline    = true,
         -- telekasten        = false,
         telescope = {

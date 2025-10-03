@@ -1,3 +1,4 @@
+vim.g.nvimtreesiterMaster = true
 return {
   {
     'nvim-treesitter/playground'
@@ -7,7 +8,13 @@ return {
   },
   {
     'nvim-treesitter/nvim-treesitter'
-    -- , enabled = false
+    , enabled = not vim.g.nvimtreesitterMaster
+    , branch = 'main'
+    , build = ':TSUpdate'
+  },
+  {
+    'nvim-treesitter/nvim-treesitter'
+    , enabled = vim.g.nvimtreesitterMaster
     -- , lazy = false
     , branch = 'master'
     , build = ':TSUpdate'
@@ -30,18 +37,34 @@ return {
       'nvim-treesitter/nvim-treesitter-refactor'
       , 'nvim-treesitter/nvim-treesitter-textobjects'
       , 'HiPhish/rainbow-delimiters.nvim'
+      , 'nvim-treesitter/nvim-treesitter-context'
     }
     , config = function()
       vim.schedule(function()
         -- require 'nvim-treesitter.install'.compilers = { 'gcc-13' }
 
         require 'nvim-treesitter.configs'.setup {
-          ensure_installed = 'all',
-          -- sync_install = false,     -- true if wanting synchronous installs
-          -- auto_install = true,      -- true to install missing parsers on BufEnter
+          modules = {},
+          -- install Snacks expected parsers
+          ensure_installed = {
+            'css',
+            'html',
+            'javascript',
+            'latex',
+            'norg',
+            'scss',
+            'svelte',
+            'tsx',
+            'typst',
+            'vue',
+            'regex',
+          },
+          sync_install = false,     -- true if wanting synchronous installs
+          auto_install = true,      -- true to install missing parsers on BufEnter
           ignore_install = {
             'haskell',
             'vala',
+            'ipkg',
             'norg'
           },
           highlight = {

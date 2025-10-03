@@ -35,9 +35,19 @@ return {
   -- },
   ---  Rust
   ---
+  -- {
+  --   'simrat39/rust-tools.nvim'
+  --   , ft = 'rust'
+  -- },
+  -- {
+  --   'mrcjkb/rustaceanvim'
+  --   , ft = 'rust'
+  --   , version = '^6'
+  -- },
   {
-    'simrat39/rust-tools.nvim'
-    , ft = 'rust'
+    "chrisgrieser/nvim-lsp-endhints",
+    event = "LspAttach",
+    opts = {}, -- required, even if empty
   },
   -- ---  Inlay Hints for rust-analyzer
   -- ---
@@ -51,7 +61,7 @@ return {
     }
     , dependencies = {
       'nvim-treesitter/nvim-treesitter',
-      'echasnovski/mini.icons'
+      'nvim-mini/mini.icons'
     }
     , opts = {
       render_modes = { 'n', 'v', 'i', 'c' }

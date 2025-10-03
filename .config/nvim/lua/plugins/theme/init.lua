@@ -5,7 +5,10 @@ return {
     , event = { 'BufReadPost', 'BufNewFile' }
     , opts = {
       filetypes = { '*', '!lazy', '!mason'    },
-      buftype   = { '*', '!prompt', '!nofile' }
+      buftype   = { '*', '!prompt', '!nofile' },
+      user_default_options = {
+        AARRGGBB = true
+      }
     }
   },
 
@@ -18,9 +21,12 @@ return {
   -- FIX:  fix me
   {
     'folke/todo-comments.nvim'
+    -- , optional = true
     , cmd = { 'TodoTrouble', 'TodoTelescope' }
     , event = { 'BufReadPost', 'BufNewFile' }
     , keys = {
+      { '<leader>st' , function() Snacks.picker.todo_comments() end, desc = 'todo' },
+      { '<leader>sT' , function() Snacks.picker.todo_comments({ keywords = { 'TODO', 'FIX', 'FIXME' } }) end, desc = 'todo / fix / fixme' },
       {
         ']t', function()
           require 'todo-comments'.jump_next()

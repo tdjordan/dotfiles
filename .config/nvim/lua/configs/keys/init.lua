@@ -215,30 +215,32 @@ wk.add({
   ---
   {
     ---  s
-    { '<leader>s' , group = 'surround / search' },
-      { '<leader>s"' , [[msciw""<esc>P`sl]],           desc = 'word with double quotes'     },
-      { "<leader>s'" , [[msciw'<c-r><c-o>"'<esc>`sl]], desc = 'word with single quotes'     },
-      { '<leader>s[' , 'ciw[]<esc>P',                  desc = 'word with square brackets'   },
-      { '<leader>s9' , 'ciw()<esc>P',                  desc = 'word with round  brackets'   },
-      { '<leader>s]' , 'ciw{}<esc>P',                  desc = 'word with squiggly brackets' },
+    { '<leader>s' , group = 'search' },
 
-      ---  sc
-      { '<leader>sc' , group = 'change' },
-        { '<leader>sc"' , [[ciwxx""P]],    desc = 'to single quotes'                     },
-        { "<leader>sc'" , [[ciw''<esc>P]], desc = 'surround word with single   quotes'   },
-        { '<leader>sc[' , 'ciw[]<esc>P',   desc = 'surround word with square   brackets' },
-        { '<leader>sc]' , 'ciw{}<esc>P',   desc = 'surround word with squiggly brackets' },
-        { '<leader>sc9' , 'ciw()<esc>P',   desc = 'surround word with round    brackets' },
+    { '<leader>S' , group = 'surround' },
+      { '<leader>S"' , [[msciw""<esc>P`sl]],           desc = 'word with double quotes'     },
+      { "<leader>S'" , [[msciw'<c-r><c-o>"'<esc>`sl]], desc = 'word with single quotes'     },
+      { '<leader>S[' , 'ciw[]<esc>P',                  desc = 'word with square brackets'   },
+      { '<leader>S9' , 'ciw()<esc>P',                  desc = 'word with round  brackets'   },
+      { '<leader>S]' , 'ciw{}<esc>P',                  desc = 'word with squiggly brackets' },
 
-    { '<leader>sd' , [[daw''=substitute(@@,"'\\\|\"","","g")<cr>P]], desc = 'delete quotes' },
-    -- , { '<leader>sd' , [[daW''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
+      ---  Sc
+      { '<leader>Sc' , group = 'change' },
+        { '<leader>Sc"' , [[ciwxx""P]],    desc = 'to single quotes'                     },
+        { "<leader>Sc'" , [[ciw''<esc>P]], desc = 'surround word with single   quotes'   },
+        { '<leader>Sc[' , 'ciw[]<esc>P',   desc = 'surround word with square   brackets' },
+        { '<leader>Sc]' , 'ciw{}<esc>P',   desc = 'surround word with squiggly brackets' },
+        { '<leader>Sc9' , 'ciw()<esc>P',   desc = 'surround word with round    brackets' },
 
-    { '<leader>sh' , function() require 'telescope.builtin'.pickers()   end , desc = 'picker history'    },
+    { '<leader>Sd' , [[daw''=substitute(@@,"'\\\|\"","","g")<cr>P]], desc = 'delete quotes' },
+    -- , { '<leader>Sd' , [[daW''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
 
-    { '<leader>sp' , [[<cmd>split<cr>]]                                     , desc = 'split top-bottom'  },
+    { '<leader>sP' , function() require 'telescope.builtin'.pickers()   end , desc = 'picker history'    },
+
+    { '<leader>wp' , [[<cmd>split<cr>]]                                     , desc = 'split top-bottom'  },
     { '<leader>sr' , function() require 'telescope.builtin'.resume()    end , desc = 'resume search'     },
-    { '<leader>st' , [[<cmd>lua require('theme').ThemeToggle()<cr>]]        , desc = 'toggle dark/light' },
-    { '<leader>st' , function() require "telescope.builtin".live_grep() end , desc = 'search text'       },
+    -- { '<leader>st' , [[<cmd>lua require('theme').ThemeToggle()<cr>]]        , desc = 'toggle dark/light' },
+    -- { '<leader>st' , function() require "telescope.builtin".live_grep() end , desc = 'search text'       },
   },
 
   {
@@ -282,19 +284,21 @@ wk.add({
   ---
   {
     { '<leader>f', group = 'search' },
-      { '<leader>fb'  , function() require 'telescope.builtin'.buffers()                      end , desc = 'in open buffers'   },
-      { '<leader>ff'  , function() require 'telescope.builtin'.find_files()                   end , desc = 'by file name'      },
-      { '<leader>fg'  , function() require 'telescope.builtin'.live_grep()                    end , desc = 'with live grep'    },
+      -- { '<leader>fb'  , function() require 'telescope.builtin'.buffers()                      end , desc = 'in open buffers'   },
+      { '<leader>fb'  , function() Snacks.picker.buffers()                                    end , desc = 'in open buffers'   },
+      { '<leader>ff'  , function() Snacks.picker.files()                                      end , desc = 'by file name'      },
+      { '<leader>fF'  , function() require 'telescope.builtin'.find_files()                   end , desc = 'by file name'      },
+      -- { '<leader>fg'  , function() require 'telescope.builtin'.live_grep()                    end , desc = 'with live grep'    },
+      { '<leader>fg'  , function() Snacks.picker.grep()                                       end , desc = 'with live grep'    },
       { '<leader>fh'  , function() require 'telescope.builtin'.help_tags()                    end , desc = 'help tags'         },
       { '<leader>fj'  , function() require 'telescope.builtin'.jumplist()                     end , desc = 'jumplist'          },
       { '<leader>fi'  , function() require 'telescope.builtin'.builtin()                      end , desc = 'builtins'          },
-      { '<leader>fk'  , function() require 'telescope.builtin'.keymaps()                      end , desc = 'keymaps'           },
-      { '<leader>fl'  , function() require 'telescope.builtin'.current_buffer_fuzzy_find()    end , desc = 'current buffer'    },
+      -- { '<leader>fl'  , function() Snacks.picker.lines()                                      end,  desc = 'current buffer'    },
       { '<leader>fm'  , function() require 'telescope.builtin'.man_pages()                    end , desc = 'man pages'         },
       { '<leader>fo'  , function() require 'telescope.builtin'.oldfiles()                     end , desc = 'recent files'      },
       { '<leader>fq'  , function() require 'telescope.builtin'.quickfix()                     end , desc = 'quickfix'          },
       { '<leader>fr'  , function() require 'telescope.builtin'.reloader()                     end , desc = 'reloader'          },
-      { '<leader>fs'  , function() require 'telescope.builtin'.lsp_workspace_symbols()        end , desc = 'lsp symbols'       },
+      { '<leader>fs'  , function() Snacks.picker.lsp_workspace_symbols()                      end , desc = 'lsp symbols'       },
       { '<leader>ft'  , function() require 'telescope.builtin'.filetypes()                    end , desc = 'filetypes'         },
       { '<leader>fw'  , function() require 'telescope.builtin'.grep_string()                  end , desc = 'word under cursor' },
       { '<leader>f;'  , function() require 'telescope.builtin'.command_history()              end , desc = 'command history'   },
@@ -378,11 +382,15 @@ wk.add({
   ---
   {
     { '<leader>p', group = 'pick' },
-      { '<leader>pa' , function() require 'telescope.builtin'.autocommands()                              end, desc = 'an autocommand'      },
-      { '<leader>pb' , function() require 'telescope.builtin'.buffers()                                   end, desc = 'from open buffers'   },
+      { '<leader>pa' , function() Snacks.picker.autocmds()                                                end, desc = 'an autocommand'      },
+      -- { '<leader>pa' , function() require 'telescope.builtin'.autocommands()                              end, desc = 'an autocommand'      },
+      -- { '<leader>pb' , function() Snacks.picker.buffers()                                                 end, desc = 'buffers'             },
+      { '<leader>pB' , function() require 'telescope.builtin'.buffers()                                   end, desc = 'from open buffers'   },
       { '<leader>pe' , function() require 'telescope.builtin'.symbols{sources = {'emoji', 'gitmoji'}}     end, desc = '*moji'               },
-      { '<leader>pf' , function() require 'telescope.builtin'.find_files()                                end, desc = 'a file'              },
-      { '<leader>pg' , function() require 'telescope.builtin'.live_grep()                                 end, desc = 'from live grep'      },
+      { '<leader>pf' , function() Snacks.picker.smart()                                                   end, desc = 'file smart find'     },
+      -- { '<leader>pf' , function() Snacks.picker.files()                                                   end, desc = 'a file'              },
+      { '<leader>pF' , function() require 'telescope.builtin'.find_files()                                end, desc = 'a file'              },
+      { '<leader>pG' , function() require 'telescope.builtin'.live_grep()                                 end, desc = 'from live grep'      },
       { '<leader>ph' , function() require 'telescope.builtin'.help_tags()                                 end, desc = 'help tags'           },
       { '<leader>pl' , function() require 'telescope.builtin'.current_buffer_fuzzy_find()                 end, desc = 'from current buffer' },
       -- { '<leader>ps' , function() require 'telescope.builtin'.grep_string()                               end, desc = 'word under cursor'   },
@@ -437,7 +445,7 @@ wk.add({
       { '<leader>dg' , function() require 'dap'.session()           end, desc = 'Get Session'       },
       { '<leader>di' , function() require 'dap'.step_into()         end, desc = 'Step Into'         },
       { '<leader>do' , function() require 'dap'.step_over()         end, desc = 'Step Over'         },
-      { '<leader>dp' , function() require 'dap'.pause.toggle()      end, desc = 'Pause'             },
+      { '<leader>dp' , function() require 'dap'.pause()             end, desc = 'Pause'             },
       { '<leader>dq' , function() require 'dap'.close()             end, desc = 'Quit'              },
       { '<leader>dr' , function() require 'dap'.repl.toggle()       end, desc = 'Toggle Repl'       },
       { '<leader>ds' , function() require 'dap'.continue()          end, desc = 'Start'             },
@@ -499,6 +507,7 @@ wk.add({
         end
       end ,   desc = 'indentation guides'     },
       { '<leader>tk' , function() require 'nvim-tree.api'.tree.toggle() end , desc = 'file tree sidebar'      },
+      { '<leader>tm' , [[<cmd>lua require('theme').ThemeToggle()<cr>]]      , desc = 'toggle dark/light'      },
       { '<leader>tt' , '<cmd>split term://$SHELL<cr>',                        desc = 'terminal'               },
       { '<leader>ts' , function() vim.treesitter.inspect_tree() end,          desc = 'tree-sitter playgournd' },
   },

@@ -199,8 +199,11 @@ return {
           },
           project = {
             base_dirs =
-              { { '~/devRoot/_bf',    max_depth = 4 }
-                , { '~/devRoot/neovim', max_depth = 4 }
+              {
+                { '~/_devRoot/_bf',    max_depth = 4 }
+                , { '~/_devRoot/neovim', max_depth = 4 }
+                , { '~/_devRoot/_ab',    max_depth = 4 }
+                , { '~/.config/nvim',    max_depth = 4 }
               }
             -- , hidden_files = false
             , theme = 'ivy'
@@ -239,7 +242,7 @@ return {
       },
       {
         '<leader>bi', function()
-          require 'browse'.input_search {}
+          require 'browse'.input_search()
         end, desc = 'browse search input'
       },
       {

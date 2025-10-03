@@ -1,18 +1,18 @@
 return {
-  {
-    'tdjordan/notifier.nvim'
-    , lazy = false
-    , enabled = true
-    , opts = {
-      ignore_messages = {
-        'null_ls'
-      }
-      -- components = {
-      --   'lsp'
-      -- }
-      -- component_name_recall = true
-    },
-  },
+  -- {
+  --   'tdjordan/notifier.nvim'
+  --   , lazy = false
+  --   , enabled = true
+  --   , opts = {
+  --     ignore_messages = {
+  --       'null_ls'
+  --     }
+  --     -- components = {
+  --     --   'lsp'
+  --     -- }
+  --     -- component_name_recall = true
+  --   },
+  -- },
   {
     'j-hui/fidget.nvim'
     , lazy = false
@@ -511,11 +511,46 @@ return {
     , priority = 1000
     , lazy = false
     , keys = {
-      {
-        '<leader>e', function()
-          Snacks.explorer()
-        end, desc = 'explorer'
-      }
+      ---  Top Pickers
+      { '<leader>,' , function() Snacks.picker.buffers()       end, desc = 'buffers'              },
+      { '<leader>/' , function() Snacks.picker.grep()          end, desc = 'grep'                 },
+      { '<leader>e' , function() Snacks.explorer()             end, desc = 'explorer'             },
+      { '<leader>n' , function() Snacks.picker.notifications() end, desc = 'notification history' },
+      ---  Pick
+      { '<leader>pb' , function() Snacks.picker.buffers()                                     end, desc = 'buffers'             },
+      { '<leader>pn' , function() Snacks.picker.files({ cwd = vim.fn.stdpath('config') })     end, desc = 'nvim config file'    },
+      { '<leader>pg' , function() Snacks.picker.grep()                                        end, desc = 'from live grep'      },
+      { '<leader>pu' , function() Snacks.picker.undo()                                        end, desc = 'undo history'        },
+      ---  Find
+      { '<leader>fk' , function() Snacks.picker.keymaps()                                     end, desc = 'keymaps'             },
+      { '<leader>fl' , function() Snacks.picker.lines()                                       end, desc = 'current buffer'      },
+      ---  Grep
+      { '<leader>sb' , function() Snacks.picker.lines()                                       end, desc = 'buffer lines'        },
+      { '<leader>sB' , function() Snacks.picker.grep_buffers()                                end, desc = 'open buffers'        },
+      { '<leader>sg' , function() Snacks.picker.grep()                                        end, desc = 'grep'                },
+      { '<leader>sw' , function() Snacks.picker.grep_word()                                   end, desc = 'word under cursor', mode = { 'n', 'x' } },
+      ---  Search
+      { '<leader>sa' , function() Snacks.picker.autocmds()                                    end, desc = 'autocmds'            },
+      { '<leader>sc' , function() Snacks.picker.command_history()                             end, desc = 'command history'     },
+      { '<leader>sC' , function() Snacks.picker.commands()                                    end, desc = 'commands'            },
+      { '<leader>sd' , function() Snacks.picker.diagnostics()                                 end, desc = 'diagnostics'         },
+      { '<leader>sD' , function() Snacks.picker.diagnostics_buffer()                          end, desc = 'buffer diagnostics'  },
+      { '<leader>sh' , function() Snacks.picker.help()                                        end, desc = 'help'                },
+      { '<leader>sH' , function() Snacks.picker.highlights()                                  end, desc = 'highlishts'          },
+      { '<leader>si' , function() Snacks.picker.icons()                                       end, desc = 'icons'               },
+      { '<leader>sj' , function() Snacks.picker.jumps()                                       end, desc = 'jumps'               },
+      { '<leader>sk' , function() Snacks.picker.keymaps()                                     end, desc = 'keymasp'             },
+      { '<leader>sl' , function() Snacks.picker.loclist()                                     end, desc = 'location list'       },
+      { '<leader>sm' , function() Snacks.picker.marks()                                       end, desc = 'marks'               },
+      { '<leader>sM' , function() Snacks.picker.man()                                         end, desc = 'man pages'           },
+      { '<leader>sl' , function() Snacks.picker.lazy()                                        end, desc = 'for lazy spec'       },
+      { '<leader>sq' , function() Snacks.picker.qflist()                                      end, desc = 'quickfix list'       },
+      { '<leader>sr' , function() Snacks.picker.resume()                                      end, desc = 'resume search'       },
+      { '<leader>ss' , function() Snacks.picker.lsp_symbols()                                 end, desc = 'LSP Symbols'         },
+      { '<leader>su' , function() Snacks.picker.undo()                                        end, desc = 'undo history'        },
+      { '<leader>uC' , function() Snacks.picker.colorschemes()                                end, desc = 'colorschemes'        },
+      ---  LSP
+      { 'gd'         , function() Snacks.picker.lsp_definitions()                             end, desc = 'goto definitions'    },
     }
     , opts = {
       -- your configuration comes here
@@ -524,15 +559,47 @@ return {
       bigfile = { enabled = false },
       dashboard = { enabled = false },
       explorer = { enabled = false },
+      image = { enabled = true },
       indent = { enabled = false },
       input = { enabled = false },
-      picker = { enabled = false },
-      notifier = { enabled = false },
+      notifier = { enabled = true, top_down = false },
+      picker = { enabled = true },
       quickfile = { enabled = false },
       scope = { enabled = false },
       scroll = { enabled = false },
-      statuscolumn = { enabled = false },
-      words = { enabled = false }
+      statuscolumn = { enabled = true },
+      words = { enabled = false },
+      styles = {
+        notification = {
+          -- wo = { wrap = true } -- Wrap notifications
+        }
+      }
+    }
+  },
+  {
+    "hat0uma/csvview.nvim"
+    , cmd = { 'CsvViewEnable', 'CsvViewDisable', 'CsvViewToggle' }
+    , ft = { 'csv' }
+    ---@module "csvview"
+    ---@type CsvView.Options
+    , opts = {
+      parser = { comments = { "#", "//" } },
+      view = {
+        display_mode = 'border'
+      },
+      keymaps = {
+        -- Text objects for selecting fields
+        textobject_field_inner = { "if", mode = { "o", "x" } },
+        textobject_field_outer = { "af", mode = { "o", "x" } },
+        -- Excel-like navigation:
+        -- Use <Tab> and <S-Tab> to move horizontally between fields.
+        -- Use <Enter> and <S-Enter> to move vertically between rows and place the cursor at the end of the field.
+        -- Note: In terminals, you may need to enable CSI-u mode to use <S-Tab> and <S-Enter>.
+        jump_next_field_end = { "<Tab>", mode = { "n", "v" } },
+        jump_prev_field_end = { "<S-Tab>", mode = { "n", "v" } },
+        jump_next_row = { "<Enter>", mode = { "n", "v" } },
+        jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
+      }
     }
   }
 }
