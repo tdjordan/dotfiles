@@ -1,3 +1,5 @@
+###  Now using https://github.com/jackielii/skhd.zig for hotkeys
+###
 #  NOTE(koekeishiya): A list of all built-in modifier and literal keywords can
 #                     be found at https://github.com/koekeishiya/skhd/issues/1
 #
@@ -72,6 +74,16 @@
 # 0x35 : esc
 # 0x2A : backslash
 
+###  Top Level Operations
+###  - Focus Ops
+###    - Windows
+###    - Monitors
+###  - Move  Ops
+###    - Windows
+###      - within Same Space
+###      - to Monitor
+###      - to Space : Same Monitor
+
 ###
 ###  OperationalLevels
 ###
@@ -87,41 +99,145 @@
 ###
 #
 
+###  AnyBar Indicator
+###
+# .define anybar_color : echo -n "{{1}}" | nc -4u -w0 localhost 1738
+
+###  Application Specific Key Mapping Adjustments
+###
+ctrl - k [
+  "Slack" | cmd  - k     ## use c-k to map to cmd-k for slack
+  *       | ctrl - k     ## passthrough for all other apps
+]
+ctrl - l [
+  "Google Chrome" | cmd  - l    ## use c-l to map to cmd-l for chrome
+  *               | ctrl - l    ## passthrough for all other apps
+]
+
+###  Modals
+###
+###  TODO : needs work /wrt comfortability
+
+###  Modals : Colors :: Borders
+###
 :: default  : borders active_color=0xc0e2e2e3
 :: launch @ : borders active_color=0x8010ff10
 :: focus @  : borders active_color=0x8010ff10
 :: zoom @   : borders active_color=0x80108010
 :: move @   : borders active_color=0xffffff00
 
-
-default < fn - space ; move
-default < ctrl - y   ; move
-default < ctrl - p   ; focus
-default < ctrl - u   ; zoom
-
-move    < fn - space ; default
-move    < ctrl - y   ; default
-move    < ctrl - p   ; focus
-move    < 0x35       ; default
-
-focus   < ctrl - y   ; move
-focus   < ctrl - p   ; default
-focus   < 0x35       ; default
-
-zoom    < ctrl - u   ; default
-zoom    < 0x35       ; default
-
-# swap managed window
-shift + alt - h : yabai -m window --swap east || yabai -m window --swap west
-
-###  Focus Monitor
+###  Modals : Tranisitions
 ###
-shift + ctrl - n : yabai -m display --focus next || yabai -m display --focus first
-shift + ctrl - p : yabai -m display --focus prev || yabai -m display --focus last
-move < n       : yabai -m display --focus next || yabai -m display --focus first
-move < p       : yabai -m display --focus prev || yabai -m display --focus last
-focus  < n       : yabai -m display --focus next || yabai -m display --focus first
-focus  < p       : yabai -m display --focus prev || yabai -m display --focus last
+default < fn - space  ; move
+default < ctrl - m    ; move
+default < ctrl - 0x2F ; focus
+default < ctrl - u    ; zoom
+
+move    < fn - space  ; default
+move    < ctrl - m    ; default
+move    < ctrl - 0x2F ; focus
+move    < 0x35        ; default
+
+focus   < ctrl - m    ; move
+focus   < ctrl - 0x2F ; default
+focus   < 0x35        ; default
+
+zoom    < ctrl - u    ; default
+zoom    < 0x35        ; default
+
+###  Focus Ops :: Window Global
+###
+.define focus_direction : yabai -m window --focus {{1}} || yabai -m display --focus {{1}} || yabai -m display --focus {{2}}
+.define focus_stack_or_direction : yabai -m window --focus stack.{{1}} || yabai -m window --focus {{2}} || yabai -m display --focus {{2}} || yabai -m display --focus {{3}}
+.define focus_visible : yabai -m window --focus $( yabai -m query --windows | jq -re "sort_by( .display, .frame.x, .frame.y, .id ) | map( select( .\"is-visible\" == true and .role != \"AXUnknown\")) | reverse | nth( index( map ( select( .\"has-focus\" == true ))) - 1).id" )
+
+lcmd - h    : @focus_direction( "west"  , "recent" )
+lcmd - l    : @focus_direction( "east"  , "recent" )
+lcmd - j    : @focus_direction( "south" , "recent" )
+lcmd - k    : @focus_direction( "north" , "recent" )
+# lcmd - l    : @focus_stack_or_direction( "next" , "east" , "recent" )
+# lcmd - l    : @focus_visible()
+
+.define focus_recent : yabai -m window --focus recent
+rcmd - r : @focus_recent
+
+###  Focus Ops :: Window Same Space
+###
+.define focus_direction_same_space : yabai -m window --focus {{1}} || yabai -m window --focus {{2}}
+# shift + ctrl - h : @focus_direction_same_space( "west"  , "east"  )
+# shift + ctrl - j : @focus_direction_same_space( "south" , "north" )
+# shift + ctrl - k : @focus_direction_same_space( "north" , "south" )
+# shift + ctrl - l : @focus_direction_same_space( "east"  , "west"  )
+# .define focus_direction_s : @focus_direction_same_space( {{1}} , {{1}} ) || yabai -m display --focus {{2}}
+# shift + ctrl - l : @focus_direction_s( "east"  , "west"  )
+
+###  Stack Ops :: Window Same Space
+###
+.define stack_window : yabai -m window --stack {{1}} || yabai -m window --stack {{2}}
+.define stack_window_insert : yabai -m window --insert stack
+.define stack_window_on_top : yabai -m window --focus {{1}} : yabai -m window --stack {{2}} : yabai -m window --stack {{1}} : yabai -m window --focus stack.next
+.define toggle_float : yabai -m window --toggle float : yabai -m window --toggle float
+.define unstack_window : yabai -m window --toggle float : yabai -m window --toggle float
+# .define stack_window_on_top :
+ctrl + shift - h : @stack_window_on_top( "west"  , "east")
+ctrl + shift - l : @stack_window_on_top( "east"  , "west")
+ctrl + shift - j : @stack_window_on_top( "south" , "north")
+ctrl + shift - k : @stack_window_on_top( "north" , "south")
+# ctrl + shift - h : @stack_window( "west"  , "east")
+# ctrl + shift - l : @stack_window( "east"  , "west")
+# ctrl + shift - j : @stack_window( "south" , "north")
+# ctrl + shift - k : @stack_window( "north" , "south")
+# ctrl + shift - j : @stack_window( "next" )
+# ctrl + shift - h : @stack_window_insert
+# ctrl + shift - j : @stack_window_insert
+# ctrl + shift - k : @stack_window_insert
+rcmd - s : @stack_window( "next" , "prev" )
+rcmd - t : @unstack_window
+rcmd - home : @stack_window( "next" , "prev" )
+
+###  Focus Ops :: Window Same Space Carousel
+###
+ctrl + lcmd - n : @focus_direction_same_space( "next" , "first" )
+ctrl + lcmd - p : @focus_direction_same_space( "prev" , "last"  )
+
+###  Focus Ops :: Monitor
+###
+.define focus_monitor : yabai -m display --focus {{1}} || yabai -m display --focus {{2}}
+shift + ctrl - n : @focus_monitor( "next" , "first" )
+shift + ctrl - p : @focus_monitor( "prev" , "last"  )
+
+.define focus_recent_monitor : yabai -m display --focus recent
+shift + rcmd - r : @focus_recent_monitor
+
+###  Move Ops :: Window Swap Same Space
+###
+.define swap_window_same_space : yabai -m window --swap {{1}} || yabai -m window --swap {{2}}
+# shift + alt - h : @swap_window_same_space( "west"  , "east"  )
+# shift + alt - l : @swap_window_same_space( "east"  , "west"  )
+# shift + alt - k : @swap_window_same_space( "north" , "south" )
+# shift + alt - j : @swap_window_same_space( "south" , "north" )
+.define swap_window_or_move_to_monitor : yabai -m window --swap {{1}} || yabai -m window --display {{1}} --focus
+shift + alt - h : @swap_window_or_move_to_monitor( "west"  )
+shift + alt - l : @swap_window_or_move_to_monitor( "east"  )
+shift + alt - k : @swap_window_or_move_to_monitor( "north" )
+shift + alt - j : @swap_window_or_move_to_monitor( "south" )
+
+###  Move Ops :: Window to Monitor
+###
+.define move_window_to_monitor : yabai -m window --display {{1}} --focus || yabai -m window --display {{2}} --focus
+shift + ctrl - m : @move_window_to_monitor( "next" , "first" )
+shift + ctrl - o : @move_window_to_monitor( "prev" , "last"  )
+
+###  Move Ops :: Warp Drive :: Window in same space
+###
+.define warp_window : yabai -m window --warp {{1}} || yabai -m window --warp {{2}}
+ctrl + lcmd - h : @warp_window( "west"  , "recent" )
+ctrl + lcmd - l : @warp_window( "east"  , "recent" )
+ctrl + lcmd - j : @warp_window( "south" , "recent" )
+ctrl + lcmd - k : @warp_window( "north" , "recent" )
+
+
+# .load "multi-monitor.skhdrc"
 
 ###  Focus on next space
 ###
@@ -132,14 +248,11 @@ focus  < p       : yabai -m display --focus prev || yabai -m display --focus las
 #
 #    Within same focused space
 #
-shift + ctrl - h : yabai -m window --focus west  || yabai -m window --focus east
-shift + ctrl - j : yabai -m window --focus south || yabai -m window --focus north
-shift + ctrl - k : yabai -m window --focus north || yabai -m window --focus south
-shift + ctrl - l : yabai -m window --focus east  || yabai -m window --focus west
-move < h       : yabai -m window --warp west   || yabai -m window --warp east
-move < j       : yabai -m window --warp south  || yabai -m window --warp north
-move < k       : yabai -m window --warp north  || yabai -m window --warp south
-move < l       : yabai -m window --warp east   || yabai -m window --warp west
+# move  < h        : @focus_direction_same_space( "west"  , "east"  )
+# move  < j        : @focus_direction_same_space( "south" , "north" )
+# move  < k        : @focus_direction_same_space( "north" , "south" )
+# move  < l        : @focus_direction_same_space( "east"  , "west"  )
+
 # move < L : yabai -m window --warp east  || yabai -m window --warp west
 #
 #    To next space on same focused monitor
@@ -149,30 +262,20 @@ move < l       : yabai -m window --warp east   || yabai -m window --warp west
 #    To next monitor/display
 #
 # shift + ctrl - m : yabai -m space --focus next || yabai -m space --focus first
-shift + ctrl - m : yabai -m window --display next --focus || yabai -m window --display first --focus
-shift + ctrl - o : yabai -m window --display prev --focus || yabai -m window --display last  --focus
-move < m : yabai -m window --display next --focus || yabai -m window --display first --focus
-move < o : yabai -m window --display prev --focus || yabai -m window --display last  --focus
 
 ###  Balance windows in focused space
 shift + ctrl - 0 : yabai -m space --balance
 
-###  Focus Window in same space
+###  Focus Ops :: Stack Carousel
 ###
-ctrl + cmd - h : yabai -m window --warp west        || yabai -m window --warp recent
-ctrl + cmd - j : yabai -m window --warp south       || yabai -m window --warp recent
-ctrl + cmd - k : yabai -m window --warp north       || yabai -m window --warp recent
-ctrl + cmd - l : yabai -m window --warp east        || yabai -m window --warp recent
-focus < h      : yabai -m window --focus west       || yabai -m window --focus recent
-focus < j      : yabai -m window --focus south      || yabai -m window --focus recent
-focus < k      : yabai -m window --focus north      || yabai -m window --focus recent
-focus < l      : yabai -m window --focus east       || yabai -m window --focus recent
-focus < i      : yabai -m window --focus stack.next || yabai -m window --focus stack.first
-focus < 0x2B   : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
-focus < z      : yabai -m window --toggle windowed-fullscreen ; default
+.define stack_scroll : yabai -m window --focus stack.{{1}} || yabai -m window --focus stack.{{2}}
+shift + ctrl - i    : @stack_scroll( "next" , "first" )
+shift + ctrl - 0x2B : @stack_scroll( "prev" , "last"  )
+lcmd - i            : @stack_scroll( "next" , "first" )
+lcmd - 0x2B         : @stack_scroll( "prev" , "last" )
+
 # ctrl + cmd - n : yabai -m window --focus next  || yabai -m window --focus stack.next || yabai -m window --focus stack.first || yabai -m window --focus first
-ctrl + cmd - n : yabai -m window --focus next  || yabai -m window --focus first
-ctrl + cmd - p : yabai -m window --focus prev  || yabai -m window --focus last
+
 # alt - k : yabai -m query --spaces --space \
 #   | jq -re ".index" \
 #   | xargs -I{} yabai -m query --windows --space {} \
@@ -185,29 +288,36 @@ ctrl + cmd - p : yabai -m window --focus prev  || yabai -m window --focus last
 #   | jq -sre 'add | map(select(."is-minimized"==false)) | sort_by(.display, .frame.y, .frame.x, .id) | . as $array | length as $array_length | index(map(select(."has-focus"==true))) as $has_index | if $array_length - 1 > $has_index then nth($has_index + 1).id else nth(0).id end' \
 #   | xargs -I{} yabai -m window --focus {}
 
-###  Zoom Window
+###  Zoom Ops :: Window
 ###
-focus < z      : yabai -m window --toggle windowed-fullscreen ; default
-zoom  < w      : yabai -m window --toggle windowed-fullscreen
-zoom  < p      : yabai -m window --toggle zoom-parent
-zoom  < f      : yabai -m window --toggle zoom-fullscreen
+.define toggle_zoom_window : yabai -m window --toggle windowed-fullscreen
+.define toggle_zoom_parent : yabai -m window --toggle zoom-parent
+# zoom  < w      : yabai -m window --toggle windowed-fullscreen
+# zoom  < p      : yabai -m window --toggle zoom-parent
+# zoom  < f      : yabai -m window --toggle zoom-fullscreen
+lcmd - y    : @toggle_zoom_window
+lcmd - 0x29 : @toggle_zoom_parent
 
 ###  Stack Operations
 ###
-shift + ctrl - 0x2F : yabai -m space --layout \
+.define toggle_layout_type : yabai -m space --layout \
         $(yabai -m query --spaces --space | jq -r 'if .type == "stack" then "bsp" else "stack" end' )
-shift + ctrl - 0x2A : yabai -m window --toggle split
+shift + ctrl - 0x2F : @toggle_layout_type
+.define toggle_layout_split : yabai -m window --toggle split
+shift + ctrl - 0x2A : @toggle_layout_split
 # shift + ctrl - 0x2A : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "stack" then "bsp" else "stack" end' )
 # shift + ctrl - 0x2F : yabai -m space --layout stack
 # shift + ctrl - 0x2A : yabai -m space --layout bsp
 # shift + ctrl - 0x2A : yabai -m space --layout --toggle
-ctrl + cmd - s      : yabai -m window --stack west || yabai -m window --stack east
-ctrl + cmd - w      : yabai -m window --stack east
-ctrl + cmd - i      : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+ctrl + cmd - s      : @stack_window( "west", "east" )
+# ctrl + cmd - s      : yabai -m window --stack west || yabai -m window --stack east
+ctrl + cmd - w      : @stack_window( "east", "west" )
+# ctrl + cmd - w      : yabai -m window --stack east
+ctrl + cmd - i      : @stack_scroll( "next", "first" )
+# ctrl + cmd - i      : yabai -m window --focus stack.next || yabai -m window --focus stack.first
 # ctrl + cmd - u      : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
-ctrl + cmd - 0x2B   : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
-ctrl + shift - i    : yabai -m window --focus stack.next || yabai -m window --focus stack.first
-ctrl + shift - 0x2B : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+ctrl + cmd - 0x2B   : @stack_scroll( "prev", "last" )
+# ctrl + cmd - 0x2B   : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
 
 # add an on_enter command to the default mode
 # :: default : yabai -m config active_window_border_color 0xff775759
@@ -257,3 +367,9 @@ ctrl + shift - 0x2B : yabai -m window --focus stack.prev || yabai -m window --fo
 
 # open mpv
 # cmd - m : open -na /Applications/mpv.app $(pbpaste)
+
+###  App specific bypass
+###
+# ctrl - k [
+#   "Slack" ~
+# ]
