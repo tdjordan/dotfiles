@@ -14,11 +14,12 @@ fi
 
 case $event_type in
   "stacked")
-    focus=0xffffcc00
-    idled=0x80ffff00
+    focus=0xffffff48
+    # idled=0xff8faf6f
+    idled=0xff0f8faf
     ;;
   "focused")
-    focus=0xffe2e2e3
+    focus=0xdfe2e2e3
     idled=0x00000000
     ;;
   "zoomed")

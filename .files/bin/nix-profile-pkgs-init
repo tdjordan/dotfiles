@@ -69,9 +69,10 @@ pkgs=(
   grex              nixpkgs#grex
   bandwhich         nixpkgs#bandwhich
   fzf-make          nixpkgs#fzf-make
-  python            nixpkgs#python3Full
+  python            nixpkgs#python3
   pipx              nixpkgs#pipx
   gita              nixpkgs#gita
+  jless             nixpkgs#jless
                     # python313Packages.pyjwt
   # localstack        nixpkgs#localstack
   # az                nixpkgs#azure-cli
@@ -106,6 +107,7 @@ pkgs=(
   xh                  nixpkgs#xh
   curlie              nixpkgs#curlie
   posting             nixpkgs#posting
+  doge                nixpkgs#dogedns
   )
   # bw                nixpkgs#bitwarden-cli
   # localsend         nixpkgs#localsend
