@@ -3,14 +3,44 @@
 os=$(uname)
 
 env_osx() {
-  if command -v gls &> /dev/null; then
-    _ls_command="gls"
+  if command -v eza &> /dev/null; then
+    _ls_command='eza'
+  elif command -v gls &> /dev/null; then
+    _ls_command='gls'
   else
-    _ls_command="ls"
+    _ls_command='ls'
   fi
   case "$_ls_command" in
-    ls)  color='-G'           ;;
-    gls) color="--color=auto" ;;
+    eza)
+      alias l='eza -CF'
+      alias l.='eza -d .*[^.$] 2>/dev/null'
+      alias la='eza -A'
+      alias lah='eza -lah'
+      alias ls='eza'
+      alias ll.='eza -dl .*[^.$] 2>/dev/null'
+      alias ll='eza -AlF'
+      alias lla='eza -AlhF'
+      ;;
+    gls)
+      alias l='gls -CF --color=auto'
+      alias l.='gls -d .*[^.$] --color=auto 2>/dev/null'
+      alias la='gls -A --color=auto'
+      alias lah='gls -lah --color=auto'
+      alias ls='gls --color=auto'
+      alias ll.='gls -dl .*[^.$] --color=auto 2>/dev/null'
+      alias ll='gls -AlF --color=auto'
+      alias lla='gls -AlFh --color=auto'
+      ;;
+    ls)
+      alias l='ls -CF'
+      alias l.='ls -d .*[^.$] 2>/dev/null'
+      alias la='ls -A '
+      alias lah='ls -lah '
+      alias ls='ls '
+      alias ll.='ls -dl .*[^.$]  2>/dev/null'
+      alias ll='ls -AlF '
+      alias lla='ls -AlFh '
+      ;;
   esac
   alias xclip='pbcopy'
 }
@@ -24,16 +54,8 @@ case "$os" in
   Linux)  env_linux ;;
 esac
 
-alias ai="tgpt "
-
-alias l='${_ls_command} -CF ${color}'
-alias l.='${_ls_command} -d .*[^.$] ${color} 2>/dev/null'
-alias la='${_ls_command} -A ${color}'
-alias lah='${_ls_command} -lah ${color}'
-alias ls='${_ls_command} ${color}'
-alias ll.='${_ls_command} -dl .*[^.$] ${color} 2>/dev/null'
-alias ll='${_ls_command} -AlF ${color}'
-alias lla='${_ls_command} -AlFh ${color}'
+alias ai='tgpt'
+alias oc='opencode'
 
 __lsna_core() {
   alias | sed 's/=.*$//g'
@@ -71,6 +93,8 @@ alias fdip="fd -I --full-path"
 alias fdh="fd -HI -E '.git/*'"
 alias fdhp="fd -HI -E '.git/*' --full-path"
 alias fdp="fd --full-path"
+
+alias ff='fastfetch '
 
 alias fm='fzf-make '
 
@@ -118,7 +142,7 @@ alias bupg='brew upgrade'
 #   fi
 # }
 # alias k='_cat_imp '
-alias k='bat '
+alias k='bat'
 alias cg='cargo'
 
 # overload ag
@@ -278,6 +302,7 @@ alias nsd='nix-search -dm 3 '
 alias nsdp='nix-search -dm 3 -p '
 alias nspd='nix-search -dm 3 -p '
 alias nsp='nix-search -p '
+alias nr='nix run '
 alias np='nix profile '
 alias nph='nix profile history '
 alias npa='nix profile add '
@@ -330,6 +355,12 @@ alias tlkt='t lsk -T$* '
 alias tls='t ls'
 alias tn='t new -t'
 alias tkt="tlk | cut -d' ' -f6 | sort | uniq | rg -v '^$'"
+alias tps='tmux switch-client -t $(tmux list-sessions -F "#S" | fzf-tmux -p)'
+
+###  uv
+alias uvtl='uv tool list '
+alias uvxl='uv tool list '
+alias uvl='uv tool list '
 
 ###  jenkins
 ###
