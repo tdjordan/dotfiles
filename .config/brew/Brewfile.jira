@@ -1,0 +1,3 @@
+brew "jira-cli"
+brew "fjira"
+brew "jiratui"

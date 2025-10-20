@@ -3,3 +3,4 @@ tap  "sst/tap"
 
 brew "gemini-cli"
 brew "tgpt"
+brew "aionui"

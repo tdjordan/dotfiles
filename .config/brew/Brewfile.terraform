@@ -1,1 +1,2 @@
 brew "tenv", conflicts_with: ["tfenv", "tgenv", terraform"]
+brew "tfstate-lookup"
