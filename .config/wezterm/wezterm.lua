@@ -142,7 +142,8 @@ return {
   }
   -- , enable_scroll_bar = false
   , use_fancy_tab_bar = false
-  , term = 'wezterm'
+  , term = 'xterm-256color'
+  , front_end = 'WebGpu'
   , keys = {
     { key = 'E', mods = 'CTRL', action = wt.action { EmitEvent = 'show-font-size' }}
   }
