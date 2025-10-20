@@ -24,6 +24,7 @@ export DFT_SKIP_UNCHANGED=true
 export DOTBARE_DIR=~/.files.git
 export DOTBARE_TREE=~
 export TENV_AUTO_INSTALL=true
+export EZA_CONFIG_DIR=./config/eza
 [ -e ~/.zshenv_local ] && source ~/.zshenv_local
 [ -f ~/.cargo/env    ] && source "$HOME/.cargo/env"
 [ -f ~/.local/share/nvim/mason/packages/erg ] && export ERG_PATH=~/.local/share/nvim/mason/packages/erg
