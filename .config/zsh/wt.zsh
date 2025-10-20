@@ -106,9 +106,9 @@ __wt_tree_root() {
 
 __wt_new() {
   if __wt_isBranch "$1"; then
-    git worktree add "$(__wt_tree_root)/$1" "$1"
+    git worktree add --guess-remote "$(__wt_tree_root)/$1" "$1"
   else
-    git worktree add -b "$1" "$(__wt_tree_root)/$1"
+    git worktree add --guess-remote -b "$1" "$(__wt_tree_root)/$1"
   fi
 }
 
