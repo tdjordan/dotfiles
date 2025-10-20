@@ -7,4 +7,5 @@ return {
     ['issues_search'] = 'https://github.com/search?q=%s&type=issues',
     ['pulls_search']  = 'https://github.com/search?q=%s&type=pullrequests',
   },
+  'htps://github.com/lalitmee/browse.nvim',
 }

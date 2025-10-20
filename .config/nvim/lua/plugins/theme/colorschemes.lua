@@ -74,11 +74,16 @@ return {
         -- beacon   = false,
         -- coc_nvim = false,
         -- cmp       = true,
+        -- colorful_winsep = {
+        --   enabled = false,
+        --   color = 'red'
+        -- },
         dashboard = false,
         -- dap = {
         --   enabled   = true,
         --   enable_ui = true
         -- },
+        diffview = true,
         -- dropbar = {
         --   enabled    = false,
         --   color_mode = false
@@ -88,7 +93,7 @@ return {
         flash = false,
         -- gitgutter  = false,
         -- gitsigns   = true,
-        -- harpoon    = false,
+        -- harpoon    = true,
         -- hop        = false,
         -- illuminate = {
         --   enabled = true,
@@ -150,7 +155,6 @@ return {
           enabled = true,
           style   = 'nvchad'
         },
-        -- treesitter         = true,
         treesitter_context = true,
         -- vim_sneak          = false,
         -- vimwiki            = false,

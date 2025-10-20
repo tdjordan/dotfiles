@@ -168,6 +168,7 @@ return {
             , 'clangd'                          -- C++
             , 'cmake'                           -- CMake
             , 'neocmake'                        -- CMake
+            , 'copilot'                         -- Copilot
             , 'cucumber_language_server'        -- Cucumber
             -- , 'cue'                             -- Cue
             , 'dagger'                          -- Cue

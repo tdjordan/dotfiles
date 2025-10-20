@@ -225,6 +225,7 @@ return {
   },
   {
     'lalitmee/browse.nvim'
+    , cmd = 'Browse'
     , dependencies = {
       'nvim-telescope/telescope.nvim'
     }
@@ -235,24 +236,68 @@ return {
         end, desc = 'browse search'
       },
       {
-        '<leader>bo', function()
+        '<leader>bb', function()
+          require 'browse'.open_browser_bookmarks {}
+        end, desc = 'browser bookmarks'
+      },
+      {
+        '<leader>ba', function()
+          local bm = require 'browse.bookmark_manager'
+          bm.clear_cache()
+          -- local bookmarks = require 'browse.file_bookmarks'.load_from_file('~/.bookmarks_local.yaml')
+          -- vim.print( bookmarks )
+          require 'browse'.open_manual_bookmarks { bookmark_files = '~/.bookmarks_local.yaml' }
+          -- require 'browse'.open_manual_bookmarks { bookmarks = bookmarks }
+          -- require 'browse'.open_manual_bookmarks { bookmarks = bookmarks }
+        end, desc = 'local bookmarks'
+      },
+      {
+        '<leader>bL', function()
           local bookmarks = require 'configs.bookmarks'
-          require 'browse'.open_bookmarks { bookmarks = bookmarks }
-        end, desc = 'browse bookmarks'
+          require 'browse'.open_manual_bookmarks { bookmarks = bookmarks }
+        end, desc = 'local bookmarks'
+      },
+      {
+        '<leader>bl', function()
+          require 'browse'.open_manual_bookmarks { bookmark_files = '~/.bookmarks_local.yaml' }
+        end, desc = 'local bookmarks'
       },
       {
         '<leader>bi', function()
           require 'browse'.input_search()
-        end, desc = 'browse search input'
+        end, desc = 'search web for ...'
       },
       {
-        '<leader>bdd', function()
-          require 'browse.devdocs'.search {}
-        end, desc = 'search devdocs'
+        '<leader>bm', function()
+          require 'browse'.open_manual_bookmarks {}
+        end, desc = 'manual bookmarks'
       },
+      {
+        '<leader>bo', function()
+          require 'browse'.browse {}
+        end, desc = 'open bookmarks'
+      },
+      -- {
+      --   '<leader>bdd', function()
+      --     require 'browse.devdocs'.search {}
+      --   end, desc = 'search devdocs'
+      -- },
     }
     , opts = {
-      provider = 'google'   -- google is default
+      provider = 'google',  -- google is default
+      bookmark_files = {
+        '~/.config/bookmarks.yaml',
+        '~/.bookmarks_local.yaml',
+      },
+      browser_bookmarks = {
+        enabled = true,
+        browsers = {
+          chrome = true,
+          firefox = false,
+          safari = false,
+          edge = false,
+        },
+      }
     }
   },
 }
