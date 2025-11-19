@@ -20,6 +20,7 @@ env_osx() {
       alias ll.='eza -dl .*[^.$] 2>/dev/null'
       alias ll='eza -AlF'
       alias lla='eza -AlhF'
+      alias llst='eza -ls time'
       ;;
     gls)
       alias l='gls -CF --color=auto'
@@ -30,6 +31,7 @@ env_osx() {
       alias ll.='gls -dl .*[^.$] --color=auto 2>/dev/null'
       alias ll='gls -AlF --color=auto'
       alias lla='gls -AlFh --color=auto'
+      alias llst='gls -ltrh'
       ;;
     ls)
       alias l='ls -CF'
@@ -40,6 +42,7 @@ env_osx() {
       alias ll.='ls -dl .*[^.$]  2>/dev/null'
       alias ll='ls -AlF '
       alias lla='ls -AlFh '
+      alias llst='ls -ltrh'
       ;;
   esac
   alias xclip='pbcopy'
