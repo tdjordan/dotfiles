@@ -491,4 +491,30 @@ ch() {
   sk --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
 }
 
+# bh - browse brave history
+bh() {
+  local cols sep google_history open
+  cols=$(( COLUMNS / 3 ))
+  sep='{::}'
+
+  if [ $# -eq 0 ]; then
+    profile="Default"
+  else
+    profile="Profile $1"
+  fi
+
+  google_history="$HOME/Library/Application Support/BraveSoftware/Brave-Browser/$profile/History"
+  open=open
+  cp -f "$google_history" /tmp/h
+  sqlite3 -separator $sep /tmp/h \
+    "select substr(title, 1, $cols), url
+     from urls order by last_visit_time desc" |
+  awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
+  fzf-tmux -p 75% --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
+  # fzf --tmux 80% --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
+}
+alias bh1="bh 1"
+alias bh2="bh 2"
+alias bh3="bh 3"
+
 source ~/.config/zsh/wt.zsh

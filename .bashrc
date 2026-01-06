@@ -212,3 +212,8 @@ done
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/tjordan/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+# BEGIN Ansible generated from adc-lv-ansible/playbooks/bootstrap/lv-env-aliases.yml
+if [ -e ~/.bash_ansible_adc_lv ]; then
+  . ~/.bash_ansible_adc_lv
+fi
+# END Ansible generated from adc-lv-ansible/playbooks/bootstrap/lv-env-aliases.yml
