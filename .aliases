@@ -387,6 +387,14 @@ alias wow='which -a'
 alias woa='which -a'
 alias we='watchexec'
 
+###  worktrunk
+alias wtl='wt list'
+alias wtla='wt list --remotes'
+alias wts='wt switch'
+alias wtc='wt switch --create'
+alias wtc.='wt switch --create --base=@'
+alias wt.='wt switch --create --base=@'
+
 ###  yabai focus fuzzy window
 ###
 __yabai_select() {
