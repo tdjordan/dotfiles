@@ -159,6 +159,7 @@ zinit from"gh-r" as"program" mv"direnv* -> direnv" \
   atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
   pick"direnv" src="zhook.zsh" for \
     direnv/direnv
+# zinit light direnv/direnv
 
 # line 1: `atuin` binary as command, from github release, only look at .tar.gz files, use the `atuin` file from the extracted archive
 # line 2: setup at clone(create init.zsh, completion)
@@ -168,6 +169,7 @@ zinit ice as"command" from"gh-r" bpick"atuin-*.tar.gz" mv"atuin*/atuin -> atuin"
     atpull"%atclone" src"init.zsh"
 zinit light atuinsh/atuin
 zinit light kazhala/dotbare
+# zinit light Aloxaf/fzf-tab
 
 PS1="READY > "
 zinit wait"!" lucid nocd atload"!source ~/.p10k.zsh; _p9k_precmd" for \
@@ -194,21 +196,21 @@ ulimit -n 4096
 # if command -v wtp &>/dev/null ; then eval "$(wtp completion zsh)" ; fi
 
 # bun completions
-[ -s "/Users/tjordan/.bun/_bun" ] && source "/Users/tjordan/.bun/_bun"
+[ -s "/Users/${USER}/.bun/_bun" ] && source "/Users/${USER}/.bun/_bun"
 
 # bun
-# export BUN_INSTALL="/Users/tjordan/.bun"
+# export BUN_INSTALL="/Users/${USER}/.bun"
 # export PATH="$BUN_INSTALL/bin:$PATH"
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-# export PATH="/Users/tjordan/.rd/bin:$PATH"
+# export PATH="/Users/${USER}/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
-PATH="/Users/tjordan/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/Users/tjordan/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/tjordan/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/tjordan/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/tjordan/perl5"; export PERL_MM_OPT;
+PATH="/Users/${USER}/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/${USER}/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/${USER}/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/${USER}/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/${USER}/perl5"; export PERL_MM_OPT;
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -219,3 +221,5 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 # End Nix
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
