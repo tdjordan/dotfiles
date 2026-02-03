@@ -388,12 +388,22 @@ alias woa='which -a'
 alias we='watchexec'
 
 ###  worktrunk
+alias wl='wt list'
 alias wtl='wt list'
+alias wla='wt list --remotes'
 alias wtla='wt list --remotes'
+alias wlf='wt list --branches --full'
+alias wtlf='wt list --branches --full'
+alias ws='wt switch'
 alias wts='wt switch'
+alias wsc'wt switch --create'
 alias wtc='wt switch --create'
+alias w.='wt switch --create --base=@'
 alias wtc.='wt switch --create --base=@'
+alias ws.='wt switch --create --base=@'
 alias wt.='wt switch --create --base=@'
+alias wx='wt remove'
+alias wtx='wt remove'
 
 ###  yabai focus fuzzy window
 ###
