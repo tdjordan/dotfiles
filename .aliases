@@ -57,7 +57,7 @@ case "$os" in
   Linux)  env_linux ;;
 esac
 
-alias ai='tgpt'
+alias ai='opencode run'
 alias oc='opencode'
 
 __lsna_core() {
@@ -314,6 +314,10 @@ alias npl='nix profile list'
 alias npr='nix profile remove '
 alias npu='nix profile upgrade '
 alias npua='nix profile upgrade --all '
+_npv_imp() {
+  nix profile list --json | jq -r '.elements | to_entries[] | .key + "\t" + (.value.storePaths[0] | sub("[^-]*-"; "") | sub("[a-z]*-(a-z)?-"; ""))' | column -t
+}
+alias npv='_npv_imp'
 
 # vcluster
 alias vc='vcluster '
@@ -389,21 +393,13 @@ alias we='watchexec'
 
 ###  worktrunk
 alias wl='wt list'
-alias wtl='wt list'
 alias wla='wt list --remotes'
-alias wtla='wt list --remotes'
 alias wlf='wt list --branches --full'
-alias wtlf='wt list --branches --full'
 alias ws='wt switch'
-alias wts='wt switch'
+alias wsb='wt switch --branches'
 alias wsc'wt switch --create'
-alias wtc='wt switch --create'
 alias w.='wt switch --create --base=@'
-alias wtc.='wt switch --create --base=@'
-alias ws.='wt switch --create --base=@'
-alias wt.='wt switch --create --base=@'
 alias wx='wt remove'
-alias wtx='wt remove'
 
 ###  yabai focus fuzzy window
 ###
