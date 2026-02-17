@@ -34,6 +34,7 @@ pkgs=(
   k3d               nixpkgs#k3d
   crossplane        nixpkgs#crossplane-cli
   cilium            nixpkgs#cilium-cli
+  hubble            nixpkgs#hubble
   cliam             nixpkgs#cliam
   jf                nixpkgs#jfrog-cli
   jj                nixpkgs#jujutsu
@@ -108,6 +109,13 @@ pkgs=(
   curlie              nixpkgs#curlie
   posting             nixpkgs#posting
   doge                nixpkgs#dogedns
+  jid                 nixpkgs#jid
+  treefmt             nixpkgs#treefmt
+  age                 nixpkgs#age
+  rage                nixpkgs#rage
+  dust                nixpkgs#dust
+  mediainfo           nixpkgs#mediainfo
+  tree                nixpkgs#tree
   )
   # bw                nixpkgs#bitwarden-cli
   # localsend         nixpkgs#localsend
