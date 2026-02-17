@@ -31,7 +31,7 @@
   co = checkout
   sco = sparse-checkout
   ci = commit
-  br = branch
+  br = branch -vv
   cp = cherry-pick
   up = pull --prune
   gr = !cd $(git rev-parse --show-toplevel)
@@ -43,6 +43,7 @@
   dd = !git diff | delta
   ddc = !git diff --cached | delta
   gh = !gh
+  wt = worktree
 
   # log bases
   lg-base = log --graph --abbrev-commit
@@ -55,6 +56,10 @@
   lg4 = !git lg-base --pretty=oneline --stat
   lg5 = log --oneline --reverse
   lgg = !git lg-base-decorate --format=f-g
+
+  # log tricks
+  pi = log -p -S
+  alias = config --get-regexp alias
 
   # interesting diffs
   ds = diff --staged
@@ -96,6 +101,10 @@
 
 [commit]
   verbose = true
+
+; [rerere]
+;   enabled = true
+;   autoupdate = true
 
 [tag]
   sort = version:refname
