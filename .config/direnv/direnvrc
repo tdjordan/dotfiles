@@ -8,17 +8,27 @@ use_jenv() {
 ###  Slightly modified from: https://github.com/direnv/direnv/wiki/Python#uv
 ###
 layout_uv() {
-    if [[ -d ".venv" ]]; then
-        VIRTUAL_ENV="$(pwd)/.venv"
-    fi
+  if [[ -d ".venv" ]]; then
+    VIRTUAL_ENV="$(pwd)/.venv"
+  fi
 
-    if [[ -z $VIRTUAL_ENV || ! -d $VIRTUAL_ENV ]]; then
-        log_status "No virtual environment exists. Executing \`uv venv\` to create one."
-        uv venv
-        VIRTUAL_ENV="$(pwd)/.venv"
+  if [[ -z $VIRTUAL_ENV || ! -d $VIRTUAL_ENV ]]; then
+    if [[ ! -f pyproject.toml ]]; then
+      log_status "No pyproject.toml found. Executing \`uv init --bare\` to create one."
+      uv init --bare
     fi
+    log_status "No virtual environment exists. Executing \`uv venv\` to create one."
+    uv venv
+    VIRTUAL_ENV="$(pwd)/.venv"
+  fi
 
-    export UV_ACTIVE=1  # or VENV_ACTIVE=1
-    source $VIRTUAL_ENV/bin/activate
-    [ -f requirements.txt ] && uv pip install -r requirements.txt
+  export UV_ACTIVE=1  # or VENV_ACTIVE=1
+  source $VIRTUAL_ENV/bin/activate
+  [[ -f requirements.txt ]] && uv pip install -r requirements.txt
+  uv sync
+}
+
+###  Worktrunk layout
+layout_wt() {
+  wt list
 }
