@@ -1,3 +1,7 @@
 yarn
 Brewfile.lock.json
 containers/auth.json
+github-copilot/
+fjira/
+.jira/
+acli/
