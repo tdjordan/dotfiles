@@ -1,0 +1,27 @@
+skip-commit-generation-prompt = true
+
+# Default — sibling directory
+# Creates: ~/code/myproject.feature-auth
+# worktree-path = "{{ repo_path }}/../{{ repo }}.{{ branch | sanitize }}"
+
+# Inside the repository
+# Creates: ~/code/myproject/.worktrees/feature-auth
+# worktree-path = "{{ repo_path }}/.worktrees/{{ branch | sanitize }}"
+
+# Centralized worktrees directory
+# Creates: ~/worktrees/myproject/feature-auth
+# worktree-path = "~/worktrees/{{ repo }}/{{ branch | sanitize }}"
+
+# worktree-path = "../{{ branch | sanitize }}"
+
+[post-create]
+install = "direnv allow ."
+
+[post-switch]
+# tmux = "[ -n \"TMUX\" ] && tmux rename-window {{ branch | sanitize }}"
+# tmux = "[ -n \"TMUX\" ] && tmux rename-window '{{ branch | sanitize }} {{ repo | sanitize }}'"
+# tmux = "[ -n \"TMUX\" ] && tmux rename-window {{ (repo ~ '-' ~ branch) | sanitize }}"
+# tmux = "[ -n \"TMUX\" ] && tmux rename-window {{ (repo ~ ' ' ~ branch) | sanitize }}"
+tmux = "[ -n \"TMUX\" ] && tmux rename-window {{ (branch ~ ' ' ~ repo) | sanitize }}"
+
+[projects]
