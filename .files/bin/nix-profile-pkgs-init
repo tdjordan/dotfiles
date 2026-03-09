@@ -16,7 +16,7 @@ _np_add() {
 pkgs=(
   tree-sitter       nixpkgs#tree-sitter
   aws               nixpkgs#awscli2
-  gimme-aws-creds   nixpkgs#gimme-aws-creds
+  # gimme-aws-creds   nixpkgs#gimme-aws-creds
   saml2aws          nixpkgs#saml2aws
   devenv            nixpkgs#devenv
   nix-search        github:peterldowns/nix-search-cli
@@ -116,6 +116,7 @@ pkgs=(
   dust                nixpkgs#dust
   mediainfo           nixpkgs#mediainfo
   tree                nixpkgs#tree
+  chainsaw            nixpkgs#kyverno-chainsaw
   )
   # bw                nixpkgs#bitwarden-cli
   # localsend         nixpkgs#localsend
