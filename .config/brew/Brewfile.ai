@@ -1,6 +1,17 @@
-tap  "sst/tap"
+# tap  "sst/tap"
+tap "anomalyco/tap"
   brew "opencode"
+  brew "opencode-desktop"
 
 brew "gemini-cli"
+brew "qwen-code"
 brew "tgpt"
 brew "aionui"
+brew "copilot-cli"
+brew "mcp-scan"
+brew "beads"
+
+brew "skillshare"
+brew "skills"
+brew "llmfit"
+brew "paseo"
