@@ -1,0 +1,2 @@
+tap    "avivsinai/tap"
+  brew "avivsinai/tap/bitubcket-cli"

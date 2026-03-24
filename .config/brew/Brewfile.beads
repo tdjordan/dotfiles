@@ -1,0 +1,13 @@
+brew "beads"
+brew "beads_viewer"
+
+tap    "matt-wright86/homebrew-tap"
+  brew "mardi-gras"
+
+# tap "assimelha/tap"
+#   brew "bdui"
+
+tap "zjrosen/perles"
+  brew "perles"
+
+###  go install github.com/youruser/lazybeads@latest

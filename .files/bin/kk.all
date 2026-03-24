@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# get all names
+NAMES=( $(kubectl api-resources \
+                  --namespaced \
+                  --verbs list \
+                  -o name) )
+
+# Now join names into single string delimited with comma
+# Note *, not @
+IFS=,
+NAMES="${NAMES[*]}"
+unset IFS
+
+# --show-kind is enabled implicitly
+if command -v kubecolor &> /dev/null; then
+  kubecolor get "$NAMES" -n $1
+  kubecolor get apiservices | rg $1
+else
+  kubectl get "$NAMES" -n $1
+  kubectl get apiservices | rg $1
+fi

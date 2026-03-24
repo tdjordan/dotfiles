@@ -1,2 +1,9 @@
 brew "delta"
 brew "difftastic"
+cask "meld"
+cask "visualdiffer"
+
+tap    "oug-t/difi"
+  brew "difi"
+
+brew "diffnav"

@@ -1,1 +1,4 @@
 brew "dnote"
+cask "raindropio"
+brew "ekphos"
+brew "pet"

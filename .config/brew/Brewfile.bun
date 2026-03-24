@@ -1,0 +1,2 @@
+tap "oven-sh/bun"
+  brew "bun"

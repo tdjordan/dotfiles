@@ -1,0 +1,2 @@
+###  npx skills add avivsinai/jenkins-cli -g -y
+brew "avivsinai/tap/jk"

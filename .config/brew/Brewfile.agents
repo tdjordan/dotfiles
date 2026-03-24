@@ -1,0 +1,3 @@
+brew "beads"
+brew "beads_viewer"
+brew "worktrunk"

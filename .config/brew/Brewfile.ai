@@ -15,3 +15,11 @@ brew "skillshare"
 brew "skills"
 brew "llmfit"
 brew "paseo"
+
+tap "agent-sh/agnix"
+  brew "agnix"
+
+brew "mcp-atlassian"
+
+brew "ollama"
+brew "ctx7"

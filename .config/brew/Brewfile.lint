@@ -1,1 +1,3 @@
 brew "config-file-validator"
+brew "harper"
+brew "semgrep"

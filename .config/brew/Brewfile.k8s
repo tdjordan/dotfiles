@@ -8,3 +8,14 @@ brew "crossplane"
 cask "headlamp"
 tap "macropower/tap"
   cask "kat"
+brew "argoproj/tap/kubectl-argo-rollouts"
+brew "gwctl"
+
+brew "kubefwd"
+cask "luxury-yacht"
+
+tap "pehlicd/crd-wizard" "https:;/github.com/pehlicd/crd-wizard"
+  brew "crd-wizard"
+
+tap "kyverno/chainsaw https://github.com/kyverno/chainsaw"
+  brew "kyverno/chainsaw/chainsaw"

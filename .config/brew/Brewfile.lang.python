@@ -1,1 +1,4 @@
 brew "uv"
+brew "ty"
+# uv tool install py2wasm
+brew "pyp"

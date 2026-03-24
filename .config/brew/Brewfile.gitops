@@ -6,3 +6,7 @@ tap    "fluxcd/tap"
 
 tap    "darksworm/homebrew-tap"
   brew "darksworm/tap/argonaut"
+
+brew "worktrunk"
+brew "weave"
+brew "git-filter-repo"

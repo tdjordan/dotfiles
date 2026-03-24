@@ -1,3 +1,4 @@
 cask "orbstack"
 brew "container"
 brew "lazycontainer"
+brew "devcontainer"

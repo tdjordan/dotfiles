@@ -4,3 +4,5 @@ cask "wezterm"
 cask "alacritty"
 cask "ghostty"
 brew "tmux"
+brew "cmux"
+# sudo ln -sf "/Applications/cmux.app/Contents/Resources/bin/cmux" /usr/local/bin/cmux
