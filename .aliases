@@ -85,6 +85,8 @@ __lsna_switch() {
 alias lsn='__lsna_switch $*'
 alias lsna='__lsna_start_of_line $*'
 
+alias lg='lazygit'
+
 # alias h='history'
 # alias hsr='history | rg '
 alias h='fc -El 0 '
@@ -183,12 +185,12 @@ alias ntmp="nix run 'github:BirdeeHub/nixCats-nvim?dir=templates/example' "
 alias lo='_lo '
 
 # search dot files
-agdf_imp() {
-  # shellcheck disable=2048,2086,2046,2012
-  # ag $* $(ls -dFL .* | ag -v "(/)$" | ag -v "(\*)$" | ag -v history)
-  rg "$*" $(ls -dFL .* | rg -v "(/)$" | rg -v "(\*)$" | rg -v history)
-}
-alias agdf='agdf_imp '
+# agdf() {
+#   # shellcheck disable=2048,2086,2046,2012
+#   # ag $* $(ls -dFL .* | ag -v "(/)$" | ag -v "(\*)$" | ag -v history)
+#   rg "$*" $(ls -dL  .* | rg -v "(/)$" | rg -v "(\*)$" | rg -v history)
+# }
+# alias rg.='agdf'
 rgdf() {
   # shellcheck disable=2048,2086,2046,2012
   # ag $* $(ls -dFL .* | ag -v "(/)$" | ag -v "(\*)$" | ag -v history)
@@ -353,6 +355,10 @@ alias cls='clear'
 ##
 alias ssh='TERM=xterm-256color ssh '
 
+###  clock-rs
+###
+alias clock='CONF_PATH=~/.config/clock-rs/conf.toml clock-rs'
+
 ###  tmux
 ###
 alias t='tmux'
@@ -368,6 +374,10 @@ alias tps='tmux switch-client -t $(tmux list-sessions -F "#S" | fzf-tmux -p)'
 alias uvtl='uv tool list '
 alias uvxl='uv tool list '
 alias uvl='uv tool list '
+
+###  just
+alias j='just'
+alias jt='just test'
 
 ###  jenkins
 ###

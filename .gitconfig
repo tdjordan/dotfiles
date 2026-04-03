@@ -32,11 +32,13 @@
   sco = sparse-checkout
   ci = commit
   br = branch -vv
+  bra = branch -vv -a
   cp = cherry-pick
   up = pull --prune
   gr = !cd $(git rev-parse --show-toplevel)
   d  = difftool
   dt = difftool
+  dn = !git diff | diffnav
   deleted = log --diff-filter=D --summary
   di = diff
   dif = diff
@@ -44,6 +46,7 @@
   ddc = !git diff --cached | delta
   gh = !gh
   wt = worktree
+  l = !sh -c 'lazygit'
 
   # log bases
   lg-base = log --graph --abbrev-commit
@@ -72,7 +75,7 @@
   # incoming changes - like hg
   incoming = !git fetch && git lg3  $(git current-br)..origin/$(git current-br)
   in = !git incoming
-  in-diff =  !git fetch && git diff $(git current-br)..origin/$(git current-br)
+  in-diff =  !git fetch && git diff $(git current-br)..origin/$(git current-br) | diffnav
 
   # outgoing changes - like hg
   outgoing = !git lg3  origin/$(git current-br)..$(git current-br)
