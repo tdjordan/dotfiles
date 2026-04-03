@@ -105,7 +105,7 @@ local sources = {
 
   ---  nix
   ---
-  , b.formatting.nixfmt
+  -- , b.formatting.nixfmt
   -- , b.diagnostics.statix
   -- , b.diagnostics.deadnix
   -- , b.code_actions.statix

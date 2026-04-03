@@ -129,7 +129,7 @@ set.listchars =
   , trail = '-'
   , nbsp  = '+'
   , eol   = "↴"
-  -- , space = "."
+  , space = "."
 }
 -- o.listchars      = 'tab:> ,trail:-,nbsp:+'      -- nvim default
 -- o.nrformats      = true                         -- nvim defaults to 'hex'

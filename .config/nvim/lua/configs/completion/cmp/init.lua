@@ -106,12 +106,20 @@ cmp.setup {
   -- },
   formatting = {
     -- expandable_indicator = true,
+    -- fields = { 'abbr', 'icon', kind', 'menu' }
     fields = { 'kind', 'abbr', 'menu' }
     , format = require 'lspkind'.cmp_format {
-      mode = 'symbol'
+      -- maxwidth = {
+      --   -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      --   -- can also be a function to dynamically calculate max width such as
+      --   -- menu = function() return math.floor(0.45 * vim.o.columns) end,
+      --   menu = 50, -- leading text (labelDetails)
+      --   abbr = 50, -- actual suggestion item
+      -- },
       -- , maxwidth = 50
       -- , ellipsis_char = '...'
-      , menu = {
+      -- , show_labelDetails = true -- show labelDetails in menu. Disabled by default
+      menu = {
         nvim_lua = '',
         nvim_lsp = '',     --        󰒌
         jenkinsfile = '󰏮',  -- 󰓭 󰠤 󰛓   󰙌 󰘯 󰘉 󰘊 󰖭 󰕎 󰕏 󰕓󰓦󰓢󰓡󰏟 󰏞 󰏮 󰌍 󰇙 󰇛 󰇝 󰃛 󰃜 

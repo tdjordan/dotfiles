@@ -1,11 +1,50 @@
 return {
   {
     'nvim-zh/colorful-winsep.nvim'
+    , enabled = false
     , event = { 'WinLeave' }
     ,opts = {
+      excluded_ft = { 'neo-tree' },
       indicator_for_2wins = {
         position = 'center'
       }
+    }
+  },
+  {
+    'tadaa/vimade'
+    -- , lazy = false
+    , event = 'VeryLazy'
+    , opts = {
+      fadelevel = 0.8,
+      recipe = {
+        'minimalist'
+        -- 'duo'
+        -- , animate = true
+      },
+      -- tint = { bg = { rgb = { 0,0,0 }, intensity = 0.3 } }
+      tint = { bg = { rgb = { 0,0,0 }, intensity = 1.0 } },
+      enablefocusfading = true
+      -- , recipe = {
+      -- --   'paradox',
+      -- --   { animate = true }
+      -- -- }
+      -- -- , fadelevel = 0.6
+      -- --   'ripple',
+      -- --   { animate = true }
+      -- -- }
+      -- -- , fadelevel = 0.6
+      -- --   'default',
+      -- --   { animate = true }
+      -- -- }
+      --   , fadelevel = 0.6
+      --     'default'
+      --     -- { animate = true }
+      --   , tint = {
+      --     -- fg = { rgb = {255, 255, 0}, intensity = 0.5},
+      --     -- bg = { rgb = {0, 255, 0}, intensity = 0.2},
+      --     sp = { rgb = {0, 0, 255}, intensity = 0.5}
+      --   }
+      -- }
     }
   },
   {
@@ -28,6 +67,7 @@ return {
       , { 'rose-pine/neovim', name = 'rose-pine' }
       , 'AlexvZyl/nordic.nvim'
       , 'cpea2506/one_monokai.nvim'
+      , 'oxfist/night-owl.nvim'
     }
     , opts = {
       highlight_overrides = {
@@ -379,9 +419,9 @@ return {
           -- 'lspsaga',
           -- 'mini',
           -- 'neogit',
-            -- 'neotest',
-            -- 'neo-tree',
-          'neorg',
+          'neotest',
+          'neo-tree',
+          -- 'neorg',
             -- 'noice',
           'nvim-cmp',
           'nvim-navic',

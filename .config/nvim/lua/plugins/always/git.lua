@@ -1,5 +1,15 @@
 return {
   {
+    'oug-t/difi.nvim'
+    , keys = {
+      {
+        '<leader>df', function()
+          vim.cmd.Difi {}
+        end, desc = 'toggle difi'
+      }
+    }
+  },
+  {
     'tronikelis/conflict-marker.nvim'
     -- , event = "VeryLazy"
     , opts = {

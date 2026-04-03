@@ -13,3 +13,19 @@ spec:
          image: nginx:1.7.9
          ports:
          - containerPort: 80
+---
+apiversion: apps/v1
+kind: DaemonSet
+metadata:
+  name: multi-nginx-2
+spec:
+  template:
+    metadata:
+      labels:
+        system: DaemonSetOne
+    spec:
+       containers:
+       - name: nginx
+         image: nginx:1.7.9
+         ports:
+         - containerPort: 80

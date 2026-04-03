@@ -1,6 +1,15 @@
 ---  Language Specific Plugins
 ---
 return {
+  ---  python
+  ---
+  {
+    'benomahony/uv.nvim'
+    , ft = 'python'
+    , opts = {
+      picker_integration = true
+    }
+  },
   ---  repl consoles
   ---
   {

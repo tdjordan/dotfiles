@@ -1,245 +1,208 @@
-# Repository Overview
+# Neovim Configuration - Agent Guidelines
 
-## Project Description
+Lua-based Neovim configuration using lazy.nvim, LSP via mason, treesitter, and blink.cmp/nvim-cmp for completion.
 
-This is a comprehensive Neovim configuration repository written in Lua. It provides a fully-featured IDE-like experience with extensive language support, modern UI enhancements, and development tooling.
+## Quick Reference
 
-**Main purpose and goals:**
-- Create a powerful, extensible Neovim setup for professional development
-- Support multiple programming languages with LSP, completion, and debugging
-- Provide a modern UI with file trees, status lines, and enhanced visual feedback
-- Enable efficient workflow with telescope fuzzy finding, git integration, and key management
+### Lint and Format Commands
 
-**Key technologies used:**
-- **Lua**: Primary configuration language for Neovim
-- **lazy.nvim**: Plugin manager for lazy-loading and performance optimization
-- **LSP**: Language Server Protocol support via nvim-lspconfig and mason
-- **Treesitter**: Advanced syntax highlighting and code analysis
-- **Nix**: Optional reproducible development environment via flake.nix
-- **Python**: Required packages via requirements.txt (neovim, usort, ocdc)
+```bash
+# Format all Lua files
+stylua .
 
-## Architecture Overview
+# Check formatting without changes
+stylua --check .
 
-### High-level architecture
+# Lint with selene
+selene lua/
 
-The configuration follows a modular Lua architecture with clear separation of concerns:
-
-1. **Entry Point** (`init.lua`): Bootstraps lazy.nvim plugin manager
-2. **Plugin Definitions** (`lua/plugins/*.lua`): Declarative plugin specifications organized by functionality
-3. **Configuration Modules** (`lua/configs/`): Plugin-specific configuration logic
-4. **LSP Setup** (`lua/lsp/`): Language server configurations and handlers
-5. **Core Settings** (`plugin/options.lua`, `plugin/autocmd.lua`): Vim options and autocommands
-6. **Themes** (`lua/theme/`): Colorscheme configurations
-
-### Main components and their relationships
-
-```
-init.lua
-  └─> lazy.nvim (Plugin Manager)
-      ├─> plugins/*.lua (Plugin Specs)
-      │   ├─> lsp/init.lua → mason → lspconfig → null-ls
-      │   ├─> completion.lua → nvim-cmp/blink.cmp + snippets
-      │   ├─> treesitter.lua → syntax highlighting
-      │   ├─> telescope.lua → fuzzy finding
-      │   ├─> git.lua → gitsigns + worktree
-      │   ├─> editor.lua → which-key + file trees
-      │   └─> ui/init.lua → lualine + notifications
-      └─> configs/ (Configuration Implementations)
+# Check Lua syntax
+find lua -name "*.lua" -exec luac -p {} \;
 ```
 
-### Data flow and system interactions
+### In-Neovim Commands
 
-1. **LSP Flow**: File open → LSP client attach → diagnostics → completion sources → virtual text/signs
-2. **Completion Flow**: Insert mode → completion sources (LSP/buffer/snippets) → nvim-cmp/blink.cmp → snippet expansion
-3. **Navigation Flow**: User input → which-key hints → telescope picker → file/buffer/symbol selection
-4. **Git Integration**: File changes → gitsigns → status line indicators → git actions
+```vim
+:Lazy                    " Plugin manager UI
+:Lazy update             " Update all plugins
+:Lazy sync               " Install/update/clean plugins
+:Lazy profile            " Profile startup time
+:Mason                   " LSP/tool installer UI
+:MasonInstall <server>   " Install specific tool
+:LspInfo                 " Check attached LSP clients
+:LspRestart              " Restart LSP for current buffer
+:lua vim.lsp.buf.format() " Format current buffer
+```
+
+### Validation
+
+```bash
+# Test configuration loads without errors
+nvim --headless -c 'qa'
+
+# Check specific file syntax
+luac -p lua/plugins/editor.lua
+```
+
+## Code Style Guidelines
+
+### Formatting Rules (.stylua.toml)
+
+- **Indentation**: 2 spaces (no tabs)
+- **Line length**: Unlimited (column_width = 1000)
+- **Quotes**: Single quotes preferred (AutoPreferSingle)
+- **Parentheses**: Omit for single-argument function calls
+
+```lua
+-- CORRECT: No parentheses for require
+require 'configs.lazy'
+vim.cmd.colorscheme 'kanagawa'
+
+-- WRONG: Avoid parentheses
+require('configs.lazy')
+```
+
+### Table Formatting
+
+Use leading commas for multiline tables (aligns cleanly):
+
+```lua
+-- CORRECT: Leading commas
+{
+  'plugin/name'
+  , lazy = false
+  , dependencies = {
+    'other/plugin'
+  }
+  , opts = {
+    option1 = true
+    , option2 = 'value'
+  }
+}
+
+-- WRONG: Trailing commas
+{
+  'plugin/name',
+  lazy = false,
+}
+```
+
+### Naming Conventions
+
+| Type | Convention | Example |
+|------|------------|---------|
+| Variables | snake_case | `install_path`, `sign_column` |
+| Functions | snake_case | `on_attach`, `common_capabilities` |
+| Module tables | Single letter | `local M = {}` |
+| Globals | Access via vim.g | `vim.g.mapleader` |
+
+### Module Pattern
+
+```lua
+local M = {}
+
+M.setup = function(opts)
+  -- implementation
+end
+
+return M
+```
+
+### Comment Style
+
+```lua
+---  Section header with triple dash
+---
+-- Regular inline comment
+```
+
+### Variable Aliases
+
+Common vim API aliases at file top:
+
+```lua
+local fn = vim.fn
+local set = vim.opt
+local autocmd = vim.api.nvim_create_autocmd
+```
+
+### Error Handling
+
+Use pcall for potentially failing requires:
+
+```lua
+local ok, module = pcall(require, 'optional-module')
+if not ok then return end
+```
 
 ## Directory Structure
 
-### Important directories and their purposes
-
-- **`lua/`**: Core Lua configuration modules
-  - `configs/`: Plugin-specific configuration implementations
-    - `completion/`: Auto-completion setup (cmp, blink.cmp)
-    - `lsp/`: LSP configuration (mason, null-ls, handlers)
-    - `telescope/`: Fuzzy finder configuration
-    - `lazy/`: Plugin manager bootstrap and setup
-  - `plugins/`: Plugin specifications for lazy.nvim
-    - `lsp/init.lua`: Language server plugins
-    - `completion.lua`: Completion engine plugins
-    - `treesitter.lua`: Treesitter configuration
-    - `telescope.lua`: Telescope and extensions
-    - `git.lua`: Git integration plugins
-    - `editor.lua`: Editor enhancements (which-key, file trees)
-    - `ui/init.lua`: UI plugins (statusline, notifications)
-    - `theme/`: Colorscheme plugins
-  - `lsp/`: LSP-specific configurations
-    - `handlers.lua`: LSP handlers and diagnostics setup
-    - `common.lua`: Shared LSP utilities
-  - `theme/`: Theme configurations
-  - `lualine/themes/`: Custom statusline themes
-
-- **`plugin/`**: Vim auto-loaded scripts
-  - `options.lua`: Global Vim/Neovim settings
-  - `autocmd.lua`: Autocommands for various behaviors
-
-- **`after/lsp/`**: Language-specific LSP overrides
-- **`lsp/`**: Root-level LSP configurations (helm_ls, jsonls, lua_ls)
-- **`test/`**: Test files for various languages
-- **`spell/`**: Custom spell checking dictionaries
-- **`snippets/`**: Custom snippet definitions
-
-### Key files and configuration
-
-- **`init.lua`**: Main entry point, loads lazy.nvim
-- **`flake.nix`**: Nix flake for reproducible development environment
-- **`requirements.txt`**: Python dependencies for Neovim
-- **`.stylua.toml`**: Lua formatter configuration
-- **`.luarc.json`**: Lua language server settings
-- **`.lua-format`**: Lua formatter rules (legacy)
-
-### Entry points and main modules
-
-1. **Bootstrap**: `init.lua` → `lua/configs/lazy/init.lua`
-2. **Settings**: `plugin/options.lua` (loaded automatically)
-3. **Autocommands**: `plugin/autocmd.lua` (loaded automatically)
-4. **Plugins**: `lua/plugins/*.lua` (imported by lazy.nvim)
-5. **LSP**: `lua/lsp/handlers.lua` → `lua/plugins/lsp/init.lua`
-
-## Development Workflow
-
-### How to build/run the project
-
-**Standard setup:**
-```bash
-# 1. Clone to Neovim config directory
-git clone <repo-url> ~/.config/nvim
-
-# 2. Install Python dependencies (optional but recommended)
-pip install -r requirements.txt
-# or with uv:
-uv pip install -r requirements.txt
-
-# 3. Launch Neovim
-nvim
-
-# 4. lazy.nvim will auto-install on first launch
-# Wait for plugin installation to complete
+```
+init.lua                 # Entry point (bootstraps lazy.nvim)
+plugin/
+  options.lua            # Global vim settings
+  autocmd.lua            # Autocommands
+lua/
+  plugins/               # lazy.nvim plugin specs
+    editor.lua           # which-key, file trees
+    completion.lua       # blink.cmp, nvim-cmp
+    treesitter.lua       # Syntax highlighting
+    telescope.lua        # Fuzzy finding
+    git.lua              # gitsigns, worktree
+    lsp/init.lua         # LSP plugins
+    ui/init.lua          # Statusline, notifications
+    theme/               # Colorschemes
+  configs/               # Plugin configuration implementations
+  lsp/                   # LSP handlers and utilities
+lsp/                     # Native LSP configs (lua_ls.lua, etc.)
+after/lsp/               # Per-language LSP overrides
+snippets/                # Custom snippets
 ```
 
-**Nix setup (for reproducible environment):**
-```bash
-# Build and run via nix flake
-nix run .
+## Common Tasks
 
-# Or enter development shell
-nix develop
+### Add a Plugin
+
+Edit or create file in `lua/plugins/` following lazy.nvim spec format with leading commas:
+
+```lua
+{
+  'author/plugin-name'
+  , lazy = true
+  , event = 'VeryLazy'
+  , opts = {}
+}
 ```
 
-### Plugin management
+Run `:Lazy sync` or restart Neovim.
 
-```vim
-" Update all plugins
-:Lazy update
+### Configure an LSP
 
-" Sync plugins (install missing, update, clean)
-:Lazy sync
+1. Add server to `ensure_installed` in `lua/plugins/lsp/init.lua`
+2. Create `lsp/<server>.lua` or `after/lsp/<server>.lua` for custom config
+3. Run `:LspRestart` or restart Neovim
 
-" Check plugin status
-:Lazy
+### Add a Keymap
 
-" Profile startup time
-:Lazy profile
+Edit `lua/configs/keys/init.lua` for which-key groups, or add `keys = {}` in plugin spec:
+
+```lua
+keys = {
+  {
+    '<leader>x', function()
+      require 'plugin'.action()
+    end, desc = 'description'
+  }
+}
 ```
 
-### LSP management
+## Linting Rules (selene.toml)
 
-```vim
-" Install language servers
-:Mason
+- Standard: `neovim`
+- Allowed: `global_usage`, `multiple_statements`, `mixed_table`
+- Excluded: `.archive/*`
 
-" Install specific LSP
-:MasonInstall rust_analyzer
+## Key Bindings
 
-" Update all tools
-:MasonUpdate
-
-" Check LSP status
-:LspInfo
-```
-
-### Testing approach
-
-- Test files provided in `test/` directory for various languages
-- Manual testing via opening different file types
-- LSP functionality tested per-language in `test/` directory
-- No automated test suite currently configured
-
-### Development environment setup
-
-**Dependencies:**
-- Neovim >= 0.9.0 (recommended: latest stable or nightly)
-- Git (for plugin management)
-- Ripgrep (`rg`) - for telescope live_grep
-- fd - for telescope find_files (optional)
-- Node.js - for various LSP servers
-- Python 3 with `neovim` package
-- Nerd Font - for icons (optional but recommended)
-
-**Language-specific tools (installed via Mason):**
-- LSP servers: ansiblels, bashls, lua_ls, pyright, rust_analyzer, ts_ls, etc.
-- Formatters: stylua, prettier, black (via null-ls)
-- Linters: Various (configured in null-ls)
-
-### Lint and format commands
-
-**Lua formatting:**
-```bash
-# Format Lua files with stylua
-stylua .
-
-# Check formatting
-stylua --check .
-```
-
-**LSP formatting (in Neovim):**
-```vim
-" Format current buffer
-:lua vim.lsp.buf.format()
-
-" Or use keybinding (check which-key for current mapping)
-```
-
-**Configuration validation:**
-```bash
-# Check Lua syntax with luac
-find lua -name "*.lua" -exec luac -p {} \;
-
-# Lint with selene (if configured)
-selene lua/
-```
-
-### Key directories for development
-
-- Edit plugin specs: `lua/plugins/`
-- Edit plugin configs: `lua/configs/`
-- Edit LSP settings: `lua/lsp/` and `after/lsp/`
-- Edit Vim settings: `plugin/options.lua`
-- Edit autocommands: `plugin/autocmd.lua`
-- Add custom snippets: `snippets/`
-
-### Common tasks
-
-**Add a new plugin:**
-1. Create/edit file in `lua/plugins/`
-2. Add plugin spec following lazy.nvim format
-3. Restart Neovim or `:Lazy reload`
-
-**Configure an LSP:**
-1. Add to `ensure_installed` in `lua/plugins/lsp/init.lua`
-2. Create config file in `lua/lsp/` or `after/lsp/` if custom settings needed
-3. Restart Neovim or `:LspRestart`
-
-**Change theme:**
-1. Edit `lua/theme/init.lua` or plugin colorscheme configuration
-2. Set colorscheme in `lua/configs/lazy/init.lua` install.colorscheme
+- Leader key: Space (`vim.g.mapleader = ' '`)
+- Check bindings: `<leader>?` (which-key buffer keymaps)

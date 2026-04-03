@@ -31,6 +31,14 @@ pnpm=(
     textlint-rule-editorconfig
     # textlint-plugin-markdown
   @continuedev/cli
+  # @pilatos/bitbucket-cli
+  allure
+  @getpaseo/cli
+)
+
+bun_list=(
+  @pilatos/bitbucket-cli
+  critique
 )
 
 ###  pnpm retired
@@ -102,6 +110,9 @@ brew=(
 
 time pnpm i  -g --loglevel error ${pnpm// / }
 time pnpm up -g --loglevel error
+
+time bun i               -g ${bun_list// / }
+time bun update --latest -g ${bun_list// / }
 
 # time pipx upgrade-all
 # time pipx install ${pip// / }

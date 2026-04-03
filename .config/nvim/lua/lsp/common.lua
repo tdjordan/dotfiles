@@ -47,10 +47,10 @@ local on_attach = function( client, bufnr )
   -- set( 'n', '<space>D',  vim.lsp.buf.type_definition,         'goto type definition'          )
   set( 'n', '<leader>rn', vim.lsp.buf.rename,                  'rename'                       )
   set( 'n', '<leader>ca', vim.lsp.buf.code_action,             'code action'                  )
-  set( 'n', 'gr',         vim.lsp.buf.references,              'references'                   )
+  -- set( 'n', 'gr',         vim.lsp.buf.references,              'references'                   )
   -- set( 'n', '<leader>F',   function() vim.lsp.buf.format { async = true } end, 'format async' )
   set( 'n', '<leader>lF',  function() vim.lsp.buf.format { async = true } end, 'format async' )
-  -- set( 'n', '<leader>ca', vim.lsp.buf.code_action,             'range code action'            )
+  -- set( 'n', '<leader>ca', vim.lsp.buf. ode_action,             'range code action'            )
   set( 'n', '<leader>le', vim.diagnostic.open_float,           'show diagnostic'              )
 end
 

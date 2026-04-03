@@ -21,87 +21,92 @@ return {
   --     }
   --   }
   -- },
-  {
-    'stevearc/conform.nvim'
-    , event = { 'BufWritePre' }
-    , cmd = {
-      'ConformInfo'
-    }
-    , keys = {
-      {
-        '<leader>ln', function()
-          require 'conform'.format({ async = true })
-        end,
-        mode = '',
-        desc = 'format buffer'
-      }
-    }
-    -- This will provide type hinting with LuaLS
-    ---@module "conform"
-    ---@type conform.setupOpts
-    , opts =  {
-      formatters_by_ft = {
-        nix = { 'alejandra' },
-        -- lua = { 'stylua' },
-        terraform = { 'terraform_fmt' },
-        -- sh = { 'shf,mt' },
-        ['*'] = { 'codespell' },
-        -- ['_'] = { 'trim_whitespace' },
-      },
-      default_format_opts = {
-        lsp_format = 'fallback'
-      }
-    }
-  },
   -- {
-  --   'cenk1cenk2/schema-companion.nvim'
-  --   , enabled = false
-  --   , ft = { 'yaml' }
-  --   -- , opts = {
-  --   --   enable_telescope = true,
-  --   --   matchers = {
-  --   --     require 'schema-companion.matchers.kubernetes'.setup { version = 'master' }
-  --   --   }
-  --   -- }
-  --   , config = function()
-  --     require 'schema-companion'.setup {
-  --       enable_telescope = true,
-  --       matchers = {
-  --         require 'schema-companion.matchers.kubernetes'.setup { version = 'master' }
-  --       },
-  --       -- schemas = {
-  --       --   {
-  --       --     name = "Kubernetes master",
-  --       --     uri = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/all.json",
-  --       --   },
-  --       -- }
+  --   'stevearc/conform.nvim'
+  --   , event = { 'BufWritePre' }
+  --   , cmd = {
+  --     'ConformInfo'
+  --   }
+  --   , keys = {
+  --     {
+  --       '<leader>ln', function()
+  --         require 'conform'.format({ async = true })
+  --       end,
+  --       mode = '',
+  --       desc = 'format buffer'
   --     }
-  --   end
+  --   }
+  --   -- This will provide type hinting with LuaLS
+  --   ---@module "conform"
+  --   ---@type conform.setupOpts
+  --   , opts =  {
+  --     formatters_by_ft = {
+  --       nix = { 'alejandra' },
+  --       -- lua = { 'stylua' },
+  --       terraform = { 'terraform_fmt' },
+  --       -- sh = { 'shf,mt' },
+  --       ['*'] = { 'codespell' },
+  --       -- ['_'] = { 'trim_whitespace' },
+  --     },
+  --     default_format_opts = {
+  --       lsp_format = 'fallback'
+  --     }
+  --   }
   -- },
   {
-    'someone-stole-my-name/yaml-companion.nvim'
+    'cenk1cenk2/schema-companion.nvim'
     , enabled = true
-    , ft = {
-      'yaml',
-      'json'
+    , ft = { 'yaml' }
+    , dependencies = {
+      'nvim-lua/plenary.nvim'
     }
-    , opts = {
-      builtin_matchers = {
-        kubernetes = { enabled = true }
-      },
-      -- schemas = {
-      --   {
-      --     name = "Flux GitRepository",
-      --     uri = "https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/gitrepository-source-v1.json",
-      --   }
-      -- }
-    }
-    , config = function(_, opts)
-      local cfg = require 'yaml-companion'.setup(opts)
-      require 'lspconfig'['yamlls'].setup(cfg)
-      require 'telescope'.load_extension('yaml_schema')
-    end
+    -- , opts = {
+    --   enable_telescope = true,
+    --   matchers = {
+    --     require 'schema-companion.matchers.kubernetes'.setup { version = 'master' }
+    --   }
+    -- }
+    , config = true
+    -- , config = function()
+    --   require 'schema-companion'.setup {
+    --     -- log_level = vim.log.log_levels.INFO
+    --   --   enable_telescope = true,
+    --   --   matchers = {
+    --   --     require 'schema-companion.matchers.kubernetes'.setup { version = 'master' }
+    --   --   },
+    --   --   -- schemas = {
+    --   --   --   {
+    --   --   --     name = "Kubernetes master",
+    --   --   --     uri = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/all.json",
+    --   --   --   },
+    --   --   -- }
+    --   }
+    -- end
   },
+  -- {
+  --   'someone-stole-my-name/yaml-companion.nvim'
+  --   , enabled = true
+  --   , ft = {
+  --     'yaml',
+  --     'json'
+  --   }
+  --   , opts = {
+  --     builtin_matchers = {
+  --       kubernetes = { enabled = true }
+  --     },
+  --     -- schemas = {
+  --     --   {
+  --     --     name = "Flux GitRepository",
+  --     --     uri = "https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/gitrepository-source-v1.json",
+  --     --   }
+  --     -- }
+  --   }
+  --   , config = function(_, opts)
+  --     local cfg = require 'yaml-companion'.setup(opts)
+  --     require 'lspconfig'['yamlls'].setup(cfg)
+  --     require 'telescope'.load_extension('yaml_schema')
+  --   end
+  -- },
   -- {
   --   'msvechla/yaml-companion.nvim'
   --   , enabled = true
@@ -192,6 +197,7 @@ return {
             , 'jsonls'                          -- json
             , 'jsonnet_ls'                      -- jsonnet
             , 'julials'                         -- Julia
+            , 'just'                            -- just
             -- , 'kcl'                             -- KCL
             , 'kotlin_language_server'          -- Kotlin
             , 'lemminx'                         -- XML
@@ -200,9 +206,10 @@ return {
             -- , 'nginx_language_server'        -- Nginx
             -- , 'nil_ls'                       -- Nix
             -- , 'nomad_lsp'                    -- Nomad
+            , 'oxlint'                          -- javascript / typescript
             , 'pbls'                            -- Protocol Buffers
-            , 'pylyzer'                         -- Python
-            , 'pyright'                         -- Python
+            -- , 'pylyzer'                         -- Python
+            -- , 'pyright'                         -- Python
             , 'raku_navigator'                  -- Raku
             , 'rnix'                            -- Nix
             , 'ruff'                            -- Python
@@ -214,6 +221,7 @@ return {
             , 'textlsp'                         -- textLSP
             , 'tflint'                          -- terraform
             , 'ts_ls'                           -- typescript
+            , 'ty'                              -- Python
             , 'typos_lsp'                       -- typos
             -- , 'vale_ls'                         -- vale
             , 'vimls'                           -- Vim

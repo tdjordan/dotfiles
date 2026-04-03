@@ -6,6 +6,11 @@ return {
     , opts = {
       filetypes = { '*', '!lazy', '!mason'    },
       buftype   = { '*', '!prompt', '!nofile' },
+      options = {
+        hex = {
+          default = true
+        }
+      },
       user_default_options = {
         AARRGGBB = true
       }

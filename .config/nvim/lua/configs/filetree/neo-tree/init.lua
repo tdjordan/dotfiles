@@ -7,8 +7,17 @@ require 'neo-tree'.setup {
   }
   , close_if_last_window = true
   , filesystem = {
-    follow_current_file = true
+    follow_current_file = { enabled = true }
     , group_empty_dirs = true
+    , filtered_items = {
+      always_show = {
+        '.gitignore',
+        '.editorconfig'
+      },
+      always_show_by_pattern = {
+        '.env*'
+      }
+    }
   }
   -- default diagnostics definition
   -- , diagnostics = {

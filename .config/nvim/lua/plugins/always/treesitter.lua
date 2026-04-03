@@ -34,10 +34,14 @@ return {
     --   -- 'xbase-lab/xbase'
     -- }
     , dependencies = {
-      'nvim-treesitter/nvim-treesitter-refactor'
-      , 'nvim-treesitter/nvim-treesitter-textobjects'
+      'nvim-treesitter/nvim-treesitter-locals'
+      , {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        version = 'main'
+      }
       , 'HiPhish/rainbow-delimiters.nvim'
       , 'nvim-treesitter/nvim-treesitter-context'
+      -- , 'RRethy/nvim-treesitter-textsubjects'
     }
     , config = function()
       vim.schedule(function()
@@ -51,7 +55,7 @@ return {
             'html',
             'javascript',
             'latex',
-            'norg',
+            -- 'norg',
             'scss',
             'svelte',
             'tsx',
@@ -65,7 +69,7 @@ return {
             'haskell',
             'vala',
             'ipkg',
-            'norg'
+            -- 'norg'
           },
           highlight = {
             enable = true
@@ -90,7 +94,7 @@ return {
             smart_rename = {
               enable = true,
               keymaps = {
-                smart_rename = 'grr'
+                smart_rename = 'gsr'
               }
             },
             -- navigation = {
@@ -232,7 +236,7 @@ return {
                 -- ['[]'] = '@class.outer'
               },
               -- Below will go to either the start or the end, whichever is closer.
-              -- Use if you want more granular movements
+              -- Use if you want morejgranular movements
               -- Make it even more gradual by adding multiple queries and regex.
               goto_next = {
                 ["]c"] = "@conditional.outer",

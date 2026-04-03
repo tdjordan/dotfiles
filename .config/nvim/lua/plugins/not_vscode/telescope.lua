@@ -12,7 +12,7 @@ return {
         end, desc = '*moji'
       },
       {
-        '<leader>fp', function()
+        '<leader>fn', function()
           require 'telescope.builtin'.find_files {
             cwd = require 'lazy.core.config'.options.root
           }
@@ -231,7 +231,7 @@ return {
     }
     , keys = {
       {
-        '<leader>bs', function()
+        '<leader>bp', function()
           require 'browse'.browse()
         end, desc = 'browse search'
       },

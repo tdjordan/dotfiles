@@ -55,11 +55,14 @@ local setup = function()
 
   ---  hover
   ---
-  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-    vim.lsp.buf.hover {
+  vim.lsp.handlers['textDocument/hover'] = vim.lsp.buf.hover {
       border = 'single'
-    }
-  )
+  }
+  -- vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+  --   vim.lsp.buf.hover {
+  --     border = 'single'
+  --   }
+  -- )
 
   ---  signature help
   ---

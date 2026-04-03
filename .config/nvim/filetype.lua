@@ -21,6 +21,7 @@ vim.filetype.add {
     --   end
     --   return 'c'
     -- end
+    , cpps = 'cpp'
   },
   filename = {
     -- Jenkinsfile = 'Jenkinsfile'

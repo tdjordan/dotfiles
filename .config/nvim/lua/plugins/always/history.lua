@@ -21,5 +21,9 @@ return {
     , config = function()
       require 'configs.diffview'
     end
+  },
+  {
+    "esmuellert/codediff.nvim"
+    , cmd = "CodeDiff"
   }
 }

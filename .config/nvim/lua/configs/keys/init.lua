@@ -235,10 +235,10 @@ wk.add({
     { '<leader>Sd' , [[daw''=substitute(@@,"'\\\|\"","","g")<cr>P]], desc = 'delete quotes' },
     -- , { '<leader>Sd' , [[daW''=substitute(@@,"'\\\|\"","","g")<cr>P]], 'delete quotes' }
 
-    { '<leader>sP' , function() require 'telescope.builtin'.pickers()   end , desc = 'picker history'    },
+    { '<leader>sP' , function() require 'telescope.builtin'.pickers()   end , desc = 'telescope [P]icker history'    },
 
     { '<leader>wp' , [[<cmd>split<cr>]]                                     , desc = 'split top-bottom'  },
-    { '<leader>sr' , function() require 'telescope.builtin'.resume()    end , desc = 'resume search'     },
+    { '<leader>sR' , function() require 'telescope.builtin'.resume()    end , desc = '[R]esume telescope search'     },
     -- { '<leader>st' , [[<cmd>lua require('theme').ThemeToggle()<cr>]]        , desc = 'toggle dark/light' },
     -- { '<leader>st' , function() require "telescope.builtin".live_grep() end , desc = 'search text'       },
   },
@@ -285,20 +285,15 @@ wk.add({
   {
     { '<leader>f', group = 'search' },
       -- { '<leader>fb'  , function() require 'telescope.builtin'.buffers()                      end , desc = 'in open buffers'   },
-      { '<leader>fb'  , function() Snacks.picker.buffers()                                    end , desc = 'in open buffers'   },
-      { '<leader>ff'  , function() Snacks.picker.files()                                      end , desc = 'by file name'      },
       { '<leader>fF'  , function() require 'telescope.builtin'.find_files()                   end , desc = 'by file name'      },
       -- { '<leader>fg'  , function() require 'telescope.builtin'.live_grep()                    end , desc = 'with live grep'    },
-      { '<leader>fg'  , function() Snacks.picker.grep()                                       end , desc = 'with live grep'    },
       { '<leader>fh'  , function() require 'telescope.builtin'.help_tags()                    end , desc = 'help tags'         },
       { '<leader>fj'  , function() require 'telescope.builtin'.jumplist()                     end , desc = 'jumplist'          },
       { '<leader>fi'  , function() require 'telescope.builtin'.builtin()                      end , desc = 'builtins'          },
-      -- { '<leader>fl'  , function() Snacks.picker.lines()                                      end,  desc = 'current buffer'    },
       { '<leader>fm'  , function() require 'telescope.builtin'.man_pages()                    end , desc = 'man pages'         },
       { '<leader>fo'  , function() require 'telescope.builtin'.oldfiles()                     end , desc = 'recent files'      },
       { '<leader>fq'  , function() require 'telescope.builtin'.quickfix()                     end , desc = 'quickfix'          },
       { '<leader>fr'  , function() require 'telescope.builtin'.reloader()                     end , desc = 'reloader'          },
-      { '<leader>fs'  , function() Snacks.picker.lsp_workspace_symbols()                      end , desc = 'lsp symbols'       },
       { '<leader>ft'  , function() require 'telescope.builtin'.filetypes()                    end , desc = 'filetypes'         },
       { '<leader>fw'  , function() require 'telescope.builtin'.grep_string()                  end , desc = 'word under cursor' },
       { '<leader>f;'  , function() require 'telescope.builtin'.command_history()              end , desc = 'command history'   },
@@ -382,13 +377,9 @@ wk.add({
   ---
   {
     { '<leader>p', group = 'pick' },
-      { '<leader>pa' , function() Snacks.picker.autocmds()                                                end, desc = 'an autocommand'      },
       -- { '<leader>pa' , function() require 'telescope.builtin'.autocommands()                              end, desc = 'an autocommand'      },
-      -- { '<leader>pb' , function() Snacks.picker.buffers()                                                 end, desc = 'buffers'             },
       { '<leader>pB' , function() require 'telescope.builtin'.buffers()                                   end, desc = 'from open buffers'   },
       { '<leader>pe' , function() require 'telescope.builtin'.symbols{sources = {'emoji', 'gitmoji'}}     end, desc = '*moji'               },
-      { '<leader>pf' , function() Snacks.picker.smart()                                                   end, desc = 'file smart find'     },
-      -- { '<leader>pf' , function() Snacks.picker.files()                                                   end, desc = 'a file'              },
       { '<leader>pF' , function() require 'telescope.builtin'.find_files()                                end, desc = 'a file'              },
       { '<leader>pG' , function() require 'telescope.builtin'.live_grep()                                 end, desc = 'from live grep'      },
       { '<leader>ph' , function() require 'telescope.builtin'.help_tags()                                 end, desc = 'help tags'           },
@@ -458,14 +449,14 @@ wk.add({
   ---
   {
     { '<leader>g', group = 'git' },
-      { '<leader>gb' , function() require 'telescope.builtin'.git_branches() end, desc = 'git branches'       },
-      { '<leader>gc' , function() require 'telescope.builtin'.git_commits()  end, desc = 'git commits'        },
+      { '<leader>gb' , function() require 'telescope.builtin'.git_branches() end, desc = 'git branches'         },
+      { '<leader>gc' , function() require 'telescope.builtin'.git_commits()  end, desc = 'git commits'          },
 
       { '<leader>gd', name = 'git diff' }, -- diffview
 
-      { '<leader>gh' , function() require 'telescope.builtin'.git_stash()    end, desc = 'git stash'          },
-      { '<leader>gl' , function() require 'telescope.builtin'.git_bcommits() end, desc = 'git buffer commits' },
-      { '<leader>gs' , function() require 'telescope.builtin'.git_status()   end, desc = 'git status'         },
+      { '<leader>gh' , function() require 'telescope.builtin'.git_stash()    end, desc = 'git stash'            },
+      { '<leader>gC' , function() require 'telescope.builtin'.git_bcommits() end, desc = 'git buffer [C]ommits' },
+      { '<leader>gs' , function() require 'telescope.builtin'.git_status()   end, desc = 'git status'           },
   },
 
   ---

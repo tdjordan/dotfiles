@@ -39,13 +39,13 @@ vim.opt.rtp:prepend(install_path)
 
 require 'lazy'.setup(
   {
-    {   import = 'plugins.always',     cond = true },
-    {   import = 'plugins.not_vscode', cond = function() return not vim.g.vscode end },
-    {   import = 'plugins.vscode',     cond = function() return     vim.g.vscode end }
+    {   import = 'plugins/always',    cond = true                                     },
+    {   import = 'plugins/notvscode', cond = (function() return not vim.g.vscode end) },
+    {   import = 'plugins/vscode',    cond = (function() return     vim.g.vscode end) }
     -- , { import = 'plugins.ui'                 }
     -- , { import = 'plugins.ui.lualine'         }
     -- , { import = 'plugins.lsp'                }
-    , { import = 'plugins.not_vscode.theme.colorschemes' }
+    -- , { import = 'plugins.theme.colorschemes' }
     -- , { import = 'plugins.theme.material'     }
     -- , { import = 'plugins.whitespace'         }
   },
