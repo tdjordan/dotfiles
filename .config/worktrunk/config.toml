@@ -16,12 +16,14 @@ skip-commit-generation-prompt = true
 
 [post-create]
 install = "direnv allow ."
+# copy = "ln -s ../AGENTS.md AGENTS.md"
 
 [post-switch]
-# tmux = "[ -n \"TMUX\" ] && tmux rename-window {{ branch | sanitize }}"
+tmux = "[ -n \"TMUX\" ] && tmux rename-window {{ branch | sanitize }}"
 # tmux = "[ -n \"TMUX\" ] && tmux rename-window '{{ branch | sanitize }} {{ repo | sanitize }}'"
 # tmux = "[ -n \"TMUX\" ] && tmux rename-window {{ (repo ~ '-' ~ branch) | sanitize }}"
 # tmux = "[ -n \"TMUX\" ] && tmux rename-window {{ (repo ~ ' ' ~ branch) | sanitize }}"
-tmux = "[ -n \"TMUX\" ] && tmux rename-window {{ (branch ~ ' ' ~ repo) | sanitize }}"
+# tmux = "[ -n \"TMUX\" ] && tmux rename-window {{ (branch ~ ' ' ~ repo) | sanitize }}"
+# tmux = "[ -n \"TMUX\" ] && tmux rename-window {{ (repo ~ ' ' ~ branch) | sanitize }}"
 
 [projects]
