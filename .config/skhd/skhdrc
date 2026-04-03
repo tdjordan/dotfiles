@@ -105,13 +105,26 @@
 
 ###  Application Specific Key Mapping Adjustments
 ###
+ctrl - 0x2c [
+  "Code"  | cmd  - 0x2c   ## use c-k to map to cmd-k for slack
+  *       | ctrl - 0x2c   ## passthrough for all other apps
+]
+cmd - tab : echo "Tab"
 ctrl - k [
   "Slack" | cmd  - k     ## use c-k to map to cmd-k for slack
   *       | ctrl - k     ## passthrough for all other apps
 ]
 ctrl - l [
-  "Google Chrome" | cmd  - l    ## use c-l to map to cmd-l for chrome
+  "Google Chrome" | cmd  - l    ## use c-l to map to cmd-l for Crome
+  "Brave Browser" | cmd  - l    ## use c-l to map to cmd-l for Brave
+  "Helium"        | cmd  - l    ## use c-l to map to cmd-l for Helium
+  "Code"          | cmd  - l    ## use c-l to map to cmd-l for VS Code
+  "Zen"           | cmd  - l    ## use c-l to map to cmd-l for Zen
   *               | ctrl - l    ## passthrough for all other apps
+]
+ctrl - i [
+  "Code"          | cmd  - i    ## use c-i to map to cmd-i for VS Code
+  *               | ctrl - i    ## passthrough for all other apps
 ]
 
 ###  Modals
@@ -129,16 +142,16 @@ ctrl - l [
 ###  Modals : Tranisitions
 ###
 default < fn - space  ; move
-default < ctrl - m    ; move
+# default < ctrl - m    ; move
 default < ctrl - 0x2F ; focus
 default < ctrl - u    ; zoom
 
 move    < fn - space  ; default
-move    < ctrl - m    ; default
+# move    < ctrl - m    ; default
 move    < ctrl - 0x2F ; focus
 move    < 0x35        ; default
 
-focus   < ctrl - m    ; move
+# focus   < ctrl - m    ; move
 focus   < ctrl - 0x2F ; default
 focus   < 0x35        ; default
 
