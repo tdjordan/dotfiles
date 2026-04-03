@@ -8,7 +8,7 @@ brew "qwen-code"
 brew "tgpt"
 brew "aionui"
 brew "copilot-cli"
-brew "mcp-scan"
+brew "snyk-agent-scan"
 brew "beads"
 
 brew "skillshare"

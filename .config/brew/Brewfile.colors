@@ -1,0 +1,2 @@
+tap    "tinted-theming/tinted"
+  brew "tinted-theming/tinted/tinty"
