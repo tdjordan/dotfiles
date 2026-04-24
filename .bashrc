@@ -217,3 +217,5 @@ if [ -e ~/.bash_ansible_adc_lv ]; then
   . ~/.bash_ansible_adc_lv
 fi
 # END Ansible generated from adc-lv-ansible/playbooks/bootstrap/lv-env-aliases.yml
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init bash)"; fi

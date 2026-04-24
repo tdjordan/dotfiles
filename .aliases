@@ -57,7 +57,11 @@ case "$os" in
   Linux)  env_linux ;;
 esac
 
+# __ai() {
+#   opencode run "$*" | sd
+# }
 alias ai='opencode run'
+# alias ai='__ai $*'
 alias oc='opencode'
 
 __lsna_core() {
@@ -367,6 +371,7 @@ alias tlk='t lsk '
 alias tlkt='t lsk -T$* '
 alias tls='t ls'
 alias tn='t new -t'
+alias tni='TMUX= t new -t'
 alias tkt="tlk | cut -d' ' -f6 | sort | uniq | rg -v '^$'"
 alias tps='tmux switch-client -t $(tmux list-sessions -F "#S" | fzf-tmux -p)'
 
