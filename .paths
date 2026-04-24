@@ -18,12 +18,8 @@ export PATH=/usr/local/opt/libressl/bin
 export PATH=$PATH:${HOMEBREW_PREFIX_OPT}/rustup/bin
 export PATH=$PATH:~/.bun/bin
 export BUN_INSTALL=~/.bun
-export PATH=$PATH:~/.gem/ruby/3.4.0/bin
-export PATH=$PATH:${HOMEBREW_PREFIX_LIB}/ruby/gems/3.4.0/bin
-# export PATH=$PATH:~/.gem/ruby/3.1.0/bin
-# export PATH=$PATH:/usr/local/lib/ruby/gems/3.1.0/bin
-# export PATH=$PATH:~/.gem/ruby/2.6.0/bin
-# export PATH=$PATH:/usr/local/lib/ruby/gems/2.6.0/bin
+export PATH=$PATH:~/.gem/ruby/4.0.0/bin
+export PATH=$PATH:${HOMEBREW_PREFIX_LIB}/ruby/gems/4.0.0/bin
 # export PATH=$PATH:${HOMEBREW_PREFIX}/bin
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/usr/bin
@@ -61,7 +57,7 @@ export CPPFLAGS="-I${HOMEBREW_INSTALL_ROOT_OPT}/ruby/include"
 # export DOTNET_ROOT="/usr/local/opt/dotnet/libexec"
 # export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-export PATH=$PATH:$HOME/.gem/ruby/3.0.0/bin
+export PATH=$PATH:$HOME/.gem/ruby/4.0.0/bin
 # export PATH=$PATH:$HOME/.linkerd2/bin
 
 # OPS config
