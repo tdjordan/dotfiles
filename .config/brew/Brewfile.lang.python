@@ -2,3 +2,6 @@ brew "uv"
 brew "ty"
 # uv tool install py2wasm
 brew "pyp"
+
+tap    "bellini666/tap https://github.com/bellini666/pytest-language-server"
+  brew "pytest-language-server"

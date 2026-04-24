@@ -23,3 +23,16 @@ brew "mcp-atlassian"
 
 brew "ollama"
 brew "ctx7"
+
+# curl -fsSL https://forgecode.dev/cli | sh
+
+brew "apfel"
+tap    "Arthur-Ficial/tap"
+  brew "Arthur-Ficial/tap/apfel-mcp"
+
+# uv tool install streamdown
+# uv tool install agent-cli-helper
+
+brew "pi-coding-agent"
+
+# uv tool install code-review-graph
