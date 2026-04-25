@@ -1,18 +1,18 @@
 return {
-  {
-    'zbirenbaum/copilot.lua'
-    , cmd = 'Copilot'
-    , dependencies = {
-      'copilotlsp-nvim/copilot-lsp'
-    }
-    , opts = {
-      suggestion = { enabled = false }
-      , panel = { enabled = false }
-    }
-  },
-  {
-    'giuxtaposition/blink-cmp-copilot'
-  },
+  -- {
+  --   'zbirenbaum/copilot.lua'
+  --   , cmd = 'Copilot'
+  --   , dependencies = {
+  --     'copilotlsp-nvim/copilot-lsp'
+  --   }
+  --   , opts = {
+  --     suggestion = { enabled = false }
+  --     , panel = { enabled = false }
+  --   }
+  -- },
+  -- {
+  --   'giuxtaposition/blink-cmp-copilot'
+  -- },
   {
     'folke/sidekick.nvim'
     , opts = {
@@ -81,6 +81,12 @@ return {
   },
   {
     'joeblubaugh/nvim-beads'
-    , lazy = false
+    -- , lazy = false
+  },
+  {
+    'carlos-algms/agentic.nvim'
+    , opts = {
+      provider ='opencode-acp'
+    }
   }
 }

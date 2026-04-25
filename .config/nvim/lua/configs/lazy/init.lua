@@ -32,27 +32,19 @@ if not vim.uv.fs_stat(install_path) then
   end
 end
 
-vim.g.mapleader = ' '
--- vim.g.maplocalleader = ' '
+-- mapleader is set in init.lua before any requires
 
 vim.opt.rtp:prepend(install_path)
 
 require 'lazy'.setup(
   {
-    {   import = 'plugins.always',     cond = true },
-    {   import = 'plugins.not_vscode', cond = function() return not vim.g.vscode end },
-    {   import = 'plugins.vscode',     cond = function() return     vim.g.vscode end }
-    -- , { import = 'plugins.ui'                 }
-    -- , { import = 'plugins.ui.lualine'         }
-    -- , { import = 'plugins.lsp'                }
+    spec = {
+      { import = 'plugins.always',     cond = true },
+      { import = 'plugins.not_vscode', cond = function() return not vim.g.vscode end },
+      { import = 'plugins.vscode',     cond = function() return     vim.g.vscode end }
     , { import = 'plugins.not_vscode.theme.colorschemes' }
-    -- , { import = 'plugins.theme.material'     }
-    -- , { import = 'plugins.whitespace'         }
-  },
-  {
-    -- spec = {
-    --   { import = 'plugins' }
-    -- },
+      -- { import = 'plugins' }
+    },
     defaults = {
       lazy = true,
     },
@@ -96,7 +88,11 @@ require 'lazy'.setup(
     --   },
     },
     checker = {
-    --   enabled = true,
+      enabled = false,
+      notify = false
+    },
+    change_detection = {
+      enabled = false,
       notify = false
     },
     -- diff = {
@@ -104,6 +100,10 @@ require 'lazy'.setup(
     --   cmd = 'terminal_git'
     -- },
     performance = {
+      cache = {
+        enabled = true,
+      },
+      reset_packpath = true,
       rtp = {
         disabled_plugins = {
           'gzip',
@@ -123,9 +123,9 @@ require 'lazy'.setup(
     profiling = {
       -- Enables extra stats on the debug tab related to the loader cache.
       -- Additionally gathers stats about all package.loaders
-      loader = false,
+      loader = true,
       -- Track each new require in the Lazy profiling tab
-      require = false,
+      require = true,
     }
   }
 )

@@ -332,7 +332,7 @@ wk.add({
       { '<leader>lf' , function() vim.lsp.buf.format()                                        end , desc = 'format'                },
       { '<leader>lh' , function() vim.lsp.buf.hover()                                         end , desc = 'hover'                 },
       { '<leader>lH' , function() vim.lsp.buf.signature_help()                                end , desc = 'signature help'        },
-      { '<leader>li' , '<cmd>LspInfo<cr>'                                                         , desc = 'info'                  },
+      { '<leader>li' , '<cmd>checkhealth vim.lsp<cr>'                                         , desc = 'info'                  },
       { '<leader>lI' , function() require 'mason.ui'.open()                                   end , desc = 'installer info'        },
 
       { '<leader>lj' , function() vim.diagnostic.jump { count =  1, float = true }            end , desc = 'Next diagnostic'       },

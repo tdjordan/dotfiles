@@ -245,7 +245,7 @@ return {
       bigfile = { enabled = false },
       dashboard = { enabled = false },
       explorer = { enabled = false },
-      image = { enabled = true },
+      image = { enabled = false },
       indent = { enabled = false },
       input = { enabled = false },
       notifier = { enabled = true, top_down = false },
@@ -287,5 +287,41 @@ return {
         jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
       }
     }
+  },
+  {
+    'Wansmer/symbol-usage.nvim'
+    -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
+    , event = 'LspAttach'
+    -- , opts = {
+    --   virtual_text = {
+    --     position = 'eol'
+    --   }
+    -- }
+    -- , config = function()
+    --   require('symbol-usage').setup()
+    -- end
+    , config = true
+    -- , config = function()
+    --   require('symbol-usage').setup {
+    --     text_format = function(symbol)
+    --       local fragments = {}
+    --       if symbol.references ~= nil then
+    --         local usage = symbol.references
+    --         local ref_icon = " 🔍 "
+    --         if usage > 0 then
+    --           table.insert(fragments, usage .. ref_icon)
+    --           -- table.insert(fragments, ref_icon .. usage)
+    --         end
+    --       end
+    --       if symbol.definition ~= nil then
+    --         table.insert(fragments, " 🐍 ")
+    --       end
+    --       if symbol.implementation ~= nil then
+    --         table.insert(fragments, " 📦 ")
+    --       end
+    --       return table.concat(fragments, ", ")
+    --     end
+    --   }
+    -- end
   }
 }

@@ -49,6 +49,8 @@ local sidebars = {
   , 'lazy'
   , 'lazy_backdrop'
   , 'snacks_picker_list'
+  , 'AgenticInput'
+  , 'AgenticChat'
   -- , ''
 }
 local no_side_column = autogrp( 'NoSideColumn', { clear = true } )
@@ -93,6 +95,8 @@ local disabled_filetypes = {
   , 'Outline'
   , 'checkhealth'
   , 'snacks_picker_list'
+  , 'AgenticInput'
+  , 'AgenticChat'
 }
 autocmd( { 'WinEnter', 'BufWinEnter' }, {
   pattern = '*'
@@ -199,6 +203,21 @@ autocmd( { 'BufRead', 'BufNewFile' }, {
 --         notif.icon = ev.data.params.value.kind == "end" and " "
 --           or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
 --       end,
+--     })
+--   end,
+-- })
+
+-- vim.api.nvim_create_autocmd("LspProgress", {
+--   callback = function(ev)
+--     vim.print(ev.data)
+--     local value = ev.data.params.value
+--     vim.api.nvim_echo({ { value.message or "done" } }, false, {
+--       id = "lsp." .. ev.data.client_id,
+--       kind = "progress",
+--       source = "vim.lsp",
+--       title = value.title,
+--       status = value.kind ~= "end" and "running" or "success",
+--       percent = value.percentage,
 --     })
 --   end,
 -- })

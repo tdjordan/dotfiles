@@ -3,3 +3,4 @@ lazy-lock.json
 .pnpm-debug.log
 out.me
 hyperfine.lazy.out
+.continue/

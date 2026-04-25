@@ -9,11 +9,6 @@ local sign_column = function()
     Info = ""
   }
 
-  for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-  end
-
   vim.diagnostic.config {
     underline = true,
     signs = {
@@ -39,7 +34,7 @@ local sign_column = function()
 end
 
 local setup = function()
-  vim.lsp.log_levels = 'OFF'
+  vim.lsp.set_log_levels = 'OFF'
   sign_column()
 
   ---  diagnostics
@@ -56,7 +51,7 @@ local setup = function()
   ---  hover
   ---
   vim.lsp.handlers['textDocument/hover'] = vim.lsp.buf.hover {
-      border = 'single'
+    border = 'single'
   }
   -- vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
   --   vim.lsp.buf.hover {
@@ -66,11 +61,9 @@ local setup = function()
 
   ---  signature help
   ---
-  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-    vim.lsp.buf.signature_help  {
-      border = 'single'
-    }
-  )
+  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.buf.signature_help  {
+    border = 'single'
+  }
 
   ---  esample : do not use signs
   ---

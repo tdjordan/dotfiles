@@ -75,7 +75,7 @@ return {
       'rafamadriz/friendly-snippets',
       -- 'mikavilpas/blink-ripgrep.nvim',
       'folke/snacks.nvim',
-      'giuxtaposition/blink-cmp-copilot'
+      -- 'giuxtaposition/blink-cmp-copilot'
     },
 
     -- use a release tag to download pre-built binaries
@@ -101,7 +101,7 @@ return {
       --
       -- See :h blink-cmp-config-keymap for defining your own keymap
       -- keymap = { preset = 'default' },
-      keymap = {
+      -- keymap = {
         -- ['<Tab>'] = { 'select_next', 'fallback' },
         -- ['<Tab>'] = {
         --   function( cmp )
@@ -110,23 +110,23 @@ return {
         --   'show_and_insert',
         --   'select_next'
         -- },
-        ['<Tab>'] = {
-          function( cmp )
-            -- vim.echo('hello')
-            if cmp.snippet_active() then return cmp.accept()
-            else return cmp.select_and_accept()
-            end
-          end,
-          'snippet_forward',
-          'fallback'
-        },
-        ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
-        -- ['<S-Tab>'] = { 'select_prev', 'fallback' },
-        ['<C-j'] = { 'select_next' },
-        ['<C-k'] = { 'select_prev' },
-        ['<C-p'] = { 'select_next' },
-      },
-      -- keymap = { preset = 'super-tab' },
+      --   ['<Tab>'] = {
+      --     function( cmp )
+      --       -- vim.echo('hello')
+      --       if cmp.snippet_active() then return cmp.accept()
+      --       else return cmp.select_and_accept()
+      --       end
+      --     end,
+      --     'snippet_forward',
+      --     'fallback'
+      --   },
+      --   ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+      --   -- ['<S-Tab>'] = { 'select_prev', 'fallback' },
+      --   ['<C-j'] = { 'select_next' },
+      --   ['<C-k'] = { 'select_prev' },
+      --   ['<C-p'] = { 'select_next' },
+      -- },
+      keymap = { preset = 'super-tab' },
       -- keymap = { preset = 'enter' },
 
       appearance = {
@@ -168,14 +168,15 @@ return {
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
+        -- default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
+        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
         providers = {
-          copilot = {
-            name = 'copilot',
-            module = 'blink-cmp-copilot',
-            score_offset = 100,
-            async = true
-          },
+          -- copilot = {
+          --   name = 'copilot',
+          --   module = 'blink-cmp-copilot',
+          --   score_offset = 100,
+          --   async = true
+          -- },
           lazydev = {
             name = 'LazyDev',
             module = 'lazydev.integrations.blink',
