@@ -462,6 +462,7 @@ alias .ff='dotbare fgrep '
 ###
 alias start-zscaler="open -a /Applications/Zscaler/Zscaler.app --hide; sudo find /Library/LaunchDaemons -name '*zscaler*' -exec launchctl load {} \;"
 alias kill-zscaler="find /Library/LaunchAgents -name '*zscaler*' -exec launchctl unload {} \;;sudo find /Library/LaunchDaemons -name '*zscaler*' -exec launchctl unload {} \;"
+alias kill.it = "kill -KILL $(procs --no-headers --only pid $@)"
 
 ### dns cache flusher
 alias flushdns='sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
