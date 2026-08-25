@@ -1,7 +1,11 @@
 return {
-  { 'nvim-tree/nvim-web-devicons' },
+  {
+    'nvim-tree/nvim-web-devicons'
+    , cond = function() return not vim.g.vscode end
+  },
   {
     'NvChad/nvim-colorizer.lua'
+    , cond = function() return not vim.g.vscode end
     , event = { 'BufReadPost', 'BufNewFile' }
     , opts = {
       filetypes = { '*', '!lazy', '!mason'    },
@@ -26,6 +30,7 @@ return {
   -- FIX:  fix me
   {
     'folke/todo-comments.nvim'
+    , cond = function() return not vim.g.vscode end
     -- , optional = true
     , cmd = { 'TodoTrouble', 'TodoTelescope' }
     , event = { 'BufReadPost', 'BufNewFile' }
@@ -70,6 +75,7 @@ return {
   ---
   {
     'folke/styler.nvim'
+    , cond = function() return not vim.g.vscode end
     , enabled = false
     , event = 'VeryLazy'
     , opts = {

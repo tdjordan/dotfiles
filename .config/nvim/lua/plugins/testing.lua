@@ -1,6 +1,7 @@
 return {
   {
     'nvim-neotest/neotest'
+    , cond = function() return not vim.g.vscode end
     , event = {
       'BufReadPost'
       , 'BufNewFile'

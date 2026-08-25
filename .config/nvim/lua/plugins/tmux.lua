@@ -3,6 +3,7 @@
 return {
   {
     'willothy/flatten.nvim'
+    , cond = function() return not vim.g.vscode end
     , lazy = false
     , priority = 1001
     , opts = {
@@ -14,9 +15,11 @@ return {
   },
   -- {
   --   'tmux-plugins/vim-tmux'
+  --   , cond = function() return not vim.g.vscode end
   -- },
   {
     'aserowy/tmux.nvim'
+    , cond = function() return not vim.g.vscode end
     , keys = {
       {
         '<c-h>', function()

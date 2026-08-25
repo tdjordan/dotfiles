@@ -323,5 +323,390 @@ return {
     --     end
     --   }
     -- end
+  },
+  {
+    "sphamba/smear-cursor.nvim"
+    , cond = function() return not vim.g.vscode end
+    , event = "VeryLazy"
+    , opts = {
+      -- Smear cursor when switching buffers or windows.
+      smear_between_buffers = true,
+
+      -- Smear cursor when moving within line or to neighbor lines.
+      -- Use `min_horizontal_distance_smear` and `min_vertical_distance_smear` for finer control
+      smear_between_neighbor_lines = true,
+
+      -- Draw the smear in buffer space instead of screen space when scrolling
+      scroll_buffer_space = true,
+
+      -- Set to `true` if your font supports legacy computing symbols (block unicode symbols).
+      -- Smears and particles will look a lot less blocky.
+      legacy_computing_symbols_support = false,
+
+      -- Smear cursor in insert mode.
+      -- See also `vertical_bar_cursor_insert_mode` and `distance_stop_animating_vertical_bar`.
+      smear_insert_mode = true,
+
+      stiffness = 0.8,                      -- 0.6      [0, 1]
+      trailing_stiffness = 0.6,             -- 0.45     [0, 1]
+      stiffness_insert_mode = 0.7,          -- 0.5      [0, 1]
+      trailing_stiffness_insert_mode = 0.7, -- 0.5      [0, 1]
+      damping = 0.95,                       -- 0.85     [0, 1]
+      damping_insert_mode = 0.95,           -- 0.9      [0, 1]
+      distance_stop_animating = 0.5,        -- 0.1      > 0
+
+      -- cursor_color = "#ff1f9d",
+      -- stiffness = 0.3, -- How fast the smear's head moves towards the target
+      -- trailing_stiffness = 0.15, -- How fast the smear's tail moves towards the target
+      -- trailing_exponent = 5, -- Controls if middle points are closer to the head or the tail
+      -- hide_target_hack = true, -- Attempt to hide the real cursor by drawing a character below it
+      -- gamma = 1,
+    }
+  },
+  {
+    'SmiteshP/nvim-navic'
+    , cond = function() return not vim.g.vscode end
+    , lazy = false
+    , priority = 1000000
+    , opts = {
+      highlight = true
+    }
+  },
+  {
+    'nvim-lualine/lualine.nvim'
+    , cond = function() return not vim.g.vscode end
+    , lazy = false
+    -- , cond = function() return not vim.g.vscode end
+    , event = 'BufEnter'
+    , opts = function()
+      local local_colors = {
+        bg         = '#202328',
+        fg         = '#bbc2cf',
+        yellow     = '#ecbe7b',
+        cyan       = '#008080',
+        darkblue   = '#081633',
+        green      = '#98be65',
+        orange     = '#FF8800',
+        violet     = '#a9a1e1',
+        magenta    = '#c678dd',
+        purple     = '#c678dd',
+        blue       = '#51afef',
+        red        = '#ec5f67',
+        statusline = '#202328',
+        scrollbar  = '#008080',
+        material = {
+          main = {
+            darkpurple = '#b480d6',
+          },
+          editor = {
+            contrast     = '#1a1a1a',
+            line_numbers = '#424242'
+          }
+        },
+        kanagawa = {
+          oniViolet = '#957fb8'
+        }
+      }
+
+      -- require 'material'
+      -- local colors = require 'material.colors'
+
+      -- local list_registered_providers_names = function( filetype )
+      --   local s = require 'null-ls.sources'
+      --   local available_sources = s.get_available( filetype )
+      --   local registered = {}
+      --   for _, source in ipairs( available_sources ) do
+      --     for method in pairs( source.methods ) do
+      --       registered[method] = registered[method] or {}
+      --       table.insert( registered[method], source.name )
+      --     end
+      --   end
+      --   return registered
+      -- end
+      --
+      -- local list_registered_formatters = function( filetype )
+      --   local nls = require 'null-ls'
+      --   local method = nls.methods.FORMATTING
+      --   return list_registered_providers_names( filetype )[method] or {}
+      -- end
+      --
+      -- local list_buffer_conform_formatters = function()
+      --   return require 'conform'.list_formatters_for_buffer(0)
+      -- end
+      --
+      -- local list_registered_linters = function( filetype )
+      --   local nls = require 'null-ls'
+      --   local method = nls.methods.DIAGNOSTICS
+      --   return list_registered_providers_names( filetype )[method] or {}
+      -- end
+      --
+      -- local hidden_providers =
+      -- { 'codespell'
+      --   , 'trail-space'
+      --   , 'editorconfig_checker'
+      -- }
+
+      -- local unique_list = function( t )
+      --   -- make unique keys
+      --   local hash = {}
+      --   for _, v in ipairs( t ) do
+      --     hash[v] = true
+      --   end
+      --
+      --   -- hide assumed providers
+      --   for _, p in ipairs( hidden_providers ) do
+      --     hash[p] = nil
+      --   end
+      --
+      --   -- transform keys back into values
+      --   local res = {}
+      --   for k,_ in pairs( hash ) do
+      --     res[#res+1] = k
+      --   end
+      --
+      --   -- print("res  : " .. vim.inspect(res))
+      --
+      --   return res
+      -- end
+
+      local winbar_filename = function()
+        local bo = vim.bo
+        if bo.modified then
+          return '● '
+            .. vim.fn.expand('%:p:.')
+        end
+        if vim.fn.expand('%:t') == '' then
+          return ''
+        end
+        return vim.fn.expand('%:p:.')
+      end
+
+      ---  Build StatusLine Components
+      ---
+      local components = {
+        branch = {
+          "b:gitsigns_head"
+        },
+        encoding = {
+          "o:encoding"
+        },
+        get_schema = {
+          function()
+            local schema = require 'yaml-companion'.get_buf_schema(0)
+            -- local schema = require 'schema-companion.context'.get_buffer_schema(0)
+            if schema.result[1].name == 'none' then
+              return ''
+            end
+            return ("%s").format(schema.result[1].name)
+            -- return ("%s"):format(require 'yaml-companion'.get_buf_schema(0).result[1].name)
+            -- vim.print( schema )
+            -- return schema.name
+          end,
+          -- cond = function()
+          --   return package.loaded["yaml-companion"]
+          -- end,
+          -- cond = function()
+          --   return vim.bo.filetype == 'yaml'
+          -- end,
+          cond = function()
+            return
+              vim.bo.filetype == 'yaml'
+              or vim.bo.filetype == 'json'
+              or vim.bo.filetype == 'helm'
+          end
+        },
+        -- lsp = {
+        --   function(msg)
+        --     msg = msg or ''
+        --     local buf_clients = vim.lsp.get_clients({ buffer = 0 })
+        --     if next(buf_clients) == nil then
+        --       if type(msg) == "boolean" or #msg == 0 then
+        --         return ''
+        --       end
+        --       return msg
+        --     end
+        --     local buf_ft = vim.bo.filetype
+        --     local buf_client_names = {}
+        --
+        --     -- add client
+        --     for _, client in pairs(buf_clients) do
+        --       if client.name ~= 'null-ls' then
+        --         table.insert(buf_client_names, client.name)
+        --       end
+        --     end
+        --
+        --     -- add formatter
+        --     local supported_formatters = list_registered_formatters( buf_ft )
+        --     vim.list_extend( supported_formatters, list_buffer_conform_formatters() )
+        --
+        --     -- add linter
+        --     local supported_linters = list_registered_linters( buf_ft )
+        --     vim.list_extend(supported_linters, supported_formatters)
+        --
+        --     local res = unique_list( supported_linters )
+        --     vim.list_extend( buf_client_names, res )
+        --     return table.concat(buf_client_names, ", ")
+        --   end,
+        --   cond = function() return vim.fn.winwidth(0) > 80 end
+        -- },
+        mixedindent = {
+          function()
+            local space_indent = vim.fn.search([[\v^ +]], 'nw') > 0
+            local tab_indent = vim.fn.search([[\v^\t+]], 'nw') > 0
+            local mixed = (space_indent and tab_indent) or vim.fn.search([[\v^(\t+ | +\t)]], 'nw') > 0
+            return mixed and 'Mixed Indent' or ''
+          end
+          , color = {
+            fg = local_colors.red,
+            bg = local_colors.bg,
+          }
+        },
+        mode = {
+          function()
+            return ' '
+          end
+          , padding = { left = 0, right = 0 }
+          , cond = nil
+        },
+        navic = {
+          function()
+            -- return require 'nvim-navic'.get_location( { highlight = true } )
+            return require 'nvim-navic'.get_location()
+          end
+        },
+        scrollbar = {
+          function()
+            local current_line = vim.fn.line "."
+            local total_lines = vim.fn.line "$"
+            local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
+            local line_ratio = current_line / total_lines
+            local index = math.ceil(line_ratio * #chars)
+            return chars[index]
+          end
+          , padding = { left = 0, right = 0 }
+          , cond = nil
+        },
+        treesitter = {
+          function()
+            local b = vim.api.nvim_get_current_buf()
+            if next(vim.treesitter.highlighter.active[b]) then
+              return ''
+            end
+            return ''
+          end
+          , color = { fg = local_colors.green }
+        },
+        winbar_filename = {
+          function()
+            return winbar_filename()
+          end
+          , color = { fg = local_colors.material.main.darkpurple, bg = local_colors.material.editor.contrast }
+        },
+        winbar_filename_inactive = {
+          function()
+            return winbar_filename()
+          end
+          , color = { fg = local_colors.material.editor.line_numbers, bg = local_colors.material.editor.contrast }
+          -- , color = { fg = local_colors.kanagawa.oniViolet, bg = local_colors.material.editor.contrast }
+          -- , color = { fg = local_colors.fg, bg = local_colors.material.editor.contrast }
+        }
+      }
+
+      -- require 'kanagawa'
+      -- require 'nordic'
+      -- vim.cmd.colorscheme 'nordic'
+      -- vim.print(vim.g.colors_name)
+      return {
+        options = {
+          -- theme = 'material-stealth'
+          -- theme = 'kanagawa'
+          -- theme = 'thom-stealth'
+          -- theme = 'nordic'
+          theme = 'thom-dynamic'
+          -- theme = vim.g.colors_name
+          , component_separators = { left = '', right = '' }
+          , section_separators = { left = '', right = '' }
+          , disabled_filetypes = {            -- filetypes disabled      for lualine
+            statusline = {                    -- filetypes disabled only for statusline
+              'NvimTree'
+              , 'neo-tree'
+              , 'dashboard'
+              , 'Outline'
+            }
+            , winbar = {                      -- filetypes disabled only for winbar
+              'NvimTree'
+              , 'neo-tree'
+              , 'dashboard'
+              , 'Outline'
+            }
+          }
+          -- , always_divide_middle = true       -- when true { left sections constrained if right sections exist }
+          , globalstatus = true               -- when true { global statusline ( 0.7+ ) }
+          , refresh = {
+            statusline = 1000
+            , tabline = 1000
+            , winbar = 1000
+          }
+          , extensions = {
+            'nvim-tree'
+          }
+        }
+        , sections = {
+          lualine_a = {
+            components.mixedindent,
+            components.mode
+          },
+          -- lualine_b = {},
+          -- lualine_c = {
+          --   components.navic
+          -- },
+          lualine_c = {
+            { 'navic', color_correction = 'dynamic' }
+          },
+          lualine_x = {
+           -- components.lsp,
+            components.treesitter,
+            components.get_schema,
+            'filetype',
+          },
+          lualine_y = {
+          },
+          lualine_z = {
+            components.mode
+          }
+        }
+        -- , inactive_sections = {
+        -- --   lualine_c = {
+        -- --     -- { 'diagnostics', source={'nvim_lsp'}},
+        -- --     'filename'
+        -- --   },
+        -- --   lualine_x = {
+        -- --     -- components.lsp,
+        -- --     -- components.treesitter,
+        -- --     { 'diagnostics', source={'nvim_lsp'}},
+        -- --     'filetype',
+        -- --   },
+        --   lualine_x = {
+        --   },
+        --   lualine_y = {
+        --   },
+        --   lualine_z = {
+        --     -- components.scrollbar,
+        --     -- components.mode
+        --   }
+        -- }
+        -- , tabline = {}
+        , winbar = {
+          lualine_z = {
+            components.winbar_filename
+          }
+        }
+        , inactive_winbar = {
+          lualine_z = {
+            components.winbar_filename_inactive
+          }
+        }
+      }
+    end
   }
 }

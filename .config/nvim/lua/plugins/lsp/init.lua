@@ -210,10 +210,10 @@ return {
             , 'pbls'                            -- Protocol Buffers
             -- , 'pylyzer'                         -- Python
             -- , 'pyright'                         -- Python
+            -- , 'pytest-language-server'          -- Python
             , 'raku_navigator'                  -- Raku
             , 'rnix'                            -- Nix
             , 'ruff'                            -- Python
-            -- , 'ruff_lsp'                        -- Python
             , 'rust_analyzer'                   -- Rust
             -- , 'salt_ls'                         -- Salt
             , 'taplo'                           -- Toml

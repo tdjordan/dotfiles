@@ -3,6 +3,7 @@
 return {
   {
     'nvim-telescope/telescope-symbols.nvim'
+    , cond = function() return not vim.g.vscode end
     , keys = {
       {
         '<leader>pe', function()
@@ -22,18 +23,21 @@ return {
   },
   {
     'nvim-telescope/telescope-fzy-native.nvim'
+    , cond = function() return not vim.g.vscode end
     , config = function()
       require 'telescope'.load_extension 'fzy_native'
     end
   },
   {
     'nvim-telescope/telescope-github.nvim'
+    , cond = function() return not vim.g.vscode end
     , config = function()
       require 'telescope'.load_extension 'gh'
     end
   },
   {
     'nvim-telescope/telescope.nvim'
+    , cond = function() return not vim.g.vscode end
     , cmd = 'Telescope'
     , dependencies = {
       'nvim-lua/plenary.nvim'
@@ -225,6 +229,7 @@ return {
   },
   {
     'lalitmee/browse.nvim'
+    , cond = function() return not vim.g.vscode end
     , cmd = 'Browse'
     , dependencies = {
       'nvim-telescope/telescope.nvim'

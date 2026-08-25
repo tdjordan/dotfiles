@@ -114,6 +114,13 @@ alias dtree='tree -ad -I .git'
 
 # open file manager cwd
 alias e.='yazi .'
+alias o.='open .'
+
+# teleport
+# alias tp='tsh'
+alias tpa='tsh app ls -f json | jq -r ".[] | .metadata.name"'
+alias tpl='tsh app ls -f json'
+alias tpr='tsh app ls -f json | jq -r ".[] | .metadata.name" | rg'
 
 #export TERM=xterm-256colors
 #export TERM=screen-256colors
@@ -137,7 +144,7 @@ alias blr='brew list | rg '
 alias blv='brew leaves '
 # alias bud='brew update && brew upgrade'
 alias bup='brew update'
-alias bupg='brew upgrade'
+alias bupg='brew upgrade -y'
 
 # cat
 # alias k='cat'
@@ -375,6 +382,13 @@ alias tni='TMUX= t new -t'
 alias tkt="tlk | cut -d' ' -f6 | sort | uniq | rg -v '^$'"
 alias tps='tmux switch-client -t $(tmux list-sessions -F "#S" | fzf-tmux -p)'
 
+###  herdr
+###
+alias hr='herdr'
+alias hls='herdr session list'
+alias hn='herdr --session '
+alias ha='herdr session attach'
+
 ###  uv
 alias uvtl='uv tool list '
 alias uvxl='uv tool list '
@@ -398,6 +412,7 @@ alias js='jen s'
 ###
 alias tf='terraform'
 alias tfw='tf workspace'
+alias tenv='TENV_GITHUB_TOKEN="$(git config --get github.token)" \tenv'
 
 ###  fun stuff
 ###
@@ -410,11 +425,15 @@ alias we='watchexec'
 alias wl='wt list'
 alias wla='wt list --remotes'
 alias wlf='wt list --branches --full'
+alias wl.='wt list --branches'
 alias ws='wt switch'
+alias ws.='wt switch --branches'
 alias wsb='wt switch --branches'
+alias wsr='wt switch $(git branch --format "%(refname:lstrip=2)" -r --no-contains | sk)'
 alias wsc'wt switch --create'
 alias w.='wt switch --create --base=@'
 alias wx='wt remove'
+alias wxx='wt remove -D'
 
 ###  yabai focus fuzzy window
 ###

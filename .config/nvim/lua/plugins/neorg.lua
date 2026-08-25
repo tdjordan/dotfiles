@@ -1,6 +1,7 @@
 return {
   -- {
   --   'nvim-neorg/neorg'
+  --   , cond = function() return not vim.g.vscode end
   --   -- , build = ':Neorg sync-parsers'
   --   , cmd = 'Neorg'
   --   , ft = 'norg'

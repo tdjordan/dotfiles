@@ -3,6 +3,7 @@
 return {
   {
     'jay-babu/mason-nvim-dap.nvim'
+    , cond = function() return not vim.g.vscode end
     , keys = {
       { '<leader>d' }
     }
@@ -14,6 +15,7 @@ return {
   }
   , {
     'mfussenegger/nvim-dap'
+    , cond = function() return not vim.g.vscode end
     -- , keys = {
     --   { '<leader>d' }
     -- }
@@ -31,6 +33,7 @@ return {
   }
   , {
     'rcarriga/nvim-dap-ui'
+    , cond = function() return not vim.g.vscode end
     , dependencies = {
       'nvim-neotest/nvim-nio'
     }
@@ -117,6 +120,7 @@ return {
   }
   , {
     'theHamsta/nvim-dap-virtual-text'
+    , cond = function() return not vim.g.vscode end
     , opts = {
       enabled = true,                        -- enable this plugin (the default)
       enabled_commands = true,               -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
