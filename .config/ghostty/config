@@ -3,10 +3,32 @@ font-size = 18
 # font-family = FiraCode Nerd Font Mono
 # font-family = VictorMono Nerd Font
 # font-family = Zed Mono
-# font-family = JetBrainsMono
+# font-family = Monaspace Krypton
+# font-family = Monaspace Raydon
+# font-family = Monaspace Argon
+# font-feature = ss01
+# font-feature = ss02
+# font-feature = ss03
+# font-feature = ss04
+# font-feature = ss05
+# # font-feature = ss06
+# font-feature = ss07
+# font-feature = ss08
+# font-feature = ss09
+# font-feature = ss10
+# font-feature = liga
+# font-family = Lilex
+# === #### >= |> <| \\ <<= >>= ||= |=
+# font-feature = ss01, ss02, sss03, ss04, ss05, ss06, ss07, ss08, ss09, ss10, ss11, ss12, ss13, ss14, ss15, cv08, cv11
+# font-feature = cv01, cv04
+# font-feature = cv09
+# font-feature = cv02, cv06, ss03, cv11
+# font-family = JetBrains Mono
 # font-family = JetBrainsMono Nerd Font Mono
-font-family = MesloLGS Nerd Font Mono
-# font-family = CommitMono
+# font-family = MesloLGS Nerd Font Mono
+# font-family = CommitMono Nerd Font Propo
+# font-family = CommitMono Nerd Font Mono
+# font-family = CommitMono Nerd Font
 
 # theme = kanagawabones
 # theme = UltraDark
@@ -51,8 +73,15 @@ macos-titlebar-style = hidden
 
 # Custom Keybinds & Config ( super represents cmd key on mac )
 # for simple keybinds
-keybind = super+i=inspector:toggle
+keybind = ctrl+i=inspector:toggle
 
 # keybind = super+b>c=new_tab
 
 keybind = global:cmd+/=toggle_quick_terminal
+
+# keybind = ctrl+h=goto_split:left
+# keybind = ctrl+h=goto_split:left
+keybind = cmd+alt+h=goto_split:left
+keybind = cmd+alt+j=goto_split:down
+keybind = cmd+alt+k=goto_split:up
+keybind = cmd+alt+l=goto_split:right
