@@ -8,42 +8,16 @@
 ---
 vim.opt.shortmess:append { I = true }
 
-local fn  = vim.fn
-
-local install_path = fn.stdpath('data') .. '/lazy/lazy.nvim'
-
----@diagnostic disable-next-line: undefined-field
-if not vim.uv.fs_stat(install_path) then
-  vim.notify('Cloning lazy.nvim ....', vim.log.levels.INFO)
-  local out = fn.system {
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable',
-    install_path
-  }
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", 'ErrorMsg' },
-      { out, 'WarningMsg' },
-      { "\nPress any key to exit..." }
-    }, true, {})
-  end
-end
-
--- mapleader is set in init.lua before any requires
-
-vim.opt.rtp:prepend(install_path)
+vim.pack.add { 'https://github.com/folke/lazy.nvim.git' }
 
 require 'lazy'.setup(
   {
     spec = {
-      { import = 'plugins.always',     cond = true },
-      { import = 'plugins.not_vscode', cond = function() return not vim.g.vscode end },
-      { import = 'plugins.vscode',     cond = function() return     vim.g.vscode end }
-    , { import = 'plugins.not_vscode.theme.colorschemes' }
-      -- { import = 'plugins' }
+      { import = 'plugins' },
+      -- { import = 'plugins',            cond = true },
+      -- { import = 'plugins.not_vscode', cond = function() return not vim.g.vscode end },
+      -- { import = 'plugins.vscode',     cond = function() return     vim.g.vscode end }
+      { import = 'plugins.theme.colorschemes' }
     },
     defaults = {
       lazy = true,

@@ -355,9 +355,7 @@ wk.add({
   ---  o* mapptings
   ---
   {
-    { '<leader>o', group = 'org mode' },
-      -- { '<leader>om', group = 'mode' },
-      -- { '<leader>on', group = 'keybind' },
+    { '<leader>o', group = 'obsidian / notes' },
       { '<leader>ow', group = 'workspace' },
   },
 
@@ -367,9 +365,8 @@ wk.add({
   ---
   {
     '<leader>O',
-    function()
-      require 'neorg'
-    end, desc = 'Start org mode'
+    '<cmd>ObsidianQuickSwitch<cr>',
+    desc = 'obsidian quick switch'
   },
 
   ---
