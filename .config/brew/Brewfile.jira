@@ -1,3 +1,5 @@
 brew "jira-cli"
 brew "fjira"
 brew "jiratui"
+brew "textfuel/tap/lazyjira"
+brew "magna-nz/tap/forgetop"

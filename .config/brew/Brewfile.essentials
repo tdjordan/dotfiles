@@ -8,6 +8,8 @@ cask "kitty"
 cask "wezterm"
 cask "alacritty"
 brew "tmux"
+brew "rmux"
+brew "herdr"
 
 ###  terminal enhancements
 ###

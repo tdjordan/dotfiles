@@ -1,1 +1,4 @@
 brew "dug"
+brew "dnsglobe"
+brew "httpx"
+brew "subfinder"

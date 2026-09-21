@@ -1,2 +1,4 @@
 # brew "hyperfine"
 brew "allure"
+
+brew "robotcode"

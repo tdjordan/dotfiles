@@ -1,12 +1,6 @@
-Brewfile.aws
-Brewfile.grep
-maskfile.md
-# Devenv
-.devenv*
-devenv.local.nix
-
-# direnv
-.direnv
-
-# pre-commit
-.pre-commit-config.yaml
+.dskditto.log
+.opencode/
+opencode.jsonc
+session-ses_021c.md
+tmux-client-*.log
+valkey-mcp-server.log

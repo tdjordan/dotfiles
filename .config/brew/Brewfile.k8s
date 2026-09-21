@@ -19,3 +19,10 @@ tap "pehlicd/crd-wizard" "https:;/github.com/pehlicd/crd-wizard"
 
 tap "kyverno/chainsaw https://github.com/kyverno/chainsaw"
   brew "kyverno/chainsaw/chainsaw"
+
+brew "kubectl-explore"
+brew "pluto"
+brew "lfk"
+brew "b4n"
+
+brew "kpt"

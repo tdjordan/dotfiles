@@ -2,3 +2,6 @@ brew "dnote"
 cask "raindropio"
 brew "ekphos"
 brew "pet"
+
+cask "tolaria"
+cask "obsidian"

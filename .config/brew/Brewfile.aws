@@ -1,0 +1,7 @@
+brew "gimme-aws-creds"
+brew "awscli"
+
+tap    "aws/tap"
+  brew "eks-node-viewer"
+
+brew "valkey"

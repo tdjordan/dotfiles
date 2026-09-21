@@ -32,7 +32,38 @@ tap    "Arthur-Ficial/tap"
 
 # uv tool install streamdown
 # uv tool install agent-cli-helper
-
+https://github.com/crate-ci/typos
 brew "pi-coding-agent"
 
 # uv tool install code-review-graph
+
+cask "tolaria"
+cask "obsidian"
+
+tap    "coleam00/archon"
+  brew "coleam00/archone/archon"
+
+brew "crit"
+cask "openchamber"
+
+brew "zot"
+cask "terax"
+
+# uv tool install graphifyy
+
+brew "herdr"
+brew "codeburn"
+cask "agentsview"
+
+brew "apm"
+cask "lemonade-server"
+brew "git-pkgs-brief"
+brew "mcpsnoop"
+brew "obscura"
+
+brew "playwright-cli"
+brew "playwright-mcp"
+
+brew "agent-manager"
+cask "ghostex"
+brew "jcode"

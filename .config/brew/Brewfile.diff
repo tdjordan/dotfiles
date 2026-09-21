@@ -7,3 +7,5 @@ tap    "oug-t/difi"
   brew "difi"
 
 brew "diffnav"
+
+brew "hunk"
