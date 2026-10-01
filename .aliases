@@ -158,7 +158,28 @@ alias bupg='brew upgrade -y'
 #   fi
 # }
 # alias k='_cat_imp '
-alias k='bat'
+__is_md() {
+  [[ $1 == *.md ]]
+}
+_cat_imp() {
+  local f
+  for f in "$@"; do
+    case "$f" in
+      *.md|*.markdown|*.mdx)
+        leaf --inline -- $f
+        ;;
+      *.mmd)
+        termaid -- $f
+        ;;
+      *)
+        bat -- $f
+        ;;
+    esac
+  done
+}
+alias k='_cat_imp'
+compdef _files _cat_imp
+alias kr='bat'
 alias cg='cargo'
 
 # overload ag
@@ -205,7 +226,14 @@ alias lo='_lo '
 rgdf() {
   # shellcheck disable=2048,2086,2046,2012
   # ag $* $(ls -dFL .* | ag -v "(/)$" | ag -v "(\*)$" | ag -v history)
-  rg $* $(ls -dFL .* | rg -v bitwarden | rg -v "(/|\*|history)$")
+  # rg $* $(ls -dFL .* | rg -v bitwarden | rg -v "(/|\*|history)$")       ## valid for us with non-exa
+  # rg $* $(ls -dXf .* | rg -v bitwarden | rg -v "(/|\*|history)$") ## valid for use with `exa`
+  # rg $* $(echo .*(N-.) | rg -v "(/|\*|history)$") ## valid by overriding aliases
+
+  # rg $* $(command ls -df .* | rg -v bitwarden | rg -v "(/|\*|history)$") ## valid by overriding aliases
+
+  # [ -n "${ZSH_VERSION:-}" ]  && rg $* ${${(f)"$(print -l .*(N-.))"}:#*(history|hst)*}
+  rg $* ${${(f)"$(print -l .*(N-.))"}:#*(history|hst)*}
 }
 _typos_in_dot_files() {
   fd -t f -d 1 -H --regex '^\.' -E .zsh_history -E .zcompdump -E .lesshst | typos --exclude '.zsh_history' --file-list -
@@ -234,6 +262,20 @@ function anybar() { echo -n $1 | nc -4u -w0 localhost ${2:-1738}; }
 # shellcheck disable=1090
 [ -f ~/.aliases.local ] && . ~/.aliases.local
 
+# aws
+_aws_profile() {
+  local TARGET_PROFILE
+  TARGET_PROFILE=$(aws configure list-profiles | sk)
+  eval export AWS_PROFILE=$TARGET_PROFILE
+}
+alias a.='_aws_profile'
+_aws_login() {
+  local TARGET_PROFILE
+  TARGET_PROFILE=$(aws configure list-profiles | sk)
+  aws sso login --profile $TARGET_PROFILE
+}
+alias a.l='_aws_login'
+
 # kubernetes
 alias xp='crossplane'
 alias fls='flux reconcile source git '
@@ -242,9 +284,11 @@ alias flk='flux reconcile kustomization '
 
 # kubernetes
 # shellcheck disable=2046,2139
-alias kubectl=$( if command -v kubecolor ; then echo kubecolor ; else echo kubectl ; fi)
-# compdef kubecolor=kubectl
+# alias kubectl=$( if command -v kubecolor ; then echo kubecolor ; else echo kubectl ; fi)
+alias kubectl="$( command -v kubecolor >/dev/null && echo kubecolor || echo kubectl )"
+compdef kubecolor=kubectl
 alias kk='kubectl'
+alias kkv='kubectl version'
 alias kkc='kubectx'
 alias kkn='kubens'
 alias kko='kubectl get -o name '
@@ -382,6 +426,16 @@ alias tni='TMUX= t new -t'
 alias tkt="tlk | cut -d' ' -f6 | sort | uniq | rg -v '^$'"
 alias tps='tmux switch-client -t $(tmux list-sessions -F "#S" | fzf-tmux -p)'
 
+###  ccmux
+###
+alias cm='ccmux'
+
+###  hunk
+###
+alias hd='hunk diff'
+alias hs='hunk show'
+alias hl='hunk log'
+
 ###  herdr
 ###
 alias hr='herdr'
@@ -421,6 +475,9 @@ alias wow='which -a'
 alias woa='which -a'
 alias we='watchexec'
 
+###  workmux
+alias wm='workmux'
+
 ###  worktrunk
 alias wl='wt list'
 alias wla='wt list --remotes'
@@ -430,7 +487,7 @@ alias ws='wt switch'
 alias ws.='wt switch --branches'
 alias wsb='wt switch --branches'
 alias wsr='wt switch $(git branch --format "%(refname:lstrip=2)" -r --no-contains | sk)'
-alias wsc'wt switch --create'
+alias wsc='wt switch --create'
 alias w.='wt switch --create --base=@'
 alias wx='wt remove'
 alias wxx='wt remove -D'
@@ -481,7 +538,23 @@ alias .ff='dotbare fgrep '
 ###
 alias start-zscaler="open -a /Applications/Zscaler/Zscaler.app --hide; sudo find /Library/LaunchDaemons -name '*zscaler*' -exec launchctl load {} \;"
 alias kill-zscaler="find /Library/LaunchAgents -name '*zscaler*' -exec launchctl unload {} \;;sudo find /Library/LaunchDaemons -name '*zscaler*' -exec launchctl unload {} \;"
-alias kill.it="kill -KILL $(procs --no-header --only pid $@)"
+__kill.it() {
+  if (( $# == 0 )); then
+    echo "Usage: kill.it <process-name> [more names]" >&2
+    return 2
+  fi
+
+  local pids
+  output=$(procs --no-header --only pid --regex "$@") || return
+  [[ -n $output ]] || return 1
+
+  local -a pida
+  pids=("${(@f)output}")
+  echo "${pids[@]}"
+  # kill -KILL -- "${pids[@]}"
+}
+alias kill.it="__kill.it"
+# alias kill.it="kill -KILL $(procs --no-header --only pid $@)"
 
 ### dns cache flusher
 alias flushdns='sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
