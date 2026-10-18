@@ -245,15 +245,20 @@ alias rgl='rg -l '
 
 # dotfile configuration
 _dot_config() {
-  git --git-dir=$HOME/.files.git --work-tree=$HOME --no-pager $*
+  GIT_DIR=$HOME/.files.git GIT_WORK_TREE=$HOME git --no-pager "$@"
 }
-# alias config='_dot_config $*'
-alias c='_dot_config $* '
-alias conf='_dot_config $* '
+# alias config='_dot_config'
+alias c='_dot_config '
+alias conf='_dot_config '
 alias ca='_dot_config add '
-alias cci='_dot_config $* commit -v '
-alias ciu='_dot_config $* status -s -u '
-alias c.d='_dot_config $* difftool '
+alias cci='_dot_config commit -v '
+alias ciu='_dot_config status -s -u '
+alias c.d='_dot_config difftool '
+
+# cymbal
+alias cy='cymbal'
+alias cys='cymbal search'
+alias cyr='cymbal refs'
 
 # bash help
 alias help='bbh '
@@ -275,6 +280,7 @@ _aws_login() {
   aws sso login --profile $TARGET_PROFILE
 }
 alias a.l='_aws_login'
+alias al.='_aws_login'
 
 # kubernetes
 alias xp='crossplane'
@@ -295,6 +301,11 @@ alias kko='kubectl get -o name '
 kkf() {
   kubectl get -o name "$@" | xargs -P 10 kubectl patch -p '{"metadata":{"finalizers": null}}' --type merge
 }
+
+# __lfk_imp() {
+#   \lfk --context $(kubectl config current-context)
+# }
+# alias lfk=__lfk_imp
 
 # kustomize
 alias kit='kustomize build --enable-helm '
