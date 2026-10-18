@@ -26,3 +26,5 @@ brew "lfk"
 brew "b4n"
 
 brew "kpt"
+brew "nklmilojevic/sofka/sofka"
+brew "testkube"

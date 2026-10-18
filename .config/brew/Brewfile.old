@@ -67,7 +67,7 @@ brew "doxygen"
 
 ###  search tools
 ###
-brew "fd"
+# brew "fd"
 brew "ripgrep"
 brew "tree"
 brew "pstree"

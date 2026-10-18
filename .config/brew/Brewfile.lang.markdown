@@ -8,3 +8,5 @@ brew "defuddle"
 brew "mado"
 brew "marp"
 brew "leaf-md"
+
+brew "confluence-markdown-exporter"

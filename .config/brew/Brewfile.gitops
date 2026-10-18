@@ -14,3 +14,5 @@ brew "gitlogue"
 brew "treehouse"
 brew "gita"
 brew "vals"
+
+brew "workmux"

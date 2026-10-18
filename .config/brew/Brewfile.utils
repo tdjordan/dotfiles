@@ -37,3 +37,5 @@ brew "superfile"
 brew "dskditto"
 brew "lazyrsync"
 brew "leaves"
+
+brew "portop"

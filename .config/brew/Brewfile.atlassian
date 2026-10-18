@@ -1,2 +1,4 @@
 tap    "atlassian-labs/acli"
   brew "acli"
+
+brew "confluence-markdown-exporter"

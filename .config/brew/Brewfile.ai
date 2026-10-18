@@ -1,7 +1,7 @@
 # tap  "sst/tap"
 tap "anomalyco/tap"
   brew "opencode"
-  brew "opencode-desktop"
+  # brew "opencode-desktop"
 
 brew "gemini-cli"
 brew "qwen-code"
@@ -67,3 +67,6 @@ brew "playwright-mcp"
 brew "agent-manager"
 cask "ghostex"
 brew "jcode"
+brew "bend"
+
+brew "ccmux"

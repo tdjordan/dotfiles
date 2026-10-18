@@ -5,3 +5,6 @@ tap    "aws/tap"
   brew "eks-node-viewer"
 
 brew "valkey"
+
+tap    "huseyinbabal/tap/taws"
+  brew "huseyinbabal/tap/taws"

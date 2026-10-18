@@ -1,1 +1,3 @@
 brew "yap"
+brew "whisper.cpp"
+brew "whisperkit-cli"
