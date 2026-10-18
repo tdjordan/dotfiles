@@ -244,8 +244,11 @@ alias t.='_typos_in_dot_files '
 alias rgl='rg -l '
 
 # dotfile configuration
+__dotfile_worktree() {
+  GIT_DIR=$HOME/.files.git GIT_WORK_TREE=$HOME "$@"
+}
 _dot_config() {
-  GIT_DIR=$HOME/.files.git GIT_WORK_TREE=$HOME git --no-pager "$@"
+  __dotfile_worktree git --no-pager "$@"
 }
 # alias config='_dot_config'
 alias c='_dot_config '
@@ -254,6 +257,12 @@ alias ca='_dot_config add '
 alias cci='_dot_config commit -v '
 alias ciu='_dot_config status -s -u '
 alias c.d='_dot_config difftool '
+alias c.p='_dot_config -c core.pager="hunk pager" -p '
+alias c.l='__dotfile_worktree hunk log'
+alias .fl='__dotfile_worktree hunk log'
+# alias .fd='__dotfile_worktree hunk diff'
+alias .fd='c.p diff '
+alias .fdc='c.p diff --cached'
 
 # cymbal
 alias cy='cymbal'
@@ -544,6 +553,7 @@ alias fwl='__yabai_focus_window_in_space'
 ###
 alias .f='dotbare '
 alias .ff='dotbare fgrep '
+alias .fa='dotbare fadd'
 
 ### zscaler
 ###
