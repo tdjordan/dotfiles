@@ -29,7 +29,7 @@ pkgs=(
   tsh               nixpkgs#teleport
   tenv              nixpkgs#tenv
   kind              nixpkgs#kind
-  minikube          nixpkgs#minikube
+  # minikube          nixpkgs#minikube
   vcluster          nixpkgs#vcluster
   k3d               nixpkgs#k3d
   crossplane        nixpkgs#crossplane-cli
@@ -117,6 +117,7 @@ pkgs=(
   mediainfo           nixpkgs#mediainfo
   tree                nixpkgs#tree
   chainsaw            nixpkgs#kyverno-chainsaw
+  # marp                nixpkgs#marp-cli
   )
   # bw                nixpkgs#bitwarden-cli
   # localsend         nixpkgs#localsend
