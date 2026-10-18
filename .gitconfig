@@ -38,6 +38,7 @@
   gr = !cd $(git rev-parse --show-toplevel)
   d  = difftool
   dt = difftool
+  dc = critique
   dn = !git diff | diffnav
   deleted = log --diff-filter=D --summary
   di = diff
@@ -76,6 +77,8 @@
   incoming = !git fetch && git lg3  $(git current-br)..origin/$(git current-br)
   in = !git incoming
   in-diff =  !git fetch && git diff $(git current-br)..origin/$(git current-br) | diffnav
+  in-d-critq = !git fetch && critique     $(git current-br) origin/$(git current-br)
+  in-d-crit  = !git fetch && crit --range $(git current-br) origin/$(git current-br)
 
   # outgoing changes - like hg
   outgoing = !git lg3  origin/$(git current-br)..$(git current-br)
@@ -93,6 +96,7 @@
   editor = nvim
   excludesfile = ~/.gitignore_global
   commentchar = :
+  ; pager = hunk pager
 
 [branch]
   sort = -committerdate
@@ -137,6 +141,9 @@
 [difftool "difftastic"]
   cmd = difft "$LOCAL" "$REMOTE"
 
+[difftool "nvim_difftool"]
+  cmd = nvim -c \"packadd nvim.difftool\" -c \"DiffTool $LOCAL $REMOTE\"
+
 [difftool "sourcetree"]
   cmd = opendiff \"$LOCAL\" \"$REMOTE\"
   path =
@@ -159,6 +166,7 @@
 
 [diff]
   tool = difftastic
+  ; tool = nvim_difftool
   colorMoved = default
   algorithm = histogram
   colorMoved = plain
