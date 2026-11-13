@@ -16,3 +16,4 @@ brew "gita"
 brew "vals"
 
 brew "workmux"
+brew "atlantis"

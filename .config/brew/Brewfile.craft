@@ -1,0 +1,29 @@
+# https://github.com/storytold/craft-anything
+#
+brew "workcraft-cli"
+cask "wordcraft"
+cask "solidcraft"
+brew "pdfcraft-cli"
+cask "pdfcraft"
+brew "gridecraft-cli"
+cask "gridcraft"
+brew "designcraft-cli"
+cask "designcraft"
+brew "filmcraft-cli"
+cask "filmcraft"
+brew "photocraft-cli"
+cask "photocraft"
+brew "lightcraft-cli"
+cask "lightcraft"
+brew "vectorcraft-cli"
+cask "vectorcraft"
+
+cask "deckcraft"
+cask "soundcraft"
+
+cask "figcraft"
+cask "effectcraft"
+
+cask "cadcraft"
+
+cask "solidcraft"

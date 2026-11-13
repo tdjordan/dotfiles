@@ -3,7 +3,6 @@ tap "anomalyco/tap"
   brew "opencode"
   # brew "opencode-desktop"
 
-brew "gemini-cli"
 brew "qwen-code"
 brew "tgpt"
 brew "aionui"
@@ -70,3 +69,7 @@ brew "jcode"
 brew "bend"
 
 brew "ccmux"
+
+cask "codex"
+
+brew "agent-browser"
